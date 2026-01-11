@@ -159,6 +159,7 @@ export default function OurImpactInNumbers() {
       <div className="absolute bottom-0 left-0 right-0 w-full" style={{ pointerEvents: 'none' }}>
         <DecorativePattern 
           className="z-10 transition-none !transition-none"
+          static={true}
         />
       </div>
     </SectionWrapper>

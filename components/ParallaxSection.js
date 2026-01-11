@@ -113,6 +113,7 @@ export default function ParallaxSection({
       <DecorativePattern 
         color="bg-white"
         className="z-10"
+        static={true}
       />
     </section>
   )

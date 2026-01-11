@@ -1,6 +1,5 @@
 'use client'
 
-import SectionWrapper from './SectionWrapper'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { Icon } from '@iconify/react'
@@ -31,7 +30,7 @@ export default function GroupIntegratedSolutions({
 }) {
   const { openModal } = useEnquiryModal()
   return (
-    <SectionWrapper id="integrated-solutions" className="bg-light-grey relative pb-0">
+    <section id="integrated-solutions" className="section-snap flex items-center justify-center bg-light-grey relative pb-0">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -116,8 +115,8 @@ export default function GroupIntegratedSolutions({
           </motion.button>
         </div>
       </motion.div>
-      <DecorativePattern className="transition-none" />
-    </SectionWrapper>
+      <DecorativePattern className="transition-none" static={true} />
+    </section>
   )
 }
 
