@@ -39,7 +39,7 @@ const bottomRowStats = [
   },
 ]
 
-export default function OurImpactInNumbers() {
+export default function OurImpactInNumbers({ showPattern = true }) {
   return (
     <SectionWrapper id="our-impact" className="bg-white relative overflow-hidden">
       {/* Background Image - Static, no scroll animation */}
@@ -156,12 +156,14 @@ export default function OurImpactInNumbers() {
       </div>
       
       {/* Decorative Pattern at Bottom - Static, no animations */}
-      <div className="absolute bottom-0 left-0 right-0 w-full" style={{ pointerEvents: 'none' }}>
-        <DecorativePattern 
-          className="z-10 transition-none !transition-none"
-          static={true}
-        />
-      </div>
+      {showPattern && (
+        <div className="absolute bottom-0 left-0 right-0 w-full" style={{ pointerEvents: 'none' }}>
+          <DecorativePattern 
+            className="z-10 transition-none !transition-none"
+            static={true}
+          />
+        </div>
+      )}
     </SectionWrapper>
   )
 }

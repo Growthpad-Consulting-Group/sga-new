@@ -17,10 +17,10 @@ export default function Header() {
   const navItems = [
     { href: '/', label: 'HOME' },
     { href: '/about', label: 'ABOUT US' },
-    { href: '#sustainability-esg', label: 'SUSTAINABILITY' },
+    { href: '/sustainability', label: 'SUSTAINABILITY' },
     { href: '#news', label: 'NEWS & REPORTS' },
     { href: '#join-our-mission', label: 'CAREER' },
-    { href: '#contact', label: 'CONTACT US' },
+    { href: '/contact', label: 'CONTACT US' },
     { href: '#updates', label: 'UPDATES', icon: 'material-symbols:news-outline-rounded' },
   ]
 

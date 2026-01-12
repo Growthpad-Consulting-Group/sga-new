@@ -1,0 +1,27 @@
+import SustainabilityHero from '@/components/SustainabilityHero'
+import SustainabilityIntro from '@/components/SustainabilityIntro'
+import SustainabilityESGPage from '@/components/SustainabilityESGPage'
+import GroupFooter from '@/components/GroupFooter'
+import FloatingWhatsApp from '@/components/FloatingWhatsApp'
+import OurImpactInNumbers from '@/components/OurImpactInNumbers'
+
+export const metadata = {
+  title: 'Sustainability - SGA Security Group - Environmental Responsibility & Social Impact',
+  description: 'Learn about SGA Security Group\'s commitment to sustainability, environmental responsibility, and social impact across East Africa.',
+}
+
+export default function SustainabilityPage() {
+  return (
+    <>
+      <SustainabilityHero 
+        imageUrl="/images/sustainability/hero.png"
+      />
+      <SustainabilityIntro/>
+      <SustainabilityESGPage />
+      <OurImpactInNumbers showPattern={false} />
+      <GroupFooter /> 
+      <FloatingWhatsApp />
+    </>
+  )
+}
+
