@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
         <EnquiryModalProvider>
           <CVModalProvider>
             <Header />
-            <main className="pt-24">
+            <main className="pt-28 sm:pt-32">
               {children}
             </main>
             <ConditionalFooter />
