@@ -18,10 +18,10 @@ export default function Header() {
     { href: '/', label: 'HOME' },
     { href: '/about', label: 'ABOUT US' },
     { href: '/sustainability', label: 'SUSTAINABILITY' },
-    { href: '#news', label: 'NEWS & REPORTS' },
+    { href: '/news-reports', label: 'NEWS & REPORTS' },
     { href: '#join-our-mission', label: 'CAREER' },
     { href: '/contact', label: 'CONTACT US' },
-    { href: '#updates', label: 'UPDATES', icon: 'material-symbols:news-outline-rounded' },
+    { href: '/updates', label: 'UPDATES', icon: 'material-symbols:news-outline-rounded' },
   ]
 
   const socialLinks = [
@@ -228,4 +228,3 @@ export default function Header() {
     </header>
   )
 }
-
