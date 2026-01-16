@@ -1,9 +1,19 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
+
+interface Location {
+  name: string
+  position: [number, number]
+  description: string
+  address?: string
+  phone?: string
+  email?: string
+  hasDetails?: boolean
+}
 
 // Create custom orange icon
 const createOrangeIcon = () => {
@@ -38,7 +48,7 @@ const createOrangeIcon = () => {
   })
 }
 
-const locations = [
+const locations: Location[] = [
   {
     name: 'Kenya HQ',
     position: [-1.2921, 36.8219], // Nairobi
@@ -66,7 +76,11 @@ const locations = [
 ]
 
 export default function InteractiveMap() {
+  const [isMounted, setIsMounted] = useState(false)
+
   useEffect(() => {
+    setIsMounted(true)
+    
     // Add custom styles for orange popup
     const style = document.createElement('style')
     style.textContent = `
@@ -95,6 +109,10 @@ export default function InteractiveMap() {
       document.head.removeChild(style)
     }
   }, [])
+
+  if (!isMounted) {
+    return <div style={{ height: '100%', width: '100%', borderRadius: '0.5rem', backgroundColor: '#f0f0f0' }} />
+  }
 
   return (
     <MapContainer
@@ -159,4 +177,3 @@ export default function InteractiveMap() {
     </MapContainer>
   )
 }
-
