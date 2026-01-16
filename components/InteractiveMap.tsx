@@ -76,10 +76,11 @@ const locations: Location[] = [
 ]
 
 export default function InteractiveMap() {
-  const [isMounted, setIsMounted] = useState(false)
+  const [mapKey, setMapKey] = useState(0)
 
   useEffect(() => {
-    setIsMounted(true)
+    // Force remount on client side to prevent re-initialization error
+    setMapKey(1)
     
     // Add custom styles for orange popup
     const style = document.createElement('style')
@@ -110,12 +111,13 @@ export default function InteractiveMap() {
     }
   }, [])
 
-  if (!isMounted) {
+  if (mapKey === 0) {
     return <div style={{ height: '100%', width: '100%', borderRadius: '0.5rem', backgroundColor: '#f0f0f0' }} />
   }
 
   return (
     <MapContainer
+      key={mapKey}
       center={[-1.5, 35.5]} // Center point to show all three countries
       zoom={6}
       style={{ height: '100%', width: '100%', borderRadius: '0.5rem' }}
