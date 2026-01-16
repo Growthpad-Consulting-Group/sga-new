@@ -1,5 +1,6 @@
 'use client'
 
+import { useRef, useEffect } from 'react'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
@@ -52,6 +53,16 @@ const createOrangeIcon = () => {
 }
 
 export default function MapComponent({ locations }: MapComponentProps) {
+  const mapInitialized = useRef(false)
+
+  useEffect(() => {
+    mapInitialized.current = true
+  }, [])
+
+  if (!mapInitialized.current) {
+    return <div style={{ height: '100%', width: '100%', borderRadius: '0.5rem', backgroundColor: '#f0f0f0' }} />
+  }
+
   return (
     <MapContainer
       center={[-1.5, 35.5]} // Center point to show all three countries
