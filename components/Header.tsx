@@ -221,24 +221,35 @@ export default function Header() {
               {navItems.map((item) => {
                 const isRoute = !item.href.startsWith('#')
                 const isActive = isRoute ? pathname === item.href : false
-                const NavComponent = isRoute ? Link : 'a'
-                const props = isRoute ? {} : { href: item.href }
+                
+                if (isRoute) {
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={`block py-3 sm:py-3.5 transition-colors flex items-center gap-2 text-sm sm:text-base ${
+                        isActive 
+                          ? 'text-primary-orange font-semibold' 
+                          : 'text-dark-charcoal hover:text-primary-orange'
+                      }`}
+                    >
+                      {item.icon && <Icon icon={item.icon} className="w-5 h-5 text-primary-orange flex-shrink-0" />}
+                      <span>{item.label}</span>
+                    </Link>
+                  )
+                }
                 
                 return (
-                  <NavComponent
+                  <a
                     key={item.href}
-                    {...props}
-                    href={isRoute ? item.href : undefined}
+                    href={item.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className={`block py-3 sm:py-3.5 transition-colors flex items-center gap-2 text-sm sm:text-base ${
-                      isActive 
-                        ? 'text-primary-orange font-semibold' 
-                        : 'text-dark-charcoal hover:text-primary-orange'
-                    }`}
+                    className="block py-3 sm:py-3.5 transition-colors flex items-center gap-2 text-sm sm:text-base text-dark-charcoal hover:text-primary-orange"
                   >
                     {item.icon && <Icon icon={item.icon} className="w-5 h-5 text-primary-orange flex-shrink-0" />}
                     <span>{item.label}</span>
-                  </NavComponent>
+                  </a>
                 )
               })}
               <motion.button
