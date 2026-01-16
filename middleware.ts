@@ -1,11 +1,12 @@
 import { NextResponse } from 'next/server'
+import type { NextRequest } from 'next/server'
 import { isValidCountry, isSubdomainEnabled, getDefaultCountry } from './lib/countryConfig'
 
 /**
  * Extract country code from subdomain
  * Examples: ke.domainname.com -> 'ke', www.domainname.com -> null
  */
-function getCountryFromSubdomain(host) {
+function getCountryFromSubdomain(host: string | null): string | null {
   if (!host) return null
 
   // Remove port if present (for localhost:3001)
@@ -30,7 +31,7 @@ function getCountryFromSubdomain(host) {
  * Extract country code from pathname
  * Examples: /ke/about -> 'ke', /about -> null
  */
-function getCountryFromPath(pathname) {
+function getCountryFromPath(pathname: string): string | null {
   if (!pathname || pathname === '/') return null
   
   // Remove leading slash and split
@@ -49,7 +50,7 @@ function getCountryFromPath(pathname) {
  * Main middleware function
  * Detects country from subdomain or path and rewrites the request
  */
-export function middleware(request) {
+export function middleware(request: NextRequest): NextResponse {
   const { pathname, host } = request.nextUrl
   
   // Skip middleware for static files and API routes that shouldn't be rewritten
@@ -64,25 +65,21 @@ export function middleware(request) {
   const subdomainEnabled = isSubdomainEnabled()
   const defaultCountry = getDefaultCountry()
   
-  let country = null
-  let source = null
+  let country: string | null = null
 
   // Try to get country from subdomain if enabled
   if (subdomainEnabled) {
     country = getCountryFromSubdomain(host)
-    if (country) source = 'subdomain'
   }
 
   // If no country from subdomain, try path
   if (!country) {
     country = getCountryFromPath(pathname)
-    if (country) source = 'path'
   }
 
   // If still no country, use default
   if (!country) {
     country = defaultCountry
-    source = 'default'
   }
 
   // Validate country

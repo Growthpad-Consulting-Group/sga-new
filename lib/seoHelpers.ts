@@ -5,16 +5,46 @@
 
 import { getAllCountries, isSubdomainEnabled, getMainDomain } from './countryConfig'
 
+// HrefLang link interface
+export interface HrefLangLink {
+  rel: string
+  hrefLang: string
+  href: string
+}
+
+// Formatted HrefLang link for JSX
+export interface FormattedHrefLangLink extends HrefLangLink {
+  key: string
+}
+
+// Country metadata interface
+export interface CountryMetadata {
+  name: string
+  locale: string
+  region: string
+  description: string
+}
+
+// Canonical URL options
+export interface CanonicalUrlOptions {
+  protocol?: 'http' | 'https'
+}
+
 /**
  * Generate canonical URL for a page
- * @param {string} country - Country code (e.g., 'ke')
- * @param {string} pathname - Page pathname (e.g., '/about')
- * @returns {string} - Full canonical URL
+ * @param country - Country code (e.g., 'ke')
+ * @param pathname - Page pathname (e.g., '/about')
+ * @param options - Optional configuration
+ * @returns Full canonical URL
  */
-export function getCanonicalUrl(country, pathname = '/') {
+export function getCanonicalUrl(
+  country: string,
+  pathname: string = '/',
+  options: CanonicalUrlOptions = {}
+): string {
   const domain = getMainDomain()
   const subdomainEnabled = isSubdomainEnabled()
-  const protocol = 'https'
+  const protocol = options.protocol || 'https'
 
   // Normalize pathname
   const path = pathname === '/' ? '' : pathname
@@ -30,12 +60,12 @@ export function getCanonicalUrl(country, pathname = '/') {
 
 /**
  * Generate hreflang tags for all country versions of a page
- * @param {string} pathname - Page pathname (e.g., '/about')
- * @returns {Array} - Array of hreflang tag objects
+ * @param pathname - Page pathname (e.g., '/about')
+ * @returns Array of hreflang tag objects
  */
-export function getHrefLangTags(pathname = '/') {
+export function getHrefLangTags(pathname: string = '/'): HrefLangLink[] {
   const countries = getAllCountries()
-  const tags = []
+  const tags: HrefLangLink[] = []
 
   // Add hreflang tags for each country
   countries.forEach(country => {
@@ -58,12 +88,16 @@ export function getHrefLangTags(pathname = '/') {
 
 /**
  * Generate metadata object for a page
- * @param {string} country - Country code
- * @param {string} pathname - Page pathname
- * @param {Object} customMetadata - Custom metadata to merge
- * @returns {Object} - Metadata object for Next.js
+ * @param country - Country code
+ * @param pathname - Page pathname
+ * @param customMetadata - Custom metadata to merge
+ * @returns Metadata object for Next.js
  */
-export function generatePageMetadata(country, pathname = '/', customMetadata = {}) {
+export function generatePageMetadata(
+  country: string,
+  pathname: string = '/',
+  customMetadata: Record<string, any> = {}
+): Record<string, any> {
   const canonicalUrl = getCanonicalUrl(country, pathname)
   const countryName = country === 'ke' ? 'Kenya' : country === 'tz' ? 'Tanzania' : 'Uganda'
 
@@ -87,10 +121,10 @@ export function generatePageMetadata(country, pathname = '/', customMetadata = {
 
 /**
  * Format hreflang tags as JSX elements
- * @param {string} pathname - Page pathname
- * @returns {Array} - Array of JSX link elements
+ * @param pathname - Page pathname
+ * @returns Array of JSX link elements
  */
-export function formatHrefLangLinks(pathname = '/') {
+export function formatHrefLangLinks(pathname: string = '/'): FormattedHrefLangLink[] {
   return getHrefLangTags(pathname).map((tag, index) => ({
     key: `hreflang-${tag.hrefLang}-${index}`,
     rel: tag.rel,
@@ -101,11 +135,11 @@ export function formatHrefLangLinks(pathname = '/') {
 
 /**
  * Get country-specific metadata
- * @param {string} country - Country code
- * @returns {Object} - Country metadata
+ * @param country - Country code
+ * @returns Country metadata
  */
-export function getCountryMetadata(country) {
-  const countryMap = {
+export function getCountryMetadata(country: string): CountryMetadata {
+  const countryMap: Record<string, CountryMetadata> = {
     ke: {
       name: 'Kenya',
       locale: 'en_KE',
