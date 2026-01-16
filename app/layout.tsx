@@ -6,8 +6,10 @@ import { CVModalProvider } from '@/contexts/CVModalContext'
 import { CountryProvider } from '@/contexts/CountryContext'
 import { headers } from 'next/headers'
 import { getCanonicalUrl, formatHrefLangLinks, getCountryMetadata } from '@/lib/seoHelpers'
+import { ReactNode } from 'react'
+import type { Metadata } from 'next'
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'SGA Security Group - Leading Security Solutions in East Africa',
   description: 'Professional security services across Kenya, Uganda, and Tanzania. Trusted protection for businesses and communities.',
   keywords: 'security services, security guards, East Africa, Kenya, Uganda, Tanzania',
@@ -18,9 +20,13 @@ export const metadata = {
   },
 }
 
-export default function RootLayout({ children }) {
-  // Extract country from middleware header
-  const headersList = headers()
+interface RootLayoutProps {
+  children: ReactNode
+}
+
+export default async function RootLayout({ children }: RootLayoutProps) {
+  // Extract country from middleware header (Next.js 15+ requires await)
+  const headersList = await headers()
   const country = headersList.get('x-country') || 'ke'
   const pathname = headersList.get('x-pathname') || '/'
 
@@ -65,4 +71,3 @@ export default function RootLayout({ children }) {
     </html>
   )
 }
-
