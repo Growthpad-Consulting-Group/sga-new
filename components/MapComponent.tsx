@@ -52,8 +52,11 @@ const createOrangeIcon = () => {
   })
 }
 
+let mapInstanceCounter = 0
+
 export default function MapComponent({ locations }: MapComponentProps) {
   const [isMounted, setIsMounted] = useState(false)
+  const [mapId] = useState(() => `map-${++mapInstanceCounter}`) // Unique stable ID
   const mapRef = useRef<L.Map | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -63,7 +66,11 @@ export default function MapComponent({ locations }: MapComponentProps) {
     return () => {
       // Cleanup map instance on unmount
       if (mapRef.current) {
-        mapRef.current.remove()
+        try {
+          mapRef.current.remove()
+        } catch (error) {
+          console.warn('Error cleaning up map:', error)
+        }
         mapRef.current = null
       }
     }
@@ -92,15 +99,15 @@ export default function MapComponent({ locations }: MapComponentProps) {
   return (
     <div ref={containerRef} style={{ height: '100%', width: '100%' }}>
       <MapContainer
-        key={`map-${Date.now()}`} // Force re-creation with unique key
+        key={mapId} // Use stable unique key
         center={[-1.5, 35.5]} // Center point to show all three countries
         zoom={6}
         style={{ height: '100%', width: '100%', borderRadius: '0.5rem' }}
         scrollWheelZoom={true}
         className="z-0"
-        ref={(map) => {
-          if (map) {
-            mapRef.current = map
+        ref={(mapInstance) => {
+          if (mapInstance) {
+            mapRef.current = mapInstance
           }
         }}
       >
