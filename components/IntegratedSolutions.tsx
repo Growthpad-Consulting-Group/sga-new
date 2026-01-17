@@ -6,7 +6,22 @@ import { Icon } from '@iconify/react'
 import DecorativePattern from './DecorativePattern'
 import { useEnquiryModal } from '@/contexts/EnquiryModalContext'
 
-const solutions = [
+interface Solution {
+  title: string
+  icon: string
+  description: string
+}
+
+interface IntegratedSolutionsProps {
+  title?: string
+  description?: string
+  decorativePatternColors?: string[] | null
+  decorativePatternLineColor?: string | null
+  whiteBackground?: boolean
+  staticPattern?: boolean
+}
+
+const solutions: Solution[] = [
   {
     title: 'Alarm & Response',
     icon: 'icon-park-solid:alarm',
@@ -31,7 +46,7 @@ export default function IntegratedSolutions({
   decorativePatternLineColor = null,
   whiteBackground = false,
   staticPattern = false
-}) {
+}: IntegratedSolutionsProps) {
   const { openModal } = useEnquiryModal()
   const bgClass = whiteBackground ? 'bg-white' : 'bg-light-grey'
   const cardBgClass = whiteBackground ? 'bg-white border-2 border-gray-100 shadow-lg hover:shadow-2xl' : 'bg-light-grey border border-gray-200 shadow-md hover:shadow-xl'

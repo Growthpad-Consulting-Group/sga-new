@@ -6,7 +6,20 @@ import { Icon } from '@iconify/react'
 import Image from 'next/image'
 import DecorativePattern from './DecorativePattern'
 
-const industries = [
+interface Industry {
+  name: string
+  icon: string
+  image: string
+}
+
+interface IndustriesProps {
+  backgroundColor?: string
+  decorativePatternColors?: string[] | null
+  decorativePatternLineColor?: string | null
+  staticPattern?: boolean
+}
+
+const industries: Industry[] = [
   {
     name: 'Residential Estates & Apartments',
     icon: 'mdi:home',
@@ -29,7 +42,12 @@ const industries = [
   },
 ]
 
-export default function Industries({ backgroundColor = 'bg-white', decorativePatternColors = null, decorativePatternLineColor = null, staticPattern = false }) {
+export default function Industries({ 
+  backgroundColor = 'bg-white', 
+  decorativePatternColors = null, 
+  decorativePatternLineColor = null, 
+  staticPattern = false 
+}: IndustriesProps) {
   return (
     <section id="industries" className={`section-snap flex items-center justify-center ${backgroundColor} relative pb-0`}>
       <motion.div

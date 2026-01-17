@@ -3,7 +3,14 @@
 import SectionWrapper from './SectionWrapper'
 import { motion } from 'framer-motion'
 
-const testimonials = [
+interface Testimonial {
+  name: string
+  role: string
+  content: string
+  rating: number
+}
+
+const testimonials: Testimonial[] = [
   {
     name: 'John Mwangi',
     role: 'CEO, TechCorp Kenya',

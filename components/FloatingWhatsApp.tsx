@@ -4,16 +4,31 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Icon } from '@iconify/react'
 
+interface WhatsAppOption {
+  country: string
+  phone: string
+  flag: string
+  url: string
+}
+
+interface FloatingWhatsAppProps {
+  singleCountry?: boolean
+  country?: string | null
+  phone?: string | null
+  url?: string | null
+  flag?: string | null
+}
+
 export default function FloatingWhatsApp({ 
   singleCountry = false,
   country = null,
   phone = null,
   url = null,
   flag = null
-}) {
+}: FloatingWhatsAppProps) {
   const [isOpen, setIsOpen] = useState(false)
 
-  const whatsappOptions = [
+  const whatsappOptions: WhatsAppOption[] = [
     {
       country: 'Kenya',
       phone: '+254111024000',
@@ -35,7 +50,7 @@ export default function FloatingWhatsApp({
   ]
 
   // If single country mode, use provided props or default to Kenya
-  const singleCountryOption = singleCountry ? {
+  const singleCountryOption: WhatsAppOption | null = singleCountry ? {
     country: country || 'Kenya',
     phone: phone || '+254111024000',
     flag: flag || 'twemoji:flag-kenya',

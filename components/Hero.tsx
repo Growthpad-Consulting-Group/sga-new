@@ -6,6 +6,32 @@ import Image from 'next/image'
 import { Icon } from '@iconify/react'
 import SectionWrapper from './SectionWrapper'
 
+interface CustomButton {
+  label?: string
+  href: string
+  className?: string
+  style?: React.CSSProperties
+  simple?: boolean
+  readMoreText?: string
+  arrowIcon?: string
+}
+
+interface HeroProps {
+  countryName?: string
+  countryDescription?: string
+  whiteBackground?: boolean
+  orangeBackground?: boolean
+  twoCardLayout?: boolean
+  imageUrl?: string
+  imageUrl2?: string | null
+  images?: string[] | null
+  customH3?: string | null
+  customTitle?: string | null
+  customDescription?: string | null
+  showToggle?: boolean
+  customButtons?: CustomButton[] | null
+}
+
 export default function Hero({ 
   countryName = 'SGA Group', 
   countryDescription = 'Leading security solutions across East Africa',
@@ -20,7 +46,7 @@ export default function Hero({
   customDescription = null,
   showToggle = false,
   customButtons = null
-}) {
+}: HeroProps) {
   const [toggleValue, setToggleValue] = useState('corporate')
   const bgClass = orangeBackground
     ? 'bg-primary-orange text-white'

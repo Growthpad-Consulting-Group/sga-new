@@ -7,7 +7,20 @@ import { Icon } from '@iconify/react'
 import Image from 'next/image'
 import DecorativePattern from './DecorativePattern'
 
-const newsItems = [
+interface NewsItem {
+  category: string
+  title: string
+  summary: string
+  image: string
+}
+
+interface NewsProps {
+  decorativePatternColors?: string[] | null
+  decorativePatternLineColor?: string | null
+  staticPattern?: boolean
+}
+
+const newsItems: NewsItem[] = [
   {
     category: 'Advisory',
     title: 'Latest Security Updates',
@@ -28,7 +41,11 @@ const newsItems = [
   },
 ]
 
-export default function News({ decorativePatternColors = null, decorativePatternLineColor = null, staticPattern = false }) {
+export default function News({ 
+  decorativePatternColors = null, 
+  decorativePatternLineColor = null, 
+  staticPattern = false 
+}: NewsProps) {
   const [activeFilter, setActiveFilter] = useState('ALL')
 
   return (

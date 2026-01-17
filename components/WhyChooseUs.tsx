@@ -7,7 +7,19 @@ import Image from 'next/image'
 import { Icon } from '@iconify/react'
 import DecorativePattern from './DecorativePattern'
 
-const accordionItems = [
+interface AccordionItem {
+  title: string
+  description: string
+}
+
+interface WhyChooseUsProps {
+  decorativePatternColors?: string[] | null
+  decorativePatternLineColor?: string | null
+  countryName?: string
+  staticPattern?: boolean
+}
+
+const accordionItems: AccordionItem[] = [
   {
     title: 'Local + Regional',
     description: 'Combining local market knowledge with regional expertise to deliver comprehensive security solutions across East Africa.',
@@ -26,7 +38,12 @@ const accordionItems = [
   },
 ]
 
-export default function WhyChooseUs({ decorativePatternColors = null, decorativePatternLineColor = null, countryName = 'Kenya', staticPattern = false }) {
+export default function WhyChooseUs({ 
+  decorativePatternColors = null, 
+  decorativePatternLineColor = null, 
+  countryName = 'Kenya', 
+  staticPattern = false 
+}: WhyChooseUsProps) {
   const [openIndex, setOpenIndex] = useState(0)
 
   return (

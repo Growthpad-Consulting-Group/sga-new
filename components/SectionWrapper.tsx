@@ -1,8 +1,15 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { ReactNode } from 'react'
 
-export default function SectionWrapper({ children, className = '', id = '' }) {
+interface SectionWrapperProps {
+  children: ReactNode
+  className?: string
+  id?: string
+}
+
+export default function SectionWrapper({ children, className = '', id = '' }: SectionWrapperProps) {
   return (
     <section
       id={id}

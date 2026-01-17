@@ -6,7 +6,18 @@ import { Icon } from '@iconify/react'
 import DecorativePattern from './DecorativePattern'
 import { useEnquiryModal } from '@/contexts/EnquiryModalContext'
 
-const solutions = [
+interface Solution {
+  title: string
+  description: string
+  imageUrl: string
+}
+
+interface GroupIntegratedSolutionsProps {
+  title?: string
+  description?: string
+}
+
+const solutions: Solution[] = [
   {
     title: 'Guarding',
     description: 'Professional guarding for offices, malls, logistics yards and estates.',
@@ -27,7 +38,7 @@ const solutions = [
 export default function GroupIntegratedSolutions({ 
   title = "What we Offer",
   description = "Security solutions built to keep your business, family, home, and property safe every day across Kenya, Uganda, and Tanzania."
-}) {
+}: GroupIntegratedSolutionsProps) {
   const { openModal } = useEnquiryModal()
   return (
     <section id="integrated-solutions" className="section-snap flex items-center justify-center bg-light-grey relative pb-0">

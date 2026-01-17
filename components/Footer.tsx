@@ -3,10 +3,16 @@
 import Image from 'next/image'
 import { Icon } from '@iconify/react'
 
+interface SocialLink {
+  icon: string
+  url: string
+  label: string
+}
+
 export default function Footer() {
   const currentYear = new Date().getFullYear()
 
-  const socialLinks = [
+  const socialLinks: SocialLink[] = [
     { icon: 'mdi:facebook', url: 'https://facebook.com', label: 'Facebook' },
     { icon: 'mdi:twitter', url: 'https://twitter.com', label: 'Twitter' },
     { icon: 'mdi:linkedin', url: 'https://linkedin.com', label: 'LinkedIn' },

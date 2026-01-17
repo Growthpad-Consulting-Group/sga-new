@@ -6,7 +6,13 @@ import Image from 'next/image'
 import { Icon } from '@iconify/react'
 import DecorativePattern from './DecorativePattern'
 
-const clients = [
+interface Client {
+  name: string
+  logo: string
+  category: string
+}
+
+const clients: Client[] = [
   { name: 'Client 1', logo: '/images/group/clients/1.svg', category: 'Multinationals' },
   { name: 'Client 2', logo: '/images/group/clients/2.svg', category: 'Government Institutions' },
   { name: 'Client 3', logo: '/images/group/clients/3.svg', category: 'Hospitals' },
@@ -21,7 +27,7 @@ const clients = [
   { name: 'Client 12', logo: '/images/group/clients/12.svg', category: 'Hospitals' },
 ]
 
-const filterOptions = [
+const filterOptions: string[] = [
   'ALL',
   'Multinationals',
   'Government Institutions',

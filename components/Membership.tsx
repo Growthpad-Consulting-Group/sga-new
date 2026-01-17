@@ -4,36 +4,41 @@ import SectionWrapper from './SectionWrapper'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 
-const certifications = [
+interface Membership {
+  name: string
+  logo: string
+}
+
+const memberships: Membership[] = [
   {
-    name: 'Certification 1',
+    name: 'Member 1',
     logo: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=200&h=200&fit=crop',
   },
   {
-    name: 'Certification 2',
+    name: 'Member 2',
     logo: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=200&h=200&fit=crop',
   },
   {
-    name: 'Certification 3',
+    name: 'Member 3',
     logo: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=200&h=200&fit=crop',
   },
   {
-    name: 'Certification 4',
+    name: 'Member 4',
     logo: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=200&h=200&fit=crop',
   },
   {
-    name: 'Certification 5',
+    name: 'Member 5',
     logo: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=200&h=200&fit=crop',
   },
   {
-    name: 'Certification 6',
+    name: 'Member 6',
     logo: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=200&h=200&fit=crop',
   },
 ]
 
-export default function Certifications() {
+export default function Membership() {
   return (
-    <SectionWrapper id="certifications" className="bg-white py-16 sm:py-20">
+    <SectionWrapper id="membership" className="bg-white py-16 sm:py-20">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -49,10 +54,10 @@ export default function Certifications() {
             className="space-y-3"
           >
             <p className="text-xs font-bold text-primary-orange uppercase tracking-wider">
-              certifications
+              membership
             </p>
             <h3 className="text-xl md:text-2xl font-normal text-navy-blue relative pb-3">
-              <span>Our Certifications</span>
+              <span>Our Memberships</span>
               <span 
                 className="absolute bottom-0 left-0 w-full"
                 style={{
@@ -65,7 +70,7 @@ export default function Certifications() {
         </div>
 
         <div className="grid grid-cols-3 gap-6 md:gap-8">
-          {certifications.map((cert, index) => (
+          {memberships.map((member, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, scale: 0.9 }}
@@ -77,8 +82,8 @@ export default function Certifications() {
             >
               <div className="relative w-full h-16 md:h-20">
                 <Image
-                  src={cert.logo}
-                  alt={cert.name}
+                  src={member.logo}
+                  alt={member.name}
                   fill
                   className="object-contain"
                 />
@@ -90,3 +95,4 @@ export default function Certifications() {
     </SectionWrapper>
   )
 }
+

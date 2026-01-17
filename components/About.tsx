@@ -5,6 +5,29 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import DecorativePattern from './DecorativePattern'
 
+interface CountryContent {
+  title: string
+  description: string
+  points: string[]
+}
+
+interface AboutProps {
+  countryName?: string
+  countryContent?: CountryContent | null
+  customLayout?: boolean
+  smallTitle?: string | null
+  h3Title?: string | null
+  h2Title?: string | null
+  customDescription?: string | null
+  buttonText?: string | null
+  buttonHref?: string
+  imageUrl?: string | null
+  hideCountriesStat?: boolean
+  decorativePatternColors?: string[] | null
+  decorativePatternLineColor?: string | null
+  staticPattern?: boolean
+}
+
 export default function About({ 
   countryName = 'SGA Group', 
   countryContent = null,
@@ -20,7 +43,7 @@ export default function About({
   decorativePatternColors = null,
   decorativePatternLineColor = null,
   staticPattern = false
-}) {
+}: AboutProps) {
   const defaultContent = {
     title: 'About SGA Security Group',
     description: 'SGA Security Group is a leading provider of comprehensive security solutions across East Africa. With decades of experience, we deliver trusted security services that protect businesses, communities, and critical infrastructure.',

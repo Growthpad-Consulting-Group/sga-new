@@ -5,7 +5,15 @@ import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import Image from 'next/image'
 
-const newsItems = [
+interface NewsItem {
+  category: string
+  title: string
+  summary: string
+  image: string
+  date: string
+}
+
+const newsItems: NewsItem[] = [
   {
     category: 'Advisory',
     title: 'Latest Security Updates',
@@ -81,17 +89,17 @@ export default function NewsReportsCards() {
   const paginatedItems = filteredItems.slice(startIndex, endIndex)
 
   // Reset to page 1 when filter or search changes
-  const handleFilterChange = (filter) => {
+  const handleFilterChange = (filter: string) => {
     setActiveFilter(filter)
     setCurrentPage(1)
   }
 
-  const handleSearchChange = (query) => {
+  const handleSearchChange = (query: string) => {
     setSearchQuery(query)
     setCurrentPage(1)
   }
 
-  const goToPage = (page) => {
+  const goToPage = (page: number) => {
     setCurrentPage(page)
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }

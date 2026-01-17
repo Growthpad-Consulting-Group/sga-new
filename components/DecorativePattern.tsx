@@ -1,17 +1,28 @@
 'use client'
 
+interface DecorativePatternProps {
+  circleCount?: number
+  circleSize?: string
+  lineCount?: number
+  color?: string
+  colors?: string[] | null
+  lineColor?: string | null
+  className?: string
+  static?: boolean
+}
+
 export default function DecorativePattern({ 
   circleCount = 25,
   circleSize = 'w-6 h-6',
   lineCount = 3,
   color = 'bg-primary-orange',
-  colors = null, // Array of colors for sequential coloring
-  lineColor = null, // Separate color for lines
+  colors = null,
+  lineColor = null,
   className = '',
-  static: isStatic = false // If true, pattern won't animate with content
-}) {
+  static: isStatic = false
+}: DecorativePatternProps) {
   // If colors array is provided, use sequential colors; otherwise use single color
-  const getColor = (index) => {
+  const getColor = (index: number): string => {
     if (colors && colors.length > 0) {
       return colors[index % colors.length]
     }
@@ -19,7 +30,7 @@ export default function DecorativePattern({
   }
 
   // Use lineColor if provided, otherwise use circle color
-  const getLineColor = () => {
+  const getLineColor = (): string => {
     return lineColor || color
   }
 

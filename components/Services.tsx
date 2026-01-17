@@ -3,7 +3,13 @@
 import SectionWrapper from './SectionWrapper'
 import { motion } from 'framer-motion'
 
-const services = [
+interface Service {
+  title: string
+  description: string
+  icon: string
+}
+
+const services: Service[] = [
   {
     title: 'Security Guarding',
     description: 'Professional on-site security personnel trained to protect your assets and ensure safety.',
