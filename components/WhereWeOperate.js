@@ -5,17 +5,16 @@ import SectionWrapper from './SectionWrapper'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import DecorativePattern from './DecorativePattern'
-import dynamic from 'next/dynamic'
-
-// Dynamically import the map component to avoid SSR issues
-const InteractiveMap = dynamic(() => import('./InteractiveMap'), {
-  ssr: false,
-  loading: () => (
-    <div className="w-full h-full bg-gray-200 rounded-lg flex items-center justify-center">
-      <p className="text-gray-500">Loading map...</p>
-    </div>
-  )
-})
+// Map component temporarily disabled due to initialization issues
+// import dynamic from 'next/dynamic'
+// const InteractiveMap = dynamic(() => import('./InteractiveMap'), {
+//   ssr: false,
+//   loading: () => (
+//     <div className="w-full h-full bg-gray-200 rounded-lg flex items-center justify-center">
+//       <p className="text-gray-500">Loading map...</p>
+//     </div>
+//   )
+// })
 
 export default function WhereWeOperate() {
   return (
@@ -140,9 +139,39 @@ export default function WhereWeOperate() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="relative w-full h-[350px] md:h-[450px] rounded-lg overflow-hidden shadow-lg z-0"
+            className="relative w-full h-[350px] md:h-[450px] rounded-lg overflow-hidden shadow-lg z-0 bg-gradient-to-br from-primary-orange/10 to-primary-orange/5 border-2 border-primary-orange/20 flex items-center justify-center"
           >
-            <InteractiveMap />
+            <div className="text-center p-8">
+              <div className="mb-4">
+                <svg 
+                  className="w-16 h-16 mx-auto text-primary-orange" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                    strokeWidth={2} 
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" 
+                  />
+                  <path 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                    strokeWidth={2} 
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" 
+                  />
+                </svg>
+              </div>
+              <h4 className="text-lg font-bold text-navy mb-2">Our Locations</h4>
+              <p className="text-sm text-navy/70 mb-4">Kenya • Uganda • Tanzania</p>
+              <div className="space-y-2 text-sm text-navy/80">
+                <p>📍 Nairobi, Kenya</p>
+                <p>📍 Kampala, Uganda</p>
+                <p>📍 Dar es Salaam, Tanzania</p>
+                <p>📍 Zanzibar, Tanzania</p>
+              </div>
+            </div>
           </motion.div>
         </div>
       </motion.div>

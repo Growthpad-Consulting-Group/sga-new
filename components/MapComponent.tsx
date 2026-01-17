@@ -56,25 +56,57 @@ let mapInstanceCounter = 0
 
 export default function MapComponent({ locations }: MapComponentProps) {
   const [isMounted, setIsMounted] = useState(false)
-  const [mapId] = useState(() => `map-${++mapInstanceCounter}`) // Unique stable ID
+  const [mapKey] = useState(() => `map-${++mapInstanceCounter}-${Date.now()}`)
   const mapRef = useRef<L.Map | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
+  const isInitializingRef = useRef(false)
 
   useEffect(() => {
     setIsMounted(true)
+  }, [])
+
+  // Clean up any existing Leaflet instances before MapContainer initializes
+  useEffect(() => {
+    if (!isMounted || !containerRef.current) return
+    
+    // Clean up any existing Leaflet containers
+    const cleanup = () => {
+      if (containerRef.current) {
+        const leafletContainer = containerRef.current.querySelector('.leaflet-container')
+        if (leafletContainer) {
+          try {
+            const leafletId = (leafletContainer as any)._leaflet_id
+            if (leafletId && L.Map) {
+              const existingMap = (L.Map as any)._instances?.[leafletId]
+              if (existingMap && existingMap !== mapRef.current) {
+                existingMap.remove()
+              }
+            }
+          } catch (error) {
+            // Ignore cleanup errors
+          }
+        }
+      }
+    }
+    
+    // Run cleanup before next render
+    const timeoutId = setTimeout(cleanup, 0)
     
     return () => {
+      clearTimeout(timeoutId)
       // Cleanup map instance on unmount
       if (mapRef.current) {
         try {
+          mapRef.current.off()
           mapRef.current.remove()
         } catch (error) {
-          console.warn('Error cleaning up map:', error)
+          // Ignore errors during cleanup
         }
         mapRef.current = null
       }
+      isInitializingRef.current = false
     }
-  }, [])
+  }, [isMounted])
 
   // Don't render until mounted to avoid SSR issues
   if (!isMounted) {
@@ -96,21 +128,55 @@ export default function MapComponent({ locations }: MapComponentProps) {
     )
   }
 
-  return (
-    <div ref={containerRef} style={{ height: '100%', width: '100%' }}>
-      <MapContainer
-        key={mapId} // Use stable unique key
-        center={[-1.5, 35.5]} // Center point to show all three countries
-        zoom={6}
-        style={{ height: '100%', width: '100%', borderRadius: '0.5rem' }}
-        scrollWheelZoom={true}
-        className="z-0"
-        ref={(mapInstance) => {
-          if (mapInstance) {
-            mapRef.current = mapInstance
+  // Ref callback to ensure container is clean before MapContainer uses it
+  const setContainerRef = (node: HTMLDivElement | null) => {
+    if (node) {
+      // Clean up any existing Leaflet properties on the container
+      if ((node as any)._leaflet_id) {
+        try {
+          const leafletId = (node as any)._leaflet_id
+          if (leafletId && L.Map) {
+            const existingMap = (L.Map as any)._instances?.[leafletId]
+            if (existingMap) {
+              existingMap.remove()
+            }
           }
-        }}
+          delete (node as any)._leaflet_id
+        } catch (error) {
+          // Ignore cleanup errors
+        }
+      }
+      containerRef.current = node
+    } else {
+      containerRef.current = null
+    }
+  }
+
+  return (
+    <div 
+      key={`wrapper-${mapKey}`}
+      style={{ height: '100%', width: '100%' }}
+    >
+      <div 
+        ref={setContainerRef} 
+        style={{ height: '100%', width: '100%' }}
+        id={mapKey}
       >
+        <MapContainer
+          key={mapKey} // Use unique key to force remount if needed
+          center={[-1.5, 35.5]} // Center point to show all three countries
+          zoom={6}
+          style={{ height: '100%', width: '100%', borderRadius: '0.5rem' }}
+          scrollWheelZoom={true}
+          className="z-0"
+          whenCreated={(mapInstance) => {
+            // Only set ref if not already initialized
+            if (!isInitializingRef.current && !mapRef.current) {
+              mapRef.current = mapInstance
+              isInitializingRef.current = true
+            }
+          }}
+        >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -164,6 +230,7 @@ export default function MapComponent({ locations }: MapComponentProps) {
           </Marker>
         ))}
       </MapContainer>
+      </div>
     </div>
   )
 }
