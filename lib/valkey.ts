@@ -1,197 +1,168 @@
-import { createClient, RedisClientType } from 'redis'
+import Redis from 'ioredis';
 
-/**
- * ValkeyCache - A wrapper class for Valkey/Redis operations
- * Valkey is Redis-compatible, so we use the redis client
- */
-class ValkeyCache {
-  private static client: RedisClientType | null = null
-  private static isConnecting = false
+interface ValkeyOptions {
+  ex?: number; // expiration in seconds
+}
 
-  /**
-   * Get or create the Valkey client
-   */
-  static async getClient(): Promise<RedisClientType> {
-    if (this.client && this.client.isOpen) {
-      return this.client
+class ValkeyClient {
+  private client: Redis | null = null;
+  private isConnected: boolean = false;
+
+  async connect(): Promise<Redis> {
+    if (this.isConnected && this.client) {
+      return this.client;
     }
-
-    if (this.isConnecting) {
-      // Wait for connection to complete
-      while (this.isConnecting) {
-        await new Promise(resolve => setTimeout(resolve, 100))
-      }
-      if (this.client && this.client.isOpen) {
-        return this.client
-      }
-    }
-
-    this.isConnecting = true
 
     try {
-      const config: any = {}
+      // Create client with ioredis
+      this.client = new Redis(process.env.VALKEY_URL!, {
+        tls: {
+          rejectUnauthorized: false
+        },
+        connectTimeout: 10000,
+        lazyConnect: true,
+        maxRetriesPerRequest: 3,
+        enableOfflineQueue: false
+      });
 
-      // Use VALKEY_URL if provided, otherwise use host/port
-      if (process.env.VALKEY_URL) {
-        config.url = process.env.VALKEY_URL
-      } else {
-        config.socket = {
-          host: process.env.VALKEY_HOST || 'localhost',
-          port: parseInt(process.env.VALKEY_PORT || '6379', 10),
-        }
-
-        // Add TLS/SSL if required
-        if (process.env.VALKEY_TLS === 'true' || process.env.VALKEY_SSL === 'true') {
-          config.socket.tls = {
-            rejectUnauthorized: process.env.VALKEY_REJECT_UNAUTHORIZED !== 'false'
-          }
-          
-          // Add CA certificate if provided (for Aiven services)
-          if (process.env.VALKEY_CA_CERT) {
-            config.socket.tls.ca = process.env.VALKEY_CA_CERT
-          }
-        }
-      }
-
-      // Add password if provided
-      if (process.env.VALKEY_PASSWORD) {
-        config.password = process.env.VALKEY_PASSWORD
-      }
-
-      // Add username if provided
-      if (process.env.VALKEY_USERNAME) {
-        config.username = process.env.VALKEY_USERNAME
-      }
-
-      this.client = createClient(config) as RedisClientType
-
-      // Error handling
-      this.client.on('error', (err) => {
-        console.error('Valkey Client Error:', err)
-      })
+      // Handle connection events
+      this.client.on('error', (err: Error) => {
+        console.error('Valkey Client Error:', err);
+        this.isConnected = false;
+      });
 
       this.client.on('connect', () => {
-        console.log('Valkey client connecting...')
-      })
+        console.log('Connected to Valkey');
+        this.isConnected = true;
+      });
 
       this.client.on('ready', () => {
-        console.log('Valkey client ready')
-      })
+        console.log('Valkey client ready');
+        this.isConnected = true;
+      });
 
-      // Connect to the server
-      await this.client.connect()
-      
-      this.isConnecting = false
-      return this.client
+      this.client.on('close', () => {
+        console.log('Valkey connection closed');
+        this.isConnected = false;
+      });
+
+      this.client.on('reconnecting', () => {
+        console.log('Reconnecting to Valkey...');
+      });
+
+      await this.client.connect();
+      return this.client;
+
     } catch (error) {
-      this.isConnecting = false
-      console.error('Failed to create Valkey client:', error)
-      throw error
+      console.error('Failed to connect to Valkey:', (error as Error).message);
+      throw error;
     }
   }
 
-  /**
-   * Set a value in the cache
-   */
-  static async set(key: string, value: string | object, ttlSeconds?: number): Promise<void> {
-    if (process.env.CACHE_ENABLED !== 'true') {
-      return
-    }
-
-    try {
-      const client = await this.getClient()
-      const stringValue = typeof value === 'string' ? value : JSON.stringify(value)
-      
-      if (ttlSeconds) {
-        await client.setEx(key, ttlSeconds, stringValue)
-      } else {
-        await client.set(key, stringValue)
-      }
-    } catch (error) {
-      console.error(`Error setting key ${key}:`, error)
-      throw error
+  async disconnect(): Promise<void> {
+    if (this.client && this.isConnected) {
+      this.client.disconnect();
+      this.isConnected = false;
     }
   }
 
-  /**
-   * Get a value from the cache as string
-   */
-  static async get(key: string): Promise<string | null> {
-    if (process.env.CACHE_ENABLED !== 'true') {
-      return null
-    }
-
-    try {
-      const client = await this.getClient()
-      const value = await client.get(key)
-      return typeof value === 'string' ? value : null
-    } catch (error) {
-      console.error(`Error getting key ${key}:`, error)
-      throw error
-    }
+  async get(key: string): Promise<string | null> {
+    const client = await this.connect();
+    return await client.get(key);
   }
 
-  /**
-   * Get a value from the cache as JSON
-   */
-  static async getJSON<T = any>(key: string): Promise<T | null> {
-    const value = await this.get(key)
-    if (!value) {
-      return null
+  async set(key: string, value: string, options: ValkeyOptions = {}): Promise<'OK'> {
+    const client = await this.connect();
+    if (options.ex) {
+      return await client.setex(key, options.ex, value);
     }
-
-    try {
-      return JSON.parse(value) as T
-    } catch (error) {
-      console.error(`Error parsing JSON for key ${key}:`, error)
-      return null
-    }
+    return await client.set(key, value);
   }
 
-  /**
-   * Check if a key exists
-   */
-  static async exists(key: string): Promise<boolean> {
-    if (process.env.CACHE_ENABLED !== 'true') {
-      return false
-    }
-
-    try {
-      const client = await this.getClient()
-      const result = await client.exists(key)
-      return result > 0
-    } catch (error) {
-      console.error(`Error checking existence of key ${key}:`, error)
-      throw error
-    }
+  async del(...keys: string[]): Promise<number> {
+    const client = await this.connect();
+    return await client.del(...keys);
   }
 
-  /**
-   * Delete a key from the cache
-   */
-  static async delete(key: string): Promise<void> {
-    if (process.env.CACHE_ENABLED !== 'true') {
-      return
-    }
-
-    try {
-      const client = await this.getClient()
-      await client.del(key)
-    } catch (error) {
-      console.error(`Error deleting key ${key}:`, error)
-      throw error
-    }
+  async ping(): Promise<string> {
+    const client = await this.connect();
+    return await client.ping();
   }
 
-  /**
-   * Close the connection
-   */
-  static async disconnect(): Promise<void> {
-    if (this.client && this.client.isOpen) {
-      await this.client.quit()
-      this.client = null
+  async exists(key: string): Promise<number> {
+    const client = await this.connect();
+    return await client.exists(key);
+  }
+
+  async ttl(key: string): Promise<number> {
+    const client = await this.connect();
+    return await client.ttl(key);
+  }
+
+  // Hash operations
+  async hset(key: string, field: string, value: string | number): Promise<number>;
+  async hset(key: string, hash: Record<string, string | number>): Promise<number>;
+  async hset(key: string, fieldOrHash: string | Record<string, string | number>, value?: string | number): Promise<number> {
+    const client = await this.connect();
+    if (typeof fieldOrHash === 'string' && value !== undefined) {
+      return await client.hset(key, fieldOrHash, value);
+    } else if (typeof fieldOrHash === 'object') {
+      return await client.hset(key, fieldOrHash);
     }
+    throw new Error('Invalid arguments for hset');
+  }
+
+  async hget(key: string, field: string): Promise<string | null> {
+    const client = await this.connect();
+    return await client.hget(key, field);
+  }
+
+  async hgetall(key: string): Promise<Record<string, string>> {
+    const client = await this.connect();
+    return await client.hgetall(key);
+  }
+
+  // List operations
+  async lpush(key: string, ...values: string[]): Promise<number> {
+    const client = await this.connect();
+    return await client.lpush(key, ...values);
+  }
+
+  async rpush(key: string, ...values: string[]): Promise<number> {
+    const client = await this.connect();
+    return await client.rpush(key, ...values);
+  }
+
+  async lrange(key: string, start: number, stop: number): Promise<string[]> {
+    const client = await this.connect();
+    return await client.lrange(key, start, stop);
+  }
+
+  // Counter operations
+  async incr(key: string): Promise<number> {
+    const client = await this.connect();
+    return await client.incr(key);
+  }
+
+  async decr(key: string): Promise<number> {
+    const client = await this.connect();
+    return await client.decr(key);
+  }
+
+  // JSON helpers
+  async setJSON(key: string, value: any, options: ValkeyOptions = {}): Promise<'OK'> {
+    return await this.set(key, JSON.stringify(value), options);
+  }
+
+  async getJSON<T = any>(key: string): Promise<T | null> {
+    const value = await this.get(key);
+    return value ? JSON.parse(value) : null;
+  }
+
+  // Get the raw client for advanced operations
+  async getClient(): Promise<Redis> {
+    return await this.connect();
   }
 }
 
-export { ValkeyCache }
+export default new ValkeyClient();

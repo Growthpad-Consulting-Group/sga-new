@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { ValkeyCache } from '@/lib/valkey'
+import valkey from '@/lib/valkey'
 
 export async function GET(request: NextRequest) {
   try {
@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
     })
     
     // Get client directly to test
-    const client = await ValkeyCache.getClient()
+    const client = await valkey.getClient()
     console.log('Client connected, testing ping...')
     
     // Test ping
@@ -30,7 +30,7 @@ export async function GET(request: NextRequest) {
     
     // Test direct set/get
     console.log('Setting value directly on client:', testValue)
-    await client.set(testKey, JSON.stringify(testValue), { EX: 60 })
+    await client.set(testKey, JSON.stringify(testValue), 'EX', 60)
     console.log('Value set directly')
     
     // Get the value back directly
@@ -39,18 +39,18 @@ export async function GET(request: NextRequest) {
     console.log('Direct retrieved value:', directValue)
     
     // Test through cache class
-    console.log('Testing through ValkeyCache class...')
-    await ValkeyCache.set('test:cache', testValue, 60)
-    const cacheValue = await ValkeyCache.getJSON('test:cache')
+    console.log('Testing through valkey class...')
+    await valkey.setJSON('test:cache', testValue, { ex: 60 })
+    const cacheValue = await valkey.getJSON('test:cache')
     console.log('Cache class value:', cacheValue)
     
     // Check if key exists
-    const keyExists = await ValkeyCache.exists(testKey)
+    const keyExists = await valkey.exists(testKey)
     console.log('Key exists:', keyExists)
 
     // Test simple string operations
-    await ValkeyCache.set('test:simple', 'hello world', 30)
-    const simpleValue = await ValkeyCache.get('test:simple')
+    await valkey.set('test:simple', 'hello world', { ex: 30 })
+    const simpleValue = await valkey.get('test:simple')
     console.log('Simple value:', simpleValue)
 
     return NextResponse.json({
