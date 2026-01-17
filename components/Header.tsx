@@ -7,25 +7,7 @@ import Image from 'next/image'
 import { Icon } from '@iconify/react'
 import { usePathname, useRouter } from 'next/navigation'
 import { useEnquiryModal } from '@/contexts/EnquiryModalContext'
-
-interface NavItem {
-  href: string
-  label: string
-  icon?: string
-}
-
-interface SocialLink {
-  icon: string
-  url: string
-  label: string
-}
-
-interface Country {
-  code: string
-  name: string
-  path: string
-  flag: string
-}
+import { navItems, socialLinks, countries } from '@/data/nav'
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -33,29 +15,6 @@ export default function Header() {
   const pathname = usePathname()
   const router = useRouter()
   const { openModal } = useEnquiryModal()
-
-  const navItems: NavItem[] = [
-    { href: '/', label: 'HOME' },
-    { href: '/about', label: 'ABOUT US' },
-    { href: '/sustainability', label: 'SUSTAINABILITY' },
-    { href: '/news-reports', label: 'NEWS & REPORTS' },
-    { href: '#join-our-mission', label: 'CAREER' },
-    { href: '/contact', label: 'CONTACT US' },
-    { href: '/updates', label: 'UPDATES', icon: 'material-symbols:news-outline-rounded' },
-  ]
-
-  const socialLinks: SocialLink[] = [
-    { icon: 'mdi:facebook', url: 'https://facebook.com', label: 'Facebook' },
-    { icon: 'mdi:twitter', url: 'https://twitter.com', label: 'Twitter' },
-    { icon: 'mdi:linkedin', url: 'https://linkedin.com', label: 'LinkedIn' },
-    { icon: 'mdi:instagram', url: 'https://instagram.com', label: 'Instagram' },
-  ]
-
-  const countries: Country[] = [
-    { code: 'ke', name: 'Kenya', path: '/ke', flag: 'twemoji:flag-kenya' },
-    { code: 'ug', name: 'Uganda', path: '/ug', flag: 'twemoji:flag-uganda' },
-    { code: 'tz', name: 'Tanzania', path: '/tz', flag: 'twemoji:flag-tanzania' },
-  ]
 
   const isActiveCountry = (path: string): boolean => {
     if (path === '/') return pathname === '/'
