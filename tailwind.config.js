@@ -8,6 +8,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        'heading': ['Helvetica Neue', 'Arial', 'sans-serif'],
+        'body': ['Arial', 'sans-serif'],
+      },
       colors: {
         primary: {
           orange: '#F15522',

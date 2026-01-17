@@ -86,7 +86,7 @@ export default function Header() {
         </div>
         {/* Border Bottom - Thick border matching content padding */}
         <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-          <div className="border-b-2 border-black pt-2"></div>
+          <div className="border-b-2 border-black"></div>
         </div>
       </div>
 
@@ -102,9 +102,9 @@ export default function Header() {
               <Image
                 src="/images/logo.svg"
                 alt="SGA Security Logo"
-                width={140}
-                height={40}
-                className="h-8 w-auto sm:h-9 md:h-10"
+                width={160}
+                height={80}
+                className=""
                 priority
               />
             </Link>
@@ -122,7 +122,7 @@ export default function Header() {
                   key={item.href}
                   href={item.href}
                   whileHover={{ y: -2 }}
-                  className={`transition-colors font-medium flex items-center gap-1.5 text-sm xl:text-base ${
+                  className={`transition-colors font-heading font-medium flex items-center gap-1.5 text-sm xl:text-base ${
                     isActive 
                       ? 'text-primary-orange' 
                       : 'text-dark-charcoal hover:text-primary-orange'
@@ -138,7 +138,7 @@ export default function Header() {
               onClick={openModal}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-primary-orange text-white px-4 py-2 xl:px-6 xl:py-2 rounded-full font-semibold text-sm xl:text-base shadow-md hover:shadow-lg transition-shadow ml-2 xl:ml-4"
+              className="bg-primary-orange text-white px-4 py-2 xl:px-6 xl:py-2 rounded-full font-heading font-semibold text-sm xl:text-base shadow-md hover:shadow-lg transition-shadow ml-2 xl:ml-4"
             >
               Enquire Now
             </motion.button>
@@ -187,7 +187,7 @@ export default function Header() {
                       key={item.href}
                       href={item.href}
                       onClick={() => setMobileMenuOpen(false)}
-                      className={`block py-3 sm:py-3.5 transition-colors flex items-center gap-2 text-sm sm:text-base ${
+                      className={`block py-3 sm:py-3.5 transition-colors flex items-center gap-2 text-sm sm:text-base font-heading ${
                         isActive 
                           ? 'text-primary-orange font-semibold' 
                           : 'text-dark-charcoal hover:text-primary-orange'
@@ -204,7 +204,7 @@ export default function Header() {
                     key={item.href}
                     href={item.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block py-3 sm:py-3.5 transition-colors flex items-center gap-2 text-sm sm:text-base text-dark-charcoal hover:text-primary-orange"
+                    className="block py-3 sm:py-3.5 transition-colors flex items-center gap-2 text-sm sm:text-base font-heading text-dark-charcoal hover:text-primary-orange"
                   >
                     {item.icon && <Icon icon={item.icon} className="w-5 h-5 text-primary-orange flex-shrink-0" />}
                     <span>{item.label}</span>
@@ -217,7 +217,7 @@ export default function Header() {
                   openModal()
                 }}
                 whileTap={{ scale: 0.95 }}
-                className="block mt-4 sm:mt-5 bg-primary-orange text-white px-6 py-3 sm:py-3.5 rounded-full font-semibold text-center text-sm sm:text-base shadow-md w-full"
+                className="block mt-4 sm:mt-5 bg-primary-orange text-white px-6 py-3 sm:py-3.5 rounded-full font-heading font-semibold text-center text-sm sm:text-base shadow-md w-full"
               >
                 Enquire Now
               </motion.button>
