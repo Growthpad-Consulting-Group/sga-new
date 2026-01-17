@@ -63,7 +63,7 @@ export default function Header() {
   }
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-40 bg-white shadow-md">
+    <header className="fixed top-0 left-0 right-0 z-40 bg-white">
       {/* Top Bar with Social Icons and Flags */}
       <div className="bg-white text-black">
         <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
@@ -127,7 +127,7 @@ export default function Header() {
         </div>
         {/* Border Bottom - Thick border matching content padding */}
         <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-          <div className="border-b border-black pt-2"></div>
+          <div className="border-b-2 border-black pt-2"></div>
         </div>
       </div>
 
