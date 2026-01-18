@@ -59,16 +59,11 @@ export default function GroupIntegratedSolutions({
             <p className="text-xs font-semibold text-navy uppercase tracking-wider">
               integrated solutions
             </p>
-            <h3 className="text-xl md:text-2xl font-bold text-navy-blue relative pb-3">
-              <span>{title}</span>
-              <span 
-                className="absolute bottom-0 left-0 w-full"
-                style={{
-                  background: 'linear-gradient(to right, #00043E 0%, #00043E 70%, transparent 100%)',
-                  height: '1px'
-                }}
-              ></span>
-            </h3>
+            <div className="section-title-container">
+              <h3 className="section-title text-xl md:text-2xl font-bold text-navy-blue">
+                {title}
+              </h3>
+            </div>
           </motion.div>
         </div>
 

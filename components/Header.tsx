@@ -157,7 +157,7 @@ export default function Header() {
                       : 'text-dark-charcoal hover:text-primary-orange'
                   }`}
                 >
-                  <Icon icon={item.icon} className="w-4 h-4 xl:w-5 xl:h-5 text-primary-orange" />
+                  {item.icon && <Icon icon={item.icon} className="w-4 h-4 xl:w-5 xl:h-5 text-primary-orange" />}
                   {item.label}
                 </NavComponent>
               )

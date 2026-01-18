@@ -29,16 +29,11 @@ export default function JoinOurMission() {
             <p className="text-xs font-semibold text-navy uppercase tracking-wider">
               Join our mission
             </p>
-            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-navy-blue relative pb-2">
-              Build a career where security matters
-              <span 
-                className="absolute bottom-0 left-0 w-full"
-                style={{
-                  background: 'linear-gradient(to right, #00043E 0%, #00043E 70%, transparent 100%)',
-                  height: '1px'
-                }}
-              ></span>
-            </h2>
+            <div className="section-title-container">
+              <h2 className="section-title text-xl md:text-2xl lg:text-3xl font-bold text-navy-blue">
+                Build a career where security matters
+              </h2>
+            </div>
             <p className="text-sm md:text-base text-dark-charcoal leading-relaxed">
               From field operations to technology and leadership roles — grow with training, mentorship and purpose.
             </p>

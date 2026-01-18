@@ -137,7 +137,7 @@ export default function IntegratedSolutions({
           ))}
         </div>
       </motion.div>
-      <DecorativePattern colors={decorativePatternColors} lineColor={decorativePatternLineColor} static={staticPattern} />
+      <DecorativePattern static={staticPattern} />
     </section>
   )
 }

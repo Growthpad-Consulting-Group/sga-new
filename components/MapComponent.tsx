@@ -169,9 +169,9 @@ export default function MapComponent({ locations }: MapComponentProps) {
           style={{ height: '100%', width: '100%', borderRadius: '0.5rem' }}
           scrollWheelZoom={true}
           className="z-0"
-          whenCreated={(mapInstance) => {
+          ref={(mapInstance) => {
             // Only set ref if not already initialized
-            if (!isInitializingRef.current && !mapRef.current) {
+            if (!isInitializingRef.current && !mapRef.current && mapInstance) {
               mapRef.current = mapInstance
               isInitializingRef.current = true
             }

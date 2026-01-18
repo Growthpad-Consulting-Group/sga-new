@@ -67,24 +67,19 @@ export default function News({
             <p className="text-xs font-semibold text-navy uppercase tracking-wider">
               news
             </p>
-            <h3 className="text-xl md:text-2xl font-bold text-navy-blue relative pb-3 flex items-center justify-between">
-              <span>News & Reports</span>
-              <div className="flex items-center gap-2">
-                <button className="w-8 h-8 rounded-full border-2 border-navy-blue flex items-center justify-center hover:bg-primary-orange hover:border-primary-orange hover:text-white transition-colors">
-                  <Icon icon="mdi:chevron-left" className="w-5 h-5" />
-                </button>
-                <button className="w-8 h-8 rounded-full border-2 border-navy-blue flex items-center justify-center hover:bg-primary-orange hover:border-primary-orange hover:text-white transition-colors">
-                  <Icon icon="mdi:chevron-right" className="w-5 h-5" />
-                </button>
-              </div>
-              <span 
-                className="absolute bottom-0 left-0 w-full"
-                style={{
-                  background: 'linear-gradient(to right, #00043E 0%, #00043E 70%, transparent 100%)',
-                  height: '1px'
-                }}
-              ></span>
-            </h3>
+            <div className="section-title-container">
+              <h3 className="section-title text-xl md:text-2xl font-bold text-navy-blue flex items-center justify-between">
+                <span>News & Reports</span>
+                <div className="flex items-center gap-2">
+                  <button className="w-8 h-8 rounded-full border-2 border-navy-blue flex items-center justify-center hover:bg-primary-orange hover:border-primary-orange hover:text-white transition-colors">
+                    <Icon icon="mdi:chevron-left" className="w-5 h-5" />
+                  </button>
+                  <button className="w-8 h-8 rounded-full border-2 border-navy-blue flex items-center justify-center hover:bg-primary-orange hover:border-primary-orange hover:text-white transition-colors">
+                    <Icon icon="mdi:chevron-right" className="w-5 h-5" />
+                  </button>
+                </div>
+              </h3>
+            </div>
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-4">
               <div className="flex flex-wrap gap-2">
                 {['ALL', 'ADVISORY', 'BLOG', 'MEDIA'].map((filter) => (
@@ -161,7 +156,7 @@ export default function News({
           ))}
         </div>
       </motion.div>
-      <DecorativePattern colors={decorativePatternColors} lineColor={decorativePatternLineColor} static={staticPattern} />
+      <DecorativePattern static={staticPattern} />
     </section>
   )
 }

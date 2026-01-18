@@ -67,16 +67,11 @@ export default function WhyChooseUs({
               <p className="text-xs font-semibold text-navy uppercase tracking-wider">
                 why us
               </p>
-              <h2 className="text-xl md:text-2xl font-bold text-navy-blue relative pb-2">
-                Why choose SGA {countryName}
-                <span 
-                  className="absolute bottom-0 left-0 w-full"
-                  style={{
-                    background: 'linear-gradient(to right, #00043E 0%, #00043E 70%, transparent 100%)',
-                    height: '1px'
-                  }}
-                ></span>
-              </h2>
+              <div className="section-title-container">
+                <h2 className="section-title text-xl md:text-2xl font-bold text-navy-blue">
+                  Why choose SGA {countryName}
+                </h2>
+              </div>
             </motion.div>
             
             {/* Accordion */}
@@ -148,7 +143,7 @@ export default function WhyChooseUs({
         </div>
       </motion.div>
       {decorativePatternColors && (
-        <DecorativePattern circleCount={35} colors={decorativePatternColors} lineColor={decorativePatternLineColor} static={staticPattern} />
+        <DecorativePattern static={staticPattern} />
       )}
     </section>
   )

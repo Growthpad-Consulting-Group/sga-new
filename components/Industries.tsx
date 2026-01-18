@@ -138,7 +138,7 @@ export default function Industries({
         </div>
       </motion.div>
       {decorativePatternColors && (
-        <DecorativePattern circleCount={35} colors={decorativePatternColors} lineColor={decorativePatternLineColor} static={staticPattern} />
+        <DecorativePattern static={staticPattern} />
       )}
     </section>
   )

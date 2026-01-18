@@ -38,16 +38,11 @@ export default function WhereWeOperate() {
               <p className="text-xs font-semibold text-navy uppercase tracking-wider mb-2">
                   Where We Operate
               </p>
-              <h3 className="text-lg md:text-xl font-bold text-primary-orange relative pb-3">
-                  Geographic footprint
-                <span 
-                  className="absolute bottom-0 left-0 h-1 w-3/4"
-                  style={{
-                    background: 'linear-gradient(to right, #00043E 0%, #00043E 70%, transparent 100%)',
-                    height: '3px'
-                  }}
-                ></span>
+            <div className="section-title-container">
+              <h3 className="section-title text-lg md:text-xl font-bold text-primary-orange">
+                Geographic footprint
               </h3>
+            </div>
             </div>
             <div className="flex flex-col gap-3 mt-4 flex-1 overflow-y-auto max-w-md">
               <motion.div
@@ -175,7 +170,7 @@ export default function WhereWeOperate() {
           </motion.div>
         </div>
       </motion.div>
-      <DecorativePattern circleCount={35} static={true} />
+      <DecorativePattern static={true} />
     </section>
   )
 }

@@ -93,9 +93,11 @@ export default function About({
                 </h3>
               )}
               {h2Title && (
-                <h2 className="text-2xl md:text-3xl font-bold text-black">
-                  {h2Title}
-                </h2>
+                <div className="section-title-container">
+                  <h2 className="section-title text-2xl md:text-3xl font-bold text-black">
+                    {h2Title}
+                  </h2>
+                </div>
               )}
               {customDescription && (
                 <p className="text-base md:text-lg text-dark-charcoal leading-relaxed">
@@ -148,7 +150,7 @@ export default function About({
             )}
           </div>
         </motion.div>
-        <DecorativePattern circleCount={35} colors={decorativePatternColors} lineColor={decorativePatternLineColor} static={staticPattern} />
+        <DecorativePattern static={staticPattern} />
       </section>
     )
   }
@@ -162,9 +164,11 @@ export default function About({
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-navy-blue mb-6">
-            {content.title}
-          </h2>
+          <div className="section-title-container">
+            <h2 className="section-title text-4xl md:text-5xl font-bold text-navy-blue mb-6">
+              {content.title}
+            </h2>
+          </div>
           <p className="text-lg text-dark-charcoal mb-6 leading-relaxed">
             {content.description}
           </p>

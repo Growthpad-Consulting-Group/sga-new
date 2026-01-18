@@ -40,16 +40,11 @@ export default function SustainabilityIntro() {
           viewport={{ once: true }}
           className="mb-8"
         >
-          <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-primary-orange relative pb-3 mb-6">
-            Our ESG Implementation Journey
-            <span 
-              className="absolute bottom-0 left-0 w-full"
-              style={{
-                background: 'linear-gradient(to right, #00043E 0%, #00043E 70%, transparent 100%)',
-                height: '2px'
-              }}
-            ></span>
-          </h2>
+          <div className="section-title-container">
+            <h2 className="section-title text-xl md:text-2xl lg:text-3xl font-bold text-primary-orange mb-6">
+              Our ESG Implementation Journey
+            </h2>
+          </div>
           <p className="text-sm md:text-base text-gray-700 leading-relaxed max-w-4xl">
             We are integrating Environmental, Social and Governance principles into our operations, aligning with ICoCA and ISO 18788:2015 to uphold human rights and ethical business conduct.
           </p>

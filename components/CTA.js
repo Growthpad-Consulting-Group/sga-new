@@ -46,9 +46,11 @@ export default function CTA() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Get In Touch
-          </h2>
+          <div className="section-title-container-white">
+            <h2 className="section-title text-4xl md:text-5xl font-bold mb-4 text-white">
+              Get In Touch
+            </h2>
+          </div>
           <p className="text-xl text-light-grey">
             Ready to secure your business? Contact us today for a consultation.
           </p>

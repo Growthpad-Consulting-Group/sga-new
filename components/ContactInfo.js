@@ -79,16 +79,11 @@ export default function ContactInfo() {
           viewport={{ once: true }}
           className="mb-8"
         >
-          <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-primary-orange relative pb-3 mb-6">
-                Country Contacts
-            <span 
-              className="absolute bottom-0 left-0 w-full"
-              style={{
-                background: 'linear-gradient(to right, #00043E 0%, #00043E 70%, transparent 100%)',
-                height: '2px'
-              }}
-            ></span>
-          </h2>
+          <div className="section-title-container">
+            <h2 className="section-title text-xl md:text-2xl lg:text-3xl font-bold text-primary-orange mb-6">
+              Country Contacts
+            </h2>
+          </div>
           <p className="text-sm md:text-base text-gray-700 leading-relaxed max-w-4xl">
             Direct lines and offices for each country. You can also visit the country website for more local information.
           </p>

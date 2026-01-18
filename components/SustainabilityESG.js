@@ -77,16 +77,11 @@ export default function SustainabilityESG() {
             <p className="text-xs font-semibold text-navy uppercase tracking-wider">
               Sustainability & ESG
             </p>
-            <h3 className="text-xl md:text-2xl font-bold text-primary-orange relative pb-3">
-              <span>Sustainable Development Goals</span>
-              <span 
-                className="absolute bottom-0 left-0 w-full"
-                style={{
-                  background: 'linear-gradient(to right, #00043E 0%, #00043E 70%, transparent 100%)',
-                  height: '1px'
-                }}
-              ></span>
-            </h3>
+            <div className="section-title-container">
+              <h3 className="section-title text-xl md:text-2xl font-bold text-primary-orange">
+                Sustainable Development Goals
+              </h3>
+            </div>
             <p className="text-base md:text-lg text-dark-charcoal leading-relaxed">SGA aligns its environmental, social and governance initiatives with the UN SDGs. Here are the goals we actively support.</p>
           </motion.div>
         </div>

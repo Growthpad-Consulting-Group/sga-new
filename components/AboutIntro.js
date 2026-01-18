@@ -31,9 +31,11 @@ export default function AboutIntro({ imageUrl = '/images/group/about/about-2.png
                 className="absolute -top-2 -left-2 md:-top-3 md:-left-3 w-8 h-8 md:w-10 md:h-10 text-primary-orange" 
                 style={{ strokeWidth: 3 }}
               />
-              <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-primary-orange pl-6 md:pl-8">
-                Protecting people, businesses, and communities since 1969.
-              </h2>
+              <div className="section-title-container">
+                <h2 className="section-title text-xl md:text-2xl lg:text-3xl font-bold text-primary-orange pl-6 md:pl-8">
+                  Protecting people, businesses, and communities since 1969.
+                </h2>
+              </div>
             </div>
             <p className="text-sm md:text-base text-gray-700 leading-relaxed">
               SGA Security is the region's leading Security Solutions provider with fixed base operations in East Africa servicing security contracts throughout the continent. With over 55 years of service, SGA Security is dedicated to supporting sustainable safety and security for customers and the community by providing the best security solutions founded in our people, innovation and our commitment to social responsibility.
