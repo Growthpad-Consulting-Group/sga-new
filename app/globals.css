@@ -162,7 +162,7 @@
 @layer utilities {
   .section-snap {
     scroll-snap-align: start;
-    min-height: 100vh;
+    height: 100vh;
   }
   
   .no-snap {
