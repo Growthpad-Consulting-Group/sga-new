@@ -23,7 +23,7 @@ export default function ParallaxSection({
   return (
     <section 
       ref={ref}
-      className="relative h-[700px] md:h-[800px] overflow-hidden flex items-center justify-start"
+      className="section-snap relative w-full min-h-screen overflow-hidden flex items-center justify-start"
     >
       {/* Parallax Background Image */}
       <motion.div 

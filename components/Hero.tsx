@@ -59,7 +59,7 @@ export default function Hero({
   
   if (twoCardLayout) {
     return (
-      <SectionWrapper id="hero" className={`${bgClass} items-start pt-16 sm:pt-20 relative`}>
+      <SectionWrapper id="hero" className={`${bgClass} items-start pt-16 sm:pt-0 relative`}>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Card - Content */}
           <motion.div
@@ -69,16 +69,16 @@ export default function Hero({
             className="space-y-6"
           >
             {customH3 && (
-              <h3 className={`text-sm md:text-base font-bold uppercase tracking-wider ${secondaryTextColorClass}`}>
+              <h3 className={`text-sm md:text-xl font-bold tracking-wider ${secondaryTextColorClass}`}>
                 {customH3}
               </h3>
             )}
             {customTitle && orangeBackground ? (
-              <h2 className={`text-3xl md:text-4xl font-bold ${textColorClass}`}>
+              <h2 className={`text-4xl md:text-5xl lg:text-6xl font-bold ${textColorClass}`}>
                 {customTitle}
               </h2>
             ) : (
-              <h1 className={`text-3xl md:text-4xl font-bold ${textColorClass}`}>
+              <h1 className={`text-4xl md:text-5xl lg:text-5xl font-medium ${textColorClass}`}>
                 {customTitle || (
                   <>
                     SGA Security
@@ -136,7 +136,7 @@ export default function Hero({
                   const isSimple = button.simple !== false && (button.className?.includes('rounded-full') || button.simple === true)
                   
                   // Independent styling for each button
-                  const buttonClassName = button.className || `group relative bg-transparent border-2 border-primary-orange text-primary-orange px-8 py-4 rounded-lg font-semibold transition-all text-left flex flex-col hover:bg-primary-orange w-full sm:flex-1`
+                  const buttonClassName = button.className || `group relative bg-transparent border-2 border-primary-orange px-8 py-10 rounded-lg font-semibold transition-all text-left flex flex-col  hover:bg-primary-orange w-full sm:flex-1`
                   
                   // Simple button structure for rounded-full buttons
                   if (isSimple) {
@@ -165,19 +165,22 @@ export default function Hero({
                       key={`button-${index}`}
                     href={button.href}
                       whileTap={{ scale: 0.98 }}
-                      className={buttonClassName}
+                      className={`${buttonClassName} relative`}
                       style={button.style}
                     >
                       <div className={`transition-colors duration-300 ${hoverTextColor}`}>
                         {topText && (
-                          <span className="text-sm mb-1 block">{topText}</span>
+                          <span className="text-sm mb-1 block font-normal">{topText}</span>
                         )}
-                        <span className="text-xl font-bold block">{mainText}</span>
+                        <span className="text-2xl font-bold block">{mainText}</span>
                       </div>
-                      <span className={`flex items-center gap-2 ${readMoreTextColor} opacity-0 group-hover:opacity-100 transition-all duration-300 max-h-0 group-hover:max-h-20 mt-0 group-hover:mt-3 overflow-hidden`}>
-                        <span className="text-lg">{button.readMoreText || 'Read More'}</span>
-                        <Icon icon={button.arrowIcon || "mdi:arrow-right"} className="w-5 h-5" />
+                      <span className={`flex items-center ${readMoreTextColor} opacity-0 group-hover:opacity-100 transition-all duration-300 max-h-0 group-hover:max-h-20 mt-0 group-hover:mt-3 overflow-hidden`}>
+                        <span className="text-xs uppercase text-white/80">{button.readMoreText || 'Read More'}</span>
                       </span>
+                      {/* Arrow Icon - Bottom Right */}
+                      <div className="absolute bottom-10 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        <Icon icon={button.arrowIcon || "iconoir:arrow-right-circle"} className="w-7 h-7 text-black" />
+                      </div>
                   </motion.a>
                   )
                 })}
@@ -206,7 +209,7 @@ export default function Hero({
 
           {/* Right Card - Two Images as Marquees in Columns */}
           {images && images.length > 0 ? (
-            <div className="relative w-full h-[350px] lg:h-[450px] rounded-lg overflow-hidden flex flex-row">
+            <div className="relative w-full h-[60vh] lg:h-[100vh] rounded-lg overflow-hidden flex flex-row">
               {/* Top feather effect */}
               <div className="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-white via-white/50 to-transparent z-10 pointer-events-none"></div>
               {/* Bottom feather effect */}
@@ -225,7 +228,7 @@ export default function Hero({
                   }}
                 >
                   {images.slice(0, Math.ceil(images.length / 2)).map((img, idx) => (
-                    <div key={`left-${idx}`} className="relative w-full h-[140px] lg:h-[180px] flex-shrink-0">
+                    <div key={`left-${idx}`} className="relative w-full h-[180px] lg:h-[220px] flex-shrink-0">
                       <Image
                         src={img}
                         alt={`${countryName} Security Services ${idx + 1}`}
@@ -237,7 +240,7 @@ export default function Hero({
                   ))}
                   {/* Duplicate for seamless loop */}
                   {images.slice(0, Math.ceil(images.length / 2)).map((img, idx) => (
-                    <div key={`left-dup-${idx}`} className="relative w-full h-[140px] lg:h-[180px] flex-shrink-0">
+                    <div key={`left-dup-${idx}`} className="relative w-full h-[180px] lg:h-[220px] flex-shrink-0">
                       <Image
                         src={img}
                         alt={`${countryName} Security Services ${idx + 1}`}
@@ -263,7 +266,7 @@ export default function Hero({
                   }}
                 >
                   {images.slice(Math.ceil(images.length / 2)).map((img, idx) => (
-                    <div key={`right-${idx}`} className="relative w-full h-[140px] lg:h-[180px] flex-shrink-0">
+                    <div key={`right-${idx}`} className="relative w-full h-[180px] lg:h-[220px] flex-shrink-0">
                       <Image
                         src={img}
                         alt={`${countryName} Security Services ${Math.ceil(images.length / 2) + idx + 1}`}
@@ -275,7 +278,7 @@ export default function Hero({
                   ))}
                   {/* Duplicate for seamless loop */}
                   {images.slice(Math.ceil(images.length / 2)).map((img, idx) => (
-                    <div key={`right-dup-${idx}`} className="relative w-full h-[140px] lg:h-[180px] flex-shrink-0">
+                    <div key={`right-dup-${idx}`} className="relative w-full h-[180px] lg:h-[220px] flex-shrink-0">
                       <Image
                         src={img}
                         alt={`${countryName} Security Services ${Math.ceil(images.length / 2) + idx + 1}`}
@@ -288,9 +291,9 @@ export default function Hero({
               </div>
             </div>
           ) : imageUrl2 ? (
-            <div className="relative w-full h-[350px] lg:h-[450px] rounded-lg overflow-hidden flex flex-row gap-4">
+            <div className="relative w-full h-[60vh] lg:h-[70vh] rounded-lg overflow-hidden flex flex-row">
               {/* First Image Marquee - Left Column - Scrolls Down */}
-              <div className="relative w-1/2 h-full rounded-lg overflow-hidden">
+              <div className="relative w-1/2 h-full rounded-l-lg overflow-hidden -mr-1">
                 <motion.div
                   className="flex flex-col"
                   animate={{
@@ -302,7 +305,7 @@ export default function Hero({
                     ease: "linear",
                   }}
                 >
-                  <div className="relative w-full h-[140px] lg:h-[180px] flex-shrink-0">
+                  <div className="relative w-full h-[180px] lg:h-[220px] flex-shrink-0">
                     <Image
                       src={imageUrl}
                       alt={`${countryName} Security Services`}
@@ -311,7 +314,7 @@ export default function Hero({
                       priority
                     />
                   </div>
-                  <div className="relative w-full h-[140px] lg:h-[180px] flex-shrink-0">
+                  <div className="relative w-full h-[180px] lg:h-[220px] flex-shrink-0">
                     <Image
                       src={imageUrl}
                       alt={`${countryName} Security Services`}
@@ -323,7 +326,7 @@ export default function Hero({
               </div>
               
               {/* Second Image Marquee - Right Column - Scrolls Up */}
-              <div className="relative w-1/2 h-full rounded-lg overflow-hidden">
+              <div className="relative w-1/2 h-full rounded-r-lg overflow-hidden -ml-1">
                 <motion.div
                   className="flex flex-col"
                   animate={{
@@ -335,7 +338,7 @@ export default function Hero({
                     ease: "linear",
                   }}
                 >
-                  <div className="relative w-full h-[140px] lg:h-[180px] flex-shrink-0">
+                  <div className="relative w-full h-[180px] lg:h-[220px] flex-shrink-0">
                     <Image
                       src={imageUrl2}
                       alt={`${countryName} Security Services`}
@@ -344,7 +347,7 @@ export default function Hero({
                       priority
                     />
                   </div>
-                  <div className="relative w-full h-[140px] lg:h-[180px] flex-shrink-0">
+                  <div className="relative w-full h-[180px] lg:h-[220px] flex-shrink-0">
                     <Image
                       src={imageUrl2}
                       alt={`${countryName} Security Services`}
@@ -397,11 +400,11 @@ export default function Hero({
               }
             }}
           >
-            <span className={`text-sm mb-2 ${secondaryTextColorClass} font-medium`}>Scroll</span>
             <Icon 
-              icon="mdi:chevron-down" 
-              className={`w-6 h-6 ${secondaryTextColorClass}`}
+              icon="iconoir:arrow-down-circle" 
+              className={`w-8 h-8 mb-2 ${secondaryTextColorClass}`}
             />
+            <span className={`text-sm ${secondaryTextColorClass} font-medium uppercase`}>SCROLL DOWN</span>
           </motion.div>
         </motion.div>
       </SectionWrapper>

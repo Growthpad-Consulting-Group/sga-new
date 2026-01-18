@@ -29,13 +29,14 @@ export const navItems: NavItem[] = [
 
 export const socialLinks: SocialLink[] = [
   { icon: 'mdi:facebook', url: 'https://facebook.com', label: 'Facebook' },
-  { icon: 'mdi:twitter', url: 'https://twitter.com', label: 'Twitter' },
+    { icon: 'entypo-social:twitter-with-circle', url: 'https://twitter.com', label: 'Twitter' },
+    { icon: 'mage:instagram-circle', url: 'https://instagram.com', label: 'Instagram' },
+        { icon: 'entypo-social:youtube-with-circle', url: 'https://youtube.com', label: 'Youtube' },
   { icon: 'mdi:linkedin', url: 'https://linkedin.com', label: 'LinkedIn' },
-  { icon: 'mdi:instagram', url: 'https://instagram.com', label: 'Instagram' },
 ]
 
 export const countries: Country[] = [
+    { code: 'tz', name: 'Tanzania', path: '/tz', flag: 'twemoji:flag-tanzania' },
+    { code: 'ug', name: 'Uganda', path: '/ug', flag: 'twemoji:flag-uganda' },
   { code: 'ke', name: 'Kenya', path: '/ke', flag: 'twemoji:flag-kenya' },
-  { code: 'ug', name: 'Uganda', path: '/ug', flag: 'twemoji:flag-uganda' },
-  { code: 'tz', name: 'Tanzania', path: '/tz', flag: 'twemoji:flag-tanzania' },
 ]

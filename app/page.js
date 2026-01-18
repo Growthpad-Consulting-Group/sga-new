@@ -8,7 +8,7 @@ import News from '@/components/News'
 import HappyClients from '@/components/HappyClients'
 import JoinOurMission from '@/components/JoinOurMission'
 import GroupFooter from '@/components/GroupFooter'
-import FloatingWhatsApp from '@/components/FloatingWhatsApp'
+// import FloatingWhatsApp from '@/components/FloatingWhatsApp'
 
 export const metadata = {
   title: 'SGA Security Group - Leading Security Solutions in East Africa',
@@ -60,7 +60,7 @@ export default function HomePage() {
       <HappyClients />
       <JoinOurMission />
       <GroupFooter />
-      <FloatingWhatsApp />
+      {/* <FloatingWhatsApp /> */}
     </>
   )
 }

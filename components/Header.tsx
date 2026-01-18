@@ -46,7 +46,7 @@ export default function Header() {
             </div>
 
             {/* Country Flags - Right */}
-            <div className="flex items-center space-x-1.5 sm:space-x-2 md:space-x-3">
+            <div className="flex items-center space-x-1 sm:space-x-2">
               {countries.map((country) => {
                 const active = isActiveCountry(country.path)
                 return (
@@ -65,7 +65,7 @@ export default function Header() {
                     aria-label={`Switch to ${country.name}`}
                     title={country.name}
                   >
-                    <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full overflow-hidden flex items-center justify-center ring-1 ring-white/20">
+                    <div className="w-6 h-6 sm:w-6 sm:h-6 rounded-full overflow-hidden flex items-center justify-center ring-1 ring-white/20">
                       <Icon icon={country.flag} className="w-full h-full scale-125" />
                     </div>
                   </motion.button>
@@ -92,11 +92,13 @@ export default function Header() {
 
       {/* Main Navigation */}
       <nav className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-20">
+        <div className="flex items-center h-16 sm:h-20">
+          {/* Logo - Left */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
+            className="flex-shrink-0"
           >
             <Link href="/" className="flex items-center">
               <Image
@@ -110,9 +112,36 @@ export default function Header() {
             </Link>
           </motion.div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-4 xl:space-x-6 2xl:space-x-8">
-            {navItems.map((item) => {
+          {/* Desktop Navigation - Center */}
+          <div className="hidden lg:flex items-center justify-center flex-1">
+            <div className="flex items-center space-x-4 xl:space-x-6 2xl:space-x-8">
+              {navItems.filter(item => !item.icon).map((item) => {
+                const isRoute = !item.href.startsWith('#')
+                const isActive = isRoute ? pathname === item.href : false
+                const NavComponent = isRoute ? motion(Link) : motion.a
+                
+                return (
+                  <NavComponent
+                    key={item.href}
+                    href={item.href}
+                    whileHover={{ y: -2 }}
+                    className={`transition-colors font-heading font-medium text-sm  ${
+                      isActive 
+                        ? 'text-primary-orange' 
+                        : 'text-dark-charcoal hover:text-primary-orange'
+                    }`}
+                  >
+                    {item.label}
+                  </NavComponent>
+                )
+              })}
+            </div>
+          </div>
+
+          {/* CTAs - Right */}
+          <div className="hidden lg:flex items-center space-x-3 xl:space-x-4 flex-shrink-0">
+            {/* Updates Link */}
+            {navItems.filter(item => item.icon).map((item) => {
               const isRoute = !item.href.startsWith('#')
               const isActive = isRoute ? pathname === item.href : false
               const NavComponent = isRoute ? motion(Link) : motion.a
@@ -122,23 +151,24 @@ export default function Header() {
                   key={item.href}
                   href={item.href}
                   whileHover={{ y: -2 }}
-                  className={`transition-colors font-heading font-medium flex items-center gap-1.5 text-sm xl:text-base ${
+                  className={`transition-colors font-heading font-medium flex items-center gap-1.5 text-sm  ${
                     isActive 
                       ? 'text-primary-orange' 
                       : 'text-dark-charcoal hover:text-primary-orange'
                   }`}
                 >
-                  {item.icon && <Icon icon={item.icon} className="w-4 h-4 xl:w-5 xl:h-5 text-primary-orange" />}
+                  <Icon icon={item.icon} className="w-4 h-4 xl:w-5 xl:h-5 text-primary-orange" />
                   {item.label}
                 </NavComponent>
               )
             })}
+            
             {/* Enquire Now Button */}
             <motion.button
               onClick={openModal}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-primary-orange text-white px-4 py-2 xl:px-6 xl:py-2 rounded-full font-heading font-semibold text-sm xl:text-base shadow-md hover:shadow-lg transition-shadow ml-2 xl:ml-4"
+              className="bg-primary-orange text-white px-4 py-2 xl:px-6 xl:py-3 rounded-full font-heading font-medium uppercase text-sm shadow-md hover:shadow-lg transition-shadow"
             >
               Enquire Now
             </motion.button>
