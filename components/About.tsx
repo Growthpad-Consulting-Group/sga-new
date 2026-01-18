@@ -17,7 +17,7 @@ interface AboutProps {
   customLayout?: boolean
   smallTitle?: string | null
   h3Title?: string | null
-  h2Title?: string | null
+  h2Title?: string | React.ReactNode | null
   customDescription?: string | null
   buttonText?: string | null
   buttonHref?: string
@@ -142,7 +142,7 @@ export default function About({
               >
                 <Image
                   src={imageUrl}
-                  alt={h2Title || 'About SGA'}
+                  alt={typeof h2Title === 'string' ? h2Title : 'About SGA'}
                   fill
                   className="object-contain"
                 />

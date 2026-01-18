@@ -12,6 +12,7 @@ interface CustomButton {
   className?: string
   style?: React.CSSProperties
   simple?: boolean
+  primary?: boolean
   readMoreText?: string
   arrowIcon?: string
 }
@@ -26,7 +27,7 @@ interface HeroProps {
   imageUrl2?: string | null
   images?: string[] | null
   customH3?: string | null
-  customTitle?: string | null
+  customTitle?: string | React.ReactNode | null
   customDescription?: string | null
   showToggle?: boolean
   customButtons?: CustomButton[] | null
