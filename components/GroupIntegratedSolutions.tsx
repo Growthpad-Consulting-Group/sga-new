@@ -97,7 +97,7 @@ export default function GroupIntegratedSolutions({
                     {solution.description}
                   </p>
                   <Icon 
-                    icon="mdi:arrow-right" 
+                    icon="iconoir:arrow-right-circle" 
                     className="w-6 h-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   />
                 </div>
@@ -115,7 +115,7 @@ export default function GroupIntegratedSolutions({
             viewport={{ once: true }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-primary-orange text-white px-8 py-4 rounded-full font-semibold text-sm uppercase hover:bg-navy-blue transition-colors shadow-lg hover:shadow-xl"
+            className="bg-primary-orange text-white px-10 py-4 rounded-full font-normal text-sm uppercase hover:bg-navy-blue transition-colors shadow-lg hover:shadow-xl"
           >
             Request a Quote
           </motion.button>

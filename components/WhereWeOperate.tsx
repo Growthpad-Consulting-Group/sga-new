@@ -1,14 +1,13 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import SectionWrapper from './SectionWrapper'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import { Icon } from '@iconify/react'
 import DecorativePattern from './DecorativePattern'
 
 export default function WhereWeOperate(): React.JSX.Element {
   return (
-    <section id="where-we-operate" className="section-snap flex items-center justify-center bg-light-grey relative pb-0 overflow-x-hidden">
+    <section id="where-we-operate" className="section-snap flex items-center justify-center relative pb-0 overflow-x-hidden">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -22,33 +21,36 @@ export default function WhereWeOperate(): React.JSX.Element {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="space-y-3 flex flex-col h-[350px] md:h-[450px]"
+            className="space-y-3 flex flex-col"
           >
             <div>
               <p className="text-xs font-semibold text-navy uppercase tracking-wider mb-2">
                   Where We Operate
               </p>
             <div className="section-title-container">
-              <h3 className="section-title text-lg md:text-xl font-bold text-primary-orange">
+              <h3 className="section-title text-lg md:text-3xl font-bold text-primary-orange">
                 Geographic footprint
               </h3>
             </div>
             </div>
-            <div className="flex flex-col gap-3 mt-4 flex-1 overflow-y-auto max-w-md">
+            <div className="flex flex-col gap-3 mt-4 flex-1 overflow-y-auto max-w-sm">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ y: -8 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                className="bg-primary-orange rounded-lg p-3 shadow-sm hover:shadow-md transition-shadow"
+                transition={{ 
+                  duration: 0.15,
+                  ease: "easeOut",
+                  opacity: { duration: 0.5, delay: 0.1 },
+                  y: { duration: 0.15 }
+                }}
+                className="bg-primary-orange rounded-lg p-3 py-6 shadow-sm hover:shadow-lg transition-shadow duration-150 cursor-pointer"
               >
                 <h4 className="text-base md:text-lg font-bold text-white mb-1 flex items-center gap-2">
-                  <Image
-                    src="https://flagcdn.com/w40/ke.png"
-                    alt="Kenya Flag"
-                    width={24}
-                    height={18}
-                    className="rounded-sm"
+                  <Icon 
+                    icon="emojione:flag-for-kenya" 
+                    className="w-8 h-8 text-white group-hover:opacity-100 transition-opacity duration-300"
                   />
                   Kenya HQ
                 </h4>
@@ -57,25 +59,28 @@ export default function WhereWeOperate(): React.JSX.Element {
                 </p>
                 <a 
                   href="#kenya" 
-                  className="inline-block text-white text-xs font-semibold hover:underline"
+                  className="inline-block text-white text-xs font-normal hover:underline uppercase"
                 >
-                  Explore Kenya →
+                  Explore Kenya <Icon icon="iconoir:arrow-right-circle" className="inline-block ml-1 w-4 h-4" />
                 </a>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ y: -8 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="bg-primary-orange rounded-lg p-3 shadow-sm hover:shadow-md transition-shadow"
+                transition={{ 
+                  duration: 0.15,
+                  ease: "easeOut",
+                  opacity: { duration: 0.5, delay: 0.2 },
+                  y: { duration: 0.15 }
+                }}
+                className="bg-primary-orange rounded-lg p-3 py-6 shadow-sm hover:shadow-lg transition-shadow duration-150 cursor-pointer"
               >
                 <h4 className="text-base md:text-lg font-bold text-white mb-1 flex items-center gap-2">
-                  <Image
-                    src="https://flagcdn.com/w40/ug.png"
-                    alt="Uganda Flag"
-                    width={24}
-                    height={18}
-                    className="rounded-sm"
+                  <Icon 
+                    icon="emojione:flag-for-uganda" 
+                    className="w-8 h-8 text-white group-hover:opacity-100 transition-opacity duration-300"
                   />
                   Uganda HQ
                 </h4>
@@ -84,25 +89,28 @@ export default function WhereWeOperate(): React.JSX.Element {
                 </p>
                 <a 
                   href="#uganda" 
-                  className="inline-block text-white text-xs font-semibold hover:underline"
+                  className="inline-block text-white text-xs font-normal hover:underline uppercase"
                 >
-                  Explore Uganda →
+                  Explore Uganda <Icon icon="iconoir:arrow-right-circle" className="inline-block ml-1 w-4 h-4" />
                 </a>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ y: -8 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                className="bg-primary-orange rounded-lg p-3 shadow-sm hover:shadow-md transition-shadow"
+                transition={{ 
+                  duration: 0.15,
+                  ease: "easeOut",
+                  opacity: { duration: 0.5, delay: 0.3 },
+                  y: { duration: 0.15 }
+                }}
+                className="bg-primary-orange rounded-lg p-3 py-6 shadow-sm hover:shadow-lg transition-shadow duration-150 cursor-pointer"
               >
                 <h4 className="text-base md:text-lg font-bold text-white mb-1 flex items-center gap-2">
-                  <Image
-                    src="https://flagcdn.com/w40/tz.png"
-                    alt="Tanzania Flag"
-                    width={24}
-                    height={18}
-                    className="rounded-sm"
+                  <Icon 
+                    icon="emojione:flag-for-tanzania" 
+                    className="w-8 h-8 text-white group-hover:opacity-100 transition-opacity duration-300"
                   />
                   Tanzania HQ
                 </h4>
@@ -111,9 +119,9 @@ export default function WhereWeOperate(): React.JSX.Element {
                 </p>
                 <a 
                   href="#tanzania" 
-                  className="inline-block text-white text-xs font-semibold hover:underline"
+                  className="inline-block text-white text-xs font-normal hover:underline uppercase"
                 >
-                  Explore Tanzania →
+                  Explore Tanzania <Icon icon="iconoir:arrow-right-circle" className="inline-block ml-1 w-4 h-4" />
                 </a>
               </motion.div>
             </div>
@@ -124,39 +132,15 @@ export default function WhereWeOperate(): React.JSX.Element {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="relative w-full h-[350px] md:h-[450px] rounded-lg overflow-hidden shadow-lg z-0 bg-gradient-to-br from-primary-orange/10 to-primary-orange/5 border-2 border-primary-orange/20 flex items-center justify-center"
+            className="mx-auto w-full max-w-md lg:max-w-lg"
           >
-            <div className="text-center p-8">
-              <div className="mb-4">
-                <svg 
-                  className="w-16 h-16 mx-auto text-primary-orange" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    strokeWidth={2} 
-                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" 
+            <Image
+                    src="/images/group/geographic-footprint.svg"
+                    alt="Geographic Footprint"
+                    width={400}
+                    height={0}
+                  className="object-cover transition-transform duration-300 group-hover:scale-110"
                   />
-                  <path 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    strokeWidth={2} 
-                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" 
-                  />
-                </svg>
-              </div>
-              <h4 className="text-lg font-bold text-navy mb-2">Our Locations</h4>
-              <p className="text-sm text-navy/70 mb-4">Kenya • Uganda • Tanzania</p>
-              <div className="space-y-2 text-sm text-navy/80">
-                <p>📍 Nairobi, Kenya</p>
-                <p>📍 Kampala, Uganda</p>
-                <p>📍 Dar es Salaam, Tanzania</p>
-                <p>📍 Zanzibar, Tanzania</p>
-              </div>
-            </div>
           </motion.div>
         </div>
       </motion.div>
