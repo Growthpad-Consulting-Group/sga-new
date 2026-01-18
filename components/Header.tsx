@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -12,19 +12,42 @@ import { navItems, socialLinks, countries } from '@/data/nav'
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [countryModalOpen, setCountryModalOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
   const pathname = usePathname()
   const router = useRouter()
   const { openModal } = useEnquiryModal()
+
+  // Handle scroll detection for glassmorphic effect
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY
+      
+      // Hide top bar only when user scrolls to a certain point (e.g., 300px down)
+      // This allows users to scroll within the first section while keeping the top bar visible
+      setIsScrolled(scrollTop > 300)
+    }
+
+    // Check initial scroll position
+    handleScroll()
+    
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const isActiveCountry = (path: string): boolean => {
     if (path === '/') return pathname === '/'
     return pathname.startsWith(path)
   }
 
+  // Dynamic header classes based on scroll state
+  const headerClasses = isScrolled 
+    ? 'fixed top-0 left-0 right-0 z-40 bg-white/80 backdrop-blur-md border-b border-white/20 shadow-lg transition-all duration-300'
+    : 'fixed top-0 left-0 right-0 z-40 bg-white transition-all duration-300'
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-40 bg-white">
+    <header className={headerClasses}>
       {/* Top Bar with Social Icons and Flags */}
-      <div className="bg-white text-black">
+      <div className={`${isScrolled ? 'h-0 overflow-hidden opacity-0' : 'bg-white'} text-black transition-all duration-300`}>
         <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
           <div className="flex items-center justify-between h-10 sm:h-12 text-xs sm:text-sm">
             {/* Social Icons - Left */}
@@ -86,7 +109,7 @@ export default function Header() {
         </div>
         {/* Border Bottom - Thick border matching content padding */}
         <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-          <div className="border-b-2 border-black"></div>
+          <div className={`border-b-2 ${isScrolled ? 'border-black/20' : 'border-black'} transition-all duration-300`}></div>
         </div>
       </div>
 
@@ -217,7 +240,7 @@ export default function Header() {
                       key={item.href}
                       href={item.href}
                       onClick={() => setMobileMenuOpen(false)}
-                      className={`block py-3 sm:py-3.5 transition-colors flex items-center gap-2 text-sm sm:text-base font-heading ${
+                      className={`flex items-center gap-2 py-3 sm:py-3.5 transition-colors text-sm sm:text-base font-heading ${
                         isActive 
                           ? 'text-primary-orange font-semibold' 
                           : 'text-dark-charcoal hover:text-primary-orange'
@@ -234,7 +257,7 @@ export default function Header() {
                     key={item.href}
                     href={item.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block py-3 sm:py-3.5 transition-colors flex items-center gap-2 text-sm sm:text-base font-heading text-dark-charcoal hover:text-primary-orange"
+                    className="flex items-center gap-2 py-3 sm:py-3.5 transition-colors text-sm sm:text-base font-heading text-dark-charcoal hover:text-primary-orange"
                   >
                     {item.icon && <Icon icon={item.icon} className="w-5 h-5 text-primary-orange flex-shrink-0" />}
                     <span>{item.label}</span>
@@ -247,7 +270,7 @@ export default function Header() {
                   openModal()
                 }}
                 whileTap={{ scale: 0.95 }}
-                className="block mt-4 sm:mt-5 bg-primary-orange text-white px-6 py-3 sm:py-3.5 rounded-full font-heading font-semibold text-center text-sm sm:text-base shadow-md w-full"
+                className="mt-4 sm:mt-5 bg-primary-orange text-white px-6 py-3 sm:py-3.5 rounded-full font-heading font-semibold text-center text-sm sm:text-base shadow-md w-full"
               >
                 Enquire Now
               </motion.button>

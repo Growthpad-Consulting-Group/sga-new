@@ -77,15 +77,15 @@ export default function OurImpactInNumbers({ showPattern = true }: OurImpactInNu
               our impact in numbers
             </p>
             <div className="section-title-container">
-              <h3 className="section-title text-xl md:text-2xl font-bold text-navy-blue">
-                Our Impact in Numbers
+              <h3 className="section-title text-xl md:text-3xl font-bold text-primary-orange">
+                Scale you can rely on
               </h3>
             </div>
           </motion.div>
         </div>
 
         {/* Top Row - 3 Circles */}
-        <div className="flex justify-center items-center gap-1 md:gap-2 mb-6 md:mb-8 flex-wrap">
+        <div className="flex justify-center items-center gap-1 md:gap-10 mb-6 md:mb-8 flex-wrap">
           {topRowStats.map((stat, index) => (
             <motion.div
               key={`top-${index}`}
@@ -97,7 +97,7 @@ export default function OurImpactInNumbers({ showPattern = true }: OurImpactInNu
               className="flex flex-col items-center"
             >
               <motion.div 
-                className="w-36 h-36 md:w-48 md:h-48 lg:w-48 lg:h-48 rounded-full border border-primary-orange bg-primary-orange flex flex-col items-center justify-center shadow-lg group relative p-2 md:p-3 cursor-pointer"
+                className="w-36 h-36 md:w-48 md:h-48 lg:w-56 lg:h-56 rounded-full border border-primary-orange bg-primary-orange flex flex-col items-center justify-center shadow-lg group relative p-2 md:p-3 cursor-pointer"
                 whileHover={{ 
                   scale: 1.08,
                   y: -8,
@@ -113,7 +113,7 @@ export default function OurImpactInNumbers({ showPattern = true }: OurImpactInNu
                 <span className="text-xl md:text-2xl lg:text-2xl font-bold text-white transition-colors mb-1">
                   {stat.number}
                 </span>
-                <span className="text-white text-center text-[9px] md:text-[10px] lg:text-xs font-semibold px-2 leading-tight">
+                <span className="text-white text-center text-[9px] md:text-[10px] lg:text-xl font-semibold px-2 leading-tight">
                   {stat.label}
                 </span>
               </motion.div>
@@ -122,7 +122,7 @@ export default function OurImpactInNumbers({ showPattern = true }: OurImpactInNu
         </div>
 
         {/* Bottom Row - 4 Circles */}
-        <div className="flex justify-center items-center gap-1 md:gap-2 flex-wrap">
+        <div className="flex justify-center items-center gap-1 md:gap-10 flex-wrap">
           {bottomRowStats.map((stat, index) => (
             <motion.div
               key={`bottom-${index}`}
@@ -134,7 +134,7 @@ export default function OurImpactInNumbers({ showPattern = true }: OurImpactInNu
               className="flex flex-col items-center"
             >
               <motion.div 
-                className="w-36 h-36 md:w-48 md:h-48 lg:w-48 lg:h-48 rounded-full border border-primary-orange bg-primary-orange flex flex-col items-center justify-center shadow-lg group relative p-2 md:p-3 cursor-pointer"
+                className="w-36 h-36 md:w-48 md:h-48 lg:w-56 lg:h-56 rounded-full border border-primary-orange bg-primary-orange flex flex-col items-center justify-center shadow-lg group relative p-2 md:p-3 cursor-pointer"
                 whileHover={{ 
                   scale: 1.08,
                   y: -8,
