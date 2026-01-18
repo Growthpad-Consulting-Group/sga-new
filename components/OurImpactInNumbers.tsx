@@ -110,10 +110,10 @@ export default function OurImpactInNumbers({ showPattern = true }: OurImpactInNu
                   ease: 'easeOut'
                 }}
               >
-                <span className="text-xl md:text-2xl lg:text-2xl font-bold text-white transition-colors mb-1">
+                <span className="text-xl md:text-2xl lg:text-4xl font-bold text-white transition-colors mb-1">
                   {stat.number}
                 </span>
-                <span className="text-white text-center text-[9px] md:text-[10px] lg:text-xl font-semibold px-2 leading-tight">
+                <span className="text-white text-center text-[9px] md:text-[10px] lg:text-lg font-normal px-2 leading-tight">
                   {stat.label}
                 </span>
               </motion.div>
@@ -147,10 +147,10 @@ export default function OurImpactInNumbers({ showPattern = true }: OurImpactInNu
                   ease: 'easeOut'
                 }}
               >
-                <span className="text-xl md:text-2xl lg:text-2xl font-bold text-white transition-colors mb-1">
+                <span className="text-xl md:text-2xl lg:text-4xl font-bold text-white transition-colors mb-1">
                   {stat.number}
                 </span>
-                <span className="text-white text-center text-[9px] md:text-[10px] lg:text-xs font-semibold px-2 leading-tight">
+                <span className="text-white text-center text-[9px] md:text-[10px] lg:text-lg font-normal px-2 leading-tight">
                   {stat.label}
                 </span>
               </motion.div>

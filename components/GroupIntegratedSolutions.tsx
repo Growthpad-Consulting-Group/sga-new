@@ -60,7 +60,7 @@ export default function GroupIntegratedSolutions({
               integrated solutions
             </p>
             <div className="section-title-container">
-              <h3 className="section-title text-xl md:text-2xl font-bold text-navy-blue">
+              <h3 className="section-title text-xl md:text-2xl font-bold text-primary-orange">
                 {title}
               </h3>
             </div>
