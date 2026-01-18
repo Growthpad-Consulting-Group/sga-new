@@ -5,16 +5,6 @@ import SectionWrapper from './SectionWrapper'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import DecorativePattern from './DecorativePattern'
-// Map component temporarily disabled due to initialization issues
-// import dynamic from 'next/dynamic'
-// const InteractiveMap = dynamic(() => import('./InteractiveMap'), {
-//   ssr: false,
-//   loading: () => (
-//     <div className="w-full h-full bg-gray-200 rounded-lg flex items-center justify-center">
-//       <p className="text-gray-500">Loading map...</p>
-//     </div>
-//   )
-// })
 
 export default function WhereWeOperate(): React.JSX.Element {
   return (
