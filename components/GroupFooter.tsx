@@ -24,7 +24,7 @@ export default function GroupFooter(): React.JSX.Element {
   return (
     <footer className="bg-primary-orange py-12 md:py-16 no-snap relative" style={{ scrollSnapAlign: 'none', scrollSnapStop: 'normal' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-6">
           {/* Logo and Social Section */}
           <div className="lg:col-span-1">
             <div className="mb-6">
@@ -42,12 +42,12 @@ export default function GroupFooter(): React.JSX.Element {
                 className="absolute -top-2 -left-2 w-8 h-8 text-white font-bold" 
                 style={{ strokeWidth: 3 }}
               />
-              <p className="text-white/90 text-sm leading-relaxed pl-6 font-bold">
+              <p className="text-white/90 text-2xl leading-relaxed pl-6 font-bold">
                 Integrated security across Kenya, Uganda and Tanzania protecting what matters for people and organizations.
               </p>
             </div>
             <div className="pl-6">
-              <h4 className="font-semibold mb-3 text-white text-sm">Connect With Us</h4>
+              <h4 className="font-semibold mb-3 text-white text-xl">Connect With Us</h4>
               <div className="flex items-center space-x-4 mb-5">
                 {socialLinks.map((social) => (
                   <a
@@ -62,16 +62,16 @@ export default function GroupFooter(): React.JSX.Element {
                   </a>
                 ))}
               </div>
-              <div className="flex flex-col gap-2">
+              <div className="flex gap-2">
                 <a
                   href="#contact"
-                  className="bg-white text-primary-orange px-4 py-2 rounded-full font-semibold text-xs uppercase hover:bg-white/90 transition-colors text-center"
+                  className="bg-white text-primary-orange px-4 py-2 rounded-full font-semibold text-xs uppercase hover:bg-white/90 transition-colors text-center flex-1"
                 >
                   CONTACT US
                 </a>
                 <button
                   onClick={openModal}
-                  className="bg-transparent text-white border-2 border-white px-4 py-2 rounded-full font-semibold text-xs uppercase hover:bg-white hover:text-primary-orange transition-colors text-center"
+                  className="bg-transparent text-white border-2 border-white px-4 py-2 rounded-full font-semibold text-xs uppercase hover:bg-white hover:text-primary-orange transition-colors text-center flex-1"
                 >
                   REQUEST QUOTE
                 </button>
@@ -81,7 +81,7 @@ export default function GroupFooter(): React.JSX.Element {
 
           {/* Company Section */}
           <div>
-            <h4 className="font-semibold mb-4 text-white text-sm">Company</h4>
+            <h4 className="font-semibold mb-4 text-white text-xl">Company</h4>
             <ul className="space-y-2.5 text-sm text-white/90">
               <li>
                 <a href="#about" className="hover:text-navy-blue transition-colors cursor-pointer">Who we are</a>
@@ -101,90 +101,92 @@ export default function GroupFooter(): React.JSX.Element {
             </ul>
           </div>
 
-          {/* Kenya HQ */}
-          <div>
-            <h4 className="font-semibold mb-4 text-white text-sm">Kenya HQ (Nairobi)</h4>
-            <div className="space-y-1.5 text-xs text-white/90 leading-relaxed">
-              <p>Tulip House, Ground Floor</p>
-              <p>Mombasa Road</p>
-              <p>P.O. Box 18670–00500</p>
-              <p>Nairobi, Kenya</p>
-              <div className="mt-3 pt-2 border-t border-white/20 space-y-1.5">
-                <a href="tel:+254111024000" className="flex items-center gap-2 hover:text-navy-blue transition-colors">
-                  <Icon icon="mdi:phone" className="w-4 h-4 flex-shrink-0" />
-                  <span>+254 (0) 111 024000</span>
-                </a>
-                <a href="tel:+254206901000" className="flex items-center gap-2 hover:text-navy-blue transition-colors">
-                  <Icon icon="mdi:phone-in-talk" className="w-4 h-4 flex-shrink-0" />
-                  <span>+254 (0) 20 6901000</span>
-                </a>
-                <a href="tel:+254733700500" className="flex items-center gap-2 hover:text-navy-blue transition-colors">
-                  <Icon icon="mdi:phone-alert" className="w-4 h-4 flex-shrink-0" />
-                  <span>+254 (0) 733 700500</span>
-                </a>
-                <a href="mailto:customerservice@ke.sgasecurity.com" className="flex items-center gap-2 hover:text-navy-blue transition-colors">
-                  <Icon icon="mdi:email" className="w-4 h-4 flex-shrink-0" />
-                  <span>customerservice@ke.sgasecurity.com</span>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* Tanzania HQ */}
-          <div>
-            <h4 className="font-semibold mb-4 text-white text-sm">Tanzania HQ (Dar es Salaam)</h4>
-            <div className="space-y-1.5 text-xs text-white/90 leading-relaxed">
-              <p>Plot No. 74, Warioba/Serengeti Street</p>
-              <p>Mikocheni Kinondoni</p>
-              <p>Dar es Salaam, Tanzania</p>
-              <div className="mt-3 pt-2 border-t border-white/20 space-y-1.5">
-                <a href="tel:+255754303076" className="flex items-center gap-2 hover:text-navy-blue transition-colors">
-                  <Icon icon="mdi:phone" className="w-4 h-4 flex-shrink-0" />
-                  <span>+255 754 303076</span>
-                </a>
-                <a href="tel:+255754303076" className="flex items-center gap-2 hover:text-navy-blue transition-colors">
-                  <Icon icon="mdi:phone-in-talk" className="w-4 h-4 flex-shrink-0" />
-                  <span>+255 754 303076</span>
-                </a>
-                <a href="tel:+255784700299" className="flex items-center gap-2 hover:text-navy-blue transition-colors">
-                  <Icon icon="mdi:phone-alert" className="w-4 h-4 flex-shrink-0" />
-                  <span>+255 784 700299</span>
-                </a>
-                <a href="mailto:customercare@sgasecurity.co.tz" className="flex items-center gap-2 hover:text-navy-blue transition-colors">
-                  <Icon icon="mdi:email" className="w-4 h-4 flex-shrink-0" />
-                  <span>customercare@sgasecurity.co.tz</span>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* Uganda HQ */}
-          <div>
-            <h4 className="font-semibold mb-4 text-white text-sm">Uganda HQ (Kampala)</h4>
-            <div className="space-y-1.5 text-xs text-white/90 leading-relaxed">
-              <p>Plot 5 Mvule Close, Naguru Hill</p>
-              <p>P.O. Box 20097</p>
-              <p>Kampala, Uganda</p>
-              <div className="mt-3 pt-2 border-t border-white/20 space-y-1.5">
-                <a href="tel:+256772200048" className="flex items-center gap-2 hover:text-navy-blue transition-colors">
-                  <Icon icon="mdi:phone" className="w-4 h-4 flex-shrink-0" />
-                  <span>+256 772 200 048</span>
-                </a>
-                <a href="tel:+256417114400" className="flex items-center gap-2 hover:text-navy-blue transition-colors">
-                  <Icon icon="mdi:phone-in-talk" className="w-4 h-4 flex-shrink-0" />
-                  <span>+256 417 114400</span>
-                </a>
-                <div className="flex items-center gap-2">
-                  <Icon icon="mdi:phone-alert" className="w-4 h-4 flex-shrink-0" />
-                  <div className="flex flex-col gap-1">
-                    <a href="tel:+256717800752" className="hover:text-navy-blue transition-colors">+256 717 800752</a>
-                    <a href="tel:+256717800952" className="hover:text-navy-blue transition-colors">+256 717 800952</a>
-                  </div>
+          {/* All Countries Section */}
+          <div className="space-y-8">
+            {/* Kenya HQ */}
+            <div>
+              <h4 className="font-semibold mb-4 text-white text-xl">Kenya HQ (Nairobi)</h4>
+              <div className="space-y-1.5 text-xs text-white/90 leading-relaxed">
+                <p>Tulip House, Ground Floor, Mombasa Road</p>
+                <p>P.O. Box 18670-00500, Nairobi, Kenya</p>
+                <p>Nairobi, Kenya</p>
+                <div className="mt-3 pt-2 border-t border-white/20 space-y-1.5">
+                  <a href="tel:+254111024000" className="flex items-center gap-2 hover:text-navy-blue transition-colors">
+                    <Icon icon="mdi:phone" className="w-4 h-4 flex-shrink-0" />
+                    <span>+254 (0) 111 024000</span>
+                  </a>
+                  <a href="tel:+254206901000" className="flex items-center gap-2 hover:text-navy-blue transition-colors">
+                    <Icon icon="mdi:phone-in-talk" className="w-4 h-4 flex-shrink-0" />
+                    <span>+254 (0) 20 6901000</span>
+                  </a>
+                  <a href="tel:+254733700500" className="flex items-center gap-2 hover:text-navy-blue transition-colors">
+                    <Icon icon="mdi:phone-alert" className="w-4 h-4 flex-shrink-0" />
+                    <span>+254 (0) 733 700500</span>
+                  </a>
+                  <a href="mailto:customerservice@ke.sgasecurity.com" className="flex items-center gap-2 hover:text-navy-blue transition-colors">
+                    <Icon icon="mdi:email" className="w-4 h-4 flex-shrink-0" />
+                    <span>customerservice@ke.sgasecurity.com</span>
+                  </a>
                 </div>
-                <a href="mailto:customerservice@ug.sgasecurity.com" className="flex items-center gap-2 hover:text-navy-blue transition-colors">
-                  <Icon icon="mdi:email" className="w-4 h-4 flex-shrink-0" />
-                  <span>customerservice@ug.sgasecurity.com</span>
-                </a>
+              </div>
+            </div>
+
+            {/* Tanzania HQ */}
+            <div>
+              <h4 className="font-semibold mb-4 text-white text-xl">Tanzania HQ (Dar es Salaam)</h4>
+              <div className="space-y-1.5 text-xs text-white/90 leading-relaxed">
+                <p>Plot No. 74, Warioba/Serengeti Street</p>
+                <p>Mikocheni Kinondoni</p>
+                <p>Dar es Salaam, Tanzania</p>
+                <div className="mt-3 pt-2 border-t border-white/20 space-y-1.5">
+                  <a href="tel:+255754303076" className="flex items-center gap-2 hover:text-navy-blue transition-colors">
+                    <Icon icon="mdi:phone" className="w-4 h-4 flex-shrink-0" />
+                    <span>+255 754 303076</span>
+                  </a>
+                  <a href="tel:+255754303076" className="flex items-center gap-2 hover:text-navy-blue transition-colors">
+                    <Icon icon="mdi:phone-in-talk" className="w-4 h-4 flex-shrink-0" />
+                    <span>+255 754 303076</span>
+                  </a>
+                  <a href="tel:+255784700299" className="flex items-center gap-2 hover:text-navy-blue transition-colors">
+                    <Icon icon="mdi:phone-alert" className="w-4 h-4 flex-shrink-0" />
+                    <span>+255 784 700299</span>
+                  </a>
+                  <a href="mailto:customercare@sgasecurity.co.tz" className="flex items-center gap-2 hover:text-navy-blue transition-colors">
+                    <Icon icon="mdi:email" className="w-4 h-4 flex-shrink-0" />
+                    <span>customercare@sgasecurity.co.tz</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Uganda HQ */}
+            <div>
+              <h4 className="font-semibold mb-4 text-white text-xl">Uganda HQ (Kampala)</h4>
+              <div className="space-y-1.5 text-xs text-white/90 leading-relaxed">
+                <p>Plot 5 Mvule Close, Naguru Hill</p>
+                <p>P.O. Box 20097</p>
+                <p>Kampala, Uganda</p>
+                <div className="mt-3 pt-2 border-t border-white/20 space-y-1.5">
+                  <a href="tel:+256772200048" className="flex items-center gap-2 hover:text-navy-blue transition-colors">
+                    <Icon icon="mdi:phone" className="w-4 h-4 flex-shrink-0" />
+                    <span>+256 772 200 048</span>
+                  </a>
+                  <a href="tel:+256417114400" className="flex items-center gap-2 hover:text-navy-blue transition-colors">
+                    <Icon icon="mdi:phone-in-talk" className="w-4 h-4 flex-shrink-0" />
+                    <span>+256 417 114400</span>
+                  </a>
+                  <div className="flex items-center gap-2">
+                    <Icon icon="mdi:phone-alert" className="w-4 h-4 flex-shrink-0" />
+                    <div className="flex flex-col gap-1">
+                      <a href="tel:+256717800752" className="hover:text-navy-blue transition-colors">+256 717 800752</a>
+                      <a href="tel:+256717800952" className="hover:text-navy-blue transition-colors">+256 717 800952</a>
+                    </div>
+                  </div>
+                  <a href="mailto:customerservice@ug.sgasecurity.com" className="flex items-center gap-2 hover:text-navy-blue transition-colors">
+                    <Icon icon="mdi:email" className="w-4 h-4 flex-shrink-0" />
+                    <span>customerservice@ug.sgasecurity.com</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
