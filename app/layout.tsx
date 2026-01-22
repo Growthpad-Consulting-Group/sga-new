@@ -1,4 +1,4 @@
-import './globals.css'
+import './styles/globals.css'
 import Header from '@/components/Header'
 import ConditionalFooter from '@/components/ConditionalFooter'
 import { EnquiryModalProvider } from '@/contexts/EnquiryModalContext'

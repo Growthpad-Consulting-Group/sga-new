@@ -40,7 +40,7 @@ export default function OurFoundation({
 }: OurFoundationProps): React.JSX.Element {
   const { openModal } = useEnquiryModal()
   return (
-    <SectionWrapper id="our-foundation" className="bg-light-grey relative pb-0">
+    <div id="our-foundation" className="bg-white relative pt-20 pb-24">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -55,19 +55,14 @@ export default function OurFoundation({
             viewport={{ once: true }}
             className="space-y-3"
           >
-            <p className="text-xs font-bold text-primary-orange uppercase tracking-wider">
+            <p className="text-3xl font-bold text-primary-orange capitalize tracking-wider">
               our foundation
             </p>
-            <h3 className="text-xl md:text-2xl font-normal text-navy-blue relative pb-3">
-              <span>Guided by purpose, driven by values.</span>
-              <span 
-                className="absolute bottom-0 left-0 w-full"
-                style={{
-                  background: 'linear-gradient(to right, #00043E 0%, #00043E 70%, transparent 100%)',
-                  height: '1px'
-                }}
-              ></span>
-            </h3>
+            <div className="section-title-container">
+              <h3 className="section-title text-xl md:text-lg font-normal text-navy-blue">
+                Guided by purpose, driven by values.
+              </h3>
+            </div>
           </motion.div>
         </div>
 
@@ -106,7 +101,7 @@ export default function OurFoundation({
           ))}
         </div>
       </motion.div>
-    </SectionWrapper>
+    </div>
   )
 }
 
