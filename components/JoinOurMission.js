@@ -46,7 +46,7 @@ export default function JoinOurMission() {
             {/* Call to Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-3 pt-2">
               <motion.a
-                href="#careers"
+                href="/careers"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="bg-primary-orange text-white px-5 py-2.5 rounded-full font-semibold text-xs md:text-sm uppercase shadow-lg hover:shadow-xl transition-shadow flex items-center justify-center gap-2"

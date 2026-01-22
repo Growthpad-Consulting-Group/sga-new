@@ -5,7 +5,6 @@ import OurJourney from '@/components/OurJourney'
 import Membership from '@/components/Membership'
 import Certifications from '@/components/Certifications'
 import JoinOurMission from '@/components/JoinOurMission'
-import GroupFooter from '@/components/GroupFooter'
 import FloatingWhatsApp from '@/components/FloatingWhatsApp'
 
 export const metadata = {
@@ -27,7 +26,6 @@ export default function AboutPage() {
       <Membership />
       <Certifications />
       <JoinOurMission />
-      <GroupFooter /> 
       <FloatingWhatsApp />
     </>
   )

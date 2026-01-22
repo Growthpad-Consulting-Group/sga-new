@@ -56,10 +56,10 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold mb-3 sm:mb-4 text-primary-orange text-base sm:text-lg">SGA Group</h4>
             <ul className="space-y-2 sm:space-y-2.5 text-sm sm:text-base text-light-grey">
-              <li className="hover:text-primary-orange transition-colors cursor-pointer">Group Website</li>
-              <li className="hover:text-primary-orange transition-colors cursor-pointer">Sustainability</li>
-              <li className="hover:text-primary-orange transition-colors cursor-pointer">Careers</li>
-              <li className="hover:text-primary-orange transition-colors cursor-pointer">News & Reports</li>
+              <li className="hover:text-primary-orange transition-colors cursor-pointer"><a href="/" className="hover:text-primary-orange transition-colors cursor-pointer">Group Website</a></li>
+              <li className="hover:text-primary-orange transition-colors cursor-pointer"><a href="/sustainability" className="hover:text-primary-orange transition-colors cursor-pointer">Sustainability</a></li>
+              <li className="hover:text-primary-orange transition-colors cursor-pointer"><a href="/careers" className="hover:text-primary-orange transition-colors cursor-pointer">Careers</a></li>
+              <li className="hover:text-primary-orange transition-colors cursor-pointer"><a href="/news-reports" className="hover:text-primary-orange transition-colors cursor-pointer">News & Reports</a></li>
             </ul>
           </div>
 

@@ -1,7 +1,6 @@
 import ContactHero from '@/components/ContactHero'
 import ContactInfo from '@/components/ContactInfo'
 import CustomerCare from '@/components/CustomerCare'
-import GroupFooter from '@/components/GroupFooter'
 import FloatingWhatsApp from '@/components/FloatingWhatsApp'
 
 export const metadata = {
@@ -17,7 +16,6 @@ export default function ContactPage() {
       />
       <ContactInfo/>
       <CustomerCare />
-      <GroupFooter /> 
       <FloatingWhatsApp />
     </>
   )

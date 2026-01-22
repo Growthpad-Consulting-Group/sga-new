@@ -1,6 +1,5 @@
 import NewsHero from '@/components/NewsHero'
 import NewsReportsCards from '@/components/NewsReportsCards'
-import GroupFooter from '@/components/GroupFooter'
 import FloatingWhatsApp from '@/components/FloatingWhatsApp'
 
 export const metadata = {
@@ -15,7 +14,6 @@ export default function NewsReportsPage() {
         imageUrl="/images/contact/hero.png"
       />
       <NewsReportsCards />
-      <GroupFooter /> 
       <FloatingWhatsApp />
     </>
   )

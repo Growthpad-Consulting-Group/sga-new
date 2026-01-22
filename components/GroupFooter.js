@@ -58,7 +58,7 @@ export default function GroupFooter() {
               </div>
               <div className="flex flex-col gap-2">
                 <a
-                  href="#contact"
+                  href="/contact"
                   className="bg-white text-primary-orange px-4 py-2 rounded-full font-semibold text-xs uppercase hover:bg-white/90 transition-colors text-center"
                 >
                   CONTACT US
@@ -78,19 +78,19 @@ export default function GroupFooter() {
             <h4 className="font-semibold mb-4 text-white text-sm">Company</h4>
             <ul className="space-y-2.5 text-sm text-white/90">
               <li>
-                <a href="#about" className="hover:text-navy-blue transition-colors cursor-pointer">Who we are</a>
+                <a href="/about" className="hover:text-navy-blue transition-colors cursor-pointer">Who we are</a>
               </li>
               <li>
                 <a href="#services" className="hover:text-navy-blue transition-colors cursor-pointer">Services</a>
               </li>
               <li>
-                <a href="#sustainability-esg" className="hover:text-navy-blue transition-colors cursor-pointer">Sustainability</a>
+                <a href="/sustainability" className="hover:text-navy-blue transition-colors cursor-pointer">Sustainability</a>
               </li>
               <li>
-                <a href="#news" className="hover:text-navy-blue transition-colors cursor-pointer">News & Reports</a>
+                <a href="/news-reports" className="hover:text-navy-blue transition-colors cursor-pointer">News & Reports</a>
               </li>
               <li>
-                <a href="#join-our-mission" className="hover:text-navy-blue transition-colors cursor-pointer">Career</a>
+                <a href="/careers" className="hover:text-navy-blue transition-colors cursor-pointer">Career</a>
               </li>
             </ul>
           </div>

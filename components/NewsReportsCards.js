@@ -4,58 +4,32 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import Image from 'next/image'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
-const newsItems = [
-  {
-    category: 'Advisory',
-    title: 'Latest Security Updates',
-    summary: 'Stay informed with the latest security news and industry updates from SGA. Learn about new security measures and best practices.',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop',
-    date: 'March 15, 2024',
-  },
-  {
-    category: 'Blog',
-    title: 'Company Announcements',
-    summary: 'Important announcements and updates about our services and operations. Stay connected with SGA Security developments.',
-    image: 'https://images.unsplash.com/photo-1560253023-3ec5d7729591?w=800&h=600&fit=crop',
-    date: 'March 10, 2024',
-  },
-  {
-    category: 'Media',
-    title: 'Industry Insights',
-    summary: 'Expert insights and analysis on security trends and best practices. Discover what\'s shaping the security industry.',
-    image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=600&fit=crop',
-    date: 'March 5, 2024',
-  },
-  {
-    category: 'Report',
-    title: 'Annual Security Report 2023',
-    summary: 'Comprehensive annual report covering our achievements, performance metrics, and future outlook for security services.',
-    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop',
-    date: 'February 28, 2024',
-  },
-  {
-    category: 'Advisory',
-    title: 'Cybersecurity Best Practices',
-    summary: 'Essential cybersecurity guidelines and recommendations to protect your business from emerging digital threats.',
-    image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=600&fit=crop',
-    date: 'February 20, 2024',
-  },
-  {
-    category: 'Blog',
-    title: 'Innovation in Security Technology',
-    summary: 'Exploring the latest technological innovations that are revolutionizing the security industry and enhancing protection.',
-    image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=600&fit=crop',
-    date: 'February 15, 2024',
-  },
-]
+import { newsItems } from '@/data/newsItems'
+
+// Helper function to generate slug from title (for future use if needed)
+const generateSlug = (title) => {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '')
+}
+
+// Re-export for backward compatibility if needed
+export { newsItems }
 
 const ITEMS_PER_PAGE = 6
 
 export default function NewsReportsCards() {
+  const pathname = usePathname()
   const [activeFilter, setActiveFilter] = useState('ALL')
   const [searchQuery, setSearchQuery] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
+  
+  // Determine base path for slugs based on current route
+  const basePath = pathname?.startsWith('/news-reports') ? '/news-reports' : '/updates'
 
   const filteredItems = (() => {
     let filtered = activeFilter === 'ALL' 
@@ -196,18 +170,19 @@ export default function NewsReportsCards() {
               className="bg-primary-orange border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow flex flex-col"
             >
               {/* Featured Image */}
-              <motion.a
-                href="#"
-                whileHover={{ opacity: 0.9 }}
-                className="relative w-full h-48 block cursor-pointer"
-              >
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  className="object-cover"
-                />
-              </motion.a>
+              <Link href={`${basePath}/${item.slug}`}>
+                <motion.div
+                  whileHover={{ opacity: 0.9 }}
+                  className="relative w-full h-48 block cursor-pointer"
+                >
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    className="object-cover"
+                  />
+                </motion.div>
+              </Link>
               
               <div className="p-6 flex flex-col flex-1">
                 {/* Category and Date */}
@@ -221,9 +196,11 @@ export default function NewsReportsCards() {
                 </div>
                 
                 {/* Title */}
-                <h3 className="text-lg font-bold text-white mb-3">
-                  {item.title}
-                </h3>
+                <Link href={`${basePath}/${item.slug}`}>
+                  <h3 className="text-lg font-bold text-white mb-3 hover:text-navy-blue transition-colors cursor-pointer">
+                    {item.title}
+                  </h3>
+                </Link>
                 
                 {/* Summary */}
                 <p className="text-white text-sm leading-relaxed mb-4 flex-1">
@@ -231,13 +208,13 @@ export default function NewsReportsCards() {
                 </p>
 
                 {/* Read More Link */}
-                <a
-                  href="#"
+                <Link
+                  href={`${basePath}/${item.slug}`}
                   className="flex items-center gap-2 text-white hover:text-navy-blue transition-colors text-sm font-semibold"
                 >
                   <span>Read More</span>
                   <Icon icon="mdi:arrow-right" className="w-4 h-4" />
-                </a>
+                </Link>
               </div>
             </motion.div>
           ))}

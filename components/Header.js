@@ -20,7 +20,7 @@ export default function Header() {
     { href: '/about', label: 'ABOUT US' },
     { href: '/sustainability', label: 'SUSTAINABILITY' },
     { href: '/news-reports', label: 'NEWS & REPORTS' },
-    { href: '#join-our-mission', label: 'CAREER' },
+    { href: '/careers', label: 'CAREER' },
     { href: '/contact', label: 'CONTACT US' },
     { href: '/updates', label: 'UPDATES', icon: 'material-symbols:news-outline-rounded' },
   ]

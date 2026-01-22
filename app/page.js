@@ -7,7 +7,6 @@ import GroupIntegratedSolutions from '@/components/GroupIntegratedSolutions'
 import News from '@/components/News'
 import HappyClients from '@/components/HappyClients'
 import JoinOurMission from '@/components/JoinOurMission'
-import GroupFooter from '@/components/GroupFooter'
 import FloatingWhatsApp from '@/components/FloatingWhatsApp'
 
 export const metadata = {
@@ -59,7 +58,6 @@ export default function HomePage() {
       <News staticPattern={true} />
       <HappyClients />
       <JoinOurMission />
-      <GroupFooter />
       <FloatingWhatsApp />
     </>
   )
