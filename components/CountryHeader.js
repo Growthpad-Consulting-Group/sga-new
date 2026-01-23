@@ -13,23 +13,12 @@ export default function CountryHeader() {
   const [countryModalOpen, setCountryModalOpen] = useState(false)
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false)
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false)
+  const [servicesViewType, setServicesViewType] = useState('Individual') // 'Individual' or 'Corporate'
   const [industriesDropdownOpen, setIndustriesDropdownOpen] = useState(false)
   const [mobileIndustriesOpen, setMobileIndustriesOpen] = useState(false)
   const pathname = usePathname()
   const router = useRouter()
   const { openModal } = useEnquiryModal()
-
-  const servicesItems = [
-    { href: '#integrated-solutions', label: 'Alarm & Response' },
-    { href: '#integrated-solutions', label: 'Residential Guarding' },
-    { href: '#integrated-solutions', label: 'Personal Panic App' },
-    { href: '#services', label: 'Security Guarding' },
-    { href: '#services', label: 'Electronic Security' },
-    { href: '#services', label: 'Risk Assessment' },
-    { href: '#services', label: 'Consulting Services' },
-    { href: '#services', label: 'Event Security' },
-    { href: '#services', label: 'Emergency Response' },
-  ]
 
   // Get country prefix for navigation links
   const getCountryPrefix = () => {
@@ -41,15 +30,42 @@ export default function CountryHeader() {
 
   const countryPrefix = getCountryPrefix()
 
+  const individualServicesItems = [
+    { href: `${countryPrefix}/services/home-security`, label: 'Home Security' },
+    { href: `${countryPrefix}/services/emergency-response`, label: 'Emergency Response' },
+    { href: `${countryPrefix}/services/safe-home-packages`, label: 'Safe Home Packages' },
+    { href: `${countryPrefix}/services/personal-security`, label: 'Personal Security' },
+    { href: `${countryPrefix}/services/24-7-monitoring`, label: '24/7 Monitoring' },
+  ]
+
+  const corporateServicesItems = [
+    { href: `${countryPrefix}/services/security-guarding`, label: 'Security Guarding' },
+    { href: `${countryPrefix}/services/electronic-security`, label: 'Electronic Security' },
+    { href: `${countryPrefix}/services/risk-assessment`, label: 'Risk Assessment' },
+    { href: `${countryPrefix}/services/consulting-services`, label: 'Consulting Services' },
+    { href: `${countryPrefix}/services/event-security`, label: 'Event Security' },
+    { href: `${countryPrefix}/services/emergency-response`, label: 'Emergency Response' },
+  ]
+
+  // Get services based on view type
+  const servicesItems = servicesViewType === 'Individual' ? individualServicesItems : corporateServicesItems
+
   const industriesItems = [
-    { href: `${countryPrefix}/industries/residential`, label: 'Residential Estates & Apartments' },
-    { href: `${countryPrefix}/industries/education`, label: 'Education & Schools' },
-    { href: `${countryPrefix}/industries/healthcare`, label: 'Healthcare Facilities' },
-    { href: `${countryPrefix}/industries/hospitality`, label: 'Hospitality & Holiday Homes' },
     { href: `${countryPrefix}/industries/banking`, label: 'Banking & Finance' },
-    { href: `${countryPrefix}/industries/retail`, label: 'Retail & Commerce' },
-    { href: `${countryPrefix}/industries/manufacturing`, label: 'Manufacturing' },
-    { href: `${countryPrefix}/industries/logistics`, label: 'Logistics & Transportation' },
+    { href: `${countryPrefix}/industries/retail`, label: 'Retail & FMCG' },
+    { href: `${countryPrefix}/industries/logistics`, label: 'Logistics & Ports' },
+    { href: `${countryPrefix}/industries/manufacturing`, label: 'Manufacturing & Industrial' },
+    { href: `${countryPrefix}/industries/real-estate`, label: 'Real Estate & Offices' },
+    { href: `${countryPrefix}/industries/education`, label: 'Education & Healthcare' },
+    { href: `${countryPrefix}/industries/events`, label: 'Events & Venues' },
+    { href: `${countryPrefix}/industries/diplomatic`, label: 'Diplomatic & Government' },
+  ]
+
+  const shortcuts = [
+    { href: `${countryPrefix}/safety-tips`, label: 'Safety tips' },
+    { href: `${countryPrefix}/faqs`, label: 'FAQs' },
+    { href: `${countryPrefix}/contact`, label: 'Contact' },
+    { href: `${countryPrefix}/resources`, label: 'Resources' },
   ]
 
   const navItems = [
@@ -91,8 +107,8 @@ export default function CountryHeader() {
 
   const countryPhone = getCountryPhone()
 
-  // Check if we're on an about page or industry page
-  const isAboutPage = pathname.includes('/about') || pathname.includes('/industries')
+  // Check if we're on an about page, industry page, or service page
+  const isAboutPage = pathname.includes('/about') || pathname.includes('/industries') || pathname.includes('/services')
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-40 shadow-md ${isAboutPage ? 'bg-white' : 'bg-primary-orange'}`}>
@@ -223,36 +239,406 @@ export default function CountryHeader() {
                       className={`transition-colors font-medium flex items-center gap-1.5 text-sm xl:text-base ${isAboutPage ? 'text-dark-charcoal hover:text-primary-orange' : 'text-white/90 hover:text-white'}`}
                     >
                       {item.label}
-                      <Icon icon="mdi:plus" className={`w-4 h-4 xl:w-5 xl:h-5 ${isAboutPage ? 'text-primary-orange' : 'text-white'}`} />
+                      <Icon 
+                        icon={dropdownOpen ? "mdi:minus" : "mdi:plus"} 
+                        className={`w-4 h-4 xl:w-5 xl:h-5 ${isAboutPage ? 'text-primary-orange' : 'text-white'}`} 
+                      />
                     </motion.button>
                     
                     {/* Dropdown Menu */}
                     <AnimatePresence>
                       {dropdownOpen && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: 10 }}
-                          transition={{ duration: 0.2 }}
-                          className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl z-50 py-2"
-                        >
-                          {dropdownItems.map((dropdownItem) => {
-                            const isRoute = !dropdownItem.href.startsWith('#')
-                            const DropdownComponent = isRoute ? Link : 'a'
-                            const props = isRoute ? { href: dropdownItem.href } : { href: dropdownItem.href }
-                            
-                            return (
-                              <DropdownComponent
-                                key={dropdownItem.label}
-                                {...props}
-                              className="block px-4 py-2.5 text-sm text-dark-charcoal hover:bg-primary-orange hover:text-white transition-colors"
-                                onClick={() => setDropdownOpen(false)}
+                        <>
+                          {isIndustries ? (
+                            // Industries Dropdown - 3 Grid Layout
+                            <motion.div
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: 10 }}
+                              transition={{ duration: 0.2 }}
+                              className="fixed left-0 right-0 top-[100px] sm:top-[108px] bg-primary-orange rounded-lg shadow-xl z-50 p-4 sm:p-6 w-[900px] max-w-[calc(100vw-2rem)] mx-auto"
                             >
-                                {dropdownItem.label}
-                              </DropdownComponent>
-                            )
-                          })}
-                        </motion.div>
+                              <div className="grid grid-cols-3 gap-4 sm:gap-6">
+                                {/* Grid 1: Country Buttons with Shortcuts */}
+                                <div className="flex flex-col gap-4">
+                                  <h3 className="text-white font-normal text-sm uppercase mb-4">Countries</h3>
+                                  <div className="flex flex-nowrap gap-2">
+                                    {countries.map((country) => {
+                                      const active = isActiveCountry(country.path)
+                                      return (
+                                        <motion.button
+                                          key={country.code}
+                                          onClick={() => {
+                                            router.push(country.path)
+                                            setDropdownOpen(false)
+                                          }}
+                                          whileHover={{ scale: 1.05 }}
+                                          whileTap={{ scale: 0.95 }}
+                                          className={`
+                                            flex items-center gap-1.5 px-2.5 py-2 rounded-full transition-all flex-shrink-0
+                                            ${active 
+                                              ? 'bg-white text-primary-orange'
+                                              : 'bg-white/20 text-white hover:bg-white/30'
+                                            }
+                                          `}
+                                          aria-label={`Switch to ${country.name}`}
+                                        >
+                                          <div className="w-5 h-5 rounded-full overflow-hidden flex items-center justify-center flex-shrink-0">
+                                            <Icon icon={country.flag} className="w-full h-full scale-125" />
+                                          </div>
+                                          <span className="text-xs font-medium whitespace-nowrap">{country.name}</span>
+                                        </motion.button>
+                                      )
+                                    })}
+                                  </div>
+                                  <div>
+                                    <h3 className="text-white font-normal text-sm uppercase mb-4">Shortcuts</h3>
+                                    <div className="flex flex-col gap-2">
+                                      {shortcuts.map((shortcut, index) => {
+                                        const isActive = pathname === shortcut.href || pathname.startsWith(shortcut.href + '/')
+                                        return (
+                                          <Link
+                                            key={shortcut.label}
+                                            href={shortcut.href}
+                                            onClick={() => setDropdownOpen(false)}
+                                            className="relative block group"
+                                          >
+                                            <motion.div
+                                              initial={{ opacity: 0, x: -20 }}
+                                              animate={{ opacity: 1, x: 0 }}
+                                              transition={{ delay: index * 0.05, duration: 0.3 }}
+                                              className="relative"
+                                            >
+                                              <motion.div
+                                                className={`relative pl-4 py-1.5 transition-transform duration-300 ${isActive ? 'translate-x-4' : 'group-hover:translate-x-4'}`}
+                                              >
+                                              <div
+                                                className={`absolute left-0 top-0 transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}
+                                              >
+                                                <Icon 
+                                                  icon="mdi:plus" 
+                                                  className="w-4 h-4 text-navy-blue"
+                                                />
+                                              </div>
+                                              <span 
+                                                className={`inline-block text-sm transition-all duration-300 ${isActive ? 'font-bold text-[#00043E]' : 'font-semibold text-white/90 group-hover:font-bold group-hover:text-[#00043E]'}`}
+                                              >
+                                                {shortcut.label}
+                                              </span>
+                                              </motion.div>
+                                            </motion.div>
+                                          </Link>
+                                        )
+                                      })}
+                                    </div>
+                                  </div>
+                                </div>
+
+                                {/* Grid 2: Industries List */}
+                                <div className="flex flex-col">
+                                  <h3 className="text-white font-normal text-sm uppercase mb-4">Industries</h3>
+                                  <div className="flex flex-col gap-2">
+                                    {industriesItems.map((industry, index) => {
+                                      const isActive = pathname === industry.href || pathname.startsWith(industry.href + '/')
+                                      return (
+                                        <Link
+                                          key={industry.label}
+                                          href={industry.href}
+                                          onClick={() => setDropdownOpen(false)}
+                                          className="relative block group"
+                                        >
+                                          <motion.div
+                                            initial={{ opacity: 0, x: -20 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            transition={{ delay: index * 0.05, duration: 0.3 }}
+                                            className="relative"
+                                          >
+                                            <motion.div
+                                              className="relative pl-4 py-1.5"
+                                              animate={{ x: isActive ? 16 : 0 }}
+                                              whileHover={{ x: 16 }}
+                                              transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                                            >
+                                              <div
+                                                className={`absolute left-0 top-0 transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}
+                                              >
+                                                <Icon 
+                                                  icon="mdi:plus" 
+                                                  className="w-4 h-4 text-navy-blue"
+                                                />
+                                              </div>
+                                              <span 
+                                                className={`inline-block text-sm transition-all duration-300 ${isActive ? 'font-bold text-[#00043E]' : 'font-semibold text-white/90 group-hover:font-bold group-hover:text-[#00043E]'}`}
+                                              >
+                                                {industry.label}
+                                              </span>
+                                            </motion.div>
+                                          </motion.div>
+                                        </Link>
+                                      )
+                                    })}
+                                  </div>
+                                </div>
+
+                                {/* Grid 3: Help Section */}
+                                <motion.div 
+                                  initial={{ opacity: 0, scale: 0.95 }}
+                                  animate={{ opacity: 1, scale: 1 }}
+                                  transition={{ delay: 0.1, duration: 0.3 }}
+                                  className="bg-white/10 backdrop-blur-sm rounded-lg p-4 flex flex-col gap-4"
+                                >
+                                  <div>
+                                    <h2 className="text-white font-semibold text-xl mb-2">Need help?</h2>
+                                    <h3 className="text-white/90 text-sm">Talk to us fast</h3>
+                                  </div>
+                                  <div className="flex flex-col gap-2">
+                                    <motion.button
+                                      onClick={() => {
+                                        setDropdownOpen(false)
+                                        openModal()
+                                      }}
+                                      whileHover={{ scale: 1.02, y: -2 }}
+                                      whileTap={{ scale: 0.98 }}
+                                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                                      className="bg-white text-primary-orange px-4 py-2 rounded-full font-semibold text-sm shadow-md hover:shadow-lg transition-shadow"
+                                    >
+                                      Request a Quote
+                                    </motion.button>
+                                    <motion.button
+                                      onClick={() => {
+                                        setDropdownOpen(false)
+                                        router.push(`/contact`)
+                                      }}
+                                      whileHover={{ scale: 1.02, y: -2 }}
+                                      whileTap={{ scale: 0.98 }}
+                                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                                      className="bg-white/20 text-white px-4 py-2 rounded-full font-semibold text-sm hover:bg-white/30 transition-colors"
+                                    >
+                                      Talk to us
+                                    </motion.button>
+                                    <motion.a
+                                      href={`tel:${countryPhone?.replace(/\s/g, '') || '+254733700500'}`}
+                                      whileHover={{ scale: 1.02, y: -2 }}
+                                      whileTap={{ scale: 0.98 }}
+                                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                                      className="bg-white/20 text-white px-4 py-2 rounded-full font-semibold text-sm hover:bg-white/30 transition-colors text-center"
+                                      onClick={() => setDropdownOpen(false)}
+                                    >
+                                      Emergency Line
+                                    </motion.a>
+                                  </div>
+                                </motion.div>
+                              </div>
+                            </motion.div>
+                          ) : (
+                            // Services Dropdown - 3 Grid Layout with Toggle
+                            <motion.div
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: 10 }}
+                              transition={{ duration: 0.2 }}
+                              className="fixed left-0 right-0 top-[100px] sm:top-[108px] bg-primary-orange rounded-lg shadow-xl z-50 p-4 sm:p-6 w-[900px] max-w-[calc(100vw-2rem)] mx-auto"
+                            >
+                              {/* Toggle Header */}
+                              <div className="flex items-center justify-end mb-4 pb-4 border-b border-white">
+                                <div className="flex items-center gap-3 bg-white/20 rounded-full px-2 py-1">
+                                  <button
+                                    onClick={() => setServicesViewType('Individual')}
+                                    className={`px-4 py-1.5 rounded-full text-sm font-semibold transition-all ${
+                                      servicesViewType === 'Individual'
+                                        ? 'bg-white text-primary-orange'
+                                        : 'text-white hover:text-white/80'
+                                    }`}
+                                  >
+                                    Individual
+                                  </button>
+                                  <button
+                                    onClick={() => setServicesViewType('Corporate')}
+                                    className={`px-4 py-1.5 rounded-full text-sm font-semibold transition-all ${
+                                      servicesViewType === 'Corporate'
+                                        ? 'bg-white text-primary-orange'
+                                        : 'text-white hover:text-white/80'
+                                    }`}
+                                  >
+                                    Corporate
+                                  </button>
+                                </div>
+                              </div>
+
+                              <div className="grid grid-cols-3 gap-4 sm:gap-6">
+                                {/* Grid 1: Country Buttons with Shortcuts */}
+                                <div className="flex flex-col gap-4">
+                                  <h3 className="text-white font-normal text-sm uppercase mb-4">Countries</h3>
+                                  <div className="flex flex-nowrap gap-2">
+                                    {countries.map((country) => {
+                                      const active = isActiveCountry(country.path)
+                                      return (
+                                        <motion.button
+                                          key={country.code}
+                                          onClick={() => {
+                                            router.push(country.path)
+                                            setDropdownOpen(false)
+                                          }}
+                                          whileHover={{ scale: 1.05 }}
+                                          whileTap={{ scale: 0.95 }}
+                                          className={`
+                                            flex items-center gap-1.5 px-2.5 py-2 rounded-full transition-all flex-shrink-0
+                                            ${active 
+                                              ? 'bg-white text-primary-orange'
+                                              : 'bg-white/20 text-white hover:bg-white/30'
+                                            }
+                                          `}
+                                          aria-label={`Switch to ${country.name}`}
+                                        >
+                                          <div className="w-5 h-5 rounded-full overflow-hidden flex items-center justify-center flex-shrink-0">
+                                            <Icon icon={country.flag} className="w-full h-full scale-125" />
+                                          </div>
+                                          <span className="text-xs font-medium whitespace-nowrap">{country.name}</span>
+                                        </motion.button>
+                                      )
+                                    })}
+                                  </div>
+                                  <div>
+                                    <h3 className="text-white font-normal text-sm uppercase mb-4">Shortcuts</h3>
+                                    <div className="flex flex-col gap-2">
+                                      {shortcuts.map((shortcut, index) => {
+                                        const isActive = pathname === shortcut.href || pathname.startsWith(shortcut.href + '/')
+                                        return (
+                                          <Link
+                                            key={shortcut.label}
+                                            href={shortcut.href}
+                                            onClick={() => setDropdownOpen(false)}
+                                            className="relative block group"
+                                          >
+                                            <motion.div
+                                              initial={{ opacity: 0, x: -20 }}
+                                              animate={{ opacity: 1, x: 0 }}
+                                              transition={{ delay: index * 0.05, duration: 0.3 }}
+                                              className="relative"
+                                            >
+                                              <motion.div
+                                                className={`relative pl-4 py-1.5 transition-transform duration-300 ${isActive ? 'translate-x-4' : 'group-hover:translate-x-4'}`}
+                                              >
+                                                <div
+                                                  className={`absolute left-0 top-0 transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}
+                                                >
+                                                  <Icon 
+                                                    icon="mdi:plus" 
+                                                    className="w-4 h-4 text-navy-blue"
+                                                  />
+                                                </div>
+                                                <span 
+                                                  className={`inline-block text-sm transition-all duration-300 ${isActive ? 'font-bold text-[#00043E]' : 'font-semibold text-white/90 group-hover:font-bold group-hover:text-[#00043E]'}`}
+                                                >
+                                                  {shortcut.label}
+                                                </span>
+                                              </motion.div>
+                                            </motion.div>
+                                          </Link>
+                                        )
+                                      })}
+                                    </div>
+                                  </div>
+                                </div>
+
+                                {/* Grid 2: Services List */}
+                                <div className="flex flex-col">
+                                  <h3 className="text-white font-normal text-sm uppercase mb-4">Services</h3>
+                                  <div className="flex flex-col gap-2">
+                                    {servicesItems.map((service, index) => {
+                                      const isActive = pathname === service.href || pathname.startsWith(service.href + '/')
+                                return (
+                                        <Link
+                                          key={service.label}
+                                          href={service.href}
+                                          onClick={() => setDropdownOpen(false)}
+                                          className="relative block group"
+                                        >
+                                  <motion.div
+                                            initial={{ opacity: 0, x: -20 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                            transition={{ delay: index * 0.05, duration: 0.3 }}
+                                            className="relative"
+                                          >
+                                            <motion.div
+                                              className="relative pl-4 py-1.5"
+                                              animate={{ x: isActive ? 16 : 0 }}
+                                              whileHover={{ x: 16 }}
+                                              transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                                  >
+                                              <div
+                                                className={`absolute left-0 top-0 transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}
+                                              >
+                                                <Icon 
+                                                  icon="mdi:plus" 
+                                                  className="w-4 h-4 text-navy-blue"
+                                                />
+                                              </div>
+                                              <span 
+                                                className={`inline-block text-sm transition-all duration-300 ${isActive ? 'font-bold text-[#00043E]' : 'font-semibold text-white/90 group-hover:font-bold group-hover:text-[#00043E]'}`}
+                                              >
+                                                {service.label}
+                                              </span>
+                                            </motion.div>
+                                          </motion.div>
+                                        </Link>
+                                      )
+                                    })}
+                                  </div>
+                                </div>
+
+                                {/* Grid 3: Help Section */}
+                                <motion.div 
+                                  initial={{ opacity: 0, scale: 0.95 }}
+                                  animate={{ opacity: 1, scale: 1 }}
+                                  transition={{ delay: 0.1, duration: 0.3 }}
+                                  className="bg-white/10 backdrop-blur-sm rounded-lg p-4 flex flex-col gap-4"
+                                >
+                                  <div>
+                                    <h2 className="text-white font-semibold text-xl mb-2">Need help?</h2>
+                                    <h3 className="text-white/90 text-sm">Talk to us fast</h3>
+                                  </div>
+                                  <div className="flex flex-col gap-2">
+                                    <motion.button
+                                      onClick={() => {
+                                        setDropdownOpen(false)
+                                        openModal()
+                                      }}
+                                      whileHover={{ scale: 1.02, y: -2 }}
+                                      whileTap={{ scale: 0.98 }}
+                                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                                      className="bg-white text-primary-orange px-4 py-2 rounded-full font-semibold text-sm shadow-md hover:shadow-lg transition-shadow"
+                                    >
+                                      Request a Quote
+                                    </motion.button>
+                                    <motion.button
+                                      onClick={() => {
+                                        setDropdownOpen(false)
+                                        router.push(`/contact`)
+                                      }}
+                                      whileHover={{ scale: 1.02, y: -2 }}
+                                      whileTap={{ scale: 0.98 }}
+                                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                                      className="bg-white/20 text-white px-4 py-2 rounded-full font-semibold text-sm hover:bg-white/30 transition-colors"
+                                    >
+                                      Talk to us
+                                    </motion.button>
+                                    <motion.a
+                                      href={`tel:${countryPhone?.replace(/\s/g, '') || '+254733700500'}`}
+                                      whileHover={{ scale: 1.02, y: -2 }}
+                                      whileTap={{ scale: 0.98 }}
+                                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                                      className="bg-white/20 text-white px-4 py-2 rounded-full font-semibold text-sm hover:bg-white/30 transition-colors text-center"
+                                      onClick={() => setDropdownOpen(false)}
+                                    >
+                                      Emergency Line
+                                    </motion.a>
+                                  </div>
+                                      </motion.div>
+                              </div>
+                            </motion.div>
+                          )}
+                        </>
                       )}
                     </AnimatePresence>
                   </div>
@@ -354,6 +740,33 @@ export default function CountryHeader() {
                             exit={{ opacity: 0, height: 0 }}
                             className="overflow-hidden"
                           >
+                            {/* Toggle for Services in Mobile */}
+                            {isServices && (
+                              <div className="pl-4 mb-3">
+                                <div className="flex items-center gap-2 bg-primary-orange/20 rounded-full px-2 py-1 w-fit">
+                                  <button
+                                    onClick={() => setServicesViewType('Individual')}
+                                    className={`px-3 py-1 rounded-full text-xs font-semibold transition-all ${
+                                      servicesViewType === 'Individual'
+                                        ? 'bg-primary-orange text-white'
+                                        : 'text-primary-orange hover:text-primary-orange/80'
+                                    }`}
+                                  >
+                                    Individual
+                                  </button>
+                                  <button
+                                    onClick={() => setServicesViewType('Corporate')}
+                                    className={`px-3 py-1 rounded-full text-xs font-semibold transition-all ${
+                                      servicesViewType === 'Corporate'
+                                        ? 'bg-primary-orange text-white'
+                                        : 'text-primary-orange hover:text-primary-orange/80'
+                                    }`}
+                                  >
+                                    Corporate
+                                  </button>
+                                </div>
+                              </div>
+                            )}
                             <div className="pl-4 space-y-1">
                               {dropdownItems.map((dropdownItem) => {
                                 const isRoute = !dropdownItem.href.startsWith('#')

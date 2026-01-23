@@ -79,6 +79,38 @@ export default function WhyUsHero({ countryCode = 'tz', imageUrl }) {
                 <span>Emergency: {emergencyPhone}</span>
               </motion.a>
             </div>
+
+            {/* Explore More Animated Arrow */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1, duration: 0.5 }}
+              className="pt-4"
+            >
+              <motion.div
+                animate={{
+                  y: [0, 10, 0],
+                }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="flex items-center gap-2 cursor-pointer"
+                onClick={() => {
+                  const nextSection = document.querySelector('#why-choose-us') || document.querySelector('section:nth-of-type(2)')
+                  if (nextSection) {
+                    nextSection.scrollIntoView({ behavior: 'smooth' })
+                  }
+                }}
+              >
+                <span className="text-sm text-gray-700 uppercase font-medium">Explore more</span>
+                <Icon 
+                  icon="material-symbols-light:arrow-circle-down-outline-rounded" 
+                  className="w-6 h-6 text-navy-blue"
+                />
+              </motion.div>
+            </motion.div>
           </motion.div>
 
           {/* Right Column - Image */}

@@ -40,7 +40,7 @@ export default function WhyUsCards() {
             transition={{ duration: 0.6 }}
             className="mb-8 md:mb-12"
           >
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-navy-blue relative pb-4">
+            <h2 className="text-2xl md:text-3xl font-bold text-primary-orange relative pb-4">
               What sets SGA apart
               <span 
                 className="absolute bottom-0 left-0 w-full"
@@ -53,7 +53,7 @@ export default function WhyUsCards() {
           </motion.div>
 
           {/* Cards Grid */}
-          <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid md:grid-cols-3 gap-6 lg:gap-8 py-4">
             {cards.map((card, index) => (
               <motion.div
                 key={index}
@@ -62,7 +62,7 @@ export default function WhyUsCards() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -5, scale: 1.02 }}
-                className="bg-primary-orange rounded-lg p-6 md:p-8 shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col"
+                className="bg-primary-orange rounded-lg p-6 md:p-8 shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col min-h-[280px] md:min-h-[320px]"
               >
                 {/* Icon */}
                 <div className="mb-4">

@@ -103,7 +103,7 @@ export default function CountryFooter() {
   ]
 
   return (
-    <footer className="bg-light-grey no-snap relative py-8 sm:py-12 md:py-16" style={{ scrollSnapAlign: 'none', scrollSnapStop: 'normal' }}>
+    <footer className="bg-white no-snap relative pt-8 pb-4 sm:pt-12 md:pt-16 md:pb-8" style={{ scrollSnapAlign: 'none', scrollSnapStop: 'normal' }}>
       <div className="max-w-7xl mx-auto px-2 sm:px-3 lg:px-4 py-8 sm:py-10 md:py-12 bg-primary-orange text-white rounded-lg sm:rounded-xl">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           <div className="sm:col-span-2 lg:col-span-1">

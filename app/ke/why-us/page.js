@@ -13,7 +13,7 @@ export default function KenyaWhyUsPage() {
     <>
       <WhyUsHero 
         countryCode="ke"
-        imageUrl="/images/ke/about-sga.png"
+        imageUrl="/images/ke/placeholder.png"
       />
       <WhyChooseUs 
         countryName="Kenya" 

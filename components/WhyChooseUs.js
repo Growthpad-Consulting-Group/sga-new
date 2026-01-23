@@ -30,7 +30,7 @@ export default function WhyChooseUs({ decorativePatternColors = null, decorative
   const [openIndex, setOpenIndex] = useState(0)
 
   return (
-    <section id="why-choose-us" className="section-snap flex items-center justify-center bg-white pt-8 md:pt-12 relative pb-0">
+    <section id="why-choose-us" className="section-snap flex items-center justify-center bg-light-grey pt-8 md:pt-12 relative pb-0">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -71,16 +71,18 @@ export default function WhyChooseUs({ decorativePatternColors = null, decorative
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="border border-gray-200 rounded-lg overflow-hidden"
+                  className={`rounded-lg overflow-hidden ${openIndex === index ? 'border border-navy-blue' : ''}`}
                 >
                   <button
                     onClick={() => setOpenIndex(openIndex === index ? -1 : index)}
                     className="w-full flex items-center justify-between p-3 text-left hover:bg-gray-50 transition-colors"
                   >
-                    <h3 className="text-sm md:text-base font-bold text-navy-blue">{item.title}</h3>
+                    <h3 className={`text-sm md:text-base font-bold ${openIndex === index ? 'text-primary-orange' : 'text-navy-blue'}`}>
+                      {item.title}
+                    </h3>
                     <Icon
-                      icon={openIndex === index ? 'mdi:chevron-up' : 'mdi:chevron-down'}
-                      className="w-4 h-4 text-navy-blue flex-shrink-0"
+                      icon={openIndex === index ? 'ic:baseline-arrow-circle-up' : 'ic:baseline-arrow-circle-down'}
+                      className={`w-5 h-5 flex-shrink-0 ${openIndex === index ? 'text-primary-orange' : 'text-navy-blue'}`}
                     />
                   </button>
                   {openIndex === index && (
@@ -102,6 +104,9 @@ export default function WhyChooseUs({ decorativePatternColors = null, decorative
             
             {/* Button */}
             <motion.button
+              onClick={()=>{
+                window.location.href = '/contact'
+              }}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
