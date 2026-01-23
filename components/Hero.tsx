@@ -60,7 +60,7 @@ export default function Hero({
   
   if (twoCardLayout) {
     return (
-      <SectionWrapper id="hero" className={`${bgClass} items-start pt-16 sm:pt-0 relative`}>
+      <SectionWrapper id="hero" className={`${bgClass} items-start pt-8 sm:pt-12 relative`}>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Card - Content */}
           <motion.div
@@ -382,7 +382,7 @@ export default function Hero({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 0.5 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
+          className="absolute bottom-24 sm:bottom-32 left-1/2 transform -translate-x-1/2 z-20"
         >
           <motion.div
             animate={{

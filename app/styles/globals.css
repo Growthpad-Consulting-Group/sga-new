@@ -171,6 +171,13 @@
   .section-snap {
     scroll-snap-align: start;
     height: 100vh;
+    scroll-margin-top: 7rem; /* 112px - accounts for header height */
+  }
+  
+  @media (min-width: 640px) {
+    .section-snap {
+      scroll-margin-top: 8rem; /* 128px - accounts for larger header on desktop */
+    }
   }
   
   .section-title {
