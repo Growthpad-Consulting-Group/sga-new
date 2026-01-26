@@ -31,7 +31,7 @@ const esgCards: ESGCard[] = [
 
 export default function SustainabilityIntro(): React.JSX.Element {
   return (
-    <section id="sustainability-intro" className="section-snap flex items-center justify-center bg-gray-100 text-dark-charcoal py-16 sm:py-20 relative">
+    <section id="sustainability-intro" className="flex items-center justify-center bg-gray-100 text-dark-charcoal section-snap pb-20 relative">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -66,7 +66,7 @@ export default function SustainabilityIntro(): React.JSX.Element {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ scale: 1.02, y: -4 }}
-              className="relative h-64 md:h-80 rounded-lg overflow-hidden shadow-lg group cursor-pointer"
+              className="relative h-64 md:h-96 rounded-lg overflow-hidden shadow-lg group cursor-pointer"
             >
               {/* Background Image */}
               <Image
