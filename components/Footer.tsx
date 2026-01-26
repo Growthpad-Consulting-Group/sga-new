@@ -21,7 +21,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-gray-100 py-8 sm:py-12 md:py-16 no-snap relative" style={{ scrollSnapAlign: 'none', scrollSnapStop: 'normal' }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 md:py-12 bg-navy-blue text-white rounded-lg">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 md:py-12 bg-primary-orange text-white rounded-lg">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           <div className="sm:col-span-2 lg:col-span-1">
             <div className="mb-4 sm:mb-5">
@@ -60,7 +60,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-semibold mb-3 sm:mb-4 text-primary-orange text-base sm:text-lg">SGA Group</h4>
+            <h4 className="font-semibold mb-3 sm:mb-4  text-base sm:text-lg">SGA Group</h4>
             <ul className="space-y-2 sm:space-y-2.5 text-sm sm:text-base text-light-grey">
               <li className="hover:text-primary-orange transition-colors cursor-pointer">Group Website</li>
               <li className="hover:text-primary-orange transition-colors cursor-pointer">Sustainability</li>
@@ -70,7 +70,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-semibold mb-3 sm:mb-4 text-primary-orange text-base sm:text-lg">Legal</h4>
+            <h4 className="font-semibold mb-3 sm:mb-4  text-base sm:text-lg">Legal</h4>
             <ul className="space-y-2 sm:space-y-2.5 text-sm sm:text-base text-light-grey">
               <li className="hover:text-primary-orange transition-colors cursor-pointer">Privacy Policy</li>
               <li className="hover:text-primary-orange transition-colors cursor-pointer">Terms & Conditions</li>
@@ -78,7 +78,7 @@ export default function Footer() {
           </div>
 
           <div className="sm:col-span-2 lg:col-span-1">
-            <h4 className="font-semibold mb-3 sm:mb-4 text-primary-orange text-base sm:text-lg">Talk to us</h4>
+            <h4 className="font-semibold mb-3 sm:mb-4  text-base sm:text-lg">Talk to us</h4>
             <div className="space-y-1.5 sm:space-y-2 text-sm sm:text-base text-light-grey">
               <p>Tulip House, Ground Floor</p>
               <p>Mombasa road</p>
