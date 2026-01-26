@@ -7,7 +7,7 @@ import Image from 'next/image'
 import { Icon } from '@iconify/react'
 import { usePathname, useRouter } from 'next/navigation'
 import { useEnquiryModal } from '@/contexts/EnquiryModalContext'
-import { navItems, socialLinks, countries } from '@/data/nav'
+import { navItems, getCountryNavItems, socialLinks, countries } from '@/data/nav'
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -16,6 +16,42 @@ export default function Header() {
   const pathname = usePathname()
   const router = useRouter()
   const { openModal } = useEnquiryModal()
+
+  // Determine if we're on a country page and get appropriate nav items
+  const isCountryPage = pathname.startsWith('/ke') || pathname.startsWith('/ug') || pathname.startsWith('/tz')
+  const currentCountryCode = isCountryPage ? pathname.split('/')[1] : null
+  const currentNavItems = isCountryPage && currentCountryCode ? getCountryNavItems(currentCountryCode) : navItems
+
+  // Get country phone number for header
+  const getCountryPhone = (countryCode: string | null): string => {
+    switch (countryCode) {
+      case 'ke':
+        return '+254 111 024000'
+      case 'tz':
+        return '+255 22 216 4808'
+      case 'ug':
+        return '+256 41 7114400'
+      default:
+        return ''
+    }
+  }
+
+  // Get country name for header
+  const getCountryName = (countryCode: string | null): string => {
+    switch (countryCode) {
+      case 'ke':
+        return 'KENYA HQ'
+      case 'tz':
+        return 'TANZANIA HQ'
+      case 'ug':
+        return 'UGANDA HQ'
+      default:
+        return ''
+    }
+  }
+
+  const countryPhone = getCountryPhone(currentCountryCode)
+  const countryName = getCountryName(currentCountryCode)
 
   // Handle scroll detection for glassmorphic effect
   useEffect(() => {
@@ -70,6 +106,19 @@ export default function Header() {
 
             {/* Country Flags - Right */}
             <div className="flex items-center space-x-1 sm:space-x-2">
+              {/* Call Number - Only show on country pages */}
+              {isCountryPage && countryPhone && (
+                <motion.a
+                  href={`tel:${countryPhone.replace(/\s/g, '')}`}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="hidden sm:flex items-center gap-1 text-xs text-black/80 hover:text-primary-orange transition-colors font-normal"
+                  aria-label={`Call ${countryPhone}`}
+                >
+                  <span>CALL: {countryPhone}</span>
+                </motion.a>
+              )}
+              
               {countries.map((country) => {
                 const active = isActiveCountry(country.path)
                 return (
@@ -94,6 +143,16 @@ export default function Header() {
                   </motion.button>
                 )
               })}
+              
+              {/* Country HQ Text - Dynamic based on current country */}
+              {isCountryPage && countryName && (
+                <div className="hidden sm:flex items-center">
+                  <span className="text-xs font-medium text-black/80 uppercase tracking-wide">
+                    {countryName}
+                  </span>
+                </div>
+              )}
+              
               {/* Down Arrow Button */}
               <motion.button
                 onClick={() => setCountryModalOpen(true)}
@@ -138,7 +197,7 @@ export default function Header() {
           {/* Desktop Navigation - Center */}
           <div className="hidden lg:flex items-center justify-center flex-1">
             <div className="flex items-center space-x-4 xl:space-x-6 2xl:space-x-8">
-              {navItems.filter(item => !item.icon).map((item) => {
+              {currentNavItems.filter(item => !item.icon).map((item) => {
                 const isRoute = !item.href.startsWith('#')
                 const isActive = isRoute ? pathname === item.href : false
                 const NavComponent = isRoute ? motion(Link) : motion.a
@@ -163,8 +222,8 @@ export default function Header() {
 
           {/* CTAs - Right */}
           <div className="hidden lg:flex items-center space-x-3 xl:space-x-4 flex-shrink-0">
-            {/* Updates Link */}
-            {navItems.filter(item => item.icon).map((item) => {
+            {/* Updates Link - Show for both group and country pages */}
+            {currentNavItems.filter(item => item.icon).map((item) => {
               const isRoute = !item.href.startsWith('#')
               const isActive = isRoute ? pathname === item.href : false
               const NavComponent = isRoute ? motion(Link) : motion.a
@@ -230,7 +289,20 @@ export default function Header() {
               exit={{ opacity: 0, height: 0 }}
               className="lg:hidden pb-4 overflow-hidden"
             >
-              {navItems.map((item) => {
+              {/* Call Number - Only show on country pages in mobile */}
+              {isCountryPage && countryPhone && (
+                <motion.a
+                  href={`tel:${countryPhone.replace(/\s/g, '')}`}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center gap-2 py-3 sm:py-3.5 transition-colors text-sm sm:text-base font-heading text-primary-orange font-semibold border-b border-gray-200"
+                  aria-label={`Call ${countryPhone}`}
+                >
+                  <Icon icon="mdi:phone" className="w-5 h-5 text-primary-orange flex-shrink-0" />
+                  <span>Call: {countryPhone}</span>
+                </motion.a>
+              )}
+              
+              {currentNavItems.map((item) => {
                 const isRoute = !item.href.startsWith('#')
                 const isActive = isRoute ? pathname === item.href : false
                 

@@ -8,7 +8,7 @@ import News from '@/components/News'
 import HappyClients from '@/components/HappyClients'
 import JoinOurMission from '@/components/JoinOurMission'
 import GroupFooter from '@/components/GroupFooter'
-// import FloatingWhatsApp from '@/components/FloatingWhatsApp'
+import FloatingWhatsApp from '@/components/FloatingWhatsApp'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -61,7 +61,7 @@ export default function HomePage(): React.JSX.Element {
       <HappyClients />
       <JoinOurMission />
       <GroupFooter />
-      {/* <FloatingWhatsApp /> */}
+      <FloatingWhatsApp />
     </>
   )
 }

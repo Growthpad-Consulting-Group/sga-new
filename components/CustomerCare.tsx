@@ -36,7 +36,7 @@ export default function CustomerCare(): React.JSX.Element {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-100px' }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"
+        className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
       >
         {/* Title Section with Plus Icon */}
         <motion.div
@@ -53,13 +53,7 @@ export default function CustomerCare(): React.JSX.Element {
             />
             <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-primary-orange relative pl-6 pb-3">
               Need Help? Our Customer Care Team is Here 24/7
-              <span 
-                className="absolute bottom-0 left-6 w-full"
-                style={{
-                  background: 'linear-gradient(to right, #00043E 0%, #00043E 70%, transparent 100%)',
-                  height: '1px'
-                }}
-              ></span>
+              
             </h3>
           </div>
           <p className="text-sm md:text-base text-gray-700 leading-relaxed mt-4 pl-6">

@@ -1,15 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Icon } from '@iconify/react'
-
-interface WhatsAppOption {
-  country: string
-  phone: string
-  flag: string
-  url: string
-}
 
 interface FloatingWhatsAppProps {
   singleCountry?: boolean
@@ -27,59 +20,43 @@ export default function FloatingWhatsApp({
   flag = null
 }: FloatingWhatsAppProps) {
   const [isOpen, setIsOpen] = useState(false)
+  const [isVisible, setIsVisible] = useState(false)
 
-  const whatsappOptions: WhatsAppOption[] = [
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true)
+    }, 2000) // Show after 2 seconds
+
+    return () => clearTimeout(timer)
+  }, [])
+
+  const defaultContacts = [
     {
       country: 'Kenya',
       phone: '+254111024000',
-      flag: 'twemoji:flag-kenya',
-      url: 'https://wa.me/254111024000'
+      url: 'https://wa.me/254111024000',
+      flag: 'twemoji:flag-kenya'
+    },
+    {
+      country: 'Uganda', 
+      phone: '+256772200048',
+      url: 'https://wa.me/256772200048',
+      flag: 'twemoji:flag-uganda'
     },
     {
       country: 'Tanzania',
-      phone: '+255754303076',
-      flag: 'twemoji:flag-tanzania',
-      url: 'https://wa.me/255754303076'
-    },
-    {
-      country: 'Uganda',
-      phone: '+256772200048',
-      flag: 'twemoji:flag-uganda',
-      url: 'https://wa.me/256772200048'
+      phone: '+255754303076', 
+      url: 'https://wa.me/255754303076',
+      flag: 'twemoji:flag-tanzania'
     }
   ]
 
-  // If single country mode, use provided props or default to Kenya
-  const singleCountryOption: WhatsAppOption | null = singleCountry ? {
-    country: country || 'Kenya',
-    phone: phone || '+254111024000',
-    flag: flag || 'twemoji:flag-kenya',
-    url: url || 'https://wa.me/254111024000'
-  } : null
+  const contacts = singleCountry && country && phone && url && flag 
+    ? [{ country, phone, url, flag }]
+    : defaultContacts
 
-  // Single country mode - direct link to WhatsApp
-  if (singleCountry && singleCountryOption) {
-    return (
-      <div className="fixed bottom-6 right-6 z-50">
-        <motion.a
-          href={singleCountryOption.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          className="bg-green-500 hover:bg-green-600 text-white rounded-full p-4 shadow-lg transition-colors flex items-center justify-center"
-          aria-label={`WhatsApp Chat - ${singleCountryOption.country}`}
-        >
-          <Icon 
-            icon="mdi:whatsapp" 
-            className="w-8 h-8"
-          />
-        </motion.a>
-      </div>
-    )
-  }
+  if (!isVisible) return null
 
-  // Multi-country mode - dropdown with all options
   return (
     <div className="fixed bottom-6 right-6 z-50">
       <AnimatePresence>
@@ -88,39 +65,36 @@ export default function FloatingWhatsApp({
             initial={{ opacity: 0, y: 20, scale: 0.8 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.8 }}
-            transition={{ duration: 0.2 }}
-            className="mb-4 bg-white rounded-lg shadow-2xl p-4 min-w-[200px]"
+            className="mb-4 bg-white rounded-lg shadow-xl border border-gray-200 overflow-hidden"
           >
-            <div className="space-y-2">
-              <h3 className="text-sm font-semibold text-gray-800 mb-3">Chat with us on WhatsApp</h3>
-              {whatsappOptions.map((option, index) => (
-                <motion.a
-                  key={option.country}
-                  href={option.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="flex items-center gap-3 p-3 rounded-lg hover:bg-primary-orange/10 transition-colors group"
+            <div className="p-4">
+              <div className="flex items-center justify-between mb-3">
+                <h3 className="text-sm font-semibold text-gray-800">Contact us on WhatsApp</h3>
+                <button
                   onClick={() => setIsOpen(false)}
+                  className="text-gray-400 hover:text-gray-600"
                 >
-                  <Icon 
-                    icon={option.flag} 
-                    className="w-6 h-6 flex-shrink-0"
-                  />
-                  <div className="flex-1">
-                    <p className="text-sm font-medium text-gray-800 group-hover:text-primary-orange transition-colors">
-                      {option.country}
-                    </p>
-                    <p className="text-xs text-gray-500">{option.phone}</p>
-                  </div>
-                  <Icon 
-                    icon="mdi:whatsapp" 
-                    className="w-5 h-5 text-green-500 flex-shrink-0"
-                  />
-                </motion.a>
-              ))}
+                  <Icon icon="mdi:close" className="w-4 h-4" />
+                </button>
+              </div>
+              <div className="space-y-2">
+                {contacts.map((contact, index) => (
+                  <a
+                    key={index}
+                    href={contact.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 transition-colors"
+                  >
+                    <Icon icon={contact.flag} className="w-6 h-6" />
+                    <div>
+                      <div className="text-sm font-medium text-gray-800">{contact.country}</div>
+                      <div className="text-xs text-gray-600">{contact.phone}</div>
+                    </div>
+                    <Icon icon="mdi:whatsapp" className="w-5 h-5 text-green-500 ml-auto" />
+                  </a>
+                ))}
+              </div>
             </div>
           </motion.div>
         )}
@@ -130,15 +104,11 @@ export default function FloatingWhatsApp({
         onClick={() => setIsOpen(!isOpen)}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        className="bg-green-500 hover:bg-green-600 text-white rounded-full p-4 shadow-lg transition-colors"
-        aria-label="WhatsApp Chat"
+        className="text-white rounded-fulltransition-colors"
+        aria-label="Open WhatsApp chat"
       >
-        <Icon 
-          icon="mdi:whatsapp" 
-          className="w-8 h-8"
-        />
+        <Icon icon="logos:whatsapp-icon" className="w-12 h-12" />
       </motion.button>
     </div>
   )
 }
-

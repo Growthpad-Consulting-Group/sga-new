@@ -4,6 +4,7 @@ import IntegratedSolutions from '@/components/IntegratedSolutions'
 import WhyChooseUs from '@/components/WhyChooseUs'
 import Industries from '@/components/Industries'
 import News from '@/components/News'
+import ContactInfo from '@/components/ContactInfo'
 import FloatingWhatsApp from '@/components/FloatingWhatsApp'
 import { Metadata } from 'next'
 
@@ -55,42 +56,55 @@ export default function TanzaniaPage(): React.JSX.Element {
           }
         ]}
       />
-      <About 
-        countryName="Tanzania" 
-        countryContent={tanzaniaContent}
-        customLayout={true}
-        smallTitle="WHO WE ARE"
-        h3Title="About SGA Tanzania"
-        h2Title={
-          <>
-            <span className="text-primary-orange">Trusted partner for Tanzania businesses.</span>
-          </>
-        }
-        customDescription="SGA Tanzania delivers manned guarding, remote CCTV monitoring, cash-in-transit, and fire & rescue—unified through a 24/7 control room and standardized reporting. Our vetted teams, modern systems, and regional oversight keep your people, assets, and operations secure across Tanzania."
-        buttonText="Learn more about SGA Tanzania"
-        buttonHref="#about"
-        imageUrl="/images/tz/about.png"
-        hideCountriesStat={true}
-        decorativePatternColors={['bg-[#00A3DD]', 'bg-[#000000]', 'bg-[#17B636]']}
-        decorativePatternLineColor="bg-[#FCD116]"
-      />
-      <IntegratedSolutions 
-        decorativePatternColors={['bg-[#00A3DD]', 'bg-[#000000]', 'bg-[#17B636]']}
-        decorativePatternLineColor="bg-[#FCD116]"
-        whiteBackground={true}
-      />
-      <Industries 
-        backgroundColor="bg-light-grey"
-        decorativePatternColors={['bg-[#00A3DD]', 'bg-[#000000]', 'bg-[#17B636]']}
-        decorativePatternLineColor="bg-[#FCD116]"
-      />     
-      <WhyChooseUs countryName="Tanzania" decorativePatternColors={['bg-[#00A3DD]', 'bg-[#000000]', 'bg-[#17B636]']} decorativePatternLineColor="bg-[#FCD116]" />
-      <News decorativePatternColors={['bg-[#00A3DD]', 'bg-[#000000]', 'bg-[#17B636]']} decorativePatternLineColor="bg-[#FCD116]" />
+      <div id="about">
+        <About 
+          countryName="Tanzania" 
+          countryContent={tanzaniaContent}
+          customLayout={true}
+          smallTitle="WHO WE ARE"
+          h3Title="About SGA Tanzania"
+          h2Title={
+            <>
+              <span className="text-primary-orange">Trusted partner for Tanzania businesses.</span>
+            </>
+          }
+          customDescription="SGA Tanzania delivers manned guarding, remote CCTV monitoring, cash-in-transit, and fire & rescue—unified through a 24/7 control room and standardized reporting. Our vetted teams, modern systems, and regional oversight keep your people, assets, and operations secure across Tanzania."
+          buttonText="Learn more about SGA Tanzania"
+          buttonHref="#about"
+          imageUrl="/images/tz/about.png"
+          hideCountriesStat={true}
+          decorativePatternColors={['bg-[#00A3DD]', 'bg-[#000000]', 'bg-[#17B636]']}
+          decorativePatternLineColor="bg-[#FCD116]"
+        />
+      </div>
+      <div id="services">
+        <IntegratedSolutions 
+          decorativePatternColors={['bg-[#00A3DD]', 'bg-[#000000]', 'bg-[#17B636]']}
+          decorativePatternLineColor="bg-[#FCD116]"
+          whiteBackground={true}
+        />
+      </div>
+      <div id="industries">
+        <Industries 
+          backgroundColor="bg-light-grey"
+          decorativePatternColors={['bg-[#00A3DD]', 'bg-[#000000]', 'bg-[#17B636]']}
+          decorativePatternLineColor="bg-[#FCD116]"
+        />
+      </div>
+      <div id="why-us">
+        <WhyChooseUs countryName="Tanzania" decorativePatternColors={['bg-[#00A3DD]', 'bg-[#000000]', 'bg-[#17B636]']} decorativePatternLineColor="bg-[#FCD116]" />
+      </div>
+      <div id="blog">
+        <News decorativePatternColors={['bg-[#00A3DD]', 'bg-[#000000]', 'bg-[#17B636]']} decorativePatternLineColor="bg-[#FCD116]" />
+      </div>
+      <div id="contact">
+        <ContactInfo />
+      </div>
       <FloatingWhatsApp 
         singleCountry={true}
         country="Tanzania"
-        phone="+255222123456"
-        url="https://wa.me/255222123456"
+        phone="+255754303076"
+        url="https://wa.me/255754303076"
         flag="twemoji:flag-tanzania"
       />
     </>
