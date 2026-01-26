@@ -46,7 +46,7 @@ export default function OurFoundation({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-100px' }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        className="w-full max-w-9xl mx-auto px-4 sm:px-6 lg:px-8"
       >
         <div className="mb-12">
           <motion.div

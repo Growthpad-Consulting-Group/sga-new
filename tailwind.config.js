@@ -11,6 +11,10 @@ module.exports = {
       fontFamily: {
         'heading': ['Helvetica Neue', 'Arial', 'sans-serif'],
         'body': ['Arial', 'sans-serif'],
+        'nav': ['Arial', 'Helvetica Neue', 'sans-serif'],
+      },
+      letterSpacing: {
+        'tight-2': '-2%',
       },
       colors: {
         primary: {

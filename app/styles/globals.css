@@ -145,17 +145,12 @@
 
   /* Headings use Helvetica Neue */
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading;
-  }
-
-  /* Navigation elements use Helvetica Neue */
-  nav, nav a, nav button {
-    @apply font-heading;
+    @apply font-heading tracking-tight-2 !important;
   }
 
   /* Buttons use Helvetica Neue and uppercase */
   button {
-    @apply font-heading uppercase;
+    @apply font-heading uppercase tracking-tight-2 !important;
   }
 }
 
