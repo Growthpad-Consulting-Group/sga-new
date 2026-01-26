@@ -38,7 +38,7 @@ const memberships: Membership[] = [
 
 export default function Membership() {
   return (
-    <SectionWrapper id="membership" className="bg-white py-16 sm:py-20">
+    <div id="membership" className="bg-white py-16 sm:py-20">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -53,18 +53,9 @@ export default function Membership() {
             viewport={{ once: true }}
             className="space-y-3"
           >
-            <p className="text-xs font-bold text-primary-orange uppercase tracking-wider">
-              membership
-            </p>
-            <h3 className="text-xl md:text-2xl font-normal text-navy-blue relative pb-3">
-              <span>Our Memberships</span>
-              <span 
-                className="absolute bottom-0 left-0 w-full"
-                style={{
-                  background: 'linear-gradient(to right, #00043E 0%, #00043E 70%, transparent 100%)',
-                  height: '1px'
-                }}
-              ></span>
+            <h3 className="text-xl md:text-3xl font-normal text-center text-primary-orange relative pb-3">
+              <span>Membership</span>
+              
             </h3>
           </motion.div>
         </div>
@@ -78,21 +69,16 @@ export default function Membership() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ scale: 1.05 }}
-              className="flex items-center justify-center p-4 md:p-6 h-32 md:h-40 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+              className="flex items-center justify-center p-4 md:p-6 h-32 md:h-40 bg-gray-100 rounded-lg hover:bg-gray-100 transition-colors"
             >
               <div className="relative w-full h-16 md:h-20">
-                <Image
-                  src={member.logo}
-                  alt={member.name}
-                  fill
-                  className="object-contain"
-                />
+                
               </div>
             </motion.div>
           ))}
         </div>
       </motion.div>
-    </SectionWrapper>
+    </div>
   )
 }
 

@@ -23,18 +23,18 @@ export default function JoinOurMission(): React.JSX.Element {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="bg-white border-2 border-navy-blue rounded-lg p-6 md:p-8"
+          className="bg-white border border-navy-blue rounded-lg p-6 md:p-8"
         >
-          <div className="space-y-4 md:space-y-5">
-            <p className="text-xs font-semibold text-navy uppercase tracking-wider">
+          <div className="">
+            <p className="text-md font-normal text-navy uppercase tracking-wider mb-2">
               Join our mission
             </p>
-            <div className="section-title-container">
-              <h2 className="section-title text-xl md:text-2xl lg:text-3xl font-bold text-navy-blue">
+            <div className="mb-4">
+              <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold text-primary-orange">
                 Build a career where security matters
               </h2>
             </div>
-            <p className="text-sm md:text-base text-dark-charcoal leading-relaxed">
+            <p className="text-sm md:text-base text-dark-charcoal leading-relaxed mb-2">
               From field operations to technology and leadership roles — grow with training, mentorship and purpose.
             </p>
             
@@ -44,19 +44,16 @@ export default function JoinOurMission(): React.JSX.Element {
                 href="#careers"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-primary-orange text-white px-5 py-2.5 rounded-full font-semibold text-xs md:text-sm uppercase shadow-lg hover:shadow-xl transition-shadow flex items-center justify-center gap-2"
+                className="bg-primary-orange text-white px-8 py-3 rounded-full font-semibold text-xs md:text-sm uppercase shadow-lg hover:shadow-xl transition-shadow flex items-center justify-center gap-2"
               >
                 VIEW OPEN ROLES
-                <Icon 
-                  icon="mdi:arrow-right" 
-                  className="w-4 h-4"
-                />
+                
               </motion.a>
               <motion.button
                 onClick={openModal}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-transparent text-navy-blue border-2 border-navy-blue px-5 py-2.5 rounded-full font-semibold text-xs md:text-sm uppercase hover:bg-navy-blue hover:text-white transition-colors"
+                className="bg-transparent text-navy-blue border-2 border-navy-blue px-8 py-3 rounded-full font-semibold text-xs md:text-sm uppercase hover:bg-navy-blue hover:text-white transition-colors"
               >
                 SEND US YOUR CV
               </motion.button>
