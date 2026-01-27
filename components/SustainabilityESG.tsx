@@ -149,7 +149,7 @@ export default function SustainabilityESG(): React.JSX.Element {
               opacity: { duration: 0.5, delay: 0.7 },
               y: { duration: 0.15 }
             }}
-            className="rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-150 border-2 border-primary-orange bg-transparent min-h-[320px] cursor-pointer"
+            className="rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-150 border border-dark-charcoal bg-transparent min-h-[320px] cursor-pointer"
           >
             <div className="p-5 md:p-6 h-full flex flex-col">
               <h4 className="text-base md:text-3xl font-medium text-dark-charcoal mb-4 leading-tight">
@@ -163,10 +163,7 @@ export default function SustainabilityESG(): React.JSX.Element {
                 className="bg-primary-orange text-white px-6 py-3 rounded-full font-semibold text-xs md:text-sm uppercase hover:bg-[#d84c1e] transition-colors shadow-md hover:shadow-lg flex items-center justify-center gap-2 w-full"
               >
                 Learn More
-                <Icon
-                  icon="mdi:arrow-right"
-                  className="w-4 h-4"
-                />
+
               </motion.a>
             </div>
           </motion.div>

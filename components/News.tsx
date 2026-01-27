@@ -40,21 +40,21 @@ const newsItems: NewsItem[] = [
   },
 ]
 
-export default function News({ 
-  decorativePatternColors = null, 
-  decorativePatternLineColor = null, 
-  staticPattern = false 
+export default function News({
+  decorativePatternColors = null,
+  decorativePatternLineColor = null,
+  staticPattern = false
 }: NewsProps) {
   const [activeFilter, setActiveFilter] = useState('ALL')
 
   return (
-    <section id="news" className="section-snap flex items-center justify-center bg-light-grey relative pb-0">
+    <section id="news" className="section-snap flex items-center justify-center bg-light-grey relative min-h-[85vh] py-12 md:py-20">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-100px' }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        className="w-full mx-auto px-4 sm:px-6 lg:px-8"
       >
         <div className="mb-12">
           <motion.div
@@ -63,21 +63,21 @@ export default function News({
             viewport={{ once: true }}
             className="space-y-3"
           >
-            <p className="text-xs font-semibold text-navy uppercase tracking-wider">
-              news
+            <p className="text-md font-medium text-dark-charcoal uppercase tracking-wider">
+              Latest
             </p>
-            <div className="section-title-container">
-              <h3 className="section-title text-xl md:text-2xl font-bold text-navy-blue flex items-center justify-between">
-                <span>News & Reports</span>
-                <div className="flex items-center gap-2">
-                  <button className="w-8 h-8 rounded-full border-2 border-navy-blue flex items-center justify-center hover:bg-primary-orange hover:border-primary-orange hover:text-white transition-colors">
-                    <Icon icon="mdi:chevron-left" className="w-5 h-5" />
-                  </button>
-                  <button className="w-8 h-8 rounded-full border-2 border-navy-blue flex items-center justify-center hover:bg-primary-orange hover:border-primary-orange hover:text-white transition-colors">
-                    <Icon icon="mdi:chevron-right" className="w-5 h-5" />
-                  </button>
-                </div>
+            <div className="flex items-end justify-between border-b border-dark-charcoal/20 pb-4">
+              <h3 className="section-title text-xl md:text-5xl font-bold text-primary-orange">
+                News & Reports
               </h3>
+              <div className="flex items-center gap-3 mb-1">
+                <button className="w-10 h-10 rounded-full border-2 border-dark-charcoal flex items-center justify-center text-dark-charcoal hover:bg-primary-orange hover:text-white transition-all duration-300">
+                  <Icon icon="mingcute:arrow-left-line" className="w-6 h-6" />
+                </button>
+                <button className="w-10 h-10 rounded-full border-2 border-dark-charcoal flex items-center justify-center text-dark-charcoal hover:bg-primary-orange hover:text-white transition-all duration-300">
+                  <Icon icon="mingcute:arrow-right-line" className="w-6 h-6" />
+                </button>
+              </div>
             </div>
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-4">
               <div className="flex flex-wrap gap-2">
@@ -85,11 +85,10 @@ export default function News({
                   <button
                     key={filter}
                     onClick={() => setActiveFilter(filter)}
-                    className={`px-4 py-2 rounded-full border border-navy-blue text-xs font-semibold uppercase transition-colors ${
-                      activeFilter === filter
-                        ? 'bg-navy-blue text-white'
-                        : 'text-navy-blue hover:bg-navy-blue hover:text-white'
-                    }`}
+                    className={`px-4 py-2 rounded-full border border-primary-orange text-xs font-semibold uppercase transition-colors ${activeFilter === filter
+                      ? 'bg-primary-orange text-white'
+                      : 'text-primary-orange hover:bg-primary-orange hover:text-white'
+                      }`}
                   >
                     {filter}
                   </button>
@@ -99,7 +98,7 @@ export default function News({
                 <input
                   type="text"
                   placeholder="Search..."
-                  className="pl-10 pr-4 py-2 border border-gray-300 rounded-full text-sm focus:outline-none focus:border-navy-blue w-full sm:w-64"
+                  className="pl-10 pr-4 py-2 border border-gray-300 rounded-full text-sm focus:outline-none focus:border-primary-orange w-full sm:w-64"
                 />
                 <Icon
                   icon="mdi:magnify"
@@ -134,18 +133,18 @@ export default function News({
                   className="object-cover"
                 />
               </motion.a>
-              
+
               <div className="p-6 flex flex-col flex-1">
                 {/* Category */}
                 <p className="text-xs font-semibold text-primary-orange uppercase tracking-wider mb-2">
                   {item.category}
                 </p>
-                
+
                 {/* Title */}
-                <h3 className="text-lg font-bold text-navy-blue mb-3">
+                <h3 className="text-xl md:text-2xl font-bold text-dark-charcoal mb-3 line-clamp-2">
                   {item.title}
                 </h3>
-                
+
                 {/* Summary */}
                 <p className="text-dark-charcoal text-sm leading-relaxed">
                   {item.summary}

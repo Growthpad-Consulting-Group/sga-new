@@ -114,7 +114,7 @@ export default function GroupIntegratedSolutions({
             viewport={{ once: true }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-primary-orange text-white px-10 py-4 rounded-full font-normal text-sm uppercase hover:bg-navy-blue transition-colors shadow-lg hover:shadow-xl"
+            className="bg-primary-orange text-white px-14 py-5 rounded-full font-semibold text-base uppercase hover:bg-[#d84c1e] transition-all duration-300 shadow-xl hover:shadow-2xl"
           >
             Request a Quote
           </motion.button>

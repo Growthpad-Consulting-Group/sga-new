@@ -42,18 +42,18 @@ const filterOptions: string[] = [
 
 export default function HappyClients() {
   const [activeFilter, setActiveFilter] = useState('ALL')
-  
-  const filteredClients = activeFilter === 'ALL' 
-    ? clients 
+
+  const filteredClients = activeFilter === 'ALL'
+    ? clients
     : clients.filter(client => client.category === activeFilter)
   return (
-    <section id="happy-clients" className="section-snap flex items-center justify-center bg-white py-12 md:py-16 relative">
+    <section id="happy-clients" className="section-snap flex items-center justify-center bg-white py-12 md:py-20 min-h-[85vh] relative">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-100px' }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        className="w-full mx-auto px-4 sm:px-6 lg:px-8"
       >
         <div className="mb-12">
           <motion.div
@@ -62,37 +62,37 @@ export default function HappyClients() {
             viewport={{ once: true }}
             className="space-y-3"
           >
-            <p className="text-xs font-semibold text-navy uppercase tracking-wider">
+            <p className="text-md font-medium text-dark-charcoal uppercase tracking-wider">
               our clients
             </p>
-            <div className="section-title-container">
-              <h3 className="section-title text-xl md:text-2xl font-bold text-navy-blue flex items-center justify-between">
-                <span>Happy Clients</span>
-                <div className="flex items-center gap-2">
-                  <button className="w-8 h-8 rounded-full border-2 border-navy-blue flex items-center justify-center hover:bg-primary-orange hover:border-primary-orange hover:text-white transition-colors">
-                    <Icon icon="mdi:chevron-left" className="w-5 h-5" />
-                  </button>
-                  <button className="w-8 h-8 rounded-full border-2 border-navy-blue flex items-center justify-center hover:bg-primary-orange hover:border-primary-orange hover:text-white transition-colors">
-                    <Icon icon="mdi:chevron-right" className="w-5 h-5" />
-                  </button>
-                </div>
-              </h3>
+            <div className="flex items-end justify-between border-b border-dark-charcoal/20 pb-4">
+              <div className="section-title-container !pb-0 !after:bottom-[-4px]">
+                <h3 className="section-title text-xl md:text-5xl font-bold text-primary-orange">
+                  Happy Clients
+                </h3>
+              </div>
+              <div className="flex items-center gap-3 mb-1">
+                <button className="w-10 h-10 rounded-full border-2 border-primary-orange flex items-center justify-center text-primary-orange hover:bg-primary-orange hover:text-white transition-all duration-300">
+                  <Icon icon="mdi:chevron-left" className="w-6 h-6" />
+                </button>
+                <button className="w-10 h-10 rounded-full border-2 border-primary-orange flex items-center justify-center text-primary-orange hover:bg-primary-orange hover:text-white transition-all duration-300">
+                  <Icon icon="mdi:chevron-right" className="w-6 h-6" />
+                </button>
+              </div>
             </div>
           </motion.div>
         </div>
 
-        {/* Filter Buttons */}
-        <div className="mb-8">
+        <div className="mb-10">
           <div className="flex flex-wrap gap-2 justify-start">
             {filterOptions.map((filter) => (
               <button
                 key={filter}
                 onClick={() => setActiveFilter(filter)}
-                className={`px-4 py-2 rounded-full border border-navy-blue text-xs font-semibold uppercase transition-colors ${
-                  activeFilter === filter
+                className={`px-4 py-2 rounded-full border border-primary-orange text-xs font-semibold uppercase transition-colors ${activeFilter === filter
                     ? 'bg-primary-orange border-primary-orange text-white'
-                    : 'text-navy-blue hover:bg-navy-blue hover:text-white'
-                }`}
+                    : 'text-primary-orange hover:bg-primary-orange hover:text-white'
+                  }`}
               >
                 {filter}
               </button>
@@ -100,7 +100,7 @@ export default function HappyClients() {
           </div>
         </div>
 
-        <div className="border border-navy-blue rounded-lg grid grid-cols-2 md:grid-cols-4 overflow-hidden">
+        <div className="border border-dark-charcoal/20 rounded-lg grid grid-cols-2 md:grid-cols-4 overflow-hidden">
           {filteredClients.map((client, index) => {
             // Calculate row and column for desktop (4 cols) and mobile (2 cols)
             const rowDesktop = Math.floor(index / 4);
@@ -113,7 +113,7 @@ export default function HappyClients() {
             const isLastRowMobile = rowMobile === totalRowsMobile - 1;
             const isLastColDesktop = colDesktop === 3;
             const isLastColMobile = colMobile === 1;
-            
+
             return (
               <motion.div
                 key={index}
@@ -123,12 +123,12 @@ export default function HappyClients() {
                 transition={{ duration: 0.5, delay: index * 0.05 }}
                 whileHover={{ scale: 1.02, zIndex: 10 }}
                 className={`
-                  border-r border-b border-navy-blue
+                  border-r border-b border-dark-charcoal/20
                   ${isLastColDesktop ? 'md:border-r-0' : ''}
                   ${isLastColMobile ? 'border-r-0 md:border-r' : ''}
                   ${isLastRowMobile ? 'border-b-0 md:border-b' : ''}
                   ${isLastRowDesktop ? 'md:border-b-0' : ''}
-                  p-4 md:p-6 flex items-center justify-center h-28 md:h-36 
+                  p-4 md:p-6 flex items-center justify-center h-28 md:h-44 
                   hover:bg-light-grey transition-all duration-300
                 `}
               >
