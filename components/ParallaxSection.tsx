@@ -28,7 +28,7 @@ export default function ParallaxSection({
   return (
     <section
       ref={ref}
-      className="section-snap relative w-full min-h-[85vh] overflow-hidden flex flex-col justify-center"
+      className="section-snap relative w-full min-h-[100vh] overflow-hidden flex flex-col justify-center"
     >
       {/* Background Image - Reduced Parallax */}
       <motion.div
@@ -50,7 +50,7 @@ export default function ParallaxSection({
       <div className="flex-1 flex items-center">
         <motion.div
           style={{ opacity }}
-          className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left"
+          className="relative z-10 w-full max-w-9xl mx-auto px-4 sm:px-6 lg:px-8 text-left"
         >
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -59,15 +59,15 @@ export default function ParallaxSection({
             transition={{ duration: 0.8, ease: 'easeOut' }}
             className="space-y-6"
           >
-            <p className="text-xs font-semibold text-white/90 uppercase tracking-wider">
+            <p className="text-md font-semibold text-white/90 uppercase tracking-wider">
               {title}
             </p>
             <div className="section-title-container-white">
-              <h2 className="section-title text-2xl md:text-3xl lg:text-4xl font-bold text-white">
+              <h2 className="section-title text-2xl md:text-3xl lg:text-5xl font-bold text-white">
                 {h2Title}
               </h2>
             </div>
-            <div className="relative max-w-5xl mx-auto pt-12 md:pt-16">
+            <div className="relative max-w-6xl mx-auto pt-12 md:pt-16">
               <div className="relative">
                 {/* Plus Icon - Top Left of Text */}
                 <motion.div
@@ -75,15 +75,14 @@ export default function ParallaxSection({
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.3 }}
-                  className="absolute -top-6 -left-6 md:-top-14 md:-left-14 z-20"
+                  className="absolute -top-6 -left-6 md:-top-20 md:-left-24 z-20"
                 >
                   <Icon
                     icon="mdi:plus-thick"
-                    className="w-12 h-12 md:w-20 md:h-20 text-white pr-2"
-                    style={{ strokeWidth: 3, paddingRight: '10px' }}
+                    className="w-12 h-12 md:w-28 md:h-28 text-white"
                   />
                 </motion.div>
-                <p className="text-xl md:text-2xl lg:text-4xl text-white font-semibold leading-relaxed text-left">
+                <p className="text-lg md:text-2xl lg:text-6xl max-w-6xl text-white font-semibold leading-relaxed text-left">
                   {description}
                 </p>
               </div>
@@ -93,7 +92,7 @@ export default function ParallaxSection({
                   href="#what-we-do"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-transparent hover:bg-navy-blue text-white border-2 border-white hover:border-navy-blue px-8 hover:px-12 py-4 rounded-full font-semibold text-md shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group relative"
+                  className="bg-transparent hover:bg-white text-white hover:text-primary-orange border border-white px-14 hover:px-18 py-2 rounded-full font-semibold text-md shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group relative"
                 >
                   What we do
                   <Icon
@@ -105,7 +104,7 @@ export default function ParallaxSection({
                   href="#sustainability"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-transparent hover:bg-navy-blue text-white border-2 border-white hover:border-navy-blue px-8 hover:px-12 py-4 rounded-full font-semibold text-md shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group relative"
+                  className="bg-transparent hover:bg-white text-white hover:text-primary-orange border border-white px-14 hover:px-18 py-2 rounded-full font-semibold text-md shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group relative"
                 >
                   Sustainability
                   <Icon

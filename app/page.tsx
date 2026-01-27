@@ -51,8 +51,6 @@ export default function HomePage(): React.JSX.Element {
       <div className="relative">
         <ParallaxSection
           title="Who We Are"
-          h2Title="About SGA Group"
-          description="We are dedicated to supporting sustainable safety and security for our customers and communities, through exceptional personnel, innovative systems and uncompromising integrity."
         />
       </div>
 
