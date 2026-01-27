@@ -72,7 +72,7 @@ export default function SustainabilityESG(): React.JSX.Element {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-100px' }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        className="w-full mx-auto px-4 sm:px-6 lg:px-8"
       >
         <div className="mb-12">
           <motion.div
@@ -81,11 +81,11 @@ export default function SustainabilityESG(): React.JSX.Element {
             viewport={{ once: true }}
             className="space-y-3"
           >
-            <p className="text-xs font-semibold text-navy uppercase tracking-wider">
+            <p className="text-md font-medium text-dark-charcoal uppercase tracking-wider">
               Sustainability & ESG
             </p>
             <div className="section-title-container">
-              <h3 className="section-title text-xl md:text-2xl font-bold text-primary-orange">
+              <h3 className="section-title text-xl md:text-5xl font-bold text-primary-orange">
                 Sustainable Development Goals
               </h3>
             </div>
@@ -101,13 +101,13 @@ export default function SustainabilityESG(): React.JSX.Element {
               whileInView={{ opacity: 1, y: 0 }}
               whileHover={{ y: -8 }}
               viewport={{ once: true }}
-              transition={{ 
+              transition={{
                 duration: 0.15,
                 ease: "easeOut",
                 opacity: { duration: 0.5, delay: index * 0.1 },
                 y: { duration: 0.15 }
               }}
-              className="rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-150 cursor-pointer min-h-[280px]"
+              className="rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-150 cursor-pointer min-h-[320px]"
               style={{ backgroundColor: sdg.bgColor }}
             >
               <div className="p-5 md:p-6 h-full flex flex-col text-white">
@@ -115,7 +115,7 @@ export default function SustainabilityESG(): React.JSX.Element {
                   <span className="text-4xl md:text-5xl font-bold leading-none">
                     {sdg.goal}
                   </span>
-                  <div className="relative w-14 h-14 md:w-16 md:h-16 flex-shrink-0">
+                  <div className="relative w-20 h-20 md:w-28 md:h-28 flex-shrink-0">
                     <Image
                       src={sdg.iconUrl}
                       alt={`SDG Goal ${sdg.goal}`}
@@ -126,33 +126,33 @@ export default function SustainabilityESG(): React.JSX.Element {
                 </div>
                 <div className="flex-1"></div>
                 <div>
-                  <h4 className="text-base md:text-lg font-bold mb-2 leading-tight">
+                  <h4 className="text-lg md:text-3xl font-bold mb-2 leading-tight">
                     {sdg.title}
                   </h4>
-                  <p className="text-xs md:text-sm leading-relaxed">
+                  <p className="text-sm md:text-base leading-relaxed">
                     {sdg.description}
                   </p>
                 </div>
               </div>
             </motion.div>
           ))}
-          
+
           {/* Learn More Card */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             whileHover={{ y: -8 }}
             viewport={{ once: true }}
-            transition={{ 
+            transition={{
               duration: 0.15,
               ease: "easeOut",
               opacity: { duration: 0.5, delay: 0.7 },
               y: { duration: 0.15 }
             }}
-            className="rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-150 border-2 border-navy-blue bg-transparent min-h-[280px] cursor-pointer"
+            className="rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-150 border-2 border-primary-orange bg-transparent min-h-[320px] cursor-pointer"
           >
             <div className="p-5 md:p-6 h-full flex flex-col">
-              <h4 className="text-base md:text-xl font-normal text-navy-blue mb-4 leading-tight">
+              <h4 className="text-base md:text-3xl font-medium text-dark-charcoal mb-4 leading-tight">
                 Learn More About Our Sustainability Impact
               </h4>
               <div className="flex-1"></div>
@@ -160,11 +160,11 @@ export default function SustainabilityESG(): React.JSX.Element {
                 href="#contact"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-primary-orange text-white px-6 py-3 rounded-full font-semibold text-xs md:text-sm uppercase hover:bg-navy-blue transition-colors shadow-md hover:shadow-lg flex items-center justify-center gap-2 w-full"
+                className="bg-primary-orange text-white px-6 py-3 rounded-full font-semibold text-xs md:text-sm uppercase hover:bg-[#d84c1e] transition-colors shadow-md hover:shadow-lg flex items-center justify-center gap-2 w-full"
               >
                 Learn More
-                <Icon 
-                  icon="mdi:arrow-right" 
+                <Icon
+                  icon="mdi:arrow-right"
                   className="w-4 h-4"
                 />
               </motion.a>

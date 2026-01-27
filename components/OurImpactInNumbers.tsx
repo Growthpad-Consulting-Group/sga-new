@@ -72,11 +72,11 @@ export default function OurImpactInNumbers({ showPattern = true }: OurImpactInNu
             viewport={{ once: true }}
             className="space-y-3"
           >
-            <p className="text-xs font-semibold text-navy uppercase tracking-wider">
+            <p className="text-md font-medium text-dark-charcoal uppercase tracking-wider">
               our impact in numbers
             </p>
             <div className="section-title-container">
-              <h3 className="section-title text-xl md:text-3xl font-bold text-primary-orange">
+              <h3 className="section-title text-xl md:text-5xl font-bold text-primary-orange">
                 Scale you can rely on
               </h3>
             </div>
@@ -96,13 +96,13 @@ export default function OurImpactInNumbers({ showPattern = true }: OurImpactInNu
               className="flex flex-col items-center"
             >
               <motion.div
-                className="w-36 h-36 md:w-48 md:h-48 lg:w-56 lg:h-56 rounded-full border border-primary-orange bg-primary-orange flex flex-col items-center justify-center shadow-lg group relative p-2 md:p-3 cursor-pointer"
+                className="w-44 h-44 md:w-60 md:h-60 lg:w-72 lg:h-72 rounded-full border border-primary-orange bg-primary-orange flex flex-col items-center justify-center shadow-lg group relative p-2 md:p-3 cursor-pointer"
                 whileHover={{
                   scale: 1.08,
                   y: -8,
-                  backgroundColor: '#00043E',
-                  borderColor: '#00043E',
-                  boxShadow: '0 20px 40px rgba(0, 4, 62, 0.3)',
+                  backgroundColor: '#d84c1e',
+                  borderColor: '#d84c1e',
+                  boxShadow: '0 20px 40px rgba(216, 76, 30, 0.3)',
                 }}
                 transition={{
                   duration: 0.3,
@@ -133,13 +133,13 @@ export default function OurImpactInNumbers({ showPattern = true }: OurImpactInNu
               className="flex flex-col items-center"
             >
               <motion.div
-                className="w-36 h-36 md:w-48 md:h-48 lg:w-56 lg:h-56 rounded-full border border-primary-orange bg-primary-orange flex flex-col items-center justify-center shadow-lg group relative p-2 md:p-3 cursor-pointer"
+                className="w-44 h-44 md:w-60 md:h-60 lg:w-72 lg:h-72 rounded-full border border-primary-orange bg-primary-orange flex flex-col items-center justify-center shadow-lg group relative p-2 md:p-3 cursor-pointer"
                 whileHover={{
                   scale: 1.08,
                   y: -8,
-                  backgroundColor: '#00043E',
-                  borderColor: '#00043E',
-                  boxShadow: '0 20px 40px rgba(0, 4, 62, 0.3)',
+                  backgroundColor: '#d84c1e',
+                  borderColor: '#d84c1e',
+                  boxShadow: '0 20px 40px rgba(216, 76, 30, 0.3)',
                 }}
                 transition={{
                   duration: 0.3,

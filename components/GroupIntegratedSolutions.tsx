@@ -34,19 +34,19 @@ const solutions: Solution[] = [
   },
 ]
 
-export default function GroupIntegratedSolutions({ 
+export default function GroupIntegratedSolutions({
   title = "What we Offer",
   description = "Security solutions built to keep your business, family, home, and property safe every day across Kenya, Uganda, and Tanzania."
 }: GroupIntegratedSolutionsProps) {
   const { openModal } = useEnquiryModal()
   return (
-    <section id="integrated-solutions" className="section-snap flex items-center justify-center bg-light-grey relative pb-0">
+    <section id="integrated-solutions" className="section-snap flex items-center justify-center bg-light-grey relative min-h-[85vh] py-12 md:py-16">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-100px' }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        className="w-full mx-auto px-4 sm:px-6 lg:px-8"
       >
         <div className="mb-12">
           <motion.div
@@ -55,11 +55,11 @@ export default function GroupIntegratedSolutions({
             viewport={{ once: true }}
             className="space-y-3"
           >
-            <p className="text-xs font-semibold text-navy uppercase tracking-wider">
+            <p className="text-md font-medium text-dark-charcoal uppercase tracking-wider">
               integrated solutions
             </p>
             <div className="section-title-container">
-              <h3 className="section-title text-xl md:text-2xl font-bold text-primary-orange">
+              <h3 className="section-title text-xl md:text-5xl font-bold text-primary-orange">
                 {title}
               </h3>
             </div>
@@ -77,7 +77,7 @@ export default function GroupIntegratedSolutions({
               whileHover={{ scale: 1.05, y: -8 }}
               className="flex flex-col items-center"
             >
-              <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden shadow-xl group cursor-pointer">
+              <div className="relative w-80 h-80 md:w-[400px] md:h-[400px] rounded-full overflow-hidden shadow-2xl group cursor-pointer">
                 {/* Background Image */}
                 <Image
                   src={solution.imageUrl}
@@ -86,18 +86,18 @@ export default function GroupIntegratedSolutions({
                   className="object-cover transition-transform duration-300 group-hover:scale-110"
                 />
                 {/* Overlay */}
-                <div className="absolute inset-0 bg-navy-blue/70 group-hover:bg-primary-orange/80 transition-colors duration-300"></div>
+                <div className="absolute inset-0 bg-dark-charcoal/60 group-hover:bg-primary-orange/80 transition-colors duration-300"></div>
                 {/* Content */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-10">
-                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
+                  <h3 className="text-2xl md:text-4xl font-bold text-white mb-3">
                     {solution.title}
                   </h3>
-                  <p className="text-white/90 text-sm md:text-base leading-relaxed max-w-xs mb-3">
+                  <p className="text-white/90 text-sm md:text-lg leading-relaxed max-w-xs mb-3">
                     {solution.description}
                   </p>
-                  <Icon 
-                    icon="iconoir:arrow-right-circle" 
-                    className="w-6 h-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  <Icon
+                    icon="iconoir:arrow-right-circle"
+                    className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   />
                 </div>
               </div>

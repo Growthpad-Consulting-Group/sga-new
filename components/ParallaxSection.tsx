@@ -59,7 +59,7 @@ export default function ParallaxSection({
             transition={{ duration: 0.8, ease: 'easeOut' }}
             className="space-y-6"
           >
-            <p className="text-md font-semibold text-white/90 uppercase tracking-wider">
+            <p className="text-md font-medium text-white/90 uppercase tracking-wider">
               {title}
             </p>
             <div className="section-title-container-white">
