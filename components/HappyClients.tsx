@@ -62,7 +62,7 @@ export default function HappyClients() {
             className="space-y-3"
           >
             <p className="text-md font-medium text-dark-charcoal uppercase tracking-wider">
-              our clients
+              Trusted by leading organizations
             </p>
             <div className="flex items-end justify-between section-title-container !pb-4 mb-4">
               <h3 className="section-title text-xl md:text-5xl font-bold text-primary-orange">
