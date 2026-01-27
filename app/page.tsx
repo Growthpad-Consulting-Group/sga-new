@@ -9,6 +9,7 @@ import HappyClients from '@/components/HappyClients'
 import JoinOurMission from '@/components/JoinOurMission'
 import GroupFooter from '@/components/GroupFooter'
 import FloatingWhatsApp from '@/components/FloatingWhatsApp'
+import SectionSeparator from '@/components/SectionSeparator'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -46,20 +47,45 @@ export default function HomePage(): React.JSX.Element {
           { label: 'Explore for Corporate clients', href: '#corporate', primary: true }
         ]}
       />
+      
+      <SectionSeparator />
+      
       <ParallaxSection 
         title="Who We Are"
         h2Title="About SGA Group"
         description="We are dedicated to supporting sustainable safety and security for our customers and communities, through exceptional personnel, innovative systems and uncompromising integrity."
       />
+      
+      <SectionSeparator />
+      
       <OurImpactInNumbers />
+      
+      <SectionSeparator />
+      
       <GroupIntegratedSolutions 
         title="What we Offer"
       />
+      
+      <SectionSeparator />
+      
       <WhereWeOperate />
+      
+      <SectionSeparator />
+      
       <SustainabilityESG />
+      
+      <SectionSeparator />
+      
       <News staticPattern={true} />
+      
+      <SectionSeparator />
+      
       <HappyClients />
+      
+      <SectionSeparator />
+      
       <JoinOurMission />
+      
       <GroupFooter />
       <FloatingWhatsApp />
     </>

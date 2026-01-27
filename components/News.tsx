@@ -5,7 +5,6 @@ import SectionWrapper from './SectionWrapper'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import Image from 'next/image'
-import DecorativePattern from './DecorativePattern'
 
 interface NewsItem {
   category: string
@@ -156,7 +155,6 @@ export default function News({
           ))}
         </div>
       </motion.div>
-      <DecorativePattern static={staticPattern} />
     </section>
   )
 }

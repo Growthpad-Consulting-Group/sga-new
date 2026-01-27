@@ -4,7 +4,6 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 import Image from 'next/image'
 import { Icon } from '@iconify/react'
-import DecorativePattern from './DecorativePattern'
 
 interface ParallaxSectionProps {
   title?: string
@@ -119,12 +118,6 @@ export default function ParallaxSection({
           </motion.div>
         </motion.div>
       </div>
-      
-      {/* Decorative Pattern at Bottom */}
-      <DecorativePattern 
-        className="z-10"
-        static={true}
-      />
     </section>
   )
 }

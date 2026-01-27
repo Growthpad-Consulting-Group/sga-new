@@ -52,7 +52,7 @@ export const socialLinks: SocialLink[] = [
 ]
 
 export const countries: Country[] = [
-    { code: 'tz', name: 'Tanzania', path: '/tz', flag: 'twemoji:flag-tanzania' },
-    { code: 'ug', name: 'Uganda', path: '/ug', flag: 'twemoji:flag-uganda' },
-  { code: 'ke', name: 'Kenya', path: '/ke', flag: 'twemoji:flag-kenya' },
+    { code: 'tz', name: 'Tanzania', path: '/tz', flag: 'emojione:flag-for-tanzania' },
+    { code: 'ug', name: 'Uganda', path: '/ug', flag: 'emojione:flag-for-uganda' },
+  { code: 'ke', name: 'Kenya', path: '/ke', flag: 'emojione:flag-for-kenya' },
 ]

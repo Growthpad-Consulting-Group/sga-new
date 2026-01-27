@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import Image from 'next/image'
-import DecorativePattern from './DecorativePattern'
 
 interface SDGGoal {
   goal: number
@@ -173,7 +172,6 @@ export default function SustainabilityESG(): React.JSX.Element {
           </motion.div>
         </div>
       </motion.div>
-      <DecorativePattern className="transition-none" static={true} />
     </section>
   )
 }

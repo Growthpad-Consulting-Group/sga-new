@@ -405,7 +405,7 @@ export default function Hero({
               icon="iconoir:arrow-down-circle" 
               className={`w-8 h-8 mb-2 ${secondaryTextColorClass}`}
             />
-            <span className={`text-sm ${secondaryTextColorClass} font-medium uppercase`}>SCROLL DOWN</span>
+            <span className={`text-sm ${secondaryTextColorClass} font-bold uppercase`}>SCROLL DOWN</span>
           </motion.div>
         </motion.div>
       </SectionWrapper>

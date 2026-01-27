@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { Icon } from '@iconify/react'
-import DecorativePattern from './DecorativePattern'
 import { useEnquiryModal } from '@/contexts/EnquiryModalContext'
 
 interface Solution {
@@ -121,7 +120,6 @@ export default function GroupIntegratedSolutions({
           </motion.button>
         </div>
       </motion.div>
-      <DecorativePattern className="transition-none" static={true} />
     </section>
   )
 }

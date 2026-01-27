@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { Icon } from '@iconify/react'
-import DecorativePattern from './DecorativePattern'
 
 export default function WhereWeOperate(): React.JSX.Element {
   return (
@@ -144,7 +143,6 @@ export default function WhereWeOperate(): React.JSX.Element {
           </motion.div>
         </div>
       </motion.div>
-      <DecorativePattern static={true} />
     </section>
   )
 }

@@ -158,8 +158,8 @@ export default function Header() {
                     aria-label={`Switch to ${country.name}`}
                     title={country.name}
                   >
-                    <div className="w-6 h-6 sm:w-10 sm:h-10 rounded-full overflow-hidden flex items-center justify-center ring-1 ring-white/20 bg-white/10 backdrop-blur-sm">
-                      <Icon icon={country.flag} className="w-4 h-4 sm:w-6 sm:h-6 flag-icon" />
+                    <div className="w-6 h-6 sm:w-10 sm:h-10 rounded-full overflow-hidden flex items-center justify-center ring-1 ring-white/20">
+                      <Icon icon={country.flag} className="w-5 h-5 sm:w-8 sm:h-8" />
                     </div>
                   </motion.button>
                 )
@@ -250,7 +250,7 @@ export default function Header() {
                   key={item.href}
                   href={item.href}
                   whileHover={{ y: -2 }}
-                  className={`${buttonHoverClasses} font-nav font-medium flex items-center gap-1.5 text-sm ${getNavTextColor(isActive)}`}
+                  className={`${buttonHoverClasses} font-nav ${item.label === 'UPDATES' ? 'font-semibold' : 'font-medium'} flex items-center gap-1.5 text-md ${getNavTextColor(isActive)}`}
                 >
                   {item.icon && (
                     <Icon 
@@ -327,9 +327,10 @@ export default function Header() {
               {currentNavItems.map((item) => {
                 const isRoute = !item.href.startsWith('#')
                 const isActive = isRoute ? pathname === item.href : false
+                const isUpdates = item.label === 'UPDATES'
                 const itemClasses = `${mobileMenuItemClasses} ${
                   isActive ? 'text-primary-orange font-semibold' : 'text-dark-charcoal hover:text-primary-orange'
-                }`
+                } ${isUpdates ? 'font-bold' : ''}`
                 
                 if (isRoute) {
                   return (
