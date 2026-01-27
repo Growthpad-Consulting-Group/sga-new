@@ -91,17 +91,17 @@ export default function CVModal({ isOpen, onClose }: CVModalProps): React.JSX.El
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    
+
     // Validate form
     if (!formData.fullName || !formData.email || !formData.phone || !formData.country || !formData.jobTitle || !formData.cvFile || !formData.agreeToPrivacy) {
       alert('Please fill in all required fields')
       return
     }
-    
+
     // Handle form submission here
     console.log('CV Form submitted:', formData)
     // You can add API call here to upload the file and submit the form
-    
+
     // Create FormData for file upload
     const submitData = new FormData()
     submitData.append('fullName', formData.fullName)
@@ -111,10 +111,10 @@ export default function CVModal({ isOpen, onClose }: CVModalProps): React.JSX.El
     submitData.append('jobTitle', formData.jobTitle)
     submitData.append('cvFile', formData.cvFile)
     submitData.append('coverNote', formData.coverNote)
-    
+
     alert('Thank you for your application! We will review your CV and get back to you soon.')
     onClose()
-    
+
     // Reset form
     setFormData({
       fullName: '',
@@ -141,7 +141,7 @@ export default function CVModal({ isOpen, onClose }: CVModalProps): React.JSX.El
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/30 backdrop-blur-md z-50 flex items-center justify-center p-4"
           >
             {/* Modal Container */}
             <motion.div

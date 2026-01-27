@@ -51,6 +51,7 @@ export default function HomePage(): React.JSX.Element {
       <div className="relative">
         <ParallaxSection
           title="Who We Are"
+          id="about"
         />
       </div>
 

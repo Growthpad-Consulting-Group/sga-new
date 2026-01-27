@@ -9,12 +9,14 @@ interface ParallaxSectionProps {
   title?: string
   h2Title?: string
   description?: string
+  id?: string
 }
 
 export default function ParallaxSection({
   title = "Who We Are",
   h2Title = "About SGA Group",
-  description = "We are dedicated to supporting sustainable safety and security for our customers and communities — through exceptional personnel, innovative systems and uncompromising integrity."
+  description = "We are dedicated to supporting sustainable safety and security for our customers and communities — through exceptional personnel, innovative systems and uncompromising integrity.",
+  id
 }: ParallaxSectionProps) {
   const ref = useRef(null)
   const { scrollYProgress } = useScroll({
@@ -28,6 +30,7 @@ export default function ParallaxSection({
   return (
     <section
       ref={ref}
+      id={id}
       className="section-snap relative w-full min-h-[100vh] overflow-hidden flex flex-col justify-center"
     >
       {/* Background Image - Reduced Parallax */}

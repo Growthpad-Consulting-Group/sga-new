@@ -78,12 +78,12 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    
+
     // Validate form
     if (formData.interests.length === 0 || !formData.agreeToContact) {
       return
     }
-    
+
     // Validate corporate fields if Corporate is selected
     if (enquiryType === 'Corporate') {
       if (!formData.companyName || !formData.jobTitle || !formData.companySize || !formData.industry) {
@@ -91,7 +91,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
         return
       }
     }
-    
+
     // Handle form submission here
     console.log('Form submitted:', { enquiryType, ...formData })
     // You can add API call here
@@ -126,7 +126,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/30 backdrop-blur-md z-50 flex items-center justify-center p-4"
           >
             {/* Modal Container */}
             <motion.div
@@ -144,7 +144,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                     Tell us what you need and we'll connect you to the right team.
                   </p>
                 </div>
-                
+
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
                     <Icon icon="mdi:clock-fast" className="w-6 h-6 text-white flex-shrink-0 mt-1" />
@@ -153,7 +153,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                       <p className="text-white/80 text-sm">Within 1 business day</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start gap-3">
                     <Icon icon="mdi:shield-lock" className="w-6 h-6 text-white flex-shrink-0 mt-1" />
                     <div>
@@ -161,7 +161,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                       <p className="text-white/80 text-sm">Privacy First</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start gap-3">
                     <Icon icon="mdi:earth" className="w-6 h-6 text-white flex-shrink-0 mt-1" />
                     <div>
@@ -169,7 +169,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                       <p className="text-white/80 text-sm">KE • TZ • UG</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start gap-3">
                     <Icon icon="mdi:account-group" className="w-6 h-6 text-white flex-shrink-0 mt-1" />
                     <div>
@@ -178,7 +178,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                     </div>
                   </div>
                 </div>
-                
+
                 {/* Plus Icon */}
                 <div className="flex justify-center mt-8">
                   <Icon icon="mdi:plus-thick" className="w-16 h-16 md:w-20 md:h-20 text-white/20" style={{ strokeWidth: 3 }} />
@@ -227,11 +227,10 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                             industry: ''
                           }))
                         }}
-                        className={`relative z-10 flex-1 px-6 py-3 rounded-full font-semibold transition-colors ${
-                          enquiryType === 'Individual'
+                        className={`relative z-10 flex-1 px-6 py-3 rounded-full font-semibold transition-colors ${enquiryType === 'Individual'
                             ? 'text-white'
                             : 'text-dark-charcoal'
-                        }`}
+                          }`}
                       >
                         Individual
                       </button>
@@ -239,11 +238,10 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                       <button
                         type="button"
                         onClick={() => setEnquiryType('Corporate')}
-                        className={`relative z-10 flex-1 px-6 py-3 rounded-full font-semibold transition-colors ${
-                          enquiryType === 'Corporate'
+                        className={`relative z-10 flex-1 px-6 py-3 rounded-full font-semibold transition-colors ${enquiryType === 'Corporate'
                             ? 'text-white'
                             : 'text-dark-charcoal'
-                        }`}
+                          }`}
                       >
                         Corporate
                       </button>
@@ -425,11 +423,10 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                           key={option}
                           type="button"
                           onClick={() => handleInterestToggle(option)}
-                          className={`px-4 py-2 rounded-full font-semibold text-sm transition-all ${
-                            formData.interests.includes(option)
+                          className={`px-4 py-2 rounded-full font-semibold text-sm transition-all ${formData.interests.includes(option)
                               ? 'bg-primary-orange text-white'
                               : 'bg-light-grey text-dark-charcoal hover:bg-gray-200 border-2 border-transparent hover:border-gray-300'
-                          }`}
+                            }`}
                         >
                           {option}
                         </button>
@@ -472,21 +469,21 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                     </label>
                   </div>
 
-                 <div className='flex items-center justify-between'>
-                     {/* Submit Button */}
-                  <button
-                    type="submit"
-                    disabled={formData.interests.length === 0 || !formData.agreeToContact}
-                    className="bg-primary-orange text-white px-6 py-3 rounded-full font-semibold text-base hover:bg-navy-blue transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
-                  >
-                    Submit enquiry
-                  </button>
+                  <div className='flex items-center justify-between'>
+                    {/* Submit Button */}
+                    <button
+                      type="submit"
+                      disabled={formData.interests.length === 0 || !formData.agreeToContact}
+                      className="bg-primary-orange text-white px-6 py-3 rounded-full font-semibold text-base hover:bg-navy-blue transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+                    >
+                      Submit enquiry
+                    </button>
 
-                  {/* Note */}
-                  <p className="text-center text-sm text-gray-600">
-                    We'll respond within one business day.
-                  </p>
-                 </div>
+                    {/* Note */}
+                    <p className="text-center text-sm text-gray-600">
+                      We'll respond within one business day.
+                    </p>
+                  </div>
                 </form>
               </div>
             </motion.div>

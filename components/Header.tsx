@@ -35,9 +35,9 @@ export default function Header() {
   // Get country name for header
   const getCountryName = (countryCode: string | null): string => {
     switch (countryCode) {
-      case 'ke': return 'KENYA HQ'
-      case 'tz': return 'TANZANIA HQ'
-      case 'ug': return 'UGANDA HQ'
+      case 'ke': return 'Kenya HQ'
+      case 'tz': return 'Tanzania HQ'
+      case 'ug': return 'Uganda HQ'
       default: return ''
     }
   }
@@ -52,6 +52,18 @@ export default function Header() {
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  // Prevent background scroll when modal is open
+  useEffect(() => {
+    if (countryModalOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [countryModalOpen])
 
   const isActiveCountry = (path: string): boolean => {
     return path === '/' ? pathname === '/' : pathname.startsWith(path)
@@ -168,7 +180,7 @@ export default function Header() {
               {/* Country HQ Text */}
               {isCountryPage && countryName && (
                 <div className="hidden sm:flex items-center">
-                  <span className={`text-xs font-medium uppercase tracking-wide ${buttonHoverClasses} ${getTextColor()}`}>
+                  <span className={`text-xs font-semibold tracking-wide normal-case ${buttonHoverClasses} ${getTextColor()}`}>
                     {countryName}
                   </span>
                 </div>
@@ -393,41 +405,67 @@ export default function Header() {
               onClick={() => setCountryModalOpen(false)}
             >
               <div
-                className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8 md:gap-12 px-4"
+                className="relative"
                 onClick={(e) => e.stopPropagation()}
               >
-                {countries.map((country, index) => (
-                  <motion.div
-                    key={country.code}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    className="group relative"
-                  >
-                    <motion.button
-                      onClick={() => {
-                        router.push(country.path)
-                        setCountryModalOpen(false)
-                      }}
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="group relative w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-full bg-white border-2 sm:border-4 border-primary-orange flex flex-col items-center justify-center shadow-xl transition-all overflow-hidden"
-                      aria-label={`Enter ${country.name}`}
-                    >
-                      <Icon
-                        icon={country.flag}
-                        className="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 z-10"
-                      />
+                {/* Close Button - Now closer to content */}
+                <motion.button
+                  onClick={() => setCountryModalOpen(false)}
+                  className="absolute -top-12 -right-4 sm:-top-16 sm:-right-8 text-white hover:text-primary-orange transition-colors z-[60]"
+                  whileHover={{ scale: 1.1, rotate: 90 }}
+                  whileTap={{ scale: 0.9 }}
+                  aria-label="Close modal"
+                >
+                  <Icon icon="teenyicons:x-circle-outline" className="w-8 h-8 sm:w-9 sm:h-9" />
+                </motion.button>
 
-                      <div className="absolute bottom-2 sm:bottom-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <Icon
-                          icon="mdi:arrow-right"
-                          className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-primary-orange"
-                        />
-                      </div>
-                    </motion.button>
-                  </motion.div>
-                ))}
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8 md:gap-12 px-4">
+                  {countries.map((country, index) => (
+                    // ... (rest of the map content stays the same)
+                    <motion.div
+                      key={country.code}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                      className="group relative"
+                    >
+                      <motion.button
+                        onClick={() => {
+                          router.push(country.path)
+                          setCountryModalOpen(false)
+                        }}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="group relative w-44 h-44 sm:w-64 sm:h-64 md:w-96 md:h-96 rounded-full bg-white border-2 sm:border-4 border-primary-orange flex items-center justify-center shadow-2xl transition-all overflow-hidden"
+                        aria-label={`Enter ${country.name}`}
+                      >
+                        {/* ENTER label at the top - shows only on hover */}
+                        <div className="absolute top-6 sm:top-12 md:top-20 left-0 right-0 text-center z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <span className="text-[10px] sm:text-xs md:text-sm font-bold text-dark-charcoal uppercase tracking-[0.3em]">
+                            ENTER
+                          </span>
+                        </div>
+
+                        <div className="flex items-center gap-2 sm:gap-4 md:gap-5 z-10 px-6 transition-transform duration-300 group-hover:translate-y-2 md:group-hover:translate-y-4">
+                          <Icon
+                            icon={country.flag}
+                            className="w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 flex-shrink-0"
+                          />
+                          <span className="text-lg sm:text-2xl md:text-4xl font-bold text-dark-charcoal tracking-tight normal-case">
+                            {country.name}
+                          </span>
+                        </div>
+
+                        <div className="absolute bottom-4 sm:bottom-12 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <Icon
+                            icon="mynaui:arrow-right-circle"
+                            className="w-7 h-7 sm:w-10 sm:h-10 md:w-14 md:h-14 text-primary-orange"
+                          />
+                        </div>
+                      </motion.button>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
             </motion.div>
           </>
