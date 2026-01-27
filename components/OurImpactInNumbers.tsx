@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import SectionWrapper from './SectionWrapper'
-import DecorativePattern from './DecorativePattern'
 
 interface Stat {
   number: string
@@ -63,7 +62,7 @@ export default function OurImpactInNumbers({ showPattern = true }: OurImpactInNu
         {/* White Overlay */}
         <div className="absolute inset-0 bg-white/80"></div>
       </div>
-      
+
       {/* Content */}
       <div className="relative z-10 py-8 md:py-12">
         <div className="mb-8 md:mb-12">
@@ -96,16 +95,16 @@ export default function OurImpactInNumbers({ showPattern = true }: OurImpactInNu
               whileHover={{ scale: 1.05 }}
               className="flex flex-col items-center"
             >
-              <motion.div 
+              <motion.div
                 className="w-36 h-36 md:w-48 md:h-48 lg:w-56 lg:h-56 rounded-full border border-primary-orange bg-primary-orange flex flex-col items-center justify-center shadow-lg group relative p-2 md:p-3 cursor-pointer"
-                whileHover={{ 
+                whileHover={{
                   scale: 1.08,
                   y: -8,
                   backgroundColor: '#00043E',
                   borderColor: '#00043E',
                   boxShadow: '0 20px 40px rgba(0, 4, 62, 0.3)',
                 }}
-                transition={{ 
+                transition={{
                   duration: 0.3,
                   ease: 'easeOut'
                 }}
@@ -133,16 +132,16 @@ export default function OurImpactInNumbers({ showPattern = true }: OurImpactInNu
               whileHover={{ scale: 1.05 }}
               className="flex flex-col items-center"
             >
-              <motion.div 
+              <motion.div
                 className="w-36 h-36 md:w-48 md:h-48 lg:w-56 lg:h-56 rounded-full border border-primary-orange bg-primary-orange flex flex-col items-center justify-center shadow-lg group relative p-2 md:p-3 cursor-pointer"
-                whileHover={{ 
+                whileHover={{
                   scale: 1.08,
                   y: -8,
                   backgroundColor: '#00043E',
                   borderColor: '#00043E',
                   boxShadow: '0 20px 40px rgba(0, 4, 62, 0.3)',
                 }}
-                transition={{ 
+                transition={{
                   duration: 0.3,
                   ease: 'easeOut'
                 }}
@@ -158,16 +157,6 @@ export default function OurImpactInNumbers({ showPattern = true }: OurImpactInNu
           ))}
         </div>
       </div>
-      
-      {/* Decorative Pattern at Bottom - Static, no animations */}
-      {showPattern && (
-        <div className="absolute bottom-0 left-0 right-0 w-full" style={{ pointerEvents: 'none' }}>
-          <DecorativePattern 
-            className="z-10 transition-none !transition-none"
-            static={true}
-          />
-        </div>
-      )}
     </SectionWrapper>
   )
 }

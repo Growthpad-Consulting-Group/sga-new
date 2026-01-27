@@ -11,7 +11,7 @@ interface ParallaxSectionProps {
   description?: string
 }
 
-export default function ParallaxSection({ 
+export default function ParallaxSection({
   title = "Who We Are",
   h2Title = "About SGA Group",
   description = "We are dedicated to supporting sustainable safety and security for our customers and communities — through exceptional personnel, innovative systems and uncompromising integrity."
@@ -26,12 +26,12 @@ export default function ParallaxSection({
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.8, 1, 1, 0.8])
 
   return (
-    <section 
+    <section
       ref={ref}
-      className="section-snap relative w-full overflow-hidden flex flex-col justify-center"
+      className="section-snap relative w-full min-h-[85vh] overflow-hidden flex flex-col justify-center"
     >
       {/* Background Image - Reduced Parallax */}
-      <motion.div 
+      <motion.div
         style={{ y }}
         className="absolute inset-0 z-0"
       >
@@ -48,7 +48,7 @@ export default function ParallaxSection({
 
       {/* Content */}
       <div className="flex-1 flex items-center">
-        <motion.div 
+        <motion.div
           style={{ opacity }}
           className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left"
         >
@@ -77,8 +77,8 @@ export default function ParallaxSection({
                   transition={{ duration: 0.6, delay: 0.3 }}
                   className="absolute -top-6 -left-6 md:-top-14 md:-left-14 z-20"
                 >
-                  <Icon 
-                    icon="mdi:plus-thick" 
+                  <Icon
+                    icon="mdi:plus-thick"
                     className="w-12 h-12 md:w-20 md:h-20 text-white pr-2"
                     style={{ strokeWidth: 3, paddingRight: '10px' }}
                   />
@@ -96,8 +96,8 @@ export default function ParallaxSection({
                   className="bg-transparent hover:bg-navy-blue text-white border-2 border-white hover:border-navy-blue px-8 hover:px-12 py-4 rounded-full font-semibold text-md shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group relative"
                 >
                   What we do
-                  <Icon 
-                    icon="iconoir:arrow-right-circle" 
+                  <Icon
+                    icon="iconoir:arrow-right-circle"
                     className="w-5 h-5 text-primary-orange opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute right-4"
                   />
                 </motion.a>
@@ -108,8 +108,8 @@ export default function ParallaxSection({
                   className="bg-transparent hover:bg-navy-blue text-white border-2 border-white hover:border-navy-blue px-8 hover:px-12 py-4 rounded-full font-semibold text-md shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group relative"
                 >
                   Sustainability
-                  <Icon 
-                    icon="iconoir:arrow-right-circle" 
+                  <Icon
+                    icon="iconoir:arrow-right-circle"
                     className="w-5 h-5 text-primary-orange opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute right-4"
                   />
                 </motion.a>

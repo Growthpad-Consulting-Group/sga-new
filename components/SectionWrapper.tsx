@@ -7,16 +7,13 @@ interface SectionWrapperProps {
   children: ReactNode
   className?: string
   id?: string
-  noSnap?: boolean
 }
 
-export default function SectionWrapper({ children, className = '', id = '', noSnap = false }: SectionWrapperProps) {
-  const snapClass = noSnap ? 'no-snap' : 'section-snap'
-  
+export default function SectionWrapper({ children, className = '', id = '' }: SectionWrapperProps) {
   return (
     <section
       id={id}
-      className={`${snapClass} flex items-center justify-center ${className}`}
+      className={`flex items-center justify-center ${className}`}
     >
       <motion.div
         initial={{ opacity: 0, y: 50 }}

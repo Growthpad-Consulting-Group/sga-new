@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 export default function HomePage(): React.JSX.Element {
   return (
     <>
-      <Hero 
+      <Hero
         countryName="SGA Group"
         countryDescription="Leading security solutions across East Africa. Protecting your business with excellence."
         whiteBackground={true}
@@ -47,45 +47,49 @@ export default function HomePage(): React.JSX.Element {
           { label: 'Explore for Corporate clients', href: '#corporate', primary: true }
         ]}
       />
-      
-      <SectionSeparator />
-      
-      <ParallaxSection 
-        title="Who We Are"
-        h2Title="About SGA Group"
-        description="We are dedicated to supporting sustainable safety and security for our customers and communities, through exceptional personnel, innovative systems and uncompromising integrity."
-      />
-      
-      <SectionSeparator />
-      
-      <OurImpactInNumbers />
-      
-      <SectionSeparator />
-      
-      <GroupIntegratedSolutions 
-        title="What we Offer"
-      />
-      
-      <SectionSeparator />
-      
-      <WhereWeOperate />
-      
-      <SectionSeparator />
-      
-      <SustainabilityESG />
-      
-      <SectionSeparator />
-      
-      <News staticPattern={true} />
-      
-      <SectionSeparator />
-      
-      <HappyClients />
-      
-      <SectionSeparator />
-      
+
+      <div className="relative">
+        <ParallaxSection
+          title="Who We Are"
+          h2Title="About SGA Group"
+          description="We are dedicated to supporting sustainable safety and security for our customers and communities, through exceptional personnel, innovative systems and uncompromising integrity."
+        />
+      </div>
+
+      <div className="relative">
+        <OurImpactInNumbers />
+        <SectionSeparator />
+      </div>
+
+      <div className="relative">
+        <GroupIntegratedSolutions
+          title="What we Offer"
+        />
+        <SectionSeparator />
+      </div>
+
+      <div className="relative">
+        <WhereWeOperate />
+        <SectionSeparator />
+      </div>
+
+      <div className="relative">
+        <SustainabilityESG />
+        <SectionSeparator />
+      </div>
+
+      <div className="relative">
+        <News staticPattern={true} />
+        <SectionSeparator />
+      </div>
+
+      <div className="relative">
+        <HappyClients />
+        <SectionSeparator />
+      </div>
+
       <JoinOurMission />
-      
+
       <GroupFooter />
       <FloatingWhatsApp />
     </>
