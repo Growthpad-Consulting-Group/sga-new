@@ -86,7 +86,10 @@ export default function HomePage(): React.JSX.Element {
         <SectionSeparator />
       </div>
 
-      <JoinOurMission />
+      <div className="relative">
+        <JoinOurMission />
+        <SectionSeparator />
+      </div>
 
       <GroupFooter />
       <FloatingWhatsApp />

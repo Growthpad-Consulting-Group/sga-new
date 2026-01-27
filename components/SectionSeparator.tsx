@@ -14,7 +14,7 @@ export default function SectionSeparator({
         backgroundImage: 'url(/images/misc/section-pattern.svg)',
         backgroundRepeat: 'repeat-x',
         backgroundPosition: 'center',
-        backgroundSize: 'auto 70%',
+        backgroundSize: 'auto 80%',
         pointerEvents: 'none'
       }}
     />

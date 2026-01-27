@@ -136,7 +136,7 @@ export default function WhereWeOperate(): React.JSX.Element {
             <Image
               src="/images/group/geographic-footprint.svg"
               alt="Geographic Footprint"
-              width={600}
+              width={500}
               height={0}
               className="object-cover transition-transform duration-300 group-hover:scale-110"
             />

@@ -61,11 +61,11 @@ export default function Header() {
   const getHeaderClasses = () => {
     const baseClasses = 'fixed left-0 right-0 z-40 transition-all duration-300'
     if (isCountryPage) {
-      return isScrolled 
+      return isScrolled
         ? `${baseClasses} top-0 bg-white/90 backdrop-blur-md border-b border-white/20 shadow-lg`
         : `${baseClasses} top-16 bg-transparent`
     }
-    return isScrolled 
+    return isScrolled
       ? `${baseClasses} top-0 bg-white/80 backdrop-blur-md border-b border-white/20 shadow-lg`
       : `${baseClasses} top-0 bg-white`
   }
@@ -112,7 +112,7 @@ export default function Header() {
                 <motion.a
                   key={social.icon}
                   href={social.url}
-                  target="_blank" 
+                  target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.2 }}
                   whileTap={{ scale: 0.9 }}
@@ -139,15 +139,15 @@ export default function Header() {
                   <span>Call: {countryPhone}</span>
                 </motion.a>
               )}
-              
+
               {countries.map((country) => {
                 const active = isActiveCountry(country.path)
-                const flagButtonColor = active 
-                  ? 'bg-primary-orange text-white' 
-                  : isCountryPage && !isScrolled 
+                const flagButtonColor = active
+                  ? 'bg-primary-orange text-white'
+                  : isCountryPage && !isScrolled
                     ? 'text-white/80 hover:text-white hover:bg-white/20'
                     : 'text-black/80 hover:text-black hover:bg-light-grey'
-                
+
                 return (
                   <motion.button
                     key={country.code}
@@ -164,7 +164,7 @@ export default function Header() {
                   </motion.button>
                 )
               })}
-              
+
               {/* Country HQ Text */}
               {isCountryPage && countryName && (
                 <div className="hidden sm:flex items-center">
@@ -173,7 +173,7 @@ export default function Header() {
                   </span>
                 </div>
               )}
-              
+
               {/* Down Arrow Button */}
               <motion.button
                 onClick={() => setCountryModalOpen(true)}
@@ -187,7 +187,7 @@ export default function Header() {
             </div>
           </div>
         </div>
-        
+
         {/* Border Bottom */}
         <div className={containerClasses}>
           <div className={`border-b-2 ${getBorderColor()} transition-all duration-300`}></div>
@@ -196,7 +196,7 @@ export default function Header() {
 
       {/* Main Navigation */}
       <nav className={containerClasses}>
-        <div className="flex items-center h-16 sm:h-28">
+        <div className="flex items-center h-16 sm:h-24">
           {/* Logo - Left */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -222,7 +222,7 @@ export default function Header() {
                 const isRoute = !item.href.startsWith('#')
                 const isActive = isRoute ? pathname === item.href : false
                 const NavComponent = isRoute ? motion(Link) : motion.a
-                
+
                 return (
                   <NavComponent
                     key={item.href}
@@ -244,7 +244,7 @@ export default function Header() {
               const isRoute = !item.href.startsWith('#')
               const isActive = isRoute ? pathname === item.href : false
               const NavComponent = isRoute ? motion(Link) : motion.a
-              
+
               return (
                 <NavComponent
                   key={item.href}
@@ -253,18 +253,17 @@ export default function Header() {
                   className={`${buttonHoverClasses} font-nav ${item.label === 'UPDATES' ? 'font-semibold' : 'font-medium'} flex items-center gap-1.5 text-md ${getNavTextColor(isActive)}`}
                 >
                   {item.icon && (
-                    <Icon 
-                      icon={item.icon} 
-                      className={`w-4 h-4 xl:w-5 xl:h-5 ${
-                        isCountryPage && !isScrolled ? 'text-white' : 'text-primary-orange'
-                      }`} 
+                    <Icon
+                      icon={item.icon}
+                      className={`w-4 h-4 xl:w-5 xl:h-5 ${isCountryPage && !isScrolled ? 'text-white' : 'text-primary-orange'
+                        }`}
                     />
                   )}
                   {item.label}
                 </NavComponent>
               )
             })}
-            
+
             {/* Enquire Now Button */}
             <motion.button
               onClick={openModal}
@@ -278,9 +277,8 @@ export default function Header() {
 
           {/* Mobile Menu Button */}
           <button
-            className={`lg:hidden p-2 ${buttonHoverClasses} ${
-              isCountryPage && !isScrolled ? 'text-white' : 'text-dark-charcoal'
-            }`}
+            className={`lg:hidden p-2 ${buttonHoverClasses} ${isCountryPage && !isScrolled ? 'text-white' : 'text-dark-charcoal'
+              }`}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -323,15 +321,14 @@ export default function Header() {
                   <span>Call: {countryPhone}</span>
                 </motion.a>
               )}
-              
+
               {currentNavItems.map((item) => {
                 const isRoute = !item.href.startsWith('#')
                 const isActive = isRoute ? pathname === item.href : false
                 const isUpdates = item.label === 'UPDATES'
-                const itemClasses = `${mobileMenuItemClasses} ${
-                  isActive ? 'text-primary-orange font-semibold' : 'text-dark-charcoal hover:text-primary-orange'
-                } ${isUpdates ? 'font-bold' : ''}`
-                
+                const itemClasses = `${mobileMenuItemClasses} ${isActive ? 'text-primary-orange font-semibold' : 'text-dark-charcoal hover:text-primary-orange'
+                  } ${isUpdates ? 'font-bold' : ''}`
+
                 if (isRoute) {
                   return (
                     <Link
@@ -345,7 +342,7 @@ export default function Header() {
                     </Link>
                   )
                 }
-                
+
                 return (
                   <a
                     key={item.href}
@@ -358,7 +355,7 @@ export default function Header() {
                   </a>
                 )
               })}
-              
+
               <motion.button
                 onClick={() => {
                   setMobileMenuOpen(false)
@@ -386,7 +383,7 @@ export default function Header() {
               className="fixed inset-0 bg-black/30 backdrop-blur-md z-50"
               onClick={() => setCountryModalOpen(false)}
             />
-            
+
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -395,7 +392,7 @@ export default function Header() {
               className="fixed inset-0 z-50 flex items-center justify-center p-4"
               onClick={() => setCountryModalOpen(false)}
             >
-              <div 
+              <div
                 className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8 md:gap-12 px-4"
                 onClick={(e) => e.stopPropagation()}
               >
@@ -417,15 +414,15 @@ export default function Header() {
                       className="group relative w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-full bg-white border-2 sm:border-4 border-primary-orange flex flex-col items-center justify-center shadow-xl transition-all overflow-hidden"
                       aria-label={`Enter ${country.name}`}
                     >
-                      <Icon 
-                        icon={country.flag} 
-                        className="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 z-10" 
+                      <Icon
+                        icon={country.flag}
+                        className="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 z-10"
                       />
-                      
+
                       <div className="absolute bottom-2 sm:bottom-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <Icon 
-                          icon="mdi:arrow-right" 
-                          className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-primary-orange" 
+                        <Icon
+                          icon="mdi:arrow-right"
+                          className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-primary-orange"
                         />
                       </div>
                     </motion.button>

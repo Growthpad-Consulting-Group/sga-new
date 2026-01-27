@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { Icon } from '@iconify/react'
-import DecorativePattern from './DecorativePattern'
 
 interface Client {
   name: string
@@ -65,18 +64,16 @@ export default function HappyClients() {
             <p className="text-md font-medium text-dark-charcoal uppercase tracking-wider">
               our clients
             </p>
-            <div className="flex items-end justify-between border-b border-dark-charcoal/20 pb-4">
-              <div className="section-title-container !pb-0 !after:bottom-[-4px]">
-                <h3 className="section-title text-xl md:text-5xl font-bold text-primary-orange">
-                  Happy Clients
-                </h3>
-              </div>
+            <div className="flex items-end justify-between section-title-container !pb-4 mb-4">
+              <h3 className="section-title text-xl md:text-5xl font-bold text-primary-orange">
+                Happy Clients
+              </h3>
               <div className="flex items-center gap-3 mb-1">
-                <button className="w-10 h-10 rounded-full border-2 border-primary-orange flex items-center justify-center text-primary-orange hover:bg-primary-orange hover:text-white transition-all duration-300">
-                  <Icon icon="mdi:chevron-left" className="w-6 h-6" />
+                <button className="w-10 h-10 rounded-full border-2 border-dark-charcoal flex items-center justify-center text-dark-charcoal hover:border-primary-orange hover:text-primary-orange transition-all duration-300">
+                  <Icon icon="mingcute:arrow-left-line" className="w-6 h-6" />
                 </button>
-                <button className="w-10 h-10 rounded-full border-2 border-primary-orange flex items-center justify-center text-primary-orange hover:bg-primary-orange hover:text-white transition-all duration-300">
-                  <Icon icon="mdi:chevron-right" className="w-6 h-6" />
+                <button className="w-10 h-10 rounded-full border-2 border-dark-charcoal flex items-center justify-center text-dark-charcoal hover:border-primary-orange hover:text-primary-orange transition-all duration-300">
+                  <Icon icon="mingcute:arrow-right-line" className="w-6 h-6" />
                 </button>
               </div>
             </div>
@@ -85,22 +82,29 @@ export default function HappyClients() {
 
         <div className="mb-10">
           <div className="flex flex-wrap gap-2 justify-start">
-            {filterOptions.map((filter) => (
-              <button
-                key={filter}
-                onClick={() => setActiveFilter(filter)}
-                className={`px-4 py-2 rounded-full border border-primary-orange text-xs font-semibold uppercase transition-colors ${activeFilter === filter
-                    ? 'bg-primary-orange border-primary-orange text-white'
-                    : 'text-primary-orange hover:bg-primary-orange hover:text-white'
-                  }`}
-              >
-                {filter}
-              </button>
-            ))}
+            {filterOptions.map((filter) => {
+              const count = filter === 'ALL'
+                ? clients.length
+                : clients.filter(client => client.category === filter).length;
+
+              return (
+                <button
+                  key={filter}
+                  onClick={() => setActiveFilter(filter)}
+                  className={`px-6 py-3 rounded-full border transition-colors flex items-center gap-1 text-md font-medium uppercase ${activeFilter === filter
+                    ? 'bg-primary-orange text-white border-primary-orange'
+                    : 'border-dark-charcoal text-dark-charcoal hover:border-primary-orange hover:text-primary-orange'
+                    }`}
+                >
+                  {filter}
+                  <sup className="text-[10px] opacity-70">({count})</sup>
+                </button>
+              );
+            })}
           </div>
         </div>
 
-        <div className="border border-dark-charcoal/20 rounded-lg grid grid-cols-2 md:grid-cols-4 overflow-hidden">
+        <div className="border-2 border-dark-charcoal/30 rounded-xl grid grid-cols-2 md:grid-cols-4 overflow-hidden">
           {filteredClients.map((client, index) => {
             // Calculate row and column for desktop (4 cols) and mobile (2 cols)
             const rowDesktop = Math.floor(index / 4);
@@ -123,16 +127,16 @@ export default function HappyClients() {
                 transition={{ duration: 0.5, delay: index * 0.05 }}
                 whileHover={{ scale: 1.02, zIndex: 10 }}
                 className={`
-                  border-r border-b border-dark-charcoal/20
+                  border-r-2 border-b-2 border-dark-charcoal/30
                   ${isLastColDesktop ? 'md:border-r-0' : ''}
                   ${isLastColMobile ? 'border-r-0 md:border-r' : ''}
                   ${isLastRowMobile ? 'border-b-0 md:border-b' : ''}
                   ${isLastRowDesktop ? 'md:border-b-0' : ''}
-                  p-4 md:p-6 flex items-center justify-center h-28 md:h-44 
+                  p-2 md:p-4 flex items-center justify-center h-32 md:h-52 
                   hover:bg-light-grey transition-all duration-300
                 `}
               >
-                <div className="relative w-full h-12 md:h-16">
+                <div className="relative w-full h-24 md:h-40">
                   <Image
                     src={client.logo}
                     alt={client.name}
@@ -145,7 +149,6 @@ export default function HappyClients() {
           })}
         </div>
       </motion.div>
-      <DecorativePattern className="transition-none" static={true} />
     </section>
   )
 }
