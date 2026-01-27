@@ -1,6 +1,5 @@
 'use client'
 
-import SectionWrapper from './SectionWrapper'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { useEnquiryModal } from '@/contexts/EnquiryModalContext'
@@ -34,7 +33,7 @@ interface OurFoundationProps {
   description?: string
 }
 
-export default function OurFoundation({ 
+export default function OurFoundation({
   title = "Our Foundation",
   description = "Built on the pillars that define who we are and drive our commitment to excellence."
 }: OurFoundationProps): React.JSX.Element {
@@ -55,11 +54,11 @@ export default function OurFoundation({
             viewport={{ once: true }}
             className="space-y-3"
           >
-            <p className="text-3xl font-bold text-primary-orange capitalize tracking-wider">
+            <p className="text-5xl font-bold text-primary-orange capitalize">
               our foundation
             </p>
             <div className="section-title-container">
-              <h3 className="section-title text-xl md:text-lg font-normal text-navy-blue">
+              <h3 className="section-title text-xl md:text-xl font-normal text-dark-charcoal">
                 Guided by purpose, driven by values.
               </h3>
             </div>
@@ -77,7 +76,7 @@ export default function OurFoundation({
               whileHover={{ scale: 1.05, y: -8 }}
               className="flex flex-col items-center"
             >
-              <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden shadow-xl group cursor-pointer">
+              <div className="relative w-80 h-80 sm:w-96 sm:h-96 lg:w-[28rem] lg:h-[28rem] rounded-full overflow-hidden shadow-xl group cursor-pointer">
                 {/* Background Image */}
                 <Image
                   src={foundation.imageUrl}

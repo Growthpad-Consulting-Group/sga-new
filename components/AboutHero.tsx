@@ -10,7 +10,7 @@ interface AboutHeroProps {
 export default function AboutHero({ imageUrl = 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200&h=600&fit=crop' }: AboutHeroProps): React.JSX.Element {
   return (
     <section id="hero" className="section-snap relative bg-gray-100 text-dark-charcoal pt-8 sm:pt-12 pb-0">
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -20,12 +20,12 @@ export default function AboutHero({ imageUrl = 'https://images.unsplash.com/phot
           <h2 className="text-sm md:text-base font-normal text-gray-700 uppercase tracking-wide">
             Who We Are
           </h2>
-          <h1 className="text-xl md:text-2xl lg:text-3xl font-bold">
+          <h1 className="text-xl md:text-2xl lg:text-4xl font-bold">
             <span className="text-primary-orange">Security That Matters Across Africa</span>
           </h1>
         </motion.div>
       </div>
-      
+
       {/* Large image without margin-x */}
       <div className="w-full">
         <motion.div

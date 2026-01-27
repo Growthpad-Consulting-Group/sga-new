@@ -44,7 +44,7 @@ export default function Membership() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-100px' }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        className="w-full mx-auto px-4 sm:px-6 lg:px-8"
       >
         <div className="mb-12">
           <motion.div
@@ -53,9 +53,9 @@ export default function Membership() {
             viewport={{ once: true }}
             className="space-y-3"
           >
-            <h3 className="text-xl md:text-3xl font-normal text-center text-primary-orange relative pb-3">
+            <h3 className="text-xl md:text-5xl font-bold text-center text-primary-orange relative pb-3">
               <span>Membership</span>
-              
+
             </h3>
           </motion.div>
         </div>
@@ -69,10 +69,10 @@ export default function Membership() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ scale: 1.05 }}
-              className="flex items-center justify-center p-4 md:p-6 h-32 md:h-40 bg-gray-100 rounded-lg hover:bg-gray-100 transition-colors"
+              className="flex items-center justify-center p-4 md:p-6 h-48 md:h-64 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
             >
               <div className="relative w-full h-16 md:h-20">
-                
+                {/* Image placeholder - currently hidden per request */}
               </div>
             </motion.div>
           ))}

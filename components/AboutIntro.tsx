@@ -3,8 +3,6 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { Icon } from '@iconify/react'
-import SectionWrapper from './SectionWrapper'
-import DecorativePattern from './DecorativePattern'
 
 interface AboutIntroProps {
   imageUrl?: string
@@ -18,7 +16,7 @@ export default function AboutIntro({ imageUrl = '/images/group/about/about-2.png
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-100px' }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        className="w-full mx-auto px-4 sm:px-6 lg:px-8"
       >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-stretch">
           {/* Left Column - Content */}
@@ -30,21 +28,22 @@ export default function AboutIntro({ imageUrl = '/images/group/about/about-2.png
             className="flex flex-col justify-center space-y-5"
           >
             <div className="relative">
-              <Icon 
-                icon="mdi:plus-thick" 
-                className="absolute -top-2 -left-2 md:-top-3 md:-left-3 w-8 h-8 md:w-10 md:h-10 text-primary-orange" 
-                style={{ strokeWidth: 3 }}
+              <Icon
+                icon="mdi:plus-thick"
+                className="absolute -top-6 -left-6 md:-top-10 md:-left-8 w-12 h-12 md:w-12 md:h-12 text-primary-orange z-0"
               />
-              <div className="">
-                <h2 className=" text-xl md:text-4xl font-bold text-primary-orange pl-6 md:pl-8">
+              <div className="relative z-10">
+                <h2 className="text-xl md:text-6xl font-bold text-primary-orange">
                   Protecting people, businesses, and communities since 1969.
                 </h2>
               </div>
             </div>
-            <p className="text-sm md:text-base text-gray-700 leading-relaxed">
-              SGA Security is the region's leading Security Solutions provider with fixed base operations in East Africa servicing security contracts throughout the continent. </p>
-            <p>With over 55 years of service, SGA Security is dedicated to supporting sustainable safety and security for customers and the community by providing the best security solutions founded in our people, innovation and our commitment to social responsibility.</p>
-            
+            <p className="text-sm md:text-2xl text-gray-600">
+              SGA Security is the region's leading Security Solutions provider with fixed base operations in East Africa servicing security contracts throughout the continent.
+              <br />
+              <br />
+              With over 55 years of service, SGA Security is dedicated to supporting sustainable safety and security for customers and the community by providing the best security solutions founded in our people, innovation and our commitment to social responsibility.</p>
+
           </motion.div>
 
           {/* Right Column - Image */}
@@ -65,9 +64,6 @@ export default function AboutIntro({ imageUrl = '/images/group/about/about-2.png
           </motion.div>
         </div>
       </motion.div>
-      <div className="absolute bottom-0 left-0 right-0 w-full">
-        <DecorativePattern className="transition-none" static={true} />
-      </div>
     </section>
   )
 }

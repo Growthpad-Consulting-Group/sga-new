@@ -3,7 +3,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
-import DecorativePattern from './DecorativePattern'
 
 interface TimelineEvent {
   year: string
@@ -44,7 +43,7 @@ export default function OurJourney(): React.JSX.Element {
   const [touchStart, setTouchStart] = useState<number | null>(null)
   const [touchEnd, setTouchEnd] = useState<number | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
-  
+
   const itemsPerSlide = 3
   const totalSlides = Math.ceil(timelineEvents.length / itemsPerSlide)
 
@@ -76,7 +75,7 @@ export default function OurJourney(): React.JSX.Element {
 
   const onTouchEnd = () => {
     if (!touchStart || !touchEnd) return
-    
+
     const distance = touchStart - touchEnd
     const isLeftSwipe = distance > minSwipeDistance
     const isRightSwipe = distance < -minSwipeDistance
@@ -92,7 +91,7 @@ export default function OurJourney(): React.JSX.Element {
   const handleWheel = (e: React.WheelEvent) => {
     // Prevent default scrolling behavior
     e.preventDefault()
-    
+
     // Check if it's a horizontal scroll (trackpad swipe)
     if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
       if (e.deltaX > 30) {
@@ -112,16 +111,16 @@ export default function OurJourney(): React.JSX.Element {
   }
 
   return (
-    <div id="our-journey" className="bg-light-grey py-16 sm:py-20">
+    <div id="our-journey" className="bg-light-grey py-24 sm:py-24 md:py-32">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-100px' }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        className="w-full mx-auto px-4 sm:px-6 lg:px-8"
       >
         {/* Header */}
-        <div className="mb-16">
+        <div className="mb-24">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -129,10 +128,10 @@ export default function OurJourney(): React.JSX.Element {
             className="flex items-start justify-between gap-4"
           >
             <div className="flex-1">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-normal text-primary-orange mb-4">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary-orange mb-4">
                 Our Journey
               </h2>
-              <p className="text-base md:text-lg text-gray-700 max-w-2xl">
+              <p className="text-base md:text-xl text-gray-700">
                 More than five decades of growth, innovation, and trusted security across East Africa.
               </p>
             </div>
@@ -154,7 +153,7 @@ export default function OurJourney(): React.JSX.Element {
         </div>
 
         {/* Horizontal Timeline */}
-        <div 
+        <div
           ref={containerRef}
           className="relative overflow-hidden"
           onTouchStart={onTouchStart}
@@ -172,7 +171,7 @@ export default function OurJourney(): React.JSX.Element {
           >
             {/* Timeline Line */}
             <div className="absolute top-6 left-0 right-0 h-0.5 bg-gray-300 z-0"></div>
-            
+
             {/* Timeline Events */}
             <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4">
               {getCurrentEvents().map((event, index) => (
@@ -185,20 +184,20 @@ export default function OurJourney(): React.JSX.Element {
                 >
                   {/* Timeline Dot - Aligned with year */}
                   <div className="absolute top-0 left-0 w-8 h-8 bg-primary-orange rounded-full z-20"></div>
-                  
+
                   {/* Year */}
                   <div className="ml-0 mt-16">
-                    <h3 className="text-3xl md:text-4xl lg:text-5xl font-normal text-primary-orange mb-4">
+                    <h3 className="text-3xl md:text-4xl lg:text-6xl font-bold text-primary-orange mb-4">
                       {event.year}
                     </h3>
-                    
+
                     {/* Title */}
-                    <h4 className="text-lg md:text-xl font-semibold text-navy-blue mb-3">
+                    <h4 className="text-lg md:text-3xl font-semibold text-dark-charcoal mb-3">
                       {event.title}
                     </h4>
-                    
+
                     {/* Description */}
-                    <p className="text-sm md:text-base text-gray-700 leading-relaxed">
+                    <p className="text-sm md:text-xl text-gray-700 leading-relaxed">
                       {event.description}
                     </p>
                   </div>
@@ -208,7 +207,6 @@ export default function OurJourney(): React.JSX.Element {
           </motion.div>
         </div>
       </motion.div>
-      <DecorativePattern className="transition-none" static={true} />
     </div>
   )
 }

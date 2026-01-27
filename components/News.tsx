@@ -23,7 +23,7 @@ interface NewsProps {
 
 const newsItems: NewsItem[] = [
   {
-    category: 'Advisory',
+    category: 'Advisory Report',
     title: 'Latest Security Updates',
     summary: 'Stay informed with the latest security news and industry updates from SGA. Learn about new security measures and best practices.',
     image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop',
