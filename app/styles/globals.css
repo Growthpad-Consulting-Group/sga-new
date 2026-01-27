@@ -145,12 +145,12 @@
 
   /* Headings use Helvetica Neue */
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading tracking-tight-2 !important;
+    @apply font-heading tracking-tight-0 !important;
   }
 
   /* Buttons use Helvetica Neue and uppercase */
   button {
-    @apply font-heading uppercase tracking-tight-2 !important;
+    @apply font-heading uppercase tracking-tight-0 !important;
   }
 }
 
@@ -160,13 +160,20 @@
     @apply uppercase;
   }
   
+  /* Flag icon utility */
+  .flag-icon {
+    @apply rounded-full;
+    object-fit: cover;
+    object-position: center;
+  }
+  
 }
 
 @layer utilities {
   .section-snap {
     scroll-snap-align: start;
     height: 100vh;
-    scroll-margin-top: 7rem; /* 112px - accounts for header height */
+    scroll-margin-top: 7rem; /* 11 - accounts for header height */
   }
   
   @media (min-width: 640px) {

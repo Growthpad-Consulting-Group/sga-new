@@ -70,7 +70,7 @@ export default function Hero({
             className="space-y-6 lg:col-span-3 flex flex-col justify-start -mt-8 lg:-mt-12"
           >
             {customH3 && (
-              <h3 className={`text-sm md:text-3xl font-bold tracking-wider ${secondaryTextColorClass}`}>
+              <h3 className={`text-sm md:text-2xl font-bold tracking-wider ${secondaryTextColorClass}`}>
                 {customH3}
               </h3>
             )}

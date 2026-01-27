@@ -14,7 +14,7 @@ module.exports = {
         'nav': ['Arial', 'Helvetica Neue', 'sans-serif'],
       },
       letterSpacing: {
-        'tight-2': '-2%',
+        'tight-0': '0 !important',
       },
       colors: {
         primary: {

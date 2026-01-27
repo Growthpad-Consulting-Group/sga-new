@@ -119,7 +119,7 @@ export default function Header() {
                   className={`${buttonHoverClasses} ${getTextColor()}`}
                   aria-label={social.label}
                 >
-                  <Icon icon={social.icon} className="w-4 h-4 sm:w-5 sm:h-5" />
+                  <Icon icon={social.icon} className="w-4 h-4 sm:w-6 sm:h-6" />
                 </motion.a>
               ))}
             </div>
@@ -158,8 +158,8 @@ export default function Header() {
                     aria-label={`Switch to ${country.name}`}
                     title={country.name}
                   >
-                    <div className="w-6 h-6 sm:w-6 sm:h-6 rounded-full overflow-hidden flex items-center justify-center ring-1 ring-white/20">
-                      <Icon icon={country.flag} className="w-full h-full scale-125" />
+                    <div className="w-6 h-6 sm:w-10 sm:h-10 rounded-full overflow-hidden flex items-center justify-center ring-1 ring-white/20 bg-white/10 backdrop-blur-sm">
+                      <Icon icon={country.flag} className="w-4 h-4 sm:w-6 sm:h-6 flag-icon" />
                     </div>
                   </motion.button>
                 )
@@ -196,7 +196,7 @@ export default function Header() {
 
       {/* Main Navigation */}
       <nav className={containerClasses}>
-        <div className="flex items-center h-16 sm:h-20">
+        <div className="flex items-center h-16 sm:h-28">
           {/* Logo - Left */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -208,8 +208,8 @@ export default function Header() {
               <Image
                 src="/images/logo.svg"
                 alt="SGA Security Logo"
-                width={160}
-                height={80}
+                width={200}
+                height={0}
                 priority
               />
             </Link>
@@ -228,7 +228,7 @@ export default function Header() {
                     key={item.href}
                     href={item.href}
                     whileHover={{ y: -2 }}
-                    className={`${buttonHoverClasses} font-nav font-medium text-sm ${getNavTextColor(isActive)}`}
+                    className={`${buttonHoverClasses} font-nav font-bold tracking-widest text-md ${getNavTextColor(isActive)}`}
                   >
                     {item.label}
                   </NavComponent>
