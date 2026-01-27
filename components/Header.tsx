@@ -252,12 +252,14 @@ export default function Header() {
                   whileHover={{ y: -2 }}
                   className={`${buttonHoverClasses} font-nav font-medium flex items-center gap-1.5 text-sm ${getNavTextColor(isActive)}`}
                 >
-                  <Icon 
-                    icon={item.icon} 
-                    className={`w-4 h-4 xl:w-5 xl:h-5 ${
-                      isCountryPage && !isScrolled ? 'text-white' : 'text-primary-orange'
-                    }`} 
-                  />
+                  {item.icon && (
+                    <Icon 
+                      icon={item.icon} 
+                      className={`w-4 h-4 xl:w-5 xl:h-5 ${
+                        isCountryPage && !isScrolled ? 'text-white' : 'text-primary-orange'
+                      }`} 
+                    />
+                  )}
                   {item.label}
                 </NavComponent>
               )
