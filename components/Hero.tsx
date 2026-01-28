@@ -61,13 +61,13 @@ export default function Hero({
   if (twoCardLayout) {
     return (
       <SectionWrapper id="hero" className={`${bgClass} relative pt-20 sm:pt-28 lg:pt-32`}>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[80vh]">
+        <div className={`grid grid-cols-1 ${orangeBackground ? 'lg:grid-cols-2' : 'lg:grid-cols-5'} gap-12 lg:gap-16 items-center min-h-[80vh]`}>
           {/* Left Card - Content */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-8 lg:col-span-1 flex flex-col justify-start"
+            className={`space-y-8 ${orangeBackground ? 'lg:col-span-1' : 'lg:col-span-3'} flex flex-col justify-start`}
           >
             {customH3 && (
               <h3 className={`text-sm md:text-2xl font-bold tracking-wider ${secondaryTextColorClass}`}>
@@ -180,7 +180,10 @@ export default function Hero({
                       </span>
                       {/* Arrow Icon - Bottom Right */}
                       <div className="absolute bottom-4 right-6 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                        <Icon icon={button.arrowIcon || "iconoir:arrow-right-circle"} className="w-7 h-7 text-primary-orange" />
+                        <Icon
+                          icon={button.arrowIcon || "iconoir:arrow-right-circle"}
+                          className={`w-7 h-7 ${orangeBackground ? 'text-primary-orange' : 'text-dark-charcoal'}`}
+                        />
                       </div>
                     </motion.a>
                   )
@@ -210,7 +213,7 @@ export default function Hero({
 
           {/* Right Card - Two Images as Marquees in Columns */}
           {images && images.length > 0 ? (
-            <div className="relative w-full h-[60vh] lg:h-[90vh] rounded-lg overflow-hidden flex flex-row lg:col-span-1">
+            <div className={`relative w-full h-[60vh] lg:h-[90vh] rounded-lg overflow-hidden flex flex-row ${orangeBackground ? 'lg:col-span-1' : 'lg:col-span-2'}`}>
               {/* Top feather effect */}
               <div className="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-white via-white/50 to-transparent z-10 pointer-events-none"></div>
               {/* Bottom feather effect */}
@@ -364,7 +367,7 @@ export default function Hero({
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="relative w-full h-[400px] lg:h-[600px] rounded-lg overflow-hidden lg:col-span-1"
+              className={`relative w-full h-[400px] lg:h-[600px] rounded-lg overflow-hidden ${orangeBackground ? 'lg:col-span-1' : 'lg:col-span-2'}`}
             >
               <Image
                 src={imageUrl}
