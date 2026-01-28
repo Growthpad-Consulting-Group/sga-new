@@ -26,7 +26,7 @@ export default function Footer() {
           <div className="sm:col-span-2 lg:col-span-1">
             <div className="mb-4 sm:mb-5">
               <Image
-                src="/images/sga-logo-white.svg"
+                src="/images/logo-white.svg"
                 alt="SGA Security"
                 width={150}
                 height={50}
@@ -34,9 +34,9 @@ export default function Footer() {
               />
             </div>
             <div className="relative">
-              <Icon 
-                icon="mdi:plus-thick" 
-                className="absolute -top-2 -left-2 w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-primary-orange font-bold" 
+              <Icon
+                icon="mdi:plus-thick"
+                className="absolute -top-2 -left-2 w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-primary-orange font-bold"
                 style={{ strokeWidth: 3 }}
               />
               <p className="text-light-grey text-sm sm:text-base pl-5 sm:pl-6 mt-2 leading-relaxed">

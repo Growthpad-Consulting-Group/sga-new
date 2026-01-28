@@ -207,7 +207,7 @@ export default function CountryHeader() {
           >
             <Link href="/" className="flex items-center">
               <Image
-                src={isAboutPage ? "/images/logo.svg" : "/images/sga-logo-white.svg"}
+                src={isAboutPage ? "/images/logo.svg" : "/images/logo-white.svg"}
                 alt="SGA Security Logo"
                 width={140}
                 height={40}

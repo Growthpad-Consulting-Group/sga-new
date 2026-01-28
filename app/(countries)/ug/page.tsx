@@ -27,7 +27,7 @@ const ugandaContent = {
 export default function UgandaPage(): React.JSX.Element {
   return (
     <>
-      <Hero 
+      <Hero
         countryName="Uganda"
         countryDescription="Leading security solutions in Uganda. Protecting your business with excellence."
         orangeBackground={true}
@@ -40,25 +40,13 @@ export default function UgandaPage(): React.JSX.Element {
         }
         customDescription="Protecting your offices, warehouses, banks, and teams with integrated guarding and technology solutions tailored to Uganda’s business environment."
         customButtons={[
-          { 
-            label: 'Explore for Individuals', 
-            href: '#individuals', 
-            primary: true,
-            simple: false,
-            className: 'group relative bg-navy-blue border-2 border-navy-blue text-white px-8 py-4 rounded-lg font-semibold transition-all text-left flex flex-col hover:bg-navy-blue w-full sm:flex-1'
-          },
-          { 
-            label: 'Explore for Corporate Clients', 
-            href: '#corporate', 
-            primary: false,
-            simple: false,
-            className: 'group relative bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-semibold transition-all text-left flex flex-col hover:bg-white hover:text-navy-blue w-full sm:flex-1'
-          }
+          { label: 'Explore for Individuals', href: '#individuals', primary: true },
+          { label: 'Explore for Corporate Clients', href: '#corporate', primary: true }
         ]}
       />
       <div id="about">
-        <About 
-          countryName="Uganda" 
+        <About
+          countryName="Uganda"
           countryContent={ugandaContent}
           customLayout={true}
           smallTitle="WHO WE ARE"
@@ -79,7 +67,7 @@ export default function UgandaPage(): React.JSX.Element {
         <Industries decorativePatternColors={['bg-red-600', 'bg-black', 'bg-yellow-500']} />
       </div>
       <div id="services">
-        <IntegratedSolutions 
+        <IntegratedSolutions
           decorativePatternColors={['bg-red-600', 'bg-black', 'bg-yellow-500']}
           whiteBackground={true}
         />
@@ -93,7 +81,7 @@ export default function UgandaPage(): React.JSX.Element {
       <div id="contact">
         <ContactInfo />
       </div>
-      <FloatingWhatsApp 
+      <FloatingWhatsApp
         singleCountry={true}
         country="Uganda"
         phone="+256772200048"

@@ -109,7 +109,7 @@ export default function CountryFooter() {
           <div className="sm:col-span-2 lg:col-span-1">
             <div className="mb-4 sm:mb-5">
               <Image
-                src="/images/sga-logo-white.svg"
+                src="/images/logo-white.svg"
                 alt="SGA Security"
                 width={150}
                 height={50}

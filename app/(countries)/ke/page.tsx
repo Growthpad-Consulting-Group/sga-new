@@ -27,7 +27,7 @@ const kenyaContent = {
 export default function KenyaPage(): React.JSX.Element {
   return (
     <>
-      <Hero 
+      <Hero
         countryName="Kenya"
         countryDescription="Leading security solutions in Kenya. Protecting your business with excellence."
         orangeBackground={true}
@@ -40,25 +40,13 @@ export default function KenyaPage(): React.JSX.Element {
         }
         customDescription="From Nairobi estates to Mombasa homes, SGA Kenya provides round-the-clock security you can trust."
         customButtons={[
-          { 
-            label: 'Explore for Individuals', 
-            href: '#individuals', 
-            primary: true,
-            simple: false,
-            className: 'group relative  border-2 border-navy-white text-white px-8 py-4 rounded-lg font-semibold transition-all text-left flex flex-col hover:bg-navy-blue w-full sm:flex-1'
-          },
-          { 
-            label: 'Explore for Corporate Clients', 
-            href: '#corporate', 
-            primary: false,
-            simple: false,
-            className: 'group relative bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-semibold transition-all text-left flex flex-col hover:bg-white hover:text-navy-blue w-full sm:flex-1'
-          }
+          { label: 'Explore for Individuals', href: '#individuals', primary: true },
+          { label: 'Explore for Corporate Clients', href: '#corporate', primary: true }
         ]}
       />
       <div id="about">
-        <About 
-          countryName="Kenya" 
+        <About
+          countryName="Kenya"
           countryContent={kenyaContent}
           customLayout={true}
           smallTitle="WHO WE ARE"
@@ -74,14 +62,14 @@ export default function KenyaPage(): React.JSX.Element {
         />
       </div>
       <div id="services">
-        <IntegratedSolutions 
+        <IntegratedSolutions
           decorativePatternColors={['bg-red-600', 'bg-green-600', 'bg-black']}
           whiteBackground={true}
           staticPattern={true}
         />
       </div>
       <div id="industries">
-        <Industries 
+        <Industries
           backgroundColor="bg-light-grey"
           decorativePatternColors={['bg-red-600', 'bg-green-600', 'bg-black']}
           staticPattern={true}
@@ -96,7 +84,7 @@ export default function KenyaPage(): React.JSX.Element {
       <div id="contact">
         <ContactInfo />
       </div>
-      <FloatingWhatsApp 
+      <FloatingWhatsApp
         singleCountry={true}
         country="Kenya"
         phone="+254111024000"

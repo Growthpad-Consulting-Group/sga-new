@@ -35,12 +35,15 @@ export default async function RootLayout({ children }: RootLayoutProps) {
   const canonicalUrl = getCanonicalUrl(country, pathname)
   const hrefLangLinks = formatHrefLangLinks(pathname)
 
+  // Determine if it's a country-specific layout that needs overlay header
+  const isCountryPage = pathname.startsWith('/ke') || pathname.startsWith('/ug') || pathname.startsWith('/tz')
+
   return (
     <html lang={countryMeta.locale.split('_')[0]}>
       <head>
         {/* Canonical URL */}
         <link rel="canonical" href={canonicalUrl} />
-        
+
         {/* Hreflang tags for alternate country versions */}
         {hrefLangLinks.map((link) => (
           <link
@@ -50,7 +53,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
             href={link.href}
           />
         ))}
-        
+
         {/* Country-specific metadata */}
         <meta name="geo.region" content={countryMeta.region} />
         <meta name="geo.placename" content={countryMeta.name} />
@@ -60,7 +63,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
           <EnquiryModalProvider>
             <CVModalProvider>
               <Header />
-              <main className="pt-28 sm:pt-32">
+              <main className={isCountryPage ? "" : "pt-28 sm:pt-32"}>
                 {children}
               </main>
               <ConditionalFooter />

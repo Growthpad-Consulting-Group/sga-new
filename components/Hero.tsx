@@ -33,8 +33,8 @@ interface HeroProps {
   customButtons?: CustomButton[] | null
 }
 
-export default function Hero({ 
-  countryName = 'SGA Group', 
+export default function Hero({
+  countryName = 'SGA Group',
   countryDescription = 'Leading security solutions across East Africa',
   whiteBackground = false,
   orangeBackground = false,
@@ -51,23 +51,23 @@ export default function Hero({
   const [toggleValue, setToggleValue] = useState('corporate')
   const bgClass = orangeBackground
     ? 'bg-primary-orange text-white'
-    : whiteBackground 
-    ? 'bg-white text-dark-charcoal' 
-    : 'bg-gradient-to-br from-navy-blue via-navy-blue/90 to-dark-charcoal text-white'
-  
+    : whiteBackground
+      ? 'bg-white text-dark-charcoal'
+      : 'bg-gradient-to-br from-navy-blue via-navy-blue/90 to-dark-charcoal text-white'
+
   const textColorClass = orangeBackground ? 'text-white' : whiteBackground ? 'text-dark-charcoal' : 'text-white'
   const secondaryTextColorClass = orangeBackground ? 'text-white/90' : whiteBackground ? 'text-gray-700' : 'text-light-grey'
-  
+
   if (twoCardLayout) {
     return (
-      <SectionWrapper id="hero" className={`${bgClass} relative`}>
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-20 items-center min-h-[80vh]">
+      <SectionWrapper id="hero" className={`${bgClass} relative pt-20 sm:pt-28 lg:pt-32`}>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[80vh]">
           {/* Left Card - Content */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-6 lg:col-span-3 flex flex-col justify-start -mt-8 lg:-mt-12"
+            className="space-y-8 lg:col-span-1 flex flex-col justify-start"
           >
             {customH3 && (
               <h3 className={`text-sm md:text-2xl font-bold tracking-wider ${secondaryTextColorClass}`}>
@@ -90,7 +90,7 @@ export default function Hero({
                 )}
               </h1>
             )}
-            
+
             <p className={`text-lg md:text-2xl ${secondaryTextColorClass} max-w-2xl`}>
               {customDescription || countryDescription}
             </p>
@@ -99,28 +99,25 @@ export default function Hero({
               <div className="relative inline-flex items-center bg-gray-200 rounded-full p-1">
                 <button
                   onClick={() => setToggleValue('individual')}
-                  className={`relative z-10 px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
-                    toggleValue === 'individual'
-                      ? 'text-white'
-                      : secondaryTextColorClass
-                  }`}
+                  className={`relative z-10 px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${toggleValue === 'individual'
+                    ? 'text-white'
+                    : secondaryTextColorClass
+                    }`}
                 >
                   Individual
                 </button>
                 <button
                   onClick={() => setToggleValue('corporate')}
-                  className={`relative z-10 px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
-                    toggleValue === 'corporate'
-                      ? 'text-white'
-                      : secondaryTextColorClass
-                  }`}
+                  className={`relative z-10 px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${toggleValue === 'corporate'
+                    ? 'text-white'
+                    : secondaryTextColorClass
+                    }`}
                 >
                   Corporate
                 </button>
                 <span
-                  className={`absolute top-1 bottom-1 rounded-full bg-primary-orange transition-all duration-300 ${
-                    toggleValue === 'corporate' ? 'left-1/2 right-1' : 'left-1 right-1/2'
-                  }`}
+                  className={`absolute top-1 bottom-1 rounded-full bg-primary-orange transition-all duration-300 ${toggleValue === 'corporate' ? 'left-1/2 right-1' : 'left-1 right-1/2'
+                    }`}
                 />
               </div>
             )}
@@ -132,13 +129,16 @@ export default function Hero({
                   const parts = label.split('Explore for ')
                   const topText = parts.length > 1 ? 'Explore for' : ''
                   const mainText = parts.length > 1 ? parts[1] : label
-                  
+
                   // Check if button should be rendered simply (for rounded-full buttons)
                   const isSimple = button.simple !== false && (button.className?.includes('rounded-full') || button.simple === true)
-                  
+
                   // Independent styling for each button
-                  const buttonClassName = button.className || `group relative bg-transparent border-2 border-primary-orange px-6 py-4 rounded-2xl font-semibold transition-all text-left hover:bg-primary-orange w-full sm:flex-1 h-44`
-                  
+                  const defaultBorderColor = orangeBackground ? 'border-white' : 'border-primary-orange'
+                  const defaultHoverBg = orangeBackground ? 'hover:bg-white' : 'hover:bg-primary-orange'
+
+                  const buttonClassName = button.className || `group relative bg-transparent border-2 ${defaultBorderColor} px-6 py-4 rounded-2xl font-semibold transition-all text-left ${defaultHoverBg} w-full sm:flex-1 h-44`
+
                   // Simple button structure for rounded-full buttons
                   if (isSimple) {
                     return (
@@ -154,17 +154,17 @@ export default function Hero({
                       </motion.a>
                     )
                   }
-                  
+
                   // Complex button structure with hover effects
                   // Check if button has navy background (active state)
                   const hasNavyBg = buttonClassName.includes('bg-navy-blue')
-                  const hoverTextColor = hasNavyBg ? 'group-hover:text-white' : (orangeBackground ? 'group-hover:text-navy-blue' : 'group-hover:text-white')
-                  const readMoreTextColor = hasNavyBg ? 'text-white' : (orangeBackground ? 'text-navy-blue' : 'text-white')
-                  
+                  const hoverTextColor = hasNavyBg ? 'group-hover:text-white' : (orangeBackground ? 'group-hover:text-dark-charcoal' : 'group-hover:text-white')
+                  const readMoreTextColor = hasNavyBg ? 'text-white' : (orangeBackground ? 'text-dark-charcoal' : 'text-white')
+
                   return (
-                  <motion.a
+                    <motion.a
                       key={`button-${index}`}
-                    href={button.href}
+                      href={button.href}
                       whileTap={{ scale: 0.98 }}
                       className={`${buttonClassName} relative`}
                       style={button.style}
@@ -176,13 +176,13 @@ export default function Hero({
                         <span className="text-3xl font-bold block">{mainText}</span>
                       </div>
                       <span className={`absolute bottom-4 left-6 flex items-center ${readMoreTextColor} opacity-0 group-hover:opacity-100 transition-all duration-300`}>
-                        <span className="text-md uppercase text-white/80">{button.readMoreText || 'Read More'}</span>
+                        <span className="text-md uppercase font-bold">{button.readMoreText || 'Read More'}</span>
                       </span>
                       {/* Arrow Icon - Bottom Right */}
                       <div className="absolute bottom-4 right-6 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                        <Icon icon={button.arrowIcon || "iconoir:arrow-right-circle"} className="w-7 h-7 text-black" />
+                        <Icon icon={button.arrowIcon || "iconoir:arrow-right-circle"} className="w-7 h-7 text-primary-orange" />
                       </div>
-                  </motion.a>
+                    </motion.a>
                   )
                 })}
               </div>
@@ -210,7 +210,7 @@ export default function Hero({
 
           {/* Right Card - Two Images as Marquees in Columns */}
           {images && images.length > 0 ? (
-            <div className="relative w-full h-[60vh] lg:h-[100vh] rounded-lg overflow-hidden flex flex-row lg:col-span-2">
+            <div className="relative w-full h-[60vh] lg:h-[90vh] rounded-lg overflow-hidden flex flex-row lg:col-span-1">
               {/* Top feather effect */}
               <div className="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-white via-white/50 to-transparent z-10 pointer-events-none"></div>
               {/* Bottom feather effect */}
@@ -252,7 +252,7 @@ export default function Hero({
                   ))}
                 </motion.div>
               </div>
-              
+
               {/* Right Column - Scrolls Up */}
               <div className="relative w-1/2 h-full rounded-r-lg overflow-hidden -ml-1">
                 <motion.div
@@ -325,7 +325,7 @@ export default function Hero({
                   </div>
                 </motion.div>
               </div>
-              
+
               {/* Second Image Marquee - Right Column - Scrolls Up */}
               <div className="relative w-1/2 h-full rounded-r-lg overflow-hidden -ml-1">
                 <motion.div
@@ -360,29 +360,29 @@ export default function Hero({
               </div>
             </div>
           ) : (
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="relative w-full h-[350px] lg:h-[450px] rounded-lg overflow-hidden lg:col-span-2"
-          >
-            <Image
-              src={imageUrl}
-              alt={`${countryName} Security Services`}
-              fill
-              className="object-contain"
-              priority
-            />
-          </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="relative w-full h-[400px] lg:h-[600px] rounded-lg overflow-hidden lg:col-span-1"
+            >
+              <Image
+                src={imageUrl}
+                alt={`${countryName} Security Services`}
+                fill
+                className="object-contain"
+                priority
+              />
+            </motion.div>
           )}
         </div>
-        
+
         {/* Scroll Down Animation */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 0.5 }}
-          className="absolute bottom-24 sm:bottom-32 left-1/2 transform -translate-x-1/2 z-20"
+          className="absolute bottom-8 sm:bottom-12 left-1/2 transform -translate-x-1/2 z-20"
         >
           <motion.div
             animate={{
@@ -401,8 +401,8 @@ export default function Hero({
               }
             }}
           >
-            <Icon 
-              icon="iconoir:arrow-down-circle" 
+            <Icon
+              icon="iconoir:arrow-down-circle"
               className={`w-8 h-8 mb-2 ${secondaryTextColorClass}`}
             />
             <span className={`text-sm ${secondaryTextColorClass} font-bold uppercase`}>SCROLL DOWN</span>
@@ -426,7 +426,7 @@ export default function Hero({
             <span className="block text-primary-orange mt-2">{countryName}</span>
           )}
         </motion.h1>
-        
+
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}

@@ -131,14 +131,14 @@ export default function WhereWeOperate(): React.JSX.Element {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="mx-auto w-full max-w-xl lg:max-w-2xl"
+            className="mx-auto w-full max-w-2xl lg:max-w-4xl flex items-center justify-center"
           >
             <Image
               src="/images/group/geographic-footprint.svg"
               alt="Geographic Footprint"
-              width={500}
+              width={800}
               height={0}
-              className="object-cover transition-transform duration-300 group-hover:scale-110"
+              className="w-full h-auto transition-transform duration-300 group-hover:scale-110"
             />
           </motion.div>
         </div>

@@ -31,7 +31,7 @@ export default function GroupFooter(): React.JSX.Element {
             <div className="lg:col-span-1">
               <div className="mb-6">
                 <Image
-                  src="/images/sga-logo-white.svg"
+                  src="/images/logo-white.svg"
                   alt="SGA Security"
                   width={220}
                   height={0}

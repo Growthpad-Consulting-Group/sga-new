@@ -27,7 +27,7 @@ const tanzaniaContent = {
 export default function TanzaniaPage(): React.JSX.Element {
   return (
     <>
-      <Hero 
+      <Hero
         countryName="Tanzania"
         countryDescription="Leading security solutions in Tanzania. Protecting your business with excellence."
         orangeBackground={true}
@@ -40,25 +40,13 @@ export default function TanzaniaPage(): React.JSX.Element {
         }
         customDescription="Protecting your offices, warehouses, banks, and teams with integrated guarding and technology solutions tailored to Tanzania's business environment."
         customButtons={[
-          { 
-            label: 'Explore for Individuals', 
-            href: '#individuals', 
-            primary: true,
-            simple: false,
-            className: 'group relative bg-navy-blue border-2 border-navy-blue text-white px-8 py-4 rounded-lg font-semibold transition-all text-left flex flex-col hover:bg-navy-blue w-full sm:flex-1'
-          },
-          { 
-            label: 'Explore for Corporate Clients', 
-            href: '#corporate', 
-            primary: false,
-            simple: false,
-            className: 'group relative bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-semibold transition-all text-left flex flex-col hover:bg-white hover:text-navy-blue w-full sm:flex-1'
-          }
+          { label: 'Explore for Individuals', href: '#individuals', primary: true },
+          { label: 'Explore for Corporate Clients', href: '#corporate', primary: true }
         ]}
       />
       <div id="about">
-        <About 
-          countryName="Tanzania" 
+        <About
+          countryName="Tanzania"
           countryContent={tanzaniaContent}
           customLayout={true}
           smallTitle="WHO WE ARE"
@@ -78,14 +66,14 @@ export default function TanzaniaPage(): React.JSX.Element {
         />
       </div>
       <div id="services">
-        <IntegratedSolutions 
+        <IntegratedSolutions
           decorativePatternColors={['bg-[#00A3DD]', 'bg-[#000000]', 'bg-[#17B636]']}
           decorativePatternLineColor="bg-[#FCD116]"
           whiteBackground={true}
         />
       </div>
       <div id="industries">
-        <Industries 
+        <Industries
           backgroundColor="bg-light-grey"
           decorativePatternColors={['bg-[#00A3DD]', 'bg-[#000000]', 'bg-[#17B636]']}
           decorativePatternLineColor="bg-[#FCD116]"
@@ -100,7 +88,7 @@ export default function TanzaniaPage(): React.JSX.Element {
       <div id="contact">
         <ContactInfo />
       </div>
-      <FloatingWhatsApp 
+      <FloatingWhatsApp
         singleCountry={true}
         country="Tanzania"
         phone="+255754303076"
