@@ -4,6 +4,7 @@ import SustainabilityESGPage from '@/components/SustainabilityESGPage'
 import FloatingWhatsApp from '@/components/FloatingWhatsApp'
 import OurImpactInNumbers from '@/components/OurImpactInNumbers'
 import { Metadata } from 'next'
+import SectionSeparator from '@/components/SectionSeparator'
 
 export const metadata: Metadata = {
   title: 'Sustainability - SGA Security Group - Environmental Responsibility & Social Impact',
@@ -13,11 +14,19 @@ export const metadata: Metadata = {
 export default function SustainabilityPage(): React.JSX.Element {
   return (
     <>
-      <SustainabilityHero 
+      <SustainabilityHero
         imageUrl="/images/sustainability/hero.png"
       />
-      <SustainabilityIntro/>
-      <SustainabilityESGPage />
+      <div className="relative">
+        <SustainabilityIntro />
+        {/* <SectionSeparator /> */}
+      </div>
+
+      <div className="relative">
+        <SustainabilityESGPage />
+        <SectionSeparator />
+      </div>
+
       <OurImpactInNumbers showPattern={false} />
       <FloatingWhatsApp />
     </>

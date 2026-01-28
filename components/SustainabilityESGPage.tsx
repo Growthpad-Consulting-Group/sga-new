@@ -66,13 +66,13 @@ const sdgGoals: SDGGoal[] = [
 
 export default function SustainabilityESGPage(): React.JSX.Element {
   return (
-    <SectionWrapper id="sustainability-esg" className="bg-white relative py-12 md:py-16">
+    <section id="sustainability-esg" className="section-snap flex items-center justify-center bg-white relative py-20 md:py-32">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-100px' }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        className="w-full mx-auto px-4 sm:px-6 lg:px-8"
       >
         <div className="mb-12">
           <motion.div
@@ -81,30 +81,29 @@ export default function SustainabilityESGPage(): React.JSX.Element {
             viewport={{ once: true }}
             className="space-y-3"
           >
-            <h3 className="text-xl md:text-2xl font-bold text-primary-orange relative pb-3">
-              <span>The SDGs We Champion</span>
-              <span 
-                className="absolute bottom-0 left-0 w-full"
-                style={{
-                  background: 'linear-gradient(to right, #00043E 0%, #00043E 70%, transparent 100%)',
-                  height: '1px'
-                }}
-              ></span>
-            </h3>
+            <div className="section-title-container">
+              <h3 className="section-title text-xl md:text-4xl font-bold text-primary-orange">
+                The SDGs We Champion
+              </h3>
+            </div>
           </motion.div>
         </div>
 
-        {/* First 4 cards in 4-column grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-6 md:mb-8">
-          {sdgGoals.slice(0, 4).map((sdg, index) => (
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+          {sdgGoals.map((sdg, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -8 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ scale: 1.03, y: -5 }}
-              className="rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer min-h-[280px]"
+              transition={{
+                duration: 0.15,
+                ease: "easeOut",
+                opacity: { duration: 0.5, delay: index * 0.1 },
+                y: { duration: 0.15 }
+              }}
+              className="rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-150 cursor-pointer min-h-[320px]"
               style={{ backgroundColor: sdg.bgColor }}
             >
               <div className="p-5 md:p-6 h-full flex flex-col text-white">
@@ -112,7 +111,7 @@ export default function SustainabilityESGPage(): React.JSX.Element {
                   <span className="text-4xl md:text-5xl font-bold leading-none">
                     {sdg.goal}
                   </span>
-                  <div className="relative w-14 h-14 md:w-16 md:h-16 flex-shrink-0">
+                  <div className="relative w-20 h-20 md:w-28 md:h-28 flex-shrink-0">
                     <Image
                       src={sdg.iconUrl}
                       alt={`SDG Goal ${sdg.goal}`}
@@ -121,56 +120,21 @@ export default function SustainabilityESGPage(): React.JSX.Element {
                     />
                   </div>
                 </div>
-                <h4 className="text-base md:text-lg font-bold mb-2 leading-tight">
-                  {sdg.title}
-                </h4>
-                <p className="text-xs md:text-sm leading-relaxed flex-1">
-                  {sdg.description}
-                </p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Last 3 cards in 3-column grid spanning full width */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {sdgGoals.slice(4).map((sdg, index) => (
-            <motion.div
-              key={index + 4}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: (index + 4) * 0.1 }}
-              whileHover={{ scale: 1.03, y: -5 }}
-              className="rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer min-h-[280px]"
-              style={{ backgroundColor: sdg.bgColor }}
-            >
-              <div className="p-5 md:p-6 h-full flex flex-col text-white">
-                <div className="flex items-start justify-between mb-3">
-                  <span className="text-4xl md:text-5xl font-bold leading-none">
-                    {sdg.goal}
-                  </span>
-                  <div className="relative w-14 h-14 md:w-16 md:h-16 flex-shrink-0">
-                    <Image
-                      src={sdg.iconUrl}
-                      alt={`SDG Goal ${sdg.goal}`}
-                      fill
-                      className="object-contain"
-                    />
-                  </div>
+                <div className="flex-1"></div>
+                <div>
+                  <h4 className="text-lg md:text-3xl font-bold mb-2 leading-tight">
+                    {sdg.title}
+                  </h4>
+                  <p className="text-sm md:text-base leading-relaxed">
+                    {sdg.description}
+                  </p>
                 </div>
-                <h4 className="text-base md:text-lg font-bold mb-2 leading-tight">
-                  {sdg.title}
-                </h4>
-                <p className="text-xs md:text-sm leading-relaxed flex-1">
-                  {sdg.description}
-                </p>
               </div>
             </motion.div>
           ))}
         </div>
       </motion.div>
-    </SectionWrapper>
+    </section>
   )
 }
 
