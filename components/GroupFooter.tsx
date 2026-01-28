@@ -23,7 +23,7 @@ export default function GroupFooter(): React.JSX.Element {
   ]
 
   return (
-    <div className="bg-white px-4 sm:px-6 lg:px-3 pb-4">
+    <div className="bg-white px-4 sm:px-6 lg:px-3 py-4">
       <footer className="bg-primary-orange pt-12 md:pt-24 pb-4 rounded-3xl no-snap relative overflow-hidden max-w-8xl mx-auto" style={{ scrollSnapAlign: 'none', scrollSnapStop: 'normal' }}>
         <div className="mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-6">
