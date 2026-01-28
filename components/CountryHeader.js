@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -16,9 +16,17 @@ export default function CountryHeader() {
   const [servicesViewType, setServicesViewType] = useState('Individual') // 'Individual' or 'Corporate'
   const [industriesDropdownOpen, setIndustriesDropdownOpen] = useState(false)
   const [mobileIndustriesOpen, setMobileIndustriesOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
   const pathname = usePathname()
   const router = useRouter()
   const { openModal } = useEnquiryModal()
+
+  // Handle scroll detection
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 50)
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   // Get country prefix for navigation links
   const getCountryPrefix = () => {
@@ -81,15 +89,16 @@ export default function CountryHeader() {
 
   const socialLinks = [
     { icon: 'mdi:facebook', url: 'https://facebook.com', label: 'Facebook' },
-    { icon: 'mdi:twitter', url: 'https://twitter.com', label: 'Twitter' },
+    { icon: 'entypo-social:twitter-with-circle', url: 'https://twitter.com', label: 'Twitter' },
+    { icon: 'mage:instagram-circle', url: 'https://instagram.com', label: 'Instagram' },
+    { icon: 'entypo-social:youtube-with-circle', url: 'https://youtube.com', label: 'Youtube' },
     { icon: 'mdi:linkedin', url: 'https://linkedin.com', label: 'LinkedIn' },
-    { icon: 'mdi:instagram', url: 'https://instagram.com', label: 'Instagram' },
   ]
 
   const countries = [
-    { code: 'ke', name: 'Kenya', path: '/ke', flag: 'twemoji:flag-kenya' },
-    { code: 'ug', name: 'Uganda', path: '/ug', flag: 'twemoji:flag-uganda' },
-    { code: 'tz', name: 'Tanzania', path: '/tz', flag: 'twemoji:flag-tanzania' },
+    { code: 'ke', name: 'Kenya', path: '/ke', flag: 'emojione:flag-for-kenya' },
+    { code: 'ug', name: 'Uganda', path: '/ug', flag: 'emojione:flag-for-uganda' },
+    { code: 'tz', name: 'Tanzania', path: '/tz', flag: 'emojione:flag-for-tanzania' },
   ]
 
   const isActiveCountry = (path) => {
@@ -107,13 +116,27 @@ export default function CountryHeader() {
 
   const countryPhone = getCountryPhone()
 
+  // Get current country name for HQ display
+  const getCountryName = () => {
+    if (pathname.startsWith('/ke')) return 'Kenya'
+    if (pathname.startsWith('/ug')) return 'Uganda'
+    if (pathname.startsWith('/tz')) return 'Tanzania'
+    return ''
+  }
+  const currentCountryName = getCountryName()
+
   // Check if we're on an about page, industry page, or service page
   const isAboutPage = pathname.includes('/about') || pathname.includes('/industries') || pathname.includes('/services')
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-40 shadow-md ${isAboutPage ? 'bg-white' : 'bg-primary-orange'}`}>
+    <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+      isScrolled 
+        ? 'bg-white/90 backdrop-blur-md shadow-lg py-2' 
+        : (isAboutPage ? 'bg-white' : 'bg-primary-orange')
+    }`}>
       {/* Top Bar with Social Icons and Flags */}
-      <div className={isAboutPage ? 'bg-white text-dark-charcoal' : 'bg-primary-orange text-white'}>
+      <div className={`transition-all duration-300 ${isScrolled ? 'h-0 opacity-0 overflow-hidden' : ''}`}>
+        <div className={isAboutPage ? 'bg-white text-dark-charcoal' : 'bg-primary-orange text-white'}>
         <div className="mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
           <div className="flex items-center justify-between h-10 sm:h-12 text-xs sm:text-sm">
             {/* Social Icons - Left */}
@@ -129,7 +152,7 @@ export default function CountryHeader() {
                   className={isAboutPage ? 'text-dark-charcoal hover:text-primary-orange transition-colors' : 'text-white hover:text-white/80 transition-colors'}
                   aria-label={social.label}
                 >
-                  <Icon icon={social.icon} className="w-4 h-4 sm:w-5 sm:h-5" />
+                  <Icon icon={social.icon} className="w-4 h-4 sm:w-6 sm:h-6" />
                 </motion.a>
               ))}
             </div>
@@ -142,17 +165,15 @@ export default function CountryHeader() {
                   href={`tel:${countryPhone.replace(/\s/g, '')}`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className={isAboutPage ? "flex items-center gap-1.5 sm:gap-2 text-dark-charcoal hover:text-primary-orange transition-colors" : "flex items-center gap-1.5 sm:gap-2 text-white hover:text-white/80 transition-colors"}
+                  className={isAboutPage ? "flex items-center gap-1.5 text-dark-charcoal hover:text-primary-orange transition-colors" : "flex items-center gap-1.5 text-white hover:text-white/80 transition-colors"}
                   aria-label={`Call ${countryPhone}`}
                 >
-                  <Icon icon="mdi:phone" className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                  <span className="font-medium hidden sm:inline">{countryPhone}</span>
-                  <span className="font-medium sm:hidden text-xs">{countryPhone.replace(/\+/g, '')}</span>
+                  <span className="font-bold text-[10px] sm:text-sm tracking-wider uppercase">CALL: {countryPhone}</span>
                 </motion.a>
               )}
               
               {/* Country Flags */}
-              <div className="flex items-center space-x-1.5 sm:space-x-2 md:space-x-3">
+              <div className="flex items-center space-x-1.5 sm:space-x-2 md:space-x-1">
               {countries.map((country) => {
                 const active = isActiveCountry(country.path)
                 return (
@@ -177,6 +198,7 @@ export default function CountryHeader() {
                   </motion.button>
                 )
               })}
+              
               {/* Down Arrow Button */}
               <motion.button
                 onClick={() => setCountryModalOpen(true)}
@@ -188,18 +210,28 @@ export default function CountryHeader() {
                 <Icon icon="mdi:chevron-down" className="w-4 h-4 sm:w-5 sm:h-5" />
               </motion.button>
               </div>
+
+              {/* Country HQ Text */}
+              {currentCountryName && (
+                <div className="hidden sm:flex items-center border-l border-white/20 py-1">
+                  <span className={`text-[10px] sm:text-sm font-bold tracking-widest uppercase ${isAboutPage ? 'text-dark-charcoal' : 'text-white'}`}>
+                    {currentCountryName} HQ
+                  </span>
+                </div>
+              )}
+              </div>
             </div>
           </div>
-        </div>
-        {/* Border Bottom - Thick border matching content padding */}
-        <div className=" mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-          <div className={`border-b ${isAboutPage ? 'border-dark-charcoal/20' : 'border-white/30'} pt-2`}></div>
+          {/* Border Bottom - Thick border matching content padding */}
+          <div className="mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+            <div className={`border-b ${isAboutPage ? 'border-dark-charcoal/20' : 'border-white/30'} pt-2`}></div>
+          </div>
         </div>
       </div>
 
       {/* Main Navigation */}
       <nav className="mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-20">
+        <div className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? 'h-16' : 'h-16 sm:h-28'}`}>
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -207,11 +239,11 @@ export default function CountryHeader() {
           >
             <Link href="/" className="flex items-center">
               <Image
-                src={isAboutPage ? "/images/logo.svg" : "/images/logo-white.svg"}
+                src={(isScrolled || isAboutPage) ? "/images/logo.svg" : "/images/logo-white.svg"}
                 alt="SGA Security Logo"
-                width={140}
-                height={40}
-                className="h-8 w-auto sm:h-9 md:h-10"
+                width={240}
+                height={70}
+                className="h-12 sm:h-14 w-auto transition-all duration-300"
                 priority
               />
             </Link>
@@ -235,12 +267,12 @@ export default function CountryHeader() {
                     <motion.button
                       onClick={() => setDropdownOpen(!dropdownOpen)}
                       whileHover={{ y: -2 }}
-                      className={`transition-colors font-bold tracking-widest flex items-center gap-1.5 text-sm xl:text-base ${isAboutPage ? 'text-primary-orange' : 'text-white'}`}
+                      className={`transition-colors !font-nav font-bold tracking-widest flex items-center gap-1.5 text-sm xl:text-base ${(isScrolled || isAboutPage) ? 'text-dark-charcoal hover:text-primary-orange' : 'text-white'}`}
                     >
                       {item.label}
                       <Icon 
                         icon="mdi:plus" 
-                        className={`w-4 h-4 xl:w-5 xl:h-5 ${isAboutPage ? 'text-primary-orange' : 'text-white'}`} 
+                        className={`w-4 h-4 xl:w-5 xl:h-5 ${(isScrolled || isAboutPage) ? 'text-dark-charcoal' : 'text-white'}`} 
                       />
                     </motion.button>
                     
@@ -271,7 +303,7 @@ export default function CountryHeader() {
                                   <div className="flex items-center gap-2 bg-[#ecf2f7] rounded-full p-1">
                                     <button
                                       onClick={() => setServicesViewType('Individual')}
-                                      className={`px-8 py-2.5 rounded-full text-sm font-bold transition-all ${
+                                      className={`px-8 py-2.5 rounded-full text-sm font-bold transition-all !font-nav ${
                                         servicesViewType === 'Individual'
                                           ? 'bg-primary-orange text-white shadow-lg'
                                           : 'text-[#2e2e2e] hover:text-primary-orange'
@@ -281,7 +313,7 @@ export default function CountryHeader() {
                                     </button>
                                     <button
                                       onClick={() => setServicesViewType('Corporate')}
-                                      className={`px-8 py-2.5 rounded-full text-sm font-bold transition-all ${
+                                      className={`px-8 py-2.5 rounded-full text-sm font-bold transition-all !font-nav ${
                                         servicesViewType === 'Corporate'
                                           ? 'bg-primary-orange text-white shadow-lg'
                                           : 'text-[#2e2e2e] hover:text-primary-orange'
@@ -388,7 +420,7 @@ export default function CountryHeader() {
                                         setDropdownOpen(false)
                                         openModal()
                                       }}
-                                      className="w-full bg-white text-primary-orange py-4 rounded-full font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-3 shadow-xl hover:bg-white/90 transition-colors"
+                                      className="w-full bg-white text-primary-orange py-4 rounded-full font-bold uppercase tracking-widest text-sm flex items-center justify-center gap-3 shadow-xl hover:bg-white/90 transition-colors"
                                     >
                                       <Icon icon="mdi:file-document-outline" className="w-5 h-5 outline-none" />
                                       Request a Quote
@@ -398,14 +430,14 @@ export default function CountryHeader() {
                                         setDropdownOpen(false)
                                         router.push(`${countryPrefix}/contact`)
                                       }}
-                                      className="w-full bg-transparent text-white border-2 border-white/40 py-4 rounded-full font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-3 hover:bg-white hover:text-primary-orange hover:border-white transition-all"
+                                      className="w-full bg-transparent text-white border-2 border-white/40 py-4 rounded-full font-bold uppercase tracking-widest text-sm flex items-center justify-center gap-3 hover:bg-white hover:text-primary-orange hover:border-white transition-all"
                                     >
                                       <Icon icon="mdi:phone-outline" className="w-5 h-5" />
                                       Talk to Sales
                                     </button>
                                     <a
                                       href={`tel:${countryPhone?.replace(/\s/g, '') || '+254733700500'}`}
-                                      className="w-full bg-transparent text-white border-2 border-white/40 py-4 rounded-full font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-3 hover:bg-white hover:text-primary-orange hover:border-white transition-all"
+                                      className="w-full bg-transparent text-white border-2 border-white/40 py-4 rounded-full font-bold uppercase tracking-widest text-sm flex items-center justify-center gap-3 hover:bg-white hover:text-primary-orange hover:border-white transition-all"
                                       onClick={() => setDropdownOpen(false)}
                                     >
                                       <Icon icon="material-symbols:e911-emergency-outline" className="w-6 h-6" />
@@ -432,13 +464,13 @@ export default function CountryHeader() {
                   key={item.href}
                   href={item.href}
                   whileHover={{ y: -2 }}
-                  className={`transition-colors font-medium flex items-center gap-1.5 text-sm xl:text-base ${
+                  className={`transition-colors !font-nav font-bold tracking-widest flex items-center gap-1.5 text-sm xl:text-base ${
                     isActive 
-                      ? isAboutPage ? 'text-primary-orange' : 'text-white'
-                      : isAboutPage ? 'text-dark-charcoal hover:text-primary-orange' : 'text-white/90 hover:text-white'
+                      ? (isScrolled || isAboutPage) ? 'text-primary-orange' : 'text-white'
+                      : (isScrolled || isAboutPage) ? 'text-dark-charcoal hover:text-primary-orange' : 'text-white/90 hover:text-white'
                   }`}
                 >
-                  {item.icon && <Icon icon={item.icon} className={`w-4 h-4 xl:w-5 xl:h-5 ${isAboutPage ? 'text-primary-orange' : 'text-white'}`} />}
+                  {item.icon && <Icon icon={item.icon} className={`w-4 h-4 xl:w-5 xl:h-5 ${(isScrolled || isAboutPage) ? 'text-primary-orange' : 'text-white'}`} />}
                   {item.label}
                 </NavComponent>
               )
@@ -448,7 +480,7 @@ export default function CountryHeader() {
               onClick={openModal}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className={isAboutPage ? "bg-primary-orange text-white px-4 py-2 xl:px-6 xl:py-2 rounded-full font-semibold text-sm xl:text-base shadow-md hover:shadow-lg transition-shadow ml-2 xl:ml-4" : "bg-white text-primary-orange px-4 py-2 xl:px-6 xl:py-2 rounded-full font-semibold text-sm xl:text-base shadow-md hover:shadow-lg transition-shadow ml-2 xl:ml-4"}
+              className={(isScrolled || isAboutPage) ? "bg-primary-orange text-white px-4 py-2 xl:px-6 xl:py-2 rounded-full font-semibold text-sm xl:text-base shadow-md hover:shadow-lg transition-shadow ml-2 xl:ml-4 !font-nav" : "bg-white text-primary-orange px-4 py-2 xl:px-6 xl:py-2 rounded-full font-semibold text-sm xl:text-base shadow-md hover:shadow-lg transition-shadow ml-2 xl:ml-4 !font-nav"}
             >
               Enquire Now
             </motion.button>
@@ -456,7 +488,7 @@ export default function CountryHeader() {
 
           {/* Mobile Menu Button */}
           <button
-            className={isAboutPage ? "lg:hidden p-2 text-dark-charcoal" : "lg:hidden p-2 text-white"}
+            className={(isScrolled || isAboutPage) ? "lg:hidden p-2 text-dark-charcoal" : "lg:hidden p-2 text-white"}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
