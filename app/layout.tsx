@@ -1,5 +1,6 @@
 import './styles/globals.css'
 import Header from '@/components/Header'
+import ConditionalHeader from '@/components/ConditionalHeader'
 import ConditionalFooter from '@/components/ConditionalFooter'
 import { EnquiryModalProvider } from '@/contexts/EnquiryModalContext'
 import { CVModalProvider } from '@/contexts/CVModalContext'
@@ -62,7 +63,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
         <CountryProvider country={country}>
           <EnquiryModalProvider>
             <CVModalProvider>
-              <Header />
+              <ConditionalHeader />
               <main className={isCountryPage ? "" : "pt-28 sm:pt-32"}>
                 {children}
               </main>
