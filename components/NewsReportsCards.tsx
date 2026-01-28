@@ -15,24 +15,38 @@ export default function NewsReportsCards() {
   const [activeFilter, setActiveFilter] = useState('ALL')
   const [searchQuery, setSearchQuery] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
-  
+
+  const [selectedCountry, setSelectedCountry] = useState('All Country')
+  const [sortBy, setSortBy] = useState('Latest')
+
   // Determine base path for slugs based on current route
   const basePath = pathname?.startsWith('/news-reports') ? '/news-reports' : '/updates'
 
   const filteredItems = (() => {
-    let filtered = activeFilter === 'ALL' 
-      ? newsItems 
-      : newsItems.filter(item => item.category.toUpperCase() === activeFilter)
-    
-    if (searchQuery) {
-      const query = searchQuery.toLowerCase()
-      filtered = filtered.filter(item => 
-        item.title.toLowerCase().includes(query) ||
-        item.summary.toLowerCase().includes(query) ||
-        item.category.toLowerCase().includes(query)
-      )
-    }
-    
+    let filtered = newsItems.filter(item => {
+      const matchesFilter = activeFilter === 'ALL' || item.category.toUpperCase() === activeFilter
+      // Data currently doesn't have country field, so matching 'All Country' for now or adding mock country logic if needed
+      // But based on the request, we should provide the UI control
+      const matchesCountry = selectedCountry === 'All Country' || (item as any).country === selectedCountry
+
+      let matchesSearch = true
+      if (searchQuery) {
+        const query = searchQuery.toLowerCase()
+        matchesSearch = item.title.toLowerCase().includes(query) ||
+          item.summary.toLowerCase().includes(query) ||
+          item.category.toLowerCase().includes(query)
+      }
+
+      return matchesFilter && matchesCountry && matchesSearch
+    })
+
+    // Sort logic
+    filtered.sort((a, b) => {
+      const dateA = new Date(a.date).getTime()
+      const dateB = new Date(b.date).getTime()
+      return sortBy === 'Latest' ? dateB - dateA : dateA - dateB
+    })
+
     return filtered
   })()
 
@@ -53,76 +67,116 @@ export default function NewsReportsCards() {
     setCurrentPage(1)
   }
 
+  const handleCountryChange = (country: string) => {
+    setSelectedCountry(country)
+    setCurrentPage(1)
+  }
+
+  const handleSortChange = (sort: string) => {
+    setSortBy(sort)
+    setCurrentPage(1)
+  }
+
   const goToPage = (page: number) => {
     setCurrentPage(page)
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
+  const handlePrevious = () => {
+    if (currentPage > 1) goToPage(currentPage - 1)
+  }
+
+  const handleNext = () => {
+    if (currentPage < totalPages) goToPage(currentPage + 1)
+  }
+
   return (
-    <section id="news-reports-cards" className="bg-light-grey py-16 sm:py-20">
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="news-reports-cards" className="flex items-center justify-center bg-white py-20 md:py-20 min-h-[85vh] relative">
+      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-12"
+          className=""
         >
-          <div className="space-y-3 mb-8">
-            <p className="text-xs font-semibold text-navy uppercase tracking-wider">
-              Latest News
-            </p>
-            <h3 className="text-xl md:text-2xl font-bold text-navy-blue relative pb-3 flex items-center justify-between">
-              <span>News & Reports</span>
-              <span 
-                className="absolute bottom-0 left-0 w-full"
-                style={{
-                  background: 'linear-gradient(to right, #00043E 0%, #00043E 70%, transparent 100%)',
-                  height: '1px'
-                }}
-              ></span>
-            </h3>
-          </div>
+
 
           {/* Search and Filter Section */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
-            {/* Filter Buttons */}
-            <div className="flex flex-wrap gap-2">
-              {['ALL', 'ADVISORY', 'BLOG', 'MEDIA', 'REPORT'].map((filter) => (
-                <button
-                  key={filter}
-                  onClick={() => handleFilterChange(filter)}
-                  className={`px-4 py-2 rounded-full border border-navy-blue text-xs font-semibold uppercase transition-colors ${
-                    activeFilter === filter
-                      ? 'bg-navy-blue text-white'
-                      : 'text-navy-blue hover:bg-navy-blue hover:text-white'
-                  }`}
-                >
-                  {filter}
-                </button>
-              ))}
-            </div>
-            
-            {/* Search Input */}
-            <div className="relative w-full sm:w-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+            {/* 1. Search Form */}
+            <div className="relative w-full">
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => handleSearchChange(e.target.value)}
-                placeholder="Search..."
-                className="pl-10 pr-4 py-2 border border-gray-300 rounded-full text-sm focus:outline-none focus:border-primary-orange w-full sm:w-64"
+                placeholder="Search news & reports..."
+                className="w-full pl-12 pr-4 py-3 border border-dark-charcoal rounded-full text-sm focus:outline-none focus:border-primary-orange text-dark-charcoal placeholder:text-dark-charcoal/50"
               />
               <Icon
-                icon="mdi:magnify"
-                className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"
+                icon="lucide:search"
+                className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-dark-charcoal"
               />
               {searchQuery && (
                 <button
                   onClick={() => handleSearchChange('')}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-primary-orange"
+                  className="absolute right-10 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-primary-orange"
                 >
                   <Icon icon="mdi:close" className="w-4 h-4" />
                 </button>
               )}
+            </div>
+
+            {/* 2. Category Dropdown */}
+            <div className="relative w-full">
+              <select
+                value={activeFilter}
+                onChange={(e) => handleFilterChange(e.target.value)}
+                className="appearance-none w-full px-6 py-3 border border-dark-charcoal rounded-full text-sm focus:outline-none focus:border-primary-orange bg-white text-dark-charcoal cursor-pointer capitalize font-medium"
+              >
+                {['ALL', 'ADVISORY', 'BLOG', 'MEDIA', 'REPORT'].map(filter => (
+                  <option key={filter} value={filter}>
+                    {filter === 'ALL' ? 'All Categories' : filter.charAt(0) + filter.slice(1).toLowerCase()}
+                  </option>
+                ))}
+              </select>
+              <Icon
+                icon="mdi:chevron-down"
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-dark-charcoal pointer-events-none"
+              />
+            </div>
+
+            {/* 3. Country Dropdown */}
+            <div className="relative w-full">
+              <select
+                value={selectedCountry}
+                onChange={(e) => handleCountryChange(e.target.value)}
+                className="appearance-none w-full px-6 py-3 border border-dark-charcoal rounded-full text-sm focus:outline-none focus:border-primary-orange bg-white text-dark-charcoal cursor-pointer capitalize font-medium"
+              >
+                <option value="All Country">All Countries</option>
+                <option value="Kenya">Kenya</option>
+                <option value="Tanzania">Tanzania</option>
+                <option value="Uganda">Uganda</option>
+              </select>
+              <Icon
+                icon="mdi:chevron-down"
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-dark-charcoal pointer-events-none"
+              />
+            </div>
+
+            {/* 4. Sort Dropdown */}
+            <div className="relative w-full">
+              <select
+                value={sortBy}
+                onChange={(e) => handleSortChange(e.target.value)}
+                className="appearance-none w-full px-6 py-3 border border-dark-charcoal rounded-full text-sm focus:outline-none focus:border-primary-orange bg-white text-dark-charcoal cursor-pointer capitalize font-medium"
+              >
+                <option value="Latest">Latest</option>
+                <option value="Oldest">Oldest</option>
+              </select>
+              <Icon
+                icon="mdi:chevron-down"
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-dark-charcoal pointer-events-none"
+              />
             </div>
           </div>
 
@@ -146,67 +200,58 @@ export default function NewsReportsCards() {
 
         {/* Blog Cards Grid */}
         {paginatedItems.length > 0 && (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {paginatedItems.map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -5 }}
-              className="bg-primary-orange border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow flex flex-col"
-            >
-              {/* Featured Image */}
-              <Link href={`${basePath}/${item.slug}`}>
-                <motion.div
-                  whileHover={{ opacity: 0.9 }}
-                  className="relative w-full h-48 block cursor-pointer"
-                >
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    className="object-cover"
-                  />
-                </motion.div>
-              </Link>
-              
-              <div className="p-6 flex flex-col flex-1">
-                {/* Category and Date */}
-                <div className="flex items-center justify-between mb-2">
-                  <p className="text-xs font-semibold text-white uppercase tracking-wider">
-                    {item.category}
-                    </p>
-                    <p className="text-xs text-white">
-                    {item.date}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {paginatedItems.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -5 }}
+                className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow flex flex-col min-h-[500px]"
+              >
+                {/* Featured Image */}
+                <Link href={`${basePath}/${item.slug}`}>
+                  <motion.div
+                    whileHover={{ opacity: 0.9 }}
+                    className="relative w-full h-64 block cursor-pointer"
+                  >
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      className="object-cover"
+                    />
+                    {/* Country Pill */}
+                    <div className="absolute top-3 left-3 flex items-center gap-1 px-5 py-2 rounded-full bg-primary-orange text-white text-sm uppercase font-normal z-10">
+                      <Icon icon="mdi:map-marker" className="w-5 h-5 text-white" />
+                      {(item as any).country}
+                    </div>
+                  </motion.div>
+                </Link>
+
+                <div className="p-6 flex flex-col flex-1 bg-primary-orange text-white">
+                  {/* Category and Date */}
+                  <p className="text-lg font-normal text-white uppercase tracking-wider mb-2">
+                    {item.category} • {item.date}
+                  </p>
+
+                  {/* Title */}
+                  <Link href={`${basePath}/${item.slug}`}>
+                    <h3 className="text-xl md:text-3xl font-bold text-white mb-3 line-clamp-2 hover:opacity-80 transition-opacity">
+                      {item.title}
+                    </h3>
+                  </Link>
+
+                  {/* Summary */}
+                  <p className="text-white text-lg leading-relaxed line-clamp-3">
+                    {item.summary}
                   </p>
                 </div>
-                
-                {/* Title */}
-                <Link href={`${basePath}/${item.slug}`}>
-                  <h3 className="text-lg font-bold text-white mb-3 hover:text-navy-blue transition-colors cursor-pointer">
-                    {item.title}
-                  </h3>
-                </Link>
-                
-                {/* Summary */}
-                <p className="text-white text-sm leading-relaxed mb-4 flex-1">
-                  {item.summary}
-                </p>
-
-                {/* Read More Link */}
-                <Link
-                  href={`${basePath}/${item.slug}`}
-                  className="flex items-center gap-2 text-white hover:text-navy-blue transition-colors text-sm font-semibold"
-                >
-                  <span>Read More</span>
-                  <Icon icon="mdi:arrow-right" className="w-4 h-4" />
-                </Link>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+              </motion.div>
+            ))}
+          </div>
         )}
 
         {/* Pagination Controls */}
@@ -222,11 +267,10 @@ export default function NewsReportsCards() {
               <button
                 onClick={() => goToPage(currentPage - 1)}
                 disabled={currentPage === 1}
-                className={`px-4 py-2 rounded-full border border-navy-blue text-sm font-semibold transition-colors flex items-center gap-2 ${
-                  currentPage === 1
-                    ? 'opacity-50 cursor-not-allowed text-gray-400 border-gray-300'
-                    : 'text-navy-blue hover:bg-navy-blue hover:text-white'
-                }`}
+                className={`px-6 py-3 rounded-full border transition-colors flex items-center gap-2 text-md font-medium uppercase ${currentPage === 1
+                  ? 'opacity-50 cursor-not-allowed text-gray-400 border-gray-300'
+                  : 'border-dark-charcoal text-dark-charcoal hover:border-primary-orange hover:text-primary-orange'
+                  }`}
               >
                 <Icon icon="mdi:chevron-left" className="w-5 h-5" />
                 Previous
@@ -236,7 +280,7 @@ export default function NewsReportsCards() {
               <div className="flex items-center gap-2">
                 {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => {
                   // Show first page, last page, current page, and pages around current
-                  const showPage = 
+                  const showPage =
                     page === 1 ||
                     page === totalPages ||
                     (page >= currentPage - 1 && page <= currentPage + 1)
@@ -257,11 +301,10 @@ export default function NewsReportsCards() {
                     <button
                       key={page}
                       onClick={() => goToPage(page)}
-                      className={`w-10 h-10 rounded-full border text-sm font-semibold transition-colors ${
-                        currentPage === page
-                          ? 'bg-navy-blue text-white border-navy-blue'
-                          : 'text-navy-blue border-navy-blue hover:bg-navy-blue hover:text-white'
-                      }`}
+                      className={`w-12 h-12 rounded-full border text-md font-medium transition-colors ${currentPage === page
+                        ? 'bg-primary-orange text-white border-primary-orange'
+                        : 'border-dark-charcoal text-dark-charcoal hover:border-primary-orange hover:text-primary-orange'
+                        }`}
                     >
                       {page}
                     </button>
@@ -273,11 +316,10 @@ export default function NewsReportsCards() {
               <button
                 onClick={() => goToPage(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                className={`px-4 py-2 rounded-full border border-navy-blue text-sm font-semibold transition-colors flex items-center gap-2 ${
-                  currentPage === totalPages
-                    ? 'opacity-50 cursor-not-allowed text-gray-400 border-gray-300'
-                    : 'text-navy-blue hover:bg-navy-blue hover:text-white'
-                }`}
+                className={`px-6 py-3 rounded-full border transition-colors flex items-center gap-2 text-md font-medium uppercase ${currentPage === totalPages
+                  ? 'opacity-50 cursor-not-allowed text-gray-400 border-gray-300'
+                  : 'border-dark-charcoal text-dark-charcoal hover:border-primary-orange hover:text-primary-orange'
+                  }`}
               >
                 Next
                 <Icon icon="mdi:chevron-right" className="w-5 h-5" />

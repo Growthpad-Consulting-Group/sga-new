@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function NewsReportsPage(): React.JSX.Element {
   return (
     <>
-      <NewsHero 
+      <NewsHero
         imageUrl="/images/contact/hero.png"
       />
       <NewsReportsCards />
