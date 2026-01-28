@@ -15,11 +15,7 @@ interface NewsItem {
   date: string
 }
 
-interface NewsProps {
-  decorativePatternColors?: string[] | null
-  decorativePatternLineColor?: string | null
-  staticPattern?: boolean
-}
+interface NewsProps { }
 
 const newsItems: NewsItem[] = [
   {
@@ -48,11 +44,7 @@ const newsItems: NewsItem[] = [
   },
 ]
 
-export default function News({
-  decorativePatternColors = null,
-  decorativePatternLineColor = null,
-  staticPattern = false
-}: NewsProps) {
+export default function News({ }: NewsProps) {
   const [activeFilter, setActiveFilter] = useState('ALL')
   const [selectedCountry, setSelectedCountry] = useState('All Country')
   const [searchQuery, setSearchQuery] = useState('')
@@ -66,7 +58,7 @@ export default function News({
   })
 
   return (
-    <section id="news" className="section-snap flex items-center justify-center relative min-h-[85vh] py-12 md:py-20">
+    <section id="news" className="section-snap flex items-center justify-center relative min-h-[85vh] py-12 md:py-20 overflow-x-hidden">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -79,13 +71,13 @@ export default function News({
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="space-y-3"
+            className="space-y-4 flex flex-col items-start text-left"
           >
-            <p className="text-md font-medium text-dark-charcoal uppercase tracking-wider">
+            <p className="text-md font-medium text-dark-charcoal uppercase tracking-wider mb-2">
               Latest
             </p>
-            <div className="flex items-end justify-between section-title-container !pb-4">
-              <h3 className="section-title text-xl md:text-5xl font-bold text-primary-orange">
+            <div className="flex items-end justify-between section-title-container w-full !pb-4">
+              <h3 className="section-title text-xl md:text-4xl font-bold text-primary-orange">
                 News & Reports
               </h3>
               <div className="flex items-center gap-3 mb-1">

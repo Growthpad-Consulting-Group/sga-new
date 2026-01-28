@@ -14,9 +14,6 @@ interface Industry {
 
 interface IndustriesProps {
   backgroundColor?: string
-  decorativePatternColors?: string[] | null
-  decorativePatternLineColor?: string | null
-  staticPattern?: boolean
 }
 
 const industries: Industry[] = [
@@ -42,50 +39,42 @@ const industries: Industry[] = [
   },
 ]
 
-export default function Industries({ 
-  backgroundColor = 'bg-white', 
-  decorativePatternColors = null, 
-  decorativePatternLineColor = null, 
-  staticPattern = false 
+export default function Industries({
+  backgroundColor = 'bg-white',
 }: IndustriesProps) {
   return (
-    <section id="industries" className={`section-snap flex items-center justify-center ${backgroundColor} relative pb-0`}>
+    <section id="industries" className={`section-snap flex items-center justify-center ${backgroundColor} relative pb-0 overflow-x-hidden min-h-[85vh]`}>
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-100px' }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        className="w-full mx-auto px-4 sm:px-6 lg:px-8"
       >
         <div className="mb-12">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="space-y-3"
+            className="space-y-4 flex flex-col justify-center items-start text-left"
           >
-            <p className="text-xs font-semibold text-navy uppercase tracking-wider">
+            <p className="text-md font-medium text-dark-charcoal uppercase tracking-wider">
               industries
             </p>
-            <h3 className="text-xl md:text-2xl font-bold text-navy-blue relative pb-3 flex items-center justify-between">
-              <span>Built for your industry</span>
-              <div className="flex items-center gap-2">
-                <button className="w-8 h-8 rounded-full border-2 border-navy-blue flex items-center justify-center hover:bg-primary-orange hover:border-primary-orange hover:text-white transition-colors">
-                  <Icon icon="mdi:chevron-left" className="w-5 h-5" />
-                </button>
-                <button className="w-8 h-8 rounded-full border-2 border-navy-blue flex items-center justify-center hover:bg-primary-orange hover:border-primary-orange hover:text-white transition-colors">
-                  <Icon icon="mdi:chevron-right" className="w-5 h-5" />
-                </button>
-              </div>
-              <span 
-                className="absolute bottom-0 left-0 w-full"
-                style={{
-                  background: 'linear-gradient(to right, #00043E 0%, #00043E 70%, transparent 100%)',
-                  height: '1px'
-                }}
-              ></span>
-            </h3>
-            <p className="text-base md:text-lg text-dark-charcoal max-w-2xl">
+            <div className="section-title-container w-full">
+              <h3 className="section-title text-xl md:text-4xl font-bold text-primary-orange flex items-center justify-between">
+                <span>Built for your industry</span>
+                <div className="flex items-center gap-2">
+                  <button className="w-8 h-8 rounded-full border-2 border-navy-blue flex items-center justify-center hover:bg-primary-orange hover:border-primary-orange hover:text-white transition-colors">
+                    <Icon icon="mdi:chevron-left" className="w-5 h-5" />
+                  </button>
+                  <button className="w-8 h-8 rounded-full border-2 border-navy-blue flex items-center justify-center hover:bg-primary-orange hover:border-primary-orange hover:text-white transition-colors">
+                    <Icon icon="mdi:chevron-right" className="w-5 h-5" />
+                  </button>
+                </div>
+              </h3>
+            </div>
+            <p className="text-base font-normal md:text-2xl text-dark-charcoal pb-4 mt-4">
               From banks to gated estates, we tailor protection to your world.
             </p>
           </motion.div>
@@ -113,9 +102,9 @@ export default function Industries({
                     />
                   </div>
                 )}
-                <Icon 
-                  icon={industry.icon} 
-                  className="w-8 h-8 md:w-10 md:h-10 text-white opacity-0 group-hover:opacity-100 transition-opacity mb-2 relative z-10" 
+                <Icon
+                  icon={industry.icon}
+                  className="w-8 h-8 md:w-10 md:h-10 text-white opacity-0 group-hover:opacity-100 transition-opacity mb-2 relative z-10"
                 />
                 <span className="text-navy-blue group-hover:text-white text-center text-xs md:text-sm font-semibold px-4 transition-colors relative z-10">
                   {industry.name}
@@ -137,9 +126,6 @@ export default function Industries({
           </motion.button>
         </div>
       </motion.div>
-      {decorativePatternColors && (
-        <DecorativePattern static={staticPattern} />
-      )}
     </section>
   )
 }

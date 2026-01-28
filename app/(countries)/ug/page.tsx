@@ -5,6 +5,7 @@ import WhyChooseUs from '@/components/WhyChooseUs'
 import Industries from '@/components/Industries'
 import News from '@/components/News'
 import ContactInfo from '@/components/ContactInfo'
+import SectionSeparator from '@/components/SectionSeparator'
 import FloatingWhatsApp from '@/components/FloatingWhatsApp'
 import { Metadata } from 'next'
 
@@ -44,7 +45,7 @@ export default function UgandaPage(): React.JSX.Element {
           { label: 'Explore for Corporate Clients', href: '#corporate', primary: true }
         ]}
       />
-      <div id="about">
+      <div id="about" className="relative">
         <About
           countryName="Uganda"
           countryContent={ugandaContent}
@@ -53,30 +54,33 @@ export default function UgandaPage(): React.JSX.Element {
           h3Title="About SGA Group"
           h2Title={
             <>
-              <span className="text-primary-orange">Trusted partner for Ugandan businesses.</span>
+              Trusted partner for Ugandan businesses.
             </>
           }
           customDescription="SGA Uganda delivers comprehensive corporate security—manned guarding, remote CCTV monitoring, cash-in-transit, and fire & rescue—integrated through our 24/7 Kampala control room. Our vetted teams and modern systems provide consistent protection, reporting, and escalation."
           buttonText="Learn More About SGA uganda"
           buttonHref="#about"
           imageUrl="/images/ug/about.png"
-          decorativePatternColors={['bg-red-600', 'bg-black', 'bg-yellow-500']}
         />
+        <SectionSeparator imageUrl="/images/misc/section-pattern-ug.svg" />
       </div>
-      <div id="industries">
-        <Industries decorativePatternColors={['bg-red-600', 'bg-black', 'bg-yellow-500']} />
+      <div id="industries" className="relative">
+        <Industries />
+        <SectionSeparator imageUrl="/images/misc/section-pattern-ug.svg" />
       </div>
-      <div id="services">
+      <div id="services" className="relative">
         <IntegratedSolutions
-          decorativePatternColors={['bg-red-600', 'bg-black', 'bg-yellow-500']}
           whiteBackground={true}
         />
+        <SectionSeparator imageUrl="/images/misc/section-pattern-ug.svg" />
       </div>
-      <div id="why-us">
-        <WhyChooseUs countryName="Uganda" decorativePatternColors={['bg-red-600', 'bg-black', 'bg-yellow-500']} />
+      <div id="why-us" className="relative">
+        <WhyChooseUs countryName="Uganda" />
+        <SectionSeparator imageUrl="/images/misc/section-pattern-ug.svg" />
       </div>
-      <div id="blog">
-        <News decorativePatternColors={['bg-red-600', 'bg-black', 'bg-yellow-500']} />
+      <div id="blog" className="relative">
+        <News />
+        <SectionSeparator imageUrl="/images/misc/section-pattern-ug.svg" />
       </div>
       <div id="contact">
         <ContactInfo />

@@ -7,6 +7,7 @@ import News from '@/components/News'
 import ContactInfo from '@/components/ContactInfo'
 import FloatingWhatsApp from '@/components/FloatingWhatsApp'
 import { Metadata } from 'next'
+import SectionSeparator from '@/components/SectionSeparator'
 
 export const metadata: Metadata = {
   title: 'SGA Security Kenya - Professional Security Services',
@@ -44,7 +45,7 @@ export default function KenyaPage(): React.JSX.Element {
           { label: 'Explore for Corporate Clients', href: '#corporate', primary: true }
         ]}
       />
-      <div id="about">
+      <div id="about" className="relative">
         <About
           countryName="Kenya"
           countryContent={kenyaContent}
@@ -57,29 +58,27 @@ export default function KenyaPage(): React.JSX.Element {
           buttonHref="#about"
           imageUrl="/images/ke/about-sga.png"
           hideCountriesStat={true}
-          decorativePatternColors={['bg-red-600', 'bg-green-600', 'bg-black']}
-          staticPattern={true}
         />
       </div>
-      <div id="services">
+      <div id="services" className="relative">
         <IntegratedSolutions
-          decorativePatternColors={['bg-red-600', 'bg-green-600', 'bg-black']}
           whiteBackground={true}
-          staticPattern={true}
         />
+        <SectionSeparator imageUrl="/images/misc/section-pattern-ke.svg" />
       </div>
-      <div id="industries">
+      <div id="industries" className="relative">
         <Industries
           backgroundColor="bg-light-grey"
-          decorativePatternColors={['bg-red-600', 'bg-green-600', 'bg-black']}
-          staticPattern={true}
         />
+        <SectionSeparator imageUrl="/images/misc/section-pattern-ke.svg" />
       </div>
-      <div id="why-us">
-        <WhyChooseUs countryName="Kenya" decorativePatternColors={['bg-red-600', 'bg-green-600', 'bg-black']} staticPattern={true} />
+      <div id="why-us" className="relative">
+        <WhyChooseUs countryName="Kenya" />
+        <SectionSeparator imageUrl="/images/misc/section-pattern-ke.svg" />
       </div>
-      <div id="blog">
-        <News decorativePatternColors={['bg-red-600', 'bg-green-600', 'bg-black']} staticPattern={true} />
+      <div id="blog" className="relative">
+        <News />
+        <SectionSeparator imageUrl="/images/misc/section-pattern-ke.svg" />
       </div>
       <div id="contact">
         <ContactInfo />

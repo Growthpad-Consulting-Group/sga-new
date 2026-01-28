@@ -77,7 +77,7 @@ export default function HomePage(): React.JSX.Element {
       </div>
 
       <div className="relative">
-        <News staticPattern={true} />
+        <News />
         <SectionSeparator />
       </div>
 

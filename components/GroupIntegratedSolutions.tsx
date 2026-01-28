@@ -16,7 +16,7 @@ interface GroupIntegratedSolutionsProps {
   description?: string
 }
 
-const solutions: Solution[] = [
+const defaultSolutions: Solution[] = [
   {
     title: 'Guarding',
     description: 'Professional guarding for offices, malls, logistics yards and estates.',
@@ -36,8 +36,9 @@ const solutions: Solution[] = [
 
 export default function GroupIntegratedSolutions({
   title = "What we Offer",
-  description = "Security solutions built to keep your business, family, home, and property safe every day across Kenya, Uganda, and Tanzania."
-}: GroupIntegratedSolutionsProps) {
+  description = "Security solutions built to keep your business, family, home, and property safe every day across Kenya, Uganda, and Tanzania.",
+  solutions = defaultSolutions
+}: GroupIntegratedSolutionsProps & { solutions?: Solution[] }) {
   const { openModal } = useEnquiryModal()
   return (
     <section id="integrated-solutions" className="section-snap flex items-center justify-center bg-light-grey relative min-h-[85vh] py-12 md:py-16">

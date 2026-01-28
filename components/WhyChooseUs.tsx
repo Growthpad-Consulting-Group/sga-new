@@ -13,10 +13,7 @@ interface AccordionItem {
 }
 
 interface WhyChooseUsProps {
-  decorativePatternColors?: string[] | null
-  decorativePatternLineColor?: string | null
   countryName?: string
-  staticPattern?: boolean
 }
 
 const accordionItems: AccordionItem[] = [
@@ -38,42 +35,39 @@ const accordionItems: AccordionItem[] = [
   },
 ]
 
-export default function WhyChooseUs({ 
-  decorativePatternColors = null, 
-  decorativePatternLineColor = null, 
-  countryName = 'Kenya', 
-  staticPattern = false 
+export default function WhyChooseUs({
+  countryName = 'Kenya',
 }: WhyChooseUsProps) {
   const [openIndex, setOpenIndex] = useState(0)
 
   return (
-    <section id="why-choose-us" className="section-snap flex items-center justify-center bg-light-grey pt-8 md:pt-12 relative pb-0">
+    <section id="why-choose-us" className="section-snap flex items-center justify-center bg-light-grey relative pb-0 overflow-x-hidden min-h-[85vh]">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-100px' }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        className="w-full mx-auto px-4 sm:px-6 lg:px-8"
       >
-        <div className="grid md:grid-cols-2 gap-4 lg:gap-6 items-start">
+        <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-stretch">
           {/* Left Content - Title + Accordion */}
-          <div className="h-[400px] md:h-[450px] flex flex-col">
+          <div className="flex flex-col justify-center items-start text-left">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="space-y-2 mb-4"
+              className="space-y-4 mb-4 items-start flex flex-col w-full"
             >
-              <p className="text-xs font-semibold text-navy uppercase tracking-wider">
+              <p className="text-md font-medium text-dark-charcoal uppercase tracking-wider mb-2">
                 why us
               </p>
-              <div className="section-title-container">
-                <h2 className="section-title text-xl md:text-2xl font-bold text-navy-blue">
+              <div className="section-title-container w-full">
+                <h2 className="section-title text-xl md:text-4xl font-bold text-primary-orange">
                   Why choose SGA {countryName}
                 </h2>
               </div>
             </motion.div>
-            
+
             {/* Accordion */}
             <div className="space-y-2 flex-1 overflow-y-auto mb-4">
               {accordionItems.map((item, index) => (
@@ -113,10 +107,10 @@ export default function WhyChooseUs({
                 </motion.div>
               ))}
             </div>
-            
+
             {/* Button */}
             <motion.button
-              onClick={()=>{
+              onClick={() => {
                 window.location.href = '/contact'
               }}
               initial={{ opacity: 0, y: 20 }}
@@ -124,7 +118,7 @@ export default function WhyChooseUs({
               viewport={{ once: true }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-navy-blue text-white px-6 py-3 rounded-full font-semibold text-sm uppercase hover:bg-primary-orange transition-colors w-1/2"
+              className="inline-block bg-primary-orange text-white px-10 py-4 rounded-full font-semibold text-md uppercase hover:bg-primary-orange/90 transition-colors mt-6"
             >
               Talk to our team
             </motion.button>
@@ -136,20 +130,19 @@ export default function WhyChooseUs({
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="relative w-full h-[400px] md:h-[450px] rounded-lg overflow-hidden"
+            className="flex flex-col justify-center h-full w-full"
           >
-            <Image
-              src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop"
-              alt={`Why Choose SGA ${countryName}`}
-              fill
-              className="object-cover"
-            />
+            <div className="relative w-full h-[450px] md:h-full rounded-2xl overflow-hidden">
+              <Image
+                src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop"
+                alt={`Why Choose SGA ${countryName}`}
+                fill
+                className="object-cover"
+              />
+            </div>
           </motion.div>
         </div>
       </motion.div>
-      {decorativePatternColors && (
-        <DecorativePattern static={staticPattern} />
-      )}
     </section>
   )
 }

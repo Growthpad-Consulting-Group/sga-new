@@ -3,7 +3,6 @@
 import SectionWrapper from './SectionWrapper'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import DecorativePattern from './DecorativePattern'
 
 interface CountryContent {
   title: string
@@ -23,13 +22,10 @@ interface AboutProps {
   buttonHref?: string
   imageUrl?: string | null
   hideCountriesStat?: boolean
-  decorativePatternColors?: string[] | null
-  decorativePatternLineColor?: string | null
-  staticPattern?: boolean
 }
 
-export default function About({ 
-  countryName = 'SGA Group', 
+export default function About({
+  countryName = 'SGA Group',
   countryContent = null,
   customLayout = false,
   smallTitle = null,
@@ -40,9 +36,6 @@ export default function About({
   buttonHref = '#about',
   imageUrl = null,
   hideCountriesStat = false,
-  decorativePatternColors = null,
-  decorativePatternLineColor = null,
-  staticPattern = false
 }: AboutProps) {
   const defaultContent = {
     title: 'About SGA Security Group',
@@ -59,48 +52,41 @@ export default function About({
 
   if (customLayout) {
     return (
-      <section id="about" className="section-snap flex items-center justify-center bg-light-grey relative pb-0 overflow-x-hidden">
+      <section id="about" className="section-snap flex items-center justify-center bg-light-grey relative pb-0 overflow-x-hidden min-h-[85vh]">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+          className="w-full mx-auto px-4 sm:px-6 lg:px-8"
         >
-          <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-stretch">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="space-y-3"
+              className="space-y-4 flex flex-col justify-center items-start"
             >
               {smallTitle && (
-                <p className="text-xs font-semibold text-navy uppercase tracking-wider mb-2">
+                <p className="text-md font-medium text-dark-charcoal uppercase tracking-wider">
                   {smallTitle}
                 </p>
               )}
               {h3Title && (
-                <h3 className="text-xl md:text-2xl font-bold text-navy-blue relative pb-3">
-                  {h3Title}
-                  <span 
-                    className="absolute bottom-0 left-0 h-1 w-3/4"
-                    style={{
-                      background: 'linear-gradient(to right, #00043E 0%, #00043E 70%, transparent 100%)',
-                      height: '3px'
-                    }}
-                  ></span>
-                </h3>
-              )}
-              {h2Title && (
-                <div className="section-title-container">
-                  <h2 className="section-title text-2xl md:text-3xl font-bold text-black">
-                    {h2Title}
-                  </h2>
+                <div className="section-title-container w-full">
+                  <h3 className="section-title text-xl md:text-4xl font-bold text-primary-orange">
+                    {h3Title}
+                  </h3>
                 </div>
               )}
+              {h2Title && (
+                <h2 className="text-2xl md:text-5xl font-bold text-primary-orange pt-4">
+                  {h2Title}
+                </h2>
+              )}
               {customDescription && (
-                <p className="text-base md:text-lg text-dark-charcoal leading-relaxed">
+                <p className="text-base font-normal md:text-2xl text-dark-charcoal pb-4">
                   {customDescription}
                 </p>
               )}
@@ -109,24 +95,24 @@ export default function About({
                   href={buttonHref}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="inline-block bg-primary-orange text-white px-6 py-3 rounded-full font-semibold text-sm uppercase hover:bg-primary-orange transition-colors mt-3"
+                  className="inline-block bg-primary-orange text-white px-10 py-4 rounded-full font-semibold text-md uppercase hover:bg-primary-orange/90 transition-colors"
                 >
                   {buttonText}
                 </motion.a>
               )}
-              <div className="flex flex-wrap gap-6 mt-8 pt-6">
-                <div className="flex flex-col">
-                  <span className="text-2xl md:text-3xl font-bold text-navy-blue">24/7</span>
-                  <span className="text-xs text-dark-charcoal mt-1">Control Room</span>
+              <div className="flex flex-wrap gap-20 mt-8 pt-6">
+                <div className="flex flex-col items-center">
+                  <span className="text-2xl md:text-5xl font-bold text-primary-orange">24/7</span>
+                  <span className="text-lg text-dark-charcoal mt-1 text-center">Control Room</span>
                 </div>
-                <div className="flex flex-col">
-                  <span className="text-2xl md:text-3xl font-bold text-navy-blue">50+ yrs</span>
-                  <span className="text-xs text-dark-charcoal mt-1">Experience</span>
+                <div className="flex flex-col items-center">
+                  <span className="text-2xl md:text-5xl font-bold text-primary-orange">50+ yrs</span>
+                  <span className="text-lg text-dark-charcoal mt-1 text-center">Experience</span>
                 </div>
                 {!hideCountriesStat && (
-                  <div className="flex flex-col">
-                    <span className="text-2xl md:text-3xl font-bold text-navy-blue">3</span>
-                    <span className="text-xs text-dark-charcoal mt-1">countries</span>
+                  <div className="flex flex-col items-center">
+                    <span className="text-2xl md:text-5xl font-bold text-primary-orange">3</span>
+                    <span className="text-lg text-dark-charcoal mt-1 text-center">countries</span>
                   </div>
                 )}
               </div>
@@ -138,25 +124,26 @@ export default function About({
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="relative w-full h-[320px] md:h-[380px] rounded-lg overflow-hidden"
+                className="flex flex-col justify-center h-full w-full"
               >
-                <Image
-                  src={imageUrl}
-                  alt={typeof h2Title === 'string' ? h2Title : 'About SGA'}
-                  fill
-                  className="object-contain"
-                />
+                <div className="relative w-full h-[450px] md:h-full rounded-2xl overflow-hidden">
+                  <Image
+                    src={imageUrl}
+                    alt={typeof h2Title === 'string' ? h2Title : 'About SGA'}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
               </motion.div>
             )}
           </div>
         </motion.div>
-        <DecorativePattern static={staticPattern} />
       </section>
     )
   }
 
   return (
-    <SectionWrapper id="about" className="bg-light-grey">
+    <SectionWrapper id="about" className="bg-light-grey min-h-[85vh]">
       <div className="grid md:grid-cols-2 gap-12 items-center">
         <motion.div
           initial={{ opacity: 0, x: -50 }}
@@ -165,7 +152,7 @@ export default function About({
           transition={{ duration: 0.6 }}
         >
           <div className="section-title-container">
-            <h2 className="section-title text-4xl md:text-5xl font-bold text-navy-blue mb-6">
+            <h2 className="section-title text-4xl md:text-5xl font-bold text-primary-orange mb-6">
               {content.title}
             </h2>
           </div>

@@ -5,6 +5,7 @@ import WhyChooseUs from '@/components/WhyChooseUs'
 import Industries from '@/components/Industries'
 import News from '@/components/News'
 import ContactInfo from '@/components/ContactInfo'
+import SectionSeparator from '@/components/SectionSeparator'
 import FloatingWhatsApp from '@/components/FloatingWhatsApp'
 import { Metadata } from 'next'
 
@@ -44,7 +45,7 @@ export default function TanzaniaPage(): React.JSX.Element {
           { label: 'Explore for Corporate Clients', href: '#corporate', primary: true }
         ]}
       />
-      <div id="about">
+      <div id="about" className="relative">
         <About
           countryName="Tanzania"
           countryContent={tanzaniaContent}
@@ -53,7 +54,7 @@ export default function TanzaniaPage(): React.JSX.Element {
           h3Title="About SGA Tanzania"
           h2Title={
             <>
-              <span className="text-primary-orange">Trusted partner for Tanzania businesses.</span>
+              Trusted partner for Tanzania businesses.
             </>
           }
           customDescription="SGA Tanzania delivers manned guarding, remote CCTV monitoring, cash-in-transit, and fire & rescue—unified through a 24/7 control room and standardized reporting. Our vetted teams, modern systems, and regional oversight keep your people, assets, and operations secure across Tanzania."
@@ -61,29 +62,28 @@ export default function TanzaniaPage(): React.JSX.Element {
           buttonHref="#about"
           imageUrl="/images/tz/about.png"
           hideCountriesStat={true}
-          decorativePatternColors={['bg-[#00A3DD]', 'bg-[#000000]', 'bg-[#17B636]']}
-          decorativePatternLineColor="bg-[#FCD116]"
         />
+        <SectionSeparator imageUrl="/images/misc/section-pattern-tz.svg" />
       </div>
-      <div id="services">
+      <div id="services" className="relative">
         <IntegratedSolutions
-          decorativePatternColors={['bg-[#00A3DD]', 'bg-[#000000]', 'bg-[#17B636]']}
-          decorativePatternLineColor="bg-[#FCD116]"
           whiteBackground={true}
         />
+        <SectionSeparator imageUrl="/images/misc/section-pattern-tz.svg" />
       </div>
-      <div id="industries">
+      <div id="industries" className="relative">
         <Industries
           backgroundColor="bg-light-grey"
-          decorativePatternColors={['bg-[#00A3DD]', 'bg-[#000000]', 'bg-[#17B636]']}
-          decorativePatternLineColor="bg-[#FCD116]"
         />
+        <SectionSeparator imageUrl="/images/misc/section-pattern-tz.svg" />
       </div>
-      <div id="why-us">
-        <WhyChooseUs countryName="Tanzania" decorativePatternColors={['bg-[#00A3DD]', 'bg-[#000000]', 'bg-[#17B636]']} decorativePatternLineColor="bg-[#FCD116]" />
+      <div id="why-us" className="relative">
+        <WhyChooseUs countryName="Tanzania" />
+        <SectionSeparator imageUrl="/images/misc/section-pattern-tz.svg" />
       </div>
-      <div id="blog">
-        <News decorativePatternColors={['bg-[#00A3DD]', 'bg-[#000000]', 'bg-[#17B636]']} decorativePatternLineColor="bg-[#FCD116]" />
+      <div id="blog" className="relative">
+        <News />
+        <SectionSeparator imageUrl="/images/misc/section-pattern-tz.svg" />
       </div>
       <div id="contact">
         <ContactInfo />
