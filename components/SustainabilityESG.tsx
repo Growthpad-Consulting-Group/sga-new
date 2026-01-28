@@ -1,0 +1,175 @@
+'use client'
+
+import { motion } from 'framer-motion'
+import { Icon } from '@iconify/react'
+import Image from 'next/image'
+
+interface SDGGoal {
+  goal: number
+  title: string
+  description: string
+  bgColor: string
+  iconUrl: string
+}
+
+const sdgGoals: SDGGoal[] = [
+  {
+    goal: 3,
+    title: 'Good Health & Well‑Being',
+    description: 'Ensuring healthy lives and promoting well-being for all at all ages.',
+    bgColor: '#4C9F38',
+    iconUrl: '/images/group/sdg/sdg-3.svg',
+  },
+  {
+    goal: 4,
+    title: 'Quality Education',
+    description: 'Supporting inclusive and equitable education while promoting lifelong learning opportunities.',
+    bgColor: '#C5192D',
+    iconUrl: '/images/group/sdg/sdg-4.svg',
+  },
+  {
+    goal: 5,
+    title: 'Gender equality',
+    description: 'Advancing equality by empowering women and ensuring equal opportunities for all.',
+    bgColor: '#FF3A21',
+    iconUrl: '/images/group/sdg/sdg-5.svg',
+  },
+  {
+    goal: 8,
+    title: 'Decent Work & Economic Growth',
+    description: 'Advancing equality by empowering women and ensuring equal opportunities for all.',
+    bgColor: '#A21942',
+    iconUrl: '/images/group/sdg/sdg-8.svg',
+  },
+  {
+    goal: 9,
+    title: 'Industry, Innovation & Infrastructure',
+    description: 'Building resilient systems through innovation, sustainable solutions, and infrastructure support.',
+    bgColor: '#FD6925',
+    iconUrl: '/images/group/sdg/sdg-9.svg',
+  },
+  {
+    goal: 12,
+    title: 'Responsible Consumption & Production',
+    description: 'Supporting inclusive and equitable education while promoting lifelong learning opportunities.',
+    bgColor: '#BF8B2E',
+    iconUrl: '/images/group/sdg/sdg-12.svg',
+  },
+  {
+    goal: 16,
+    title: 'Peace, Justice & Strong Institutions',
+    description: 'Upholding integrity, accountability, and fostering safe, inclusive communities.',
+    bgColor: '#00689D',
+    iconUrl: '/images/group/sdg/sdg-16.svg',
+  },
+]
+
+export default function SustainabilityESG(): React.JSX.Element {
+  return (
+    <section id="sustainability-esg" className="section-snap flex items-center justify-center bg-light-grey relative py-12 md:py-16">
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-100px' }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        className="w-full mx-auto px-4 sm:px-6 lg:px-8"
+      >
+        <div className="mb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="space-y-3"
+          >
+            <p className="text-md font-medium text-dark-charcoal uppercase tracking-wider">
+              Sustainability & ESG
+            </p>
+            <div className="section-title-container">
+              <h3 className="section-title text-xl md:text-5xl font-bold text-primary-orange">
+                Sustainable Development Goals
+              </h3>
+            </div>
+            <p className="text-base md:text-lg text-dark-charcoal leading-relaxed">SGA aligns its environmental, social and governance initiatives with the UN SDGs. Here are the goals we actively support.</p>
+          </motion.div>
+        </div>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+          {sdgGoals.map((sdg, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -8 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.15,
+                ease: "easeOut",
+                opacity: { duration: 0.5, delay: index * 0.1 },
+                y: { duration: 0.15 }
+              }}
+              className="rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-150 cursor-pointer min-h-[320px]"
+              style={{ backgroundColor: sdg.bgColor }}
+            >
+              <div className="p-5 md:p-6 h-full flex flex-col text-white">
+                <div className="flex items-start justify-between mb-3">
+                  <span className="text-4xl md:text-5xl font-bold leading-none">
+                    {sdg.goal}
+                  </span>
+                  <div className="relative w-20 h-20 md:w-28 md:h-28 flex-shrink-0">
+                    <Image
+                      src={sdg.iconUrl}
+                      alt={`SDG Goal ${sdg.goal}`}
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                </div>
+                <div className="flex-1"></div>
+                <div>
+                  <h4 className="text-lg md:text-3xl font-bold mb-2 leading-tight">
+                    {sdg.title}
+                  </h4>
+                  <p className="text-sm md:text-base leading-relaxed">
+                    {sdg.description}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+
+          {/* Learn More Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            whileHover={{ y: -8 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 0.15,
+              ease: "easeOut",
+              opacity: { duration: 0.5, delay: 0.7 },
+              y: { duration: 0.15 }
+            }}
+            className="rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-150 border border-dark-charcoal bg-transparent min-h-[320px] cursor-pointer"
+          >
+            <div className="p-5 md:p-6 h-full flex flex-col">
+              <h4 className="text-base md:text-3xl font-medium text-dark-charcoal mb-4 leading-tight">
+                Learn More About Our Sustainability Impact
+              </h4>
+              <div className="flex-1"></div>
+              <motion.a
+                href="#contact"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-primary-orange text-white px-6 py-3 rounded-full font-semibold text-xs md:text-sm uppercase hover:bg-[#d84c1e] transition-colors shadow-md hover:shadow-lg flex items-center justify-center gap-2 w-full"
+              >
+                Learn More
+
+              </motion.a>
+            </div>
+          </motion.div>
+        </div>
+      </motion.div>
+    </section>
+  )
+}
+

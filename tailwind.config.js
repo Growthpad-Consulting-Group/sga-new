@@ -1,12 +1,21 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './pages/**/*.{js,jsx}',
-    './components/**/*.{js,jsx}',
-    './app/**/*.{js,jsx}',
+    './pages/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}',
+    './app/**/*.{js,ts,jsx,tsx}',
+    './contexts/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
+      fontFamily: {
+        'heading': ['Helvetica Neue', 'Arial', 'sans-serif'],
+        'body': ['Arial', 'sans-serif'],
+        'nav': ['Arial', 'Helvetica Neue', 'sans-serif'],
+      },
+      letterSpacing: {
+        'tight-0': '0 !important',
+      },
       colors: {
         primary: {
           orange: '#F15522',

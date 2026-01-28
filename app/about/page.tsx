@@ -1,0 +1,52 @@
+import AboutHero from '@/components/AboutHero'
+import AboutIntro from '@/components/AboutIntro'
+import OurFoundation from '@/components/OurFoundation'
+import OurJourney from '@/components/OurJourney'
+import Membership from '@/components/Membership'
+import Certifications from '@/components/Certifications'
+import JoinOurMission from '@/components/JoinOurMission'
+import GroupFooter from '@/components/GroupFooter'
+import type { Metadata } from 'next'
+import SectionSeparator from '@/components/SectionSeparator'
+
+export const metadata: Metadata = {
+  title: 'About SGA Security Group - Leading Security Solutions in East Africa',
+  description: 'Learn about SGA Security Group, our mission, values, and commitment to providing exceptional security services across Kenya, Uganda, and Tanzania.',
+}
+
+export default function AboutPage(): React.JSX.Element {
+  return (
+    <>
+      <AboutHero
+        imageUrl="/images/group/about/hero.png"
+      />
+      <div className="relative">
+        <AboutIntro
+          imageUrl="/images/group/about/about-2.png"
+        />
+        {/* <SectionSeparator /> */}
+      </div>
+      <div className="relative">
+        <OurFoundation />
+        <SectionSeparator />
+      </div>
+      <div className="relative">
+        <OurJourney />
+        <SectionSeparator />
+      </div>
+      <div className="relative">
+        <Membership />
+        <SectionSeparator />
+      </div>
+      <div className="relative">
+        <Certifications />
+        <SectionSeparator />
+      </div>
+      <div className="relative">
+        <JoinOurMission />
+        {/* <SectionSeparator /> */}
+      </div>
+      <GroupFooter />
+    </>
+  )
+}
