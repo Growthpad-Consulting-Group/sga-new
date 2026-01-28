@@ -35,7 +35,7 @@ export default function KenyaPage(): React.JSX.Element {
         imageUrl="/images/ke/hero.png"
         customTitle={
           <>
-            Protect what matters most - your <span className="">home</span> and <span className="">family</span>.
+            Protect what matters most <br />— your <span className="">home</span> and <span className="">family</span>.
           </>
         }
         customDescription="From Nairobi estates to Mombasa homes, SGA Kenya provides round-the-clock security you can trust."

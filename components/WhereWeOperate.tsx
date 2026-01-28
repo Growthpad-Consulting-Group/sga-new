@@ -14,13 +14,13 @@ export default function WhereWeOperate(): React.JSX.Element {
         transition={{ duration: 0.6, ease: 'easeOut' }}
         className="w-full mx-auto px-4 sm:px-6 lg:px-8"
       >
-        <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="space-y-3 flex flex-col"
+            className="space-y-3 flex flex-col lg:col-span-2"
           >
             <div>
               <p className="text-md font-medium text-dark-charcoal uppercase tracking-wider mb-2">
@@ -131,19 +131,19 @@ export default function WhereWeOperate(): React.JSX.Element {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="mx-auto w-full max-w-2xl lg:max-w-4xl flex items-center justify-center"
+            className="mx-auto w-full lg:col-span-3 flex items-center justify-center lg:justify-end"
           >
             <Image
               src="/images/group/geographic-footprint.svg"
               alt="Geographic Footprint"
-              width={800}
+              width={1000}
               height={0}
-              className="w-full h-auto transition-transform duration-300 group-hover:scale-110"
+              className="w-full h-auto max-w-3xl lg:max-w-none transition-transform duration-300 group-hover:scale-110"
             />
           </motion.div>
         </div>
-      </motion.div>
-    </section>
+      </motion.div >
+    </section >
   )
 }
 
