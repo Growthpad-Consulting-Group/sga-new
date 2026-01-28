@@ -220,21 +220,23 @@ export default function CountryFooter() {
             </div>
           </div>
 
-          <div className="border-t border-white/20 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center text-xl text-white/90">
+          <div className="flex justify-end mt-12">
+            {showScrollTop && (
+              <button
+                onClick={scrollToTop}
+                className="flex items-center justify-center w-12 h-12 rounded-full bg-white text-primary-orange hover:bg-navy-blue hover:text-white transition-all duration-300 hover:scale-110 shadow-lg"
+                aria-label="Scroll to top"
+              >
+                <Icon icon="mdi:chevron-up" className="w-8 h-8" />
+              </button>
+            )}
+          </div>
+
+          <div className="border-t border-white/20 mt-4 pt-8 flex flex-col sm:flex-row justify-between items-center text-xl text-white/90">
             <p>&copy; {currentYear} SGA Security. All rights reserved.</p>
             
             <div className="flex items-center gap-8 mt-4 sm:mt-0">
               <Link href="/privacy-policy" className="hover:text-navy-blue transition-colors">Privacy Policy</Link>
-              
-              {showScrollTop && (
-                <button
-                  onClick={scrollToTop}
-                  className="flex items-center justify-center w-12 h-12 rounded-full bg-white text-primary-orange hover:bg-navy-blue hover:text-white transition-all duration-300 hover:scale-110 shadow-lg"
-                  aria-label="Scroll to top"
-                >
-                  <Icon icon="mdi:chevron-up" className="w-8 h-8" />
-                </button>
-              )}
             </div>
           </div>
         </div>
