@@ -5,7 +5,6 @@ import OurJourney from '@/components/OurJourney'
 import Membership from '@/components/Membership'
 import Certifications from '@/components/Certifications'
 import JoinOurMission from '@/components/JoinOurMission'
-import GroupFooter from '@/components/GroupFooter'
 import type { Metadata } from 'next'
 import SectionSeparator from '@/components/SectionSeparator'
 
@@ -46,7 +45,6 @@ export default function AboutPage(): React.JSX.Element {
         <JoinOurMission />
         {/* <SectionSeparator /> */}
       </div>
-      <GroupFooter />
     </>
   )
 }

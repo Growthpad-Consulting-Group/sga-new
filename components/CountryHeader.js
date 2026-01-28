@@ -241,9 +241,9 @@ export default function CountryHeader() {
               <Image
                 src={(isScrolled || isAboutPage) ? "/images/logo.svg" : "/images/logo-white.svg"}
                 alt="SGA Security Logo"
-                width={240}
-                height={70}
-                className="h-12 sm:h-14 w-auto transition-all duration-300"
+                width={260}
+                height={75}
+                className={`transition-all duration-300 ${isScrolled ? 'h-10 sm:h-12' : 'h-12 sm:h-16'} w-auto`}
                 priority
               />
             </Link>
@@ -292,8 +292,8 @@ export default function CountryHeader() {
                                 <Image
                                   src="/images/logo-white.svg"
                                   alt="SGA Security"
-                                  width={180}
-                                  height={60}
+                                  width={220}
+                                  height={65}
                                   className="h-12 w-auto"
                                 />
                               </Link>

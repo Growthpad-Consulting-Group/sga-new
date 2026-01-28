@@ -64,7 +64,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
           <EnquiryModalProvider>
             <CVModalProvider>
               <ConditionalHeader />
-              <main className={isCountryPage ? "" : "pt-28 sm:pt-32"}>
+              <main className={isCountryPage ? "" : ""}>
                 {children}
               </main>
               <ConditionalFooter />

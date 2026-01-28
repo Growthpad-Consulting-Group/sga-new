@@ -9,7 +9,6 @@ import HappyClients from '@/components/HappyClients'
 import JoinOurMission from '@/components/JoinOurMission'
 import FloatingWhatsApp from '@/components/FloatingWhatsApp'
 import SectionSeparator from '@/components/SectionSeparator'
-import GroupFooter from '@/components/GroupFooter'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -92,7 +91,6 @@ export default function HomePage(): React.JSX.Element {
         <SectionSeparator />
       </div>
 
-      <GroupFooter />
       <FloatingWhatsApp />
     </>
   )

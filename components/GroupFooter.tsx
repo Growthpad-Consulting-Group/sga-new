@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { Icon } from '@iconify/react'
 import { useEnquiryModal } from '@/contexts/EnquiryModalContext'
+import Link from 'next/link'
 
 interface SocialLink {
   icon: string
@@ -26,9 +27,9 @@ export default function GroupFooter(): React.JSX.Element {
     <div className="bg-white px-4 sm:px-6 lg:px-3 py-4">
       <footer className="bg-primary-orange pt-12 md:pt-24 pb-4 rounded-3xl no-snap relative overflow-hidden max-w-8xl mx-auto" style={{ scrollSnapAlign: 'none', scrollSnapStop: 'normal' }}>
         <div className="mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-6">
-            {/* Logo and Social Section */}
-            <div className="lg:col-span-1">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12">
+            {/* Logo and branding Section */}
+            <div className="lg:col-span-5">
               <div className="mb-6">
                 <Image
                   src="/images/logo-white.svg"
@@ -49,21 +50,6 @@ export default function GroupFooter(): React.JSX.Element {
                 </p>
               </div>
               <div className="pl-6">
-                <h4 className="font-semibold mb-3 text-white text-2xl">Connect With Us</h4>
-                <div className="flex items-center space-x-4 mb-5 py-4">
-                  {socialLinks.map((social) => (
-                    <a
-                      key={social.icon}
-                      href={social.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-white/90 hover:text-navy-blue transition-colors"
-                      aria-label={social.label}
-                    >
-                      <Icon icon={social.icon} className="w-10 h-10" />
-                    </a>
-                  ))}
-                </div>
                 <div className="flex gap-4">
                   <a
                     href="#contact"
@@ -81,30 +67,41 @@ export default function GroupFooter(): React.JSX.Element {
               </div>
             </div>
 
-            {/* Company Section */}
-            <div>
-              <h4 className="font-semibold mb-4 text-white text-3xl">Company</h4>
-              <ul className="space-y-2.5 text-xl text-white/90">
-                <li>
-                  <a href="#about" className="hover:text-navy-blue transition-colors cursor-pointer">Who we are</a>
-                </li>
-                <li>
-                  <a href="#services" className="hover:text-navy-blue transition-colors cursor-pointer">Services</a>
-                </li>
-                <li>
-                  <a href="#sustainability-esg" className="hover:text-navy-blue transition-colors cursor-pointer">Sustainability</a>
-                </li>
-                <li>
-                  <a href="#news" className="hover:text-navy-blue transition-colors cursor-pointer">News & Reports</a>
-                </li>
-                <li>
-                  <a href="#join-our-mission" className="hover:text-navy-blue transition-colors cursor-pointer">Career</a>
-                </li>
-              </ul>
+            {/* SGA Group Section */}
+            <div className="lg:col-span-3">
+              <div className="mb-10">
+                <h4 className="font-semibold mb-6 text-white text-3xl">SGA Group</h4>
+                <ul className="space-y-4 text-xl text-white/90">
+                  <li>
+                    <Link href="/" className="hover:text-navy-blue transition-colors cursor-pointer block">Group Website</Link>
+                  </li>
+                  <li>
+                    <Link href="/sustainability" className="hover:text-navy-blue transition-colors cursor-pointer block">Sustainability</Link>
+                  </li>
+                  <li>
+                    <Link href="/careers" className="hover:text-navy-blue transition-colors cursor-pointer block">Careers</Link>
+                  </li>
+                  <li>
+                    <Link href="/news-reports" className="hover:text-navy-blue transition-colors cursor-pointer block">News & Reports</Link>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="font-semibold mb-6 text-white text-3xl">Legal</h4>
+                <ul className="space-y-4 text-xl text-white/90">
+                  <li>
+                    <Link href="/privacy-policy" className="hover:text-navy-blue transition-colors cursor-pointer block">Privacy Policy</Link>
+                  </li>
+                  <li>
+                    <Link href="/terms-conditions" className="hover:text-navy-blue transition-colors cursor-pointer block">Terms & Conditions</Link>
+                  </li>
+                </ul>
+              </div>
             </div>
 
             {/* All Countries Section */}
-            <div className="space-y-8">
+            <div className="lg:col-span-4 space-y-8">
               {/* Kenya HQ */}
               <div>
                 <h4 className="font-semibold mb-4 text-white text-3xl">Kenya HQ (Nairobi)</h4>
@@ -190,19 +187,33 @@ export default function GroupFooter(): React.JSX.Element {
                       <span className="font-bold">Email:</span>
                       <a href="mailto:customerservice@ug.sgasecurity.com" className="hover:text-navy-blue transition-colors ml-1">customerservice@ug.sgasecurity.com</a>
                     </div>
-
-
                   </div>
+                </div>
+              </div>
+
+              <div className="pt-8 border-t border-white/20">
+                <h4 className="font-semibold mb-4 text-white text-2xl uppercase tracking-wider">Connect With Us</h4>
+                <div className="flex items-center space-x-6 py-2">
+                  {socialLinks.map((social) => (
+                    <a
+                      key={social.icon}
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-white/90 hover:text-navy-blue transition-colors"
+                      aria-label={social.label}
+                    >
+                      <Icon icon={social.icon} className="w-10 h-10" />
+                    </a>
+                  ))}
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="border-t border-white/20 mt-8 pt-8 flex flex-col sm:flex-row justify-between items-center text-xl text-white/90">
+          <div className="border-t border-white/20 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center text-xl text-white/90">
             <p>&copy; {currentYear} SGA Security. All rights reserved.</p>
-            <a href="/privacy-policy" className="mt-2 sm:mt-0 hover:text-navy-blue transition-colors">
-              Privacy Policy
-            </a>
+            <Link href="/privacy-policy" className="hover:text-navy-blue transition-colors mt-4 sm:mt-0">Privacy Policy</Link>
           </div>
         </div>
       </footer>

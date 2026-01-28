@@ -1,6 +1,6 @@
 import IndustriesHero from '../components/IndustriesHero'
 import IndustriesDetail from '../components/IndustriesDetail'
-import CountryFooter from '../components/CountryFooter'
+
 import FloatingWhatsApp from '@/components/FloatingWhatsApp'
 
 export const metadata = {
@@ -16,7 +16,6 @@ export default function UgandaIndustriesPage() {
         imageUrl="/images/ug/about-sga.png"
       />
       <IndustriesDetail countryCode="ug" />
-      <CountryFooter /> 
       <FloatingWhatsApp 
         singleCountry={true}
         country="Uganda"

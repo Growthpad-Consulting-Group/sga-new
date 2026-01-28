@@ -3,7 +3,7 @@ import AboutIntro from '../components/AboutIntro'
 import OurFoundation from '../components/OurFoundation'
 import OurJourney from '../components/OurJourney'
 import OurPeople from '../components/OurPeople'
-import CountryFooter from '../components/CountryFooter'
+
 import FloatingWhatsApp from '@/components/FloatingWhatsApp'
 
 export const metadata = {
@@ -25,7 +25,6 @@ export default function KenyaAboutPage() {
       <OurPeople 
         imageUrl="/images/group/about/about-2.png"
       />
-      <CountryFooter /> 
       <FloatingWhatsApp 
         singleCountry={true}
         country="Kenya"
