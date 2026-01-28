@@ -12,7 +12,7 @@ interface FloatingWhatsAppProps {
   flag?: string | null
 }
 
-export default function FloatingWhatsApp({ 
+export default function FloatingWhatsApp({
   singleCountry = false,
   country = null,
   phone = null,
@@ -34,24 +34,24 @@ export default function FloatingWhatsApp({
     {
       country: 'Kenya',
       phone: '+254111024000',
-      url: 'https://wa.me/254111024000',
+      url: `https://wa.me/254111024000?text=${encodeURIComponent("Hello SGA Security, I would like to make an inquiry.")}`,
       flag: 'twemoji:flag-kenya'
     },
     {
-      country: 'Uganda', 
+      country: 'Uganda',
       phone: '+256772200048',
-      url: 'https://wa.me/256772200048',
+      url: `https://wa.me/256772200048?text=${encodeURIComponent("Hello SGA Security, I would like to make an inquiry.")}`,
       flag: 'twemoji:flag-uganda'
     },
     {
       country: 'Tanzania',
-      phone: '+255754303076', 
-      url: 'https://wa.me/255754303076',
+      phone: '+255754303076',
+      url: `https://wa.me/255754303076?text=${encodeURIComponent("Hello SGA Security, I would like to make an inquiry.")}`,
       flag: 'twemoji:flag-tanzania'
     }
   ]
 
-  const contacts = singleCountry && country && phone && url && flag 
+  const contacts = singleCountry && country && phone && url && flag
     ? [{ country, phone, url, flag }]
     : defaultContacts
 

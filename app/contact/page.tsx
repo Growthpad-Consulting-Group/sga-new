@@ -12,10 +12,10 @@ export const metadata: Metadata = {
 export default function ContactPage(): React.JSX.Element {
   return (
     <>
-      <ContactHero 
+      <ContactHero
         imageUrl="/images/contact/hero.png"
       />
-      <ContactInfo/>
+      <ContactInfo />
       <CustomerCare />
       <FloatingWhatsApp />
     </>
