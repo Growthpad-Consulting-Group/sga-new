@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import SectionWrapper from './SectionWrapper'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
@@ -37,13 +38,28 @@ const industries: Industry[] = [
     icon: 'mdi:hotel',
     image: '/images/ug/hospitality.png',
   },
+  {
+    name: 'Commercial & Retail',
+    icon: 'mdi:office-building',
+    image: '/images/ug/commercial.png',
+  },
 ]
 
 export default function Industries({
   backgroundColor = 'bg-white',
 }: IndustriesProps) {
+  const [currentIndex, setCurrentIndex] = useState(0)
+
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev === 0 ? industries.length - 4 : prev - 1))
+  }
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev >= industries.length - 4 ? 0 : prev + 1))
+  }
+
   return (
-    <section id="industries" className={`section-snap flex items-center justify-center ${backgroundColor} relative pb-0 overflow-x-hidden min-h-[85vh]`}>
+    <section id="industries" className={`section-snap flex items-center justify-center ${backgroundColor} relative pb-0 overflow-x-hidden min-h-[100vh]`}>
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -61,18 +77,24 @@ export default function Industries({
             <p className="text-md font-medium text-dark-charcoal uppercase tracking-wider">
               industries
             </p>
-            <div className="section-title-container w-full">
-              <h3 className="section-title text-xl md:text-4xl font-bold text-primary-orange flex items-center justify-between">
-                <span>Built for your industry</span>
-                <div className="flex items-center gap-2">
-                  <button className="w-8 h-8 rounded-full border-2 border-navy-blue flex items-center justify-center hover:bg-primary-orange hover:border-primary-orange hover:text-white transition-colors">
-                    <Icon icon="mdi:chevron-left" className="w-5 h-5" />
-                  </button>
-                  <button className="w-8 h-8 rounded-full border-2 border-navy-blue flex items-center justify-center hover:bg-primary-orange hover:border-primary-orange hover:text-white transition-colors">
-                    <Icon icon="mdi:chevron-right" className="w-5 h-5" />
-                  </button>
-                </div>
+            <div className="section-title-container w-full flex items-end justify-between">
+              <h3 className="section-title text-xl md:text-4xl font-bold text-primary-orange">
+                Built for your industry
               </h3>
+              <div className="flex items-center gap-3 mb-1">
+                <button
+                  onClick={handlePrev}
+                  className="w-10 h-10 rounded-full border-2 border-dark-charcoal flex items-center justify-center text-dark-charcoal hover:border-primary-orange hover:text-primary-orange transition-all duration-300"
+                >
+                  <Icon icon="mingcute:arrow-left-line" className="w-6 h-6" />
+                </button>
+                <button
+                  onClick={handleNext}
+                  className="w-10 h-10 rounded-full border-2 border-dark-charcoal flex items-center justify-center text-dark-charcoal hover:border-primary-orange hover:text-primary-orange transition-all duration-300"
+                >
+                  <Icon icon="mingcute:arrow-right-line" className="w-6 h-6" />
+                </button>
+              </div>
             </div>
             <p className="text-base font-normal md:text-2xl text-dark-charcoal pb-4 mt-4">
               From banks to gated estates, we tailor protection to your world.
@@ -81,38 +103,38 @@ export default function Industries({
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          {industries.map((industry, index) => (
+          {industries.slice(currentIndex, currentIndex + 4).map((industry, index) => (
             <motion.div
-              key={index}
+              key={currentIndex + index}
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ scale: 1.05 }}
-              className="flex flex-col items-center"
+              className="flex flex-col items-center gap-4"
             >
-              <div className="w-40 h-40 md:w-56 md:h-56 rounded-full border border-navy-blue flex flex-col items-center justify-center shadow-lg hover:bg-primary-orange hover:border-primary-orange transition-all mb-4 group relative overflow-hidden">
+              {/* Circle with Image */}
+              <div className="w-64 h-64 md:w-80 md:h-80 mb-4 rounded-full overflow-hidden shadow-lg hover:shadow-2xl transition-all">
                 {industry.image && (
-                  <div className="absolute inset-0 rounded-full overflow-hidden">
+                  <div className="relative w-full h-full">
                     <Image
                       src={industry.image}
                       alt={industry.name}
                       fill
-                      className="object-cover opacity-30 group-hover:opacity-20 transition-opacity"
+                      className="object-cover"
                     />
                   </div>
                 )}
-                <Icon
-                  icon={industry.icon}
-                  className="w-8 h-8 md:w-10 md:h-10 text-white opacity-0 group-hover:opacity-100 transition-opacity mb-2 relative z-10"
-                />
-                <span className="text-navy-blue group-hover:text-white text-center text-xs md:text-sm font-semibold px-4 transition-colors relative z-10">
-                  {industry.name}
-                </span>
               </div>
+
+              {/* Text Below */}
+              <h4 className="text-center text-base md:text-2xl font-bold text-dark-charcoal">
+                {industry.name}
+              </h4>
             </motion.div>
           ))}
         </div>
+
         <div className="flex justify-center mt-12">
           <motion.button
             initial={{ opacity: 0, y: 20 }}
@@ -120,7 +142,7 @@ export default function Industries({
             viewport={{ once: true }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-navy-blue text-white px-8 py-3 rounded-full font-semibold text-sm uppercase hover:bg-primary-orange transition-colors"
+            className="bg-primary-orange text-white px-10 py-5 rounded-full font-semibold text-sm uppercase hover:bg-primary-orange/90 transition-colors"
           >
             See solutions for your industry
           </motion.button>
