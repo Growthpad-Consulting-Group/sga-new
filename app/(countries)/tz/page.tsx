@@ -82,11 +82,8 @@ export default function TanzaniaPage(): React.JSX.Element {
         <SectionSeparator imageUrl="/images/misc/section-pattern-tz.svg" />
       </div>
       <div id="blog" className="relative">
-        <News />
+        <News hideCountryDropdown={true} backgroundColor="bg-light-grey" country="Tanzania" />
         <SectionSeparator imageUrl="/images/misc/section-pattern-tz.svg" />
-      </div>
-      <div id="contact">
-        <ContactInfo />
       </div>
       <FloatingWhatsApp
         singleCountry={true}

@@ -51,7 +51,7 @@ export default function UgandaPage(): React.JSX.Element {
           countryContent={ugandaContent}
           customLayout={true}
           smallTitle="WHO WE ARE"
-          h3Title="About SGA Group"
+          h3Title="About SGA Uganda"
           h2Title={
             <>
               Trusted partner for Ugandan businesses.
@@ -79,11 +79,8 @@ export default function UgandaPage(): React.JSX.Element {
         <SectionSeparator imageUrl="/images/misc/section-pattern-ug.svg" />
       </div>
       <div id="blog" className="relative">
-        <News />
+        <News hideCountryDropdown={true} backgroundColor="bg-light-grey" country="Uganda" />
         <SectionSeparator imageUrl="/images/misc/section-pattern-ug.svg" />
-      </div>
-      <div id="contact">
-        <ContactInfo />
       </div>
       <FloatingWhatsApp
         singleCountry={true}

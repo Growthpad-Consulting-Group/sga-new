@@ -142,7 +142,12 @@
   }
 
   /* Headings use Helvetica Neue */
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-heading tracking-tight-0 !important;
   }
 
@@ -153,11 +158,12 @@
 }
 
 @layer utilities {
+
   /* Button utility class */
   .btn-text {
     @apply uppercase;
   }
-  
+
   /* Flag icon utility */
   .flag-icon {
     @apply rounded-full;
@@ -169,7 +175,7 @@
   .section-title {
     @apply relative inline-block;
   }
-  
+
   .section-title::after {
     content: '';
     position: absolute;
@@ -180,12 +186,12 @@
     background-color: currentColor;
     z-index: 2;
   }
-  
+
   .section-title-container {
     @apply relative;
     padding-bottom: 1rem;
   }
-  
+
   .section-title-container::after {
     content: '';
     position: absolute;
@@ -203,7 +209,7 @@
     @apply relative;
     padding-bottom: 1rem;
   }
-  
+
   .section-title-container-white::after {
     content: '';
     position: absolute;
@@ -221,4 +227,3 @@
     scroll-snap-stop: normal;
   }
 }
-

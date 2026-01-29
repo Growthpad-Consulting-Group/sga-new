@@ -15,50 +15,175 @@ interface NewsItem {
   date: string
 }
 
-interface NewsProps { }
+interface NewsProps {
+  hideCountryDropdown?: boolean
+  backgroundColor?: string
+  country?: string
+}
 
 const newsItems: NewsItem[] = [
+  // Kenya Items
   {
     category: 'Advisory Report',
-    title: 'Latest Security Updates',
-    summary: 'Stay informed with the latest security news and industry updates from SGA. Learn about new security measures and best practices.',
+    title: 'SGA Security Kenya: 2025 Security Outlook',
+    summary: 'SGA Security releases its comprehensive annual report on the evolving security landscape in Kenya, highlighting key trends and safety protocols for businesses.',
     image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop',
     country: 'Kenya',
     date: 'May 8, 2025',
   },
   {
     category: 'Blog',
-    title: 'Company Announcements',
-    summary: 'Important announcements and updates about our services and operations. Stay connected with SGA Security developments.',
+    title: 'SGA Nairobi Headquarters Expansion',
+    summary: 'SGA Security announces the expansion of its Nairobi headquarters to better serve our growing client base in the region.',
+    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop',
+    country: 'Kenya',
+    date: 'June 12, 2025',
+  },
+  {
+    category: 'Media',
+    title: 'SGA Wins Top Security Provider Award 2025',
+    summary: 'SGA Kenya has been recognized as the leading security solutions provider at the Annual Security Excellence Awards.',
+    image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&h=600&fit=crop',
+    country: 'Kenya',
+    date: 'July 5, 2025',
+  },
+  {
+    category: 'Advisory Report',
+    title: 'SGA Cyber Protection for Kenyan Banks',
+    summary: 'How SGA Security is partnering with major Kenyan banks to provide integrated physical and digital security solutions.',
+    image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&h=600&fit=crop',
+    country: 'Kenya',
+    date: 'August 20, 2025',
+  },
+
+
+  // Tanzania Items
+  {
+    category: 'Blog',
+    title: 'SGA Tanzania Launches Community Safety Initiative',
+    summary: 'SGA Tanzania partners with local authorities in Arusha to launch a new community policing and safety awareness program.',
     image: 'https://images.unsplash.com/photo-1560253023-3ec5d7729591?w=800&h=600&fit=crop',
     country: 'Tanzania',
     date: 'May 12, 2025',
   },
   {
+    category: 'Advisory Report',
+    title: 'SGA Port Security Protocols in Dar es Salaam',
+    summary: 'New SGA protocols implemented for securing logistics and cargo at the Dar es Salaam port. Full advisory for logistics partners.',
+    image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&h=600&fit=crop',
+    country: 'Tanzania',
+    date: 'June 25, 2025',
+  },
+  {
     category: 'Media',
-    title: 'Industry Insights',
-    summary: 'Expert insights and analysis on security trends and best practices. Discover what\'s shaping the security industry.',
+    title: 'SGA Tanzania Training Academy Graduates 500 Guards',
+    summary: 'Feature story on our advanced training academy in Tanzania setting new standards for professional security guards.',
+    image: 'https://images.unsplash.com/photo-1574607383476-f517b260d35b?w=800&h=600&fit=crop',
+    country: 'Tanzania',
+    date: 'July 18, 2025',
+  },
+  {
+    category: 'Blog',
+    title: 'SGA Smart Safe Technology for Retail',
+    summary: 'How SGA Tanzania is revolutionizing cash-in-transit services with smart safe technology for retail businesses.',
+    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?w=800&h=600&fit=crop',
+    country: 'Tanzania',
+    date: 'August 10, 2025',
+  },
+
+  // Uganda Items
+  {
+    category: 'Media',
+    title: 'SGA Uganda Annual Security Conference',
+    summary: 'SGA Security hosts key stakeholders at the annual security conference in Kampala to discuss integrated security systems.',
     image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=600&fit=crop',
     country: 'Uganda',
     date: 'May 15, 2025',
   },
+  {
+    category: 'Advisory Report',
+    title: 'SGA Security in Uganda\'s Oil & Gas Sector',
+    summary: 'SGA releases specialized risk assessment and security strategies for the growing energy sector in Western Uganda.',
+    image: 'https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?w=800&h=600&fit=crop',
+    country: 'Uganda',
+    date: 'June 30, 2025',
+  },
+  {
+    category: 'Blog',
+    title: 'SGA Emergency Response in Kampala',
+    summary: 'Our response teams are now assisting with traffic management during peak hours to ensure rapid response times in Kampala.',
+    image: 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=800&h=600&fit=crop',
+    country: 'Uganda',
+    date: 'July 22, 2025',
+  },
+  {
+    category: 'Media',
+    title: 'Women in Security: Leadership at SGA Uganda',
+    summary: 'Celebrating the women leaders at SGA Uganda who are driving change and excellence in the security industry.',
+    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=600&fit=crop',
+    country: 'Uganda',
+    date: 'August 5, 2025',
+  },
 ]
 
-export default function News({ }: NewsProps) {
+export default function News({ hideCountryDropdown = false, backgroundColor = 'bg-white', country }: NewsProps) {
   const [activeFilter, setActiveFilter] = useState('ALL')
-  const [selectedCountry, setSelectedCountry] = useState('All Country')
+  const [selectedCountry, setSelectedCountry] = useState(country || 'All Country')
   const [searchQuery, setSearchQuery] = useState('')
+  const [currentPage, setCurrentPage] = useState(1)
+  const itemsPerPage = 3
 
   const filteredItems = newsItems.filter(item => {
+    // If a specific country prop is passed, only show news for that country
+    const itemCountryMatchesProp = country ? item.country === country : true
+
     const matchesFilter = activeFilter === 'ALL' || item.category.toUpperCase() === activeFilter
     const matchesCountry = selectedCountry === 'All Country' || item.country === selectedCountry
     const matchesSearch = item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       item.summary.toLowerCase().includes(searchQuery.toLowerCase())
-    return matchesFilter && matchesCountry && matchesSearch
+
+    return matchesFilter && matchesCountry && matchesSearch && itemCountryMatchesProp
   })
 
+  // Calculate total pages
+  const totalPages = Math.ceil(filteredItems.length / itemsPerPage)
+
+  // Get current items
+  const currentItems = filteredItems.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  )
+
+  // Reset to first page when filters change
+  const handleFilterChange = (newFilter: string) => {
+    setActiveFilter(newFilter)
+    setCurrentPage(1)
+  }
+
+  const handleCountryChange = (newCountry: string) => {
+    setSelectedCountry(newCountry)
+    setCurrentPage(1)
+  }
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value)
+    setCurrentPage(1)
+  }
+
+  const nextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(prev => prev + 1)
+    }
+  }
+
+  const prevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(prev => prev - 1)
+    }
+  }
+
   return (
-    <section id="news" className="section-snap flex items-center justify-center relative min-h-[85vh] py-12 md:py-20 overflow-x-hidden">
+    <section id="news" className={`section-snap flex items-center justify-center relative min-h-[85vh] py-12 md:py-20 overflow-x-hidden ${backgroundColor}`}>
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -81,25 +206,33 @@ export default function News({ }: NewsProps) {
                 News & Reports
               </h3>
               <div className="flex items-center gap-3 mb-1">
-                <button className="w-10 h-10 rounded-full border-2 border-dark-charcoal flex items-center justify-center text-dark-charcoal hover:border-primary-orange hover:text-primary-orange transition-all duration-300">
+                <button
+                  onClick={prevPage}
+                  disabled={currentPage === 1}
+                  className={`w-10 h-10 rounded-full border-2 border-dark-charcoal flex items-center justify-center transition-all duration-300 ${currentPage === 1 ? 'opacity-30 cursor-not-allowed text-dark-charcoal' : 'text-dark-charcoal hover:border-primary-orange hover:text-primary-orange'}`}
+                >
                   <Icon icon="mingcute:arrow-left-line" className="w-6 h-6" />
                 </button>
-                <button className="w-10 h-10 rounded-full border-2 border-dark-charcoal flex items-center justify-center text-dark-charcoal hover:border-primary-orange hover:text-primary-orange transition-all duration-300">
+                <button
+                  onClick={nextPage}
+                  disabled={currentPage === totalPages || totalPages === 0}
+                  className={`w-10 h-10 rounded-full border-2 border-dark-charcoal flex items-center justify-center transition-all duration-300 ${currentPage === totalPages || totalPages === 0 ? 'opacity-30 cursor-not-allowed text-dark-charcoal' : 'text-dark-charcoal hover:border-primary-orange hover:text-primary-orange'}`}
+                >
                   <Icon icon="mingcute:arrow-right-line" className="w-6 h-6" />
                 </button>
               </div>
             </div>
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-4">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-4 w-full">
               <div className="flex flex-wrap gap-2">
                 {['ALL', 'ADVISORY REPORT', 'BLOG', 'MEDIA'].map((filter) => {
                   const count = filter === 'ALL'
-                    ? newsItems.length
-                    : newsItems.filter(item => item.category.toUpperCase() === filter).length;
+                    ? (country ? newsItems.filter(item => item.country === country).length : newsItems.length)
+                    : newsItems.filter(item => item.category.toUpperCase() === filter && (country ? item.country === country : true)).length;
 
                   return (
                     <button
                       key={filter}
-                      onClick={() => setActiveFilter(filter)}
+                      onClick={() => handleFilterChange(filter)}
                       className={`px-6 py-3 rounded-full border transition-colors flex items-center gap-1 text-md font-medium uppercase ${activeFilter === filter
                         ? 'bg-primary-orange text-white border-primary-orange'
                         : 'border-dark-charcoal text-dark-charcoal hover:border-primary-orange hover:text-primary-orange'
@@ -111,37 +244,41 @@ export default function News({ }: NewsProps) {
                   );
                 })}
               </div>
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full sm:w-auto">
-                {/* Country Dropdown */}
-                <div className="relative w-full sm:w-48">
-                  <select
-                    value={selectedCountry}
-                    onChange={(e) => setSelectedCountry(e.target.value)}
-                    className="appearance-none w-full pl-4 pr-10 py-2 border border-dark-charcoal rounded-full text-sm focus:outline-none focus:border-primary-orange bg-white text-dark-charcoal cursor-pointer"
-                  >
-                    <option value="All Country">All Country</option>
-                    <option value="Kenya">Kenya</option>
-                    <option value="Tanzania">Tanzania</option>
-                    <option value="Uganda">Uganda</option>
-                  </select>
-                  <Icon
-                    icon="mdi:chevron-down"
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-dark-charcoal pointer-events-none"
-                  />
-                </div>
+
+              {/* Right side - Country Dropdown + Search */}
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 ml-auto">
+                {/* Country Dropdown - Hidden on country-specific pages */}
+                {!hideCountryDropdown && (
+                  <div className="relative w-full sm:w-48">
+                    <select
+                      value={selectedCountry}
+                      onChange={(e) => handleCountryChange(e.target.value)}
+                      className="appearance-none w-full pl-4 pr-10 py-2 border border-dark-charcoal rounded-full text-sm focus:outline-none focus:border-primary-orange bg-white text-dark-charcoal cursor-pointer"
+                    >
+                      <option value="All Country">All Country</option>
+                      <option value="Kenya">Kenya</option>
+                      <option value="Tanzania">Tanzania</option>
+                      <option value="Uganda">Uganda</option>
+                    </select>
+                    <Icon
+                      icon="mdi:chevron-down"
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-dark-charcoal pointer-events-none"
+                    />
+                  </div>
+                )}
 
                 {/* Search Input */}
                 <div className="relative w-full sm:w-auto">
                   <input
                     type="text"
                     value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onChange={handleSearchChange}
                     placeholder="SEARCH..."
                     className="pl-4 pr-10 py-2 border border-dark-charcoal rounded-full text-sm focus:outline-none focus:border-primary-orange w-full sm:w-64 text-dark-charcoal placeholder:text-dark-charcoal/50"
                   />
                   <Icon
                     icon="lucide:search"
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-dark-charcoal text-primary-orange"
+                    className={`absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 ${hideCountryDropdown ? 'text-dark-charcoal' : 'text-primary-orange'}`}
                   />
                 </div>
               </div>
@@ -150,7 +287,7 @@ export default function News({ }: NewsProps) {
         </div>
 
         <div className="grid md:grid-cols-3 gap-6 pb-12">
-          {filteredItems.map((item, index) => (
+          {currentItems.map((item, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}

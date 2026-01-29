@@ -77,11 +77,8 @@ export default function KenyaPage(): React.JSX.Element {
         <SectionSeparator imageUrl="/images/misc/section-pattern-ke.svg" />
       </div>
       <div id="blog" className="relative">
-        <News />
+        <News hideCountryDropdown={true} backgroundColor="bg-light-grey" country="Kenya" />
         <SectionSeparator imageUrl="/images/misc/section-pattern-ke.svg" />
-      </div>
-      <div id="contact">
-        <ContactInfo />
       </div>
       <FloatingWhatsApp
         singleCountry={true}

@@ -1,11 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import SectionWrapper from './SectionWrapper'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { Icon } from '@iconify/react'
-import DecorativePattern from './DecorativePattern'
 
 interface AccordionItem {
   title: string
@@ -41,7 +39,7 @@ export default function WhyChooseUs({
   const [openIndex, setOpenIndex] = useState(0)
 
   return (
-    <section id="why-choose-us" className="section-snap flex items-center justify-center bg-light-grey relative pb-0 overflow-x-hidden min-h-[85vh]">
+    <section id="why-choose-us" className="section-snap flex items-center justify-center bg-white relative pb-0 overflow-x-hidden min-h-[100vh]">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -56,9 +54,9 @@ export default function WhyChooseUs({
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="space-y-4 mb-4 items-start flex flex-col w-full"
+              className="space-y-4 mb-8 items-start flex flex-col w-full"
             >
-              <p className="text-md font-medium text-dark-charcoal uppercase tracking-wider mb-2">
+              <p className="text-md font-normal text-dark-charcoal uppercase tracking-wider">
                 why us
               </p>
               <div className="section-title-container w-full">
@@ -69,7 +67,7 @@ export default function WhyChooseUs({
             </motion.div>
 
             {/* Accordion */}
-            <div className="space-y-2 flex-1 overflow-y-auto mb-4">
+            <div className="space-y-2 flex-1 w-full mb-8">
               {accordionItems.map((item, index) => (
                 <motion.div
                   key={index}
@@ -77,18 +75,23 @@ export default function WhyChooseUs({
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className={`rounded-lg overflow-hidden ${openIndex === index ? 'border border-navy-blue' : ''}`}
+                  className={`rounded-2xl overflow-hidden transition-all duration-300 cursor-pointer ${openIndex === index ? 'border border-dark-charcoal' : 'bg-white hover:bg-gray-50'
+                    }`}
+                  style={openIndex === index ? { backgroundColor: '#E6EDF1' } : {}}
+                  whileHover={openIndex !== index ? { scale: 1.01 } : {}}
                 >
                   <button
                     onClick={() => setOpenIndex(openIndex === index ? -1 : index)}
-                    className="w-full flex items-center justify-between p-3 text-left hover:bg-gray-50 transition-colors"
+                    className="w-full flex items-center justify-between p-4 text-left transition-colors group"
                   >
-                    <h3 className={`text-sm md:text-base font-bold ${openIndex === index ? 'text-primary-orange' : 'text-navy-blue'}`}>
+                    <h3 className={`text-xl md:text-3xl font-bold capitalize transition-colors duration-300 ${openIndex === index ? 'text-primary-orange' : 'text-black group-hover:text-primary-orange'
+                      }`} style={{ textTransform: 'capitalize' }}>
                       {item.title}
                     </h3>
                     <Icon
-                      icon={openIndex === index ? 'ic:baseline-arrow-circle-up' : 'ic:baseline-arrow-circle-down'}
-                      className={`w-5 h-5 flex-shrink-0 ${openIndex === index ? 'text-primary-orange' : 'text-navy-blue'}`}
+                      icon={openIndex === index ? 'mynaui:arrow-up-circle' : 'mynaui:arrow-down-circle'}
+                      className={`w-10 h-10 flex-shrink-0 ml-4 ${openIndex === index ? 'text-primary-orange' : 'text-dark-charcoal'
+                        }`}
                     />
                   </button>
                   {openIndex === index && (
@@ -99,7 +102,7 @@ export default function WhyChooseUs({
                       transition={{ duration: 0.3 }}
                       className="overflow-hidden"
                     >
-                      <p className="p-3 pt-0 text-xs md:text-sm text-dark-charcoal leading-relaxed">
+                      <p className="px-6 pb-6 text-base md:text-lg text-dark-charcoal leading-relaxed">
                         {item.description}
                       </p>
                     </motion.div>
@@ -118,7 +121,7 @@ export default function WhyChooseUs({
               viewport={{ once: true }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-block bg-primary-orange text-white px-10 py-4 rounded-full font-semibold text-md uppercase hover:bg-primary-orange/90 transition-colors mt-6"
+              className="bg-white border border-black text-black px-8 py-4 rounded-full font-normal text-md capitalize hover:bg-black hover:text-white transition-all"
             >
               Talk to our team
             </motion.button>
@@ -132,13 +135,7 @@ export default function WhyChooseUs({
             transition={{ duration: 0.6 }}
             className="flex flex-col justify-center h-full w-full"
           >
-            <div className="relative w-full h-[450px] md:h-full rounded-2xl overflow-hidden">
-              <Image
-                src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop"
-                alt={`Why Choose SGA ${countryName}`}
-                fill
-                className="object-cover"
-              />
+            <div className="relative w-full h-[450px] md:h-full min-h-[500px] rounded-2xl bg-gray-200">
             </div>
           </motion.div>
         </div>
