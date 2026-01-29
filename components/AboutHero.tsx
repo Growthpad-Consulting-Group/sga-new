@@ -9,7 +9,7 @@ interface AboutHeroProps {
 
 export default function AboutHero({ imageUrl = 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200&h=600&fit=crop' }: AboutHeroProps): React.JSX.Element {
   return (
-    <section id="hero" className="section-snap relative bg-gray-100 text-dark-charcoal pt-8 sm:pt-12 pb-0">
+    <section id="hero" className="section-snap relative bg-gray-100 text-dark-charcoal pt-32 sm:pt-40 lg:pt-48 pb-0">
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

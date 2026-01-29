@@ -125,7 +125,7 @@ export default function ServicePageTemplate({
   return (
     <>
       {/* Hero Section */}
-      <section id="hero" className="bg-white text-dark-charcoal pt-16 sm:pt-20 pb-20 relative">
+      <section id="hero" className="bg-white text-dark-charcoal pt-32 sm:pt-40 lg:pt-48 pb-20 relative">
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start lg:items-center py-8">
             {/* Left Column - Content */}

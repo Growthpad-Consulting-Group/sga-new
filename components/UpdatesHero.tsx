@@ -9,7 +9,7 @@ interface UpdatesHeroProps {
 
 export default function UpdatesHero({ imageUrl = '/images/contact/hero.png' }: UpdatesHeroProps): React.JSX.Element {
   return (
-    <section id="hero" className="section-snap bg-gray-100 text-dark-charcoal pt-8 sm:pt-12 pb-0">
+    <section id="hero" className="section-snap bg-gray-100 text-dark-charcoal pt-32 sm:pt-40 lg:pt-48 pb-0">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -25,7 +25,7 @@ export default function UpdatesHero({ imageUrl = '/images/contact/hero.png' }: U
           </h1>
         </motion.div>
       </div>
-      
+
       {/* Large image without margin-x */}
       <div className="w-full">
         <motion.div

@@ -3,10 +3,10 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 
-export default function AboutHero({ imageUrl = '/images/group/about/hero.png' }) {
+export default function Hero({ imageUrl = 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200&h=600&fit=crop' }) {
   return (
-    <section id="hero" className="bg-gray-100 text-dark-charcoal pt-16 sm:pt-20 pb-0">
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="hero" className="section-snap bg-gray-100 text-dark-charcoal pt-32 sm:pt-40 lg:pt-48 pb-0">
+      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -14,12 +14,11 @@ export default function AboutHero({ imageUrl = '/images/group/about/hero.png' })
           className="text-left space-y-2 pb-4"
         >
           <h2 className="text-sm md:text-base font-semibold text-gray-700 uppercase tracking-wide">
-            About SGA Security Tanzania
+            SGA Group Careers
           </h2>
           <h1 className="text-xl md:text-2xl lg:text-3xl font-bold">
-            <span className="text-primary-orange">Trusted Security Partner in Tanzania</span>
+            <span className="text-primary-orange">Build a Career That Protects What Matters</span>
           </h1>
-          <p className="text-sm md:text-base text-gray-700 leading-relaxed">Comprehensive security solutions protecting businesses and communities across Tanzania.</p>
         </motion.div>
       </div>
       
@@ -33,7 +32,7 @@ export default function AboutHero({ imageUrl = '/images/group/about/hero.png' })
         >
           <Image
             src={imageUrl}
-            alt="SGA Security Tanzania - Trusted Security Partner in Tanzania"
+            alt="SGA Security Group - Security That Matters Across Africa"
             fill
             className="object-cover"
             priority

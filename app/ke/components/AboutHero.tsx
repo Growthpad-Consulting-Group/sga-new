@@ -3,9 +3,9 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 
-export default function Hero({ imageUrl = 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200&h=600&fit=crop' }) {
+export default function AboutHero({ imageUrl = '/images/ke/about-sga.png' }) {
   return (
-    <section id="hero" className="bg-gray-100 text-dark-charcoal pt-16 sm:pt-20 pb-0">
+    <section id="hero" className="bg-gray-100 text-dark-charcoal pt-32 sm:pt-40 lg:pt-48 pb-0">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -14,11 +14,12 @@ export default function Hero({ imageUrl = 'https://images.unsplash.com/photo-158
           className="text-left space-y-2 pb-4"
         >
           <h2 className="text-sm md:text-base font-semibold text-gray-700 uppercase tracking-wide">
-            SGA Group Careers
+            About SGA Security Kenya
           </h2>
           <h1 className="text-xl md:text-2xl lg:text-3xl font-bold">
-            <span className="text-primary-orange">Build a Career That Protects What Matters</span>
+            <span className="text-primary-orange">Security Excellence in Kenya Since 1969</span>
           </h1>
+          <p className="text-sm md:text-base text-gray-700 leading-relaxed">Over 55 years of trusted, integrated security for homes, businesses, and institutions across Kenya.</p>
         </motion.div>
       </div>
       
@@ -32,7 +33,7 @@ export default function Hero({ imageUrl = 'https://images.unsplash.com/photo-158
         >
           <Image
             src={imageUrl}
-            alt="SGA Security Group - Security That Matters Across Africa"
+            alt="SGA Security Kenya - Security Excellence in Kenya Since 1969"
             fill
             className="object-cover"
             priority

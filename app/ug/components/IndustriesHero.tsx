@@ -29,7 +29,7 @@ export default function IndustriesHero({ countryCode = 'ug', imageUrl }) {
   const heroImage = imageUrl || country.imageUrl
 
   return (
-    <section id="hero" className="bg-gray-100 text-dark-charcoal pt-16 sm:pt-20 pb-0">
+    <section id="hero" className="bg-gray-100 text-dark-charcoal pt-32 sm:pt-40 lg:pt-48 pb-0">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
