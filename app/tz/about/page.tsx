@@ -3,6 +3,7 @@ import AboutIntro from '../components/AboutIntro'
 import OurFoundation from '../components/OurFoundation'
 import OurJourney from '../components/OurJourney'
 import OurPeople from '../components/OurPeople'
+import SectionSeparator from '@/components/SectionSeparator'
 
 import FloatingWhatsApp from '@/components/FloatingWhatsApp'
 
@@ -14,18 +15,29 @@ export const metadata = {
 export default function TanzaniaAboutPage() {
   return (
     <>
-      <AboutHero 
+      <AboutHero
         imageUrl="/images/group/about/hero.png"
       />
-      <AboutIntro 
-        imageUrl="/images/group/about/about-2.png"
-      />
-      <OurFoundation />
-      <OurJourney />
-      <OurPeople 
-        imageUrl="/images/group/about/about-2.png"
-      />
-      <FloatingWhatsApp 
+      <div className="relative">
+        <AboutIntro
+          imageUrl="/images/group/about/about-2.png"
+        />
+        <SectionSeparator />
+      </div>
+      <div className="relative">
+        <OurFoundation />
+        <SectionSeparator />
+      </div>
+      <div className="relative">
+        <OurJourney />
+      </div>
+      <div className="relative">
+        <OurPeople
+          imageUrl="/images/group/about/about-2.png"
+        />
+        <SectionSeparator />
+      </div>
+      <FloatingWhatsApp
         singleCountry={true}
         country="Tanzania"
         phone="+255222123456"

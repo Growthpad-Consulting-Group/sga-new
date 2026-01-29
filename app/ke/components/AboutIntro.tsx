@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import DecorativePattern from '@/components/DecorativePattern'
+import { Icon } from '@iconify/react'
 
 export default function AboutIntro({ imageUrl = '/images/group/about/about-2.png' }) {
   return (
@@ -12,7 +12,7 @@ export default function AboutIntro({ imageUrl = '/images/group/about/about-2.png
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-100px' }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        className="w-full mx-auto px-4 sm:px-6 lg:px-8"
       >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-stretch">
           {/* Left Column - Content */}
@@ -23,38 +23,36 @@ export default function AboutIntro({ imageUrl = '/images/group/about/about-2.png
             transition={{ duration: 0.8, ease: 'easeOut' }}
             className="flex flex-col justify-center space-y-5"
           >
-            <h2 className="text-xl md:text-3xl font-bold text-primary-orange relative pb-3">
-              <span>Who we are</span>
-              <span 
-                className="absolute bottom-0 left-0 w-full"
-                style={{
-                  background: 'linear-gradient(to right, #00043E 0%, #00043E 70%, transparent 100%)',
-                  height: '1px'
-                }}
-              ></span>
-            </h2>
-            <p className="text-sm md:text-base text-gray-700 leading-relaxed">
+            <div className="relative">
+              <div className="relative z-10">
+                <h2 className="text-xl md:text-6xl font-bold text-primary-orange">
+                  Who we are
+                </h2>
+              </div>
+            </div>
+
+            <p className="text-sm md:text-2xl text-gray-600">
               SGA Kenya delivers integrated security solutions for individuals, businesses, and institutions. We combine trained personnel, proven processes, and modern technology to keep people and assets safe—24/7.
             </p>
-            <div className='grid grid-cols-3 gap-4'>
-                  <div className='bg-primary-orange rounded-full aspect-square p-4 flex items-center justify-center'>
-                      <h3 className='text-lg font-bold text-white text-center'>Discipline</h3>
-                  </div>
-                  <div className='bg-primary-orange rounded-full aspect-square p-4 flex items-center justify-center'>
-                    <h3 className='text-lg font-bold text-white text-center'>Loyalty</h3>
-                </div>
-                <div className='bg-primary-orange rounded-full aspect-square p-4 flex items-center justify-center'>
-                    <h3 className='text-lg font-bold text-white text-center'>Integrity</h3>
-                </div>
-                <div className='bg-primary-orange rounded-full aspect-square p-4 flex items-center justify-center'>
-                    <h3 className='text-lg font-bold text-white text-center'>Innovation</h3>
-                </div>
-                <div className='bg-primary-orange rounded-full aspect-square p-4 flex items-center justify-center'>
-                    <h3 className='text-lg font-bold text-white text-center'>Excellence</h3>
-                </div>
-                <div className='bg-primary-orange rounded-full aspect-square p-4 flex items-center justify-center'>
-                    <h3 className='text-lg font-bold text-white text-center'>Experience</h3>
-                </div>
+            <div className='grid grid-cols-3 gap-4 pt-4'>
+              <div className='bg-primary-orange rounded-full aspect-square p-4 flex items-center justify-center'>
+                <h3 className='text-xs md:text-3xl font-normal text-white text-center'>Discipline</h3>
+              </div>
+              <div className='bg-primary-orange rounded-full aspect-square p-4 flex items-center justify-center'>
+                <h3 className='text-xs md:text-3xl font-normal text-white text-center'>Loyalty</h3>
+              </div>
+              <div className='bg-primary-orange rounded-full aspect-square p-4 flex items-center justify-center'>
+                <h3 className='text-xs md:text-3xl font-normal text-white text-center'>Integrity</h3>
+              </div>
+              <div className='bg-primary-orange rounded-full aspect-square p-4 flex items-center justify-center'>
+                <h3 className='text-xs md:text-3xl font-normal text-white text-center'>Innovation</h3>
+              </div>
+              <div className='bg-primary-orange rounded-full aspect-square p-4 flex items-center justify-center'>
+                <h3 className='text-xs md:text-3xl font-normal text-white text-center'>Excellence</h3>
+              </div>
+              <div className='bg-primary-orange rounded-full aspect-square p-4 flex items-center justify-center'>
+                <h3 className='text-xs md:text-3xl font-normal text-white text-center'>Experience</h3>
+              </div>
             </div>
           </motion.div>
 
@@ -70,18 +68,11 @@ export default function AboutIntro({ imageUrl = '/images/group/about/about-2.png
               src={imageUrl}
               alt="SGA Security Kenya - Kenya's Trusted Security Partner"
               fill
-              className="object-cover rounded-lg"
+              className="object-cover rounded-2xl"
             />
           </motion.div>
         </div>
       </motion.div>
-      <div className="absolute bottom-0 left-0 right-0 w-full">
-        <DecorativePattern 
-          className="transition-none" 
-          static={true}
-          colors={['bg-red-600', 'bg-green-600', 'bg-black']}
-        />
-      </div>
     </section>
   )
 }
