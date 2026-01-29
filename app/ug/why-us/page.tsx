@@ -11,17 +11,15 @@ export const metadata = {
 export default function UgandaWhyUsPage() {
   return (
     <>
-      <WhyUsHero 
+      <WhyUsHero
         countryCode="ug"
         imageUrl="/images/ug/about-sga.png"
       />
-      <WhyChooseUs 
-        countryName="Uganda" 
-        decorativePatternColors={['bg-red-600', 'bg-green-600', 'bg-black']} 
-        staticPattern={true} 
+      <WhyChooseUs
+        countryName="Uganda"
       />
       <WhyUsCards />
-      <FloatingWhatsApp 
+      <FloatingWhatsApp
         singleCountry={true}
         country="Uganda"
         phone="+256772200048"

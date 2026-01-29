@@ -6,37 +6,61 @@ import Image from 'next/image'
 import Link from 'next/link'
 import DecorativePattern from '@/components/DecorativePattern'
 
+interface IndustryPageTemplateProps {
+  industryName?: string
+  industryIcon?: string
+  heroImage?: string
+  heroTitle?: string
+  heroDescription?: string
+  overviewTitle?: string
+  overviewDescription?: string
+  overviewImage?: string
+  servicesTitle?: string
+  servicesDescription?: string
+  services?: any[]
+  relatedServices?: any[]
+  whyChooseTitle?: string
+  whyChooseDescription?: string
+  whyChoosePoints?: string[]
+  ctaTitle?: string
+  ctaDescription?: string
+  ctaButtonText?: string
+  ctaButtonLink?: string
+  countryCode?: 'ke' | 'ug' | 'tz' | string
+  industryType?: 'individuals' | 'corporate'
+}
+
 export default function IndustryPageTemplate({
-  industryName,
-  industryIcon,
-  heroImage,
-  heroTitle,
-  heroDescription,
-  overviewTitle,
-  overviewDescription,
-  overviewImage,
-  servicesTitle,
-  servicesDescription,
-  services,
-  relatedServices,
-  whyChooseTitle,
-  whyChooseDescription,
-  whyChoosePoints,
-  ctaTitle,
-  ctaDescription,
-  ctaButtonText,
-  ctaButtonLink,
+  industryName = '',
+  industryIcon = '',
+  heroImage = '',
+  heroTitle = '',
+  heroDescription = '',
+  overviewTitle = '',
+  overviewDescription = '',
+  overviewImage = '',
+  servicesTitle = '',
+  servicesDescription = '',
+  services = [],
+  relatedServices = [],
+  whyChooseTitle = '',
+  whyChooseDescription = '',
+  whyChoosePoints = [],
+  ctaTitle = '',
+  ctaDescription = '',
+  ctaButtonText = '',
+  ctaButtonLink = '',
   countryCode = 'ke',
-  industryType = 'individuals', // 'individuals' or 'corporate'
-}) {
-  const countryNames = {
+  industryType = 'individuals',
+}: IndustryPageTemplateProps) {
+  const countryNames: Record<string, string> = {
     ke: 'Kenya',
     ug: 'Uganda',
     tz: 'Tanzania',
   }
   const countryName = countryNames[countryCode] || 'Kenya'
-  
-  const emergencyPhones = {
+
+  const emergencyPhones: Record<string, string> = {
     ke: '0733 700 500',
     ug: '0717 800 752',
     tz: '0784 700 299',
@@ -101,9 +125,9 @@ export default function IndustryPageTemplate({
                   transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
                   className="flex items-center gap-2.5"
                 >
-                  <Icon 
-                    icon="icon-park-outline:check-one" 
-                    className="w-5 h-5 md:w-6 md:h-6 text-primary-orange flex-shrink-0" 
+                  <Icon
+                    icon="icon-park-outline:check-one"
+                    className="w-5 h-5 md:w-6 md:h-6 text-primary-orange flex-shrink-0"
                   />
                   <span className="text-sm md:text-base text-gray-800 font-medium whitespace-nowrap">
                     {item}
@@ -134,10 +158,9 @@ export default function IndustryPageTemplate({
 
         {/* Decorative Pattern at Bottom */}
         <div className="absolute bottom-0 left-0 right-0 w-full">
-          <DecorativePattern 
-            className="transition-none" 
+          <DecorativePattern
+            className="transition-none"
             static={true}
-            colors={['bg-red-600', 'bg-green-600', 'bg-black']}
           />
         </div>
       </section>
@@ -154,7 +177,7 @@ export default function IndustryPageTemplate({
           >
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary-orange relative pb-3">
               <span>Our Key Solutions</span>
-              <span 
+              <span
                 className="absolute bottom-0 left-0 w-full"
                 style={{
                   background: 'linear-gradient(to right, #00043E 0%, #00043E 70%, transparent 100%)',
@@ -223,10 +246,9 @@ export default function IndustryPageTemplate({
 
         {/* Decorative Pattern at Bottom */}
         <div className="absolute bottom-0 left-0 right-0 w-full">
-          <DecorativePattern 
-            className="transition-none" 
+          <DecorativePattern
+            className="transition-none"
             static={true}
-            colors={['bg-red-600', 'bg-green-600', 'bg-black']}
           />
         </div>
       </section>
@@ -243,7 +265,7 @@ export default function IndustryPageTemplate({
           >
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary-orange relative pb-3 inline-block">
               <span>The SGA Advantage</span>
-              <span 
+              <span
                 className="absolute bottom-0 left-0 w-full"
                 style={{
                   background: 'linear-gradient(to right, #00043E 0%, #00043E 70%, transparent 100%)',
@@ -293,10 +315,9 @@ export default function IndustryPageTemplate({
 
         {/* Decorative Pattern at Bottom */}
         <div className="absolute bottom-0 left-0 right-0 w-full">
-          <DecorativePattern 
-            className="transition-none" 
+          <DecorativePattern
+            className="transition-none"
             static={true}
-            colors={['bg-red-600', 'bg-green-600', 'bg-black']}
           />
         </div>
       </section>
@@ -328,7 +349,7 @@ export default function IndustryPageTemplate({
                       <Icon icon="mdi:chevron-right" className="w-5 h-5" />
                     </button>
                   </div>
-                  <span 
+                  <span
                     className="absolute bottom-0 left-0 w-full"
                     style={{
                       background: 'linear-gradient(to right, #00043E 0%, #00043E 70%, transparent 100%)',
@@ -363,14 +384,14 @@ export default function IndustryPageTemplate({
                       className="object-cover"
                     />
                   </motion.a>
-                  
+
                   <div className="bg-primary-orange p-6 flex flex-col flex-1">
-                                       
+
                     {/* Title */}
                     <h3 className="text-lg font-bold text-white mb-3">
                       {service.title}
                     </h3>
-                    
+
                     {/* Summary */}
                     <p className="text-white/90 text-sm leading-relaxed mb-4">
                       {service.summary}
@@ -394,14 +415,13 @@ export default function IndustryPageTemplate({
               ))}
             </div>
           </motion.div>
-          <DecorativePattern 
-            colors={['bg-red-600', 'bg-green-600', 'bg-black']} 
+          <DecorativePattern
             static={true}
           />
         </section>
       )}
 
-      </>
+    </>
   )
 }
 

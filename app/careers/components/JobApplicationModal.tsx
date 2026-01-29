@@ -4,13 +4,19 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Icon } from '@iconify/react'
 
-export default function JobApplicationModal({ isOpen, onClose, job }) {
+interface JobApplicationModalProps {
+  isOpen: boolean
+  onClose: () => void
+  job: any // Or more specific if known, but any fixes the immediate build error
+}
+
+export default function JobApplicationModal({ isOpen, onClose, job }: JobApplicationModalProps) {
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
     phone: '',
     country: '',
-    cvFile: null,
+    cvFile: null as File | null,
     coverLetter: '',
     agreeToPrivacy: false,
   })
@@ -18,7 +24,7 @@ export default function JobApplicationModal({ isOpen, onClose, job }) {
   const [fileError, setFileError] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData(prev => ({
       ...prev,
@@ -26,8 +32,8 @@ export default function JobApplicationModal({ isOpen, onClose, job }) {
     }))
   }
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0]
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
     if (file) {
       // Check file size (10MB = 10 * 1024 * 1024 bytes)
       if (file.size > 10 * 1024 * 1024) {
@@ -49,24 +55,24 @@ export default function JobApplicationModal({ isOpen, onClose, job }) {
     }
   }
 
-  const handleCheckboxChange = (e) => {
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData(prev => ({
       ...prev,
       agreeToPrivacy: e.target.checked
     }))
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     // Validate form
     if (!formData.fullName || !formData.email || !formData.phone || !formData.country || !formData.cvFile || !formData.agreeToPrivacy) {
       alert('Please fill in all required fields')
       return
     }
-    
+
     setIsSubmitting(true)
-    
+
     try {
       // Create FormData for file upload
       const submitData = new FormData()
@@ -78,21 +84,21 @@ export default function JobApplicationModal({ isOpen, onClose, job }) {
       submitData.append('cvFile', formData.cvFile)
       submitData.append('jobTitle', job?.title || '')
       submitData.append('jobLocation', job?.location || '')
-      
+
       // Here you would typically send the data to your API
       // await fetch('/api/job-application', { method: 'POST', body: submitData })
-      
+
       console.log('Job Application submitted:', {
         ...formData,
         jobTitle: job?.title,
         jobLocation: job?.location
       })
-      
+
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000))
-      
+
       alert(`Thank you for applying to ${job?.title || 'this position'}! We will review your application and get back to you soon.`)
-      
+
       // Reset form
       setFormData({
         fullName: '',

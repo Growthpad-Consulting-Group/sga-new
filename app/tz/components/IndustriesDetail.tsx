@@ -120,8 +120,12 @@ const industries = [
   },
 ]
 
-export default function IndustriesDetail({ countryCode = 'tz' }) {
-  const countryNames = {
+interface IndustriesDetailProps {
+  countryCode?: 'ke' | 'ug' | 'tz' | string
+}
+
+export default function IndustriesDetail({ countryCode = 'tz' }: IndustriesDetailProps) {
+  const countryNames: Record<string, string> = {
     ke: 'Kenya',
     ug: 'Uganda',
     tz: 'Tanzania',
@@ -149,7 +153,7 @@ export default function IndustriesDetail({ countryCode = 'tz' }) {
             </p>
             <h2 className="text-xl md:text-3xl font-bold text-primary-orange relative pb-3">
               <span>Security Solutions for Every Industry</span>
-              <span 
+              <span
                 className="absolute bottom-0 left-0 w-full"
                 style={{
                   background: 'linear-gradient(to right, #00043E 0%, #00043E 70%, transparent 100%)',
@@ -198,7 +202,7 @@ export default function IndustriesDetail({ countryCode = 'tz' }) {
                 <div className="space-y-2">
                   <p className="text-sm font-semibold text-navy-blue mb-2">Key Services:</p>
                   <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                    {industry.features.map((feature, idx) => (
+                    {industry.features.map((feature: string, idx: number) => (
                       <li key={idx} className="flex items-center gap-2 text-sm text-gray-600">
                         <Icon icon="mdi:check-circle" className="w-4 h-4 text-primary-orange flex-shrink-0" />
                         <span>{feature}</span>
@@ -231,10 +235,9 @@ export default function IndustriesDetail({ countryCode = 'tz' }) {
         </motion.div>
       </motion.div>
       <div className="absolute bottom-0 left-0 right-0 w-full">
-        <DecorativePattern 
-          className="transition-none" 
+        <DecorativePattern
+          className="transition-none"
           static={true}
-          colors={['bg-red-600', 'bg-green-600', 'bg-black']}
         />
       </div>
     </section>

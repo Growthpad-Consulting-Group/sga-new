@@ -30,8 +30,13 @@ const countryData = {
   },
 }
 
-export default function WhyUsHero({ countryCode = 'tz', imageUrl }) {
-  const country = countryData[countryCode] || countryData.tz
+interface WhyUsHeroProps {
+  countryCode?: 'ke' | 'ug' | 'tz' | string
+  imageUrl?: string
+}
+
+export default function WhyUsHero({ countryCode = 'tz', imageUrl }: WhyUsHeroProps) {
+  const country = (countryData as Record<string, any>)[countryCode] || countryData.tz
   const heroImage = imageUrl || country.imageUrl
   const emergencyPhone = country.emergencyPhone
 
@@ -55,7 +60,7 @@ export default function WhyUsHero({ countryCode = 'tz', imageUrl }) {
             <p className="text-base md:text-lg text-gray-700 leading-relaxed">
               {country.description}
             </p>
-            
+
             {/* Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <motion.div
@@ -105,8 +110,8 @@ export default function WhyUsHero({ countryCode = 'tz', imageUrl }) {
                 }}
               >
                 <span className="text-sm text-gray-700 uppercase font-medium">Explore more</span>
-                <Icon 
-                  icon="material-symbols-light:arrow-circle-down-outline-rounded" 
+                <Icon
+                  icon="material-symbols-light:arrow-circle-down-outline-rounded"
                   className="w-6 h-6 text-navy-blue"
                 />
               </motion.div>
@@ -132,10 +137,8 @@ export default function WhyUsHero({ countryCode = 'tz', imageUrl }) {
       </div>
       {/* Decorative Pattern at Bottom */}
       <div className="absolute bottom-0 left-0 right-0 w-full">
-        <DecorativePattern 
-          circleCount={35} 
-          colors={['bg-red-600', 'bg-green-600', 'bg-black']} 
-          static={true} 
+        <DecorativePattern
+          static={true}
         />
       </div>
     </section>

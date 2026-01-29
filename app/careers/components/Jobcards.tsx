@@ -107,18 +107,18 @@ export default function JobCards() {
         return department === selectedDepartment
       })
     }
-    
+
     // Filter by search query
     if (searchQuery) {
       const query = searchQuery.toLowerCase()
-      filtered = filtered.filter(item => 
+      filtered = filtered.filter(item =>
         item.title.toLowerCase().includes(query) ||
         item.summary.toLowerCase().includes(query) ||
         item.location.toLowerCase().includes(query) ||
         item.jobtype.toLowerCase().includes(query)
       )
     }
-    
+
     return filtered
   })()
 
@@ -129,37 +129,37 @@ export default function JobCards() {
   const paginatedItems = filteredItems.slice(startIndex, endIndex)
 
   // Reset to page 1 when filter or search changes
-  const handleFilterChange = (filter) => {
+  const handleFilterChange = (filter: string) => {
     setActiveFilter(filter)
     setCurrentPage(1)
   }
 
-  const handleCityChange = (city) => {
+  const handleCityChange = (city: string) => {
     setSelectedCity(city)
     setCurrentPage(1)
   }
 
-  const handleDepartmentChange = (department) => {
+  const handleDepartmentChange = (department: string) => {
     setSelectedDepartment(department)
     setCurrentPage(1)
   }
 
-  const handleSearchChange = (query) => {
+  const handleSearchChange = (query: string) => {
     setSearchQuery(query)
     setCurrentPage(1)
   }
 
-  const goToPage = (page) => {
+  const goToPage = (page: number) => {
     setCurrentPage(page)
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
-  const handleViewDetails = (job) => {
+  const handleViewDetails = (job: any) => {
     setSelectedJob(job)
     setIsDetailsModalOpen(true)
   }
 
-  const handleApply = (job) => {
+  const handleApply = (job: any) => {
     setSelectedJob(job)
     setIsApplicationModalOpen(true)
   }
@@ -249,17 +249,16 @@ export default function JobCards() {
                   <button
                     key={filter}
                     onClick={() => handleFilterChange(filter)}
-                    className={`px-4 py-2 rounded-full border border-navy-blue text-xs font-semibold uppercase transition-colors ${
-                      activeFilter === filter
+                    className={`px-4 py-2 rounded-full border border-navy-blue text-xs font-semibold uppercase transition-colors ${activeFilter === filter
                         ? 'bg-primary-orange border-primary-orange text-white'
                         : 'text-navy-blue hover:bg-primary-orange hover:border-primary-orange hover:text-white'
-                    }`}
+                      }`}
                   >
                     {filter}
                   </button>
                 ))}
               </div>
-              
+
               {/* Search Input */}
               <div className="relative w-full sm:w-auto">
                 <input
@@ -305,61 +304,61 @@ export default function JobCards() {
 
         {/* Blog Cards Grid */}
         {paginatedItems.length > 0 && (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {paginatedItems.map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -5 }}
-              className="bg-white text-navy-blue border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow flex flex-col"
-            >
-              
-              <div className="p-6 flex flex-col flex-1">
-                {/* Location Badge */}
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="text-xs uppercase bg-primary-orange text-white rounded-full px-3 py-1 flex items-center gap-1">
-                    <Icon icon="mdi:map-marker" className="w-4 h-4" />
-                    {item.location}
-                  </span>
-                </div>
-                                
-                {/* Title */}
-                <h3 className="text-lg font-bold mb-3">
-                  {item.title}
-                </h3>
-                
-                {/* Summary */}
-                <p className="text-sm leading-relaxed mb-4 text-gray-700">
-                  {item.summary}
-                </p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {paginatedItems.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -5 }}
+                className="bg-white text-navy-blue border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow flex flex-col"
+              >
 
-                {/* Job type */}
-                <p className="text-xs text-gray-600 leading-relaxed mb-4">
-                  {item.jobtype}
-                </p>
+                <div className="p-6 flex flex-col flex-1">
+                  {/* Location Badge */}
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-xs uppercase bg-primary-orange text-white rounded-full px-3 py-1 flex items-center gap-1">
+                      <Icon icon="mdi:map-marker" className="w-4 h-4" />
+                      {item.location}
+                    </span>
+                  </div>
 
-                {/* Apply Link */}
-                <div className='flex justify-between gap-2 mt-auto'>
-                <button
-                  onClick={() => handleViewDetails(item)}
-                  className="py-2 px-3 flex uppercase bg-transparent border border-navy-blue text-navy-blue rounded-full items-center gap-2 hover:bg-navy-blue hover:text-white transition-colors text-sm font-semibold"
-                >
-                  <span>View Details</span>
-                </button>
-                <button
-                  onClick={() => handleApply(item)}
-                  className="py-2 px-3 flex uppercase bg-primary-orange text-white rounded-full items-center gap-2 hover:bg-opacity-90 transition-colors text-sm font-semibold"
-                >
-                  <span>Apply</span>
-                </button>
+                  {/* Title */}
+                  <h3 className="text-lg font-bold mb-3">
+                    {item.title}
+                  </h3>
+
+                  {/* Summary */}
+                  <p className="text-sm leading-relaxed mb-4 text-gray-700">
+                    {item.summary}
+                  </p>
+
+                  {/* Job type */}
+                  <p className="text-xs text-gray-600 leading-relaxed mb-4">
+                    {item.jobtype}
+                  </p>
+
+                  {/* Apply Link */}
+                  <div className='flex justify-between gap-2 mt-auto'>
+                    <button
+                      onClick={() => handleViewDetails(item)}
+                      className="py-2 px-3 flex uppercase bg-transparent border border-navy-blue text-navy-blue rounded-full items-center gap-2 hover:bg-navy-blue hover:text-white transition-colors text-sm font-semibold"
+                    >
+                      <span>View Details</span>
+                    </button>
+                    <button
+                      onClick={() => handleApply(item)}
+                      className="py-2 px-3 flex uppercase bg-primary-orange text-white rounded-full items-center gap-2 hover:bg-opacity-90 transition-colors text-sm font-semibold"
+                    >
+                      <span>Apply</span>
+                    </button>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+              </motion.div>
+            ))}
+          </div>
         )}
 
         {/* Pagination Controls */}
@@ -375,11 +374,10 @@ export default function JobCards() {
               <button
                 onClick={() => goToPage(currentPage - 1)}
                 disabled={currentPage === 1}
-                className={`px-4 py-2 rounded-full border border-navy-blue text-sm font-semibold transition-colors flex items-center gap-2 ${
-                  currentPage === 1
+                className={`px-4 py-2 rounded-full border border-navy-blue text-sm font-semibold transition-colors flex items-center gap-2 ${currentPage === 1
                     ? 'opacity-50 cursor-not-allowed text-gray-400 border-gray-300'
                     : 'text-navy-blue hover:bg-navy-blue hover:text-white'
-                }`}
+                  }`}
               >
                 <Icon icon="mdi:chevron-left" className="w-5 h-5" />
                 Previous
@@ -389,7 +387,7 @@ export default function JobCards() {
               <div className="flex items-center gap-2">
                 {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => {
                   // Show first page, last page, current page, and pages around current
-                  const showPage = 
+                  const showPage =
                     page === 1 ||
                     page === totalPages ||
                     (page >= currentPage - 1 && page <= currentPage + 1)
@@ -410,11 +408,10 @@ export default function JobCards() {
                     <button
                       key={page}
                       onClick={() => goToPage(page)}
-                      className={`w-10 h-10 rounded-full border text-sm font-semibold transition-colors ${
-                        currentPage === page
+                      className={`w-10 h-10 rounded-full border text-sm font-semibold transition-colors ${currentPage === page
                           ? 'bg-navy-blue text-white border-navy-blue'
                           : 'text-navy-blue border-navy-blue hover:bg-navy-blue hover:text-white'
-                      }`}
+                        }`}
                     >
                       {page}
                     </button>
@@ -426,11 +423,10 @@ export default function JobCards() {
               <button
                 onClick={() => goToPage(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                className={`px-4 py-2 rounded-full border border-navy-blue text-sm font-semibold transition-colors flex items-center gap-2 ${
-                  currentPage === totalPages
+                className={`px-4 py-2 rounded-full border border-navy-blue text-sm font-semibold transition-colors flex items-center gap-2 ${currentPage === totalPages
                     ? 'opacity-50 cursor-not-allowed text-gray-400 border-gray-300'
                     : 'text-navy-blue hover:bg-navy-blue hover:text-white'
-                }`}
+                  }`}
               >
                 Next
                 <Icon icon="mdi:chevron-right" className="w-5 h-5" />

@@ -24,8 +24,13 @@ const countryData = {
   },
 }
 
-export default function IndustriesHero({ countryCode = 'ug', imageUrl }) {
-  const country = countryData[countryCode] || countryData.ug
+interface IndustriesHeroProps {
+  countryCode?: 'ke' | 'ug' | 'tz' | string
+  imageUrl?: string
+}
+
+export default function IndustriesHero({ countryCode = 'ug', imageUrl }: IndustriesHeroProps) {
+  const country = (countryData as Record<string, any>)[countryCode] || countryData.ug
   const heroImage = imageUrl || country.imageUrl
 
   return (
@@ -46,7 +51,7 @@ export default function IndustriesHero({ countryCode = 'ug', imageUrl }) {
           <p className="text-sm md:text-base text-gray-700 leading-relaxed">{country.description}</p>
         </motion.div>
       </div>
-      
+
       {/* Large image without margin-x */}
       <div className="w-full">
         <motion.div

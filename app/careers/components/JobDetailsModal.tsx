@@ -3,7 +3,14 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { Icon } from '@iconify/react'
 
-export default function JobDetailsModal({ isOpen, onClose, job, onApply }) {
+interface JobDetailsModalProps {
+  isOpen: boolean
+  onClose: () => void
+  job: any
+  onApply: () => void
+}
+
+export default function JobDetailsModal({ isOpen, onClose, job, onApply }: JobDetailsModalProps) {
   if (!isOpen || !job) return null
 
   return (
@@ -110,7 +117,7 @@ export default function JobDetailsModal({ isOpen, onClose, job, onApply }) {
                         Requirements
                       </h3>
                       <ul className="list-disc list-inside space-y-2 text-gray-700">
-                        {job.requirements.map((req, idx) => (
+                        {job.requirements.map((req: string, idx: number) => (
                           <li key={idx}>{req}</li>
                         ))}
                       </ul>
@@ -124,7 +131,7 @@ export default function JobDetailsModal({ isOpen, onClose, job, onApply }) {
                         Key Responsibilities
                       </h3>
                       <ul className="list-disc list-inside space-y-2 text-gray-700">
-                        {job.responsibilities.map((resp, idx) => (
+                        {job.responsibilities.map((resp: string, idx: number) => (
                           <li key={idx}>{resp}</li>
                         ))}
                       </ul>

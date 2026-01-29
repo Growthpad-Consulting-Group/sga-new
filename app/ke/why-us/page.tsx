@@ -11,17 +11,15 @@ export const metadata = {
 export default function KenyaWhyUsPage() {
   return (
     <>
-      <WhyUsHero 
+      <WhyUsHero
         countryCode="ke"
         imageUrl="/images/ke/placeholder.png"
       />
-      <WhyChooseUs 
-        countryName="Kenya" 
-        decorativePatternColors={['bg-red-600', 'bg-green-600', 'bg-black']} 
-        staticPattern={true} 
+      <WhyChooseUs
+        countryName="Kenya"
       />
       <WhyUsCards />
-      <FloatingWhatsApp 
+      <FloatingWhatsApp
         singleCountry={true}
         country="Kenya"
         phone="+254111024000"

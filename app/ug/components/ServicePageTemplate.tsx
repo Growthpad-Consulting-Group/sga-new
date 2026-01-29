@@ -7,37 +7,61 @@ import Link from 'next/link'
 import DecorativePattern from '@/components/DecorativePattern'
 import { useEnquiryModal } from '@/contexts/EnquiryModalContext'
 
+interface ServicePageTemplateProps {
+  serviceName?: string
+  serviceIcon?: string
+  heroImage?: string
+  heroTitle?: string
+  heroDescription?: string
+  overviewTitle?: string
+  overviewDescription?: string
+  overviewImage?: string
+  featuresTitle?: string
+  featuresDescription?: string
+  features?: any[]
+  relatedServices?: any[]
+  whyChooseTitle?: string
+  whyChooseDescription?: string
+  whyChoosePoints?: any[]
+  ctaTitle?: string
+  ctaDescription?: string
+  ctaButtonText?: string
+  ctaButtonLink?: string
+  countryCode?: 'ke' | 'ug' | 'tz' | string
+  serviceType?: 'Individual' | 'Corporate' | string
+}
+
 export default function ServicePageTemplate({
-  serviceName,
-  serviceIcon,
-  heroImage,
-  heroTitle,
-  heroDescription,
-  overviewTitle,
-  overviewDescription,
-  overviewImage,
-  featuresTitle,
-  featuresDescription,
-  features,
-  relatedServices,
-  whyChooseTitle,
-  whyChooseDescription,
-  whyChoosePoints,
-  ctaTitle,
-  ctaDescription,
-  ctaButtonText,
-  ctaButtonLink,
+  serviceName = '',
+  serviceIcon = '',
+  heroImage = '',
+  heroTitle = '',
+  heroDescription = '',
+  overviewTitle = '',
+  overviewDescription = '',
+  overviewImage = '',
+  featuresTitle = '',
+  featuresDescription = '',
+  features = [],
+  relatedServices = [],
+  whyChooseTitle = '',
+  whyChooseDescription = '',
+  whyChoosePoints = [],
+  ctaTitle = '',
+  ctaDescription = '',
+  ctaButtonText = '',
+  ctaButtonLink = '',
   countryCode = 'ug',
-  serviceType = 'Individual', // 'Individual' or 'Corporate'
-}) {
-  const countryNames = {
+  serviceType = 'Individual',
+}: ServicePageTemplateProps) {
+  const countryNames: Record<string, string> = {
     ke: 'Kenya',
     ug: 'Uganda',
     tz: 'Tanzania',
   }
   const countryName = countryNames[countryCode] || 'Uganda'
-  
-  const emergencyPhones = {
+
+  const emergencyPhones: Record<string, string> = {
     ke: '0733 700 500',
     ug: '0717 800 752',
     tz: '0784 700 299',
@@ -150,7 +174,7 @@ export default function ServicePageTemplate({
               <p className="text-base md:text-lg text-gray-700 leading-relaxed">
                 {heroDescription}
               </p>
-              
+
               {/* Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <motion.div
@@ -200,8 +224,8 @@ export default function ServicePageTemplate({
                   }}
                 >
                   <span className="text-sm text-gray-700 uppercase font-medium">Explore more</span>
-                  <Icon 
-                    icon="material-symbols-light:arrow-circle-down-outline-rounded" 
+                  <Icon
+                    icon="material-symbols-light:arrow-circle-down-outline-rounded"
                     className="w-6 h-6 text-navy-blue"
                   />
                 </motion.div>
@@ -227,10 +251,9 @@ export default function ServicePageTemplate({
         </div>
         {/* Decorative Pattern at Bottom */}
         <div className="absolute bottom-0 left-0 right-0 w-full">
-          <DecorativePattern 
-            className="transition-none" 
+          <DecorativePattern
+            className="transition-none"
             static={true}
-            colors={['bg-red-600', 'bg-green-600', 'bg-black']}
           />
         </div>
       </section>
@@ -254,7 +277,7 @@ export default function ServicePageTemplate({
             >
               <h2 className="text-xl md:text-3xl font-bold text-primary-orange relative pb-3">
                 <span>SGA Response Advantage</span>
-                <span 
+                <span
                   className="absolute bottom-0 left-0 w-full"
                   style={{
                     background: 'linear-gradient(to right, #00043E 0%, #00043E 70%, transparent 100%)',
@@ -272,9 +295,9 @@ export default function ServicePageTemplate({
                     transition={{ delay: index * 0.1 }}
                     className="flex items-start gap-3 text-sm md:text-base text-gray-700 leading-relaxed"
                   >
-                    <Icon 
-                      icon="si:check-circle-fill" 
-                      className="w-5 h-5 text-primary-orange flex-shrink-0 mt-0.5" 
+                    <Icon
+                      icon="si:check-circle-fill"
+                      className="w-5 h-5 text-primary-orange flex-shrink-0 mt-0.5"
                     />
                     <span>{point}</span>
                   </motion.li>
@@ -318,10 +341,9 @@ export default function ServicePageTemplate({
           </div>
         </motion.div>
         <div className="absolute bottom-0 left-0 right-0 w-full">
-          <DecorativePattern 
-            className="transition-none" 
+          <DecorativePattern
+            className="transition-none"
             static={true}
-            colors={['bg-red-600', 'bg-green-600', 'bg-black']}
           />
         </div>
       </section>
@@ -345,7 +367,7 @@ export default function ServicePageTemplate({
             >
               <h2 className="text-xl md:text-3xl font-bold text-white relative pb-3">
                 <span>What We Handle</span>
-                <span 
+                <span
                   className="absolute bottom-0 left-0 w-full"
                   style={{
                     background: 'linear-gradient(to right, #FFFFFF 0%, #FFFFFF 70%, transparent 100%)',
@@ -363,9 +385,9 @@ export default function ServicePageTemplate({
                     transition={{ delay: index * 0.1 }}
                     className="flex items-start gap-3 text-sm md:text-base text-white/90 leading-relaxed"
                   >
-                    <Icon 
-                      icon="icon-park-outline:check-one" 
-                      className="w-5 h-5 text-white flex-shrink-0 mt-0.5" 
+                    <Icon
+                      icon="icon-park-outline:check-one"
+                      className="w-5 h-5 text-white flex-shrink-0 mt-0.5"
                     />
                     <span>{point}</span>
                   </motion.li>
@@ -409,7 +431,7 @@ export default function ServicePageTemplate({
             >
               <h2 className="text-xl md:text-3xl font-bold text-primary-orange relative pb-3">
                 <span>How It Works</span>
-                <span 
+                <span
                   className="absolute bottom-0 left-0 w-full"
                   style={{
                     background: 'linear-gradient(to right, #00043E 0%, #00043E 70%, transparent 100%)',
@@ -436,9 +458,9 @@ export default function ServicePageTemplate({
                 </div>
                 {/* Icon */}
                 <div className="mb-5 mt-6 flex items-center justify-center lg:justify-start">
-                  <Icon 
-                    icon={step.icon} 
-                    className="w-10 h-10 lg:w-12 lg:h-12 text-white" 
+                  <Icon
+                    icon={step.icon}
+                    className="w-10 h-10 lg:w-12 lg:h-12 text-white"
                   />
                 </div>
                 <h3 className="text-lg lg:text-xl font-bold text-white mb-3">
@@ -452,10 +474,9 @@ export default function ServicePageTemplate({
           </div>
         </motion.div>
         <div className="absolute bottom-0 left-0 right-0 w-full">
-          <DecorativePattern 
-            className="transition-none" 
+          <DecorativePattern
+            className="transition-none"
             static={true}
-            colors={['bg-red-600', 'bg-green-600', 'bg-black']}
           />
         </div>
       </section>
@@ -478,7 +499,7 @@ export default function ServicePageTemplate({
             >
               <h2 className="text-xl md:text-3xl font-bold text-primary-orange relative pb-3">
                 <span>Response Packages</span>
-                <span 
+                <span
                   className="absolute bottom-0 left-0 w-full"
                   style={{
                     background: 'linear-gradient(to right, #00043E 0%, #00043E 70%, transparent 100%)',
@@ -508,9 +529,9 @@ export default function ServicePageTemplate({
                       key={featureIndex}
                       className="flex items-start gap-3 text-sm lg:text-base text-white/95 leading-relaxed"
                     >
-                      <Icon 
-                        icon="icon-park-outline:check-one" 
-                        className="w-5 h-5 text-white flex-shrink-0 mt-0.5" 
+                      <Icon
+                        icon="icon-park-outline:check-one"
+                        className="w-5 h-5 text-white flex-shrink-0 mt-0.5"
                       />
                       <span>{feature}</span>
                     </li>
@@ -531,10 +552,9 @@ export default function ServicePageTemplate({
           </div>
         </motion.div>
         <div className="absolute bottom-0 left-0 right-0 w-full">
-          <DecorativePattern 
-            className="transition-none" 
+          <DecorativePattern
+            className="transition-none"
             static={true}
-            colors={['bg-red-600', 'bg-green-600', 'bg-black']}
           />
         </div>
       </section>
@@ -558,7 +578,7 @@ export default function ServicePageTemplate({
               >
                 <h2 className="text-xl md:text-3xl font-bold text-primary-orange relative pb-3">
                   <span>{whyChooseTitle}</span>
-                  <span 
+                  <span
                     className="absolute bottom-0 left-0 w-full"
                     style={{
                       background: 'linear-gradient(to right, #00043E 0%, #00043E 70%, transparent 100%)',
@@ -595,10 +615,9 @@ export default function ServicePageTemplate({
             </div>
           </motion.div>
           <div className="absolute bottom-0 left-0 right-0 w-full">
-            <DecorativePattern 
-              className="transition-none" 
+            <DecorativePattern
+              className="transition-none"
               static={true}
-              colors={['bg-red-600', 'bg-green-600', 'bg-black']}
             />
           </div>
         </section>
@@ -631,7 +650,7 @@ export default function ServicePageTemplate({
                       <Icon icon="mdi:chevron-right" className="w-5 h-5" />
                     </button>
                   </div>
-                  <span 
+                  <span
                     className="absolute bottom-0 left-0 w-full"
                     style={{
                       background: 'linear-gradient(to right, #00043E 0%, #00043E 70%, transparent 100%)',
@@ -666,14 +685,14 @@ export default function ServicePageTemplate({
                       className="object-cover"
                     />
                   </motion.a>
-                  
+
                   <div className="bg-primary-orange p-6 flex flex-col flex-1">
-                                       
+
                     {/* Title */}
                     <h3 className="text-lg font-bold text-white mb-3">
                       {service.title}
                     </h3>
-                    
+
                     {/* Summary */}
                     <p className="text-white/90 text-sm leading-relaxed mb-4">
                       {service.summary}
@@ -697,14 +716,13 @@ export default function ServicePageTemplate({
               ))}
             </div>
           </motion.div>
-          <DecorativePattern 
-            colors={['bg-red-600', 'bg-green-600', 'bg-black']} 
+          <DecorativePattern
             static={true}
           />
         </section>
       )}
 
-      </>
+    </>
   )
 }
 

@@ -11,17 +11,15 @@ export const metadata = {
 export default function TanzaniaWhyUsPage() {
   return (
     <>
-      <WhyUsHero 
+      <WhyUsHero
         countryCode="tz"
         imageUrl="/images/tz/about-sga.png"
       />
-      <WhyChooseUs 
-        countryName="Tanzania" 
-        decorativePatternColors={['bg-red-600', 'bg-green-600', 'bg-black']} 
-        staticPattern={true} 
+      <WhyChooseUs
+        countryName="Tanzania"
       />
       <WhyUsCards />
-      <FloatingWhatsApp 
+      <FloatingWhatsApp
         singleCountry={true}
         country="Tanzania"
         phone="+255222123456"
