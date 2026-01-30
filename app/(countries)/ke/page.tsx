@@ -73,7 +73,7 @@ export default function KenyaPage(): React.JSX.Element {
         <SectionSeparator imageUrl="/images/misc/section-pattern-ke.svg" />
       </div>
       <div id="why-us" className="relative">
-        <WhyChooseUs countryName="Kenya" />
+        <WhyChooseUs countryName="Kenya" backgroundColor="bg-light-grey" />
         <SectionSeparator imageUrl="/images/misc/section-pattern-ke.svg" />
       </div>
       <div id="blog" className="relative">

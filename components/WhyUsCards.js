@@ -2,58 +2,46 @@
 
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
-import DecorativePattern from './DecorativePattern'
+
 
 const cards = [
   {
     title: 'Branch entrances and teller halls',
     description: 'Controlled entry points to manage visitor flow and reduce unauthorized access.',
-    icon: 'mdi:door-open',
+    icon: 'carbon:security',
   },
   {
     title: 'Disciplined personnel',
     description: 'Professional teams trained to follow procedure and remain calm under pressure.',
-    icon: 'mdi:shield-account',
+    icon: 'ph:users',
   },
   {
     title: 'Structured command & escalation',
     description: 'Clear supervision and escalation paths for fast, accountable response.',
-    icon: 'mdi:account-network',
+    icon: 'material-symbols-light:dashboard-outline-rounded',
   },
 ]
 
 export default function WhyUsCards() {
   return (
-    <section className="bg-white py-8 md:py-12 relative">
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="bg-white py-12 md:py-24 relative overflow-hidden">
+      <div className="w-full px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
         >
-          {/* Title with border bottom */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-8 md:mb-12"
-          >
-            <h2 className="text-2xl md:text-3xl font-bold text-primary-orange relative pb-4">
+          {/* Section Header */}
+          <div className="section-title-container mb-16 md:mb-24">
+            <h2 className="section-title text-3xl md:text-4xl lg:text-5xl">
               What sets SGA apart
-              <span 
-                className="absolute bottom-0 left-0 w-full"
-                style={{
-                  background: 'linear-gradient(to right, #00043E 0%, #00043E 70%, transparent 100%)',
-                  height: '2px'
-                }}
-              ></span>
             </h2>
-          </motion.div>
+            <div className="section-title-bar"></div>
+          </div>
 
           {/* Cards Grid */}
-          <div className="grid md:grid-cols-3 gap-6 lg:gap-8 py-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
             {cards.map((card, index) => (
               <motion.div
                 key={index}
@@ -61,39 +49,32 @@ export default function WhyUsCards() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -5, scale: 1.02 }}
-                className="bg-primary-orange rounded-lg p-6 md:p-8 shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col min-h-[280px] md:min-h-[320px]"
+                whileHover={{ y: -10, scale: 1.02 }}
+                className="bg-primary-orange rounded-3xl p-8 md:p-10 lg:p-12 shadow-xl flex flex-col min-h-[400px] md:min-h-[450px]"
               >
-                {/* Icon */}
-                <div className="mb-4">
+                {/* Icon Container */}
+                <div className="mb-8 md:mb-12">
                   <Icon 
                     icon={card.icon} 
-                    className="w-12 h-12 md:w-14 md:h-14 text-white" 
+                    className="w-16 h-16 md:w-20 md:h-20 text-white stroke-[0.5]" 
+                    strokeWidth={0.5}
                   />
                 </div>
                 
-                {/* Title */}
-                <h3 className="text-xl md:text-2xl font-bold text-white mb-4">
-                  {card.title}
-                </h3>
-                
-                {/* Description */}
-                <p className="text-white/90 text-sm md:text-base leading-relaxed">
-                  {card.description}
-                </p>
+                {/* Text Content */}
+                <div className="mt-auto space-y-4 md:space-y-6">
+                  <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight">
+                    {card.title}
+                  </h3>
+                  
+                  <p className="text-white text-lg md:text-xl font-normal leading-relaxed opacity-95">
+                    {card.description}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </div>
         </motion.div>
-      </div>
-      {/* Decorative Pattern at Bottom - Outside animated wrapper */}
-      <div className="absolute bottom-0 left-0 right-0 w-full z-0" style={{ pointerEvents: 'none' }}>
-        <DecorativePattern 
-          className="transition-none" 
-          circleCount={35} 
-          colors={['bg-red-600', 'bg-green-600', 'bg-black']} 
-          static={true} 
-        />
       </div>
     </section>
   )

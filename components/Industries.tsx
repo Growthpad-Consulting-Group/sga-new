@@ -5,7 +5,7 @@ import SectionWrapper from './SectionWrapper'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import Image from 'next/image'
-import DecorativePattern from './DecorativePattern'
+
 
 interface Industry {
   name: string
@@ -78,10 +78,11 @@ export default function Industries({
               industries
             </p>
             <div className="section-title-container w-full flex items-end justify-between">
-              <h3 className="section-title text-xl md:text-4xl font-bold text-primary-orange">
+              <h3 className="section-title text-xl md:text-3xl lg:text-5xl">
                 Built for your industry
               </h3>
-              <div className="flex items-center gap-3 mb-1">
+              <div className="section-title-bar"></div>
+              <div className="flex items-center gap-3 mb-1 relative z-20">
                 <button
                   onClick={handlePrev}
                   className="w-10 h-10 rounded-full border-2 border-dark-charcoal flex items-center justify-center text-dark-charcoal hover:border-primary-orange hover:text-primary-orange transition-all duration-300"

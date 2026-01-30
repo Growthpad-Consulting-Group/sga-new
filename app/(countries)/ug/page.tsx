@@ -75,7 +75,7 @@ export default function UgandaPage(): React.JSX.Element {
         <SectionSeparator imageUrl="/images/misc/section-pattern-ug.svg" />
       </div>
       <div id="why-us" className="relative">
-        <WhyChooseUs countryName="Uganda" />
+        <WhyChooseUs countryName="Uganda" backgroundColor="bg-light-grey" />
         <SectionSeparator imageUrl="/images/misc/section-pattern-ug.svg" />
       </div>
       <div id="blog" className="relative">

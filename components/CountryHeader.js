@@ -137,8 +137,11 @@ export default function CountryHeader() {
   }
   const currentCountryName = getCountryName()
 
-  // Check if we're on an about page, industry page, or service page
-  const isAboutPage = pathname.includes('/about') || pathname.includes('/industries') || pathname.includes('/services')
+  // Check if we're on an about page, industry page, service page, or why-us page
+  const isAboutPage = pathname.includes('/about') || 
+                      pathname.includes('/industries') || 
+                      pathname.includes('/services') || 
+                      pathname.includes('/why-us')
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${

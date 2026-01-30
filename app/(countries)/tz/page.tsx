@@ -78,7 +78,7 @@ export default function TanzaniaPage(): React.JSX.Element {
         <SectionSeparator imageUrl="/images/misc/section-pattern-tz.svg" />
       </div>
       <div id="why-us" className="relative">
-        <WhyChooseUs countryName="Tanzania" />
+        <WhyChooseUs countryName="Tanzania" backgroundColor="bg-light-grey" />
         <SectionSeparator imageUrl="/images/misc/section-pattern-tz.svg" />
       </div>
       <div id="blog" className="relative">

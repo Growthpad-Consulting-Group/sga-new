@@ -2,6 +2,7 @@ import WhyUsHero from '../components/WhyUsHero'
 import WhyChooseUs from '@/components/WhyChooseUs'
 import WhyUsCards from '@/components/WhyUsCards'
 import FloatingWhatsApp from '@/components/FloatingWhatsApp'
+import SectionSeparator from '@/components/SectionSeparator'
 
 export const metadata = {
   title: 'Why Choose SGA Security Uganda - Trusted Security Solutions',
@@ -11,14 +12,25 @@ export const metadata = {
 export default function UgandaWhyUsPage() {
   return (
     <>
-      <WhyUsHero
-        countryCode="ug"
-        imageUrl="/images/ug/about-sga.png"
-      />
-      <WhyChooseUs
-        countryName="Uganda"
-      />
-      <WhyUsCards />
+      <div id="about" className="relative">
+        <WhyUsHero
+          countryCode="ug"
+          imageUrl="/images/ug/about-sga.png"
+        />
+        <SectionSeparator />
+      </div>
+      <div id="services" className="relative">
+        <WhyChooseUs
+          countryName="Uganda"
+          backgroundColor="bg-light-grey"
+        />
+        <SectionSeparator />
+      </div>
+      <div id="industries" className="relative">
+        <WhyUsCards />
+        <SectionSeparator />
+      </div>
+
       <FloatingWhatsApp
         singleCountry={true}
         country="Uganda"

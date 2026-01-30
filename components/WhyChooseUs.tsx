@@ -12,6 +12,7 @@ interface AccordionItem {
 
 interface WhyChooseUsProps {
   countryName?: string
+  backgroundColor?: string
 }
 
 const accordionItems: AccordionItem[] = [
@@ -35,11 +36,12 @@ const accordionItems: AccordionItem[] = [
 
 export default function WhyChooseUs({
   countryName = 'Kenya',
+  backgroundColor = 'bg-white',
 }: WhyChooseUsProps) {
   const [openIndex, setOpenIndex] = useState(0)
 
   return (
-    <section id="why-choose-us" className="section-snap flex items-center justify-center bg-white relative pb-0 overflow-x-hidden min-h-[100vh]">
+    <section id="why-choose-us" className={`section-snap flex items-center justify-center ${backgroundColor} relative pb-0 overflow-x-hidden min-h-[100vh]`}>
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -60,9 +62,10 @@ export default function WhyChooseUs({
                 why us
               </p>
               <div className="section-title-container w-full">
-                <h2 className="section-title text-xl md:text-4xl font-bold text-primary-orange">
+                <h2 className="section-title text-xl md:text-3xl lg:text-5xl font-bold">
                   Why choose SGA {countryName}
                 </h2>
+                <div className="section-title-bar"></div>
               </div>
             </motion.div>
 
@@ -75,9 +78,8 @@ export default function WhyChooseUs({
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className={`rounded-2xl overflow-hidden transition-all duration-300 cursor-pointer ${openIndex === index ? 'border border-dark-charcoal' : 'bg-white hover:bg-gray-50'
+                  className={`rounded-2xl overflow-hidden transition-all duration-300 cursor-pointer ${openIndex === index ? 'border border-dark-charcoal' : 'hover:bg-dark-charcoal/5'
                     }`}
-                  style={openIndex === index ? { backgroundColor: '#E6EDF1' } : {}}
                   whileHover={openIndex !== index ? { scale: 1.01 } : {}}
                 >
                   <button
@@ -110,21 +112,6 @@ export default function WhyChooseUs({
                 </motion.div>
               ))}
             </div>
-
-            {/* Button */}
-            <motion.button
-              onClick={() => {
-                window.location.href = '/contact'
-              }}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-white border border-black text-black px-8 py-4 rounded-full font-normal text-md capitalize hover:bg-black hover:text-white transition-all"
-            >
-              Talk to our team
-            </motion.button>
           </div>
 
           {/* Image - Right */}
