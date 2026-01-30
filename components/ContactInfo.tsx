@@ -73,7 +73,15 @@ const contactOffices: ContactOffice[] = [
   },
 ]
 
-export default function ContactInfo(): React.JSX.Element {
+interface ContactInfoProps {
+  providedCountry?: string
+}
+
+export default function ContactInfo({ providedCountry }: ContactInfoProps): React.JSX.Element {
+  const filteredOffices = providedCountry
+    ? contactOffices.filter(office => office.country.toLowerCase() === providedCountry.toLowerCase())
+    : contactOffices
+
   return (
     <section id="contact-info" className="section-snap flex items-center justify-center bg-white text-dark-charcoal py-20 relative">
       <motion.div
@@ -92,17 +100,20 @@ export default function ContactInfo(): React.JSX.Element {
         >
           <div className="section-title-container">
             <h2 className="section-title text-xl md:text-5xl font-bold text-primary-orange">
-              Country Contacts
+              {providedCountry ? `${providedCountry} Contacts` : 'Country Contacts'}
             </h2>
+            <div className="section-title-bar"></div>
           </div>
           <p className="text-sm md:text-lg text-gray-700 leading-relaxed max-w-4xl pt-6">
-            Direct lines and offices for each country. You can also visit the country website for more local information.
+            {providedCountry
+              ? `Direct lines and offices for SGA Security ${providedCountry}.`
+              : 'Direct lines and offices for each country. You can also visit the country website for more local information.'}
           </p>
         </motion.div>
 
         {/* Contact Cards Grid */}
-        <div className="grid md:grid-cols-3 gap-6 md:gap-8 mt-12">
-          {contactOffices.map((office, index) => (
+        <div className={`grid gap-6 md:gap-8 mt-12 ${providedCountry ? 'md:grid-cols-1 max-w-2xl' : 'md:grid-cols-3'}`}>
+          {filteredOffices.map((office, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}

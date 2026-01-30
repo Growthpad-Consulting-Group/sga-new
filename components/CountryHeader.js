@@ -94,9 +94,9 @@ export default function CountryHeader() {
     { href: '#services', label: 'SERVICES', isDropdown: true, dropdownType: 'services' },
     { href: `${countryPrefix}/industries`, label: 'INDUSTRIES', isDropdown: true, dropdownType: 'industries' },
     { href: `${countryPrefix}/why-us`, label: 'WHY US' },
-    { href: '/news-reports', label: 'BLOG' },
-    { href: '/contact', label: 'CONTACT' },
-    { href: '/updates', label: 'UPDATES', icon: 'material-symbols:news-outline-rounded' },
+    { href: `${countryPrefix}/updates`, label: 'BLOG' },
+    { href: `${countryPrefix}/contact`, label: 'CONTACT' },
+    { href: `${countryPrefix}/updates`, label: 'UPDATES', icon: 'material-symbols:news-outline-rounded' },
   ]
 
   const socialLinks = [

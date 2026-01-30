@@ -10,17 +10,22 @@ import { newsItems } from '@/data/newsItems'
 
 const ITEMS_PER_PAGE = 6
 
-export default function NewsReportsCards() {
+interface NewsReportsCardsProps {
+  providedCountry?: string
+}
+
+export default function NewsReportsCards({ providedCountry }: NewsReportsCardsProps) {
   const pathname = usePathname()
   const [activeFilter, setActiveFilter] = useState('ALL')
   const [searchQuery, setSearchQuery] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
 
-  const [selectedCountry, setSelectedCountry] = useState('All Country')
+  const [selectedCountry, setSelectedCountry] = useState(providedCountry || 'All Country')
   const [sortBy, setSortBy] = useState('Latest')
 
   // Determine base path for slugs based on current route
-  const basePath = pathname?.startsWith('/news-reports') ? '/news-reports' : '/updates'
+  const basePath = pathname?.startsWith('/news-reports') ? '/news-reports' :
+    pathname?.includes('/updates') ? (providedCountry ? `/${providedCountry.toLowerCase().substring(0, 2)}/updates` : '/updates') : '/updates'
 
   const filteredItems = (() => {
     let filtered = newsItems.filter(item => {
