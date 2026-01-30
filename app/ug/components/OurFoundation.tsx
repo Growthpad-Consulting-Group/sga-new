@@ -62,7 +62,7 @@ export default function OurFoundation({
               whileHover={{ scale: 1.05, y: -8 }}
               className="flex flex-col items-center"
             >
-              <div className="relative w-80 h-80 sm:w-96 sm:h-96 lg:w-[28rem] lg:h-[28rem] rounded-full overflow-hidden shadow-xl bg-primary-orange group cursor-pointer">
+              <div className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden shadow-xl bg-primary-orange group cursor-pointer">
                 {/* Content */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-10">
                   <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">

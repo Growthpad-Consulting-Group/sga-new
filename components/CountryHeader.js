@@ -28,6 +28,18 @@ export default function CountryHeader() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Prevent background scroll when modal or dropdowns are open
+  useEffect(() => {
+    if (countryModalOpen || servicesDropdownOpen || industriesDropdownOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [countryModalOpen, servicesDropdownOpen, industriesDropdownOpen])
+
   // Get country prefix for navigation links
   const getCountryPrefix = () => {
     if (pathname.startsWith('/ke')) return '/ke'
@@ -131,7 +143,7 @@ export default function CountryHeader() {
   return (
     <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
       isScrolled 
-        ? 'bg-white/90 backdrop-blur-md shadow-lg py-2' 
+        ? `bg-white/90 ${servicesDropdownOpen || industriesDropdownOpen ? '' : 'backdrop-blur-md'} shadow-lg py-2` 
         : (isAboutPage ? 'bg-white' : 'bg-primary-orange')
     }`}>
       {/* Top Bar with Social Icons and Flags */}
