@@ -70,10 +70,10 @@ export default function CountryHeader() {
   ]
 
   const shortcuts = [
-    { href: `${countryPrefix}/safety-tips`, label: 'Safety tips' },
+    { href: '/safety-tips', label: 'Safety tips' },
     { href: `${countryPrefix}/faqs`, label: 'FAQs' },
-    { href: `${countryPrefix}/contact`, label: 'Contact' },
-    { href: `${countryPrefix}/resources`, label: 'Resources' },
+    { href: '/contact', label: 'Contact' },
+    { href: '/resources', label: 'Resources' },
   ]
 
   const navItems = [
