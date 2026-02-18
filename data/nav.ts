@@ -44,11 +44,11 @@ export const getCountryNavItems = (countryCode: string): NavItem[] => {
 }
 
 export const socialLinks: SocialLink[] = [
-  { icon: 'mdi:facebook', url: 'https://facebook.com', label: 'Facebook' },
-  { icon: 'entypo-social:twitter-with-circle', url: 'https://twitter.com', label: 'Twitter' },
-  { icon: 'mage:instagram-circle', url: 'https://instagram.com', label: 'Instagram' },
+  { icon: 'mdi:facebook', url: 'https://www.facebook.com/people/SGA-Security/100091922621281/', label: 'Facebook' },
+  { icon: 'tabler:brand-x', url: 'https://twitter.com/SGA_Security', label: 'Twitter' },
+  { icon: 'mage:instagram-circle', url: 'https://www.instagram.com/sgasecurity/', label: 'Instagram' },
   { icon: 'entypo-social:youtube-with-circle', url: 'https://youtube.com', label: 'Youtube' },
-  { icon: 'mdi:linkedin', url: 'https://linkedin.com', label: 'LinkedIn' },
+  { icon: 'mdi:linkedin', url: 'https://www.linkedin.com/company/5360016/', label: 'LinkedIn' },
 ]
 
 export const countries: Country[] = [
