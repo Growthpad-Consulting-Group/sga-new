@@ -98,7 +98,7 @@ export default function Header() {
     if (isCountryPage && !isScrolled) {
       return isActive ? 'text-white' : 'text-white hover:text-white/80'
     }
-    return isActive ? 'text-primary-orange' : 'text-dark-charcoal hover:text-primary-orange'
+    return isActive ? 'text-primary-orange' : 'hover:text-primary-orange'
   }
 
   const getBorderColor = () => {
@@ -349,7 +349,7 @@ export default function Header() {
                 const isRoute = !item.href.startsWith('#')
                 const isActive = isRoute ? pathname === item.href : false
                 const isUpdates = item.label === 'UPDATES'
-                const itemClasses = `${mobileMenuItemClasses} ${isActive ? 'text-primary-orange font-semibold' : 'text-dark-charcoal hover:text-primary-orange'
+                const itemClasses = `${mobileMenuItemClasses} ${isActive ? 'text-primary-orange font-semibold' : ' hover:text-primary-orange'
                   } ${isUpdates ? 'font-bold' : ''}`
 
                 if (isRoute) {

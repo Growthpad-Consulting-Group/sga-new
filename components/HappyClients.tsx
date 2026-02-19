@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { Icon } from '@iconify/react'
+import { useCarousel, CarouselArrows } from './Carousel'
 
 interface Client {
   name: string
@@ -45,6 +46,14 @@ export default function HappyClients() {
   const filteredClients = activeFilter === 'ALL'
     ? clients
     : clients.filter(client => client.category === activeFilter)
+
+  // Use carousel for pagination (show 8 clients per page - 2 rows of 4)
+  const carousel = useCarousel(filteredClients.length, 8)
+
+  const handleFilterChange = (filter: string) => {
+    setActiveFilter(filter)
+    carousel.goToPage(1)
+  }
   return (
     <section id="happy-clients" className="section-snap flex items-center justify-center bg-white py-12 md:py-20 min-h-[85vh] relative">
       <motion.div
@@ -68,14 +77,13 @@ export default function HappyClients() {
               <h3 className="section-title text-xl md:text-5xl font-bold text-primary-orange">
                 Happy Clients
               </h3>
-              <div className="flex items-center gap-3 mb-1">
-                <button className="w-10 h-10 rounded-full border-2 border-dark-charcoal flex items-center justify-center text-dark-charcoal hover:border-primary-orange hover:text-primary-orange transition-all duration-300">
-                  <Icon icon="mingcute:arrow-left-line" className="w-6 h-6" />
-                </button>
-                <button className="w-10 h-10 rounded-full border-2 border-dark-charcoal flex items-center justify-center text-dark-charcoal hover:border-primary-orange hover:text-primary-orange transition-all duration-300">
-                  <Icon icon="mingcute:arrow-right-line" className="w-6 h-6" />
-                </button>
-              </div>
+              <CarouselArrows
+                onPrev={carousel.prevPage}
+                onNext={carousel.nextPage}
+                canGoPrev={carousel.canGoPrev}
+                canGoNext={carousel.canGoNext}
+                className="mb-1"
+              />
             </div>
           </motion.div>
         </div>
@@ -90,7 +98,7 @@ export default function HappyClients() {
               return (
                 <button
                   key={filter}
-                  onClick={() => setActiveFilter(filter)}
+                  onClick={() => handleFilterChange(filter)}
                   className={`px-6 py-3 rounded-full border transition-colors flex items-center gap-1 text-md font-medium uppercase ${activeFilter === filter
                     ? 'bg-primary-orange text-white border-primary-orange'
                     : 'border-dark-charcoal text-dark-charcoal hover:border-primary-orange hover:text-primary-orange'
@@ -105,14 +113,15 @@ export default function HappyClients() {
         </div>
 
         <div className="border-2 border-dark-charcoal/30 rounded-xl grid grid-cols-2 md:grid-cols-4 overflow-hidden">
-          {filteredClients.map((client, index) => {
+          {carousel.currentItems(filteredClients).map((client, index) => {
             // Calculate row and column for desktop (4 cols) and mobile (2 cols)
+            const currentPageClients = carousel.currentItems(filteredClients)
             const rowDesktop = Math.floor(index / 4);
             const colDesktop = index % 4;
             const rowMobile = Math.floor(index / 2);
             const colMobile = index % 2;
-            const totalRowsDesktop = Math.ceil(filteredClients.length / 4);
-            const totalRowsMobile = Math.ceil(filteredClients.length / 2);
+            const totalRowsDesktop = Math.ceil(currentPageClients.length / 4);
+            const totalRowsMobile = Math.ceil(currentPageClients.length / 2);
             const isLastRowDesktop = rowDesktop === totalRowsDesktop - 1;
             const isLastRowMobile = rowMobile === totalRowsMobile - 1;
             const isLastColDesktop = colDesktop === 3;
@@ -148,6 +157,24 @@ export default function HappyClients() {
             );
           })}
         </div>
+
+        {/* Page Indicator */}
+        {carousel.totalPages > 1 && (
+          <div className="flex justify-center items-center gap-2 mt-8">
+            {Array.from({ length: carousel.totalPages }, (_, i) => (
+              <button
+                key={i}
+                onClick={() => carousel.goToPage(i + 1)}
+                className={`rounded-full transition-all duration-300 ${
+                  carousel.currentPage === i + 1
+                    ? 'bg-primary-orange w-8 h-2'
+                    : 'bg-dark-charcoal/30 w-2 h-2'
+                }`}
+                aria-label={`Go to page ${i + 1}`}
+              />
+            ))}
+          </div>
+        )}
       </motion.div>
     </section>
   )

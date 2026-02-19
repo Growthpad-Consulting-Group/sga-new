@@ -173,7 +173,7 @@
 
   /* Section Title Components */
   .section-title {
-    @apply font-bold text-primary-orange mb-4 block;
+    @apply font-bold mb-4 block;
   }
 
   .section-title-container {

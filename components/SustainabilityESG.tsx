@@ -107,7 +107,7 @@ export default function SustainabilityESG(): React.JSX.Element {
                 opacity: { duration: 0.5, delay: index * 0.1 },
                 y: { duration: 0.15 }
               }}
-              className="rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-150 cursor-pointer min-h-[320px]"
+              className="rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-150 cursor-pointer min-h-[240px]"
               style={{ backgroundColor: sdg.bgColor }}
             >
               <div className="p-5 md:p-6 h-full flex flex-col text-white">
@@ -115,7 +115,7 @@ export default function SustainabilityESG(): React.JSX.Element {
                   <span className="text-4xl md:text-5xl font-bold leading-none">
                     {sdg.goal}
                   </span>
-                  <div className="relative w-20 h-20 md:w-28 md:h-28 flex-shrink-0">
+                  <div className="relative w-16 h-16 md:w-20 md:h-20 flex-shrink-0">
                     <Image
                       src={sdg.iconUrl}
                       alt={`SDG Goal ${sdg.goal}`}
@@ -126,12 +126,9 @@ export default function SustainabilityESG(): React.JSX.Element {
                 </div>
                 <div className="flex-1"></div>
                 <div>
-                  <h4 className="text-lg md:text-3xl font-bold mb-2 leading-tight">
+                  <h4 className="text-base md:text-2xl font-bold leading-tight">
                     {sdg.title}
                   </h4>
-                  <p className="text-sm md:text-base leading-relaxed">
-                    {sdg.description}
-                  </p>
                 </div>
               </div>
             </motion.div>
@@ -149,10 +146,10 @@ export default function SustainabilityESG(): React.JSX.Element {
               opacity: { duration: 0.5, delay: 0.7 },
               y: { duration: 0.15 }
             }}
-            className="rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-150 border border-dark-charcoal bg-transparent min-h-[320px] cursor-pointer"
+            className="rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-150 border border-dark-charcoal bg-transparent min-h-[240px] cursor-pointer"
           >
             <div className="p-5 md:p-6 h-full flex flex-col">
-              <h4 className="text-base md:text-3xl font-medium text-dark-charcoal mb-4 leading-tight">
+              <h4 className="text-base md:text-2xl font-medium text-dark-charcoal mb-4 leading-tight">
                 Learn More About Our Sustainability Impact
               </h4>
               <div className="flex-1"></div>

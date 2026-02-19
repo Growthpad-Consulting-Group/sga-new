@@ -1,10 +1,27 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Image from 'next/image'
 import { Icon } from '@iconify/react'
+import dynamic from 'next/dynamic'
+import { useRef } from 'react'
+import Link from 'next/link'
+import type { InteractiveMapRef } from './InteractiveMap'
+
+const InteractiveMap = dynamic(() => import('./InteractiveMap'), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-[100%] rounded-lg bg-gray-200 animate-pulse flex items-center justify-center">
+      <p className="text-gray-500">Loading map...</p>
+    </div>
+  )
+})
 
 export default function WhereWeOperate(): React.JSX.Element {
+  const mapRef = useRef<InteractiveMapRef>(null)
+
+  const handleCountryClick = (country: string) => {
+    mapRef.current?.selectLocationByCountry(country)
+  }
   return (
     <section id="where-we-operate" className="section-snap flex items-center justify-center relative min-h-[85vh] py-12 md:py-20 overflow-x-hidden">
       <motion.div
@@ -28,7 +45,7 @@ export default function WhereWeOperate(): React.JSX.Element {
               </p>
               <div className="section-title-container">
                 <h3 className="section-title text-xl md:text-5xl font-bold text-primary-orange">
-                  Geographic footprint
+                  Geographic Footprint
                 </h3>
               </div>
             </div>
@@ -44,6 +61,7 @@ export default function WhereWeOperate(): React.JSX.Element {
                   opacity: { duration: 0.5, delay: 0.1 },
                   y: { duration: 0.15 }
                 }}
+                onClick={() => handleCountryClick('Kenya')}
                 className="bg-primary-orange rounded-xl p-6 md:p-8 shadow-md hover:shadow-2xl transition-all duration-150 cursor-pointer border border-white/10"
               >
                 <h4 className="text-lg md:text-2xl font-bold text-white mb-2 flex items-center gap-3">
@@ -56,12 +74,12 @@ export default function WhereWeOperate(): React.JSX.Element {
                 <p className="text-sm md:text-lg text-white/90 leading-relaxed mb-4">
                   Nairobi-based HQ serving nationwide clients.
                 </p>
-                <a
+                <Link
                   href="#kenya"
                   className="inline-block text-white text-sm font-semibold hover:underline uppercase tracking-wide"
                 >
                   Explore Kenya <Icon icon="iconoir:arrow-right-circle" className="inline-block ml-1 w-5 h-5" />
-                </a>
+                </Link>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -74,6 +92,7 @@ export default function WhereWeOperate(): React.JSX.Element {
                   opacity: { duration: 0.5, delay: 0.2 },
                   y: { duration: 0.15 }
                 }}
+                onClick={() => handleCountryClick('Uganda')}
                 className="bg-primary-orange rounded-xl p-6 md:p-8 shadow-md hover:shadow-2xl transition-all duration-150 cursor-pointer border border-white/10"
               >
                 <h4 className="text-lg md:text-2xl font-bold text-white mb-2 flex items-center gap-3">
@@ -86,12 +105,12 @@ export default function WhereWeOperate(): React.JSX.Element {
                 <p className="text-sm md:text-lg text-white/90 leading-relaxed mb-4">
                   Reliable services across key urban centers.
                 </p>
-                <a
+                <Link
                   href="#uganda"
                   className="inline-block text-white text-sm font-semibold hover:underline uppercase tracking-wide"
                 >
                   Explore Uganda <Icon icon="iconoir:arrow-right-circle" className="inline-block ml-1 w-5 h-5" />
-                </a>
+                </Link>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -104,6 +123,7 @@ export default function WhereWeOperate(): React.JSX.Element {
                   opacity: { duration: 0.5, delay: 0.3 },
                   y: { duration: 0.15 }
                 }}
+                onClick={() => handleCountryClick('Tanzania')}
                 className="bg-primary-orange rounded-xl p-6 md:p-8 shadow-md hover:shadow-2xl transition-all duration-150 cursor-pointer border border-white/10"
               >
                 <h4 className="text-lg md:text-2xl font-bold text-white mb-2 flex items-center gap-3">
@@ -116,12 +136,12 @@ export default function WhereWeOperate(): React.JSX.Element {
                 <p className="text-sm md:text-lg text-white/90 leading-relaxed mb-4">
                   Coast-to-inland coverage with rapid response.
                 </p>
-                <a
+                <Link
                   href="#tanzania"
                   className="inline-block text-white text-sm font-semibold hover:underline uppercase tracking-wide"
                 >
                   Explore Tanzania <Icon icon="iconoir:arrow-right-circle" className="inline-block ml-1 w-5 h-5" />
-                </a>
+                </Link>
               </motion.div>
             </div>
           </motion.div>
@@ -133,13 +153,7 @@ export default function WhereWeOperate(): React.JSX.Element {
             transition={{ duration: 0.6 }}
             className="mx-auto w-full lg:col-span-3 flex flex-col justify-center items-center lg:items-end h-full self-center"
           >
-            <Image
-              src="/images/group/geographic-footprint.svg"
-              alt="Geographic Footprint"
-              width={500}
-              height={0}
-              className="w-full h-auto max-w-md lg:max-w-lg transition-transform duration-300 group-hover:scale-110"
-            />
+            <InteractiveMap ref={mapRef} />
           </motion.div>
         </div>
       </motion.div >

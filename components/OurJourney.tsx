@@ -1,8 +1,9 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
+import { useCarousel, CarouselArrows } from './Carousel'
 
 interface TimelineEvent {
   year: string
@@ -39,29 +40,15 @@ const timelineEvents: TimelineEvent[] = [
 ]
 
 export default function OurJourney(): React.JSX.Element {
-  const [currentSlide, setCurrentSlide] = useState(0)
   const [touchStart, setTouchStart] = useState<number | null>(null)
   const [touchEnd, setTouchEnd] = useState<number | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
-  const itemsPerSlide = 3
-  const totalSlides = Math.ceil(timelineEvents.length / itemsPerSlide)
+  // Use carousel hook for pagination
+  const carousel = useCarousel(timelineEvents.length, 3)
 
   // Minimum swipe distance (in px)
   const minSwipeDistance = 50
-
-  const handlePrevious = () => {
-    setCurrentSlide(prev => prev === 0 ? totalSlides - 1 : prev - 1)
-  }
-
-  const handleNext = () => {
-    setCurrentSlide(prev => prev === totalSlides - 1 ? 0 : prev + 1)
-  }
-
-  const getCurrentEvents = () => {
-    const startIndex = currentSlide * itemsPerSlide
-    return timelineEvents.slice(startIndex, startIndex + itemsPerSlide)
-  }
 
   // Touch handlers for mobile
   const onTouchStart = (e: React.TouchEvent) => {
@@ -81,9 +68,9 @@ export default function OurJourney(): React.JSX.Element {
     const isRightSwipe = distance < -minSwipeDistance
 
     if (isLeftSwipe) {
-      handleNext()
+      carousel.nextPage()
     } else if (isRightSwipe) {
-      handlePrevious()
+      carousel.prevPage()
     }
   }
 
@@ -95,17 +82,17 @@ export default function OurJourney(): React.JSX.Element {
     // Check if it's a horizontal scroll (trackpad swipe)
     if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
       if (e.deltaX > 30) {
-        handleNext()
+        carousel.nextPage()
       } else if (e.deltaX < -30) {
-        handlePrevious()
+        carousel.prevPage()
       }
     }
     // Also handle vertical scroll for mouse wheel
     else if (Math.abs(e.deltaY) > 30) {
       if (e.deltaY > 0) {
-        handleNext()
+        carousel.nextPage()
       } else {
-        handlePrevious()
+        carousel.prevPage()
       }
     }
   }
@@ -136,18 +123,12 @@ export default function OurJourney(): React.JSX.Element {
               </p>
             </div>
             <div className="flex items-center gap-2 flex-shrink-0">
-              <button
-                onClick={handlePrevious}
-                className="w-10 h-10 rounded-full border-2 border-primary-orange text-primary-orange hover:bg-primary-orange hover:text-white flex items-center justify-center transition-colors"
-              >
-                <Icon icon="mdi:chevron-left" className="w-6 h-6" />
-              </button>
-              <button
-                onClick={handleNext}
-                className="w-10 h-10 rounded-full border-2 border-primary-orange text-primary-orange hover:bg-primary-orange hover:text-white flex items-center justify-center transition-colors"
-              >
-                <Icon icon="mdi:chevron-right" className="w-6 h-6" />
-              </button>
+              <CarouselArrows
+                onPrev={carousel.prevPage}
+                onNext={carousel.nextPage}
+                canGoPrev={carousel.canGoPrev}
+                canGoNext={carousel.canGoNext}
+              />
             </div>
           </motion.div>
         </div>
@@ -162,7 +143,7 @@ export default function OurJourney(): React.JSX.Element {
           onWheel={handleWheel}
         >
           <motion.div
-            key={currentSlide}
+            key={carousel.currentPage}
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -50 }}
@@ -174,9 +155,9 @@ export default function OurJourney(): React.JSX.Element {
 
             {/* Timeline Events */}
             <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4">
-              {getCurrentEvents().map((event, index) => (
+              {carousel.currentItems(timelineEvents).map((event, index) => (
                 <motion.div
-                  key={`${currentSlide}-${index}`}
+                  key={`${carousel.currentPage}-${index}`}
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}

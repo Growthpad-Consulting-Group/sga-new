@@ -6,8 +6,28 @@ import { Icon } from '@iconify/react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { useEnquiryModal } from '@/contexts/EnquiryModalContext'
+import { socialLinks } from '@/data/nav'
 
-const countryData = {
+interface Phone {
+  label: string
+  number: string
+  icon?: string
+}
+
+interface CountryData {
+  name: string
+  address: string[]
+  phones: Phone[]
+  email: string
+}
+
+interface CountryDataMap {
+  ke: CountryData
+  ug: CountryData
+  tz: CountryData
+}
+
+const countryData: CountryDataMap = {
   ke: {
     name: 'Kenya',
     address: [
@@ -53,14 +73,14 @@ const countryData = {
   },
 }
 
-export default function CountryFooter() {
+export default function CountryFooter(): React.JSX.Element {
   const pathname = usePathname()
   const currentYear = new Date().getFullYear()
   const { openModal } = useEnquiryModal()
   const [showScrollTop, setShowScrollTop] = useState(false)
 
   // Determine country from pathname
-  let countryCode = 'ke'
+  let countryCode: keyof CountryDataMap = 'ke'
   if (pathname.startsWith('/ug')) {
     countryCode = 'ug'
   }
@@ -95,14 +115,6 @@ export default function CountryFooter() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
-
-  const socialLinks = [
-    { icon: 'mdi:facebook', url: 'https://facebook.com', label: 'Facebook' },
-    { icon: 'entypo-social:twitter-with-circle', url: 'https://twitter.com', label: 'Twitter' },
-    { icon: 'mage:instagram-circle', url: 'https://instagram.com', label: 'Instagram' },
-    { icon: 'entypo-social:youtube-with-circle', url: 'https://youtube.com', label: 'Youtube' },
-    { icon: 'mdi:linkedin', url: 'https://linkedin.com', label: 'LinkedIn' },
-  ]
 
   return (
     <div className="bg-white px-4 sm:px-6 lg:px-3 py-4">
@@ -161,6 +173,9 @@ export default function CountryFooter() {
                   </li>
                   <li>
                     <Link href="/terms-conditions" className="hover:text-navy-blue transition-colors cursor-pointer block">Terms & Conditions</Link>
+                  </li>
+                  <li>
+                    <Link href="/site-map" className="hover:text-navy-blue transition-colors cursor-pointer block">Site Map</Link>
                   </li>
                 </ul>
               </div>
@@ -237,6 +252,7 @@ export default function CountryFooter() {
             
             <div className="flex items-center gap-8 mt-4 sm:mt-0">
               <Link href="/privacy-policy" className="hover:text-navy-blue transition-colors">Privacy Policy</Link>
+              <Link href="/site-map" className="hover:text-navy-blue transition-colors">Site Map</Link>
             </div>
           </div>
         </div>

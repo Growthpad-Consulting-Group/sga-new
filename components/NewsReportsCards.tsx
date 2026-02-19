@@ -21,7 +21,12 @@ export default function NewsReportsCards({ providedCountry }: NewsReportsCardsPr
   const [currentPage, setCurrentPage] = useState(1)
 
   const [selectedCountry, setSelectedCountry] = useState(providedCountry || 'All Country')
-  const [sortBy, setSortBy] = useState('Latest')
+  const [selectedYear, setSelectedYear] = useState('All Years')
+
+  // Extract unique years from news items
+  const availableYears = Array.from(
+    new Set(newsItems.map(item => new Date(item.date).getFullYear()))
+  ).sort((a, b) => b - a) // Sort descending (newest first)
 
   // Determine base path for slugs based on current route
   const basePath = pathname?.startsWith('/news-reports') ? '/news-reports' :
@@ -30,9 +35,11 @@ export default function NewsReportsCards({ providedCountry }: NewsReportsCardsPr
   const filteredItems = (() => {
     let filtered = newsItems.filter(item => {
       const matchesFilter = activeFilter === 'ALL' || item.category.toUpperCase() === activeFilter
-      // Data currently doesn't have country field, so matching 'All Country' for now or adding mock country logic if needed
-      // But based on the request, we should provide the UI control
       const matchesCountry = selectedCountry === 'All Country' || (item as any).country === selectedCountry
+      
+      // Year filter
+      const itemYear = new Date(item.date).getFullYear()
+      const matchesYear = selectedYear === 'All Years' || itemYear.toString() === selectedYear
 
       let matchesSearch = true
       if (searchQuery) {
@@ -42,14 +49,14 @@ export default function NewsReportsCards({ providedCountry }: NewsReportsCardsPr
           item.category.toLowerCase().includes(query)
       }
 
-      return matchesFilter && matchesCountry && matchesSearch
+      return matchesFilter && matchesCountry && matchesYear && matchesSearch
     })
 
-    // Sort logic
+    // Sort by date (newest first)
     filtered.sort((a, b) => {
       const dateA = new Date(a.date).getTime()
       const dateB = new Date(b.date).getTime()
-      return sortBy === 'Latest' ? dateB - dateA : dateA - dateB
+      return dateB - dateA
     })
 
     return filtered
@@ -77,8 +84,8 @@ export default function NewsReportsCards({ providedCountry }: NewsReportsCardsPr
     setCurrentPage(1)
   }
 
-  const handleSortChange = (sort: string) => {
-    setSortBy(sort)
+  const handleYearChange = (year: string) => {
+    setSelectedYear(year)
     setCurrentPage(1)
   }
 
@@ -168,15 +175,17 @@ export default function NewsReportsCards({ providedCountry }: NewsReportsCardsPr
               />
             </div>
 
-            {/* 4. Sort Dropdown */}
+            {/* 4. Year Dropdown */}
             <div className="relative w-full">
               <select
-                value={sortBy}
-                onChange={(e) => handleSortChange(e.target.value)}
+                value={selectedYear}
+                onChange={(e) => handleYearChange(e.target.value)}
                 className="appearance-none w-full px-6 py-3 border border-dark-charcoal rounded-full text-sm focus:outline-none focus:border-primary-orange bg-white text-dark-charcoal cursor-pointer capitalize font-medium"
               >
-                <option value="Latest">Latest</option>
-                <option value="Oldest">Oldest</option>
+                <option value="All Years">All Years</option>
+                {availableYears.map(year => (
+                  <option key={year} value={year.toString()}>{year}</option>
+                ))}
               </select>
               <Icon
                 icon="mdi:chevron-down"

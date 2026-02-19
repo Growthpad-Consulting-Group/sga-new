@@ -61,7 +61,7 @@ export default function HomePage(): React.JSX.Element {
 
       <div className="relative">
         <GroupIntegratedSolutions
-          title="What we Offer"
+          title="What We Offer"
         />
         <SectionSeparator />
       </div>

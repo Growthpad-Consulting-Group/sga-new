@@ -23,6 +23,7 @@ export default function ConditionalFooter(): React.JSX.Element | null {
     pathname === '/news-reports' ||
     pathname === '/careers' ||
     pathname === '/updates' ||
+    pathname === '/site-map' ||
     pathname?.startsWith('/updates/') ||
     pathname?.startsWith('/news-reports/')) {
     return <GroupFooter />

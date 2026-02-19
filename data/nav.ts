@@ -47,7 +47,7 @@ export const socialLinks: SocialLink[] = [
   { icon: 'mdi:facebook', url: 'https://www.facebook.com/people/SGA-Security/100091922621281/', label: 'Facebook' },
   { icon: 'tabler:brand-x', url: 'https://twitter.com/SGA_Security', label: 'Twitter' },
   { icon: 'mage:instagram-circle', url: 'https://www.instagram.com/sgasecurity/', label: 'Instagram' },
-  { icon: 'entypo-social:youtube-with-circle', url: 'https://youtube.com', label: 'Youtube' },
+  { icon: 'entypo-social:youtube-with-circle', url: 'https://www.youtube.com/channel/UCusdwg-MGFNmPynBqBkajcw', label: 'Youtube' },
   { icon: 'mdi:linkedin', url: 'https://www.linkedin.com/company/5360016/', label: 'LinkedIn' },
 ]
 

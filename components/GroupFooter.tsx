@@ -5,24 +5,11 @@ import { Icon } from '@iconify/react'
 import { useEnquiryModal } from '@/contexts/EnquiryModalContext'
 import Link from 'next/link'
 import Accordion from './Accordion'
-
-interface SocialLink {
-  icon: string
-  url: string
-  label: string
-}
+import { socialLinks } from '@/data/nav'
 
 export default function GroupFooter(): React.JSX.Element {
   const currentYear = new Date().getFullYear()
   const { openModal } = useEnquiryModal()
-
-  const socialLinks: SocialLink[] = [
-    { icon: 'mdi:facebook', url: 'https://facebook.com', label: 'Facebook' },
-    { icon: 'entypo-social:twitter-with-circle', url: 'https://twitter.com', label: 'Twitter' },
-    { icon: 'mage:instagram-circle', url: 'https://instagram.com', label: 'Instagram' },
-    { icon: 'entypo-social:youtube-with-circle', url: 'https://youtube.com', label: 'Youtube' },
-    { icon: 'mdi:linkedin', url: 'https://linkedin.com', label: 'LinkedIn' },
-  ]
 
   const locationItems = [
     {
@@ -163,6 +150,9 @@ export default function GroupFooter(): React.JSX.Element {
                   <li>
                     <Link href="/terms-conditions" className="hover:text-navy-blue transition-colors cursor-pointer block">Terms & Conditions</Link>
                   </li>
+                  <li>
+                    <Link href="/site-map" className="hover:text-navy-blue transition-colors cursor-pointer block">Site Map</Link>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -197,7 +187,10 @@ export default function GroupFooter(): React.JSX.Element {
 
           <div className="border-t border-white/20 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center text-xl text-white/90">
             <p>&copy; {currentYear} SGA Security. All rights reserved.</p>
-            <Link href="/privacy-policy" className="hover:text-navy-blue transition-colors mt-4 sm:mt-0">Privacy Policy</Link>
+            <div className="flex items-center gap-8 mt-4 sm:mt-0">
+              <Link href="/privacy-policy" className="hover:text-navy-blue transition-colors">Privacy Policy</Link>
+              <Link href="/site-map" className="hover:text-navy-blue transition-colors">Site Map</Link>
+            </div>
           </div>
         </div>
       </footer>

@@ -2,22 +2,10 @@
 
 import Image from 'next/image'
 import { Icon } from '@iconify/react'
-
-interface SocialLink {
-  icon: string
-  url: string
-  label: string
-}
+import { socialLinks } from '@/data/nav'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
-
-  const socialLinks: SocialLink[] = [
-    { icon: 'mdi:facebook', url: 'https://facebook.com', label: 'Facebook' },
-    { icon: 'mdi:twitter', url: 'https://twitter.com', label: 'Twitter' },
-    { icon: 'mdi:linkedin', url: 'https://linkedin.com', label: 'LinkedIn' },
-    { icon: 'mdi:instagram', url: 'https://instagram.com', label: 'Instagram' },
-  ]
 
   return (
     <footer className="bg-gray-100 py-8 sm:py-12 md:py-16 no-snap relative" style={{ scrollSnapAlign: 'none', scrollSnapStop: 'normal' }}>
@@ -74,6 +62,7 @@ export default function Footer() {
             <ul className="space-y-2 sm:space-y-2.5 text-sm sm:text-base text-light-grey">
               <li className="hover:text-primary-orange transition-colors cursor-pointer">Privacy Policy</li>
               <li className="hover:text-primary-orange transition-colors cursor-pointer">Terms & Conditions</li>
+              <li className="hover:text-primary-orange transition-colors cursor-pointer">Sitemap</li>
             </ul>
           </div>
 
@@ -92,9 +81,14 @@ export default function Footer() {
 
         <div className="border-t border-white/20 mt-6 sm:mt-8 pt-6 sm:pt-8 flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-0 text-xs sm:text-sm text-light-grey">
           <p className="text-center sm:text-left">&copy; {currentYear} SGA Security. All rights reserved.</p>
-          <a href="/privacy-policy" className="hover:text-primary-orange transition-colors text-center sm:text-right">
-            Privacy Policy
-          </a>
+          <div className="flex items-center gap-6">
+            <a href="/privacy-policy" className="hover:text-primary-orange transition-colors text-center sm:text-right">
+              Privacy Policy
+            </a>
+            <a href="/site-map" className="hover:text-primary-orange transition-colors text-center sm:text-right">
+              Site Map
+            </a>
+          </div>
         </div>
       </div>
     </footer>

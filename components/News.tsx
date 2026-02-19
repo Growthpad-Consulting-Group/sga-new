@@ -5,6 +5,7 @@ import SectionWrapper from './SectionWrapper'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import Image from 'next/image'
+import { useCarousel, CarouselArrows } from './Carousel'
 
 interface NewsItem {
   category: string
@@ -130,8 +131,6 @@ export default function News({ hideCountryDropdown = false, backgroundColor = 'b
   const [activeFilter, setActiveFilter] = useState('ALL')
   const [selectedCountry, setSelectedCountry] = useState(country || 'All Country')
   const [searchQuery, setSearchQuery] = useState('')
-  const [currentPage, setCurrentPage] = useState(1)
-  const itemsPerPage = 3
 
   const filteredItems = newsItems.filter(item => {
     // If a specific country prop is passed, only show news for that country
@@ -145,41 +144,34 @@ export default function News({ hideCountryDropdown = false, backgroundColor = 'b
     return matchesFilter && matchesCountry && matchesSearch && itemCountryMatchesProp
   })
 
-  // Calculate total pages
-  const totalPages = Math.ceil(filteredItems.length / itemsPerPage)
+  // For group homepage (no country prop), ensure we show one from each country
+  let displayItems = filteredItems
+  if (!country && selectedCountry === 'All Country' && activeFilter === 'ALL' && !searchQuery) {
+    // Get one article from each country
+    const kenyaArticle = newsItems.find(item => item.country === 'Kenya')
+    const tanzaniaArticle = newsItems.find(item => item.country === 'Tanzania')
+    const ugandaArticle = newsItems.find(item => item.country === 'Uganda')
+    
+    displayItems = [kenyaArticle, tanzaniaArticle, ugandaArticle].filter(Boolean) as NewsItem[]
+  }
 
-  // Get current items
-  const currentItems = filteredItems.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  )
+  // Use carousel hook for pagination
+  const carousel = useCarousel(displayItems.length, 3)
 
   // Reset to first page when filters change
   const handleFilterChange = (newFilter: string) => {
     setActiveFilter(newFilter)
-    setCurrentPage(1)
+    carousel.goToPage(1)
   }
 
   const handleCountryChange = (newCountry: string) => {
     setSelectedCountry(newCountry)
-    setCurrentPage(1)
+    carousel.goToPage(1)
   }
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value)
-    setCurrentPage(1)
-  }
-
-  const nextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(prev => prev + 1)
-    }
-  }
-
-  const prevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(prev => prev - 1)
-    }
+    carousel.goToPage(1)
   }
 
   return (
@@ -205,22 +197,13 @@ export default function News({ hideCountryDropdown = false, backgroundColor = 'b
               <h3 className="section-title text-xl md:text-4xl font-bold text-primary-orange">
                 News & Reports
               </h3>
-              <div className="flex items-center gap-3 mb-1">
-                <button
-                  onClick={prevPage}
-                  disabled={currentPage === 1}
-                  className={`w-10 h-10 rounded-full border-2 border-dark-charcoal flex items-center justify-center transition-all duration-300 ${currentPage === 1 ? 'opacity-30 cursor-not-allowed text-dark-charcoal' : 'text-dark-charcoal hover:border-primary-orange hover:text-primary-orange'}`}
-                >
-                  <Icon icon="mingcute:arrow-left-line" className="w-6 h-6" />
-                </button>
-                <button
-                  onClick={nextPage}
-                  disabled={currentPage === totalPages || totalPages === 0}
-                  className={`w-10 h-10 rounded-full border-2 border-dark-charcoal flex items-center justify-center transition-all duration-300 ${currentPage === totalPages || totalPages === 0 ? 'opacity-30 cursor-not-allowed text-dark-charcoal' : 'text-dark-charcoal hover:border-primary-orange hover:text-primary-orange'}`}
-                >
-                  <Icon icon="mingcute:arrow-right-line" className="w-6 h-6" />
-                </button>
-              </div>
+              <CarouselArrows
+                onPrev={carousel.prevPage}
+                onNext={carousel.nextPage}
+                canGoPrev={carousel.canGoPrev}
+                canGoNext={carousel.canGoNext}
+                className="mb-1"
+              />
             </div>
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-4 w-full">
               <div className="flex flex-wrap gap-2">
@@ -287,7 +270,7 @@ export default function News({ hideCountryDropdown = false, backgroundColor = 'b
         </div>
 
         <div className="grid md:grid-cols-3 gap-6 pb-12">
-          {currentItems.map((item, index) => (
+          {carousel.currentItems(displayItems).map((item, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}
