@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { Icon } from '@iconify/react'
 import { useEnquiryModal } from '@/contexts/EnquiryModalContext'
 import Link from 'next/link'
+import Accordion from './Accordion'
 
 interface SocialLink {
   icon: string
@@ -21,6 +22,72 @@ export default function GroupFooter(): React.JSX.Element {
     { icon: 'mage:instagram-circle', url: 'https://instagram.com', label: 'Instagram' },
     { icon: 'entypo-social:youtube-with-circle', url: 'https://youtube.com', label: 'Youtube' },
     { icon: 'mdi:linkedin', url: 'https://linkedin.com', label: 'LinkedIn' },
+  ]
+
+  const locationItems = [
+    {
+      id: 'kenya',
+      title: 'Kenya - Headquarters',
+      content: (
+        <div className="space-y-1.5 text-lg text-white/90 leading-relaxed">
+          <p className="font-semibold text-white">Nairobi</p>
+          <p>Tulip House, Ground Floor Mombasa road</p>
+          <p>P.O. Box 18670 00500 Nairobi, Kenya</p>
+          <div className="mt-3 pt-2 border-t border-white/20 space-y-1.5">
+            <div>
+              <span className="font-bold">Tel:</span>
+              <a href="tel:+254111024000" className="hover:text-navy-blue transition-colors ml-1">+254 111 024000</a>
+            </div>
+            <div>
+              <span className="font-bold">Email:</span>
+              <a href="mailto:customerservice@ke.sgasecurity.com" className="hover:text-navy-blue transition-colors ml-1">customerservice@ke.sgasecurity.com</a>
+            </div>
+          </div>
+        </div>
+      ),
+    },
+    {
+      id: 'tanzania',
+      title: 'Tanzania - Headquarters',
+      content: (
+        <div className="space-y-1.5 text-lg text-white/90 leading-relaxed">
+          <p className="font-semibold text-white">Dar es Salaam</p>
+          <p>Plot No.74, Warioba/Serengeti Street, Mikocheni</p>
+          <p>Kinondoni, Dar Es Salaam, Tanzania</p>
+          <div className="mt-3 pt-2 border-t border-white/20 space-y-1.5">
+            <div>
+              <span className="font-bold">Tel:</span>
+              <a href="tel:+255754303076" className="hover:text-navy-blue transition-colors ml-1">+255 754 303076</a>
+            </div>
+            <div>
+              <span className="font-bold">Email:</span>
+              <a href="mailto:customercare@sgasecurity.co.tz" className="hover:text-navy-blue transition-colors ml-1">customercare@sgasecurity.co.tz</a>
+            </div>
+          </div>
+        </div>
+      ),
+    },
+    {
+      id: 'uganda',
+      title: 'Uganda - Headquarters',
+      content: (
+        <div className="space-y-1.5 text-lg text-white/90 leading-relaxed">
+          <p className="font-semibold text-white">Kampala</p>
+          <p>Plot 5 Mvule Close, Naguru Hill</p>
+          <p>P.O. Box 20097, Kampala, Uganda</p>
+          <div className="mt-3 pt-2 border-t border-white/20 space-y-1.5">
+            <div>
+              <span className="font-bold">Tel:</span>
+              <a href="tel:+256772200048" className="hover:text-navy-blue transition-colors ml-1">+256 772 200 048</a>
+            </div>
+            <div>
+              <span className="font-bold">Email:</span>
+              <a href="mailto:customerservice@ug.sgasecurity.com" className="hover:text-navy-blue transition-colors ml-1">customerservice@ug.sgasecurity.com</a>
+            </div>
+          </div>
+        </div>
+      ),
+    },
   ]
 
   return (
@@ -100,96 +167,13 @@ export default function GroupFooter(): React.JSX.Element {
               </div>
             </div>
 
-            {/* All Countries Section */}
-            <div className="lg:col-span-4 space-y-8">
-              {/* Kenya HQ */}
-              <div>
-                <h4 className="font-semibold mb-4 text-white text-3xl">Kenya HQ (Nairobi)</h4>
-                <div className="space-y-1.5 text-xl text-white/90 leading-relaxed">
-                  <p>Tulip House, Ground Floor, Mombasa Road</p>
-                  <p>P.O. Box 18670–00500, Nairobi, Kenya</p>
-                  <div className="">
-                    <div className="flex items-center gap-2">
-                      <div>
-                        <span className="font-bold">Tel:</span>
-                        <a href="tel:+254111024000" className="hover:text-navy-blue transition-colors ml-1">+254 (0) 111 024000</a>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div>
-                        <span className="font-bold">Customer Service:</span>
-                        <a href="tel:+254206901000" className="hover:text-navy-blue transition-colors ml-1">+254 (0) 20 6901000</a>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div>
-                        <span className="font-bold">Emergency Line:</span>
-                        <a href="tel:+254733700500" className="hover:text-navy-blue transition-colors ml-1">+254 (0) 733 700500</a>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div>
-                        <span className="font-bold">Email:</span>
-                        <a href="mailto:customerservice@ke.sgasecurity.com" className="hover:text-navy-blue transition-colors ml-1">customerservice@ke.sgasecurity.com</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Tanzania HQ */}
-              <div>
-                <h4 className="font-semibold mb-4 text-white text-3xl">Tanzania HQ (Dar es Salaam)</h4>
-                <div className="space-y-1.5 text-xl text-white/90 leading-relaxed">
-                  <p>Plot No. 74, Warioba/Serengeti Street, Mikocheni</p>
-                  <p>Kinondoni, Dar es Salaam, Tanzania</p>
-                  <div className="mt-3 pt-2 border-t border-white/20 space-y-1.5">
-                    <div>
-                      <span className="font-bold">Tel:</span>
-                      <a href="tel:+254111024000" className="hover:text-navy-blue transition-colors ml-1">+254 (0) 111 024000</a>
-                    </div>
-                    <div>
-                      <span className="font-bold">Customer Service:</span>
-                      <a href="tel:+255 754 303076" className="hover:text-navy-blue transition-colors ml-1">+255 754 303076</a>
-                    </div>
-                    <div>
-                      <span className="font-bold">Emergency Line:</span>
-                      <a href="tel:+255 784 700299" className="hover:text-navy-blue transition-colors ml-1">+255 784 700299</a>
-                    </div>
-                    <div>
-                      <span className="font-bold">Email:</span>
-                      <a href="mailto:customercare@sgasecurity.co.tz" className="hover:text-navy-blue transition-colors ml-1">customercare@sgasecurity.co.tz</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Uganda HQ */}
-              <div>
-                <h4 className="font-semibold mb-4 text-white text-3xl">Uganda HQ (Kampala)</h4>
-                <div className="space-y-1.5 text-xl text-white/90 leading-relaxed">
-                  <p>Plot 5 Mvule Close, Naguru Hill</p>
-                  <p>P.O. Box 20097, Kampala, Uganda</p>
-                  <div className="mt-3 pt-2 border-t border-white/20 space-y-1.5">
-                    <div>
-                      <span className="font-bold">Tel:</span>
-                      <a href="tel:+256 772 200 048" className="hover:text-navy-blue transition-colors ml-1">+256 772 200 048</a>
-                    </div>
-                    <div>
-                      <span className="font-bold">Customer Service:</span>
-                      <a href="tel:+256 417 114400" className="hover:text-navy-blue transition-colors ml-1">+256 417 114400</a>
-                    </div>
-                    <div>
-                      <span className="font-bold">Emergency Line:</span>
-                      <a href="tel:+256 717 800752" className="hover:text-navy-blue transition-colors ml-1">+256 717 800952</a> / <a href="tel:+256 717 800952" className="hover:text-navy-blue transition-colors ml-1">+256 717 800952</a>
-                    </div>
-                    <div>
-                      <span className="font-bold">Email:</span>
-                      <a href="mailto:customerservice@ug.sgasecurity.com" className="hover:text-navy-blue transition-colors ml-1">customerservice@ug.sgasecurity.com</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            {/* All Countries Section with Accordion */}
+            <div className="lg:col-span-4">
+              <Accordion
+                items={locationItems}
+                defaultOpenId="kenya"
+                variant="footer"
+              />
 
               <div className="pt-8 border-t border-white/20">
                 <h4 className="font-semibold mb-4 text-white text-2xl uppercase tracking-wider">Connect With Us</h4>

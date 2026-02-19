@@ -4,7 +4,6 @@ import OurFoundation from '@/components/OurFoundation'
 import OurJourney from '@/components/OurJourney'
 import Membership from '@/components/Membership'
 import Certifications from '@/components/Certifications'
-import JoinOurMission from '@/components/JoinOurMission'
 import type { Metadata } from 'next'
 import SectionSeparator from '@/components/SectionSeparator'
 
@@ -40,11 +39,7 @@ export default function AboutPage(): React.JSX.Element {
       <div className="relative">
         <Certifications />
         <SectionSeparator />
-      </div>
-      <div className="relative">
-        <JoinOurMission />
-        {/* <SectionSeparator /> */}
-      </div>
+      </div>      
     </>
   )
 }

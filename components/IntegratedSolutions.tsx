@@ -5,6 +5,7 @@ import SectionWrapper from './SectionWrapper'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import { useEnquiryModal } from '@/contexts/EnquiryModalContext'
+import { useCountry } from '@/contexts/CountryContext'
 
 interface Solution {
   title: string
@@ -42,12 +43,16 @@ const solutions: Solution[] = [
 ]
 
 export default function IntegratedSolutions({
-  title = "Tailored protection, designed for Uganda's households.",
+  title,
   description = "Security solutions built to keep your family, home, and property safe every day.",
   whiteBackground = false,
 }: IntegratedSolutionsProps) {
   const { openModal } = useEnquiryModal()
+  const { name: countryName } = useCountry()
   const [currentIndex, setCurrentIndex] = useState(0)
+  
+  // Use dynamic title if not provided, otherwise use the prop
+  const dynamicTitle = title || `Tailored protection, designed for ${countryName}'s households.`
 
   const handlePrev = () => {
     setCurrentIndex((prev) => (prev === 0 ? solutions.length - 3 : prev - 1))
@@ -80,7 +85,7 @@ export default function IntegratedSolutions({
             </p>
             <div className="section-title-container w-full flex items-end justify-between">
               <h3 className="section-title text-xl md:text-4xl font-bold text-primary-orange">
-                {title}
+                {dynamicTitle}
               </h3>
               <div className="flex items-center gap-3 mb-1">
                 <button

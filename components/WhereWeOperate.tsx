@@ -51,7 +51,7 @@ export default function WhereWeOperate(): React.JSX.Element {
                     icon="emojione:flag-for-kenya"
                     className="w-10 h-10 text-white group-hover:opacity-100 transition-opacity duration-300"
                   />
-                  Kenya HQ
+                  Kenya
                 </h4>
                 <p className="text-sm md:text-lg text-white/90 leading-relaxed mb-4">
                   Nairobi-based HQ serving nationwide clients.
@@ -81,7 +81,7 @@ export default function WhereWeOperate(): React.JSX.Element {
                     icon="emojione:flag-for-uganda"
                     className="w-10 h-10 text-white group-hover:opacity-100 transition-opacity duration-300"
                   />
-                  Uganda HQ
+                  Uganda
                 </h4>
                 <p className="text-sm md:text-lg text-white/90 leading-relaxed mb-4">
                   Reliable services across key urban centers.
@@ -111,7 +111,7 @@ export default function WhereWeOperate(): React.JSX.Element {
                     icon="emojione:flag-for-tanzania"
                     className="w-10 h-10 text-white group-hover:opacity-100 transition-opacity duration-300"
                   />
-                  Tanzania HQ
+                  Tanzania
                 </h4>
                 <p className="text-sm md:text-lg text-white/90 leading-relaxed mb-4">
                   Coast-to-inland coverage with rapid response.

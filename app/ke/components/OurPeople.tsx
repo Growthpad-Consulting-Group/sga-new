@@ -33,7 +33,7 @@ export default function OurPeople({ imageUrl = '/images/group/about/about-2.png'
             </div>
 
             <div className="space-y-4 pt-8">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary-orange mb-4">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary-orange mb-4 ">
                 Quality & Compliance
               </h2>
               <p className="text-base md:text-xl text-gray-700 leading-relaxed">

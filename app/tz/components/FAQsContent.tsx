@@ -1,8 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Icon } from '@iconify/react'
+import { motion } from 'framer-motion'
+import Accordion from '@/components/Accordion'
 
 type FAQ = {
   id: string
@@ -101,7 +101,6 @@ interface FAQsContentProps {
 
 export default function FAQsContent({ searchQuery = '' }: FAQsContentProps) {
   const [selectedCategory, setSelectedCategory] = useState('ALL')
-  const [openFAQ, setOpenFAQ] = useState<string | null>(null)
 
   const filteredFAQs = (() => {
     let filtered = selectedCategory === 'ALL' 
@@ -120,9 +119,11 @@ export default function FAQsContent({ searchQuery = '' }: FAQsContentProps) {
     return filtered
   })()
 
-  const toggleFAQ = (id: string) => {
-    setOpenFAQ(openFAQ === id ? null : id)
-  }
+  const faqItems = filteredFAQs.map((faq) => ({
+    id: faq.id,
+    title: faq.question,
+    content: <p className="text-gray-700 leading-relaxed">{faq.answer}</p>,
+  }))
 
   return (
     <section id="faqs-content" className="bg-white py-16 sm:py-20">
@@ -155,45 +156,7 @@ export default function FAQsContent({ searchQuery = '' }: FAQsContentProps) {
 
           {/* Right Column - Accordion */}
           <div className="lg:col-span-2">
-            <div className="space-y-4">
-              {filteredFAQs.map((faq) => (
-                <motion.div
-                  key={faq.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  className="border border-gray-200 rounded-lg overflow-hidden"
-                >
-                  <button
-                    onClick={() => toggleFAQ(faq.id)}
-                    className="w-full text-left p-6 bg-white hover:bg-gray-50 transition-colors flex items-center justify-between"
-                  >
-                    <span className="text-lg font-semibold text-navy-blue pr-4">
-                      {faq.question}
-                    </span>
-                    <Icon
-                      icon={openFAQ === faq.id ? 'mdi:chevron-up' : 'mdi:chevron-down'}
-                      className="w-6 h-6 text-primary-orange flex-shrink-0"
-                    />
-                  </button>
-                  <AnimatePresence>
-                    {openFAQ === faq.id && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="overflow-hidden"
-                      >
-                        <div className="p-6 bg-gray-50 border-t border-gray-200">
-                          <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-              ))}
-            </div>
+            <Accordion items={faqItems} variant="default" />
 
             {filteredFAQs.length === 0 && (
               <div className="text-center py-12">

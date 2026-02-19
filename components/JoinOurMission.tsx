@@ -30,7 +30,7 @@ export default function JoinOurMission(): React.JSX.Element {
               Join our mission
             </p>
             <div className="mb-4">
-              <h2 className="text-xl md:text-2xl lg:text-4xl font-semibold text-primary-orange">
+              <h2 className="text-xl md:text-2xl lg:text-4xl font-semibold text-primary-orange capitalize">
                 Build a career where security matters
               </h2>
             </div>

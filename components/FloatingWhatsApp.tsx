@@ -33,19 +33,19 @@ export default function FloatingWhatsApp({
   const defaultContacts = [
     {
       country: 'Kenya',
-      phone: '+254111024000',
+      phone: '+254 111 024000',
       url: `https://wa.me/254111024000?text=${encodeURIComponent("Hello SGA Security, I would like to make an inquiry.")}`,
       flag: 'twemoji:flag-kenya'
     },
     {
       country: 'Uganda',
-      phone: '+256772200048',
+      phone: '+256 772 200 048',
       url: `https://wa.me/256772200048?text=${encodeURIComponent("Hello SGA Security, I would like to make an inquiry.")}`,
       flag: 'twemoji:flag-uganda'
     },
     {
       country: 'Tanzania',
-      phone: '+255754303076',
+      phone: '+255 754 303076',
       url: `https://wa.me/255754303076?text=${encodeURIComponent("Hello SGA Security, I would like to make an inquiry.")}`,
       flag: 'twemoji:flag-tanzania'
     }

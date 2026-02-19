@@ -23,9 +23,9 @@ export const navItems: NavItem[] = [
   { href: '/about', label: 'ABOUT US' },
   { href: '/sustainability', label: 'SUSTAINABILITY' },
   { href: '/news-reports', label: 'NEWS & REPORTS' },
-  { href: '/careers', label: 'CAREER' },
+  { href: '/careers', label: 'CAREERS' },
   { href: '/contact', label: 'CONTACT US' },
-  { href: '/updates', label: 'UPDATES', icon: 'material-symbols:news-outline-rounded' },
+  // { href: '/updates', label: 'UPDATES', icon: 'material-symbols:news-outline-rounded' },
 ]
 
 // Country-specific navigation items

@@ -76,7 +76,7 @@ export default function OurImpactInNumbers({ showPattern = true }: OurImpactInNu
               our impact in numbers
             </p>
             <div className="section-title-container">
-              <h3 className="section-title text-xl md:text-5xl font-bold text-primary-orange">
+              <h3 className="section-title text-xl md:text-5xl font-bold text-primary-orange capitalize">
                 Scale you can rely on
               </h3>
             </div>
@@ -84,7 +84,7 @@ export default function OurImpactInNumbers({ showPattern = true }: OurImpactInNu
         </div>
 
         {/* Top Row - 3 Circles */}
-        <div className="flex justify-center items-center gap-1 md:gap-10 mb-6 md:mb-8 flex-wrap">
+        <div className="flex justify-center items-center gap-1 md:gap-10 mb-6 md:mb-8 flex-wrap capitalize">
           {topRowStats.map((stat, index) => (
             <motion.div
               key={`top-${index}`}
@@ -121,7 +121,7 @@ export default function OurImpactInNumbers({ showPattern = true }: OurImpactInNu
         </div>
 
         {/* Bottom Row - 4 Circles */}
-        <div className="flex justify-center items-center gap-1 md:gap-10 flex-wrap">
+        <div className="flex justify-center items-center gap-1 md:gap-10 flex-wrap capitalize">
           {bottomRowStats.map((stat, index) => (
             <motion.div
               key={`bottom-${index}`}

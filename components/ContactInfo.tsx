@@ -25,15 +25,15 @@ interface ContactOffice {
 const contactOffices: ContactOffice[] = [
   {
     country: 'Kenya',
-    city: 'SGA Security Kenya (Head Office)',
+    city: 'Headquarters',
     address: [
-      'Tulip House, Ground Floor',
-      'Mombasa RD.',
+      'Tulip House, Ground Floor Mombasa road',
+      'P.O. Box 18670 00500 Nairobi, Kenya',
     ],
     phones: [
-      { label: 'Main', number: '+254 (0) 20 2604356-61', icon: 'mdi:phone' },
+      { label: 'Tel', number: '+254 111 024000', icon: 'mdi:phone' },
     ],
-    email: 'info@ke.sgasecurity.com',
+    email: 'customerservice@ke.sgasecurity.com',
     whatsapp: '+254 111 024000',
     flag: 'emojione:flag-for-kenya',
     mapUrl: 'https://maps.google.com/?q=Tulip+House+Mombasa+Road+Nairobi+Kenya',
@@ -41,15 +41,15 @@ const contactOffices: ContactOffice[] = [
   },
   {
     country: 'Tanzania',
-    city: 'SGA Security Tanzania',
+    city: 'Headquarters',
     address: [
-      'Warioba/Serengeti Street',
-      'Mikocheni Kinondoni, Dar Es Salaam, Tanzania'
+      'Plot No.74, Warioba/Serengeti Street, Mikocheni',
+      'Kinondoni, Dar Es Salaam, Tanzania'
     ],
     phones: [
-      { label: 'Main', number: '+255 (0) 784 555470-71', icon: 'mdi:phone' },
+      { label: 'Tel', number: '+255 754 303076', icon: 'mdi:phone' },
     ],
-    email: 'info@tz.sgasecurity.com',
+    email: 'customercare@sgasecurity.co.tz',
     whatsapp: '+255 754 303076',
     flag: 'emojione:flag-for-tanzania',
     mapUrl: 'https://maps.google.com/?q=Plot+74+Warioba+Serengeti+Street+Mikocheni+Dar+es+Salaam+Tanzania',
@@ -57,15 +57,15 @@ const contactOffices: ContactOffice[] = [
   },
   {
     country: 'Uganda',
-    city: 'SGA Security Uganda',
+    city: 'Headquarters',
     address: [
-      'Plot 5 Mvule Close',
-      'Naguru Hill, Kampala, Uganda'
+      'Plot 5 Mvule Close, Naguru Hill',
+      'P.O. Box 20097, Kampala, Uganda'
     ],
     phones: [
-      { label: 'Main', number: '+256-717-800752', icon: 'mdi:phone' },
+      { label: 'Tel', number: '+256 772 200 048', icon: 'mdi:phone' },
     ],
-    email: 'info@ug.sgasecurity.com',
+    email: 'customerservice@ug.sgasecurity.com',
     whatsapp: '+256 772 200 048',
     flag: 'emojione:flag-for-uganda',
     mapUrl: 'https://maps.google.com/?q=Plot+5+Mvule+Close+Naguru+Hill+Kampala+Uganda',
@@ -152,7 +152,7 @@ export default function ContactInfo({ providedCountry }: ContactInfoProps): Reac
                   {office.phones.map((phone, idx) => (
                     <a
                       key={idx}
-                      href={`tel:${phone.number.replace(/\s/g, '')}`}
+                      href={`tel:${phone.number.replace(/\s|\//g, '')}`}
                       className="flex items-center gap-2 text-sm md:text-lg font-normal text-white hover:opacity-80 transition-opacity"
                     >
                       <Icon icon={phone.icon} className="w-8 h-8 flex-shrink-0" />

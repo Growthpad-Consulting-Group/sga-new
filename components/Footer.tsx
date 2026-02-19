@@ -84,9 +84,7 @@ export default function Footer() {
               <p>Mombasa road</p>
               <p>P.O. Box 18670</p>
               <p>00500 Nairobi, Kenya</p>
-              <p className="mt-3 sm:mt-4 pt-2 sm:pt-3 border-t border-white/10">Tel: +254 (0) 111 024000</p>
-              <p>Customer Service: +254 (0) 20 6901000</p>
-              <p>Emergency Line: +254 (0) 733 700500</p>
+              <p className="mt-3 sm:mt-4 pt-2 sm:pt-3 border-t border-white/10">Tel: +254 111 024000</p>
               <p className="break-all">Email: customerservice@ke.sgasecurity.com</p>
             </div>
           </div>

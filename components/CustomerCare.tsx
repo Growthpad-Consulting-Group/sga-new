@@ -13,18 +13,18 @@ interface Hotline {
 const hotlines: Hotline[] = [
   {
     country: 'Kenya',
-    phone: '+254 (0) 20 2604356-61',
-    email: 'info@ke.sgasecurity.com'
+    phone: '+254 111 024000',
+    email: 'customerservice@ke.sgasecurity.com'
   },
   {
     country: 'Tanzania',
-    phone: '+255 (0) 784 555470-71',
-    email: 'info@tz.sgasecurity.com'
+    phone: '+255 754 303076',
+    email: 'customercare@sgasecurity.co.tz'
   },
   {
     country: 'Uganda',
-    phone: '+256-717-800752',
-    email: 'info@ug.sgasecurity.com'
+    phone: '+256 772 200 048',
+    email: 'customerservice@ug.sgasecurity.com'
   }
 ]
 
@@ -99,7 +99,7 @@ export default function CustomerCare(): React.JSX.Element {
             className="flex flex-col sm:flex-row gap-6 w-full lg:w-auto"
           >
             <motion.a
-              href="tel:+254202604356"
+              href="tel:+254111024000"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="flex items-center justify-center bg-primary-orange text-dark-charcoal px-10 py-4 rounded-full font-normal shadow-lg hover:shadow-xl transition-all uppercase text-sm md:text-base min-w-[200px]"
