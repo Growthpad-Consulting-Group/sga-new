@@ -43,7 +43,7 @@ export default function HomePage(): React.JSX.Element {
         showToggle={false}
         customButtons={[
           { label: 'Explore for Individual', href: '#individual', primary: true },
-          { label: 'Explore for Corporate clients', href: '#corporate', primary: true }
+          { label: 'Explore for Corporate', href: '#corporate', primary: true }
         ]}
       />
 

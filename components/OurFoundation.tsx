@@ -64,7 +64,7 @@ export default function OurFoundation({
           </motion.div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 md:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-8 lg:gap-12 justify-items-center">
           {foundations.map((foundation, index) => (
             <motion.div
               key={index}
@@ -73,15 +73,15 @@ export default function OurFoundation({
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ scale: 1.05, y: -8 }}
-              className="flex flex-col items-center"
+              className="flex flex-col items-center w-full max-w-sm"
             >
-              <div className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden shadow-xl bg-primary-orange group cursor-pointer">
+              <div className="relative w-72 h-72 sm:w-80 sm:h-80 md:w-72 md:h-72 lg:w-96 lg:h-96 rounded-full overflow-hidden shadow-xl bg-primary-orange group cursor-pointer">
                 {/* Content */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-10">
-                  <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-6 md:p-8 text-center z-10">
+                  <h3 className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-bold text-white mb-3 md:mb-4">
                     {foundation.title}
                   </h3>
-                  <p className="text-white text-base md:text-lg leading-relaxed max-w-xs">
+                  <p className="text-white text-sm sm:text-base md:text-base lg:text-lg leading-relaxed px-2">
                     {foundation.longDescription}
                   </p>
                 </div>
