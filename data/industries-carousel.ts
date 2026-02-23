@@ -34,29 +34,24 @@ export const kenyaIndustriesCarousel: IndustryCarouselItem[] = [
 
 export const ugandaIndustriesCarousel: IndustryCarouselItem[] = [
   {
-    name: 'Residential Estates & Apartments',
+    name: 'Homes',
     icon: 'mdi:home',
     image: '/images/ug/residentials.png',
   },
   {
-    name: 'Education & Schools',
+    name: 'Businesses',
     icon: 'mdi:school',
     image: '/images/ug/education.png',
   },
   {
-    name: 'Healthcare Facilities',
+    name: 'Institutions',
     icon: 'mdi:hospital',
     image: '/images/ug/healthcare.png',
   },
   {
-    name: 'Hospitality & Holiday Homes',
+    name: 'Real Estate',
     icon: 'mdi:hotel',
     image: '/images/ug/hospitality.png',
-  },
-  {
-    name: 'Commercial & Retail',
-    icon: 'mdi:office-building',
-    image: '/images/ug/commercial.png',
   },
 ]
 

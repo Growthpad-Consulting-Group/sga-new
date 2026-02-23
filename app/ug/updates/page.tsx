@@ -4,8 +4,8 @@ import FloatingWhatsApp from '@/components/FloatingWhatsApp'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-    title: 'News & Reports - SGA Security Uganda',
-    description: 'Keep track of the latest news, reports, and security announcements from SGA Security Uganda.',
+    title: 'News & Insights - SGA Security Uganda',
+    description: 'Keep track of the latest news, insights, and security announcements from SGA Security Uganda.',
 }
 
 export default function UgandaUpdatesPage(): React.JSX.Element {

@@ -69,7 +69,7 @@ export default function Industries({
               </div>
             </div>
             <p className="text-base font-normal md:text-2xl text-dark-charcoal pb-4 mt-4">
-              Beyond homes, we provide tailored solutions for businesses, institutions, and real estate developments across {countryName}.
+              SGA Tanzania provides tailored security for homes, businesses, real estate, and institutions nationwide.
             </p>
           </motion.div>
         </div>

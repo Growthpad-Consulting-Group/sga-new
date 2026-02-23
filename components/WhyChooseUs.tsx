@@ -3,39 +3,35 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
-
-interface AccordionItem {
-  title: string
-  description: string
-}
+import { AccordionItem } from '@/data/why-choose-us'
 
 interface WhyChooseUsProps {
   countryName?: string
   backgroundColor?: string
+  accordionItems?: AccordionItem[]
 }
-
-const accordionItems: AccordionItem[] = [
-  {
-    title: 'Local & Regional',
-    description: 'We are a security partner with deep roots in Kenya, providing local expertise with a world-class regional network.',
-  },
-  {
-    title: '24/7 Control Room',
-    description: 'Our state-of-the-art control room operates around the clock, ensuring constant monitoring and immediate response.',
-  },
-  {
-    title: 'People + Tech',
-    description: 'Our expertly trained team and cutting-edge technology work in sync to provide a superior, proactive security solution.',
-  },
-  {
-    title: 'Proven Track Record',
-    description: 'For over 55 years, our consistent delivery of world-class security has earned the trust of homes and businesses across Kenya.',
-  },
-]
 
 export default function WhyChooseUs({
   countryName = 'Kenya',
   backgroundColor = 'bg-white',
+  accordionItems = [
+    {
+      title: 'Local & Regional',
+      description: 'We are a security partner with deep roots in Kenya, providing local expertise with a world-class regional network.',
+    },
+    {
+      title: '24/7 Control Room',
+      description: 'Our state-of-the-art control room operates around the clock, ensuring constant monitoring and immediate response.',
+    },
+    {
+      title: 'People + Tech',
+      description: 'Our expertly trained team and cutting-edge technology work in sync to provide a superior, proactive security solution.',
+    },
+    {
+      title: 'Proven Track Record',
+      description: 'For over 55 years, our consistent delivery of world-class security has earned the trust of homes and businesses across Kenya.',
+    },
+  ],
 }: WhyChooseUsProps) {
   const [openIndex, setOpenIndex] = useState(0)
 

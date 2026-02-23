@@ -20,7 +20,7 @@ export default function NewsHero({ imageUrl = '/images/contact/hero.png' }: News
             Group Updates
           </h2>
           <h1 className="text-xl md:text-2xl lg:text-4xl font-bold">
-            <span className="text-primary-orange">News & Reports</span>
+            <span className="text-primary-orange">News & Insights</span>
           </h1>
         </motion.div>
       </div>

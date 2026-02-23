@@ -18,10 +18,10 @@ export default function UpdatesHero({ imageUrl = '/images/contact/hero.png' }: U
           className="text-left space-y-2 pb-4"
         >
           <h2 className="text-sm md:text-base font-semibold text-gray-700 uppercase tracking-wide">
-            News & Reports
+            News & Insights
           </h2>
           <h1 className="text-xl md:text-2xl lg:text-3xl font-bold">
-            <span className="text-primary-orange">Latest News & Reports From SGA Security</span>
+            <span className="text-primary-orange">Latest News & Insights From SGA Security</span>
           </h1>
         </motion.div>
       </div>
@@ -36,7 +36,7 @@ export default function UpdatesHero({ imageUrl = '/images/contact/hero.png' }: U
         >
           <Image
             src={imageUrl}
-            alt="SGA Security Group - News & Reports"
+            alt="SGA Security Group - News & Insights"
             fill
             className="object-cover"
             priority

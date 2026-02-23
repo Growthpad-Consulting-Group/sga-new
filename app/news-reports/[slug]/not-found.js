@@ -17,7 +17,7 @@ export default function NotFound() {
           className="inline-flex items-center gap-2 px-6 py-3 bg-navy-blue text-white rounded-full hover:bg-primary-orange transition-colors font-semibold"
         >
           <Icon icon="mdi:arrow-left" className="w-5 h-5" />
-          Back to News & Reports
+          Back to News & Insights
         </Link>
       </div>
     </section>

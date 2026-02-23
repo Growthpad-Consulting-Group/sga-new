@@ -160,7 +160,7 @@ export default function CountryFooter(): React.JSX.Element {
                     <Link href="/careers" className="hover:text-navy-blue transition-colors cursor-pointer block">Careers</Link>
                   </li>
                   <li>
-                    <Link href="/news-reports" className="hover:text-navy-blue transition-colors cursor-pointer block">News & Reports</Link>
+                    <Link href="/news-reports" className="hover:text-navy-blue transition-colors cursor-pointer block">News & Insights</Link>
                   </li>
                 </ul>
               </div>

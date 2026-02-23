@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { Icon } from '@iconify/react'
-import DecorativePattern from '@/components/DecorativePattern'
 
 export default function AboutIntro({ imageUrl = '/images/ug/about.png' }) {
   return (
@@ -78,12 +77,6 @@ export default function AboutIntro({ imageUrl = '/images/ug/about.png' }) {
           </motion.div>
         </div>
       </motion.div>
-      <div className="absolute bottom-0 left-0 right-0 w-full">
-        <DecorativePattern
-          className="transition-none"
-          static={true}
-        />
-      </div>
     </section>
   )
 }

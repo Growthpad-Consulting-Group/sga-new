@@ -4,11 +4,11 @@ import IntegratedSolutions from '@/components/IntegratedSolutions'
 import WhyChooseUs from '@/components/WhyChooseUs'
 import Industries from '@/components/Industries'
 import News from '@/components/News'
-import ContactInfo from '@/components/ContactInfo'
 import FloatingWhatsApp from '@/components/FloatingWhatsApp'
 import { Metadata } from 'next'
 import SectionSeparator from '@/components/SectionSeparator'
 import { kenyaIndustriesCarousel } from '@/data/industries-carousel'
+import { kenyaAccordionItems } from '@/data/why-choose-us'
 
 export const metadata: Metadata = {
   title: 'SGA Security Kenya - Professional Security Services',
@@ -77,7 +77,11 @@ export default function KenyaPage(): React.JSX.Element {
         <SectionSeparator imageUrl="/images/misc/section-pattern-ke.svg" />
       </div>
       <div id="why-us" className="relative">
-        <WhyChooseUs countryName="Kenya" backgroundColor="bg-light-grey" />
+        <WhyChooseUs 
+          countryName="Kenya" 
+          backgroundColor="bg-light-grey"
+          accordionItems={kenyaAccordionItems}
+        />
         <SectionSeparator imageUrl="/images/misc/section-pattern-ke.svg" />
       </div>
       <div id="blog" className="relative">

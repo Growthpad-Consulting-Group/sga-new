@@ -4,11 +4,11 @@ import IntegratedSolutions from '@/components/IntegratedSolutions'
 import WhyChooseUs from '@/components/WhyChooseUs'
 import Industries from '@/components/Industries'
 import News from '@/components/News'
-import ContactInfo from '@/components/ContactInfo'
 import SectionSeparator from '@/components/SectionSeparator'
 import FloatingWhatsApp from '@/components/FloatingWhatsApp'
 import { Metadata } from 'next'
 import { tanzaniaIndustriesCarousel } from '@/data/industries-carousel'
+import { tanzaniaAccordionItems } from '@/data/why-choose-us'
 
 export const metadata: Metadata = {
   title: 'SGA Security Tanzania - Professional Security Services',
@@ -37,13 +37,13 @@ export default function TanzaniaPage(): React.JSX.Element {
         imageUrl="/images/tz/hero.png"
         customTitle={
           <>
-            Your Trusted Corporate Security Partner in Tanzania
+            Protect what matters most - your home and family
           </>
         }
-        customDescription="Protecting your offices, warehouses, banks, and teams with integrated guarding and technology solutions tailored to Tanzania's business environment."
+        customDescription="From Dar es Salaam to towns across Tanzania, SGA Security keeps families and businesses safe with dependable 24/7 protection."
         customButtons={[
-          { label: 'Explore for Individuals', href: '#individuals', primary: true, separator: 'for ' },
-          { label: 'Explore for Corporate Clients', href: '#corporate', primary: true, separator: 'for ' }
+          { label: 'Explore Home Security', href: '#individuals', primary: true, separator: 'Explore ' },
+          { label: 'Explore Business Security', href: '#corporate', primary: true, separator: 'Explore ' }
         ]}
       />
       <div id="about" className="relative">
@@ -55,11 +55,11 @@ export default function TanzaniaPage(): React.JSX.Element {
           h3Title="About SGA Tanzania"
           h2Title={
             <>
-              Trusted partner for Tanzania businesses.
+              Protecting Tanzania with trusted experience.
             </>
           }
-          customDescription="SGA Tanzania delivers manned guarding, remote CCTV monitoring, cash-in-transit, and fire & rescue—unified through a 24/7 control room and standardized reporting. Our vetted teams, modern systems, and regional oversight keep your people, assets, and operations secure across Tanzania."
-          buttonText="Learn more about SGA Tanzania"
+          customDescription="For more than 40 years, SGA Tanzania has provided reliable guarding, alarms, and monitoring backed by dedicated professionals and modern security technology."
+          buttonText="Discover Our Story"
           buttonHref="#about"
           imageUrl="/images/tz/about.png"
           hideCountriesStat={true}
@@ -82,11 +82,20 @@ export default function TanzaniaPage(): React.JSX.Element {
         <SectionSeparator imageUrl="/images/misc/section-pattern-tz.svg" />
       </div>
       <div id="why-us" className="relative">
-        <WhyChooseUs countryName="Tanzania" backgroundColor="bg-light-grey" />
+        <WhyChooseUs 
+          countryName="Tanzania" 
+          backgroundColor="bg-light-grey"
+          accordionItems={tanzaniaAccordionItems}
+        />
         <SectionSeparator imageUrl="/images/misc/section-pattern-tz.svg" />
       </div>
       <div id="blog" className="relative">
-        <News hideCountryDropdown={true} backgroundColor="bg-light-grey" country="Tanzania" />
+        <News 
+          hideCountryDropdown={true} 
+          backgroundColor="bg-light-grey" 
+          country="Tanzania"
+          customSubtext="Discover the latest safety tips, company updates, and insights from SGA Tanzania."
+        />
         <SectionSeparator imageUrl="/images/misc/section-pattern-tz.svg" />
       </div>
       <FloatingWhatsApp

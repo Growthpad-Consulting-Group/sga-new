@@ -53,7 +53,7 @@ export default function Footer() {
               <li className="hover:text-primary-orange transition-colors cursor-pointer"><a href="/" className="hover:text-primary-orange transition-colors cursor-pointer">Group Website</a></li>
               <li className="hover:text-primary-orange transition-colors cursor-pointer"><a href="/sustainability" className="hover:text-primary-orange transition-colors cursor-pointer">Sustainability</a></li>
               <li className="hover:text-primary-orange transition-colors cursor-pointer"><a href="/careers" className="hover:text-primary-orange transition-colors cursor-pointer">Careers</a></li>
-              <li className="hover:text-primary-orange transition-colors cursor-pointer"><a href="/news-reports" className="hover:text-primary-orange transition-colors cursor-pointer">News & Reports</a></li>
+              <li className="hover:text-primary-orange transition-colors cursor-pointer"><a href="/news-reports" className="hover:text-primary-orange transition-colors cursor-pointer">News & Insights</a></li>
             </ul>
           </div>
 

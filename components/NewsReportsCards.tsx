@@ -121,7 +121,7 @@ export default function NewsReportsCards({ providedCountry }: NewsReportsCardsPr
                 type="text"
                 value={searchQuery}
                 onChange={(e) => handleSearchChange(e.target.value)}
-                placeholder="Search news & reports..."
+                placeholder="Search news & insights..."
                 className="w-full pl-12 pr-4 py-3 border border-dark-charcoal rounded-full text-sm focus:outline-none focus:border-primary-orange text-dark-charcoal placeholder:text-dark-charcoal/50"
               />
               <Icon

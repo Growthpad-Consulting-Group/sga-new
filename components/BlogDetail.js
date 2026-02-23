@@ -10,7 +10,7 @@ export default function BlogDetail({ blog }) {
   const pathname = usePathname()
   const isNewsRoute = pathname?.startsWith('/news-reports')
   const backPath = isNewsRoute ? '/news-reports' : '/updates'
-  const backLabel = isNewsRoute ? 'Back to News & Reports' : 'Back to Updates'
+  const backLabel = isNewsRoute ? 'Back to News & Insights' : 'Back to Updates'
   const viewAllLabel = isNewsRoute ? 'View All News' : 'View All Updates'
 
   if (!blog) {

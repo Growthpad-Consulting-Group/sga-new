@@ -19,6 +19,7 @@ interface NewsProps {
   hideCountryDropdown?: boolean
   backgroundColor?: string
   country?: string
+  customSubtext?: string
 }
 
 const newsItems: NewsItem[] = [
@@ -126,7 +127,7 @@ const newsItems: NewsItem[] = [
   },
 ]
 
-export default function News({ hideCountryDropdown = false, backgroundColor = 'bg-white', country }: NewsProps) {
+export default function News({ hideCountryDropdown = false, backgroundColor = 'bg-white', country, customSubtext }: NewsProps) {
   const [activeFilter, setActiveFilter] = useState('ALL')
   const [selectedCountry, setSelectedCountry] = useState(country || 'All Country')
   const [searchQuery, setSearchQuery] = useState('')
@@ -190,7 +191,7 @@ export default function News({ hideCountryDropdown = false, backgroundColor = 'b
             className="space-y-4 flex flex-col items-start text-left"
           >
             <p className="text-md font-medium text-dark-charcoal uppercase tracking-wider">
-              news & reports
+              news & insights
             </p>
             <div className="section-title-container w-full flex items-end justify-between">
               <h3 className="section-title text-xl md:text-3xl lg:text-5xl text-primary-orange capitalize">
@@ -206,7 +207,7 @@ export default function News({ hideCountryDropdown = false, backgroundColor = 'b
               />
             </div>
             <p className="text-base font-normal md:text-2xl text-dark-charcoal pb-4 mt-4">
-              Get the latest news, safety tips, and updates from SGA {country || 'Security'}.
+              {customSubtext || `Get the latest news, safety tips, and updates from SGA ${country || 'Security'}.`}
             </p>
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-4 w-full">
               <div className="flex flex-wrap gap-2">

@@ -20,7 +20,7 @@ export async function generateMetadata({ params }) {
   }
 
   return {
-    title: `${blog.title} - SGA Security Group - News & Reports`,
+    title: `${blog.title} - SGA Security Group - News & Insights`,
     description: blog.summary,
     openGraph: {
       title: blog.title,

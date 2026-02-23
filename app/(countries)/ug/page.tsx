@@ -4,11 +4,11 @@ import IntegratedSolutions from '@/components/IntegratedSolutions'
 import WhyChooseUs from '@/components/WhyChooseUs'
 import Industries from '@/components/Industries'
 import News from '@/components/News'
-import ContactInfo from '@/components/ContactInfo'
 import SectionSeparator from '@/components/SectionSeparator'
 import FloatingWhatsApp from '@/components/FloatingWhatsApp'
 import { Metadata } from 'next'
 import { ugandaIndustriesCarousel } from '@/data/industries-carousel'
+import { ugandaAccordionItems } from '@/data/why-choose-us'
 
 export const metadata: Metadata = {
   title: 'SGA Security Uganda - Professional Security Services',
@@ -37,13 +37,13 @@ export default function UgandaPage(): React.JSX.Element {
         imageUrl="/images/ug/ug-hero.png"
         customTitle={
           <>
-            Your Trusted Corporate Security Partner in Uganda
+            Protect what matters most - your home and family
           </>
         }
-        customDescription="Protecting your offices, warehouses, banks, and teams with integrated guarding and technology solutions tailored to Uganda’s business environment."
+        customDescription="From Kampala neighborhoods to businesses across Uganda, SGA Security provides reliable, round-the-clock protection."
         customButtons={[
-          { label: 'Explore for Individuals', href: '#individuals', primary: true, separator: 'for ' },
-          { label: 'Explore for Corporate Clients', href: '#corporate', primary: true, separator: 'for ' }
+          { label: 'Explore Home Security', href: '#individuals', primary: true, separator: 'Explore ' },
+          { label: 'Explore Business Security', href: '#corporate', primary: true, separator: 'Explore ' }
         ]}
       />
       <div id="about" className="relative">
@@ -55,11 +55,11 @@ export default function UgandaPage(): React.JSX.Element {
           h3Title="About SGA Uganda"
           h2Title={
             <>
-              Trusted partner for Ugandan businesses.
+              Decades of trusted security in Uganda.
             </>
           }
-          customDescription="SGA Uganda delivers comprehensive corporate security—manned guarding, remote CCTV monitoring, cash-in-transit, and fire & rescue—integrated through our 24/7 Kampala control room. Our vetted teams and modern systems provide consistent protection, reporting, and escalation."
-          buttonText="Learn More About SGA uganda"
+          customDescription="SGA Uganda delivers guarding, alarms, and 24/7 monitoring powered by a professional team dedicated to protecting homes, businesses, and communities nationwide."
+          buttonText="Discover Our Story"
           buttonHref="#about"
           imageUrl="/images/ug/about.png"
         />
@@ -80,7 +80,11 @@ export default function UgandaPage(): React.JSX.Element {
         <SectionSeparator imageUrl="/images/misc/section-pattern-ug.svg" />
       </div>
       <div id="why-us" className="relative">
-        <WhyChooseUs countryName="Uganda" backgroundColor="bg-light-grey" />
+        <WhyChooseUs 
+          countryName="Uganda" 
+          backgroundColor="bg-light-grey"
+          accordionItems={ugandaAccordionItems}
+        />
         <SectionSeparator imageUrl="/images/misc/section-pattern-ug.svg" />
       </div>
       <div id="blog" className="relative">

@@ -22,7 +22,7 @@ export const navItems: NavItem[] = [
   { href: '/', label: 'HOME' },
   { href: '/about', label: 'ABOUT US' },
   { href: '/sustainability', label: 'SUSTAINABILITY' },
-  { href: '/news-reports', label: 'NEWS & REPORTS' },
+  { href: '/news-reports', label: 'NEWS & INSIGHTS' },
   { href: '/careers', label: 'CAREERS' },
   { href: '/contact', label: 'CONTACT US' },
   // { href: '/updates', label: 'UPDATES', icon: 'material-symbols:news-outline-rounded' },
@@ -37,7 +37,7 @@ export const getCountryNavItems = (countryCode: string): NavItem[] => {
     { href: `${baseUrl}#services`, label: 'SERVICES' },
     { href: `${baseUrl}#industries`, label: 'INDUSTRIES' },
     { href: `${baseUrl}/why-us`, label: 'WHY US' },
-    { href: `${baseUrl}/updates`, label: 'NEWS & REPORTS' },
+    { href: `${baseUrl}/updates`, label: 'NEWS & INSIGHTS' },
     { href: `${baseUrl}#contact`, label: 'CONTACT' },
   ]
 }
