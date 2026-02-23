@@ -9,6 +9,7 @@ import FloatingWhatsApp from '@/components/FloatingWhatsApp'
 import { Metadata } from 'next'
 import { tanzaniaIndustriesCarousel } from '@/data/industries-carousel'
 import { tanzaniaAccordionItems } from '@/data/why-choose-us'
+import { getAllNewsPosts } from '@/lib/sanity'
 
 export const metadata: Metadata = {
   title: 'SGA Security Tanzania - Professional Security Services',
@@ -26,7 +27,8 @@ const tanzaniaContent = {
   ],
 }
 
-export default function TanzaniaPage(): React.JSX.Element {
+export default async function TanzaniaPage(): Promise<React.JSX.Element> {
+  const newsPosts = await getAllNewsPosts()
   return (
     <>
       <Hero
@@ -82,19 +84,20 @@ export default function TanzaniaPage(): React.JSX.Element {
         <SectionSeparator imageUrl="/images/misc/section-pattern-tz.svg" />
       </div>
       <div id="why-us" className="relative">
-        <WhyChooseUs 
-          countryName="Tanzania" 
+        <WhyChooseUs
+          countryName="Tanzania"
           backgroundColor="bg-light-grey"
           accordionItems={tanzaniaAccordionItems}
         />
         <SectionSeparator imageUrl="/images/misc/section-pattern-tz.svg" />
       </div>
       <div id="blog" className="relative">
-        <News 
-          hideCountryDropdown={true} 
-          backgroundColor="bg-light-grey" 
+        <News
+          hideCountryDropdown={true}
+          backgroundColor="bg-light-grey"
           country="Tanzania"
           customSubtext="Discover the latest safety tips, company updates, and insights from SGA Tanzania."
+          initialNewsItems={newsPosts}
         />
         <SectionSeparator imageUrl="/images/misc/section-pattern-tz.svg" />
       </div>

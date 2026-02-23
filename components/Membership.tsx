@@ -12,27 +12,27 @@ interface Membership {
 const memberships: Membership[] = [
   {
     name: 'Member 1',
-    logo: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=200&h=200&fit=crop',
+    logo: '/images/misc/blog-placeholder',
   },
   {
     name: 'Member 2',
-    logo: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=200&h=200&fit=crop',
+    logo: '/images/misc/blog-placeholder',
   },
   {
     name: 'Member 3',
-    logo: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=200&h=200&fit=crop',
+    logo: '/images/misc/blog-placeholder',
   },
   {
     name: 'Member 4',
-    logo: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=200&h=200&fit=crop',
+    logo: '/images/misc/blog-placeholder',
   },
   {
     name: 'Member 5',
-    logo: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=200&h=200&fit=crop',
+    logo: '/images/misc/blog-placeholder',
   },
   {
     name: 'Member 6',
-    logo: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=200&h=200&fit=crop',
+    logo: '/images/misc/blog-placeholder',
   },
 ]
 

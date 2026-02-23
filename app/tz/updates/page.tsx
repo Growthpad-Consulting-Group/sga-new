@@ -2,19 +2,22 @@ import UpdatesHero from '@/components/UpdatesHero'
 import NewsReportsCards from '@/components/NewsReportsCards'
 import FloatingWhatsApp from '@/components/FloatingWhatsApp'
 import { Metadata } from 'next'
+import { getAllNewsPosts } from '@/lib/sanity'
 
 export const metadata: Metadata = {
     title: 'News & Insights - SGA Security Tanzania',
     description: 'Stay informed with the latest news, insights, and security updates from SGA Security Tanzania.',
 }
 
-export default function TanzaniaUpdatesPage(): React.JSX.Element {
+export default async function TanzaniaUpdatesPage(): Promise<React.JSX.Element> {
+    const newsPosts = await getAllNewsPosts()
+
     return (
         <>
             <UpdatesHero
                 imageUrl="/images/contact/hero.png"
             />
-            <NewsReportsCards providedCountry="Tanzania" />
+            <NewsReportsCards providedCountry="Tanzania" initialNewsItems={newsPosts} />
             <FloatingWhatsApp
                 singleCountry={true}
                 country="Tanzania"

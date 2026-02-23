@@ -107,6 +107,36 @@ export default defineType({
       description: 'Mark this post as featured to highlight it',
       initialValue: false,
     }),
+    defineField({
+      name: 'seo',
+      title: 'SEO & Metadata',
+      type: 'object',
+      description: 'Optional SEO fields to override default metadata',
+      fields: [
+        {
+          name: 'metaTitle',
+          title: 'Meta Title',
+          type: 'string',
+          description: 'Ideally between 15 and 70 characters.',
+        },
+        {
+          name: 'metaDescription',
+          title: 'Meta Description',
+          type: 'text',
+          rows: 3,
+          description: 'Ideally between 70 and 160 characters.',
+        },
+        {
+          name: 'keywords',
+          title: 'Keywords',
+          type: 'array',
+          of: [{ type: 'string' }],
+          options: {
+            layout: 'tags',
+          },
+        },
+      ],
+    }),
   ],
   preview: {
     select: {

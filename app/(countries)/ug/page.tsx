@@ -9,6 +9,7 @@ import FloatingWhatsApp from '@/components/FloatingWhatsApp'
 import { Metadata } from 'next'
 import { ugandaIndustriesCarousel } from '@/data/industries-carousel'
 import { ugandaAccordionItems } from '@/data/why-choose-us'
+import { getAllNewsPosts } from '@/lib/sanity'
 
 export const metadata: Metadata = {
   title: 'SGA Security Uganda - Professional Security Services',
@@ -26,7 +27,8 @@ const ugandaContent = {
   ],
 }
 
-export default function UgandaPage(): React.JSX.Element {
+export default async function UgandaPage(): Promise<React.JSX.Element> {
+  const newsPosts = await getAllNewsPosts()
   return (
     <>
       <Hero
@@ -66,7 +68,7 @@ export default function UgandaPage(): React.JSX.Element {
         <SectionSeparator imageUrl="/images/misc/section-pattern-ug.svg" />
       </div>
       <div id="industries" className="relative">
-        <Industries 
+        <Industries
           industries={ugandaIndustriesCarousel}
           countryName="Uganda"
           ctaLink="/ug/industries"
@@ -80,15 +82,15 @@ export default function UgandaPage(): React.JSX.Element {
         <SectionSeparator imageUrl="/images/misc/section-pattern-ug.svg" />
       </div>
       <div id="why-us" className="relative">
-        <WhyChooseUs 
-          countryName="Uganda" 
+        <WhyChooseUs
+          countryName="Uganda"
           backgroundColor="bg-light-grey"
           accordionItems={ugandaAccordionItems}
         />
         <SectionSeparator imageUrl="/images/misc/section-pattern-ug.svg" />
       </div>
       <div id="blog" className="relative">
-        <News hideCountryDropdown={true} backgroundColor="bg-light-grey" country="Uganda" />
+        <News hideCountryDropdown={true} backgroundColor="bg-light-grey" country="Uganda" initialNewsItems={newsPosts} />
         <SectionSeparator imageUrl="/images/misc/section-pattern-ug.svg" />
       </div>
       <FloatingWhatsApp

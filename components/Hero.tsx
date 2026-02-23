@@ -40,7 +40,7 @@ export default function Hero({
   whiteBackground = false,
   orangeBackground = false,
   twoCardLayout = false,
-  imageUrl = 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&h=600&fit=crop',
+  imageUrl = '/images/misc/blog-placeholder',
   imageUrl2 = null,
   images = null,
   customH3 = null,
@@ -127,14 +127,14 @@ export default function Hero({
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center max-w-2xl">
                 {customButtons.map((button, index) => {
                   const label = button.label || ''
-                  
+
                   // Use custom separator or default to "for "
                   const separator = button.separator !== undefined ? button.separator : 'for '
-                  
+
                   // Split the label based on separator
                   let topText = ''
                   let mainText = label
-                  
+
                   if (separator && label.includes(separator)) {
                     const parts = label.split(separator)
                     topText = parts[0] + separator.trimEnd() // Keep the separator with first part

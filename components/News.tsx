@@ -20,6 +20,7 @@ interface NewsProps {
   backgroundColor?: string
   country?: string
   customSubtext?: string
+  initialNewsItems?: any[]
 }
 
 const newsItems: NewsItem[] = [
@@ -28,7 +29,7 @@ const newsItems: NewsItem[] = [
     category: 'Advisory Report',
     title: 'SGA Security Kenya: 2025 Security Outlook',
     summary: 'SGA Security releases its comprehensive annual report on the evolving security landscape in Kenya, highlighting key trends and safety protocols for businesses.',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop',
+    image: '/images/misc/blog-placeholder',
     country: 'Kenya',
     date: 'May 8, 2025',
   },
@@ -36,7 +37,7 @@ const newsItems: NewsItem[] = [
     category: 'Blog',
     title: 'SGA Nairobi Headquarters Expansion',
     summary: 'SGA Security announces the expansion of its Nairobi headquarters to better serve our growing client base in the region.',
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop',
+    image: '/images/misc/blog-placeholder',
     country: 'Kenya',
     date: 'June 12, 2025',
   },
@@ -44,7 +45,7 @@ const newsItems: NewsItem[] = [
     category: 'Media',
     title: 'SGA Wins Top Security Provider Award 2025',
     summary: 'SGA Kenya has been recognized as the leading security solutions provider at the Annual Security Excellence Awards.',
-    image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&h=600&fit=crop',
+    image: '/images/misc/blog-placeholder',
     country: 'Kenya',
     date: 'July 5, 2025',
   },
@@ -52,7 +53,7 @@ const newsItems: NewsItem[] = [
     category: 'Advisory Report',
     title: 'SGA Cyber Protection for Kenyan Banks',
     summary: 'How SGA Security is partnering with major Kenyan banks to provide integrated physical and digital security solutions.',
-    image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&h=600&fit=crop',
+    image: '/images/misc/blog-placeholder',
     country: 'Kenya',
     date: 'August 20, 2025',
   },
@@ -63,7 +64,7 @@ const newsItems: NewsItem[] = [
     category: 'Blog',
     title: 'SGA Tanzania Launches Community Safety Initiative',
     summary: 'SGA Tanzania partners with local authorities in Arusha to launch a new community policing and safety awareness program.',
-    image: 'https://images.unsplash.com/photo-1560253023-3ec5d7729591?w=800&h=600&fit=crop',
+    image: '/images/misc/blog-placeholder',
     country: 'Tanzania',
     date: 'May 12, 2025',
   },
@@ -71,7 +72,7 @@ const newsItems: NewsItem[] = [
     category: 'Advisory Report',
     title: 'SGA Port Security Protocols in Dar es Salaam',
     summary: 'New SGA protocols implemented for securing logistics and cargo at the Dar es Salaam port. Full advisory for logistics partners.',
-    image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&h=600&fit=crop',
+    image: '/images/misc/blog-placeholder',
     country: 'Tanzania',
     date: 'June 25, 2025',
   },
@@ -79,7 +80,7 @@ const newsItems: NewsItem[] = [
     category: 'Media',
     title: 'SGA Tanzania Training Academy Graduates 500 Guards',
     summary: 'Feature story on our advanced training academy in Tanzania setting new standards for professional security guards.',
-    image: 'https://images.unsplash.com/photo-1574607383476-f517b260d35b?w=800&h=600&fit=crop',
+    image: '/images/misc/blog-placeholder',
     country: 'Tanzania',
     date: 'July 18, 2025',
   },
@@ -87,7 +88,7 @@ const newsItems: NewsItem[] = [
     category: 'Blog',
     title: 'SGA Smart Safe Technology for Retail',
     summary: 'How SGA Tanzania is revolutionizing cash-in-transit services with smart safe technology for retail businesses.',
-    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?w=800&h=600&fit=crop',
+    image: '/images/misc/blog-placeholder',
     country: 'Tanzania',
     date: 'August 10, 2025',
   },
@@ -97,7 +98,7 @@ const newsItems: NewsItem[] = [
     category: 'Media',
     title: 'SGA Uganda Annual Security Conference',
     summary: 'SGA Security hosts key stakeholders at the annual security conference in Kampala to discuss integrated security systems.',
-    image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=600&fit=crop',
+    image: '/images/misc/blog-placeholder',
     country: 'Uganda',
     date: 'May 15, 2025',
   },
@@ -105,7 +106,7 @@ const newsItems: NewsItem[] = [
     category: 'Advisory Report',
     title: 'SGA Security in Uganda\'s Oil & Gas Sector',
     summary: 'SGA releases specialized risk assessment and security strategies for the growing energy sector in Western Uganda.',
-    image: 'https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?w=800&h=600&fit=crop',
+    image: '/images/misc/blog-placeholder',
     country: 'Uganda',
     date: 'June 30, 2025',
   },
@@ -113,7 +114,7 @@ const newsItems: NewsItem[] = [
     category: 'Blog',
     title: 'SGA Emergency Response in Kampala',
     summary: 'Our response teams are now assisting with traffic management during peak hours to ensure rapid response times in Kampala.',
-    image: 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=800&h=600&fit=crop',
+    image: '/images/misc/blog-placeholder',
     country: 'Uganda',
     date: 'July 22, 2025',
   },
@@ -121,22 +122,28 @@ const newsItems: NewsItem[] = [
     category: 'Media',
     title: 'Women in Security: Leadership at SGA Uganda',
     summary: 'Celebrating the women leaders at SGA Uganda who are driving change and excellence in the security industry.',
-    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=600&fit=crop',
+    image: '/images/misc/blog-placeholder',
     country: 'Uganda',
     date: 'August 5, 2025',
   },
 ]
 
-export default function News({ hideCountryDropdown = false, backgroundColor = 'bg-white', country, customSubtext }: NewsProps) {
+import { urlFor } from '@/sanity/lib/image'
+import Link from 'next/link'
+
+export default function News({ hideCountryDropdown = false, backgroundColor = 'bg-white', country, customSubtext, initialNewsItems }: NewsProps) {
   const [activeFilter, setActiveFilter] = useState('ALL')
   const [selectedCountry, setSelectedCountry] = useState(country || 'All Country')
   const [searchQuery, setSearchQuery] = useState('')
 
-  const filteredItems = newsItems.filter(item => {
+  const allNewsItems = initialNewsItems || newsItems
+
+  const filteredItems = allNewsItems.filter(item => {
     // If a specific country prop is passed, only show news for that country
     const itemCountryMatchesProp = country ? item.country === country : true
 
-    const matchesFilter = activeFilter === 'ALL' || item.category.toUpperCase() === activeFilter
+    const category = item.category || 'Blog'
+    const matchesFilter = activeFilter === 'ALL' || category.toUpperCase() === activeFilter
     const matchesCountry = selectedCountry === 'All Country' || item.country === selectedCountry
     const matchesSearch = item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       item.summary.toLowerCase().includes(searchQuery.toLowerCase())
@@ -147,12 +154,13 @@ export default function News({ hideCountryDropdown = false, backgroundColor = 'b
   // For group homepage (no country prop), ensure we show one from each country
   let displayItems = filteredItems
   if (!country && selectedCountry === 'All Country' && activeFilter === 'ALL' && !searchQuery) {
-    // Get one article from each country
-    const kenyaArticle = newsItems.find(item => item.country === 'Kenya')
-    const tanzaniaArticle = newsItems.find(item => item.country === 'Tanzania')
-    const ugandaArticle = newsItems.find(item => item.country === 'Uganda')
-    
-    displayItems = [kenyaArticle, tanzaniaArticle, ugandaArticle].filter(Boolean) as NewsItem[]
+    // Get newest article from each country
+    const sorted = [...allNewsItems].sort((a, b) => new Date(b.date || b.publishedAt).getTime() - new Date(a.date || a.publishedAt).getTime())
+    const kenyaArticle = sorted.find(item => item.country === 'Kenya')
+    const tanzaniaArticle = sorted.find(item => item.country === 'Tanzania')
+    const ugandaArticle = sorted.find(item => item.country === 'Uganda')
+
+    displayItems = [kenyaArticle, tanzaniaArticle, ugandaArticle].filter(Boolean)
   }
 
   // Use carousel hook for pagination
@@ -213,8 +221,8 @@ export default function News({ hideCountryDropdown = false, backgroundColor = 'b
               <div className="flex flex-wrap gap-2">
                 {['ALL', 'ADVISORY REPORT', 'BLOG', 'MEDIA'].map((filter) => {
                   const count = filter === 'ALL'
-                    ? (country ? newsItems.filter(item => item.country === country).length : newsItems.length)
-                    : newsItems.filter(item => item.category.toUpperCase() === filter && (country ? item.country === country : true)).length;
+                    ? (country ? allNewsItems.filter(item => item.country === country).length : allNewsItems.length)
+                    : allNewsItems.filter(item => (item.category || '').toUpperCase() === filter && (country ? item.country === country : true)).length;
 
                   return (
                     <button
@@ -285,13 +293,12 @@ export default function News({ hideCountryDropdown = false, backgroundColor = 'b
               className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow flex flex-col min-h-[500px]"
             >
               {/* Featured Image - Clickable */}
-              <motion.a
-                href="#"
-                whileHover={{ opacity: 0.9 }}
+              <Link
+                href={`/news-reports/${item.slug.current || item.slug}`}
                 className="relative w-full h-64 block cursor-pointer"
               >
                 <Image
-                  src={item.image}
+                  src={item.image || (item.mainImage ? urlFor(item.mainImage).url() : '/images/misc/blog-placeholder')}
                   alt={item.title}
                   fill
                   className="object-cover"
@@ -301,21 +308,23 @@ export default function News({ hideCountryDropdown = false, backgroundColor = 'b
                   <Icon icon="mdi:map-marker" className="w-5 h-5 text-white" />
                   {item.country}
                 </div>
-              </motion.a>
+              </Link>
 
               <div className="p-6 flex flex-col flex-1 bg-primary-orange text-white">
                 {/* Category and Date */}
                 <p className="text-lg font-normal text-white uppercase tracking-wider mb-2">
-                  {item.category} • {item.date}
+                  {item.category || 'Blog'} • {item.date || new Date(item.publishedAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
                 </p>
 
                 {/* Title */}
-                <h3 className="text-xl md:text-3xl font-bold text-white mb-3 line-clamp-2">
-                  {item.title}
-                </h3>
+                <Link href={`/news-reports/${item.slug.current || item.slug}`}>
+                  <h3 className="text-xl md:text-3xl font-bold text-white mb-3 line-clamp-2 hover:opacity-80 transition-opacity">
+                    {item.title}
+                  </h3>
+                </Link>
 
                 {/* Summary */}
-                <p className="text-white text-lg leading-relaxed">
+                <p className="text-white text-lg leading-relaxed line-clamp-3">
                   {item.summary}
                 </p>
               </div>

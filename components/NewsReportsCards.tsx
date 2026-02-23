@@ -1,21 +1,24 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { newsItems } from '@/data/newsItems'
+import { urlFor } from '@/sanity/lib/image'
 
 const ITEMS_PER_PAGE = 6
 
 interface NewsReportsCardsProps {
   providedCountry?: string
+  initialNewsItems?: any[]
 }
 
-export default function NewsReportsCards({ providedCountry }: NewsReportsCardsProps) {
+export default function NewsReportsCards({ providedCountry, initialNewsItems }: NewsReportsCardsProps) {
   const pathname = usePathname()
+  const displayItems = initialNewsItems || newsItems
   const [activeFilter, setActiveFilter] = useState('ALL')
   const [searchQuery, setSearchQuery] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
@@ -25,7 +28,7 @@ export default function NewsReportsCards({ providedCountry }: NewsReportsCardsPr
 
   // Extract unique years from news items
   const availableYears = Array.from(
-    new Set(newsItems.map(item => new Date(item.date).getFullYear()))
+    new Set(displayItems.map(item => new Date(item.date || item.publishedAt).getFullYear()))
   ).sort((a, b) => b - a) // Sort descending (newest first)
 
   // Determine base path for slugs based on current route
@@ -33,12 +36,13 @@ export default function NewsReportsCards({ providedCountry }: NewsReportsCardsPr
     pathname?.includes('/updates') ? (providedCountry ? `/${providedCountry.toLowerCase().substring(0, 2)}/updates` : '/updates') : '/updates'
 
   const filteredItems = (() => {
-    let filtered = newsItems.filter(item => {
-      const matchesFilter = activeFilter === 'ALL' || item.category.toUpperCase() === activeFilter
+    let filtered = displayItems.filter(item => {
+      const category = item.category || 'Blog'
+      const matchesFilter = activeFilter === 'ALL' || category.toUpperCase() === activeFilter
       const matchesCountry = selectedCountry === 'All Country' || (item as any).country === selectedCountry
-      
+
       // Year filter
-      const itemYear = new Date(item.date).getFullYear()
+      const itemYear = new Date(item.date || item.publishedAt).getFullYear()
       const matchesYear = selectedYear === 'All Years' || itemYear.toString() === selectedYear
 
       let matchesSearch = true
@@ -46,7 +50,7 @@ export default function NewsReportsCards({ providedCountry }: NewsReportsCardsPr
         const query = searchQuery.toLowerCase()
         matchesSearch = item.title.toLowerCase().includes(query) ||
           item.summary.toLowerCase().includes(query) ||
-          item.category.toLowerCase().includes(query)
+          (item.category || '').toLowerCase().includes(query)
       }
 
       return matchesFilter && matchesCountry && matchesYear && matchesSearch
@@ -54,8 +58,8 @@ export default function NewsReportsCards({ providedCountry }: NewsReportsCardsPr
 
     // Sort by date (newest first)
     filtered.sort((a, b) => {
-      const dateA = new Date(a.date).getTime()
-      const dateB = new Date(b.date).getTime()
+      const dateA = new Date(a.date || a.publishedAt).getTime()
+      const dateB = new Date(b.date || b.publishedAt).getTime()
       return dateB - dateA
     })
 
@@ -103,7 +107,7 @@ export default function NewsReportsCards({ providedCountry }: NewsReportsCardsPr
   }
 
   return (
-    <section id="news-reports-cards" className="flex items-center justify-center bg-white py-20 md:py-20 min-h-[85vh] relative">
+    <section id="news" className="flex items-center justify-center bg-white py-20 md:py-20 min-h-[85vh] relative">
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -226,13 +230,13 @@ export default function NewsReportsCards({ providedCountry }: NewsReportsCardsPr
                 className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow flex flex-col min-h-[500px]"
               >
                 {/* Featured Image */}
-                <Link href={`${basePath}/${item.slug}`}>
+                <Link href={`${basePath}/${item.slug.current || item.slug}`}>
                   <motion.div
                     whileHover={{ opacity: 0.9 }}
                     className="relative w-full h-64 block cursor-pointer"
                   >
                     <Image
-                      src={item.image}
+                      src={item.image || (item.mainImage ? urlFor(item.mainImage).url() : '/images/misc/blog-placeholder')}
                       alt={item.title}
                       fill
                       className="object-cover"
@@ -248,11 +252,11 @@ export default function NewsReportsCards({ providedCountry }: NewsReportsCardsPr
                 <div className="p-6 flex flex-col flex-1 bg-primary-orange text-white">
                   {/* Category and Date */}
                   <p className="text-lg font-normal text-white uppercase tracking-wider mb-2">
-                    {item.category} • {item.date}
+                    {item.category || 'Blog'} • {item.date || new Date(item.publishedAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
                   </p>
 
                   {/* Title */}
-                  <Link href={`${basePath}/${item.slug}`}>
+                  <Link href={`${basePath}/${item.slug.current || item.slug}`}>
                     <h3 className="text-xl md:text-3xl font-bold text-white mb-3 line-clamp-2 hover:opacity-80 transition-opacity">
                       {item.title}
                     </h3>

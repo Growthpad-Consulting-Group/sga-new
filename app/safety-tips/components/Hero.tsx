@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 
-export default function Hero({ imageUrl = 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200&h=600&fit=crop' }) {
+export default function Hero({ imageUrl = '/images/misc/blog-placeholder' }) {
   return (
     <section id="hero" className="section-snap bg-gray-100 text-dark-charcoal pt-32 sm:pt-40 lg:pt-48 pb-0">
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
@@ -21,7 +21,7 @@ export default function Hero({ imageUrl = 'https://images.unsplash.com/photo-158
           </h1>
         </motion.div>
       </div>
-      
+
       {/* Large image without margin-x */}
       <div className="w-full">
         <motion.div

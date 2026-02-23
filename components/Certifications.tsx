@@ -12,27 +12,27 @@ interface Certification {
 const certifications: Certification[] = [
   {
     name: 'Certification 1',
-    logo: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=200&h=200&fit=crop',
+    logo: '/images/misc/blog-placeholder',
   },
   {
     name: 'Certification 2',
-    logo: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=200&h=200&fit=crop',
+    logo: '/images/misc/blog-placeholder',
   },
   {
     name: 'Certification 3',
-    logo: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=200&h=200&fit=crop',
+    logo: '/images/misc/blog-placeholder',
   },
   {
     name: 'Certification 4',
-    logo: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=200&h=200&fit=crop',
+    logo: '/images/misc/blog-placeholder',
   },
   {
     name: 'Certification 5',
-    logo: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=200&h=200&fit=crop',
+    logo: '/images/misc/blog-placeholder',
   },
   {
     name: 'Certification 6',
-    logo: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=200&h=200&fit=crop',
+    logo: '/images/misc/blog-placeholder',
   },
 ]
 

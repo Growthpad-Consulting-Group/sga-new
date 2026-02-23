@@ -9,6 +9,7 @@ import { Metadata } from 'next'
 import SectionSeparator from '@/components/SectionSeparator'
 import { kenyaIndustriesCarousel } from '@/data/industries-carousel'
 import { kenyaAccordionItems } from '@/data/why-choose-us'
+import { getAllNewsPosts } from '@/lib/sanity'
 
 export const metadata: Metadata = {
   title: 'SGA Security Kenya - Professional Security Services',
@@ -26,7 +27,8 @@ const kenyaContent = {
   ],
 }
 
-export default function KenyaPage(): React.JSX.Element {
+export default async function KenyaPage(): Promise<React.JSX.Element> {
+  const newsPosts = await getAllNewsPosts()
   return (
     <>
       <Hero
@@ -77,15 +79,15 @@ export default function KenyaPage(): React.JSX.Element {
         <SectionSeparator imageUrl="/images/misc/section-pattern-ke.svg" />
       </div>
       <div id="why-us" className="relative">
-        <WhyChooseUs 
-          countryName="Kenya" 
+        <WhyChooseUs
+          countryName="Kenya"
           backgroundColor="bg-light-grey"
           accordionItems={kenyaAccordionItems}
         />
         <SectionSeparator imageUrl="/images/misc/section-pattern-ke.svg" />
       </div>
       <div id="blog" className="relative">
-        <News hideCountryDropdown={true} backgroundColor="bg-light-grey" country="Kenya" />
+        <News hideCountryDropdown={true} backgroundColor="bg-light-grey" country="Kenya" initialNewsItems={newsPosts} />
         <SectionSeparator imageUrl="/images/misc/section-pattern-ke.svg" />
       </div>
       <FloatingWhatsApp

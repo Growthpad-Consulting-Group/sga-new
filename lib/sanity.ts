@@ -19,6 +19,17 @@ export interface NewsPost {
   body?: any
   publishedAt: string
   featured: boolean
+  seo?: {
+    metaTitle?: string
+    metaDescription?: string
+    keywords?: string[]
+  }
+  comments?: {
+    _id: string
+    name: string
+    comment: string
+    _createdAt: string
+  }[]
 }
 
 export interface Category {

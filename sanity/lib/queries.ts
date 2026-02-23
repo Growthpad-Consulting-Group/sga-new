@@ -27,7 +27,14 @@ export const newsPostBySlugQuery = groq`
     mainImage,
     body,
     publishedAt,
-    featured
+    featured,
+    seo,
+    "comments": *[_type == "comment" && post._ref == ^._id && approved == true] | order(_createdAt desc) {
+      _id,
+      name,
+      comment,
+      _createdAt
+    }
   }
 `
 

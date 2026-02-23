@@ -10,13 +10,15 @@ import JoinOurMission from '@/components/JoinOurMission'
 import FloatingWhatsApp from '@/components/FloatingWhatsApp'
 import SectionSeparator from '@/components/SectionSeparator'
 import type { Metadata } from 'next'
+import { getAllNewsPosts } from '@/lib/sanity'
 
 export const metadata: Metadata = {
   title: 'SGA Security Group - Leading Security Solutions in East Africa',
   description: 'Professional security services across Kenya, Uganda, and Tanzania. Trusted protection for businesses and communities.',
 }
 
-export default function HomePage(): React.JSX.Element {
+export default async function HomePage(): Promise<React.JSX.Element> {
+  const newsPosts = await getAllNewsPosts()
   return (
     <>
       <Hero
@@ -75,7 +77,7 @@ export default function HomePage(): React.JSX.Element {
       </div>
 
       <div className="relative section-snap">
-        <News />
+        <News initialNewsItems={newsPosts} />
         <SectionSeparator />
       </div>
 
