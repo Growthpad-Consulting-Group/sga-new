@@ -116,9 +116,8 @@ export default function CountryHeader(): React.JSX.Element {
     { href: '#services', label: 'SERVICES', isDropdown: true, dropdownType: 'services' },
     { href: `${countryPrefix}/industries`, label: 'INDUSTRIES', isDropdown: true, dropdownType: 'industries' },
     { href: `${countryPrefix}/why-us`, label: 'WHY US' },
-    { href: `${countryPrefix}/updates`, label: 'BLOG' },
+    { href: `${countryPrefix}/updates`, label: 'NEWS & REPORTS' },
     { href: `${countryPrefix}/contact`, label: 'CONTACT' },
-    { href: `${countryPrefix}/updates`, label: 'UPDATES', icon: 'material-symbols:news-outline-rounded' },
   ]
 
   const countries: Country[] = [

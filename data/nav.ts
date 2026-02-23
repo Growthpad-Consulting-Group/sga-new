@@ -37,8 +37,7 @@ export const getCountryNavItems = (countryCode: string): NavItem[] => {
     { href: `${baseUrl}#services`, label: 'SERVICES' },
     { href: `${baseUrl}#industries`, label: 'INDUSTRIES' },
     { href: `${baseUrl}/why-us`, label: 'WHY US' },
-    { href: `${baseUrl}#blog`, label: 'BLOG' },
-    { href: '/updates', label: 'UPDATES', icon: 'material-symbols:news-outline-rounded' },
+    { href: `${baseUrl}/updates`, label: 'NEWS & REPORTS' },
     { href: `${baseUrl}#contact`, label: 'CONTACT' },
   ]
 }

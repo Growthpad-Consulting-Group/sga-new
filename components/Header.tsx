@@ -259,7 +259,7 @@ export default function Header() {
 
           {/* CTAs - Right */}
           <div className="hidden lg:flex items-center space-x-3 xl:space-x-4 flex-shrink-0">
-            {/* Updates Link */}
+            {/* Icon-based nav items */}
             {currentNavItems.filter(item => item.icon).map((item) => {
               const isRoute = !item.href.startsWith('#')
               const isActive = isRoute ? pathname === item.href : false
@@ -270,7 +270,7 @@ export default function Header() {
                   key={item.href}
                   href={item.href}
                   whileHover={{ y: -2 }}
-                  className={`${buttonHoverClasses} font-nav ${item.label === 'UPDATES' ? 'font-semibold' : 'font-medium'} flex items-center gap-1.5 text-md ${getNavTextColor(isActive)}`}
+                  className={`${buttonHoverClasses} font-nav font-medium flex items-center gap-1.5 text-md ${getNavTextColor(isActive)}`}
                 >
                   {item.icon && (
                     <Icon
@@ -348,9 +348,7 @@ export default function Header() {
               {currentNavItems.map((item) => {
                 const isRoute = !item.href.startsWith('#')
                 const isActive = isRoute ? pathname === item.href : false
-                const isUpdates = item.label === 'UPDATES'
-                const itemClasses = `${mobileMenuItemClasses} ${isActive ? 'text-primary-orange font-semibold' : ' hover:text-primary-orange'
-                  } ${isUpdates ? 'font-bold' : ''}`
+                const itemClasses = `${mobileMenuItemClasses} ${isActive ? 'text-primary-orange font-semibold' : ' hover:text-primary-orange'}`
 
                 if (isRoute) {
                   return (
