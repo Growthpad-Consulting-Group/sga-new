@@ -1,7 +1,6 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Image from 'next/image'
 
 interface ContactHeroProps {
   imageUrl?: string
@@ -26,21 +25,21 @@ export default function ContactHero({ imageUrl = '/images/contact/hero.png' }: C
         </motion.div>
       </div>
 
-      {/* Large image without margin-x */}
+      {/* Large image with parallax effect */}
       <div className="w-full">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           className="relative w-full h-[400px] md:h-[500px] lg:h-[600px]"
+          style={{
+            backgroundImage: `url(${imageUrl})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'top',
+            backgroundAttachment: '',
+          }}
         >
-          <Image
-            src={imageUrl}
-            alt="SGA Security Group - Contact Us"
-            fill
-            className="object-cover"
-            priority
-          />
+          <div className="absolute inset-0 bg-black/10"></div>
         </motion.div>
       </div>
     </section>
