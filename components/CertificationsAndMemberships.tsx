@@ -59,6 +59,16 @@ const documents: DocumentItem[] = [
 
 const ITEMS_PER_PAGE = 12
 
+// Shuffle array to randomize display order
+const shuffleArray = <T,>(array: T[]): T[] => {
+    const shuffled = [...array]
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+    }
+    return shuffled
+}
+
 const getCategoryIcon = (category: string) => {
     switch (category) {
         case 'CERTIFICATION': return 'solar:medal-ribbon-broken'
@@ -74,8 +84,10 @@ export default function CertificationsAndMemberships() {
     const [selectedCountry, setSelectedCountry] = useState<Country>('All Country')
     const [searchQuery, setSearchQuery] = useState('')
     const [currentPage, setCurrentPage] = useState(1)
+    // Randomize documents on mount to avoid country bias
+    const [randomizedDocuments] = useState(() => shuffleArray(documents))
 
-    const filteredDocuments = documents.filter((doc) => {
+    const filteredDocuments = randomizedDocuments.filter((doc) => {
         const matchCategory = activeCategory === 'ALL' || doc.category === activeCategory
         const matchCountry = selectedCountry === 'All Country' || doc.country === selectedCountry
         const matchSearch = !searchQuery ||

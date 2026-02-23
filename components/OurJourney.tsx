@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react'
 import { motion } from 'framer-motion'
-import { Icon } from '@iconify/react'
+
 import { useCarousel, CarouselArrows } from './Carousel'
 
 interface TimelineEvent {
@@ -14,28 +14,43 @@ interface TimelineEvent {
 const timelineEvents: TimelineEvent[] = [
   {
     year: '1969',
-    title: 'Foundation of Security',
-    description: 'SGA Security was founded in Nairobi as Factory Guards Limited, laying the groundwork for professional security services in Kenya.',
+    title: 'Factory Guards',
+    description: 'We started off as Factory Guards in 1969 and since then we have been leaders in security. Bringing innovation and expertise to the industry.',
   },
   {
     year: '1979',
-    title: 'Regional Expansion',
-    description: 'Within a decade, SGA expanded into Uganda and Tanzania, extending our trusted services across East Africa.',
+    title: 'Group 4 Security',
+    description: 'In 1979 we expanded our services and grew from Factory Guards to Group 4 Security.',
   },
   {
-    year: '2000s',
-    title: 'Diversification & Innovation',
-    description: 'We transformed from a traditional guarding company into an integrated security provider, introducing advanced technologies and specialized services.',
+    year: '1984',
+    title: 'Tanzania Expansion',
+    description: 'Our security journey in Tanzania began in 1984. We are proud to celebrate 40 years of safeguarding Tanzanians.',
   },
   {
-    year: '2010s',
-    title: 'Technology Integration',
-    description: 'Advanced security technologies and digital solutions became core to our service delivery across all markets.',
+    year: '1994',
+    title: 'Uganda Operations',
+    description: 'Uganda called for our security services and we answered in 1994. Since then we have had a remarkable journey as we turn 30 in the country.',
   },
   {
-    year: '2020s',
-    title: 'Future Ready',
-    description: 'Embracing AI, IoT, and smart security solutions to meet evolving client needs in the digital age.',
+    year: '2000',
+    title: 'Security Group',
+    description: 'Year 2000 was another season of growth for us. We expanded from Group 4 Security to Security Group.',
+  },
+  {
+    year: '2002',
+    title: 'Safari Rally Sponsorship',
+    description: 'We sponsored the 50th Safari Rally in 2002. Proving that we can rev up our engines in security and on the racetrack too.',
+  },
+  {
+    year: '2009',
+    title: 'SGA Security Group',
+    description: 'We continued improving our services, technology and expertise and in 2009 we expanded again from Security Group to SGA Security Group.',
+  },
+  {
+    year: 'Today',
+    title: 'ICOCA Certification',
+    description: 'Today we have upgraded our security and made our operations even more efficient and we have been rewarded with ICOCA membership and certification.',
   },
 ]
 
@@ -44,7 +59,7 @@ export default function OurJourney(): React.JSX.Element {
   const [touchEnd, setTouchEnd] = useState<number | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
-  // Use carousel hook for pagination
+  // Use carousel hook for pagination (show 3 items at a time on desktop)
   const carousel = useCarousel(timelineEvents.length, 3)
 
   // Minimum swipe distance (in px)
@@ -98,7 +113,7 @@ export default function OurJourney(): React.JSX.Element {
   }
 
   return (
-    <div id="our-journey" className="bg-light-grey py-20">
+    <div id="our-journey" className="bg-light-grey py-24">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -107,7 +122,7 @@ export default function OurJourney(): React.JSX.Element {
         className="w-full mx-auto px-4 sm:px-6 lg:px-8"
       >
         {/* Header */}
-        <div className="mb-24">
+        <div className="mb-14">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
