@@ -8,6 +8,7 @@ import ContactInfo from '@/components/ContactInfo'
 import FloatingWhatsApp from '@/components/FloatingWhatsApp'
 import { Metadata } from 'next'
 import SectionSeparator from '@/components/SectionSeparator'
+import { kenyaIndustriesCarousel } from '@/data/industries-carousel'
 
 export const metadata: Metadata = {
   title: 'SGA Security Kenya - Professional Security Services',
@@ -36,13 +37,13 @@ export default function KenyaPage(): React.JSX.Element {
         imageUrl="/images/ke/hero.png"
         customTitle={
           <>
-            Protect what matters most <br />— your <span className="">home</span> and <span className="">family</span>.
+            Protect what matters most <br />- your <span className="">home</span> and <span className="">family</span>.
           </>
         }
-        customDescription="From Nairobi estates to Mombasa homes, SGA Kenya provides round-the-clock security you can trust."
+        customDescription="SGA Kenya protects families, homes, and businesses nationwide with reliable 24/7 security solutions."
         customButtons={[
-          { label: 'Explore for Individuals', href: '#individuals', primary: true },
-          { label: 'Explore for Corporate Clients', href: '#corporate', primary: true }
+          { label: 'Explore Home Security', href: '#individuals', primary: true, separator: 'Explore ' },
+          { label: 'Explore Business Security', href: '#corporate', primary: true, separator: 'Explore ' }
         ]}
       />
       <div id="about" className="relative">
@@ -52,9 +53,9 @@ export default function KenyaPage(): React.JSX.Element {
           customLayout={true}
           smallTitle="WHO WE ARE"
           h3Title="About SGA Kenya"
-          h2Title="50+ Years of Security Excellence in East Africa."
-          customDescription="SGA Kenya is the headquarters of the SGA Security Group, serving clients across Kenya with reliable guarding, alarm & response, cash-in-transit, fire & rescue, and integrated technology solutions—backed by a 24/7 control room in Nairobi and a strong team of vetted, trained professionals."
-          buttonText="Learn more about SGA Kenya"
+          h2Title="55+ years of trusted security in Kenya"
+          customDescription="SGA Kenya combines experience, innovation, and a dedicated 24/7 team to deliver reliable guarding, alarms, monitoring, and integrated security solutions across the country."
+          buttonText="Discover Our Story"
           buttonHref="#about"
           imageUrl="/images/ke/about-sga.png"
           hideCountriesStat={true}
@@ -68,6 +69,9 @@ export default function KenyaPage(): React.JSX.Element {
       </div>
       <div id="industries" className="relative">
         <Industries
+          industries={kenyaIndustriesCarousel}
+          countryName="Kenya"
+          ctaLink="/ke/industries"
           backgroundColor="bg-light-grey"
         />
         <SectionSeparator imageUrl="/images/misc/section-pattern-ke.svg" />

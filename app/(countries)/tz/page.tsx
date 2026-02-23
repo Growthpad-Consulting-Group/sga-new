@@ -8,6 +8,7 @@ import ContactInfo from '@/components/ContactInfo'
 import SectionSeparator from '@/components/SectionSeparator'
 import FloatingWhatsApp from '@/components/FloatingWhatsApp'
 import { Metadata } from 'next'
+import { tanzaniaIndustriesCarousel } from '@/data/industries-carousel'
 
 export const metadata: Metadata = {
   title: 'SGA Security Tanzania - Professional Security Services',
@@ -41,8 +42,8 @@ export default function TanzaniaPage(): React.JSX.Element {
         }
         customDescription="Protecting your offices, warehouses, banks, and teams with integrated guarding and technology solutions tailored to Tanzania's business environment."
         customButtons={[
-          { label: 'Explore for Individuals', href: '#individuals', primary: true },
-          { label: 'Explore for Corporate Clients', href: '#corporate', primary: true }
+          { label: 'Explore for Individuals', href: '#individuals', primary: true, separator: 'for ' },
+          { label: 'Explore for Corporate Clients', href: '#corporate', primary: true, separator: 'for ' }
         ]}
       />
       <div id="about" className="relative">
@@ -73,6 +74,9 @@ export default function TanzaniaPage(): React.JSX.Element {
       </div>
       <div id="industries" className="relative">
         <Industries
+          industries={tanzaniaIndustriesCarousel}
+          countryName="Tanzania"
+          ctaLink="/tz/industries"
           backgroundColor="bg-light-grey"
         />
         <SectionSeparator imageUrl="/images/misc/section-pattern-tz.svg" />

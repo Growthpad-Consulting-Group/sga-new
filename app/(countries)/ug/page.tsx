@@ -8,6 +8,7 @@ import ContactInfo from '@/components/ContactInfo'
 import SectionSeparator from '@/components/SectionSeparator'
 import FloatingWhatsApp from '@/components/FloatingWhatsApp'
 import { Metadata } from 'next'
+import { ugandaIndustriesCarousel } from '@/data/industries-carousel'
 
 export const metadata: Metadata = {
   title: 'SGA Security Uganda - Professional Security Services',
@@ -41,8 +42,8 @@ export default function UgandaPage(): React.JSX.Element {
         }
         customDescription="Protecting your offices, warehouses, banks, and teams with integrated guarding and technology solutions tailored to Uganda’s business environment."
         customButtons={[
-          { label: 'Explore for Individuals', href: '#individuals', primary: true },
-          { label: 'Explore for Corporate Clients', href: '#corporate', primary: true }
+          { label: 'Explore for Individuals', href: '#individuals', primary: true, separator: 'for ' },
+          { label: 'Explore for Corporate Clients', href: '#corporate', primary: true, separator: 'for ' }
         ]}
       />
       <div id="about" className="relative">
@@ -65,7 +66,11 @@ export default function UgandaPage(): React.JSX.Element {
         <SectionSeparator imageUrl="/images/misc/section-pattern-ug.svg" />
       </div>
       <div id="industries" className="relative">
-        <Industries />
+        <Industries 
+          industries={ugandaIndustriesCarousel}
+          countryName="Uganda"
+          ctaLink="/ug/industries"
+        />
         <SectionSeparator imageUrl="/images/misc/section-pattern-ug.svg" />
       </div>
       <div id="services" className="relative">

@@ -29,8 +29,11 @@ interface IndustriesHeroProps {
   imageUrl?: string
 }
 
-export default function IndustriesHero({ countryCode = 'tz', imageUrl }: IndustriesHeroProps) {
-  const country = (countryData as Record<string, any>)[countryCode] || countryData.tz
+export default function IndustriesHero({ countryCode, imageUrl }: IndustriesHeroProps) {
+  if (!countryCode) {
+    throw new Error('IndustriesHero requires countryCode prop')
+  }
+  const country = (countryData as Record<string, any>)[countryCode] || countryData.ke
   const heroImage = imageUrl || country.imageUrl
 
   return (

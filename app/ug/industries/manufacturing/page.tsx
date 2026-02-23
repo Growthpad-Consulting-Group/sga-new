@@ -1,4 +1,4 @@
-import IndustryPageTemplate from '../../components/IndustryPageTemplate'
+import IndustryPageTemplate from '@/components/IndustryPageTemplate'
 import FloatingWhatsApp from '@/components/FloatingWhatsApp'
 
 export const metadata = {

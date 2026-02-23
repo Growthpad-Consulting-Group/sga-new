@@ -1,6 +1,6 @@
-import IndustriesHero from '../components/IndustriesHero'
-import IndustriesDetail from '../components/IndustriesDetail'
-
+import IndustriesHero from '@/components/IndustriesHero'
+import IndustriesDetail from '@/components/IndustriesDetail'
+import { tanzaniaIndustries } from '@/data/industries-tanzania'
 import FloatingWhatsApp from '@/components/FloatingWhatsApp'
 
 export const metadata = {
@@ -15,7 +15,10 @@ export default function TanzaniaIndustriesPage() {
         countryCode="tz"
         imageUrl="/images/tz/about-sga.png"
       />
-      <IndustriesDetail countryCode="tz" />
+      <IndustriesDetail 
+        countryCode="tz"
+        industries={tanzaniaIndustries}
+      />
       <FloatingWhatsApp 
         singleCountry={true}
         country="Tanzania"

@@ -15,6 +15,7 @@ interface CustomButton {
   primary?: boolean
   readMoreText?: string
   arrowIcon?: string
+  separator?: string // Text to split on for small/large text effect (e.g., "for", "|")
 }
 
 interface HeroProps {
@@ -126,9 +127,19 @@ export default function Hero({
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center max-w-2xl">
                 {customButtons.map((button, index) => {
                   const label = button.label || ''
-                  const parts = label.split('Explore for ')
-                  const topText = parts.length > 1 ? 'Explore for' : ''
-                  const mainText = parts.length > 1 ? parts[1] : label
+                  
+                  // Use custom separator or default to "for "
+                  const separator = button.separator !== undefined ? button.separator : 'for '
+                  
+                  // Split the label based on separator
+                  let topText = ''
+                  let mainText = label
+                  
+                  if (separator && label.includes(separator)) {
+                    const parts = label.split(separator)
+                    topText = parts[0] + separator.trimEnd() // Keep the separator with first part
+                    mainText = parts.slice(1).join(separator) // Join remaining parts
+                  }
 
                   // Check if button should be rendered simply (for rounded-full buttons)
                   const isSimple = button.simple !== false && (button.className?.includes('rounded-full') || button.simple === true)

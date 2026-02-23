@@ -5,7 +5,7 @@ import Image from 'next/image'
 
 export default function OurPeople({ imageUrl = '/images/group/about/about-2.png' }) {
   return (
-    <div id="our-people" className="bg-white relative pt-20 pb-24">
+    <div id="our-people" className="bg-white relative py-24">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}

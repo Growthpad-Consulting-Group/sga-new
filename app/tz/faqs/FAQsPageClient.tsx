@@ -1,9 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import FAQsHero from '../components/FAQsHero'
+import FAQsHero from '@/components/FAQsHero'
 import FAQsContent from '../components/FAQsContent'
-import FAQsCTA from '../components/FAQsCTA'
+import FAQsCTA from '@/components/FAQsCTA'
 import FloatingWhatsApp from '@/components/FloatingWhatsApp'
 
 export default function FAQsPageClient() {

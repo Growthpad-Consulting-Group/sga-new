@@ -110,7 +110,7 @@ export default function OurJourney(): React.JSX.Element {
   }
 
   return (
-    <SectionWrapper id="our-journey" className="bg-light-grey py-24 sm:py-24 md:py-32 relative">
+    <SectionWrapper id="our-journey" className="bg-light-grey py-20 relative">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}

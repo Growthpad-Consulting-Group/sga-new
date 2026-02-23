@@ -1,52 +1,23 @@
 'use client'
 
 import { useState } from 'react'
-import SectionWrapper from './SectionWrapper'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import Image from 'next/image'
-
-
-interface Industry {
-  name: string
-  icon: string
-  image: string
-}
+import { IndustryCarouselItem } from '@/data/industries-carousel'
 
 interface IndustriesProps {
   backgroundColor?: string
+  industries: IndustryCarouselItem[]
+  countryName?: string
+  ctaLink?: string
 }
-
-const industries: Industry[] = [
-  {
-    name: 'Residential Estates & Apartments',
-    icon: 'mdi:home',
-    image: '/images/ug/residentials.png',
-  },
-  {
-    name: 'Education & Schools',
-    icon: 'mdi:school',
-    image: '/images/ug/education.png',
-  },
-  {
-    name: 'Healthcare Facilities',
-    icon: 'mdi:hospital',
-    image: '/images/ug/healthcare.png',
-  },
-  {
-    name: 'Hospitality & Holiday Homes',
-    icon: 'mdi:hotel',
-    image: '/images/ug/hospitality.png',
-  },
-  {
-    name: 'Commercial & Retail',
-    icon: 'mdi:office-building',
-    image: '/images/ug/commercial.png',
-  },
-]
 
 export default function Industries({
   backgroundColor = 'bg-white',
+  industries,
+  countryName = 'Kenya',
+  ctaLink = '#industries',
 }: IndustriesProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
 
@@ -78,8 +49,8 @@ export default function Industries({
               industries
             </p>
             <div className="section-title-container w-full flex items-end justify-between">
-              <h3 className="section-title text-xl md:text-3xl lg:text-5xl">
-                Built for your industry
+              <h3 className="section-title text-xl md:text-3xl lg:text-5xl text-primary-orange">
+                Industries We Serve
               </h3>
               <div className="section-title-bar"></div>
               <div className="flex items-center gap-3 mb-1 relative z-20">
@@ -98,7 +69,7 @@ export default function Industries({
               </div>
             </div>
             <p className="text-base font-normal md:text-2xl text-dark-charcoal pb-4 mt-4">
-              From banks to gated estates, we tailor protection to your world.
+              Beyond homes, we provide tailored solutions for businesses, institutions, and real estate developments across {countryName}.
             </p>
           </motion.div>
         </div>
@@ -137,7 +108,8 @@ export default function Industries({
         </div>
 
         <div className="flex justify-center mt-12">
-          <motion.button
+          <motion.a
+            href={ctaLink}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -145,8 +117,8 @@ export default function Industries({
             whileTap={{ scale: 0.95 }}
             className="bg-primary-orange text-white px-10 py-5 rounded-full font-semibold text-sm uppercase hover:bg-primary-orange/90 transition-colors"
           >
-            See solutions for your industry
-          </motion.button>
+            Find Your Industry Solution
+          </motion.a>
         </div>
       </motion.div>
     </section>

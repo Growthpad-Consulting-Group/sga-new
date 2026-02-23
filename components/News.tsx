@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import SectionWrapper from './SectionWrapper'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import Image from 'next/image'
@@ -190,21 +189,25 @@ export default function News({ hideCountryDropdown = false, backgroundColor = 'b
             viewport={{ once: true }}
             className="space-y-4 flex flex-col items-start text-left"
           >
-            <p className="text-md font-medium text-dark-charcoal uppercase tracking-wider mb-2">
-              Latest
+            <p className="text-md font-medium text-dark-charcoal uppercase tracking-wider">
+              news & reports
             </p>
-            <div className="flex items-end justify-between section-title-container w-full !pb-4">
-              <h3 className="section-title text-xl md:text-4xl font-bold text-primary-orange">
-                News & Reports
+            <div className="section-title-container w-full flex items-end justify-between">
+              <h3 className="section-title text-xl md:text-3xl lg:text-5xl text-primary-orange capitalize">
+                Stay informed, stay secure
               </h3>
+              <div className="section-title-bar"></div>
               <CarouselArrows
                 onPrev={carousel.prevPage}
                 onNext={carousel.nextPage}
                 canGoPrev={carousel.canGoPrev}
                 canGoNext={carousel.canGoNext}
-                className="mb-1"
+                className="mb-1 relative z-20"
               />
             </div>
+            <p className="text-base font-normal md:text-2xl text-dark-charcoal pb-4 mt-4">
+              Get the latest news, safety tips, and updates from SGA {country || 'Security'}.
+            </p>
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-4 w-full">
               <div className="flex flex-wrap gap-2">
                 {['ALL', 'ADVISORY REPORT', 'BLOG', 'MEDIA'].map((filter) => {

@@ -23,28 +23,28 @@ const solutions: Solution[] = [
   {
     title: 'Alarm & Response',
     icon: 'icon-park-solid:alarm',
-    description: '24/7 monitoring with rapid deployment to your home.',
+    description: 'Fast dispatch when an alarm is triggered.',
+  },
+  {
+    title: '24/7 Monitoring',
+    icon: 'ic:baseline-apartment',
+    description: 'Constant watch from our control room.',
   },
   {
     title: 'Residential Guarding',
-    icon: 'ic:baseline-apartment',
-    description: 'Professional guards for apartments and gated communities.',
-  },
-  {
-    title: 'Personal Panic App',
     icon: 'ic:baseline-dangerous',
-    description: 'One-tap SOS linked to our control room.',
+    description: 'Trained guards at your doorstep.',
   },
   {
-    title: 'CCTV & Surveillance',
+    title: 'Personal Safety App',
     icon: 'mdi:cctv',
-    description: 'Advanced monitoring systems for complete property coverage.',
+    description: 'One tap connects you to help instantly.',
   },
 ]
 
 export default function IntegratedSolutions({
   title,
-  description = "Security solutions built to keep your family, home, and property safe every day.",
+  description = "Every household is unique, but safety is always essential. Our residential solutions combine people, technology, and local expertise to keep your family and property secure.",
   whiteBackground = false,
 }: IntegratedSolutionsProps) {
   const { openModal } = useEnquiryModal()
@@ -52,7 +52,7 @@ export default function IntegratedSolutions({
   const [currentIndex, setCurrentIndex] = useState(0)
   
   // Use dynamic title if not provided, otherwise use the prop
-  const dynamicTitle = title || `Tailored protection, designed for ${countryName}'s households.`
+  const dynamicTitle = title || `Tailored Security for ${countryName}n Homes.`
 
   const handlePrev = () => {
     setCurrentIndex((prev) => (prev === 0 ? solutions.length - 3 : prev - 1))
@@ -138,7 +138,7 @@ export default function IntegratedSolutions({
                     whileTap={{ scale: 0.95 }}
                     className="bg-white text-primary-orange px-6 py-3 rounded-full font-semibold text-sm uppercase hover:bg-gray-100 transition-colors w-fit"
                   >
-                    Request Quote
+                    Request a Quote
                   </motion.button>
                 </div>
               </motion.div>
