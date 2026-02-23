@@ -77,7 +77,7 @@ export default function OurImpactInNumbers({ showPattern = true }: OurImpactInNu
             </p>
             <div className="section-title-container">
               <h3 className="section-title text-xl md:text-5xl font-bold text-primary-orange capitalize">
-                Scale you can rely on
+                Security at scale, built on trust
               </h3>
             </div>
           </motion.div>

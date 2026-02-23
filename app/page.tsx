@@ -36,10 +36,10 @@ export default function HomePage(): React.JSX.Element {
         customH3="Welcome to SGA official group website"
         customTitle={
           <>
-            <span className="text-primary-orange">Trusted security solutions across East Africa.</span>
+            <span className="text-primary-orange">Protecting People, Businesses, & Communities in East Africa.</span>
           </>
         }
-        customDescription="Your safety, our mission. Explore the Group or go straight to your country for tailored services."
+        customDescription="Your safety, our mission. Explore the Group or visit your country for tailored services."
         showToggle={false}
         customButtons={[
           { label: 'Explore for Individual', href: '#individual', primary: true },
@@ -59,7 +59,7 @@ export default function HomePage(): React.JSX.Element {
 
       <div className="relative section-snap">
         <GroupIntegratedSolutions
-          title="What We Offer"
+          title="Our Core Services"
         />
         <SectionSeparator />
       </div>

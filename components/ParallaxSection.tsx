@@ -15,7 +15,7 @@ interface ParallaxSectionProps {
 export default function ParallaxSection({
   title = "Who We Are",
   h2Title = "About SGA Group",
-  description = "We are dedicated to supporting sustainable safety and security for our customers and communities — through exceptional personnel, innovative systems and uncompromising integrity.",
+  description = "For over five decades, SGA has safeguarded homes, businesses, and institutions across East Africa. With uncompromising integrity and deep local expertise, we combine proven processes, technology, and people to keep millions safe every day.",
   id
 }: ParallaxSectionProps) {
   const ref = useRef(null)
@@ -85,7 +85,7 @@ export default function ParallaxSection({
                     className="w-12 h-12 md:w-28 md:h-28 text-white"
                   />
                 </motion.div>
-                <p className="text-lg md:text-2xl lg:text-6xl max-w-6xl text-white font-semibold leading-relaxed text-left">
+                <p className="text-lg md:text-2xl lg:text-5xl max-w-6xl text-white font-semibold leading-relaxed text-left">
                   {description}
                 </p>
               </div>
@@ -97,7 +97,7 @@ export default function ParallaxSection({
                   whileTap={{ scale: 0.95 }}
                   className="bg-transparent hover:bg-white text-white hover:text-primary-orange border border-white px-14 hover:px-18 py-2 rounded-full font-semibold text-md shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group relative"
                 >
-                  What we do
+                  What We Do
                   <Icon
                     icon="iconoir:arrow-right-circle"
                     className="w-5 h-5 text-primary-orange opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute right-4"
@@ -109,7 +109,7 @@ export default function ParallaxSection({
                   whileTap={{ scale: 0.95 }}
                   className="bg-transparent hover:bg-white text-white hover:text-primary-orange border border-white px-14 hover:px-18 py-2 rounded-full font-semibold text-md shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group relative"
                 >
-                  Sustainability
+                  Our Sustainability Impact
                   <Icon
                     icon="iconoir:arrow-right-circle"
                     className="w-5 h-5 text-primary-orange opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute right-4"
