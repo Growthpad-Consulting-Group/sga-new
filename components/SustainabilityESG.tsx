@@ -66,7 +66,7 @@ const sdgGoals: SDGGoal[] = [
 
 export default function SustainabilityESG(): React.JSX.Element {
   return (
-    <section id="sustainability-esg" className="section-snap flex items-center justify-center bg-light-grey relative py-12 md:py-16">
+    <section id="sustainability-esg" className="flex items-center justify-center bg-light-grey relative py-12 md:py-16">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}

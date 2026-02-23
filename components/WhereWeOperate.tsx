@@ -23,7 +23,7 @@ export default function WhereWeOperate(): React.JSX.Element {
     mapRef.current?.selectLocationByCountry(country)
   }
   return (
-    <section id="where-we-operate" className="section-snap flex items-center justify-center relative min-h-[85vh] py-12 md:py-20 overflow-x-hidden">
+    <section id="where-we-operate" className="flex items-center justify-center relative min-h-[85vh] py-12 md:py-20 overflow-x-hidden">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}

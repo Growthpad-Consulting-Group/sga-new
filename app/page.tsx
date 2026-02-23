@@ -47,46 +47,44 @@ export default function HomePage(): React.JSX.Element {
         ]}
       />
 
-      <div className="relative">
-        <ParallaxSection
-          title="Who We Are"
-          id="about"
-        />
-      </div>
+      <ParallaxSection
+        title="Who We Are"
+        id="about"
+      />
 
-      <div className="relative">
+      <div className="relative section-snap">
         <OurImpactInNumbers />
         <SectionSeparator />
       </div>
 
-      <div className="relative">
+      <div className="relative section-snap">
         <GroupIntegratedSolutions
           title="What We Offer"
         />
         <SectionSeparator />
       </div>
 
-      <div className="relative">
+      <div className="relative section-snap">
         <WhereWeOperate />
         <SectionSeparator />
       </div>
 
-      <div className="relative">
+      <div className="relative section-snap">
         <SustainabilityESG />
         <SectionSeparator />
       </div>
 
-      <div className="relative">
+      <div className="relative section-snap">
         <News />
         <SectionSeparator />
       </div>
 
-      <div className="relative">
+      <div className="relative section-snap">
         <HappyClients />
         <SectionSeparator />
       </div>
 
-      <div className="relative">
+      <div className="relative section-snap">
         <JoinOurMission />
         <SectionSeparator />
       </div>

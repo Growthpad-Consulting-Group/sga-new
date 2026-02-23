@@ -55,7 +55,7 @@ export default function HappyClients() {
     carousel.goToPage(1)
   }
   return (
-    <section id="happy-clients" className="section-snap flex items-center justify-center bg-white py-12 md:py-20 min-h-[85vh] relative">
+    <section id="happy-clients" className="flex items-center justify-center bg-white py-12 md:py-20 min-h-[85vh] relative">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}

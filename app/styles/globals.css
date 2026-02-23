@@ -133,12 +133,15 @@
 
 @layer base {
   html {
-    scroll-behavior: smooth;
+    scroll-snap-type: y proximity;
+    scroll-padding-top: 6rem; /* Offset for sticky header (96px) */
+    overflow-y: auto;
+    height: 100%;
   }
 
   body {
     @apply bg-white text-dark-charcoal font-body;
-    overflow-y: scroll;
+    height: 100%;
   }
 
   /* Headings use Helvetica Neue */
@@ -219,7 +222,13 @@
   }
 
   .no-snap {
-    scroll-snap-align: none;
+    scroll-snap-align: none !important;
+    scroll-snap-stop: normal !important;
+  }
+
+  .snap-section,
+  .section-snap {
+    scroll-snap-align: start;
     scroll-snap-stop: normal;
   }
 }

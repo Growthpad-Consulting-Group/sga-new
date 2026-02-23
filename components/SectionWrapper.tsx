@@ -13,7 +13,7 @@ export default function SectionWrapper({ children, className = '', id = '' }: Se
   return (
     <section
       id={id}
-      className={`flex items-center justify-center ${className}`}
+      className={`flex items-center justify-center snap-section ${className}`}
     >
       <motion.div
         initial={{ opacity: 0, y: 50 }}

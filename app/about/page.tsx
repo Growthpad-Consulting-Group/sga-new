@@ -2,8 +2,7 @@ import AboutHero from '@/components/AboutHero'
 import AboutIntro from '@/components/AboutIntro'
 import OurFoundation from '@/components/OurFoundation'
 import OurJourney from '@/components/OurJourney'
-import Membership from '@/components/Membership'
-import Certifications from '@/components/Certifications'
+import CertificationsAndMemberships from '@/components/CertificationsAndMemberships'
 import type { Metadata } from 'next'
 import SectionSeparator from '@/components/SectionSeparator'
 
@@ -33,13 +32,9 @@ export default function AboutPage(): React.JSX.Element {
         <SectionSeparator />
       </div>
       <div className="relative">
-        <Membership />
+        <CertificationsAndMemberships />
         <SectionSeparator />
       </div>
-      <div className="relative">
-        <Certifications />
-        <SectionSeparator />
-      </div>      
     </>
   )
 }

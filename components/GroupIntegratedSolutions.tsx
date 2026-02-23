@@ -116,7 +116,7 @@ export default function GroupIntegratedSolutions({
   )
 
   return (
-    <section id="integrated-solutions" className="section-snap flex items-center justify-center bg-gray-200/90 relative min-h-[85vh] py-12 md:py-16">
+    <section id="integrated-solutions" className="flex items-center justify-center bg-gray-200/90 relative min-h-[85vh] py-12 md:py-16">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
