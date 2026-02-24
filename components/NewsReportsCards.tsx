@@ -31,9 +31,8 @@ export default function NewsReportsCards({ providedCountry, initialNewsItems }: 
     new Set(displayItems.map(item => new Date(item.date || item.publishedAt).getFullYear()))
   ).sort((a, b) => b - a) // Sort descending (newest first)
 
-  // Determine base path for slugs based on current route
-  const basePath = pathname?.startsWith('/news-reports') ? '/news-reports' :
-    pathname?.includes('/updates') ? (providedCountry ? `/${providedCountry.toLowerCase().substring(0, 2)}/updates` : '/updates') : '/updates'
+  // Determine base path for slugs - always point to /news-reports as the canonical detail route
+  const basePath = '/news-reports'
 
   const filteredItems = (() => {
     let filtered = displayItems.filter(item => {
@@ -95,7 +94,10 @@ export default function NewsReportsCards({ providedCountry, initialNewsItems }: 
 
   const goToPage = (page: number) => {
     setCurrentPage(page)
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    const newsSection = document.getElementById('news')
+    if (newsSection) {
+      newsSection.scrollIntoView({ behavior: 'smooth' })
+    }
   }
 
   const handlePrevious = () => {
@@ -257,7 +259,7 @@ export default function NewsReportsCards({ providedCountry, initialNewsItems }: 
 
                   {/* Title */}
                   <Link href={`${basePath}/${item.slug.current || item.slug}`}>
-                    <h3 className="text-xl md:text-3xl font-bold text-white mb-3 line-clamp-2 hover:opacity-80 transition-opacity">
+                    <h3 className="text-xl md:text-3xl font-bold text-white mb-3 line-clamp-2 hover:opacity-80 transition-opacity capitalize">
                       {item.title}
                     </h3>
                   </Link>

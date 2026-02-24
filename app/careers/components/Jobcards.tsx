@@ -181,7 +181,7 @@ export default function JobCards() {
 
   return (
     <section id="news-reports-cards" className="bg-light-grey py-16 sm:py-20">
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -250,8 +250,8 @@ export default function JobCards() {
                     key={filter}
                     onClick={() => handleFilterChange(filter)}
                     className={`px-4 py-2 rounded-full border border-navy-blue text-xs font-semibold uppercase transition-colors ${activeFilter === filter
-                        ? 'bg-primary-orange border-primary-orange text-white'
-                        : 'text-navy-blue hover:bg-primary-orange hover:border-primary-orange hover:text-white'
+                      ? 'bg-primary-orange border-primary-orange text-white'
+                      : 'text-navy-blue hover:bg-primary-orange hover:border-primary-orange hover:text-white'
                       }`}
                   >
                     {filter}
@@ -375,8 +375,8 @@ export default function JobCards() {
                 onClick={() => goToPage(currentPage - 1)}
                 disabled={currentPage === 1}
                 className={`px-4 py-2 rounded-full border border-navy-blue text-sm font-semibold transition-colors flex items-center gap-2 ${currentPage === 1
-                    ? 'opacity-50 cursor-not-allowed text-gray-400 border-gray-300'
-                    : 'text-navy-blue hover:bg-navy-blue hover:text-white'
+                  ? 'opacity-50 cursor-not-allowed text-gray-400 border-gray-300'
+                  : 'text-navy-blue hover:bg-navy-blue hover:text-white'
                   }`}
               >
                 <Icon icon="mdi:chevron-left" className="w-5 h-5" />
@@ -409,8 +409,8 @@ export default function JobCards() {
                       key={page}
                       onClick={() => goToPage(page)}
                       className={`w-10 h-10 rounded-full border text-sm font-semibold transition-colors ${currentPage === page
-                          ? 'bg-navy-blue text-white border-navy-blue'
-                          : 'text-navy-blue border-navy-blue hover:bg-navy-blue hover:text-white'
+                        ? 'bg-navy-blue text-white border-navy-blue'
+                        : 'text-navy-blue border-navy-blue hover:bg-navy-blue hover:text-white'
                         }`}
                     >
                       {page}
@@ -424,8 +424,8 @@ export default function JobCards() {
                 onClick={() => goToPage(currentPage + 1)}
                 disabled={currentPage === totalPages}
                 className={`px-4 py-2 rounded-full border border-navy-blue text-sm font-semibold transition-colors flex items-center gap-2 ${currentPage === totalPages
-                    ? 'opacity-50 cursor-not-allowed text-gray-400 border-gray-300'
-                    : 'text-navy-blue hover:bg-navy-blue hover:text-white'
+                  ? 'opacity-50 cursor-not-allowed text-gray-400 border-gray-300'
+                  : 'text-navy-blue hover:bg-navy-blue hover:text-white'
                   }`}
               >
                 Next

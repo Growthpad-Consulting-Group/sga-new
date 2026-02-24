@@ -100,11 +100,11 @@ export default function ContactInfo({ providedCountry }: ContactInfoProps): Reac
         >
           <div className="section-title-container">
             <h2 className="section-title text-xl md:text-5xl font-bold text-primary-orange">
-              {providedCountry ? `${providedCountry} Contacts` : 'Country Contacts'}
+              {providedCountry ? `${providedCountry} Contacts` : 'Contact Information'}
             </h2>
             <div className="section-title-bar"></div>
           </div>
-          <p className="text-sm md:text-lg text-gray-700 leading-relaxed max-w-4xl pt-6">
+          <p className="text-sm md:text-lg text-gray-700 leading-relaxed max-w-4xl">
             {providedCountry
               ? `Direct lines and offices for SGA Security ${providedCountry}.`
               : 'Direct lines and offices for each country. You can also visit the country website for more local information.'}
@@ -112,7 +112,7 @@ export default function ContactInfo({ providedCountry }: ContactInfoProps): Reac
         </motion.div>
 
         {/* Contact Cards Grid */}
-        <div className={`grid gap-6 md:gap-8 mt-12 ${providedCountry ? 'md:grid-cols-1 max-w-2xl' : 'md:grid-cols-3'}`}>
+        <div className={`grid gap-6 md:gap-8 mt-2 ${providedCountry ? 'md:grid-cols-1 max-w-2xl' : 'md:grid-cols-3'}`}>
           {filteredOffices.map((office, index) => (
             <motion.div
               key={index}
