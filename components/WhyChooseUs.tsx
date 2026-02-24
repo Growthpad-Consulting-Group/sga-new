@@ -3,7 +3,10 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
-import { AccordionItem } from '@/data/why-choose-us'
+export interface AccordionItem {
+  title: string
+  description: string
+}
 
 interface WhyChooseUsProps {
   countryName?: string

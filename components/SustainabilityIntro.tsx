@@ -49,6 +49,7 @@ export default function SustainabilityIntro(): React.JSX.Element {
             <h2 className="section-title text-xl md:text-4xl font-bold text-primary-orange">
               Our ESG Implementation Journey
             </h2>
+            <div className="section-title-bar"></div>
           </div>
           <p className="text-base md:text-2xl text-gray-700 leading-relaxed max-w-7xl pt-4">
             We are integrating Environmental, Social and Governance principles into our operations, aligning with ICoCA and ISO 18788:2015 to uphold human rights and ethical business conduct.

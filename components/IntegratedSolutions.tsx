@@ -50,7 +50,7 @@ export default function IntegratedSolutions({
   const { openModal } = useEnquiryModal()
   const { name: countryName } = useCountry()
   const [currentIndex, setCurrentIndex] = useState(0)
-  
+
   // Use dynamic title if not provided, otherwise use the prop
   const dynamicTitle = title || `Tailored Security for ${countryName}n Homes.`
 
@@ -78,16 +78,19 @@ export default function IntegratedSolutions({
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="space-y-4 flex flex-col justify-center items-start text-left"
+            className="space-y-4 mt-20 flex flex-col justify-center items-start text-left"
           >
             <p className="text-md font-medium text-dark-charcoal uppercase tracking-wider mb-2">
               integrated solutions
             </p>
             <div className="section-title-container w-full flex items-end justify-between">
-              <h3 className="section-title text-xl md:text-4xl font-bold text-primary-orange">
-                {dynamicTitle}
-              </h3>
-              <div className="flex items-center gap-3 mb-1">
+              <div className="flex-1">
+                <h3 className="section-title text-xl md:text-5xl font-bold text-primary-orange">
+                  {dynamicTitle}
+                </h3>
+                <div className="section-title-bar"></div>
+              </div>
+              <div className="flex items-center gap-3 mb-1 relative z-20">
                 <button
                   onClick={handlePrev}
                   className="w-10 h-10 rounded-full border-2 border-dark-charcoal flex items-center justify-center text-dark-charcoal hover:border-primary-orange hover:text-primary-orange transition-all duration-300"

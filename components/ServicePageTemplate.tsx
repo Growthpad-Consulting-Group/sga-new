@@ -535,7 +535,7 @@ export default function ServicePageTemplate({
                         >
                             <div className="section-title-container w-full">
                                 <h2 className="section-title text-xl md:text-4xl font-bold text-primary-orange capitalize">
-                                    Response Packages
+                                    {serviceType === 'Corporate' ? 'Corporate Response Packages' : 'Response Packages'}
                                 </h2>
                                 <div className="section-title-bar"></div>
                             </div>

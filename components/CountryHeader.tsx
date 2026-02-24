@@ -6,6 +6,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Icon } from '@iconify/react'
 import { usePathname } from 'next/navigation'
+import { countries as countriesData } from '@/data/countries-data'
 import { useEnquiryModal } from '@/contexts/EnquiryModalContext'
 import TopBar from './header/TopBar'
 import MegaMenuDropdown from './header/MegaMenuDropdown'
@@ -72,6 +73,8 @@ export default function CountryHeader(): React.JSX.Element {
   }
 
   const countryPrefix = getCountryPrefix()
+  const currentCountryCode = pathname.split('/')[1] as keyof typeof countriesData
+  const currentCountry = countriesData[currentCountryCode]
 
   const individualServicesItems: ServiceItem[] = [
     { href: `${countryPrefix}/services/individual/home-security`, label: 'Home Security' },
@@ -87,7 +90,7 @@ export default function CountryHeader(): React.JSX.Element {
     { href: `${countryPrefix}/services/corporate/risk-assessment`, label: 'Risk Assessment' },
     { href: `${countryPrefix}/services/corporate/consulting-services`, label: 'Consulting Services' },
     { href: `${countryPrefix}/services/corporate/event-security`, label: 'Event Security' },
-    { href: `${countryPrefix}/services/individual/emergency-response`, label: 'Emergency Response' },
+    { href: `${countryPrefix}/services/corporate/emergency-response`, label: 'Emergency Response' },
   ]
 
   const servicesItems = servicesViewType === 'Individual' ? individualServicesItems : corporateServicesItems
@@ -132,19 +135,13 @@ export default function CountryHeader(): React.JSX.Element {
   }
 
   const getCountryPhone = (): string | null => {
-    if (pathname.startsWith('/ke')) return '+254111024000'
-    if (pathname.startsWith('/ug')) return '+256772200048'
-    if (pathname.startsWith('/tz')) return '+255222123456'
-    return null
+    return currentCountry?.phone || null
   }
 
   const countryPhone = getCountryPhone()
 
   const getCountryName = (): string => {
-    if (pathname.startsWith('/ke')) return 'Kenya'
-    if (pathname.startsWith('/ug')) return 'Uganda'
-    if (pathname.startsWith('/tz')) return 'Tanzania'
-    return ''
+    return currentCountry?.name || ''
   }
   const currentCountryName = getCountryName()
 
@@ -155,8 +152,8 @@ export default function CountryHeader(): React.JSX.Element {
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${isScrolled
-        ? `bg-white/90 ${servicesDropdownOpen || industriesDropdownOpen ? '' : 'backdrop-blur-md'} shadow-lg py-2`
-        : (isAboutPage ? 'bg-white' : 'bg-primary-orange')
+      ? `bg-white/90 ${servicesDropdownOpen || industriesDropdownOpen ? '' : 'backdrop-blur-md'} shadow-lg py-2`
+      : (isAboutPage ? 'bg-white' : 'bg-primary-orange')
       }`}>
       {/* Top Bar */}
       <TopBar
@@ -244,8 +241,8 @@ export default function CountryHeader(): React.JSX.Element {
                   href={item.href}
                   whileHover={{ y: -2 }}
                   className={`transition-colors !font-nav font-bold tracking-widest flex items-center gap-1.5 text-sm xl:text-base ${isActive
-                      ? (isScrolled || isAboutPage) ? 'text-primary-orange' : 'text-white'
-                      : (isScrolled || isAboutPage) ? 'text-dark-charcoal hover:text-primary-orange' : 'text-white/90 hover:text-white'
+                    ? (isScrolled || isAboutPage) ? 'text-primary-orange' : 'text-white'
+                    : (isScrolled || isAboutPage) ? 'text-dark-charcoal hover:text-primary-orange' : 'text-white/90 hover:text-white'
                     }`}
                 >
                   {item.icon && <Icon icon={item.icon} className={`w-4 h-4 xl:w-5 xl:h-5 ${(isScrolled || isAboutPage) ? 'text-primary-orange' : 'text-white'}`} />}

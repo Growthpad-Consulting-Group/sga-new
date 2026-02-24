@@ -4,7 +4,11 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import Image from 'next/image'
-import { IndustryCarouselItem } from '@/data/industries-carousel'
+export interface IndustryCarouselItem {
+  name: string
+  icon: string
+  image: string
+}
 
 interface IndustriesProps {
   backgroundColor?: string

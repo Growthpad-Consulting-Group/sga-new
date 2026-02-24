@@ -75,9 +75,10 @@ export default function About({
               )}
               {h3Title && (
                 <div className="section-title-container w-full">
-                  <h3 className="section-title text-xl md:text-4xl font-bold text-primary-orange">
+                  <h3 className="section-title text-xl md:text-5xl font-bold text-primary-orange">
                     {h3Title}
                   </h3>
+                  <div className="section-title-bar"></div>
                 </div>
               )}
               {h2Title && (
@@ -155,6 +156,7 @@ export default function About({
             <h2 className="section-title text-4xl md:text-5xl font-bold text-primary-orange mb-6">
               {content.title}
             </h2>
+            <div className="section-title-bar"></div>
           </div>
           <p className="text-lg text-dark-charcoal mb-6 leading-relaxed">
             {content.description}
