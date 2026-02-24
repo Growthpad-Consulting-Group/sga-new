@@ -11,7 +11,7 @@ interface FAQsHeroProps {
 export default function FAQsHero({ searchQuery, setSearchQuery }: FAQsHeroProps) {
 
   return (
-    <section id="faqs-hero" className="section-snap bg-gray-100 text-dark-charcoal pt-32 sm:pt-40 lg:pt-48 pb-16">
+    <section id="faqs-hero" className="section-snap bg-gray-100 text-dark-charcoal mt-20 pt-32 sm:pt-40 lg:pt-48 pb-16">
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -25,9 +25,9 @@ export default function FAQsHero({ searchQuery, setSearchQuery }: FAQsHeroProps)
           <p className="text-base md:text-lg text-gray-700 leading-relaxed">
             Clear answers to common questions about SGA Group, our security services, operating standards, and how we support clients across Africa.
           </p>
-          
+
           {/* Search Input */}
-          <div className="relative max-w-2xl mx-auto mt-8">
+          <div className="relative mx-auto mt-8">
             <input
               type="text"
               value={searchQuery}

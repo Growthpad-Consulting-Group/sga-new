@@ -78,7 +78,7 @@ export default function ParallaxSection({
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.3 }}
-                  className="absolute -top-6 -left-6 md:-top-20 md:-left-24 z-20"
+                  className="absolute -top-14 -left-6 md:-top-20 md:-left-24 z-20"
                 >
                   <Icon
                     icon="mdi:plus-thick"

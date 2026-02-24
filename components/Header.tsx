@@ -216,7 +216,7 @@ export default function Header() {
 
       {/* Main Navigation */}
       <nav className={containerClasses}>
-        <div className="flex items-center h-16 sm:h-24">
+        <div className="flex items-center justify-between h-20 sm:h-24">
           {/* Logo - Left */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
