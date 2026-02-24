@@ -44,21 +44,21 @@ export default function EventsIndustryPage() {
             category: 'Security Service',
             title: 'Event Security',
             summary: 'Professional security for concerts, conferences, and events.',
-            link: '/tz/services/event-security',
+            link: '/tz/services/corporate/event-security',
           },
           {
             image: '/images/ug/education.png',
             category: 'Security Service',
             title: 'Security Guarding',
             summary: 'Trained guards for venue protection and crowd management.',
-            link: '/tz/services/security-guarding',
+            link: '/tz/services/corporate/security-guarding',
           },
           {
             image: '/images/ug/healthcare.png',
             category: 'Security Service',
             title: 'Emergency Response',
             summary: 'Rapid response teams for event emergencies.',
-            link: '/tz/services/emergency-response',
+            link: '/tz/services/individual/emergency-response',
           },
         ]}
       />

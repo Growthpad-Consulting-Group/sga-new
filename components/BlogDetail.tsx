@@ -220,7 +220,7 @@ const Gallery = ({ images, onImageClick }: { images: any[]; onImageClick: (img: 
                     <div
                         key={idx}
                         onClick={() => onImageClick(img)}
-                        className={`relative overflow-hidden rounded-2xl shadow-xl transition-all duration-500 cursor-zoom-in group w-full`}
+                        className="relative w-full cursor-zoom-in group"
                         style={{
                             aspectRatio: images.length === 1 ? `${aspectRatio}` : (aspectRatio < 1 ? '1/1' : '1.2/1'),
                             maxHeight: images.length === 1 ? '70vh' : 'auto'
@@ -230,9 +230,8 @@ const Gallery = ({ images, onImageClick }: { images: any[]; onImageClick: (img: 
                             src={urlFor(img).url()}
                             alt={img.alt || `Gallery image ${idx + 1}`}
                             fill
-                            className="object-cover transition-transform duration-700 group-hover:scale-110"
+                            className="object-cover rounded-2xl shadow-xl transition-all duration-700 group-hover:scale-105"
                         />
-                        <div className="absolute inset-0 bg-dark-charcoal/0 group-hover:bg-dark-charcoal/20 transition-colors" />
                     </div>
                 );
             })}
@@ -548,7 +547,7 @@ export default function BlogDetail({ blog, relatedPosts = [] }: BlogDetailProps)
                                                         src={post.mainImage ? urlFor(post.mainImage).url() : '/images/misc/blog-placeholder'}
                                                         alt={post.title}
                                                         fill
-                                                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                                        className="object-cover rounded-t-[2.5rem] group-hover:scale-105 transition-transform duration-500"
                                                     />
                                                 </div>
                                                 <div className="p-8 flex flex-col flex-1">

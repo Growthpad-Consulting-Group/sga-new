@@ -1,10 +1,11 @@
 'use client'
 
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import Image from 'next/image'
 import Link from 'next/link'
-import DecorativePattern from '@/components/DecorativePattern'
+import SectionSeparator from '@/components/SectionSeparator'
 
 interface IndustryPageTemplateProps {
   industryName?: string
@@ -66,6 +67,18 @@ export default function IndustryPageTemplate({
     tz: '0784 700 299',
   }
   const emergencyPhone = emergencyPhones[countryCode] || emergencyPhones.ke
+
+  const [relatedServicesIndex, setRelatedServicesIndex] = useState(0)
+
+  const handlePrevRelated = () => {
+    if (!relatedServices) return
+    setRelatedServicesIndex((prev) => (prev === 0 ? Math.max(0, relatedServices.length - 3) : prev - 1))
+  }
+
+  const handleNextRelated = () => {
+    if (!relatedServices) return
+    setRelatedServicesIndex((prev) => (prev >= relatedServices.length - 3 ? 0 : prev + 1))
+  }
 
   return (
     <>
@@ -144,25 +157,19 @@ export default function IndustryPageTemplate({
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="relative w-full max-w-7xl mx-auto h-[280px] sm:h-[380px] md:h-[450px] lg:h-[520px] rounded-xl overflow-hidden shadow-xl"
+            className="relative w-full max-w-7xl mx-auto h-[280px] sm:h-[380px] md:h-[450px] lg:h-[520px] shadow-xl"
           >
             <Image
               src={heroImage}
               alt={`${industryName} Security - ${heroTitle}`}
               fill
-              className="object-cover"
+              className="object-cover rounded-xl"
               priority
             />
           </motion.div>
         </div>
 
-        {/* Decorative Pattern at Bottom */}
-        <div className="absolute bottom-0 left-0 right-0 w-full">
-          <DecorativePattern
-            className="transition-none"
-            static={true}
-          />
-        </div>
+        <SectionSeparator />
       </section>
 
       {/* Our Key Solutions Section */}
@@ -232,25 +239,19 @@ export default function IndustryPageTemplate({
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="relative w-full h-[350px] sm:h-[450px] lg:h-full rounded-xl overflow-hidden shadow-xl order-2 lg:order-2"
+              className="relative w-full h-[350px] sm:h-[450px] lg:h-full shadow-xl order-2 lg:order-2"
             >
               <Image
                 src={heroImage}
                 alt="Our Key Solutions"
                 fill
-                className="object-cover"
+                className="object-cover rounded-xl"
               />
             </motion.div>
           </div>
         </div>
 
-        {/* Decorative Pattern at Bottom */}
-        <div className="absolute bottom-0 left-0 right-0 w-full">
-          <DecorativePattern
-            className="transition-none"
-            static={true}
-          />
-        </div>
+        <SectionSeparator />
       </section>
 
       {/* The SGA Advantage Section */}
@@ -313,111 +314,110 @@ export default function IndustryPageTemplate({
           </div>
         </div>
 
-        {/* Decorative Pattern at Bottom */}
-        <div className="absolute bottom-0 left-0 right-0 w-full">
-          <DecorativePattern
-            className="transition-none"
-            static={true}
-          />
-        </div>
+        <SectionSeparator />
       </section>
 
       {/* Related Services Section */}
       {relatedServices && relatedServices.length > 0 && (
-        <section className="section-snap flex items-center justify-center bg-light-grey relative pb-0">
+        <section className="flex items-center justify-center bg-white relative pb-0 pt-16 sm:pt-20 overflow-hidden">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
-            className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+            className="w-full mx-auto px-4 sm:px-6 lg:px-8"
           >
             <div className="mb-12">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="space-y-3"
+                className="space-y-4 flex flex-col justify-center items-start text-left"
               >
-                <h3 className="text-xl md:text-2xl font-bold text-primary-orange relative pb-3 flex items-center justify-between">
-                  <span>Related Services</span>
-                  <div className="flex items-center gap-2">
-                    <button className="w-8 h-8 rounded-full text-navy-blue border-2 border-navy-blue flex items-center justify-center hover:bg-primary-orange hover:border-primary-orange hover:text-white transition-colors">
-                      <Icon icon="mdi:chevron-left" className="w-5 h-5" />
+                <p className="text-md font-medium text-dark-charcoal uppercase tracking-wider mb-2">
+                  Related Services
+                </p>
+                <div className="section-title-container w-full flex items-end justify-between">
+                  <h3 className="section-title text-xl md:text-4xl font-bold text-primary-orange">
+                    More Industry Solutions.
+                  </h3>
+                  <div className="flex items-center gap-3 mb-1">
+                    <button
+                      onClick={handlePrevRelated}
+                      className="w-10 h-10 rounded-full border-2 border-dark-charcoal flex items-center justify-center text-dark-charcoal hover:border-primary-orange hover:text-primary-orange transition-all duration-300"
+                    >
+                      <Icon icon="mingcute:arrow-left-line" className="w-6 h-6" />
                     </button>
-                    <button className="w-8 h-8 rounded-full text-navy-blue border-2 border-navy-blue flex items-center justify-center hover:bg-primary-orange hover:border-primary-orange hover:text-white transition-colors">
-                      <Icon icon="mdi:chevron-right" className="w-5 h-5" />
+                    <button
+                      onClick={handleNextRelated}
+                      className="w-10 h-10 rounded-full border-2 border-dark-charcoal flex items-center justify-center text-dark-charcoal hover:border-primary-orange hover:text-primary-orange transition-all duration-300"
+                    >
+                      <Icon icon="mingcute:arrow-right-line" className="w-6 h-6" />
                     </button>
                   </div>
-                  <span
-                    className="absolute bottom-0 left-0 w-full"
-                    style={{
-                      background: 'linear-gradient(to right, #00043E 0%, #00043E 70%, transparent 100%)',
-                      height: '1px'
-                    }}
-                  ></span>
-                </h3>
+                </div>
+                <p className="text-base font-normal md:text-2xl text-dark-charcoal max-w-4xl mt-4">
+                  Complement your industry security with our integrated range of services designed for maximum protection and efficiency.
+                </p>
               </motion.div>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-6 pb-12">
-              {relatedServices.map((service, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{ y: -5 }}
-                  className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow flex flex-col"
-                >
-                  {/* Featured Image - Clickable */}
-                  <motion.a
-                    href={service.link || '#'}
-                    whileHover={{ opacity: 0.9 }}
-                    className="relative w-full h-48 block cursor-pointer"
+            <div className="relative">
+              <div className="grid md:grid-cols-3 gap-6 lg:gap-8 pb-12">
+                {relatedServices.slice(relatedServicesIndex, relatedServicesIndex + 3).map((service, index) => (
+                  <motion.div
+                    key={relatedServicesIndex + index}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                    whileHover={{ y: -10 }}
+                    className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all flex flex-col group h-full"
                   >
-                    <Image
-                      src={service.image}
-                      alt={service.title}
-                      fill
-                      className="object-cover"
-                    />
-                  </motion.a>
-
-                  <div className="bg-primary-orange p-6 flex flex-col flex-1">
-
-                    {/* Title */}
-                    <h3 className="text-lg font-bold text-white mb-3">
-                      {service.title}
-                    </h3>
-
-                    {/* Summary */}
-                    <p className="text-white/90 text-sm leading-relaxed mb-4">
-                      {service.summary}
-                    </p>
-
-                    {/* Request Quote Button */}
-                    <motion.div
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="self-start"
+                    {/* Featured Image - Clickable */}
+                    <motion.a
+                      href={service.link || '#'}
+                      whileHover={{ opacity: 0.9 }}
+                      className="relative w-full h-56 block cursor-pointer overflow-hidden"
                     >
-                      <Link
-                        href="/contact"
-                        className="inline-block bg-white text-primary-orange px-4 py-2 rounded-full font-semibold text-xs uppercase hover:bg-light-grey transition-colors"
+                      <Image
+                        src={service.image}
+                        alt={service.title}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                    </motion.a>
+
+                    <div className="bg-primary-orange p-6 lg:p-8 flex flex-col flex-1">
+                      {/* Title */}
+                      <h3 className="text-2xl lg:text-3xl font-bold text-white mb-3 tracking-tight">
+                        {service.title}
+                      </h3>
+
+                      {/* Summary */}
+                      <p className="text-white text-lg md:text-2xl leading-relaxed mb-6 flex-grow">
+                        {service.summary}
+                      </p>
+
+                      {/* Request Quote Button */}
+                      <motion.div
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="self-start mt-auto"
                       >
-                        Request Quote
-                      </Link>
-                    </motion.div>
-                  </div>
-                </motion.div>
-              ))}
+                        <Link
+                          href={service.link || "/contact"}
+                          className="inline-block bg-white text-primary-orange px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-gray-100 transition-colors shadow-lg shadow-black/10"
+                        >
+                          Request a Quote
+                        </Link>
+                      </motion.div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </motion.div>
-          <DecorativePattern
-            static={true}
-          />
+          <SectionSeparator />
         </section>
       )}
 

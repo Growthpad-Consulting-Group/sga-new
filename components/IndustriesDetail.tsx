@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import Image from 'next/image'
-import DecorativePattern from '@/components/DecorativePattern'
+import SectionSeparator from '@/components/SectionSeparator'
 
 export interface Industry {
   id: string
@@ -146,12 +146,7 @@ export default function IndustriesDetail({
           </motion.a>
         </motion.div>
       </motion.div>
-      <div className="absolute bottom-0 left-0 right-0 w-full">
-        <DecorativePattern
-          className="transition-none"
-          static={true}
-        />
-      </div>
+      <SectionSeparator />
     </section>
   )
 }

@@ -74,20 +74,20 @@ export default function CountryHeader(): React.JSX.Element {
   const countryPrefix = getCountryPrefix()
 
   const individualServicesItems: ServiceItem[] = [
-    { href: `${countryPrefix}/services/home-security`, label: 'Home Security' },
-    { href: `${countryPrefix}/services/emergency-response`, label: 'Emergency Response' },
-    { href: `${countryPrefix}/services/safe-home-packages`, label: 'Safe Home Packages' },
-    { href: `${countryPrefix}/services/personal-security`, label: 'Personal Security' },
-    { href: `${countryPrefix}/services/24-7-monitoring`, label: '24/7 Monitoring' },
+    { href: `${countryPrefix}/services/individual/home-security`, label: 'Home Security' },
+    { href: `${countryPrefix}/services/individual/emergency-response`, label: 'Emergency Response' },
+    { href: `${countryPrefix}/services/individual/safe-home-packages`, label: 'Safe Home Packages' },
+    { href: `${countryPrefix}/services/individual/personal-security`, label: 'Personal Security' },
+    { href: `${countryPrefix}/services/individual/24-7-monitoring`, label: '24/7 Monitoring' },
   ]
 
   const corporateServicesItems: ServiceItem[] = [
-    { href: `${countryPrefix}/services/security-guarding`, label: 'Security Guarding' },
-    { href: `${countryPrefix}/services/electronic-security`, label: 'Electronic Security' },
-    { href: `${countryPrefix}/services/risk-assessment`, label: 'Risk Assessment' },
-    { href: `${countryPrefix}/services/consulting-services`, label: 'Consulting Services' },
-    { href: `${countryPrefix}/services/event-security`, label: 'Event Security' },
-    { href: `${countryPrefix}/services/emergency-response`, label: 'Emergency Response' },
+    { href: `${countryPrefix}/services/corporate/security-guarding`, label: 'Security Guarding' },
+    { href: `${countryPrefix}/services/corporate/electronic-security`, label: 'Electronic Security' },
+    { href: `${countryPrefix}/services/corporate/risk-assessment`, label: 'Risk Assessment' },
+    { href: `${countryPrefix}/services/corporate/consulting-services`, label: 'Consulting Services' },
+    { href: `${countryPrefix}/services/corporate/event-security`, label: 'Event Security' },
+    { href: `${countryPrefix}/services/individual/emergency-response`, label: 'Emergency Response' },
   ]
 
   const servicesItems = servicesViewType === 'Individual' ? individualServicesItems : corporateServicesItems
@@ -148,17 +148,16 @@ export default function CountryHeader(): React.JSX.Element {
   }
   const currentCountryName = getCountryName()
 
-  const isAboutPage = pathname.includes('/about') || 
-                      pathname.includes('/industries') || 
-                      pathname.includes('/services') || 
-                      pathname.includes('/why-us')
+  const isAboutPage = pathname.includes('/about') ||
+    pathname.includes('/industries') ||
+    pathname.includes('/services') ||
+    pathname.includes('/why-us')
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-      isScrolled 
-        ? `bg-white/90 ${servicesDropdownOpen || industriesDropdownOpen ? '' : 'backdrop-blur-md'} shadow-lg py-2` 
+    <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${isScrolled
+        ? `bg-white/90 ${servicesDropdownOpen || industriesDropdownOpen ? '' : 'backdrop-blur-md'} shadow-lg py-2`
         : (isAboutPage ? 'bg-white' : 'bg-primary-orange')
-    }`}>
+      }`}>
       {/* Top Bar */}
       <TopBar
         isScrolled={isScrolled}
@@ -198,7 +197,7 @@ export default function CountryHeader(): React.JSX.Element {
                 const dropdownOpen = isServices ? servicesDropdownOpen : industriesDropdownOpen
                 const setDropdownOpen = isServices ? setServicesDropdownOpen : setIndustriesDropdownOpen
                 const dropdownItems = isServices ? servicesItems : industriesItems
-                
+
                 return (
                   <div key={item.href} className="relative">
                     <motion.button
@@ -207,12 +206,12 @@ export default function CountryHeader(): React.JSX.Element {
                       className={`transition-colors !font-nav font-bold tracking-widest flex items-center gap-1.5 text-sm xl:text-base ${(isScrolled || isAboutPage) ? 'text-dark-charcoal hover:text-primary-orange' : 'text-white'}`}
                     >
                       {item.label}
-                      <Icon 
-                        icon="mdi:plus" 
-                        className={`w-4 h-4 xl:w-5 xl:h-5 ${(isScrolled || isAboutPage) ? 'text-dark-charcoal' : 'text-white'}`} 
+                      <Icon
+                        icon="mdi:plus"
+                        className={`w-4 h-4 xl:w-5 xl:h-5 ${(isScrolled || isAboutPage) ? 'text-dark-charcoal' : 'text-white'}`}
                       />
                     </motion.button>
-                    
+
                     <AnimatePresence>
                       {dropdownOpen && (
                         <MegaMenuDropdown
@@ -234,21 +233,20 @@ export default function CountryHeader(): React.JSX.Element {
                   </div>
                 )
               }
-              
+
               const isRoute = !item.href.startsWith('#')
               const isActive = isRoute ? pathname === item.href : false
               const NavComponent = isRoute ? motion(Link) : motion.a
-              
+
               return (
                 <NavComponent
                   key={item.href}
                   href={item.href}
                   whileHover={{ y: -2 }}
-                  className={`transition-colors !font-nav font-bold tracking-widest flex items-center gap-1.5 text-sm xl:text-base ${
-                    isActive 
+                  className={`transition-colors !font-nav font-bold tracking-widest flex items-center gap-1.5 text-sm xl:text-base ${isActive
                       ? (isScrolled || isAboutPage) ? 'text-primary-orange' : 'text-white'
                       : (isScrolled || isAboutPage) ? 'text-dark-charcoal hover:text-primary-orange' : 'text-white/90 hover:text-white'
-                  }`}
+                    }`}
                 >
                   {item.icon && <Icon icon={item.icon} className={`w-4 h-4 xl:w-5 xl:h-5 ${(isScrolled || isAboutPage) ? 'text-primary-orange' : 'text-white'}`} />}
                   {item.label}

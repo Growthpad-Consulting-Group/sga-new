@@ -44,14 +44,14 @@ export default function RealEstateIndustryPage() {
             category: 'Security Service',
             title: 'Security Guarding',
             summary: 'Professional guards for office buildings and commercial properties.',
-            link: '/tz/services/security-guarding',
+            link: '/tz/services/corporate/security-guarding',
           },
           {
             image: '/images/ug/education.png',
             category: 'Security Service',
             title: 'Electronic Security',
             summary: 'Advanced surveillance and access control systems.',
-            link: '/tz/services/electronic-security',
+            link: '/tz/services/corporate/electronic-security',
           },
           {
             image: '/images/ug/healthcare.png',

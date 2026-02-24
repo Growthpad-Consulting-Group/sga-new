@@ -64,13 +64,13 @@ export default function JoinOurMission(): React.JSX.Element {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative w-full h-[250px] md:h-[450px] rounded-2xl overflow-hidden mt-6"
+              className="relative w-full h-[250px] md:h-[450px] mt-6"
             >
               <Image
                 src="/images/group/our-mission.png"
                 alt="SGA Team"
                 fill
-                className="object-cover"
+                className="object-cover rounded-2xl"
               />
             </motion.div>
           </div>

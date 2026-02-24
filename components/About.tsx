@@ -126,12 +126,12 @@ export default function About({
                 transition={{ duration: 0.6 }}
                 className="flex flex-col justify-center h-full w-full"
               >
-                <div className="relative w-full h-[450px] md:h-full rounded-2xl overflow-hidden">
+                <div className="relative w-full h-[450px] md:h-full">
                   <Image
                     src={imageUrl}
                     alt={typeof h2Title === 'string' ? h2Title : 'About SGA'}
                     fill
-                    className="object-contain"
+                    className="object-contain rounded-2xl"
                   />
                 </div>
               </motion.div>

@@ -241,7 +241,7 @@ export default function NewsReportsCards({ providedCountry, initialNewsItems }: 
                       src={item.image || (item.mainImage ? urlFor(item.mainImage).url() : '/images/misc/blog-placeholder')}
                       alt={item.title}
                       fill
-                      className="object-cover"
+                      className="object-cover rounded-t-lg"
                     />
                     {/* Country Pill */}
                     <div className="absolute top-3 left-3 flex items-center gap-1 px-5 py-2 rounded-full bg-primary-orange text-white text-sm uppercase font-normal z-10">

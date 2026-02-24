@@ -44,21 +44,21 @@ export default function DiplomaticIndustryPage() {
             category: 'Security Service',
             title: 'Security Guarding',
             summary: 'Highly trained guards for diplomatic and government facilities.',
-            link: '/ke/services/security-guarding',
+            link: '/ke/services/corporate/security-guarding',
           },
           {
             image: '/images/ug/education.png',
             category: 'Security Service',
             title: 'Electronic Security',
             summary: 'Advanced surveillance and access control systems.',
-            link: '/ke/services/electronic-security',
+            link: '/ke/services/corporate/electronic-security',
           },
           {
             image: '/images/ug/healthcare.png',
             category: 'Security Service',
             title: 'Risk Assessment',
             summary: 'Comprehensive security audits and threat analysis.',
-            link: '/ke/services/risk-assessment',
+            link: '/ke/services/corporate/risk-assessment',
           },
         ]}
       />
