@@ -99,12 +99,12 @@ export default function GroupFooter(): React.JSX.Element {
                   className="absolute -top-4 -left-2 w-14 h-14 text-white font-bold"
                   style={{ strokeWidth: 3 }}
                 />
-                <p className="text-white/90 text-4xl pl-6 font-bold">
+                <p className="text-white/90 text-4xl sm:pl-6 pl-0 font-bold">
                   Integrated security across Kenya, Uganda and Tanzania protecting what matters for people and organizations.
                 </p>
               </div>
-              <div className="pl-6">
-                <div className="flex gap-4">
+              <div className="sm:pl-6 pl-0">
+                <div className="flex flex-col sm:flex-row gap-4">
                   <a
                     href="#contact"
                     className="bg-white text-primary-orange px-4 py-4 rounded-full font-semibold text-md uppercase hover:bg-white/90 transition-colors text-center flex-1"

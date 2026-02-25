@@ -24,7 +24,7 @@ function AccordionItem({ title, children, isOpen, onToggle, variant = 'default' 
     footer: {
       container: 'border border-white/20 rounded-lg overflow-hidden',
       button: 'w-full flex items-center justify-between p-4 bg-white/10 hover:bg-white/20 transition-colors',
-      title: 'font-semibold text-white capitalize text-2xl',
+      title: 'font-semibold text-white capitalize text-xl sm:text-2xl',
       icon: 'w-6 h-6 text-white',
       content: 'p-4',
     },

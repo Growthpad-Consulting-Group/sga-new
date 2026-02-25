@@ -460,7 +460,7 @@ export default function BlogDetail({ blog, relatedPosts = [] }: BlogDetailProps)
                 <div className="absolute top-40 right-20 w-48 h-48 bg-white/20 rounded-full blur-3xl" />
                 <div className="absolute bottom-40 left-10 w-64 h-64 bg-primary-orange opacity-10 rounded-full blur-3xl" />
 
-                <div className="relative z-10 w-full max-w-6xl mx-auto px-4 text-center mt-12 md:mt-24">
+                <div className="relative z-10 w-full max-w-6xl mx-auto px-4 text-center mt-32 md:mt-32 lg:mt-24">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}

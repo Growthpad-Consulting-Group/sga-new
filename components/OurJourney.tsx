@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 
 import { useCarousel, CarouselArrows } from './Carousel'
@@ -59,8 +59,19 @@ export default function OurJourney(): React.JSX.Element {
   const [touchEnd, setTouchEnd] = useState<number | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
-  // Use carousel hook for pagination (show 3 items at a time on desktop)
-  const carousel = useCarousel(timelineEvents.length, 3)
+  const [itemsToShow, setItemsToShow] = useState(3)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setItemsToShow(window.innerWidth < 768 ? 1 : 3)
+    }
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  // Use carousel hook for pagination (show itemsToShow items at a time)
+  const carousel = useCarousel(timelineEvents.length, itemsToShow)
 
   // Minimum swipe distance (in px)
   const minSwipeDistance = 50

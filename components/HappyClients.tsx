@@ -89,7 +89,7 @@ export default function HappyClients() {
         </div>
 
         <div className="mb-10">
-          <div className="flex flex-wrap gap-2 justify-start">
+          <div className="flex overflow-x-auto sm:flex-wrap gap-2 justify-start w-full max-w-[100vw] sm:max-w-none pb-2 sm:pb-0 [&::-webkit-scrollbar]:hidden" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
             {filterOptions.map((filter) => {
               const count = filter === 'ALL'
                 ? clients.length
@@ -99,7 +99,7 @@ export default function HappyClients() {
                 <button
                   key={filter}
                   onClick={() => handleFilterChange(filter)}
-                  className={`px-6 py-3 rounded-full border transition-colors flex items-center gap-1 text-md font-medium uppercase ${activeFilter === filter
+                  className={`shrink-0 whitespace-nowrap px-6 py-3 rounded-full border transition-colors flex items-center gap-1 text-md font-medium uppercase ${activeFilter === filter
                     ? 'bg-primary-orange text-white border-primary-orange'
                     : 'border-dark-charcoal text-dark-charcoal hover:border-primary-orange hover:text-primary-orange'
                     }`}
@@ -165,11 +165,10 @@ export default function HappyClients() {
               <button
                 key={i}
                 onClick={() => carousel.goToPage(i + 1)}
-                className={`rounded-full transition-all duration-300 ${
-                  carousel.currentPage === i + 1
+                className={`rounded-full transition-all duration-300 ${carousel.currentPage === i + 1
                     ? 'bg-primary-orange w-8 h-2'
                     : 'bg-dark-charcoal/30 w-2 h-2'
-                }`}
+                  }`}
                 aria-label={`Go to page ${i + 1}`}
               />
             ))}

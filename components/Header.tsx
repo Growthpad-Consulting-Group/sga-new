@@ -116,7 +116,7 @@ export default function Header() {
   // Common class strings
   const containerClasses = 'max-w-9xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8'
   const buttonHoverClasses = 'transition-colors'
-  const flagButtonClasses = 'w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 flex items-center justify-center rounded-full transition-all'
+  const flagButtonClasses = 'w-8 h-8 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full transition-all'
   const mobileMenuItemClasses = 'flex items-center gap-2 py-3 sm:py-3.5 transition-colors text-sm sm:text-base font-nav'
 
   return (
@@ -138,7 +138,7 @@ export default function Header() {
                   className={`${buttonHoverClasses} ${getTextColor()}`}
                   aria-label={social.label}
                 >
-                  <Icon icon={social.icon} className="w-4 h-4 sm:w-6 sm:h-6" />
+                  <Icon icon={social.icon} className="w-6 h-6 sm:w-6 sm:h-6" />
                 </motion.a>
               ))}
             </div>
@@ -178,8 +178,8 @@ export default function Header() {
                     aria-label={active ? `Currently in ${country.name}` : `Switch to ${country.name}`}
                     title={country.name}
                   >
-                    <div className="w-6 h-6 sm:w-10 sm:h-10 rounded-full overflow-hidden flex items-center justify-center ring-1 ring-white/20">
-                      <Icon icon={country.flag} className="w-5 h-5 sm:w-8 sm:h-8" />
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden flex items-center justify-center ring-1 ring-white/20">
+                      <Icon icon={country.flag} className="w-8 h-8 sm:w-8 sm:h-8" />
                     </div>
                   </motion.button>
                 )
@@ -330,7 +330,7 @@ export default function Header() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden pb-4 overflow-hidden"
+              className="lg:hidden pb-4 px-4 overflow-hidden bg-white shadow-2xl rounded-b-2xl absolute left-0 right-0 top-full z-50 border-t border-gray-100"
             >
               {/* Call Number - Mobile */}
               {isCountryPage && countryPhone && (
@@ -348,7 +348,7 @@ export default function Header() {
               {currentNavItems.map((item) => {
                 const isRoute = !item.href.startsWith('#')
                 const isActive = isRoute ? pathname === item.href : false
-                const itemClasses = `${mobileMenuItemClasses} ${isActive ? 'text-primary-orange font-semibold' : ' hover:text-primary-orange'}`
+                const itemClasses = `${mobileMenuItemClasses} ${isActive ? 'text-primary-orange font-semibold' : 'text-dark-charcoal hover:text-primary-orange font-semibold'}`
 
                 if (isRoute) {
                   return (
@@ -383,10 +383,7 @@ export default function Header() {
                   openModal()
                 }}
                 whileTap={{ scale: 0.95 }}
-                className={`mt-4 sm:mt-5 ${isCountryPage && !isScrolled
-                  ? 'bg-white text-primary-orange'
-                  : 'bg-primary-orange text-white'
-                  } px-6 py-3 sm:py-3.5 rounded-full font-heading font-semibold text-center text-sm sm:text-base shadow-md w-full`}
+                className="mt-4 sm:mt-5 bg-primary-orange text-white px-6 py-3 sm:py-3.5 rounded-full font-heading font-semibold text-center text-sm sm:text-base shadow-md w-full"
               >
                 Enquire Now
               </motion.button>
@@ -431,7 +428,7 @@ export default function Header() {
                   <Icon icon="teenyicons:x-circle-outline" className="w-8 h-8 sm:w-9 sm:h-9" />
                 </motion.button>
 
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8 md:gap-12 px-4">
+                <div className="flex flex-row flex-wrap sm:flex-nowrap items-center justify-center gap-6 sm:gap-8 md:gap-12 px-4">
                   {countries.map((country, index) => (
                     // ... (rest of the map content stays the same)
                     <motion.div
@@ -451,7 +448,7 @@ export default function Header() {
                         disabled={isActiveCountry(country.path)}
                         whileHover={!isActiveCountry(country.path) ? { scale: 1.05 } : {}}
                         whileTap={!isActiveCountry(country.path) ? { scale: 0.95 } : {}}
-                        className={`group relative w-44 h-44 sm:w-64 sm:h-64 md:w-96 md:h-96 rounded-full bg-white border-2 sm:border-4 border-primary-orange flex items-center justify-center shadow-2xl transition-all overflow-hidden ${isActiveCountry(country.path) ? 'cursor-default opacity-80' : 'cursor-pointer'}`}
+                        className={`group relative w-52 h-52 sm:w-64 sm:h-64 md:w-96 md:h-96 rounded-full bg-white border-2 sm:border-4 border-primary-orange flex items-center justify-center shadow-2xl transition-all overflow-hidden ${isActiveCountry(country.path) ? 'cursor-default opacity-80' : 'cursor-pointer'}`}
                         aria-label={isActiveCountry(country.path) ? `Currently in ${country.name}` : `Enter ${country.name}`}
                       >
                         {/* ENTER label at the top - shows only on hover and if NOT active */}
@@ -466,7 +463,7 @@ export default function Header() {
                         <div className={`flex items-center gap-2 sm:gap-4 md:gap-5 z-10 px-6 transition-transform duration-300 ${!isActiveCountry(country.path) ? 'group-hover:translate-y-2 md:group-hover:translate-y-4' : ''}`}>
                           <Icon
                             icon={country.flag}
-                            className="w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 flex-shrink-0"
+                            className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 flex-shrink-0"
                           />
                           <span className="text-lg sm:text-2xl md:text-4xl font-bold text-dark-charcoal tracking-tight normal-case">
                             {country.name}

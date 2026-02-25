@@ -90,12 +90,12 @@ export default function ParallaxSection({
                 </p>
               </div>
               {/* Buttons */}
-              <button className="flex flex-col sm:flex-row gap-4 justify-start items-start mt-8 md:mt-12">
+              <div className="flex flex-col sm:flex-row gap-4 justify-start items-stretch sm:items-start mt-8 md:mt-12 w-full sm:w-auto">
                 <motion.a
                   href="#what-we-do"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-transparent hover:bg-white text-white hover:text-primary-orange border border-white px-14 hover:px-18 py-2 rounded-full font-semibold text-md shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group relative"
+                  className="bg-transparent hover:bg-white text-white hover:text-primary-orange border border-white px-14 hover:px-18 py-3 rounded-full font-semibold text-md shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group relative w-full sm:w-auto"
                 >
                   What We Do
                   <Icon
@@ -107,7 +107,7 @@ export default function ParallaxSection({
                   href="#sustainability"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-transparent hover:bg-white text-white hover:text-primary-orange border border-white px-14 hover:px-18 py-2 rounded-full font-semibold text-md shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group relative"
+                  className="bg-transparent hover:bg-white text-white hover:text-primary-orange border border-white px-14 hover:px-18 py-3 rounded-full font-semibold text-md shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group relative w-full sm:w-auto"
                 >
                   Our Sustainability Impact
                   <Icon
@@ -115,7 +115,7 @@ export default function ParallaxSection({
                     className="w-5 h-5 text-primary-orange opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute right-4"
                   />
                 </motion.a>
-              </button>
+              </div>
             </div>
           </motion.div>
         </motion.div>

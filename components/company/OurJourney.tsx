@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import SectionWrapper from '@/components/SectionWrapper'
 import { motion } from 'framer-motion'
 import { useCarousel, CarouselArrows } from '@/components/Carousel'
@@ -11,8 +11,19 @@ export default function OurJourney(): React.JSX.Element {
     const [touchEnd, setTouchEnd] = useState<number | null>(null)
     const containerRef = useRef<HTMLDivElement>(null)
 
+    const [itemsToShow, setItemsToShow] = useState(3)
+
+    useEffect(() => {
+        const handleResize = () => {
+            setItemsToShow(window.innerWidth < 768 ? 1 : 3)
+        }
+        handleResize()
+        window.addEventListener('resize', handleResize)
+        return () => window.removeEventListener('resize', handleResize)
+    }, [])
+
     // Use carousel hook for pagination
-    const carousel = useCarousel(timelineEvents.length, 3)
+    const carousel = useCarousel(timelineEvents.length, itemsToShow)
 
     const minSwipeDistance = 50
 

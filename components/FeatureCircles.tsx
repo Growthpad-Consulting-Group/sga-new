@@ -37,7 +37,7 @@ const defaultFeatures = [
 
 export default function FeatureCircles({ features = defaultFeatures }: FeatureCirclesProps) {
     return (
-        <div className="grid grid-cols-3 gap-3 md:gap-6 pt-8">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-6 pt-8">
             {features.map((feature, index) => (
                 <FeatureCircle key={feature} label={feature} delay={index * 0.1} />
             ))}

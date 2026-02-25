@@ -96,7 +96,7 @@ export default function OurImpactInNumbers({ showPattern = true }: OurImpactInNu
               className="flex flex-col items-center"
             >
               <motion.div
-                className="w-36 h-36 md:w-48 md:h-48 lg:w-56 lg:h-56 rounded-full border border-primary-orange bg-primary-orange flex flex-col items-center justify-center shadow-lg group relative p-2 md:p-3 cursor-pointer"
+                className="w-44 h-44 md:w-48 md:h-48 lg:w-56 lg:h-56 rounded-full border border-primary-orange bg-primary-orange flex flex-col items-center justify-center shadow-lg group relative p-3 md:p-4 cursor-pointer"
                 whileHover={{
                   scale: 1.08,
                   y: -8,
@@ -109,10 +109,10 @@ export default function OurImpactInNumbers({ showPattern = true }: OurImpactInNu
                   ease: 'easeOut'
                 }}
               >
-                <span className="text-lg md:text-xl lg:text-3xl font-bold text-white transition-colors mb-1">
+                <span className="text-3xl md:text-4xl lg:text-5xl font-bold text-white transition-colors mb-2">
                   {stat.number}
                 </span>
-                <span className="text-white text-center text-[9px] md:text-[10px] lg:text-base font-normal px-2 leading-tight">
+                <span className="text-white text-center text-sm md:text-base lg:text-lg font-normal px-2 leading-tight">
                   {stat.label}
                 </span>
               </motion.div>
@@ -133,7 +133,7 @@ export default function OurImpactInNumbers({ showPattern = true }: OurImpactInNu
               className="flex flex-col items-center"
             >
               <motion.div
-                className="w-36 h-36 md:w-48 md:h-48 lg:w-56 lg:h-56 rounded-full border border-primary-orange bg-primary-orange flex flex-col items-center justify-center shadow-lg group relative p-2 md:p-3 cursor-pointer"
+                className="w-44 h-44 md:w-48 md:h-48 lg:w-56 lg:h-56 rounded-full border border-primary-orange bg-primary-orange flex flex-col items-center justify-center shadow-lg group relative p-3 md:p-4 cursor-pointer"
                 whileHover={{
                   scale: 1.08,
                   y: -8,
@@ -146,10 +146,10 @@ export default function OurImpactInNumbers({ showPattern = true }: OurImpactInNu
                   ease: 'easeOut'
                 }}
               >
-                <span className="text-lg md:text-xl lg:text-3xl font-bold text-white transition-colors mb-1">
+                <span className="text-3xl md:text-4xl lg:text-5xl font-bold text-white transition-colors mb-2">
                   {stat.number}
                 </span>
-                <span className="text-white text-center text-[9px] md:text-[10px] lg:text-base font-normal px-2 leading-tight">
+                <span className="text-white text-center text-sm md:text-base lg:text-lg font-normal px-2 leading-tight">
                   {stat.label}
                 </span>
               </motion.div>

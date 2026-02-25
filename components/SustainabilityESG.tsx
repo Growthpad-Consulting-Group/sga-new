@@ -107,7 +107,7 @@ export default function SustainabilityESG(): React.JSX.Element {
                 opacity: { duration: 0.5, delay: index * 0.1 },
                 y: { duration: 0.15 }
               }}
-              className="rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-150 cursor-pointer min-h-[240px]"
+              className="rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-150 cursor-pointer min-h-[160px] md:min-h-[240px]"
               style={{ backgroundColor: sdg.bgColor }}
             >
               <div className="p-5 md:p-6 h-full flex flex-col text-white">
@@ -146,7 +146,7 @@ export default function SustainabilityESG(): React.JSX.Element {
               opacity: { duration: 0.5, delay: 0.7 },
               y: { duration: 0.15 }
             }}
-            className="rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-150 border border-dark-charcoal bg-transparent min-h-[240px] cursor-pointer"
+            className="rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-150 border border-dark-charcoal bg-transparent min-h-[160px] md:min-h-[240px] cursor-pointer"
           >
             <div className="p-5 md:p-6 h-full flex flex-col">
               <h4 className="text-base md:text-2xl font-medium text-dark-charcoal mb-4 leading-tight">

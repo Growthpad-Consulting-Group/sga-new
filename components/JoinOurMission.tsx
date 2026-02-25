@@ -16,7 +16,7 @@ export default function JoinOurMission(): React.JSX.Element {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-100px' }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="w-full max-w-8xl mx-auto px-4 sm:px-6 lg:px-8"
+        className="w-full max-w-8xl mx-auto "
       >
         <motion.div
           initial={{ opacity: 0, y: 30 }}

@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { Icon } from '@iconify/react'
 import { useEnquiryModal } from '@/contexts/EnquiryModalContext'
 import Carousel, { useCarousel, CarouselArrows } from './Carousel'
+import { useState, useEffect } from 'react'
 
 interface Solution {
   title: string
@@ -76,7 +77,18 @@ export default function GroupIntegratedSolutions({
   solutions = defaultSolutions
 }: GroupIntegratedSolutionsProps & { solutions?: Solution[] }) {
   const { openModal } = useEnquiryModal()
-  const carousel = useCarousel(solutions.length, 3)
+  const [itemsPerPage, setItemsPerPage] = useState(3)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setItemsPerPage(window.innerWidth < 768 ? 1 : 3)
+    }
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  const carousel = useCarousel(solutions.length, itemsPerPage)
 
   const renderSolution = (solution: Solution, index: number) => (
     <motion.div
@@ -160,11 +172,10 @@ export default function GroupIntegratedSolutions({
               <button
                 key={i}
                 onClick={() => carousel.goToPage(i + 1)}
-                className={`rounded-full transition-all duration-300 ${
-                  carousel.currentPage === i + 1
+                className={`rounded-full transition-all duration-300 ${carousel.currentPage === i + 1
                     ? 'bg-primary-orange w-8 h-2'
                     : 'bg-dark-charcoal/30 w-2 h-2'
-                }`}
+                  }`}
                 aria-label={`Go to page ${i + 1}`}
               />
             ))}

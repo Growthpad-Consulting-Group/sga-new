@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, ReactNode } from 'react'
+import { useState, ReactNode, useEffect } from 'react'
 import { Icon } from '@iconify/react'
 
 interface CarouselProps {
@@ -18,6 +18,12 @@ interface CarouselProps {
 export function useCarousel(totalItems: number, itemsPerPage: number = 3) {
   const [currentPage, setCurrentPage] = useState(1)
   const totalPages = Math.ceil(totalItems / itemsPerPage)
+
+  useEffect(() => {
+    if (currentPage > totalPages && totalPages > 0) {
+      setCurrentPage(totalPages)
+    }
+  }, [totalPages, currentPage])
 
   const currentItems = (items: any[]) =>
     items.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
@@ -95,11 +101,10 @@ export default function Carousel({
               <button
                 key={i}
                 onClick={() => handlePageChange(i + 1)}
-                className={`rounded-full transition-all duration-300 ${
-                  carousel.currentPage === i + 1
+                className={`rounded-full transition-all duration-300 ${carousel.currentPage === i + 1
                     ? 'bg-primary-orange w-8 h-2'
                     : 'bg-dark-charcoal/30 w-2 h-2'
-                }`}
+                  }`}
                 aria-label={`Go to page ${i + 1}`}
               />
             ))}
@@ -129,11 +134,10 @@ export function CarouselArrows({
       <button
         onClick={onPrev}
         disabled={!canGoPrev}
-        className={`w-10 h-10 rounded-full border-2 border-dark-charcoal flex items-center justify-center transition-all duration-300 ${
-          !canGoPrev
+        className={`w-10 h-10 rounded-full border-2 border-dark-charcoal flex items-center justify-center transition-all duration-300 ${!canGoPrev
             ? 'opacity-30 cursor-not-allowed text-dark-charcoal'
             : 'text-dark-charcoal hover:border-primary-orange hover:text-primary-orange'
-        }`}
+          }`}
         aria-label="Previous page"
       >
         <Icon icon="mingcute:arrow-left-line" className="w-6 h-6" />
@@ -141,11 +145,10 @@ export function CarouselArrows({
       <button
         onClick={onNext}
         disabled={!canGoNext}
-        className={`w-10 h-10 rounded-full border-2 border-dark-charcoal flex items-center justify-center transition-all duration-300 ${
-          !canGoNext
+        className={`w-10 h-10 rounded-full border-2 border-dark-charcoal flex items-center justify-center transition-all duration-300 ${!canGoNext
             ? 'opacity-30 cursor-not-allowed text-dark-charcoal'
             : 'text-dark-charcoal hover:border-primary-orange hover:text-primary-orange'
-        }`}
+          }`}
         aria-label="Next page"
       >
         <Icon icon="mingcute:arrow-right-line" className="w-6 h-6" />

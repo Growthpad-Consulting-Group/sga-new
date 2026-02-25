@@ -218,7 +218,7 @@ export default function News({ hideCountryDropdown = false, backgroundColor = 'b
               {customSubtext || `Get the latest news, safety tips, and updates from SGA ${country || 'Security'}.`}
             </p>
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-4 w-full">
-              <div className="flex flex-wrap gap-2">
+              <div className="flex overflow-x-auto sm:flex-wrap gap-2 w-full max-w-[100vw] sm:max-w-none pb-2 sm:pb-0 [&::-webkit-scrollbar]:hidden" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                 {['ALL', 'ADVISORY REPORT', 'BLOG', 'MEDIA'].map((filter) => {
                   const count = filter === 'ALL'
                     ? (country ? allNewsItems.filter(item => item.country === country).length : allNewsItems.length)
@@ -228,7 +228,7 @@ export default function News({ hideCountryDropdown = false, backgroundColor = 'b
                     <button
                       key={filter}
                       onClick={() => handleFilterChange(filter)}
-                      className={`px-6 py-3 rounded-full border transition-colors flex items-center gap-1 text-md font-medium uppercase ${activeFilter === filter
+                      className={`shrink-0 whitespace-nowrap px-6 py-3 rounded-full border transition-colors flex items-center gap-1 text-md font-medium uppercase ${activeFilter === filter
                         ? 'bg-primary-orange text-white border-primary-orange'
                         : 'border-dark-charcoal text-dark-charcoal hover:border-primary-orange hover:text-primary-orange'
                         }`}
@@ -241,7 +241,7 @@ export default function News({ hideCountryDropdown = false, backgroundColor = 'b
               </div>
 
               {/* Right side - Country Dropdown + Search */}
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 ml-auto">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full sm:w-auto sm:ml-auto mt-2 sm:mt-0">
                 {/* Country Dropdown - Hidden on country-specific pages */}
                 {!hideCountryDropdown && (
                   <div className="relative w-full sm:w-48">

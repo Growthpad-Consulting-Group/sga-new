@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import Image from 'next/image'
@@ -24,13 +24,23 @@ export default function Industries({
   ctaLink = '#industries',
 }: IndustriesProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [itemsToShow, setItemsToShow] = useState(4)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setItemsToShow(window.innerWidth < 768 ? 1 : 4)
+    }
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   const handlePrev = () => {
-    setCurrentIndex((prev) => (prev === 0 ? industries.length - 4 : prev - 1))
+    setCurrentIndex((prev) => (prev <= 0 ? Math.max(0, industries.length - itemsToShow) : prev - 1))
   }
 
   const handleNext = () => {
-    setCurrentIndex((prev) => (prev >= industries.length - 4 ? 0 : prev + 1))
+    setCurrentIndex((prev) => (prev >= industries.length - itemsToShow ? 0 : prev + 1))
   }
 
   return (
@@ -78,8 +88,8 @@ export default function Industries({
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          {industries.slice(currentIndex, currentIndex + 4).map((industry, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          {industries.slice(currentIndex, currentIndex + itemsToShow).map((industry, index) => (
             <motion.div
               key={currentIndex + index}
               initial={{ opacity: 0, scale: 0.9 }}

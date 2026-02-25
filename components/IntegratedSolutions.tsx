@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import SectionWrapper from './SectionWrapper'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
@@ -51,15 +51,26 @@ export default function IntegratedSolutions({
   const { name: countryName } = useCountry()
   const [currentIndex, setCurrentIndex] = useState(0)
 
+  const [itemsToShow, setItemsToShow] = useState(3)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setItemsToShow(window.innerWidth < 768 ? 1 : 3)
+    }
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
   // Use dynamic title if not provided, otherwise use the prop
   const dynamicTitle = title || `Tailored Security for ${countryName}n Homes.`
 
   const handlePrev = () => {
-    setCurrentIndex((prev) => (prev === 0 ? solutions.length - 3 : prev - 1))
+    setCurrentIndex((prev) => (prev <= 0 ? Math.max(0, solutions.length - itemsToShow) : prev - 1))
   }
 
   const handleNext = () => {
-    setCurrentIndex((prev) => (prev >= solutions.length - 3 ? 0 : prev + 1))
+    setCurrentIndex((prev) => (prev >= solutions.length - itemsToShow ? 0 : prev + 1))
   }
 
   const bgClass = whiteBackground ? 'bg-white' : 'bg-light-grey'
@@ -113,7 +124,7 @@ export default function IntegratedSolutions({
 
         <div className="relative">
           <div className="grid md:grid-cols-3 gap-6 pb-12">
-            {solutions.slice(currentIndex, currentIndex + 3).map((solution, index) => (
+            {solutions.slice(currentIndex, currentIndex + itemsToShow).map((solution, index) => (
               <motion.div
                 key={currentIndex + index}
                 initial={{ opacity: 0, y: 30 }}

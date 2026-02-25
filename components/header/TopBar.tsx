@@ -44,14 +44,14 @@ export default function TopBar({
                 <motion.a
                   key={social.icon}
                   href={social.url}
-                  target="_blank" 
+                  target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.2 }}
                   whileTap={{ scale: 0.9 }}
                   className={isAboutPage ? 'text-dark-charcoal hover:text-primary-orange transition-colors' : 'text-white hover:text-white/80 transition-colors'}
                   aria-label={social.label}
                 >
-                  <Icon icon={social.icon} className="w-4 h-4 sm:w-6 sm:h-6" />
+                  <Icon icon={social.icon} className="w-6 h-6 sm:w-6 sm:h-6" />
                 </motion.a>
               ))}
             </div>
@@ -70,7 +70,7 @@ export default function TopBar({
                   <span className="font-bold text-[10px] sm:text-sm tracking-wider uppercase">CALL: {countryPhone}</span>
                 </motion.a>
               )}
-              
+
               {/* Country Flags */}
               <div className="flex items-center space-x-1.5 sm:space-x-2 md:space-x-1">
                 {countries.map((country) => {
@@ -82,8 +82,8 @@ export default function TopBar({
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
                       className={`
-                        w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 flex items-center justify-center rounded-full transition-all
-                        ${active 
+                        w-8 h-8 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full transition-all
+                        ${active
                           ? isAboutPage ? 'bg-primary-orange text-white' : 'bg-white text-primary-orange'
                           : isAboutPage ? 'text-dark-charcoal/80 hover:text-primary-orange hover:bg-primary-orange/10' : 'text-white/80 hover:text-white hover:bg-white/20'
                         }
@@ -91,13 +91,13 @@ export default function TopBar({
                       aria-label={`Switch to ${country.name}`}
                       title={country.name}
                     >
-                      <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full overflow-hidden flex items-center justify-center ring-1 ring-white/20">
+                      <div className="w-6 h-6 sm:w-6 sm:h-6 md:w-8 md:h-8 rounded-full overflow-hidden flex items-center justify-center ring-1 ring-white/20">
                         <Icon icon={country.flag} className="w-full h-full scale-125" />
                       </div>
                     </motion.button>
                   )
                 })}
-                
+
                 {/* Down Arrow Button */}
                 <motion.button
                   onClick={onCountryModalOpen}
@@ -106,7 +106,7 @@ export default function TopBar({
                   className={isAboutPage ? 'text-dark-charcoal/80 hover:text-primary-orange transition-colors' : 'text-white/80 hover:text-white transition-colors'}
                   aria-label="Open country selector"
                 >
-                  <Icon icon="mdi:chevron-down" className="w-4 h-4 sm:w-5 sm:h-5" />
+                  <Icon icon="mdi:chevron-down" className="w-6 h-6 sm:w-5 sm:h-5" />
                 </motion.button>
               </div>
 
