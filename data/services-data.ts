@@ -39,7 +39,7 @@ const homeSecurity: ServiceData = {
     serviceName: 'Home Security',
     serviceIcon: 'mdi:home-shield',
     serviceType: 'Individual',
-    heroImage: '/images/group/guarding.png',
+    heroImage: '/images/group/home-security.png',
     heroTitle: 'Protect Your Home and Family',
     heroDescription:
         'Our comprehensive home security solutions provide complete protection for your residence, family, and valuables. With advanced technology and professional monitoring, we ensure your home is secure 24/7 across {country}.',

@@ -27,12 +27,12 @@ const defaultSolutions: Solution[] = [
   {
     title: 'Courier',
     description: 'Secure courier services for sensitive documents and valuable items with tracked delivery.',
-    imageUrl: '/images/group/CCTV.png',
+    imageUrl: '/images/group/cctv.png',
   },
   {
     title: 'Guarding',
     description: 'Professional guarding for offices, malls, logistics yards and estates.',
-    imageUrl: '/images/group/guarding.png',
+    imageUrl: '/images/group/cit.png',
   },
   {
     title: 'Alarm Response',

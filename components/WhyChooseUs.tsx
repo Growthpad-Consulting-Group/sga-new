@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
+import Image from 'next/image'
 export interface AccordionItem {
   title: string
   description: string
@@ -12,11 +13,13 @@ interface WhyChooseUsProps {
   countryName?: string
   backgroundColor?: string
   accordionItems?: AccordionItem[]
+  image?: string
 }
 
 export default function WhyChooseUs({
   countryName = 'Kenya',
   backgroundColor = 'bg-white',
+  image = '/images/ke/why-choose-us.jpg',
   accordionItems = [
     {
       title: 'Local & Regional',
@@ -139,7 +142,14 @@ export default function WhyChooseUs({
             transition={{ duration: 0.6 }}
             className="flex flex-col justify-center h-full w-full"
           >
-            <div className="relative w-full h-[450px] md:h-full min-h-[500px] rounded-2xl bg-gray-200">
+            <div className="relative w-full h-[450px] md:h-full min-h-[500px] rounded-2xl overflow-hidden">
+              <Image
+                src={image}
+                alt={`Why choose SGA Security in ${countryName}`}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
             </div>
           </motion.div>
         </div>

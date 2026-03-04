@@ -103,7 +103,7 @@ export const homeData: Record<string, HomeContent> = {
         hero: {
             title: "Your Safety, Our Commitment Across Tanzania",
             description: "Protecting Tanzanian homes and businesses with world-class security services and local expertise.",
-            imageUrl: "/images/tz/tz-hero.png",
+            imageUrl: "/images/tz/hero.png",
             buttons: [
                 { label: "Explore Home Security", href: "#individuals", primary: true, separator: "Explore " },
                 { label: "Explore Business Security", href: "#corporate", primary: true, separator: "Explore " }
@@ -119,7 +119,7 @@ export const homeData: Record<string, HomeContent> = {
                 "Professional team with extensive local knowledge",
                 "State-of-the-art technological security integration"
             ],
-            imageUrl: "/images/tz/about-sga.png"
+            imageUrl: "/images/tz/about.png"
         },
         industries: {
             items: [

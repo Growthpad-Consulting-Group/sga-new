@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import SectionWrapper from './SectionWrapper'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
+import Image from 'next/image'
 import { useEnquiryModal } from '@/contexts/EnquiryModalContext'
 import { useCountry } from '@/contexts/CountryContext'
 
@@ -11,6 +12,7 @@ interface Solution {
   title: string
   icon: string
   description: string
+  image: string
 }
 
 interface IntegratedSolutionsProps {
@@ -24,21 +26,25 @@ const solutions: Solution[] = [
     title: 'Alarm & Response',
     icon: 'icon-park-solid:alarm',
     description: 'Fast dispatch when an alarm is triggered.',
+    image: '/images/solutions/alarm-response.jpg',
   },
   {
     title: '24/7 Monitoring',
     icon: 'ic:baseline-apartment',
     description: 'Constant watch from our control room.',
+    image: '/images/solutions/monitoring.jpg',
   },
   {
     title: 'Residential Guarding',
     icon: 'ic:baseline-dangerous',
     description: 'Trained guards at your doorstep.',
+    image: '/images/solutions/guarding.jpg',
   },
   {
     title: 'Personal Safety App',
     icon: 'mdi:cctv',
     description: 'One tap connects you to help instantly.',
+    image: '/images/solutions/safety-app.jpg',
   },
 ]
 
@@ -134,12 +140,19 @@ export default function IntegratedSolutions({
                 whileHover={{ y: -5 }}
                 className="rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col bg-gray-200"
               >
-                {/* Image/Icon Area */}
-                <div className="relative w-full h-64 bg-gray-200">
+                {/* Image Area */}
+                <div className="relative w-full h-64 overflow-hidden">
+                  <Image
+                    src={solution.image}
+                    alt={solution.title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
                 </div>
 
                 {/* Orange Footer Section */}
-                <div className="bg-primary-orange p-6 rounded-2xl flex flex-col flex-1">
+                <div className="bg-primary-orange p-6 rounded-2xl flex flex-col flex-1 -mt-2">
                   <h3 className="text-3xl font-bold text-white mb-3">
                     {solution.title}
                   </h3>

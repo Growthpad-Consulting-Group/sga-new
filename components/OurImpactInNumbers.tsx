@@ -53,7 +53,7 @@ export default function OurImpactInNumbers({ showPattern = true }: OurImpactInNu
       {/* Background Image - Static, no scroll animation */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/group/our-impact-in-numbers.png"
+          src="/images/group/fam.jpg"
           alt="Our Impact in Numbers Background"
           fill
           className="object-cover"
