@@ -15,6 +15,7 @@ interface IndustriesProps {
   industries: IndustryCarouselItem[]
   countryName?: string
   ctaLink?: string
+  subtext?: string
 }
 
 export default function Industries({
@@ -22,6 +23,7 @@ export default function Industries({
   industries,
   countryName = 'Kenya',
   ctaLink = '#industries',
+  subtext,
 }: IndustriesProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [itemsToShow, setItemsToShow] = useState(4)
@@ -64,7 +66,7 @@ export default function Industries({
             </p>
             <div className="section-title-container w-full flex items-end justify-between">
               <h3 className="section-title text-xl md:text-3xl lg:text-5xl text-primary-orange">
-                Built for your industry
+                Industries We Serve
               </h3>
               <div className="section-title-bar"></div>
               <div className="flex items-center gap-3 mb-1 relative z-20">
@@ -83,7 +85,7 @@ export default function Industries({
               </div>
             </div>
             <p className="text-base font-normal md:text-2xl text-dark-charcoal pb-4 mt-4">
-              From banks to gated estates - we tailor protection to your world.
+              {subtext ?? `Beyond homes, we provide tailored solutions for businesses, institutions, and real estate developments across ${countryName}.`}
             </p>
           </motion.div>
         </div>
@@ -131,7 +133,7 @@ export default function Industries({
             whileTap={{ scale: 0.95 }}
             className="bg-primary-orange text-white px-10 py-5 rounded-full font-semibold text-sm uppercase hover:bg-primary-orange/90 transition-colors"
           >
-            See solutions for your industry
+            Find Your Industry Solution
           </motion.a>
         </div>
       </motion.div>

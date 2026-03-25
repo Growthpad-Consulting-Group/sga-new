@@ -68,8 +68,14 @@ export default function IntegratedSolutions({
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  // Use dynamic title if not provided, otherwise use the prop
-  const dynamicTitle = title || `Tailored Security for ${countryName}n Homes.`
+  // Derive the country adjective (e.g. Kenya → Kenyan, Uganda → Ugandan, Tanzania → Tanzanian)
+  const countryAdjectiveMap: Record<string, string> = {
+    Kenya: 'Kenyan',
+    Uganda: 'Ugandan',
+    Tanzania: 'Tanzanian',
+  }
+  const countryAdjective = countryAdjectiveMap[countryName] ?? countryName
+  const dynamicTitle = title || `Tailored Security for ${countryAdjective} Homes.`
 
   const handlePrev = () => {
     setCurrentIndex((prev) => (prev <= 0 ? Math.max(0, solutions.length - itemsToShow) : prev - 1))

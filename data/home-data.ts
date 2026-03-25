@@ -13,6 +13,7 @@ export interface HomeContent {
         imageUrl: string
     }
     industries: {
+        subtext: string
         items: { name: string; icon: string; image: string }[]
     }
     whyUs: {
@@ -45,11 +46,12 @@ export const homeData: Record<string, HomeContent> = {
             imageUrl: "/images/ke/about-sga.png"
         },
         industries: {
+            subtext: 'Beyond homes, we provide tailored solutions for businesses, institutions, and real estate developments across Kenya.',
             items: [
-                { name: "Residential Estates & Apartments", icon: "mdi:bank", image: "/images/group/industries/residentials.png" },
-                { name: "Education & Schools", icon: "mdi:pickaxe", image: "/images/group/industries/education.png" },
-                { name: "Healthcare Facilitie", icon: "mdi:shield-account", image: "/images/group/industries/healthcare.png" },
-                { name: "Hospitality & Holiday Homes", icon: "mdi:truck", image: "/images/group/industries/hospitality.png" }
+                { name: "Homes", icon: "mdi:bank", image: "/images/group/industries/residentials.png" },
+                { name: "Businesses", icon: "mdi:pickaxe", image: "/images/group/industries/education.png" },
+                { name: "Institutions", icon: "mdi:shield-account", image: "/images/group/industries/healthcare.png" },
+                { name: "Real Estate", icon: "mdi:truck", image: "/images/group/industries/hospitality.png" }
             ]
         },
         whyUs: {
@@ -85,27 +87,28 @@ export const homeData: Record<string, HomeContent> = {
             imageUrl: "/images/ug/about.png"
         },
         industries: {
+            subtext: 'From small businesses to large institutions, SGA Uganda delivers custom security solutions to match diverse industry needs.',
             items: [
-                { name: "Residential", icon: "mdi:home", image: "/images/group/industries/residentials.png" },
-                { name: "Education", icon: "mdi:school", image: "/images/group/industries/education.png" },
-                { name: "Healthcare", icon: "mdi:hospital", image: "/images/group/industries/healthcare.png" },
-                { name: "Commercial", icon: "mdi:store", image: "/images/group/industries/hospitality.png" }
+                { name: "Homes", icon: "mdi:home", image: "/images/group/industries/residentials.png" },
+                { name: "Businesses", icon: "mdi:school", image: "/images/group/industries/education.png" },
+                { name: "Institutions", icon: "mdi:hospital", image: "/images/group/industries/healthcare.png" },
+                { name: "Real Estate", icon: "mdi:store", image: "/images/group/industries/hospitality.png" }
             ]
         },
         whyUs: {
             imageUrl: "/images/ug/why-choose-us.png",
             accordion: [
-                { title: "Local Presence", description: "SGA is a legacy security partner with deep roots in Uganda, providing trusted local expertise." },
-                { title: "24/7 Monitoring", description: "Our 24-hour control room in Kampala ensures constant vigilance and rapid emergency response." },
-                { title: "Expert Training", description: "Our personnel undergo rigorous training to ensure they provide the highest level of professional protection." },
-                { title: "Integrated Solutions", description: "We combine physical guarding with advanced electronic systems for comprehensive security coverage." }
+                { title: "Local & Regional", description: "We are a trusted security partner with strong roots in Uganda, backed by a regional network that extends across East Africa." },
+                { title: "24/7 Control Room", description: "Our advanced control room in Kampala operates day and night to ensure constant monitoring and rapid response." },
+                { title: "People + Tech", description: "Our trained Ugandan security professionals, supported by innovative technology, provide tailored and dependable protection." },
+                { title: "Proven Track Record", description: "With decades of service, we've safeguarded homes, businesses, and institutions across Uganda with consistency and trust." }
             ]
         }
     },
     tz: {
         hero: {
-            title: "Your Safety, Our Commitment Across Tanzania",
-            description: "Protecting Tanzanian homes and businesses with world-class security services and local expertise.",
+            title: "Protect what matters most - your home and family",
+            description: "From Dar es Salaam to towns across Tanzania, SGA Security keeps families and businesses safe with dependable 24/7 protection.",
             imageUrl: "/images/tz/hero.png",
             buttons: [
                 { label: "Explore Home Security", href: "/tz/services/individual", primary: true, separator: "Explore " },
@@ -114,8 +117,8 @@ export const homeData: Record<string, HomeContent> = {
         },
         about: {
             title: "WHO WE ARE",
-            largeTitle: "Trusted Security Excellence in Tanzania",
-            description: "SGA Tanzania provides comprehensive security solutions tailored to the unique needs of the Tanzanian market, ensuring peace of mind for our clients.",
+            largeTitle: "Protecting Tanzania with trusted experience",
+            description: "For more than 40 years, SGA Tanzania has provided reliable guarding, alarms, and monitoring backed by dedicated professionals and modern security technology.",
             points: [
                 "Fully licensed and compliant with Tanzanian laws",
                 "Wide coverage in Dar es Salaam and all major towns",
@@ -125,20 +128,21 @@ export const homeData: Record<string, HomeContent> = {
             imageUrl: "/images/tz/about.png"
         },
         industries: {
+            subtext: 'SGA Tanzania provides tailored security for homes, businesses, real estate, and institutions nationwide.',
             items: [
-                { name: "Residential Estates & Apartments", icon: "mdi:bank", image: "/images/group/industries/residentials.png" },
-                { name: "Education & Schools", icon: "mdi:pickaxe", image: "/images/group/industries/education.png" },
-                { name: "Healthcare Facilitie", icon: "mdi:shield-account", image: "/images/group/industries/healthcare.png" },
-                { name: "Hospitality & Holiday Homes", icon: "mdi:truck", image: "/images/group/industries/hospitality.png" }
+                { name: "Homes", icon: "mdi:bank", image: "/images/group/industries/residentials.png" },
+                { name: "Businesses", icon: "mdi:pickaxe", image: "/images/group/industries/education.png" },
+                { name: "Institutions", icon: "mdi:shield-account", image: "/images/group/industries/healthcare.png" },
+                { name: "Real Estate", icon: "mdi:truck", image: "/images/group/industries/hospitality.png" }
             ]
         },
         whyUs: {
             imageUrl: "/images/tz/why-choose-us.png",
             accordion: [
-                { title: "Professionalism", description: "Our Tanzanian team is recognized for their discipline, dedication, and professional excellence." },
-                { title: "Rapid Response", description: "Strategically located response teams ensure minimal delay during security incidents." },
-                { title: "Advanced Tech", description: "We invest in the latest security technology to keep our clients in Tanzania ahead of threats." },
-                { title: "Trusted Partner", description: "Over 50 years of experience protecting what matters most across Tanzania." }
+                { title: "Local & Regional", description: "With a long-standing presence in Tanzania, we combine local knowledge with a strong East African security network." },
+                { title: "24/7 Control Room", description: "Our Dar es Salaam control room runs 24/7, giving clients the assurance of continuous monitoring and immediate response." },
+                { title: "People + Tech", description: "A dedicated Tanzanian team, working alongside advanced security technology, ensures proactive and reliable solutions." },
+                { title: "Proven Track Record", description: "For decades, we've been the trusted security choice for families and businesses across Tanzania." }
             ]
         }
     }

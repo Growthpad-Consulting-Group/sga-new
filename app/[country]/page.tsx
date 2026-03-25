@@ -89,6 +89,7 @@ export default async function CountryHomePage({ params }: Props) {
                     countryName={c.name}
                     ctaLink={`/${country}/industries`}
                     backgroundColor="bg-light-grey"
+                    subtext={data.industries.subtext}
                 />
                 <SectionSeparator imageUrl={`/images/misc/section-pattern-${country}.svg`} />
             </div>
