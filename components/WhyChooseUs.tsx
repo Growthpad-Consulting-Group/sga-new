@@ -123,7 +123,7 @@ export default function WhyChooseUs({
               className="w-full"
             >
               <motion.a
-                href="#contact"
+                href="/contact"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="inline-flex items-center gap-3 bg-primary-orange text-white px-8 py-4 rounded-full font-semibold text-base uppercase hover:bg-primary-orange/90 transition-colors shadow-lg hover:shadow-xl"

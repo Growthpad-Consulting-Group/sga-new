@@ -5,6 +5,7 @@ import ConditionalFooter from '@/components/ConditionalFooter'
 import { EnquiryModalProvider } from '@/contexts/EnquiryModalContext'
 import { CVModalProvider } from '@/contexts/CVModalContext'
 import { CountryProvider } from '@/contexts/CountryContext'
+import { CountryModalProvider } from '@/contexts/CountryModalContext'
 import { headers } from 'next/headers'
 import { getCanonicalUrl, formatHrefLangLinks, getCountryMetadata } from '@/lib/seoHelpers'
 import { ReactNode } from 'react'
@@ -61,15 +62,17 @@ export default async function RootLayout({ children }: RootLayoutProps) {
       </head>
       <body>
         <CountryProvider country={country}>
-          <EnquiryModalProvider>
-            <CVModalProvider>
-              <ConditionalHeader />
-              <main className={isCountryPage ? "" : ""}>
-                {children}
-              </main>
-              <ConditionalFooter />
-            </CVModalProvider>
-          </EnquiryModalProvider>
+          <CountryModalProvider>
+            <EnquiryModalProvider>
+              <CVModalProvider>
+                <ConditionalHeader />
+                <main className={isCountryPage ? "" : ""}>
+                  {children}
+                </main>
+                <ConditionalFooter />
+              </CVModalProvider>
+            </EnquiryModalProvider>
+          </CountryModalProvider>
         </CountryProvider>
       </body>
     </html>

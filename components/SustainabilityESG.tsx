@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 interface SDGGoal {
   goal: number
@@ -107,7 +108,7 @@ export default function SustainabilityESG(): React.JSX.Element {
                 opacity: { duration: 0.5, delay: index * 0.1 },
                 y: { duration: 0.15 }
               }}
-              className="rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-150 cursor-pointer min-h-[160px] md:min-h-[240px]"
+              className="rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 min-h-[160px] md:min-h-[240px] capitalize"
               style={{ backgroundColor: sdg.bgColor }}
             >
               <div className="p-5 md:p-6 h-full flex flex-col text-white">
@@ -153,15 +154,18 @@ export default function SustainabilityESG(): React.JSX.Element {
                 Learn More About Our Sustainability Impact
               </h4>
               <div className="flex-1"></div>
-              <motion.a
-                href="#contact"
+              <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-primary-orange text-white px-6 py-3 rounded-full font-semibold text-xs md:text-sm uppercase hover:bg-[#d84c1e] transition-colors shadow-md hover:shadow-lg flex items-center justify-center gap-2 w-full"
+                className="w-full"
               >
-                Learn More
-
-              </motion.a>
+                <Link
+                  href="/sustainability"
+                  className="bg-primary-orange text-white px-6 py-3 rounded-full font-semibold text-xs md:text-sm uppercase hover:bg-[#d84c1e] transition-colors shadow-md hover:shadow-lg flex items-center justify-center gap-2 w-full"
+                >
+                  Learn More
+                </Link>
+              </motion.div>
             </div>
           </motion.div>
         </div>

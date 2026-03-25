@@ -134,7 +134,8 @@
 @layer base {
   html {
     scroll-snap-type: y proximity;
-    scroll-padding-top: 6rem; /* Offset for sticky header (96px) */
+    scroll-padding-top: 6rem;
+    /* Offset for sticky header (96px) */
     overflow-y: auto;
     height: 100%;
   }
@@ -154,9 +155,9 @@
     @apply font-heading tracking-tight-0 !important;
   }
 
-  /* Buttons use Helvetica Neue and uppercase */
+  /* Buttons use Helvetica Neue */
   button {
-    @apply font-heading uppercase tracking-tight-0 !important;
+    @apply font-heading tracking-tight-0 !important;
   }
 }
 

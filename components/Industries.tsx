@@ -64,7 +64,7 @@ export default function Industries({
             </p>
             <div className="section-title-container w-full flex items-end justify-between">
               <h3 className="section-title text-xl md:text-3xl lg:text-5xl text-primary-orange">
-                Industries We Serve
+                Built for your industry
               </h3>
               <div className="section-title-bar"></div>
               <div className="flex items-center gap-3 mb-1 relative z-20">
@@ -83,7 +83,7 @@ export default function Industries({
               </div>
             </div>
             <p className="text-base font-normal md:text-2xl text-dark-charcoal pb-4 mt-4">
-              SGA Tanzania provides tailored security for homes, businesses, real estate, and institutions nationwide.
+              From banks to gated estates - we tailor protection to your world.
             </p>
           </motion.div>
         </div>
@@ -131,7 +131,7 @@ export default function Industries({
             whileTap={{ scale: 0.95 }}
             className="bg-primary-orange text-white px-10 py-5 rounded-full font-semibold text-sm uppercase hover:bg-primary-orange/90 transition-colors"
           >
-            Find Your Industry Solution
+            See solutions for your industry
           </motion.a>
         </div>
       </motion.div>

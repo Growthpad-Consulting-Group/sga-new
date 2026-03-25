@@ -75,7 +75,7 @@ export default function WhereWeOperate(): React.JSX.Element {
                   Nairobi-based HQ serving nationwide clients.
                 </p>
                 <Link
-                  href="#kenya"
+                  href="/ke"
                   className="inline-block text-white text-sm font-semibold hover:underline uppercase tracking-wide"
                 >
                   Explore Kenya <Icon icon="iconoir:arrow-right-circle" className="inline-block ml-1 w-5 h-5" />
@@ -106,7 +106,7 @@ export default function WhereWeOperate(): React.JSX.Element {
                   Reliable services across key urban centers.
                 </p>
                 <Link
-                  href="#uganda"
+                  href="/ug"
                   className="inline-block text-white text-sm font-semibold hover:underline uppercase tracking-wide"
                 >
                   Explore Uganda <Icon icon="iconoir:arrow-right-circle" className="inline-block ml-1 w-5 h-5" />
@@ -137,7 +137,7 @@ export default function WhereWeOperate(): React.JSX.Element {
                   Coast-to-inland coverage with rapid response.
                 </p>
                 <Link
-                  href="#tanzania"
+                  href="/tz"
                   className="inline-block text-white text-sm font-semibold hover:underline uppercase tracking-wide"
                 >
                   Explore Tanzania <Icon icon="iconoir:arrow-right-circle" className="inline-block ml-1 w-5 h-5" />

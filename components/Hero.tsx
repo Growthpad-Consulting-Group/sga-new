@@ -5,10 +5,12 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { Icon } from '@iconify/react'
 import SectionWrapper from './SectionWrapper'
+import { useCountryModal } from '@/contexts/CountryModalContext'
 
 interface CustomButton {
   label?: string
   href: string
+  onClick?: (e: React.MouseEvent) => void
   className?: string
   style?: React.CSSProperties
   simple?: boolean
@@ -49,6 +51,7 @@ export default function Hero({
   showToggle = false,
   customButtons = null
 }: HeroProps) {
+  const { openModal: openCountryModal } = useCountryModal()
   const [toggleValue, setToggleValue] = useState('corporate')
   const bgClass = orangeBackground
     ? 'bg-primary-orange text-white'
@@ -141,6 +144,27 @@ export default function Hero({
                     mainText = parts.slice(1).join(separator) // Join remaining parts
                   }
 
+                  const isGroupPage = !countryName || countryName === 'SGA Group'
+
+                  const handleClick = (e: React.MouseEvent) => {
+                    if (button.onClick) {
+                      button.onClick(e)
+                      return
+                    }
+
+                    // On group page, trigger modal for regional selection
+                    if (isGroupPage && (button.href.includes('/services/individual') || button.href.includes('/services/corporate'))) {
+                      e.preventDefault()
+                      const path = button.href.includes('/services/individual') 
+                        ? '/services/individual' 
+                        : '/services/corporate'
+                      openCountryModal(path)
+                      return
+                    }
+                    
+                    // On country pages, navigation happens normally via href
+                  }
+
                   // Check if button should be rendered simply (for rounded-full buttons)
                   const isSimple = button.simple !== false && (button.className?.includes('rounded-full') || button.simple === true)
 
@@ -156,6 +180,7 @@ export default function Hero({
                       <motion.a
                         key={`button-${index}`}
                         href={button.href}
+                        onClick={handleClick}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.98 }}
                         className={buttonClassName}
@@ -176,6 +201,7 @@ export default function Hero({
                     <motion.a
                       key={`button-${index}`}
                       href={button.href}
+                      onClick={handleClick}
                       whileTap={{ scale: 0.98 }}
                       className={`${buttonClassName} relative`}
                       style={button.style}
@@ -203,7 +229,7 @@ export default function Hero({
             ) : (
               <div className="flex flex-col sm:flex-row gap-4">
                 <motion.a
-                  href="#contact"
+                  href="/contact"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="bg-primary-orange text-white px-8 py-4 rounded-lg font-semibold text-lg shadow-lg hover:shadow-xl transition-shadow text-center"
@@ -457,7 +483,7 @@ export default function Hero({
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
           <motion.a
-            href="#contact"
+            href="/contact"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="bg-primary-orange text-white px-8 py-4 rounded-lg font-semibold text-lg shadow-lg hover:shadow-xl transition-shadow"

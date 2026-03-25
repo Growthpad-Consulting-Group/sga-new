@@ -7,15 +7,16 @@ import Image from 'next/image'
 import { Icon } from '@iconify/react'
 import { usePathname, useRouter } from 'next/navigation'
 import { useEnquiryModal } from '@/contexts/EnquiryModalContext'
+import { useCountryModal } from '@/contexts/CountryModalContext'
 import { navItems, getCountryNavItems, socialLinks, countries } from '@/data/nav'
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [countryModalOpen, setCountryModalOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const pathname = usePathname()
   const router = useRouter()
   const { openModal } = useEnquiryModal()
+  const { isOpen: countryModalOpen, openModal: openCountryModal, closeModal: closeCountryModal, redirectPath } = useCountryModal()
 
   // Determine if we're on a country page and get appropriate nav items
   const isCountryPage = pathname.startsWith('/ke') || pathname.startsWith('/ug') || pathname.startsWith('/tz')
@@ -196,7 +197,7 @@ export default function Header() {
 
               {/* Down Arrow Button */}
               <motion.button
-                onClick={() => setCountryModalOpen(true)}
+                onClick={() => openCountryModal()}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 className={`${buttonHoverClasses} ${getTextColor()}`}
@@ -402,7 +403,7 @@ export default function Header() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
               className="fixed inset-0 bg-black/30 backdrop-blur-md z-50"
-              onClick={() => setCountryModalOpen(false)}
+              onClick={() => closeCountryModal()}
             />
 
             <motion.div
@@ -411,7 +412,7 @@ export default function Header() {
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.3 }}
               className="fixed inset-0 z-50 flex items-center justify-center p-4"
-              onClick={() => setCountryModalOpen(false)}
+              onClick={() => closeCountryModal()}
             >
               <div
                 className="relative"
@@ -419,7 +420,7 @@ export default function Header() {
               >
                 {/* Close Button - Now closer to content */}
                 <motion.button
-                  onClick={() => setCountryModalOpen(false)}
+                  onClick={() => closeCountryModal()}
                   className="absolute -top-12 -right-4 sm:-top-16 sm:-right-8 text-white hover:text-primary-orange transition-colors z-[60]"
                   whileHover={{ scale: 1.1, rotate: 90 }}
                   whileTap={{ scale: 0.9 }}
@@ -430,7 +431,6 @@ export default function Header() {
 
                 <div className="flex flex-row flex-wrap sm:flex-nowrap items-center justify-center gap-6 sm:gap-8 md:gap-12 px-4">
                   {countries.map((country, index) => (
-                    // ... (rest of the map content stays the same)
                     <motion.div
                       key={country.code}
                       initial={{ opacity: 0, y: 20 }}
@@ -441,8 +441,13 @@ export default function Header() {
                       <motion.button
                         onClick={() => {
                           if (!isActiveCountry(country.path)) {
-                            router.push(country.path)
-                            setCountryModalOpen(false)
+                            // If redirectPath is set, combine country path with redirectPath
+                            const targetPath = redirectPath 
+                              ? `/${country.code}${redirectPath}` 
+                              : country.path
+                            
+                            router.push(targetPath)
+                            closeCountryModal()
                           }
                         }}
                         disabled={isActiveCountry(country.path)}
@@ -455,7 +460,7 @@ export default function Header() {
                         {!isActiveCountry(country.path) && (
                           <div className="absolute top-6 sm:top-12 md:top-20 left-0 right-0 text-center z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                             <span className="text-[10px] sm:text-xs md:text-sm font-bold text-dark-charcoal uppercase tracking-[0.3em]">
-                              ENTER
+                              {redirectPath ? 'SELECT REGION' : 'ENTER'}
                             </span>
                           </div>
                         )}

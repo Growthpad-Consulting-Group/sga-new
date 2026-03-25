@@ -44,8 +44,8 @@ export default async function HomePage(): Promise<React.JSX.Element> {
         customDescription="Your safety, our mission. Explore the Group or visit your country for tailored services."
         showToggle={false}
         customButtons={[
-          { label: 'Explore for Individual', href: '#individual', primary: true },
-          { label: 'Explore for Corporate', href: '#corporate', primary: true }
+          { label: 'Explore for Individual', href: '/services/individual', primary: true },
+          { label: 'Explore for Corporate', href: '/services/corporate', primary: true }
         ]}
       />
 

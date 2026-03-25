@@ -98,6 +98,7 @@ export default async function CountryHomePage({ params }: Props) {
                     countryName={c.name}
                     backgroundColor="bg-light-grey"
                     accordionItems={data.whyUs.accordion}
+                    image={data.whyUs.imageUrl}
                 />
                 <SectionSeparator imageUrl={`/images/misc/section-pattern-${country}.svg`} />
             </div>

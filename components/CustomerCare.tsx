@@ -13,12 +13,12 @@ interface Hotline {
 const hotlines: Hotline[] = [
   {
     country: 'Kenya',
-    phone: '+254 111 024000',
+    phone: '+254 111 024 000',
     email: 'customerservice@ke.sgasecurity.com'
   },
   {
     country: 'Tanzania',
-    phone: '+255 754 303076',
+    phone: '+255 754 303 076',
     email: 'customercare@sgasecurity.co.tz'
   },
   {

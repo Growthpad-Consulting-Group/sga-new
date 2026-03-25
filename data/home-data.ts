@@ -16,6 +16,7 @@ export interface HomeContent {
         items: { name: string; icon: string; image: string }[]
     }
     whyUs: {
+        imageUrl: string
         accordion: { title: string; description: string }[]
     }
 }
@@ -27,8 +28,8 @@ export const homeData: Record<string, HomeContent> = {
             description: "SGA Kenya protects families, homes, and businesses nationwide with reliable 24/7 security solutions.",
             imageUrl: "/images/ke/hero.png",
             buttons: [
-                { label: "Explore Home Security", href: "#individuals", primary: true, separator: "Explore " },
-                { label: "Explore Business Security", href: "#corporate", primary: true, separator: "Explore " }
+                { label: "Explore Home Security", href: "/ke/services/individual", primary: true, separator: "Explore " },
+                { label: "Explore Business Security", href: "/ke/services/corporate", primary: true, separator: "Explore " }
             ]
         },
         about: {
@@ -45,13 +46,14 @@ export const homeData: Record<string, HomeContent> = {
         },
         industries: {
             items: [
-                { name: "Homes", icon: "mdi:home", image: "/images/ke/residentials.png" },
-                { name: "Businesses", icon: "mdi:school", image: "/images/ke/education.png" },
-                { name: "Institutions", icon: "mdi:hospital", image: "/images/ke/healthcare.png" },
-                { name: "Hospitality", icon: "mdi:hotel", image: "/images/ke/hospitality.png" }
+                { name: "Residential Estates & Apartments", icon: "mdi:bank", image: "/images/group/industries/residentials.png" },
+                { name: "Education & Schools", icon: "mdi:pickaxe", image: "/images/group/industries/education.png" },
+                { name: "Healthcare Facilitie", icon: "mdi:shield-account", image: "/images/group/industries/healthcare.png" },
+                { name: "Hospitality & Holiday Homes", icon: "mdi:truck", image: "/images/group/industries/hospitality.png" }
             ]
         },
         whyUs: {
+            imageUrl: "/images/ke/why-choose-us.png",
             accordion: [
                 { title: "Local & Regional", description: "We are a security partner with deep roots in Kenya, providing local expertise with a world-class regional network." },
                 { title: "24/7 Control Room", description: "Our state-of-the-art control room operates around the clock, ensuring constant monitoring and immediate response." },
@@ -66,8 +68,8 @@ export const homeData: Record<string, HomeContent> = {
             description: "From Kampala neighborhoods to businesses across Uganda, SGA Security provides reliable, round-the-clock protection.",
             imageUrl: "/images/ug/ug-hero.png",
             buttons: [
-                { label: "Explore Home Security", href: "#individuals", primary: true, separator: "Explore " },
-                { label: "Explore Business Security", href: "#corporate", primary: true, separator: "Explore " }
+                { label: "Explore Home Security", href: "/ug/services/individual", primary: true, separator: "Explore " },
+                { label: "Explore Business Security", href: "/ug/services/corporate", primary: true, separator: "Explore " }
             ]
         },
         about: {
@@ -84,13 +86,14 @@ export const homeData: Record<string, HomeContent> = {
         },
         industries: {
             items: [
-                { name: "Residential", icon: "mdi:home", image: "/images/ug/residentials.png" },
-                { name: "Education", icon: "mdi:school", image: "/images/ug/education.png" },
-                { name: "Healthcare", icon: "mdi:hospital", image: "/images/ug/healthcare.png" },
-                { name: "Commercial", icon: "mdi:store", image: "/images/ug/hospitality.png" }
+                { name: "Residential", icon: "mdi:home", image: "/images/group/industries/residentials.png" },
+                { name: "Education", icon: "mdi:school", image: "/images/group/industries/education.png" },
+                { name: "Healthcare", icon: "mdi:hospital", image: "/images/group/industries/healthcare.png" },
+                { name: "Commercial", icon: "mdi:store", image: "/images/group/industries/hospitality.png" }
             ]
         },
         whyUs: {
+            imageUrl: "/images/ug/why-choose-us.png",
             accordion: [
                 { title: "Local Presence", description: "SGA is a legacy security partner with deep roots in Uganda, providing trusted local expertise." },
                 { title: "24/7 Monitoring", description: "Our 24-hour control room in Kampala ensures constant vigilance and rapid emergency response." },
@@ -105,8 +108,8 @@ export const homeData: Record<string, HomeContent> = {
             description: "Protecting Tanzanian homes and businesses with world-class security services and local expertise.",
             imageUrl: "/images/tz/hero.png",
             buttons: [
-                { label: "Explore Home Security", href: "#individuals", primary: true, separator: "Explore " },
-                { label: "Explore Business Security", href: "#corporate", primary: true, separator: "Explore " }
+                { label: "Explore Home Security", href: "/tz/services/individual", primary: true, separator: "Explore " },
+                { label: "Explore Business Security", href: "/tz/services/corporate", primary: true, separator: "Explore " }
             ]
         },
         about: {
@@ -123,13 +126,14 @@ export const homeData: Record<string, HomeContent> = {
         },
         industries: {
             items: [
-                { name: "Banking", icon: "mdi:bank", image: "/images/tz/industries/banking/hero.png" },
-                { name: "Mining", icon: "mdi:pickaxe", image: "/images/tz/industries/mining/hero.png" },
-                { name: "Diplomatic", icon: "mdi:shield-account", image: "/images/tz/education.png" },
-                { name: "Logistics", icon: "mdi:truck", image: "/images/tz/industries/logistics/hero.png" }
+                { name: "Residential Estates & Apartments", icon: "mdi:bank", image: "/images/group/industries/residentials.png" },
+                { name: "Education & Schools", icon: "mdi:pickaxe", image: "/images/group/industries/education.png" },
+                { name: "Healthcare Facilitie", icon: "mdi:shield-account", image: "/images/group/industries/healthcare.png" },
+                { name: "Hospitality & Holiday Homes", icon: "mdi:truck", image: "/images/group/industries/hospitality.png" }
             ]
         },
         whyUs: {
+            imageUrl: "/images/tz/why-choose-us.png",
             accordion: [
                 { title: "Professionalism", description: "Our Tanzanian team is recognized for their discipline, dedication, and professional excellence." },
                 { title: "Rapid Response", description: "Strategically located response teams ensure minimal delay during security incidents." },

@@ -37,9 +37,9 @@ const countryData: CountryDataMap = {
       'Nairobi, Kenya'
     ],
     phones: [
-      { label: 'Tel', number: '+254 (0) 20 6901000' },
-      { label: 'WhatsApp', number: '+254 111 024000' },
-      { label: 'Emergency', number: '+254 733 700500' }
+      { label: 'Tel', number: '+254 020 690 1000' },
+      { label: 'WhatsApp', number: '+254 111 024 000' },
+      { label: 'Emergency', number: '+254 733 700 500' }
     ],
     email: 'customerservice@ke.sgasecurity.com',
   },
@@ -52,8 +52,8 @@ const countryData: CountryDataMap = {
     ],
     phones: [
       { label: 'Main', number: '+256 772 200 048', icon: 'mdi:phone' },
-      { label: 'Office', number: '+256 417 114400', icon: 'mdi:phone-in-talk' },
-      { label: 'Mobile', number: '+256 717 800752', icon: 'mdi:phone-alert' }
+      { label: 'Office', number: '+256 041 711 4400', icon: 'mdi:phone-in-talk' },
+      { label: 'Mobile', number: '+256 717 800 752', icon: 'mdi:phone-alert' }
     ],
     email: 'customerservice@ug.sgasecurity.com',
   },
@@ -65,9 +65,9 @@ const countryData: CountryDataMap = {
       'Dar es Salaam, Tanzania'
     ],
     phones: [
-      { label: 'Main', number: '+255 754 303076', icon: 'mdi:phone' },
-      { label: 'Office', number: '+255 754 303076', icon: 'mdi:phone-in-talk' },
-      { label: 'Emergency Line', number: '+255 784 700299', icon: 'mdi:phone-alert' }
+      { label: 'Main', number: '+255 754 303 076', icon: 'mdi:phone' },
+      { label: 'Office', number: '+255 754 303 076', icon: 'mdi:phone-in-talk' },
+      { label: 'Emergency Line', number: '+255 784 700 299', icon: 'mdi:phone-alert' }
     ],
     email: 'customercare@sgasecurity.co.tz',
   },

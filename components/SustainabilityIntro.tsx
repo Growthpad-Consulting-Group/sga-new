@@ -14,7 +14,7 @@ const esgCards: ESGCard[] = [
   {
     title: 'Environment',
     description: 'We are committed to reducing our environmental footprint through sustainable practices, energy efficiency, and responsible resource management across all our operations.',
-    imageUrl: '/images/misc/blog-placeholder',
+    imageUrl: '/images/group/about/about-2.png',
   },
   {
     title: 'Social',

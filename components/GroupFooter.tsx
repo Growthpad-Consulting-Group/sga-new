@@ -23,7 +23,7 @@ export default function GroupFooter(): React.JSX.Element {
           <div className="mt-3 pt-2 border-t border-white/20 space-y-1.5">
             <div>
               <span className="font-bold">Tel:</span>
-              <a href="tel:+254111024000" className="hover:text-navy-blue transition-colors ml-1">+254 111 024000</a>
+              <a href="tel:+254111024000" className="hover:text-navy-blue transition-colors ml-1">+254 111 024 000</a>
             </div>
             <div>
               <span className="font-bold">Email:</span>
@@ -44,7 +44,7 @@ export default function GroupFooter(): React.JSX.Element {
           <div className="mt-3 pt-2 border-t border-white/20 space-y-1.5">
             <div>
               <span className="font-bold">Tel:</span>
-              <a href="tel:+255754303076" className="hover:text-navy-blue transition-colors ml-1">+255 754 303076</a>
+              <a href="tel:+255754303076" className="hover:text-navy-blue transition-colors ml-1">+255 754 303 076</a>
             </div>
             <div>
               <span className="font-bold">Email:</span>
@@ -105,12 +105,12 @@ export default function GroupFooter(): React.JSX.Element {
               </div>
               <div className="sm:pl-6 pl-0">
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <a
-                    href="#contact"
+                  <Link
+                    href="/contact"
                     className="bg-white text-primary-orange px-4 py-4 rounded-full font-semibold text-md uppercase hover:bg-white/90 transition-colors text-center flex-1"
                   >
                     CONTACT US
-                  </a>
+                  </Link>
                   <button
                     onClick={openModal}
                     className="bg-transparent text-white border border-white px-4 py-4 rounded-full font-semibold text-md uppercase hover:bg-white hover:text-primary-orange transition-colors text-center flex-1"
