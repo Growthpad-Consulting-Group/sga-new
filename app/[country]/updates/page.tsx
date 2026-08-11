@@ -1,5 +1,5 @@
-import UpdatesHero from '@/app/_news/components/UpdatesHero'
-import NewsReportsCards from '@/app/_news/components/NewsReportsCards'
+import UpdatesHero from '@/components/news/UpdatesHero'
+import NewsReportsCards from '@/components/news/NewsReportsCards'
 import FloatingWhatsApp from '@/components/FloatingWhatsApp'
 import { getAllNewsPosts } from '@/lib/sanity'
 import { countries } from '@/data/countries-data'

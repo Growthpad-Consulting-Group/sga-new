@@ -1,5 +1,5 @@
 import { newsItems } from '@/data/newsItems'
-import BlogDetail from '@/app/_news/components/BlogDetail'
+import BlogDetail from '@/components/news/BlogDetail'
 import FloatingWhatsApp from '@/components/FloatingWhatsApp'
 import { notFound } from 'next/navigation'
 import { getAllNewsPosts, getNewsPostBySlug } from '@/lib/sanity'

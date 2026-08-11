@@ -1,6 +1,6 @@
-import ContactHero from '@/app/_contact/components/ContactHero'
-import ContactInfo from '@/app/_contact/components/ContactInfo'
-import CustomerCare from '@/app/_contact/components/CustomerCare'
+import ContactHero from '@/components/contact/ContactHero'
+import ContactInfo from '@/components/contact/ContactInfo'
+import CustomerCare from '@/components/contact/CustomerCare'
 import FloatingWhatsApp from '@/components/FloatingWhatsApp'
 import type { Metadata } from 'next'
 

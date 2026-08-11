@@ -1,12 +1,12 @@
 import Hero from '@/components/Hero'
 import ParallaxSection from '@/components/ParallaxSection'
 import OurImpactInNumbers from '@/components/OurImpactInNumbers'
-import WhereWeOperate from './_home/components/WhereWeOperate'
+import WhereWeOperate from '@/components/home/WhereWeOperate'
 import SustainabilityESG from '@/components/SustainabilityESG'
-import GroupIntegratedSolutions from './_home/components/GroupIntegratedSolutions'
-import News from './_home/components/News'
-import HappyClients from './_home/components/HappyClients'
-import JoinOurMission from './_home/components/JoinOurMission'
+import GroupIntegratedSolutions from '@/components/home/GroupIntegratedSolutions'
+import News from '@/components/home/News'
+import HappyClients from '@/components/home/HappyClients'
+import JoinOurMission from '@/components/home/JoinOurMission'
 import FloatingWhatsApp from '@/components/FloatingWhatsApp'
 import SectionSeparator from '@/components/SectionSeparator'
 import type { Metadata } from 'next'
@@ -35,7 +35,7 @@ export default async function HomePage(): Promise<React.JSX.Element> {
           "/images/group/6.png",
           "/images/group/7.png"
         ]}
-        customH3="Welcome to SGA official group website"
+        customH3="Welcome to SGA Security Official Group Website"
         customTitle={
           <>
             <span className="text-primary-orange">Protecting People, Businesses, & Communities in East Africa.</span>
