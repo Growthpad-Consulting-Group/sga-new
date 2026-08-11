@@ -15,7 +15,7 @@ export default function AboutIntro({
 }: AboutIntroProps) {
     return (
         <section id="about-intro" className="py-16 sm:py-20 bg-white">
-            <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="container-fluid mx-auto">
                 <div className="grid lg:grid-cols-2 gap-12 items-start">
                     <motion.div
                         initial={{ opacity: 0, x: -30 }}

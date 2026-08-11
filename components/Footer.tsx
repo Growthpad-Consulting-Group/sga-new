@@ -9,7 +9,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-gray-100 py-8 sm:py-12 md:py-16 no-snap relative" style={{ scrollSnapAlign: 'none', scrollSnapStop: 'normal' }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 md:py-12 bg-primary-orange text-white rounded-lg">
+      <div className="max-w-7xl mx-auto container-fluid py-8 sm:py-10 md:py-12 bg-primary-orange text-white rounded-lg">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           <div className="sm:col-span-2 lg:col-span-1">
             <div className="mb-4 sm:mb-5">

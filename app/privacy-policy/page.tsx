@@ -9,7 +9,7 @@ export default function PrivacyPolicyPage() {
     <>
       {/* Hero Section */}
       <section className="section-snap relative bg-gray-100 text-dark-charcoal pt-32 sm:pt-40 lg:pt-48 pb-16">
-        <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="container-fluid mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -31,7 +31,7 @@ export default function PrivacyPolicyPage() {
 
       {/* Content Section */}
       <section className="bg-white py-16 sm:py-20">
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full max-w-7xl mx-auto container-fluid">
             
             {/* Introduction */}
             <div className="mb-12">

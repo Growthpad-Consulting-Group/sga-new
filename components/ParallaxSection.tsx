@@ -53,7 +53,7 @@ export default function ParallaxSection({
       <div className="flex-1 flex items-center">
         <motion.div
           style={{ opacity }}
-          className="relative z-10 w-full max-w-9xl mx-auto px-4 sm:px-6 lg:px-8 text-left"
+          className="relative z-10 w-full max-w-9xl mx-auto container-fluid text-left"
         >
           <motion.div
             initial={{ opacity: 0, y: 30 }}

@@ -36,7 +36,7 @@ export default function TopBar({
   return (
     <div className={`transition-all duration-300 ${isScrolled ? 'h-0 opacity-0 overflow-hidden' : ''}`}>
       <div className={isAboutPage ? 'bg-white text-dark-charcoal' : 'bg-primary-orange text-white'}>
-        <div className="mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+        <div className="mx-auto container-fluid">
           <div className="flex items-center justify-between h-10 sm:h-12 text-xs sm:text-sm">
             {/* Social Icons - Left */}
             <div className="flex items-center space-x-2 sm:space-x-3 md:space-x-4">
@@ -122,7 +122,7 @@ export default function TopBar({
           </div>
         </div>
         {/* Border Bottom */}
-        <div className="mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+        <div className="mx-auto container-fluid">
           <div className={`border-b ${isAboutPage ? 'border-dark-charcoal/20' : 'border-white/30'} pt-2`}></div>
         </div>
       </div>

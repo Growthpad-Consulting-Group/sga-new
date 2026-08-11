@@ -12,7 +12,7 @@ export default function FAQsHero({ searchQuery, setSearchQuery }: FAQsHeroProps)
 
   return (
     <section id="faqs-hero" className="section-snap bg-gray-100 text-dark-charcoal mt-20 pt-32 sm:pt-40 lg:pt-48 pb-16">
-      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container-fluid mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}

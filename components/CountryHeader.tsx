@@ -167,7 +167,7 @@ export default function CountryHeader(): React.JSX.Element {
       />
 
       {/* Main Navigation */}
-      <nav className="mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+      <nav className="mx-auto container-fluid">
         <div className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? 'h-16' : 'h-16 sm:h-28'}`}>
           <motion.div
             initial={{ opacity: 0, x: -20 }}

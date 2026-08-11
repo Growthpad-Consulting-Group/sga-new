@@ -110,7 +110,7 @@ export default function NewsReportsCards({ providedCountry, initialNewsItems }: 
 
   return (
     <section id="news" className="flex items-center justify-center bg-white py-20 md:py-20 min-h-[85vh] relative">
-      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container-fluid mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -23,7 +23,7 @@ interface ServicesGridProps {
 
 export default function ServicesGrid({ services, country, type, isIndividual, countryName }: ServicesGridProps) {
     return (
-        <section id="services-grid" className="bg-white py-24 sm:py-10 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <section id="services-grid" className="bg-white py-24 sm:py-10 container-fluid overflow-hidden">
             <div className="mx-auto">
                 {/* Section Header */}
                 {/* <div className="mb-10 md:mb-16 flex items-end justify-between border-b-2 border-gray-100 pb-4">

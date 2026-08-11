@@ -16,7 +16,7 @@ export default function AboutIntro({ imageUrl = '/images/group/about/about-2.png
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-100px' }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="w-full mx-auto px-4 sm:px-6 lg:px-8"
+        className="container-fluid mx-auto"
       >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-stretch">
           {/* Left Column - Content */}

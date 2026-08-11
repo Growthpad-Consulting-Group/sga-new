@@ -9,7 +9,7 @@ interface ContactHeroProps {
 export default function ContactHero({ imageUrl = '/images/contact/hero.png' }: ContactHeroProps): React.JSX.Element {
   return (
     <section id="hero" className="section-snap bg-gray-100 text-dark-charcoal pt-32 sm:pt-40 lg:pt-48 pb-0">
-      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container-fluid mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}

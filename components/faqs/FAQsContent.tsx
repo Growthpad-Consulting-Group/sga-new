@@ -45,7 +45,7 @@ export default function FAQsContent({ searchQuery = '' }: FAQsContentProps) {
 
     return (
         <section id="faqs-content" className="bg-white py-16 sm:py-20">
-            <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="w-full max-w-7xl mx-auto container-fluid">
                 <div className="grid lg:grid-cols-3 gap-8">
                     <div className="lg:col-span-1">
                         <div className="bg-primary-orange p-6 rounded-lg">

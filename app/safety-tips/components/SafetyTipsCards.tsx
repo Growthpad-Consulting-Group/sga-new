@@ -235,7 +235,7 @@ export default function SafetyTipsCards() {
 
   return (
     <section id="safety-tips-cards" className="bg-light-grey py-16 sm:py-20">
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-7xl mx-auto container-fluid">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

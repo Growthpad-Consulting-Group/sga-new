@@ -163,6 +163,12 @@
 
 @layer utilities {
 
+  /* Fluid page container, matches niyilor's layout width */
+  .container-fluid {
+    width: 100%;
+    padding-inline: clamp(1rem, 5vw, 8rem);
+  }
+
   /* Button utility class */
   .btn-text {
     @apply uppercase;

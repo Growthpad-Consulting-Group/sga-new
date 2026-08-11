@@ -84,7 +84,7 @@ export default function IndustryPageTemplate({
     <>
       {/* Hero Section */}
       <section id="hero" className="bg-white text-dark-charcoal pt-16 sm:pt-20 pb-12 sm:pb-16 relative overflow-hidden">
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full max-w-7xl mx-auto container-fluid">
           <div className="py-8 sm:py-12 lg:py-16 space-y-6 sm:space-y-8">
             {/* Orange Badge */}
             <motion.div
@@ -152,7 +152,7 @@ export default function IndustryPageTemplate({
         </div>
 
         {/* Full Width Image at Bottom */}
-        <div className="w-full px-4 sm:px-6 lg:px-8">
+        <div className="container-fluid">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -174,7 +174,7 @@ export default function IndustryPageTemplate({
 
       {/* Our Key Solutions Section */}
       <section className="bg-white text-dark-charcoal py-16 sm:py-20 lg:py-24 relative">
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full max-w-7xl mx-auto container-fluid">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -256,7 +256,7 @@ export default function IndustryPageTemplate({
 
       {/* The SGA Advantage Section */}
       <section className="bg-white text-dark-charcoal py-16 sm:py-20 lg:py-24 relative">
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full max-w-7xl mx-auto container-fluid">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -325,7 +325,7 @@ export default function IndustryPageTemplate({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
-            className="w-full mx-auto px-4 sm:px-6 lg:px-8"
+            className="container-fluid mx-auto"
           >
             <div className="mb-12">
               <motion.div

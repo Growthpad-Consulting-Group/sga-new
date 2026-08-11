@@ -163,7 +163,7 @@ export default function ServicePageTemplate({
         <>
             {/* Hero Section */}
             <section id="hero" className="bg-white text-dark-charcoal pt-32 sm:pt-40 lg:pt-48 pb-12 relative overflow-hidden">
-                <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="container-fluid mx-auto">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start lg:items-center py-8">
                         {/* Left Column - Content */}
                         <motion.div
@@ -323,7 +323,7 @@ export default function ServicePageTemplate({
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: '-100px' }}
                     transition={{ duration: 0.6, ease: 'easeOut' }}
-                    className="w-full mx-auto px-4 sm:px-6 lg:px-8"
+                    className="container-fluid mx-auto"
                 >
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
                         {/* Content */}
@@ -407,7 +407,7 @@ export default function ServicePageTemplate({
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: '-100px' }}
                     transition={{ duration: 0.6, ease: 'easeOut' }}
-                    className="w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
+                    className="container-fluid mx-auto relative z-10"
                 >
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
                         {/* Content */}
@@ -472,7 +472,7 @@ export default function ServicePageTemplate({
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: '-100px' }}
                     transition={{ duration: 0.6, ease: 'easeOut' }}
-                    className="w-full mx-auto px-4 sm:px-6 lg:px-8"
+                    className="container-fluid mx-auto"
                 >
                     <div className="mb-16 text-center lg:text-left">
                         <motion.div
@@ -547,7 +547,7 @@ export default function ServicePageTemplate({
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: '-100px' }}
                     transition={{ duration: 0.6, ease: 'easeOut' }}
-                    className="w-full mx-auto px-4 sm:px-6 lg:px-8"
+                    className="container-fluid mx-auto"
                 >
                     <div className="mb-16 text-center lg:text-left">
                         <motion.div
@@ -621,7 +621,7 @@ export default function ServicePageTemplate({
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: '-100px' }}
                         transition={{ duration: 0.6, ease: 'easeOut' }}
-                        className="w-full mx-auto px-4 sm:px-6 lg:px-8"
+                        className="container-fluid mx-auto"
                     >
                         <div className="mb-16">
                             <motion.div
@@ -678,7 +678,7 @@ export default function ServicePageTemplate({
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: '-100px' }}
                         transition={{ duration: 0.6, ease: 'easeOut' }}
-                        className="w-full mx-auto px-4 sm:px-6 lg:px-8"
+                        className="container-fluid mx-auto"
                     >
                         <div className="mb-16">
                             <motion.div

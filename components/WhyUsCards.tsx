@@ -30,7 +30,7 @@ const cards: Card[] = [
 export default function WhyUsCards() {
     return (
         <section className="bg-white py-12 md:py-24 relative overflow-hidden">
-            <div className="w-full px-4 sm:px-6 lg:px-8">
+            <div className="container-fluid">
                 <motion.div
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}

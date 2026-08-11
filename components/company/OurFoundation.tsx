@@ -24,7 +24,7 @@ const foundations = [
 export default function OurFoundation({ countryName }: OurFoundationProps) {
     return (
         <section id="our-foundation" className="py-20 bg-white">
-            <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="container-fluid mx-auto">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}

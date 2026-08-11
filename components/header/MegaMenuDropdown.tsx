@@ -58,7 +58,7 @@ export default function MegaMenuDropdown({
       exit={{ opacity: 0 }}
       className="fixed inset-0 bg-primary-orange z-[60] overflow-y-auto"
     >
-      <div className="mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="mx-auto container-fluid py-8">
         {/* Top row: Logo, Toggle, Close */}
         <div className="flex items-center justify-between border-b border-white/20 pb-8 mb-16">
           <Link href="/" onClick={onClose}>

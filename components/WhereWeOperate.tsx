@@ -29,7 +29,7 @@ export default function WhereWeOperate(): React.JSX.Element {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-100px' }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="w-full mx-auto px-4 sm:px-6 lg:px-8"
+        className="container-fluid mx-auto"
       >
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-16 items-center">
           <motion.div

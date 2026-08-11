@@ -115,7 +115,7 @@ export default function Header() {
   }
 
   // Common class strings
-  const containerClasses = 'max-w-9xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8'
+  const containerClasses = 'max-w-9xl mx-auto container-fluid'
   const buttonHoverClasses = 'transition-colors'
   const flagButtonClasses = 'w-8 h-8 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full transition-all'
   const mobileMenuItemClasses = 'flex items-center gap-2 py-3 sm:py-3.5 transition-colors text-sm sm:text-base font-nav'
