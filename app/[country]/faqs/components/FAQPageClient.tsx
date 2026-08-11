@@ -1,9 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import FAQsHero from '@/components/FAQsHero'
-import FAQsContent from '@/components/faqs/FAQsContent'
-import FAQsCTA from '@/components/FAQsCTA'
+import FAQsHero from './FAQsHero'
+import FAQsContent from './FAQsContent'
+import FAQsCTA from './FAQsCTA'
 import FloatingWhatsApp from '@/components/FloatingWhatsApp'
 import { countries } from '@/data/countries-data'
 

@@ -1,8 +1,8 @@
-import AboutHero from '@/components/AboutHero'
-import AboutIntro from '@/components/AboutIntro'
-import OurFoundation from '@/components/OurFoundation'
-import OurJourney from '@/components/OurJourney'
-import CertificationsAndMemberships from '@/components/CertificationsAndMemberships'
+import AboutHero from './components/AboutHero'
+import AboutIntro from './components/AboutIntro'
+import OurFoundation from './components/OurFoundation'
+import OurJourney from './components/OurJourney'
+import CertificationsAndMemberships from './components/CertificationsAndMemberships'
 import type { Metadata } from 'next'
 import SectionSeparator from '@/components/SectionSeparator'
 

@@ -3,7 +3,7 @@ import FloatingWhatsApp from '@/components/FloatingWhatsApp'
 import SectionSeparator from '@/components/SectionSeparator'
 import ServicesGrid from './ServicesGrid'
 import ServicesTypeHero from './ServicesTypeHero'
-import { individualServices, corporateServices, resolveServiceData } from '@/data/services-data'
+import { individualServices, corporateServices, resolveServiceData } from '../services-data'
 import { countries } from '@/data/countries-data'
 import type { Metadata } from 'next'
 

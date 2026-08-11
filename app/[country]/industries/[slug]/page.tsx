@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
-import IndustryPageTemplate from '@/components/IndustryPageTemplate'
+import IndustryPageTemplate from '../components/IndustryPageTemplate'
 import FloatingWhatsApp from '@/components/FloatingWhatsApp'
-import { industriesData, resolveIndustryData } from '@/data/industries-data'
+import { industriesData, resolveIndustryData } from '../industries-data'
 import { countries } from '@/data/countries-data'
 import type { Metadata } from 'next'
 

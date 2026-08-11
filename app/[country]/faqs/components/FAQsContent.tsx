@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Accordion from '@/components/Accordion'
-import { faqs } from '@/data/faqs-data'
+import { faqs } from '../faqs-data'
 
 interface FAQsContentProps {
     searchQuery?: string

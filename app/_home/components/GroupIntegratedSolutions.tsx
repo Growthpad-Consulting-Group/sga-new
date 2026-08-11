@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { Icon } from '@iconify/react'
 import { useEnquiryModal } from '@/contexts/EnquiryModalContext'
-import Carousel, { useCarousel, CarouselArrows } from './Carousel'
+import Carousel, { useCarousel, CarouselArrows } from '@/components/Carousel'
 import { useState, useEffect } from 'react'
 
 interface Solution {

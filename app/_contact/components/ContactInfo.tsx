@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import Link from 'next/link'
 
-import { contactOffices } from '@/data/contact-data'
+import { contactOffices } from '@/app/_contact/data'
 
 interface ContactInfoProps {
   providedCountry?: string

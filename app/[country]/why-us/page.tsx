@@ -1,6 +1,6 @@
-import WhyUsHero from '@/components/company/WhyUsHero'
+import WhyUsHero from './components/WhyUsHero'
 import WhyChooseUs from '@/components/WhyChooseUs'
-import WhyUsCards from '@/components/WhyUsCards'
+import WhyUsCards from './components/WhyUsCards'
 import FloatingWhatsApp from '@/components/FloatingWhatsApp'
 import SectionSeparator from '@/components/SectionSeparator'
 import { countries } from '@/data/countries-data'

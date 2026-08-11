@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import SectionWrapper from './SectionWrapper'
+import SectionWrapper from '@/components/SectionWrapper'
 
 interface SDGGoal {
   goal: number

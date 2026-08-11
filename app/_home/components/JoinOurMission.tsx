@@ -1,6 +1,6 @@
 'use client'
 
-import SectionWrapper from './SectionWrapper'
+import SectionWrapper from '@/components/SectionWrapper'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import Image from 'next/image'

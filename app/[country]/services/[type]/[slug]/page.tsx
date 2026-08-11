@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
-import ServicePageTemplate from '@/components/ServicePageTemplate'
+import ServicePageTemplate from '../../components/ServicePageTemplate'
 import FloatingWhatsApp from '@/components/FloatingWhatsApp'
-import { individualServices, corporateServices, resolveServiceData } from '@/data/services-data'
+import { individualServices, corporateServices, resolveServiceData } from '../../services-data'
 import { countries } from '@/data/countries-data'
 import type { Metadata } from 'next'
 

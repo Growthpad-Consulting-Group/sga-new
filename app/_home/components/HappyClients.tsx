@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { Icon } from '@iconify/react'
-import { useCarousel, CarouselArrows } from './Carousel'
+import { useCarousel, CarouselArrows } from '@/components/Carousel'
 
 interface Client {
   name: string

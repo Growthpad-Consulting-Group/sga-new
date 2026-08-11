@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 
-import { useCarousel, CarouselArrows } from './Carousel'
+import { useCarousel, CarouselArrows } from '@/components/Carousel'
 
 interface TimelineEvent {
   year: string
