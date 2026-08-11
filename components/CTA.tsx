@@ -45,7 +45,7 @@ export default function CTA(): React.JSX.Element {
   }
 
   return (
-    <SectionWrapper id="contact" className="bg-gradient-to-br from-navy-blue to-dark-charcoal text-white no-snap">
+    <SectionWrapper id="contact" className="bg-linear-to-br from-navy-blue to-dark-charcoal text-white no-snap">
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -69,7 +69,7 @@ export default function CTA(): React.JSX.Element {
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
           onSubmit={handleSubmit}
-          className="bg-white/10 backdrop-blur-sm p-8 rounded-lg"
+          className="bg-white/10 backdrop-blur-xs p-8 rounded-lg"
         >
           <div className="grid md:grid-cols-2 gap-6 mb-6">
             <div>
@@ -82,7 +82,7 @@ export default function CTA(): React.JSX.Element {
                 required
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-primary-orange"
+                className="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/60 focus:outline-hidden focus:ring-2 focus:ring-primary-orange"
                 placeholder="Your Name"
               />
             </div>
@@ -96,7 +96,7 @@ export default function CTA(): React.JSX.Element {
                 required
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-primary-orange"
+                className="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/60 focus:outline-hidden focus:ring-2 focus:ring-primary-orange"
                 placeholder="your.email@example.com"
               />
             </div>
@@ -111,7 +111,7 @@ export default function CTA(): React.JSX.Element {
               id="phone"
               value={formData.phone}
               onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-              className="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-primary-orange"
+              className="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/60 focus:outline-hidden focus:ring-2 focus:ring-primary-orange"
               placeholder="+254 700 000 000"
             />
           </div>
@@ -126,7 +126,7 @@ export default function CTA(): React.JSX.Element {
               rows={5}
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-              className="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-primary-orange resize-none"
+              className="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/60 focus:outline-hidden focus:ring-2 focus:ring-primary-orange resize-none"
               placeholder="Tell us about your security needs..."
             />
           </div>

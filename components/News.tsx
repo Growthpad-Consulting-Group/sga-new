@@ -248,7 +248,7 @@ export default function News({ hideCountryDropdown = false, backgroundColor = 'b
                     <select
                       value={selectedCountry}
                       onChange={(e) => handleCountryChange(e.target.value)}
-                      className="appearance-none w-full pl-4 pr-10 py-2 border border-dark-charcoal rounded-full text-sm focus:outline-none focus:border-primary-orange bg-white text-dark-charcoal cursor-pointer"
+                      className="appearance-none w-full pl-4 pr-10 py-2 border border-dark-charcoal rounded-full text-sm focus:outline-hidden focus:border-primary-orange bg-white text-dark-charcoal cursor-pointer"
                     >
                       <option value="All Country">All Country</option>
                       <option value="Kenya">Kenya</option>
@@ -269,7 +269,7 @@ export default function News({ hideCountryDropdown = false, backgroundColor = 'b
                     value={searchQuery}
                     onChange={handleSearchChange}
                     placeholder="SEARCH..."
-                    className="pl-4 pr-10 py-2 border border-dark-charcoal rounded-full text-sm focus:outline-none focus:border-primary-orange w-full sm:w-64 text-dark-charcoal placeholder:text-dark-charcoal/50"
+                    className="pl-4 pr-10 py-2 border border-dark-charcoal rounded-full text-sm focus:outline-hidden focus:border-primary-orange w-full sm:w-64 text-dark-charcoal placeholder:text-dark-charcoal/50"
                   />
                   <Icon
                     icon="lucide:search"

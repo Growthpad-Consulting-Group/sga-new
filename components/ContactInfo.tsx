@@ -58,10 +58,10 @@ export default function ContactInfo({ providedCountry }: ContactInfoProps): Reac
                 whileHover={{ scale: 1.02, y: -4 }}
                 className="bg-primary-orange rounded-lg shadow-lg p-6 md:p-8 hover:shadow-xl transition-all duration-300 flex flex-col h-full"
               >
-                <div className="flex-grow">
+                <div className="grow">
                   {/* Header */}
                   <div className="flex items-center gap-3 mb-6">
-                    <Icon icon={office.flag} className="w-10 h-10 border-4 border-white rounded-full flex-shrink-0 shadow-sm" />
+                    <Icon icon={office.flag} className="w-10 h-10 border-4 border-white rounded-full shrink-0 shadow-xs" />
                     <div>
                       <h3 className="text-xl md:text-3xl font-bold text-white">
                         {office.country}
@@ -73,7 +73,7 @@ export default function ContactInfo({ providedCountry }: ContactInfoProps): Reac
                   {/* Address */}
                   <div className="mb-6">
                     <div className="flex items-start gap-2 mb-3">
-                      <Icon icon="mdi:map-marker" className="w-8 h-8 text-white flex-shrink-0 mt-0.5" />
+                      <Icon icon="mdi:map-marker" className="w-8 h-8 text-white shrink-0 mt-0.5" />
                       <div className="text-sm md:text-lg font-normal text-white leading-relaxed">
                         {office.address.map((line, idx) => (
                           <p key={idx}>{line}</p>
@@ -90,7 +90,7 @@ export default function ContactInfo({ providedCountry }: ContactInfoProps): Reac
                         href={`tel:${phone.number.replace(/\s|\//g, '')}`}
                         className="flex items-center gap-2 text-sm md:text-lg font-normal text-white hover:opacity-80 transition-opacity"
                       >
-                        <Icon icon={phone.icon} className="w-8 h-8 flex-shrink-0" />
+                        <Icon icon={phone.icon} className="w-8 h-8 shrink-0" />
                         <span>{phone.number}</span>
                       </a>
                     ))}
@@ -102,7 +102,7 @@ export default function ContactInfo({ providedCountry }: ContactInfoProps): Reac
                       href={`mailto:${office.email}`}
                       className="flex items-center gap-2 text-sm md:text-lg font-normal text-white hover:opacity-80 transition-opacity"
                     >
-                      <Icon icon="mdi:email" className="w-8 h-8 flex-shrink-0" />
+                      <Icon icon="mdi:email" className="w-8 h-8 shrink-0" />
                       <span className="break-all">{office.email}</span>
                     </a>
                   </div>
@@ -115,7 +115,7 @@ export default function ContactInfo({ providedCountry }: ContactInfoProps): Reac
                       rel="noopener noreferrer"
                       className="flex items-center gap-2 text-sm md:text-lg font-normal text-white hover:opacity-80 transition-opacity"
                     >
-                      <Icon icon="ri:whatsapp-fill" className="w-8 h-8 flex-shrink-0" />
+                      <Icon icon="ri:whatsapp-fill" className="w-8 h-8 shrink-0" />
                       <span>Talk to us</span>
                     </a>
                   </div>
@@ -126,7 +126,7 @@ export default function ContactInfo({ providedCountry }: ContactInfoProps): Reac
                       href={office.websiteUrl}
                       className="flex items-center gap-2 text-sm md:text-lg font-normal text-white hover:opacity-80 transition-opacity"
                     >
-                      <Icon icon="mdi:link-circle" className="w-8 h-8 flex-shrink-0" />
+                      <Icon icon="mdi:link-circle" className="w-8 h-8 shrink-0" />
                       <span>Visit website</span>
                     </Link>
                   </div>

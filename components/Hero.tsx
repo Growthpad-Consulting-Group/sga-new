@@ -57,7 +57,7 @@ export default function Hero({
     ? 'bg-primary-orange text-white'
     : whiteBackground
       ? 'bg-white text-dark-charcoal'
-      : 'bg-gradient-to-br from-navy-blue via-navy-blue/90 to-dark-charcoal text-white'
+      : 'bg-linear-to-br from-navy-blue via-navy-blue/90 to-dark-charcoal text-white'
 
   const textColorClass = orangeBackground ? 'text-white' : whiteBackground ? 'text-dark-charcoal' : 'text-white'
   const secondaryTextColorClass = orangeBackground ? 'text-white/90' : whiteBackground ? 'text-gray-700' : 'text-light-grey'
@@ -240,7 +240,7 @@ export default function Hero({
                   href="#services"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className={`${whiteBackground ? 'bg-gray-100 text-dark-charcoal border-2 border-gray-300' : 'bg-white/10 backdrop-blur-sm text-white border-2 border-white/20'} px-8 py-4 rounded-lg font-semibold text-lg hover:opacity-90 transition-colors text-center`}
+                  className={`${whiteBackground ? 'bg-gray-100 text-dark-charcoal border-2 border-gray-300' : 'bg-white/10 backdrop-blur-xs text-white border-2 border-white/20'} px-8 py-4 rounded-lg font-semibold text-lg hover:opacity-90 transition-colors text-center`}
                 >
                   Our Services
                 </motion.a>
@@ -252,9 +252,9 @@ export default function Hero({
           {images && images.length > 0 ? (
             <div className="relative w-full h-[60vh] lg:h-[90vh] rounded-lg overflow-hidden flex flex-row lg:col-span-5">
               {/* Top feather effect */}
-              <div className="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-white via-white/50 to-transparent z-10 pointer-events-none"></div>
+              <div className="absolute top-0 left-0 right-0 h-12 bg-linear-to-b from-white via-white/50 to-transparent z-10 pointer-events-none"></div>
               {/* Bottom feather effect */}
-              <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-white via-white/50 to-transparent z-10 pointer-events-none"></div>
+              <div className="absolute bottom-0 left-0 right-0 h-12 bg-linear-to-t from-white via-white/50 to-transparent z-10 pointer-events-none"></div>
               {/* Left Column - Scrolls Down */}
               <div className="relative w-1/2 h-full rounded-l-lg overflow-hidden -mr-1">
                 <motion.div
@@ -269,7 +269,7 @@ export default function Hero({
                   }}
                 >
                   {images.slice(0, Math.ceil(images.length / 2)).map((img, idx) => (
-                    <div key={`left-${idx}`} className="relative w-full h-[220px] lg:h-[260px] flex-shrink-0">
+                    <div key={`left-${idx}`} className="relative w-full h-[220px] lg:h-[260px] shrink-0">
                       <Image
                         src={img}
                         alt={`${countryName} Security Services ${idx + 1}`}
@@ -281,7 +281,7 @@ export default function Hero({
                   ))}
                   {/* Duplicate for seamless loop */}
                   {images.slice(0, Math.ceil(images.length / 2)).map((img, idx) => (
-                    <div key={`left-dup-${idx}`} className="relative w-full h-[220px] lg:h-[260px] flex-shrink-0">
+                    <div key={`left-dup-${idx}`} className="relative w-full h-[220px] lg:h-[260px] shrink-0">
                       <Image
                         src={img}
                         alt={`${countryName} Security Services ${idx + 1}`}
@@ -307,7 +307,7 @@ export default function Hero({
                   }}
                 >
                   {images.slice(Math.ceil(images.length / 2)).map((img, idx) => (
-                    <div key={`right-${idx}`} className="relative w-full h-[220px] lg:h-[260px] flex-shrink-0">
+                    <div key={`right-${idx}`} className="relative w-full h-[220px] lg:h-[260px] shrink-0">
                       <Image
                         src={img}
                         alt={`${countryName} Security Services ${Math.ceil(images.length / 2) + idx + 1}`}
@@ -319,7 +319,7 @@ export default function Hero({
                   ))}
                   {/* Duplicate for seamless loop */}
                   {images.slice(Math.ceil(images.length / 2)).map((img, idx) => (
-                    <div key={`right-dup-${idx}`} className="relative w-full h-[220px] lg:h-[260px] flex-shrink-0">
+                    <div key={`right-dup-${idx}`} className="relative w-full h-[220px] lg:h-[260px] shrink-0">
                       <Image
                         src={img}
                         alt={`${countryName} Security Services ${Math.ceil(images.length / 2) + idx + 1}`}
@@ -346,7 +346,7 @@ export default function Hero({
                     ease: "linear",
                   }}
                 >
-                  <div className="relative w-full h-[220px] lg:h-[260px] flex-shrink-0">
+                  <div className="relative w-full h-[220px] lg:h-[260px] shrink-0">
                     <Image
                       src={imageUrl}
                       alt={`${countryName} Security Services`}
@@ -355,7 +355,7 @@ export default function Hero({
                       priority
                     />
                   </div>
-                  <div className="relative w-full h-[220px] lg:h-[260px] flex-shrink-0">
+                  <div className="relative w-full h-[220px] lg:h-[260px] shrink-0">
                     <Image
                       src={imageUrl}
                       alt={`${countryName} Security Services`}
@@ -379,7 +379,7 @@ export default function Hero({
                     ease: "linear",
                   }}
                 >
-                  <div className="relative w-full h-[220px] lg:h-[260px] flex-shrink-0">
+                  <div className="relative w-full h-[220px] lg:h-[260px] shrink-0">
                     <Image
                       src={imageUrl2}
                       alt={`${countryName} Security Services`}
@@ -388,7 +388,7 @@ export default function Hero({
                       priority
                     />
                   </div>
-                  <div className="relative w-full h-[220px] lg:h-[260px] flex-shrink-0">
+                  <div className="relative w-full h-[220px] lg:h-[260px] shrink-0">
                     <Image
                       src={imageUrl2}
                       alt={`${countryName} Security Services`}
@@ -494,7 +494,7 @@ export default function Hero({
             href="#services"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className={`${whiteBackground ? 'bg-gray-100 text-dark-charcoal border-2 border-gray-300' : 'bg-white/10 backdrop-blur-sm text-white border-2 border-white/20'} px-8 py-4 rounded-lg font-semibold text-lg hover:opacity-90 transition-colors`}
+            className={`${whiteBackground ? 'bg-gray-100 text-dark-charcoal border-2 border-gray-300' : 'bg-white/10 backdrop-blur-xs text-white border-2 border-white/20'} px-8 py-4 rounded-lg font-semibold text-lg hover:opacity-90 transition-colors`}
           >
             Our Services
           </motion.a>

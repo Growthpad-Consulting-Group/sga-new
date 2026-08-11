@@ -223,7 +223,7 @@ export default function Header() {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
-            className="flex-shrink-0"
+            className="shrink-0"
           >
             <Link href="/" className="flex items-center">
               <Image
@@ -259,7 +259,7 @@ export default function Header() {
           </div>
 
           {/* CTAs - Right */}
-          <div className="hidden lg:flex items-center space-x-3 xl:space-x-4 flex-shrink-0">
+          <div className="hidden lg:flex items-center space-x-3 xl:space-x-4 shrink-0">
             {/* Icon-based nav items */}
             {currentNavItems.filter(item => item.icon).map((item) => {
               const isRoute = !item.href.startsWith('#')
@@ -341,7 +341,7 @@ export default function Header() {
                   className={`${mobileMenuItemClasses} text-primary-orange font-semibold border-b border-gray-200`}
                   aria-label={`Call ${countryPhone}`}
                 >
-                  <Icon icon="mdi:phone" className="w-5 h-5 text-primary-orange flex-shrink-0" />
+                  <Icon icon="mdi:phone" className="w-5 h-5 text-primary-orange shrink-0" />
                   <span>Call: {countryPhone}</span>
                 </motion.a>
               )}
@@ -359,7 +359,7 @@ export default function Header() {
                       onClick={() => setMobileMenuOpen(false)}
                       className={itemClasses}
                     >
-                      {item.icon && <Icon icon={item.icon} className="w-5 h-5 text-primary-orange flex-shrink-0" />}
+                      {item.icon && <Icon icon={item.icon} className="w-5 h-5 text-primary-orange shrink-0" />}
                       <span>{item.label}</span>
                     </Link>
                   )
@@ -372,7 +372,7 @@ export default function Header() {
                     onClick={() => setMobileMenuOpen(false)}
                     className={itemClasses}
                   >
-                    {item.icon && <Icon icon={item.icon} className="w-5 h-5 text-primary-orange flex-shrink-0" />}
+                    {item.icon && <Icon icon={item.icon} className="w-5 h-5 text-primary-orange shrink-0" />}
                     <span>{item.label}</span>
                   </a>
                 )
@@ -421,7 +421,7 @@ export default function Header() {
                 {/* Close Button - Now closer to content */}
                 <motion.button
                   onClick={() => closeCountryModal()}
-                  className="absolute -top-12 -right-4 sm:-top-16 sm:-right-8 text-white hover:text-primary-orange transition-colors z-[60]"
+                  className="absolute -top-12 -right-4 sm:-top-16 sm:-right-8 text-white hover:text-primary-orange transition-colors z-60"
                   whileHover={{ scale: 1.1, rotate: 90 }}
                   whileTap={{ scale: 0.9 }}
                   aria-label="Close modal"
@@ -468,7 +468,7 @@ export default function Header() {
                         <div className={`flex items-center gap-2 sm:gap-4 md:gap-5 z-10 px-6 transition-transform duration-300 ${!isActiveCountry(country.path) ? 'group-hover:translate-y-2 md:group-hover:translate-y-4' : ''}`}>
                           <Icon
                             icon={country.flag}
-                            className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 flex-shrink-0"
+                            className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 shrink-0"
                           />
                           <span className="text-lg sm:text-2xl md:text-4xl font-bold text-dark-charcoal tracking-tight normal-case">
                             {country.name}

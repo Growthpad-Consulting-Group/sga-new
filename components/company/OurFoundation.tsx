@@ -31,7 +31,7 @@ export default function OurFoundation({ countryName }: OurFoundationProps) {
                     viewport={{ once: true }}
                     className="text-left mb-16"
                 >
-                    <div className="section-title-container inline-block !mb-6">
+                    <div className="section-title-container inline-block mb-6!">
                         <h2 className="section-title text-2xl md:text-5xl font-bold text-primary-orange">Our Foundation</h2>
                         <div className="section-title-bar left-0"></div>
                     </div>

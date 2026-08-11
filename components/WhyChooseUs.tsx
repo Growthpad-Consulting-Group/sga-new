@@ -42,7 +42,7 @@ export default function WhyChooseUs({
   const [openIndex, setOpenIndex] = useState(0)
 
   return (
-    <section id="why-choose-us" className={`section-snap flex items-center justify-center ${backgroundColor} relative pb-0 overflow-x-hidden min-h-[100vh]`}>
+    <section id="why-choose-us" className={`section-snap flex items-center justify-center ${backgroundColor} relative pb-0 overflow-x-hidden min-h-screen`}>
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -93,7 +93,7 @@ export default function WhyChooseUs({
                     </h3>
                     <Icon
                       icon={openIndex === index ? 'mynaui:arrow-up-circle' : 'mynaui:arrow-down-circle'}
-                      className={`w-10 h-10 flex-shrink-0 ml-4 ${openIndex === index ? 'text-primary-orange' : 'text-dark-charcoal'
+                      className={`w-10 h-10 shrink-0 ml-4 ${openIndex === index ? 'text-primary-orange' : 'text-dark-charcoal'
                         }`}
                     />
                   </button>

@@ -477,7 +477,7 @@ const InteractiveMap = forwardRef<InteractiveMapRef>((props, ref) => {
   }))
 
   return (
-    <div className="w-full h-[100%] rounded-lg overflow-hidden relative">
+    <div className="w-full h-full rounded-lg overflow-hidden relative">
       {/* Background SVG Map */}
       <div className="absolute inset-0">
         <Image
@@ -562,19 +562,19 @@ const InteractiveMap = forwardRef<InteractiveMapRef>((props, ref) => {
           </h3>
           <div className="space-y-2 text-sm text-white">
             <p className="flex items-start gap-2">
-              <Icon icon="mdi:home" className="w-5 h-5 flex-shrink-0 mt-0.5" />
+              <Icon icon="mdi:home" className="w-5 h-5 shrink-0 mt-0.5" />
               <span>{selectedLocation.address}</span>
             </p>
             {selectedLocation.phone.map((phone, idx) => (
               <p key={idx} className="flex items-center gap-2">
-                <Icon icon="mdi:phone" className="w-5 h-5 flex-shrink-0" />
+                <Icon icon="mdi:phone" className="w-5 h-5 shrink-0" />
                 <a href={`tel:${phone}`} className="hover:text-gray-200 underline">
                   {phone}
                 </a>
               </p>
             ))}
             <p className="flex items-center gap-2">
-              <Icon icon="mdi:email" className="w-5 h-5 flex-shrink-0" />
+              <Icon icon="mdi:email" className="w-5 h-5 shrink-0" />
               <a
                 href={`mailto:${selectedLocation.email}`}
                 className="hover:text-gray-200 underline break-all"

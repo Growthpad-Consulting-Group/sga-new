@@ -258,7 +258,7 @@ export default function ServicePageTemplate({
                             initial={{ opacity: 0, x: 30 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.8, delay: 0.4 }}
-                            className="relative w-full aspect-[4/3] lg:aspect-square"
+                            className="relative w-full aspect-4/3 lg:aspect-square"
                         >
                             <Image
                                 src={heroImage}
@@ -279,7 +279,7 @@ export default function ServicePageTemplate({
                     >
                         <div className="flex flex-col lg:flex-row items-center justify-between gap-6 p-6 md:p-8 rounded-[40px] border border-gray-100 bg-white shadow-xl shadow-gray-100/50 relative z-10">
                             <div className="text-center lg:text-left flex items-start gap-4">
-                                <div className="mt-1 flex-shrink-0">
+                                <div className="mt-1 shrink-0">
                                     <Icon icon="solar:phone-calling-bold-duotone" className="w-8 h-8 text-primary-orange" />
                                 </div>
                                 <div className="space-y-1">
@@ -349,7 +349,7 @@ export default function ServicePageTemplate({
                                         transition={{ delay: index * 0.1 }}
                                         className="flex items-start gap-4 text-base md:text-lg text-gray-700 leading-relaxed font-medium"
                                     >
-                                        <div className="mt-1 flex-shrink-0">
+                                        <div className="mt-1 shrink-0">
                                             <Icon
                                                 icon="si:check-circle-fill"
                                                 className="w-6 h-6 text-primary-orange"
@@ -433,7 +433,7 @@ export default function ServicePageTemplate({
                                         transition={{ delay: index * 0.1 }}
                                         className="flex items-start gap-4 text-lg md:text-xl text-white font-medium group"
                                     >
-                                        <div className="mt-1 flex-shrink-0 bg-white/20 p-1.5 rounded-full group-hover:bg-white/30 transition-colors">
+                                        <div className="mt-1 shrink-0 bg-white/20 p-1.5 rounded-full group-hover:bg-white/30 transition-colors">
                                             <Icon
                                                 icon="solar:check-circle-bold"
                                                 className="w-5 h-5 text-white"
@@ -450,7 +450,7 @@ export default function ServicePageTemplate({
                             initial={{ opacity: 0, x: 30 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            className="relative w-full aspect-[4/3] lg:aspect-square"
+                            className="relative w-full aspect-4/3 lg:aspect-square"
                         >
                             <div className="absolute inset-0 border-2 border-white/20 rounded-[40px] translate-x-4 translate-y-4"></div>
                             <Image
@@ -580,13 +580,13 @@ export default function ServicePageTemplate({
                                 <h3 className="text-2xl lg:text-3xl font-bold text-white mb-8 tracking-tight leading-tight">
                                     {pkg.title}
                                 </h3>
-                                <ul className="space-y-4 flex-grow mb-10">
+                                <ul className="space-y-4 grow mb-10">
                                     {pkg.features.map((feature, featureIndex) => (
                                         <li
                                             key={featureIndex}
                                             className="flex items-start gap-4 text-white font-medium group/item"
                                         >
-                                            <div className="mt-1 flex-shrink-0 bg-white/20 p-1 rounded-full group-hover/item:bg-white/40 transition-colors">
+                                            <div className="mt-1 shrink-0 bg-white/20 p-1 rounded-full group-hover/item:bg-white/40 transition-colors">
                                                 <Icon
                                                     icon="solar:check-circle-bold"
                                                     className="w-4 h-4 text-white"
@@ -653,7 +653,7 @@ export default function ServicePageTemplate({
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.5, delay: index * 0.1 }}
                                     whileHover={{ y: -8 }}
-                                    className="bg-light-grey rounded-[32px] p-10 shadow-sm hover:shadow-xl transition-all border border-gray-100 group"
+                                    className="bg-light-grey rounded-[32px] p-10 shadow-xs hover:shadow-xl transition-all border border-gray-100 group"
                                 >
                                     <div className="w-12 h-1 bg-primary-orange/30 mb-6 group-hover:w-20 transition-all"></div>
                                     <h3 className="text-xl font-bold text-navy-blue mb-4 tracking-tight">
@@ -720,7 +720,7 @@ export default function ServicePageTemplate({
                                         whileHover={{ y: -12 }}
                                         className="bg-white rounded-[40px] overflow-hidden shadow-xl hover:shadow-2xl transition-all flex flex-col group h-full"
                                     >
-                                        <div className="relative w-full aspect-[16/10] overflow-hidden">
+                                        <div className="relative w-full aspect-16/10 overflow-hidden">
                                             <Image
                                                 src={service.image}
                                                 alt={service.title}
@@ -735,7 +735,7 @@ export default function ServicePageTemplate({
                                             <h3 className="text-2xl lg:text-3xl font-extrabold text-white mb-4 tracking-tight leading-tight">
                                                 {service.title}
                                             </h3>
-                                            <p className="text-white/90 text-lg leading-relaxed mb-8 flex-grow font-medium">
+                                            <p className="text-white/90 text-lg leading-relaxed mb-8 grow font-medium">
                                                 {service.summary}
                                             </p>
                                             <div className="self-start">

@@ -88,7 +88,7 @@ export default function IntegratedSolutions({
   const bgClass = whiteBackground ? 'bg-white' : 'bg-light-grey'
   const cardBgClass = whiteBackground ? 'bg-white border-2 border-gray-100 shadow-lg hover:shadow-2xl' : 'bg-light-grey border border-gray-200 shadow-md hover:shadow-xl'
   return (
-    <section id="integrated-solutions" className={`section-snap flex items-center justify-center ${bgClass} relative pb-0 overflow-x-hidden min-h-[100vh]`}>
+    <section id="integrated-solutions" className={`section-snap flex items-center justify-center ${bgClass} relative pb-0 overflow-x-hidden min-h-screen`}>
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}

@@ -200,7 +200,7 @@ export default function CountryHeader(): React.JSX.Element {
                     <motion.button
                       onClick={() => setDropdownOpen(!dropdownOpen)}
                       whileHover={{ y: -2 }}
-                      className={`transition-colors !font-nav font-bold tracking-widest flex items-center gap-1.5 text-sm xl:text-base ${(isScrolled || isAboutPage) ? 'text-dark-charcoal hover:text-primary-orange' : 'text-white'}`}
+                      className={`transition-colors font-nav! font-bold tracking-widest flex items-center gap-1.5 text-sm xl:text-base ${(isScrolled || isAboutPage) ? 'text-dark-charcoal hover:text-primary-orange' : 'text-white'}`}
                     >
                       {item.label}
                       <Icon
@@ -240,7 +240,7 @@ export default function CountryHeader(): React.JSX.Element {
                   key={item.href}
                   href={item.href}
                   whileHover={{ y: -2 }}
-                  className={`transition-colors !font-nav font-bold tracking-widest flex items-center gap-1.5 text-sm xl:text-base ${isActive
+                  className={`transition-colors font-nav! font-bold tracking-widest flex items-center gap-1.5 text-sm xl:text-base ${isActive
                     ? (isScrolled || isAboutPage) ? 'text-primary-orange' : 'text-white'
                     : (isScrolled || isAboutPage) ? 'text-dark-charcoal hover:text-primary-orange' : 'text-white/90 hover:text-white'
                     }`}
@@ -254,7 +254,7 @@ export default function CountryHeader(): React.JSX.Element {
               onClick={openModal}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className={(isScrolled || isAboutPage) ? "bg-primary-orange text-white px-4 py-2 xl:px-6 xl:py-2 rounded-full font-semibold text-sm xl:text-base shadow-md hover:shadow-lg transition-shadow ml-2 xl:ml-4 !font-nav" : "bg-white text-primary-orange px-4 py-2 xl:px-6 xl:py-2 rounded-full font-semibold text-sm xl:text-base shadow-md hover:shadow-lg transition-shadow ml-2 xl:ml-4 !font-nav"}
+              className={(isScrolled || isAboutPage) ? "bg-primary-orange text-white px-4 py-2 xl:px-6 xl:py-2 rounded-full font-semibold text-sm xl:text-base shadow-md hover:shadow-lg transition-shadow ml-2 xl:ml-4 font-nav!" : "bg-white text-primary-orange px-4 py-2 xl:px-6 xl:py-2 rounded-full font-semibold text-sm xl:text-base shadow-md hover:shadow-lg transition-shadow ml-2 xl:ml-4 font-nav!"}
             >
               Enquire Now
             </motion.button>

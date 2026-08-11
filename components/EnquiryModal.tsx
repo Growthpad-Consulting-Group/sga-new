@@ -147,7 +147,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
 
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
-                    <Icon icon="mdi:clock-fast" className="w-6 h-6 text-white flex-shrink-0 mt-1" />
+                    <Icon icon="mdi:clock-fast" className="w-6 h-6 text-white shrink-0 mt-1" />
                     <div>
                       <p className="font-semibold">Fast response</p>
                       <p className="text-white/80 text-sm">Within 1 business day</p>
@@ -155,7 +155,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <Icon icon="mdi:shield-lock" className="w-6 h-6 text-white flex-shrink-0 mt-1" />
+                    <Icon icon="mdi:shield-lock" className="w-6 h-6 text-white shrink-0 mt-1" />
                     <div>
                       <p className="font-semibold">Secure handling</p>
                       <p className="text-white/80 text-sm">Privacy First</p>
@@ -163,7 +163,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <Icon icon="mdi:earth" className="w-6 h-6 text-white flex-shrink-0 mt-1" />
+                    <Icon icon="mdi:earth" className="w-6 h-6 text-white shrink-0 mt-1" />
                     <div>
                       <p className="font-semibold">Multi-country</p>
                       <p className="text-white/80 text-sm">KE • TZ • UG</p>
@@ -171,7 +171,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <Icon icon="mdi:account-group" className="w-6 h-6 text-white flex-shrink-0 mt-1" />
+                    <Icon icon="mdi:account-group" className="w-6 h-6 text-white shrink-0 mt-1" />
                     <div>
                       <p className="font-semibold">Expert support</p>
                       <p className="text-white/80 text-sm">Corporate & Individual</p>
@@ -262,7 +262,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                         required
                         value={formData.fullName}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-hidden transition-colors"
                         placeholder="Enter your full name"
                       />
                     </div>
@@ -279,7 +279,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                         required
                         value={formData.email}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-hidden transition-colors"
                         placeholder="Enter your email"
                       />
                     </div>
@@ -296,7 +296,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                         required
                         value={formData.phone}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-hidden transition-colors"
                         placeholder="Enter your phone number"
                       />
                     </div>
@@ -312,7 +312,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                         required
                         value={formData.country}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-hidden transition-colors"
                       >
                         <option value="">Select your country</option>
                         <option value="Kenya">Kenya</option>
@@ -338,7 +338,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                           required
                           value={formData.companyName}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-none transition-colors"
+                          className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-hidden transition-colors"
                           placeholder="Enter your company name"
                         />
                       </div>
@@ -355,7 +355,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                           required
                           value={formData.jobTitle}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-none transition-colors"
+                          className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-hidden transition-colors"
                           placeholder="Enter your job title"
                         />
                       </div>
@@ -371,7 +371,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                           required
                           value={formData.companySize}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-none transition-colors"
+                          className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-hidden transition-colors"
                         >
                           <option value="">Select company size</option>
                           <option value="1-10">1-10 employees</option>
@@ -394,7 +394,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                           required
                           value={formData.industry}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-none transition-colors"
+                          className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-hidden transition-colors"
                         >
                           <option value="">Select industry</option>
                           <option value="Banking & Finance">Banking & Finance</option>
@@ -448,7 +448,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                       rows={4}
                       value={formData.additionalDetails}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-none transition-colors resize-none"
+                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-hidden transition-colors resize-none"
                       placeholder="Tell us more about your requirements..."
                     />
                   </div>
@@ -462,7 +462,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                       required
                       checked={formData.agreeToContact}
                       onChange={handleCheckboxChange}
-                      className="mt-1 w-5 h-5 text-navy-blue border-gray-300 rounded focus:ring-navy-blue"
+                      className="mt-1 w-5 h-5 text-navy-blue border-gray-300 rounded-sm focus:ring-navy-blue"
                     />
                     <label htmlFor="agreeToContact" className="text-sm text-dark-charcoal">
                       I agree to be contacted by SGA Security regarding my enquiry *

@@ -1,134 +1,250 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-/* Helvetica Neue Font Faces */
-@font-face {
-  font-family: 'Helvetica Neue';
-  src: url('/fonts/HelveticaNeueCyr-Thin.woff2') format('woff2');
-  font-weight: 100;
-  font-style: normal;
-  font-display: swap;
+@plugin '@tailwindcss/typography';
+
+@theme {
+  --font-heading: Helvetica Neue, Arial, sans-serif;
+  --font-body: Arial, sans-serif;
+  --font-nav: Arial, Helvetica Neue, sans-serif;
+
+  --tracking-tight-0: 0 !important;
+
+  --color-primary-orange: #f15522;
+
+  --color-dark-charcoal: #231f20;
+
+  --color-light-grey: #e6edf1;
+
+  --color-navy-blue: #00043e;
 }
 
-@font-face {
-  font-family: 'Helvetica Neue';
-  src: url('/fonts/HelveticaNeueCyr-ThinItalic.woff2') format('woff2');
-  font-weight: 100;
-  font-style: italic;
-  font-display: swap;
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
 }
 
-@font-face {
-  font-family: 'Helvetica Neue';
-  src: url('/fonts/HelveticaNeueCyr-UltraLight.woff2') format('woff2');
-  font-weight: 200;
-  font-style: normal;
-  font-display: swap;
+@utility container-fluid {
+  /* Fluid page container, matches niyilor's layout width */
+  width: 100%;
+  padding-inline: clamp(1rem, 5vw, 8rem);
 }
 
-@font-face {
-  font-family: 'Helvetica Neue';
-  src: url('/fonts/HelveticaNeueCyr-UltraLightItalic.woff2') format('woff2');
-  font-weight: 200;
-  font-style: italic;
-  font-display: swap;
+@utility btn-text {
+  /* Button utility class */
+  @apply uppercase;
 }
 
-@font-face {
-  font-family: 'Helvetica Neue';
-  src: url('/fonts/HelveticaNeueCyr-Light.woff2') format('woff2');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
+@utility flag-icon {
+  /* Flag icon utility */
+  @apply rounded-full;
+  object-fit: cover;
+  object-position: center;
 }
 
-@font-face {
-  font-family: 'Helvetica Neue';
-  src: url('/fonts/HelveticaNeueCyr-LightItalic.woff2') format('woff2');
-  font-weight: 300;
-  font-style: italic;
-  font-display: swap;
+@utility section-title {
+  /* Section Title Components */
+  @apply font-bold mb-4 block;
 }
 
-@font-face {
-  font-family: 'Helvetica Neue';
-  src: url('/fonts/HelveticaNeueCyr-Roman.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
+@utility section-title-container {
+  @apply relative mb-8 md:mb-12 pb-1;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    /* Positioned slightly below for depth */
+    left: 0;
+    right: 0;
+    height: 2px;
+    /* Increased from 1px */
+    background-color: #00043e;
+    /* Consistent dark color */
+    opacity: 0.2;
+    z-index: 10;
+  }
 }
 
-@font-face {
-  font-family: 'Helvetica Neue';
-  src: url('/fonts/HelveticaNeueCyr-Italic.woff2') format('woff2');
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
+@utility section-title-bar {
+  @apply absolute bottom-0 left-0 w-1/4 h-[6px] bg-dark-charcoal z-20;
+  /* Refined height for better visual balance */
 }
 
-@font-face {
-  font-family: 'Helvetica Neue';
-  src: url('/fonts/HelveticaNeueCyr-Medium.woff2') format('woff2');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
+@utility section-title-container-white {
+  /* Variant for white borders */
+  @apply relative;
+  padding-bottom: 1rem;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: white;
+    opacity: 1;
+    z-index: 1;
+  }
 }
 
-@font-face {
-  font-family: 'Helvetica Neue';
-  src: url('/fonts/HelveticaNeueCyr-MediumItalic.woff2') format('woff2');
-  font-weight: 500;
-  font-style: italic;
-  font-display: swap;
+@utility no-snap {
+  scroll-snap-align: none !important;
+  scroll-snap-stop: normal !important;
 }
 
-@font-face {
-  font-family: 'Helvetica Neue';
-  src: url('/fonts/HelveticaNeueCyr-Bold.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
+@utility snap-section {
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
 }
 
-@font-face {
-  font-family: 'Helvetica Neue';
-  src: url('/fonts/HelveticaNeueCyr-BoldItalic.woff2') format('woff2');
-  font-weight: 700;
-  font-style: italic;
-  font-display: swap;
+@utility section-snap {
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
 }
 
-@font-face {
-  font-family: 'Helvetica Neue';
-  src: url('/fonts/HelveticaNeueCyr-Heavy.woff2') format('woff2');
-  font-weight: 800;
-  font-style: normal;
-  font-display: swap;
-}
+@layer utilities {
+  /* Helvetica Neue Font Faces */
+  @font-face {
+    font-family: 'Helvetica Neue';
+    src: url('/fonts/HelveticaNeueCyr-Thin.woff2') format('woff2');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+  }
 
-@font-face {
-  font-family: 'Helvetica Neue';
-  src: url('/fonts/HelveticaNeueCyr-HeavyItalic.woff2') format('woff2');
-  font-weight: 800;
-  font-style: italic;
-  font-display: swap;
-}
+  @font-face {
+    font-family: 'Helvetica Neue';
+    src: url('/fonts/HelveticaNeueCyr-ThinItalic.woff2') format('woff2');
+    font-weight: 100;
+    font-style: italic;
+    font-display: swap;
+  }
 
-@font-face {
-  font-family: 'Helvetica Neue';
-  src: url('/fonts/HelveticaNeueCyr-Black.woff2') format('woff2');
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
-}
+  @font-face {
+    font-family: 'Helvetica Neue';
+    src: url('/fonts/HelveticaNeueCyr-UltraLight.woff2') format('woff2');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+  }
 
-@font-face {
-  font-family: 'Helvetica Neue';
-  src: url('/fonts/HelveticaNeueCyr-BlackItalic.woff2') format('woff2');
-  font-weight: 900;
-  font-style: italic;
-  font-display: swap;
+  @font-face {
+    font-family: 'Helvetica Neue';
+    src: url('/fonts/HelveticaNeueCyr-UltraLightItalic.woff2') format('woff2');
+    font-weight: 200;
+    font-style: italic;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Helvetica Neue';
+    src: url('/fonts/HelveticaNeueCyr-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Helvetica Neue';
+    src: url('/fonts/HelveticaNeueCyr-LightItalic.woff2') format('woff2');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Helvetica Neue';
+    src: url('/fonts/HelveticaNeueCyr-Roman.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Helvetica Neue';
+    src: url('/fonts/HelveticaNeueCyr-Italic.woff2') format('woff2');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Helvetica Neue';
+    src: url('/fonts/HelveticaNeueCyr-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Helvetica Neue';
+    src: url('/fonts/HelveticaNeueCyr-MediumItalic.woff2') format('woff2');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Helvetica Neue';
+    src: url('/fonts/HelveticaNeueCyr-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Helvetica Neue';
+    src: url('/fonts/HelveticaNeueCyr-BoldItalic.woff2') format('woff2');
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Helvetica Neue';
+    src: url('/fonts/HelveticaNeueCyr-Heavy.woff2') format('woff2');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Helvetica Neue';
+    src: url('/fonts/HelveticaNeueCyr-HeavyItalic.woff2') format('woff2');
+    font-weight: 800;
+    font-style: italic;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Helvetica Neue';
+    src: url('/fonts/HelveticaNeueCyr-Black.woff2') format('woff2');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Helvetica Neue';
+    src: url('/fonts/HelveticaNeueCyr-BlackItalic.woff2') format('woff2');
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+  }
 }
 
 @layer base {
@@ -152,90 +268,11 @@
   h4,
   h5,
   h6 {
-    @apply font-heading tracking-tight-0 !important;
+    @apply font-heading! tracking-tight-0!;
   }
 
   /* Buttons use Helvetica Neue */
   button {
-    @apply font-heading tracking-tight-0 !important;
-  }
-}
-
-@layer utilities {
-
-  /* Fluid page container, matches niyilor's layout width */
-  .container-fluid {
-    width: 100%;
-    padding-inline: clamp(1rem, 5vw, 8rem);
-  }
-
-  /* Button utility class */
-  .btn-text {
-    @apply uppercase;
-  }
-
-  /* Flag icon utility */
-  .flag-icon {
-    @apply rounded-full;
-    object-fit: cover;
-    object-position: center;
-  }
-
-  /* Section Title Components */
-  .section-title {
-    @apply font-bold mb-4 block;
-  }
-
-  .section-title-container {
-    @apply relative mb-8 md:mb-12 pb-1;
-  }
-
-  .section-title-container::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    /* Positioned slightly below for depth */
-    left: 0;
-    right: 0;
-    height: 2px;
-    /* Increased from 1px */
-    background-color: #00043E;
-    /* Consistent dark color */
-    opacity: 0.2;
-    z-index: 10;
-  }
-
-  .section-title-bar {
-    @apply absolute bottom-0 left-0 w-1/4 h-[6px] bg-dark-charcoal z-20;
-    /* Refined height for better visual balance */
-  }
-
-  /* Variant for white borders */
-  .section-title-container-white {
-    @apply relative;
-    padding-bottom: 1rem;
-  }
-
-  .section-title-container-white::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background-color: white;
-    opacity: 1;
-    z-index: 1;
-  }
-
-  .no-snap {
-    scroll-snap-align: none !important;
-    scroll-snap-stop: normal !important;
-  }
-
-  .snap-section,
-  .section-snap {
-    scroll-snap-align: start;
-    scroll-snap-stop: normal;
+    @apply font-heading! tracking-tight-0!;
   }
 }

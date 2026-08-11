@@ -134,7 +134,7 @@ export default function ServicesTypeHero({
                             initial={{ opacity: 0, x: 30 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.8, delay: 0.4 }}
-                            className="relative w-full aspect-[4/3] lg:aspect-square"
+                            className="relative w-full aspect-4/3 lg:aspect-square"
                         >
                             <Image
                                 src={heroImage || '/images/group/guarding.png'}
@@ -155,7 +155,7 @@ export default function ServicesTypeHero({
                     >
                         <div className="flex flex-col lg:flex-row items-center justify-between gap-6 p-6 md:p-8 rounded-[40px] border border-gray-100 bg-white shadow-xl shadow-gray-100/50 relative z-10">
                             <div className="text-center lg:text-left flex items-start gap-4">
-                                <div className="mt-1 flex-shrink-0">
+                                <div className="mt-1 shrink-0">
                                     <Icon icon="solar:phone-calling-bold-duotone" className="w-8 h-8 text-primary-orange" />
                                 </div>
                                 <div className="space-y-1">

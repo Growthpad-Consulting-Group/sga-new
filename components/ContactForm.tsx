@@ -95,7 +95,7 @@ export default function ContactForm(): React.JSX.Element {
                 required
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full px-4 py-3 rounded-lg bg-white border border-gray-300 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-orange focus:border-transparent"
+                className="w-full px-4 py-3 rounded-lg bg-white border border-gray-300 text-gray-900 placeholder-gray-500 focus:outline-hidden focus:ring-2 focus:ring-primary-orange focus:border-transparent"
                 placeholder="Your Name"
               />
             </div>
@@ -109,7 +109,7 @@ export default function ContactForm(): React.JSX.Element {
                 required
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full px-4 py-3 rounded-lg bg-white border border-gray-300 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-orange focus:border-transparent"
+                className="w-full px-4 py-3 rounded-lg bg-white border border-gray-300 text-gray-900 placeholder-gray-500 focus:outline-hidden focus:ring-2 focus:ring-primary-orange focus:border-transparent"
                 placeholder="your.email@example.com"
               />
             </div>
@@ -124,7 +124,7 @@ export default function ContactForm(): React.JSX.Element {
               id="phone"
               value={formData.phone}
               onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-              className="w-full px-4 py-3 rounded-lg bg-white border border-gray-300 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-orange focus:border-transparent"
+              className="w-full px-4 py-3 rounded-lg bg-white border border-gray-300 text-gray-900 placeholder-gray-500 focus:outline-hidden focus:ring-2 focus:ring-primary-orange focus:border-transparent"
               placeholder="+254 700 000 000"
             />
           </div>
@@ -139,7 +139,7 @@ export default function ContactForm(): React.JSX.Element {
               rows={5}
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-              className="w-full px-4 py-3 rounded-lg bg-white border border-gray-300 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-orange focus:border-transparent resize-none"
+              className="w-full px-4 py-3 rounded-lg bg-white border border-gray-300 text-gray-900 placeholder-gray-500 focus:outline-hidden focus:ring-2 focus:ring-primary-orange focus:border-transparent resize-none"
               placeholder="Tell us about your security needs..."
             />
           </div>

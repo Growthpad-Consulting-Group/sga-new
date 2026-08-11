@@ -269,7 +269,7 @@ export default function SafetyTipsCards() {
                   value={searchQuery}
                   onChange={(e) => handleSearchChange(e.target.value)}
                   placeholder="e.g. Home Security, Personal Safety, etc..."
-                  className="pl-10 pr-4 py-2 border border-gray-300 rounded-full text-sm focus:outline-none focus:border-primary-orange w-full sm:w-64"
+                  className="pl-10 pr-4 py-2 border border-gray-300 rounded-full text-sm focus:outline-hidden focus:border-primary-orange w-full sm:w-64"
                 />
                 <Icon
                   icon="mdi:magnify"
@@ -446,7 +446,7 @@ export default function SafetyTipsCards() {
               {/* Two Column Layout */}
               <div className="flex flex-col lg:flex-row flex-1 overflow-y-auto">
                 {/* Left Column - Wider */}
-                <div className="flex-1 lg:flex-[2] p-6 lg:p-8">
+                <div className="flex-1 lg:flex-2 p-6 lg:p-8">
                   {/* Orange Title */}
                   <h2 className="text-2xl lg:text-3xl font-bold text-primary-orange mb-6">
                     {selectedTip.title}
@@ -471,7 +471,7 @@ export default function SafetyTipsCards() {
                       <ul className="space-y-3">
                         {selectedTip.recommendations.map((recommendation, index) => (
                           <li key={index} className="flex items-start gap-3">
-                            <Icon icon="mdi:circle" className="w-2 h-2 text-primary-orange mt-2 flex-shrink-0" />
+                            <Icon icon="mdi:circle" className="w-2 h-2 text-primary-orange mt-2 shrink-0" />
                             <span className="text-gray-700 text-sm leading-relaxed">{recommendation}</span>
                           </li>
                         ))}

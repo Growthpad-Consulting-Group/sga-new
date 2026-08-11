@@ -111,7 +111,7 @@ export default function SustainabilityESGPage(): React.JSX.Element {
                   <span className="text-4xl md:text-5xl font-bold leading-none">
                     {sdg.goal}
                   </span>
-                  <div className="relative w-20 h-20 md:w-28 md:h-28 flex-shrink-0">
+                  <div className="relative w-20 h-20 md:w-28 md:h-28 shrink-0">
                     <Image
                       src={sdg.iconUrl}
                       alt={`SDG Goal ${sdg.goal}`}

@@ -138,7 +138,7 @@ export default function CertificationsAndMemberships() {
                                 value={searchQuery}
                                 onChange={(e) => handleSearchChange(e.target.value)}
                                 placeholder="Search certifications..."
-                                className="w-full pl-12 pr-4 py-3 border border-dark-charcoal rounded-full text-sm focus:outline-none focus:border-primary-orange text-dark-charcoal placeholder:text-dark-charcoal/50"
+                                className="w-full pl-12 pr-4 py-3 border border-dark-charcoal rounded-full text-sm focus:outline-hidden focus:border-primary-orange text-dark-charcoal placeholder:text-dark-charcoal/50"
                             />
                             <Icon
                                 icon="lucide:search"
@@ -159,7 +159,7 @@ export default function CertificationsAndMemberships() {
                             <select
                                 value={activeCategory}
                                 onChange={(e) => handleFilterChange(e.target.value as Category)}
-                                className="appearance-none w-full px-6 py-3 border border-dark-charcoal rounded-full text-sm focus:outline-none focus:border-primary-orange bg-white text-dark-charcoal cursor-pointer font-medium"
+                                className="appearance-none w-full px-6 py-3 border border-dark-charcoal rounded-full text-sm focus:outline-hidden focus:border-primary-orange bg-white text-dark-charcoal cursor-pointer font-medium"
                             >
                                 <option value="ALL">All Types</option>
                                 <option value="CERTIFICATION">Certifications</option>
@@ -174,7 +174,7 @@ export default function CertificationsAndMemberships() {
                             <select
                                 value={selectedCountry}
                                 onChange={(e) => handleCountryChange(e.target.value as Country)}
-                                className="appearance-none w-full px-6 py-3 border border-dark-charcoal rounded-full text-sm focus:outline-none focus:border-primary-orange bg-white text-dark-charcoal cursor-pointer font-medium"
+                                className="appearance-none w-full px-6 py-3 border border-dark-charcoal rounded-full text-sm focus:outline-hidden focus:border-primary-orange bg-white text-dark-charcoal cursor-pointer font-medium"
                             >
                                 <option value="All Country">All Countries</option>
                                 <option value="Kenya">Kenya</option>

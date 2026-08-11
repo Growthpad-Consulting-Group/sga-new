@@ -11,7 +11,7 @@ export default function SectionSeparator({
 }: SectionSeparatorProps) {
   return (
     <div
-      className={`absolute left-0 right-0 w-full h-16 z-20 ${className || 'top-[-2rem]'}`}
+      className={`absolute left-0 right-0 w-full h-16 z-20 ${className || '-top-8'}`}
       style={{
         backgroundImage: `url(${imageUrl})`,
         backgroundRepeat: 'repeat-x',

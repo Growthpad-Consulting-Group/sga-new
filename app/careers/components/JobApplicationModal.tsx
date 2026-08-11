@@ -206,7 +206,7 @@ export default function JobApplicationModal({ isOpen, onClose, job }: JobApplica
                         value={formData.fullName}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary-orange"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-hidden focus:border-primary-orange"
                         placeholder="John Doe"
                       />
                     </div>
@@ -222,7 +222,7 @@ export default function JobApplicationModal({ isOpen, onClose, job }: JobApplica
                         value={formData.email}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary-orange"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-hidden focus:border-primary-orange"
                         placeholder="john.doe@example.com"
                       />
                     </div>
@@ -238,7 +238,7 @@ export default function JobApplicationModal({ isOpen, onClose, job }: JobApplica
                         value={formData.phone}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary-orange"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-hidden focus:border-primary-orange"
                         placeholder="+254 700 000 000"
                       />
                     </div>
@@ -253,7 +253,7 @@ export default function JobApplicationModal({ isOpen, onClose, job }: JobApplica
                         value={formData.country}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary-orange"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-hidden focus:border-primary-orange"
                       >
                         <option value="">Select Country</option>
                         <option value="Kenya">Kenya</option>
@@ -306,7 +306,7 @@ export default function JobApplicationModal({ isOpen, onClose, job }: JobApplica
                       value={formData.coverLetter}
                       onChange={handleInputChange}
                       rows={5}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary-orange"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-hidden focus:border-primary-orange"
                       placeholder="Tell us why you're interested in this position..."
                     />
                   </div>
@@ -320,7 +320,7 @@ export default function JobApplicationModal({ isOpen, onClose, job }: JobApplica
                       checked={formData.agreeToPrivacy}
                       onChange={handleCheckboxChange}
                       required
-                      className="mt-1 w-4 h-4 text-primary-orange border-gray-300 rounded focus:ring-primary-orange"
+                      className="mt-1 w-4 h-4 text-primary-orange border-gray-300 rounded-sm focus:ring-primary-orange"
                     />
                     <label htmlFor="agreeToPrivacy" className="text-sm text-gray-700">
                       I agree to the privacy policy and consent to the processing of my personal data for recruitment purposes. <span className="text-primary-orange">*</span>

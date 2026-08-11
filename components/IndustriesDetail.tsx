@@ -97,7 +97,7 @@ export default function IndustriesDetail({
                   fill
                   className="object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/70 to-transparent" />
                 <div className="absolute bottom-4 left-4 flex items-center gap-3">
                   <div className="bg-primary-orange rounded-full p-3">
                     <Icon icon={industry.icon} className="w-6 h-6 text-white" />
@@ -116,7 +116,7 @@ export default function IndustriesDetail({
                   <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {industry.features.map((feature: string, idx: number) => (
                       <li key={idx} className="flex items-center gap-2 text-sm text-gray-600">
-                        <Icon icon="mdi:check-circle" className="w-4 h-4 text-primary-orange flex-shrink-0" />
+                        <Icon icon="mdi:check-circle" className="w-4 h-4 text-primary-orange shrink-0" />
                         <span>{feature}</span>
                       </li>
                     ))}

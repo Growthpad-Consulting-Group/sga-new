@@ -128,7 +128,7 @@ export default function NewsReportsCards({ providedCountry, initialNewsItems }: 
                 value={searchQuery}
                 onChange={(e) => handleSearchChange(e.target.value)}
                 placeholder="Search news & insights..."
-                className="w-full pl-12 pr-4 py-3 border border-dark-charcoal rounded-full text-sm focus:outline-none focus:border-primary-orange text-dark-charcoal placeholder:text-dark-charcoal/50"
+                className="w-full pl-12 pr-4 py-3 border border-dark-charcoal rounded-full text-sm focus:outline-hidden focus:border-primary-orange text-dark-charcoal placeholder:text-dark-charcoal/50"
               />
               <Icon
                 icon="lucide:search"
@@ -149,7 +149,7 @@ export default function NewsReportsCards({ providedCountry, initialNewsItems }: 
               <select
                 value={activeFilter}
                 onChange={(e) => handleFilterChange(e.target.value)}
-                className="appearance-none w-full px-6 py-3 border border-dark-charcoal rounded-full text-sm focus:outline-none focus:border-primary-orange bg-white text-dark-charcoal cursor-pointer capitalize font-medium"
+                className="appearance-none w-full px-6 py-3 border border-dark-charcoal rounded-full text-sm focus:outline-hidden focus:border-primary-orange bg-white text-dark-charcoal cursor-pointer capitalize font-medium"
               >
                 {['ALL', 'ADVISORY', 'BLOG', 'MEDIA', 'REPORT'].map(filter => (
                   <option key={filter} value={filter}>
@@ -168,7 +168,7 @@ export default function NewsReportsCards({ providedCountry, initialNewsItems }: 
               <select
                 value={selectedCountry}
                 onChange={(e) => handleCountryChange(e.target.value)}
-                className="appearance-none w-full px-6 py-3 border border-dark-charcoal rounded-full text-sm focus:outline-none focus:border-primary-orange bg-white text-dark-charcoal cursor-pointer capitalize font-medium"
+                className="appearance-none w-full px-6 py-3 border border-dark-charcoal rounded-full text-sm focus:outline-hidden focus:border-primary-orange bg-white text-dark-charcoal cursor-pointer capitalize font-medium"
               >
                 <option value="All Country">All Countries</option>
                 <option value="Kenya">Kenya</option>
@@ -186,7 +186,7 @@ export default function NewsReportsCards({ providedCountry, initialNewsItems }: 
               <select
                 value={selectedYear}
                 onChange={(e) => handleYearChange(e.target.value)}
-                className="appearance-none w-full px-6 py-3 border border-dark-charcoal rounded-full text-sm focus:outline-none focus:border-primary-orange bg-white text-dark-charcoal cursor-pointer capitalize font-medium"
+                className="appearance-none w-full px-6 py-3 border border-dark-charcoal rounded-full text-sm focus:outline-hidden focus:border-primary-orange bg-white text-dark-charcoal cursor-pointer capitalize font-medium"
               >
                 <option value="All Years">All Years</option>
                 {availableYears.map(year => (

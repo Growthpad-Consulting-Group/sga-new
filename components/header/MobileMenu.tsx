@@ -75,11 +75,11 @@ export default function MobileMenu({
               >
                 <span className="flex items-center gap-2">
                   {item.label}
-                  <Icon icon="mdi:plus" className={`w-5 h-5 text-primary-orange flex-shrink-0`} />
+                  <Icon icon="mdi:plus" className={`w-5 h-5 text-primary-orange shrink-0`} />
                 </span>
                 <Icon
                   icon={mobileOpen ? "mdi:chevron-up" : "mdi:chevron-down"}
-                  className={`w-5 h-5 text-dark-charcoal flex-shrink-0`}
+                  className={`w-5 h-5 text-dark-charcoal shrink-0`}
                 />
               </button>
               <AnimatePresence>
@@ -149,7 +149,7 @@ export default function MobileMenu({
             className={`block py-3 sm:py-3.5 transition-colors flex items-center gap-2 text-sm sm:text-base font-semibold ${isActive ? 'text-primary-orange' : 'text-dark-charcoal hover:text-primary-orange'
               }`}
           >
-            {item.icon && <Icon icon={item.icon} className={`w-5 h-5 text-primary-orange flex-shrink-0`} />}
+            {item.icon && <Icon icon={item.icon} className={`w-5 h-5 text-primary-orange shrink-0`} />}
             <span>{item.label}</span>
           </NavComponent>
         )

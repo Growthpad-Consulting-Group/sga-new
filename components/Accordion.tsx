@@ -18,7 +18,7 @@ function AccordionItem({ title, children, isOpen, onToggle, variant = 'default' 
       container: 'border border-gray-200 rounded-lg overflow-hidden',
       button: 'w-full text-left p-6 bg-white hover:bg-gray-50 transition-colors flex items-center justify-between',
       title: 'text-lg font-semibold text-navy-blue pr-4',
-      icon: 'w-6 h-6 text-primary-orange flex-shrink-0',
+      icon: 'w-6 h-6 text-primary-orange shrink-0',
       content: 'p-6 bg-gray-50 border-t border-gray-200',
     },
     footer: {

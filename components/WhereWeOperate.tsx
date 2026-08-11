@@ -10,7 +10,7 @@ import type { InteractiveMapRef } from './InteractiveMap'
 const InteractiveMap = dynamic(() => import('./InteractiveMap'), {
   ssr: false,
   loading: () => (
-    <div className="w-full h-[100%] rounded-lg bg-gray-200 animate-pulse flex items-center justify-center">
+    <div className="w-full h-full rounded-lg bg-gray-200 animate-pulse flex items-center justify-center">
       <p className="text-gray-500">Loading map...</p>
     </div>
   )

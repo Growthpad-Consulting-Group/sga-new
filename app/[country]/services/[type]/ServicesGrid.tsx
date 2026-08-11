@@ -46,7 +46,7 @@ export default function ServicesGrid({ services, country, type, isIndividual, co
                         >
                             <Link href={`/${country}/services/${type}/${service.slug}`} className="flex flex-col h-full">
                                 {/* Image Section */}
-                                <div className="relative w-full aspect-[16/10] overflow-hidden">
+                                <div className="relative w-full aspect-16/10 overflow-hidden">
                                     <Image
                                         src={service.heroImage}
                                         alt={service.serviceName}
@@ -64,7 +64,7 @@ export default function ServicesGrid({ services, country, type, isIndividual, co
                                     <h3 className="text-2xl lg:text-3xl font-bold text-white mb-4 tracking-tight">
                                         {service.serviceName}
                                     </h3>
-                                    <p className="text-white/90 text-lg leading-relaxed mb-8 flex-grow font-medium">
+                                    <p className="text-white/90 text-lg leading-relaxed mb-8 grow font-medium">
                                         {service.heroDescription}
                                     </p>
 

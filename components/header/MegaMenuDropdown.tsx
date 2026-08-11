@@ -56,7 +56,7 @@ export default function MegaMenuDropdown({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 bg-primary-orange z-[60] overflow-y-auto"
+      className="fixed inset-0 bg-primary-orange z-60 overflow-y-auto"
     >
       <div className="mx-auto container-fluid py-8">
         {/* Top row: Logo, Toggle, Close */}
@@ -76,7 +76,7 @@ export default function MegaMenuDropdown({
               <div className="flex items-center gap-2 bg-[#ecf2f7] rounded-full p-1">
                 <button
                   onClick={() => setServicesViewType('Individual')}
-                  className={`px-8 py-2.5 rounded-full text-sm font-bold transition-all !font-nav ${
+                  className={`px-8 py-2.5 rounded-full text-sm font-bold transition-all font-nav! ${
                     servicesViewType === 'Individual'
                       ? 'bg-primary-orange text-white shadow-lg'
                       : 'text-[#2e2e2e] hover:text-primary-orange'
@@ -86,7 +86,7 @@ export default function MegaMenuDropdown({
                 </button>
                 <button
                   onClick={() => setServicesViewType('Corporate')}
-                  className={`px-8 py-2.5 rounded-full text-sm font-bold transition-all !font-nav ${
+                  className={`px-8 py-2.5 rounded-full text-sm font-bold transition-all font-nav! ${
                     servicesViewType === 'Corporate'
                       ? 'bg-primary-orange text-white shadow-lg'
                       : 'text-[#2e2e2e] hover:text-primary-orange'
@@ -127,7 +127,7 @@ export default function MegaMenuDropdown({
                       className={`flex items-center justify-center gap-1.5 py-2 px-1 rounded-full border transition-all ${
                         active
                           ? 'bg-white text-primary-orange border-white font-bold'
-                          : 'bg-white/10 backdrop-blur-sm text-white border-white/20 hover:bg-white/20 hover:border-white/40'
+                          : 'bg-white/10 backdrop-blur-xs text-white border-white/20 hover:bg-white/20 hover:border-white/40'
                       }`}
                     >
                       <Icon icon={country.flag} className="w-6 h-6 rounded-full" />
@@ -195,7 +195,7 @@ export default function MegaMenuDropdown({
                   }}
                   className="w-full bg-white text-primary-orange py-4 rounded-full font-bold uppercase tracking-widest text-sm flex items-center justify-center gap-3 shadow-xl hover:bg-white/90 transition-colors"
                 >
-                  <Icon icon="mdi:file-document-outline" className="w-5 h-5 outline-none" />
+                  <Icon icon="mdi:file-document-outline" className="w-5 h-5 outline-hidden" />
                   Request a Quote
                 </button>
                 <button

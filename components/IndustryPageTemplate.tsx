@@ -140,7 +140,7 @@ export default function IndustryPageTemplate({
                 >
                   <Icon
                     icon="icon-park-outline:check-one"
-                    className="w-5 h-5 md:w-6 md:h-6 text-primary-orange flex-shrink-0"
+                    className="w-5 h-5 md:w-6 md:h-6 text-primary-orange shrink-0"
                   />
                   <span className="text-sm md:text-base text-gray-800 font-medium whitespace-nowrap">
                     {item}
@@ -394,7 +394,7 @@ export default function IndustryPageTemplate({
                       </h3>
 
                       {/* Summary */}
-                      <p className="text-white text-lg md:text-2xl leading-relaxed mb-6 flex-grow">
+                      <p className="text-white text-lg md:text-2xl leading-relaxed mb-6 grow">
                         {service.summary}
                       </p>
 

@@ -23,7 +23,7 @@ export default function FAQsCTA() {
                 Can't find what you're looking for? Contact SGA and our team will assist you.
               </p>
             </div>
-            <div className="flex-shrink-0">
+            <div className="shrink-0">
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-2 bg-white text-primary-orange px-6 py-3 rounded-full font-semibold text-xs uppercase shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"

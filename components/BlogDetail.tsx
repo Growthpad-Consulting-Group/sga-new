@@ -50,7 +50,7 @@ const ImageModal = ({ images, currentIndex, onClose, onNext, onPrev }: ImageModa
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4 md:p-10"
+            className="fixed inset-0 z-100 bg-black/95 flex items-center justify-center p-4 md:p-10"
         >
             <div className="absolute inset-0 cursor-zoom-out" onClick={onClose} />
 
@@ -133,7 +133,7 @@ const SocialShare = ({ url, title }: { url: string; title: string }) => {
                                 href={link}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="w-10 h-10 rounded-xl flex items-center justify-center transition-all hover:scale-110 hover:-translate-y-1 shadow-sm"
+                                className="w-10 h-10 rounded-xl flex items-center justify-center transition-all hover:scale-110 hover:-translate-y-1 shadow-xs"
                                 style={{
                                     backgroundColor:
                                         platform === 'facebook' ? '#1877F2' :
@@ -282,7 +282,7 @@ const PortableTextComponents = (onImageClick: (img: any) => void) => ({
         h5: ({ children }: any) => <h5 className="text-lg md:text-xl font-bold text-dark-charcoal pt-4 tracking-tight scroll-mt-32">{children}</h5>,
         h6: ({ children }: any) => <h6 className="text-base md:text-lg font-bold text-dark-charcoal pt-4 tracking-tight scroll-mt-32">{children}</h6>,
         blockquote: ({ children }: any) => (
-            <blockquote className="border-l-[10px] border-primary-orange pl-10 py-6 my-14 bg-primary-orange/5 rounded-r-3xl italic text-2xl text-dark-charcoal font-bold shadow-sm">
+            <blockquote className="border-l-10 border-primary-orange pl-10 py-6 my-14 bg-primary-orange/5 rounded-r-3xl italic text-2xl text-dark-charcoal font-bold shadow-xs">
                 "{children}"
             </blockquote>
         ),
@@ -453,8 +453,8 @@ export default function BlogDetail({ blog, relatedPosts = [] }: BlogDetailProps)
                 </motion.div>
 
                 {/* Deep Orange Gradient Fade */}
-                <div className="absolute inset-0 bg-gradient-to-b from-primary-orange via-primary-orange/50 to-transparent opacity-90" />
-                <div className="absolute inset-0 bg-gradient-to-t from-white via-white/20 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-b from-primary-orange via-primary-orange/50 to-transparent opacity-90" />
+                <div className="absolute inset-0 bg-linear-to-t from-white via-white/20 to-transparent" />
 
                 {/* Decorative elements */}
                 <div className="absolute top-40 right-20 w-48 h-48 bg-white/20 rounded-full blur-3xl" />
@@ -470,7 +470,7 @@ export default function BlogDetail({ blog, relatedPosts = [] }: BlogDetailProps)
                             <span className="px-6 py-2 bg-white text-primary-orange rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-xl">
                                 {blog.category || 'Insights'}
                             </span>
-                            <span className="text-white font-bold text-xs uppercase tracking-widest flex items-center gap-2 drop-shadow-md bg-dark-charcoal/20 px-4 py-2 rounded-full backdrop-blur-sm">
+                            <span className="text-white font-bold text-xs uppercase tracking-widest flex items-center gap-2 drop-shadow-md bg-dark-charcoal/20 px-4 py-2 rounded-full backdrop-blur-xs">
                                 <Icon icon="mdi:clock-outline" className="w-4 h-4" />
                                 {readTime}
                             </span>
@@ -498,7 +498,7 @@ export default function BlogDetail({ blog, relatedPosts = [] }: BlogDetailProps)
                         className="flex-1"
                     >
                         {!blog.body && (
-                            <div className="text-2xl md:text-4xl font-black text-dark-charcoal leading-tight mb-16 border-l-[12px] border-primary-orange pl-10 py-4 opacity-90 italic">
+                            <div className="text-2xl md:text-4xl font-black text-dark-charcoal leading-tight mb-16 border-l-12 border-primary-orange pl-10 py-4 opacity-90 italic">
                                 {blog.summary}
                             </div>
                         )}
@@ -616,10 +616,10 @@ export default function BlogDetail({ blog, relatedPosts = [] }: BlogDetailProps)
                                 ) : (
                                     <form onSubmit={handleCommentSubmit} className="space-y-6 max-w-2xl mx-auto">
                                         <div className="grid md:grid-cols-2 gap-6">
-                                            <input name="name" required type="text" placeholder="Full Name" className="w-full bg-white/20 border border-white/20 rounded-2xl px-6 py-4 focus:outline-none focus:border-white transition-colors font-bold placeholder:text-white/60" />
-                                            <input name="email" required type="email" placeholder="Email Address" className="w-full bg-white/20 border border-white/20 rounded-2xl px-6 py-4 focus:outline-none focus:border-white transition-colors font-bold placeholder:text-white/60" />
+                                            <input name="name" required type="text" placeholder="Full Name" className="w-full bg-white/20 border border-white/20 rounded-2xl px-6 py-4 focus:outline-hidden focus:border-white transition-colors font-bold placeholder:text-white/60" />
+                                            <input name="email" required type="email" placeholder="Email Address" className="w-full bg-white/20 border border-white/20 rounded-2xl px-6 py-4 focus:outline-hidden focus:border-white transition-colors font-bold placeholder:text-white/60" />
                                         </div>
-                                        <textarea name="comment" required rows={4} placeholder="Your comment..." className="w-full bg-white/20 border border-white/20 rounded-3xl px-6 py-4 focus:outline-none focus:border-white transition-colors font-bold placeholder:text-white/60"></textarea>
+                                        <textarea name="comment" required rows={4} placeholder="Your comment..." className="w-full bg-white/20 border border-white/20 rounded-3xl px-6 py-4 focus:outline-hidden focus:border-white transition-colors font-bold placeholder:text-white/60"></textarea>
                                         <button
                                             disabled={isSubmitting}
                                             className="px-12 py-5 bg-white text-primary-orange font-black uppercase text-xs tracking-widest rounded-3xl shadow-xl hover:text-primary-orange transition-all transform hover:-translate-y-1 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"

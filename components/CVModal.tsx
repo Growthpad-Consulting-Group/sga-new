@@ -193,7 +193,7 @@ export default function CVModal({ isOpen, onClose }: CVModalProps): React.JSX.El
                         required
                         value={formData.fullName}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-hidden transition-colors"
                         placeholder="Enter your full name"
                       />
                     </div>
@@ -210,7 +210,7 @@ export default function CVModal({ isOpen, onClose }: CVModalProps): React.JSX.El
                         required
                         value={formData.email}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-hidden transition-colors"
                         placeholder="Enter your email"
                       />
                     </div>
@@ -227,7 +227,7 @@ export default function CVModal({ isOpen, onClose }: CVModalProps): React.JSX.El
                         required
                         value={formData.phone}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-hidden transition-colors"
                         placeholder="Enter your phone number"
                       />
                     </div>
@@ -243,7 +243,7 @@ export default function CVModal({ isOpen, onClose }: CVModalProps): React.JSX.El
                         required
                         value={formData.country}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-hidden transition-colors"
                       >
                         <option value="">Select your country</option>
                         <option value="Kenya">Kenya</option>
@@ -264,7 +264,7 @@ export default function CVModal({ isOpen, onClose }: CVModalProps): React.JSX.El
                         required
                         value={formData.jobTitle}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-hidden transition-colors"
                       >
                         <option value="">Select job title</option>
                         {jobTitleOptions.map((title) => (
@@ -289,7 +289,7 @@ export default function CVModal({ isOpen, onClose }: CVModalProps): React.JSX.El
                         accept=".pdf,application/pdf"
                         required
                         onChange={handleFileChange}
-                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-none transition-colors file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary-orange file:text-white hover:file:bg-navy-blue file:cursor-pointer"
+                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-hidden transition-colors file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary-orange file:text-white hover:file:bg-navy-blue file:cursor-pointer"
                       />
                     </div>
                     {fileError && (
@@ -313,7 +313,7 @@ export default function CVModal({ isOpen, onClose }: CVModalProps): React.JSX.El
                       rows={4}
                       value={formData.coverNote}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-none transition-colors resize-none"
+                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-hidden transition-colors resize-none"
                       placeholder="Tell us why you're interested in joining SGA..."
                     />
                   </div>
@@ -327,7 +327,7 @@ export default function CVModal({ isOpen, onClose }: CVModalProps): React.JSX.El
                       required
                       checked={formData.agreeToPrivacy}
                       onChange={handleCheckboxChange}
-                      className="mt-1 w-5 h-5 text-navy-blue border-gray-300 rounded focus:ring-navy-blue"
+                      className="mt-1 w-5 h-5 text-navy-blue border-gray-300 rounded-sm focus:ring-navy-blue"
                     />
                     <label htmlFor="agreeToPrivacy" className="text-sm text-dark-charcoal">
                       I agree to SGA's{' '}

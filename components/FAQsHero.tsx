@@ -33,7 +33,7 @@ export default function FAQsHero({ searchQuery, setSearchQuery }: FAQsHeroProps)
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search for questions..."
-              className="w-full pl-12 pr-12 py-4 border-2 border-gray-300 rounded-full text-base focus:outline-none focus:border-primary-orange"
+              className="w-full pl-12 pr-12 py-4 border-2 border-gray-300 rounded-full text-base focus:outline-hidden focus:border-primary-orange"
             />
             <Icon
               icon="mdi:magnify"
