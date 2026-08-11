@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { Icon } from '@iconify/react'
 import { useEnquiryModal } from '@/contexts/EnquiryModalContext'
-import Link from 'next/link'
+import { Link } from 'next-view-transitions'
 import Accordion from './Accordion'
 import { socialLinks } from '@/data/nav'
 

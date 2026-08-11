@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import Link from 'next/link'
+import { Link, useTransitionRouter } from 'next-view-transitions'
 import Image from 'next/image'
 import { Icon } from '@iconify/react'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { useEnquiryModal } from '@/contexts/EnquiryModalContext'
 import { useCountryModal } from '@/contexts/CountryModalContext'
 import { navItems, getCountryNavItems, socialLinks, countries } from '@/data/nav'
@@ -14,7 +14,7 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const pathname = usePathname()
-  const router = useRouter()
+  const router = useTransitionRouter()
   const { openModal } = useEnquiryModal()
   const { isOpen: countryModalOpen, openModal: openCountryModal, closeModal: closeCountryModal, redirectPath } = useCountryModal()
 

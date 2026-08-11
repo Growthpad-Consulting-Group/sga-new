@@ -10,6 +10,7 @@ import { headers } from 'next/headers'
 import { getCanonicalUrl, formatHrefLangLinks, getCountryMetadata } from '@/lib/seoHelpers'
 import { ReactNode } from 'react'
 import type { Metadata } from 'next'
+import { ViewTransitions } from 'next-view-transitions'
 
 export const metadata: Metadata = {
   title: 'SGA Security Group - Leading Security Solutions in East Africa',
@@ -41,6 +42,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
   const isCountryPage = pathname.startsWith('/ke') || pathname.startsWith('/ug') || pathname.startsWith('/tz')
 
   return (
+    <ViewTransitions>
     <html lang={countryMeta.locale.split('_')[0]}>
       <head>
         {/* Canonical URL */}
@@ -76,5 +78,6 @@ export default async function RootLayout({ children }: RootLayoutProps) {
         </CountryProvider>
       </body>
     </html>
+    </ViewTransitions>
   )
 }

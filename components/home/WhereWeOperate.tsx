@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import dynamic from 'next/dynamic'
 import { useRef } from 'react'
-import Link from 'next/link'
+import { Link } from 'next-view-transitions'
 import type { InteractiveMapRef } from './InteractiveMap'
 
 const InteractiveMap = dynamic(() => import('./InteractiveMap'), {

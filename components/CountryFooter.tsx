@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { Icon } from '@iconify/react'
 import { usePathname } from 'next/navigation'
-import Link from 'next/link'
+import { Link } from 'next-view-transitions'
 import { useEnquiryModal } from '@/contexts/EnquiryModalContext'
 import { socialLinks } from '@/data/nav'
 

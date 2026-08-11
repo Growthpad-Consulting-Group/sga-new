@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
-import Link from 'next/link'
+import { Link } from 'next-view-transitions'
 
 import { contactOffices } from '@/components/contact/data'
 

@@ -1,10 +1,9 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Link from 'next/link'
+import { Link, useTransitionRouter } from 'next-view-transitions'
 import Image from 'next/image'
 import { Icon } from '@iconify/react'
-import { useRouter } from 'next/navigation'
 
 interface ServiceItem {
   href: string
@@ -47,7 +46,7 @@ export default function MegaMenuDropdown({
   countryPhone,
   openModal,
 }: MegaMenuDropdownProps): React.JSX.Element | null {
-  const router = useRouter()
+  const router = useTransitionRouter()
 
   if (!isOpen) return null
 

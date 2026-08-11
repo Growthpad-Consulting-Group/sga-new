@@ -3,7 +3,7 @@
 import { useState, forwardRef, useImperativeHandle } from 'react'
 import Image from 'next/image'
 import { Icon } from '@iconify/react'
-import Link from 'next/link'
+import { Link } from 'next-view-transitions'
 
 interface Location {
   name: string

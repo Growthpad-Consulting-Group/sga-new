@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
-import { useRouter } from 'next/navigation'
+import { useTransitionRouter } from 'next-view-transitions'
 
 interface Country {
   code: string
@@ -18,7 +18,7 @@ interface CountryModalProps {
 }
 
 export default function CountryModal({ isOpen, onClose, countries }: CountryModalProps): React.JSX.Element | null {
-  const router = useRouter()
+  const router = useTransitionRouter()
 
   if (!isOpen) return null
 

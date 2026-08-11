@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, AnimatePresence } from 'framer-motion'
-import Link from 'next/link'
+import { Link } from 'next-view-transitions'
 import { Icon } from '@iconify/react'
 
 interface NavItem {

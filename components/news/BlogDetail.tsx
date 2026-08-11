@@ -4,7 +4,7 @@ import { useMemo, useEffect, useState, useCallback, useRef } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import Image from 'next/image'
-import Link from 'next/link'
+import { Link } from 'next-view-transitions'
 import { usePathname } from 'next/navigation'
 
 import { PortableText } from '@portabletext/react'

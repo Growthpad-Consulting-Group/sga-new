@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
-import { useRouter } from 'next/navigation'
+import { useTransitionRouter } from 'next-view-transitions'
 import { socialLinks } from '@/data/nav'
 
 interface Country {
@@ -31,7 +31,7 @@ export default function TopBar({
   currentCountryName,
   onCountryModalOpen,
 }: TopBarProps): React.JSX.Element {
-  const router = useRouter()
+  const router = useTransitionRouter()
 
   return (
     <div className={`transition-all duration-300 ${isScrolled ? 'h-0 opacity-0 overflow-hidden' : ''}`}>

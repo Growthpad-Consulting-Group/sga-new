@@ -129,7 +129,7 @@ const newsItems: NewsItem[] = [
 ]
 
 import { urlFor } from '@/sanity/lib/image'
-import Link from 'next/link'
+import { Link } from 'next-view-transitions'
 
 export default function News({ hideCountryDropdown = false, backgroundColor = 'bg-white', country, customSubtext, initialNewsItems }: NewsProps) {
   const [activeFilter, setActiveFilter] = useState('ALL')

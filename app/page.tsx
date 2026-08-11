@@ -41,7 +41,7 @@ export default async function HomePage(): Promise<React.JSX.Element> {
             <span className="text-primary-orange">Protecting People, Businesses, & Communities in East Africa.</span>
           </>
         }
-        customDescription="Your safety, our mission. Explore the Group or visit your country for tailored services."
+        customDescription="Your safety, our mission."
         showToggle={false}
         customButtons={[
           { label: 'Explore for Individual', href: '/services/individual', primary: true },
