@@ -42,18 +42,6 @@
   padding-inline: clamp(1rem, 5vw, 8rem);
 }
 
-@utility btn-text {
-  /* Button utility class */
-  @apply uppercase;
-}
-
-@utility flag-icon {
-  /* Flag icon utility */
-  @apply rounded-full;
-  object-fit: cover;
-  object-position: center;
-}
-
 @utility section-title {
   /* Section Title Components */
   @apply font-bold mb-4 block;
@@ -104,11 +92,6 @@
 @utility no-snap {
   scroll-snap-align: none !important;
   scroll-snap-stop: normal !important;
-}
-
-@utility snap-section {
-  scroll-snap-align: start;
-  scroll-snap-stop: normal;
 }
 
 @utility section-snap {
