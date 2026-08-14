@@ -16,7 +16,7 @@ export default function ContactInfo({ providedCountry }: ContactInfoProps): Reac
     : contactOffices
 
   return (
-    <section id="contact-info" className="section-snap flex items-center justify-center bg-white text-dark-charcoal py-20 relative">
+    <section id="contact-info" className=" flex items-center justify-center bg-white text-dark-charcoal py-20 relative">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}

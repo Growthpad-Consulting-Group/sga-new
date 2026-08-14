@@ -8,7 +8,7 @@ export default function TermsConditionsPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="section-snap relative bg-gray-100 text-dark-charcoal pt-32 sm:pt-40 lg:pt-48 pb-16">
+      <section className=" relative bg-gray-100 text-dark-charcoal pt-32 sm:pt-40 lg:pt-48 pb-16">
         <div className="container-fluid mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

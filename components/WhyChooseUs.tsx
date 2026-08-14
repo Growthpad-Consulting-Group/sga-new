@@ -42,7 +42,7 @@ export default function WhyChooseUs({
   const [openIndex, setOpenIndex] = useState(0)
 
   return (
-    <section id="why-choose-us" className={`section-snap flex items-center justify-center ${backgroundColor} relative pb-0 overflow-x-hidden min-h-screen`}>
+    <section id="why-choose-us" className={` flex items-center justify-center ${backgroundColor} relative pb-0 overflow-x-hidden`}>
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}

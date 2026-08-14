@@ -52,7 +52,7 @@ export default function About({
 
   if (customLayout) {
     return (
-      <section id="about" className="section-snap flex items-center justify-center bg-light-grey relative pb-0 overflow-x-hidden min-h-[85vh]">
+      <section id="about" className=" flex items-center justify-center bg-light-grey relative pb-0 overflow-x-hidden">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -144,7 +144,7 @@ export default function About({
   }
 
   return (
-    <SectionWrapper id="about" className="bg-light-grey min-h-[85vh]">
+    <SectionWrapper id="about" className="bg-light-grey">
       <div className="grid md:grid-cols-2 gap-12 items-center">
         <motion.div
           initial={{ opacity: 0, x: -50 }}

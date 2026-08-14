@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link, useTransitionRouter } from 'next-view-transitions'
 import Image from 'next/image'
@@ -13,6 +13,9 @@ import { navItems, getCountryNavItems, socialLinks, countries } from '@/data/nav
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [hidden, setHidden] = useState(false)
+  const lastYRef = useRef(0)
+  const mobileMenuOpenRef = useRef(false)
   const pathname = usePathname()
   const router = useTransitionRouter()
   const { openModal } = useEnquiryModal()
@@ -46,9 +49,45 @@ export default function Header() {
   const countryPhone = getCountryPhone(currentCountryCode)
   const countryName = getCountryName(currentCountryCode)
 
-  // Handle scroll detection
+  // Browsers restore scroll position on reload by default, and the
+  // hero/topbar's layout settling shortly after load makes that restoration
+  // nudge the page down by a few px each time — most visible as a small
+  // creeping offset when reloading at the very top. Opt out so reloads land
+  // exactly where the URL says (0 for the homepage).
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 300)
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual'
+    }
+  }, [])
+
+  // Keep the mobile-menu-open flag available inside the scroll handler
+  // without re-subscribing the listener every time it toggles.
+  useEffect(() => {
+    mobileMenuOpenRef.current = mobileMenuOpen
+  }, [mobileMenuOpen])
+
+  // Handle scroll detection: glass/scrolled state, plus hide-on-scroll-down
+  useEffect(() => {
+    lastYRef.current = window.scrollY
+
+    const handleScroll = () => {
+      const y = window.scrollY
+      setIsScrolled(y > 8)
+
+      // Body scroll is locked while the mobile menu is open, so scroll
+      // position can't legitimately change then — skip the hide logic
+      // entirely rather than risk it closing the menu right after opening.
+      setHidden((prevHidden) => {
+        if (mobileMenuOpenRef.current) return prevHidden
+        const delta = y - lastYRef.current
+        if (y < 80) return false
+        if (delta > 4) return true
+        if (delta < -4) return false
+        return prevHidden
+      })
+      lastYRef.current = y
+    }
+
     handleScroll()
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
@@ -71,20 +110,7 @@ export default function Header() {
   }
 
   // Consolidated class generators
-  const getHeaderClasses = () => {
-    const baseClasses = 'fixed left-0 right-0 z-40 transition-all duration-300'
-    if (isCountryPage) {
-      return isScrolled
-        ? `${baseClasses} top-0 bg-white/90 backdrop-blur-md border-b border-white/20 shadow-lg`
-        : `${baseClasses} top-0 bg-transparent`
-    }
-    return isScrolled
-      ? `${baseClasses} top-0 bg-white/80 backdrop-blur-md border-b border-white/20 shadow-lg`
-      : `${baseClasses} top-0 bg-white`
-  }
-
-  const getTopBarClasses = () => {
-    if (isScrolled) return 'h-0 overflow-hidden opacity-0'
+  const getTopBarColorClasses = () => {
     return isCountryPage ? 'bg-transparent text-white' : 'bg-white text-black'
   }
 
@@ -103,8 +129,8 @@ export default function Header() {
   }
 
   const getBorderColor = () => {
-    if (isScrolled) return 'border-black/20'
-    return isCountryPage ? 'border-white/30' : 'border-black'
+    if (isScrolled) return 'border-dark-charcoal/80'
+    return isCountryPage ? 'border-white/30' : 'border-dark-charcoal/80'
   }
 
   const getLogoSrc = () => {
@@ -121,9 +147,71 @@ export default function Header() {
   const mobileMenuItemClasses = 'flex items-center gap-2 py-3 sm:py-3.5 transition-colors text-sm sm:text-base font-nav'
 
   return (
-    <header className={getHeaderClasses()}>
+    <>
+    {/* Liquid-glass refraction filter for the pill background layer below.
+        Hidden via zero size + overflow (not display:none — some browsers
+        won't apply a filter referenced from a display:none SVG). */}
+    <svg width="0" height="0" style={{ position: 'absolute', overflow: 'hidden' }}>
+      <defs>
+        <filter id="header-glass-distortion" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
+          <feTurbulence type="fractalNoise" baseFrequency="0.012 0.012" numOctaves="2" seed="8" result="noise" />
+          <feGaussianBlur in="noise" stdDeviation="2" result="blurred" />
+          <feDisplacementMap in="SourceGraphic" in2="blurred" scale="18" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+      </defs>
+    </svg>
+
+    <header className="fixed inset-x-0 top-0 z-40">
+      {/* Out of document flow (fixed, not sticky/static) so page content —
+          starting with the hero — sits at y:0 and scrolls up through the
+          transparent header instead of being pushed down by its box.
+          Hide-on-scroll-down transform lives on this inner wrapper rather
+          than on <header> itself — a transform on <header> would turn any
+          `position: fixed` descendant (the country modal below) into being
+          positioned relative to the header instead of the viewport. */}
+      <div
+        style={{
+          transform: hidden ? 'translateY(calc(-100% - 1rem))' : 'translateY(0)',
+          transition:
+            'margin 500ms cubic-bezier(0.22, 1, 0.36, 1), border-radius 500ms cubic-bezier(0.22, 1, 0.36, 1), transform 550ms cubic-bezier(0.65, 0, 0.35, 1)',
+        }}
+        className={`relative isolate ${
+          isScrolled ? 'mx-4 mt-4 rounded-3xl sm:mx-6 sm:mt-4 lg:mx-12' : 'mx-0 mt-0 w-full rounded-none'
+        }`}
+      >
+      {/* "Liquid glass": a distorted+blurred backdrop layer, a faint white
+          tint, and an inset specular ring — stacked behind the content so
+          the distortion never touches the (crisp) links/logo on top.
+          overflow-hidden is scoped to just this glass layer, not the whole
+          pill, so the mobile dropdown (which extends below on open) isn't
+          clipped by it. */}
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden rounded-[inherit]">
+        <div
+          aria-hidden
+          style={{ filter: 'url(#header-glass-distortion)' }}
+          className="absolute inset-0 backdrop-blur-[3px]"
+        />
+        <div
+          aria-hidden
+          className={`absolute inset-0 backdrop-saturate-180 transition-colors duration-500 ${
+            isScrolled ? 'bg-white/70' : 'bg-white/10'
+          }`}
+        />
+        <div
+          aria-hidden
+          className={`absolute inset-0 ring-1 ring-inset transition-shadow duration-500 ${
+            isScrolled ? 'shadow-lg shadow-black/5 ring-white/40' : 'ring-white/20'
+          }`}
+        />
+      </div>
+
       {/* Top Bar with Social Icons and Flags */}
-      <div className={`${getTopBarClasses()} transition-all duration-300`}>
+      <div
+        className={`relative grid transition-[grid-template-rows] duration-500 ease-out ${
+          isScrolled ? 'grid-rows-[0fr]' : 'grid-rows-[1fr]'
+        } ${getTopBarColorClasses()}`}
+      >
+      <div className="overflow-hidden">
         <div className={containerClasses}>
           <div className="flex items-center justify-between h-10 sm:h-12 text-xs sm:text-sm">
             {/* Social Icons - Left */}
@@ -213,11 +301,16 @@ export default function Header() {
         <div className={containerClasses}>
           <div className={`border-b-2 ${getBorderColor()} transition-all duration-300`}></div>
         </div>
+        </div>
       </div>
 
       {/* Main Navigation */}
-      <nav className={containerClasses}>
-        <div className="flex items-center justify-between h-20 sm:h-24">
+      <nav className={`relative ${containerClasses}`}>
+        <div
+          className={`flex items-center justify-between transition-[height] duration-500 ease-out ${
+            isScrolled ? 'h-16 sm:h-20' : 'h-20 sm:h-24'
+          }`}
+        >
           {/* Logo - Left */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -392,6 +485,7 @@ export default function Header() {
           )}
         </AnimatePresence>
       </nav>
+      </div>
 
       {/* Country Selection Modal */}
       <AnimatePresence>
@@ -493,5 +587,6 @@ export default function Header() {
         )}
       </AnimatePresence>
     </header>
+    </>
   )
 }

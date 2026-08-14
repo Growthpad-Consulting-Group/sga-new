@@ -54,39 +54,39 @@ export default async function HomePage(): Promise<React.JSX.Element> {
         id="about"
       />
 
-      <div className="relative section-snap">
+      <div className="relative ">
         <OurImpactInNumbers />
         <SectionSeparator />
       </div>
 
-      <div className="relative section-snap">
+      <div className="relative ">
         <GroupIntegratedSolutions
           title="Our Core Services"
         />
         <SectionSeparator />
       </div>
 
-      <div className="relative section-snap">
+      <div className="relative ">
         <WhereWeOperate />
         <SectionSeparator />
       </div>
 
-      <div className="relative section-snap">
+      <div className="relative ">
         <SustainabilityESG />
         <SectionSeparator />
       </div>
 
-      <div className="relative section-snap">
+      <div className="relative ">
         <News initialNewsItems={newsPosts} />
         <SectionSeparator />
       </div>
 
-      <div className="relative section-snap">
+      <div className="relative ">
         <HappyClients />
         <SectionSeparator />
       </div>
 
-      <div className="relative section-snap">
+      <div className="relative ">
         <JoinOurMission />
         <SectionSeparator />
       </div>

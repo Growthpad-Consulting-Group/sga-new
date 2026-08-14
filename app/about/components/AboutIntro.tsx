@@ -10,7 +10,7 @@ interface AboutIntroProps {
 
 export default function AboutIntro({ imageUrl = '/images/group/about/about-2.png' }: AboutIntroProps): React.JSX.Element {
   return (
-    <section id="about-intro" className="section-snap flex items-center justify-center bg-gray-100 text-dark-charcoal py-16 sm:py-20 relative">
+    <section id="about-intro" className=" flex items-center justify-center bg-gray-100 text-dark-charcoal py-16 sm:py-20 relative">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}

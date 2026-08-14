@@ -26,11 +26,11 @@ const topRowStats: Stat[] = [
 
 const bottomRowStats: Stat[] = [
   {
-    number: '$17m',
+    number: '$19m',
     label: 'Total Assets',
   },
   {
-    number: '$70m',
+    number: '$78m',
     label: 'Group Revenue',
   },
   {
@@ -38,7 +38,7 @@ const bottomRowStats: Stat[] = [
     label: 'countries',
   },
   {
-    number: '13',
+    number: '14',
     label: 'Member of Consolidated Groups',
   },
 ]
@@ -64,7 +64,7 @@ export default function OurImpactInNumbers({ showPattern = true }: OurImpactInNu
       </div>
 
       {/* Content */}
-      <div className="relative z-10 py-8 md:py-12">
+      <div className="relative z-10 py-8 md:py-24">
         <div className="mb-8 md:mb-12">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -77,7 +77,7 @@ export default function OurImpactInNumbers({ showPattern = true }: OurImpactInNu
             </p>
             <div className="section-title-container">
               <h3 className="section-title text-xl md:text-5xl font-bold text-primary-orange capitalize">
-                Security at scale, built on trust
+                Security at scale, built on trust layer
               </h3>
             </div>
           </motion.div>

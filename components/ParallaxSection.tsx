@@ -24,19 +24,21 @@ export default function ParallaxSection({
     offset: ["start end", "end start"]
   })
 
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "20%"])
+  const y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"])
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.8, 1, 1, 0.8])
 
   return (
     <section
       ref={ref}
       id={id}
-      className="section-snap relative w-full min-h-screen overflow-hidden flex flex-col justify-center"
+      className="relative w-full overflow-hidden flex flex-col justify-center py-20 md:py-28 mt-20"
     >
-      {/* Background Image - Reduced Parallax */}
+      {/* Background Image - overflows top/bottom by 10% so the parallax
+          translate never slides an edge into view and exposes the page
+          background behind it. */}
       <motion.div
         style={{ y }}
-        className="absolute inset-0 z-0"
+        className="absolute inset-x-0 top-[-10%] bottom-[-10%] z-0"
       >
         <Image
           src="/images/group/about-sga-group.png"
@@ -85,7 +87,7 @@ export default function ParallaxSection({
                     className="w-12 h-12 md:w-28 md:h-28 text-white"
                   />
                 </motion.div>
-                <p className="text-lg md:text-2xl lg:text-5xl max-w-6xl text-white font-semibold leading-relaxed text-left">
+                <p className="text-base md:text-2xl lg:text-4xl max-w-6xl text-white font-semibold leading-relaxed text-left">
                   {description}
                 </p>
               </div>

@@ -143,9 +143,6 @@ export default function GroupIntegratedSolutions({
             viewport={{ once: true }}
             className="space-y-3"
           >
-            <p className="text-md font-medium text-dark-charcoal uppercase tracking-wider">
-              integrated solutions
-            </p>
             <div className="flex items-end justify-between section-title-container w-full pb-4!">
               <h3 className="section-title text-xl md:text-5xl font-bold text-primary-orange">
                 {title}

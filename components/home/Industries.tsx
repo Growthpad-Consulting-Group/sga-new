@@ -46,7 +46,7 @@ export default function Industries({
   }
 
   return (
-    <section id="industries" className={`section-snap flex items-center justify-center ${backgroundColor} relative pb-0 overflow-x-hidden min-h-screen`}>
+    <section id="industries" className={` flex items-center justify-center ${backgroundColor} relative pb-0 overflow-x-hidden`}>
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}

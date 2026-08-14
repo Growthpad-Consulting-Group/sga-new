@@ -45,7 +45,7 @@ export default function IndustriesDetail({
   const defaultDescription = `From residential estates to financial institutions, SGA Security ${displayCountryName} provides tailored security solutions designed to meet the unique needs of each industry we serve.`
 
   return (
-    <section id="industries-detail" className="section-snap flex items-center justify-center bg-white text-dark-charcoal py-16 sm:py-20 relative">
+    <section id="industries-detail" className=" flex items-center justify-center bg-white text-dark-charcoal py-16 sm:py-20 relative">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}

@@ -232,16 +232,12 @@
 
 @layer base {
   html {
-    scroll-snap-type: y proximity;
     scroll-padding-top: 6rem;
     /* Offset for sticky header (96px) */
-    overflow-y: auto;
-    height: 100%;
   }
 
   body {
     @apply bg-white text-dark-charcoal font-body;
-    height: 100%;
   }
 
   /* Headings use Helvetica Neue */

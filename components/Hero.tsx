@@ -64,14 +64,14 @@ export default function Hero({
 
   if (twoCardLayout) {
     return (
-      <SectionWrapper id="hero" className={`${bgClass} relative pt-40 sm:pt-48 lg:pt-52`}>
+      <SectionWrapper id="hero" className={`${bgClass} relative  min-h-screen`}>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-center min-h-[80vh]">
           {/* Left Card - Content */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-8 lg:col-span-7 flex flex-col justify-start"
+            className="space-y-8 pt-20 lg:col-span-7 flex flex-col justify-start"
           >
             {customH3 && (
               <h3 className={`text-sm md:text-2xl font-bold tracking-wider ${secondaryTextColorClass}`}>
@@ -453,7 +453,10 @@ export default function Hero({
   }
 
   return (
-    <SectionWrapper id="hero" className={`${bgClass} items-start pt-40 sm:pt-48 lg:pt-52`}>
+    <SectionWrapper
+      id="hero"
+      className={`${bgClass} items-start pt-40 sm:pt-48 lg:pt-52 min-h-screen`}
+    >
       <div className="text-center w-full">
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
@@ -462,8 +465,10 @@ export default function Hero({
           className="text-5xl md:text-7xl font-bold mb-6"
         >
           SGA Security
-          {countryName !== 'SGA Group' && (
-            <span className="block text-primary-orange mt-2">{countryName}</span>
+          {countryName !== "SGA Group" && (
+            <span className="block text-primary-orange mt-2">
+              {countryName}
+            </span>
           )}
         </motion.h1>
 
@@ -494,13 +499,13 @@ export default function Hero({
             href="#services"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className={`${whiteBackground ? 'bg-gray-100 text-dark-charcoal border-2 border-gray-300' : 'bg-white/10 backdrop-blur-xs text-white border-2 border-white/20'} px-8 py-4 rounded-lg font-semibold text-lg hover:opacity-90 transition-colors`}
+            className={`${whiteBackground ? "bg-gray-100 text-dark-charcoal border-2 border-gray-300" : "bg-white/10 backdrop-blur-xs text-white border-2 border-white/20"} px-8 py-4 rounded-lg font-semibold text-lg hover:opacity-90 transition-colors`}
           >
             Our Services
           </motion.a>
         </motion.div>
       </div>
     </SectionWrapper>
-  )
+  );
 }
 

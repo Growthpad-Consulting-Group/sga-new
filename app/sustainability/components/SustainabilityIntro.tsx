@@ -30,7 +30,7 @@ const esgCards: ESGCard[] = [
 
 export default function SustainabilityIntro(): React.JSX.Element {
   return (
-    <section id="sustainability-intro" className="flex items-center justify-center bg-gray-100 text-dark-charcoal section-snap py-20 min-h-[85vh] relative">
+    <section id="sustainability-intro" className="flex items-center justify-center bg-gray-100 text-dark-charcoal  py-20 relative">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
