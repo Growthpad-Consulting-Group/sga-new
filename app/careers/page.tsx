@@ -10,8 +10,8 @@ export const metadata = {
 export default function CareersPage() {
   return (
     <>
-      <Hero 
-        imageUrl="/images/careers/hero.png"
+      <Hero
+        imageUrl="/images/group/our-mission.png"
       />
       <JobCards />
       <FloatingWhatsApp />

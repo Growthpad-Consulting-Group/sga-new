@@ -196,7 +196,7 @@ export default function JobApplicationModal({ isOpen, onClose, job }: JobApplica
                   {/* Personal Information */}
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <label htmlFor="fullName" className="block text-sm font-semibold text-navy-blue mb-2">
+                      <label htmlFor="fullName" className="block text-sm font-semibold text-dark-charcoal mb-2">
                         Full Name <span className="text-primary-orange">*</span>
                       </label>
                       <input
@@ -212,7 +212,7 @@ export default function JobApplicationModal({ isOpen, onClose, job }: JobApplica
                     </div>
 
                     <div>
-                      <label htmlFor="email" className="block text-sm font-semibold text-navy-blue mb-2">
+                      <label htmlFor="email" className="block text-sm font-semibold text-dark-charcoal mb-2">
                         Email Address <span className="text-primary-orange">*</span>
                       </label>
                       <input
@@ -228,7 +228,7 @@ export default function JobApplicationModal({ isOpen, onClose, job }: JobApplica
                     </div>
 
                     <div>
-                      <label htmlFor="phone" className="block text-sm font-semibold text-navy-blue mb-2">
+                      <label htmlFor="phone" className="block text-sm font-semibold text-dark-charcoal mb-2">
                         Phone Number <span className="text-primary-orange">*</span>
                       </label>
                       <input
@@ -244,7 +244,7 @@ export default function JobApplicationModal({ isOpen, onClose, job }: JobApplica
                     </div>
 
                     <div>
-                      <label htmlFor="country" className="block text-sm font-semibold text-navy-blue mb-2">
+                      <label htmlFor="country" className="block text-sm font-semibold text-dark-charcoal mb-2">
                         Country <span className="text-primary-orange">*</span>
                       </label>
                       <select
@@ -266,7 +266,7 @@ export default function JobApplicationModal({ isOpen, onClose, job }: JobApplica
 
                   {/* CV Upload */}
                   <div>
-                    <label htmlFor="cvFile" className="block text-sm font-semibold text-navy-blue mb-2">
+                    <label htmlFor="cvFile" className="block text-sm font-semibold text-dark-charcoal mb-2">
                       Upload CV/Resume (PDF) <span className="text-primary-orange">*</span>
                     </label>
                     <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-primary-orange transition-colors">
@@ -297,7 +297,7 @@ export default function JobApplicationModal({ isOpen, onClose, job }: JobApplica
 
                   {/* Cover Letter */}
                   <div>
-                    <label htmlFor="coverLetter" className="block text-sm font-semibold text-navy-blue mb-2">
+                    <label htmlFor="coverLetter" className="block text-sm font-semibold text-dark-charcoal mb-2">
                       Cover Letter (Optional)
                     </label>
                     <textarea
@@ -334,7 +334,7 @@ export default function JobApplicationModal({ isOpen, onClose, job }: JobApplica
                     type="button"
                     onClick={handleClose}
                     disabled={isSubmitting}
-                    className="py-3 px-6 uppercase bg-transparent border border-navy-blue text-navy-blue rounded-full items-center gap-2 hover:bg-navy-blue hover:text-white transition-colors text-sm font-semibold disabled:opacity-50"
+                    className="py-3 px-6 uppercase bg-transparent border border-primary-orange text-primary-orange rounded-full items-center gap-2 hover:bg-primary-orange hover:text-white transition-colors text-sm font-semibold disabled:opacity-50"
                   >
                     Cancel
                   </button>

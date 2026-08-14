@@ -43,7 +43,7 @@ export default function JobDetailsModal({ isOpen, onClose, job, onApply }: JobDe
                         {job.location}
                       </span>
                     </div>
-                    <h2 className="text-3xl md:text-4xl font-bold mb-3 text-navy-blue">
+                    <h2 className="text-3xl md:text-4xl font-bold mb-3 text-dark-charcoal">
                       {job.title}
                     </h2>
                     <p className="text-gray-600 text-base mb-2">
@@ -69,7 +69,7 @@ export default function JobDetailsModal({ isOpen, onClose, job, onApply }: JobDe
                 <div className="space-y-6">
                   {/* Job Summary */}
                   <div>
-                    <h3 className="text-xl font-bold text-navy-blue mb-3 flex items-center gap-2">
+                    <h3 className="text-xl font-bold text-dark-charcoal mb-3 flex items-center gap-2">
                       <Icon icon="mdi:file-document-outline" className="w-6 h-6 text-primary-orange" />
                       Job Summary
                     </h3>
@@ -80,7 +80,7 @@ export default function JobDetailsModal({ isOpen, onClose, job, onApply }: JobDe
 
                   {/* Job Details */}
                   <div>
-                    <h3 className="text-xl font-bold text-navy-blue mb-3 flex items-center gap-2">
+                    <h3 className="text-xl font-bold text-dark-charcoal mb-3 flex items-center gap-2">
                       <Icon icon="mdi:information-outline" className="w-6 h-6 text-primary-orange" />
                       Job Details
                     </h3>
@@ -112,7 +112,7 @@ export default function JobDetailsModal({ isOpen, onClose, job, onApply }: JobDe
                   {/* Additional Information */}
                   {job.requirements && (
                     <div>
-                      <h3 className="text-xl font-bold text-navy-blue mb-3 flex items-center gap-2">
+                      <h3 className="text-xl font-bold text-dark-charcoal mb-3 flex items-center gap-2">
                         <Icon icon="mdi:check-circle-outline" className="w-6 h-6 text-primary-orange" />
                         Requirements
                       </h3>
@@ -126,7 +126,7 @@ export default function JobDetailsModal({ isOpen, onClose, job, onApply }: JobDe
 
                   {job.responsibilities && (
                     <div>
-                      <h3 className="text-xl font-bold text-navy-blue mb-3 flex items-center gap-2">
+                      <h3 className="text-xl font-bold text-dark-charcoal mb-3 flex items-center gap-2">
                         <Icon icon="mdi:clipboard-list-outline" className="w-6 h-6 text-primary-orange" />
                         Key Responsibilities
                       </h3>
@@ -145,7 +145,7 @@ export default function JobDetailsModal({ isOpen, onClose, job, onApply }: JobDe
                 <div className="flex flex-col sm:flex-row gap-4 justify-end">
                   <button
                     onClick={onClose}
-                    className="py-3 px-6 uppercase bg-transparent border border-navy-blue text-navy-blue rounded-full items-center gap-2 hover:bg-navy-blue hover:text-white transition-colors text-sm font-semibold"
+                    className="py-3 px-6 uppercase bg-transparent border border-primary-orange text-primary-orange rounded-full items-center gap-2 hover:bg-primary-orange hover:text-white transition-colors text-sm font-semibold"
                   >
                     Close
                   </button>

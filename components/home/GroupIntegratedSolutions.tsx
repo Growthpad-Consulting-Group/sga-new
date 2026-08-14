@@ -37,37 +37,57 @@ const defaultSolutions: Solution[] = [
   {
     title: 'Alarm Response',
     description: 'Rapid alarm response teams ready to respond to security alerts 24/7.',
-    imageUrl: '/images/group/CCTV.png',
+    imageUrl: '/images/group/cctv.png',
   },
   {
-    title: 'Tracking',
+    title: 'Electronic Cargo Tracking System',
     description: 'Advanced GPS tracking solutions for vehicles and assets with real-time monitoring.',
-    imageUrl: '/images/group/CIT.png',
+    imageUrl: '/images/group/cit.png',
   },
   {
     title: 'CIT and Cash Management',
     description: 'Secure movement of valuables with armored fleet and vetted crews.',
-    imageUrl: '/images/group/CIT.png',
+    imageUrl: '/images/group/cit.png',
   },
   {
-    title: 'Technical Services',
+    title: 'CCTV Services',
     description: 'Installation and maintenance of security systems including CCTV, access control, and alarms.',
-    imageUrl: '/images/group/CCTV.png',
+    imageUrl: '/images/group/cctv.png',
   },
   {
-    title: 'Security Dogs',
+    title: 'K-9 Services',
     description: 'Trained K9 units for enhanced security patrols and detection services.',
     imageUrl: '/images/group/guarding.png',
   },
   {
     title: 'Special Services',
     description: 'Customized security solutions tailored to unique client requirements and high-risk scenarios.',
-    imageUrl: '/images/group/CIT.png',
+    imageUrl: '/images/group/cit.png',
   },
   {
     title: 'Workshop',
     description: 'In-house workshop for vehicle maintenance and security equipment servicing.',
     imageUrl: '/images/group/guarding.png',
+  },
+  {
+    title: 'Control Room Services',
+    description: '24/7 monitored control room coordinating rapid response across all client sites.',
+    imageUrl: '/images/group/cctv.png',
+  },
+  {
+    title: 'Reception Services',
+    description: 'Professional front-of-house teams managing access and visitor experience.',
+    imageUrl: '/images/group/guarding.png',
+  },
+  {
+    title: 'Customer Service',
+    description: 'Dedicated support teams ensuring responsive, client-focused service delivery.',
+    imageUrl: '/images/group/guarding.png',
+  },
+  {
+    title: 'Close Protection Office',
+    description: 'Specialized close protection officers for executive and VIP security.',
+    imageUrl: '/images/group/cit.png',
   },
 ]
 
