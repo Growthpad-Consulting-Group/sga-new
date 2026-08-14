@@ -38,11 +38,6 @@ const timelineEvents: TimelineEvent[] = [
     description: 'Year 2000 was another season of growth for us. We expanded from Group 4 Security to Security Group.',
   },
   {
-    year: '2002',
-    title: 'Safari Rally Sponsorship',
-    description: 'We sponsored the 50th Safari Rally in 2002. Proving that we can rev up our engines in security and on the racetrack too.',
-  },
-  {
     year: '2009',
     title: 'SGA Security Group',
     description: 'We continued improving our services, technology and expertise and in 2009 we expanded again from Security Group to SGA Security Group.',
@@ -124,7 +119,7 @@ export default function OurJourney(): React.JSX.Element {
   }
 
   return (
-    <div id="our-journey" className="bg-light-grey py-24">
+    <div id="our-journey" className="bg-light-grey py-30">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}

@@ -76,7 +76,7 @@ export default function SustainabilityIntro(): React.JSX.Element {
                 className="object-cover transition-transform duration-300 group-hover:scale-110"
               />
               {/* Overlay */}
-              <div className="absolute inset-0 bg-black/50 group-hover:bg-primary-orange transition-colors duration-300"></div>
+              <div className="absolute inset-0 bg-black/50 group-hover:bg-black/80 transition-colors duration-300"></div>
               {/* Content */}
               <div className="absolute inset-0 flex flex-col items-start justify-end p-8 md:p-10 text-left z-10">
                 <h3 className="text-2xl md:text-4xl font-medium text-white mb-4">

@@ -22,6 +22,7 @@ export default function Header() {
   const { isOpen: countryModalOpen, openModal: openCountryModal, closeModal: closeCountryModal, redirectPath } = useCountryModal()
 
   // Determine if we're on a country page and get appropriate nav items
+  const isHomePage = pathname === '/'
   const isCountryPage = pathname.startsWith('/ke') || pathname.startsWith('/ug') || pathname.startsWith('/tz')
   const currentCountryCode = isCountryPage ? pathname.split('/')[1] : null
   const currentNavItems = isCountryPage && currentCountryCode ? getCountryNavItems(currentCountryCode) : navItems
@@ -194,7 +195,7 @@ export default function Header() {
         <div
           aria-hidden
           className={`absolute inset-0 backdrop-saturate-180 transition-colors duration-500 ${
-            isScrolled ? 'bg-white/70' : 'bg-white/10'
+            isScrolled ? 'bg-white/70' : (isCountryPage || isHomePage) ? 'bg-white/10' : 'bg-white'
           }`}
         />
         <div
