@@ -50,7 +50,7 @@ function getCountryFromPath(pathname: string): string | null {
  * Main middleware function
  * Detects country from subdomain or path and rewrites the request
  */
-export function middleware(request: NextRequest): NextResponse {
+export function proxy(request: NextRequest): NextResponse {
   const { pathname, host } = request.nextUrl
   
   // Skip middleware for static files and API routes that shouldn't be rewritten
