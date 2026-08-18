@@ -107,10 +107,10 @@ export default function CountryHeader(): React.JSX.Element {
   ]
 
   const shortcuts: ServiceItem[] = [
-    { href: '/safety-tips', label: 'Safety tips' },
+    { href: `${countryPrefix}/safety-tips`, label: 'Safety tips' },
     { href: `${countryPrefix}/faqs`, label: 'FAQs' },
-    { href: '/contact', label: 'Contact' },
-    { href: '/resources', label: 'Resources' },
+    { href: `${countryPrefix}/contact`, label: 'Contact' },
+    { href: `${countryPrefix}/resources`, label: 'Resources' },
   ]
 
   const navItems: NavItem[] = [
