@@ -102,7 +102,7 @@ export default function ResourcesDocuments() {
   }
 
   return (
-    <section id="resources-documents" className="bg-light-grey py-16 sm:py-20 max-w-7xl mx-auto container-fluid">
+    <section id="resources-documents" className="bg-white py-16 sm:py-20 max-w-7xl mx-auto container-fluid">
       <div className="">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -119,9 +119,9 @@ export default function ResourcesDocuments() {
                   <button
                     key={category}
                     onClick={() => handleCategoryChange(category)}
-                    className={`px-4 py-2 rounded-full border border-navy-blue text-xs font-semibold uppercase transition-colors ${selectedCategory === category
+                    className={`px-4 py-2 rounded-full border border-dark-charcoal text-xs font-semibold uppercase transition-colors ${selectedCategory === category
                         ? 'bg-primary-orange border-primary-orange text-white'
-                        : 'text-navy-blue hover:bg-primary-orange hover:border-primary-orange hover:text-white'
+                        : 'text-dark-charcoal hover:bg-primary-orange hover:border-primary-orange hover:text-white'
                       }`}
                   >
                     {category}
@@ -199,7 +199,7 @@ export default function ResourcesDocuments() {
                   className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow flex items-center justify-between"
                 >
                   <div className="flex-1">
-                    <h3 className="text-lg font-semibold text-navy-blue mb-1">
+                    <h3 className="text-lg font-semibold text-dark-charcoal mb-1">
                       {document.title}
                     </h3>
                     {document.fileSize && (

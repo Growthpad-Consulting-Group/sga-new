@@ -46,21 +46,24 @@ export const homeData: Record<string, HomeContent> = {
             imageUrl: "/images/ke/about-sga.png"
         },
         industries: {
-            subtext: 'Beyond homes, we provide tailored solutions for businesses, institutions, and real estate developments across Kenya.',
+            subtext: 'From banking to logistics, manufacturing to diplomatic missions, we deliver tailored security solutions across every sector in Kenya.',
             items: [
-                { name: "Homes", icon: "mdi:bank", image: "/images/group/industries/residentials.png" },
-                { name: "Businesses", icon: "mdi:pickaxe", image: "/images/group/industries/education.png" },
-                { name: "Institutions", icon: "mdi:shield-account", image: "/images/group/industries/healthcare.png" },
-                { name: "Real Estate", icon: "mdi:truck", image: "/images/group/industries/hospitality.png" }
+                { name: "Banking & Finance", icon: "mdi:bank", image: "/images/ke/industries/banking/hero.png" },
+                { name: "Logistics & Supply Chain", icon: "mdi:truck", image: "/images/ke/placeholder.png" },
+                { name: "Manufacturing", icon: "mdi:factory", image: "/images/ke/placeholder.png" },
+                { name: "Retail & Commerce", icon: "mdi:store", image: "/images/ke/placeholder.png" },
+                { name: "Residential Estates", icon: "mdi:home", image: "/images/ke/residentials.png" },
+                { name: "Diplomatic & Government", icon: "mdi:shield-account", image: "/images/ke/placeholder.png" }
             ]
         },
         whyUs: {
             imageUrl: "/images/ke/why-choose-us.png",
             accordion: [
-                { title: "Local & Regional", description: "We are a security partner with deep roots in Kenya, providing local expertise with a world-class regional network." },
-                { title: "24/7 Control Room", description: "Our state-of-the-art control room operates around the clock, ensuring constant monitoring and immediate response." },
-                { title: "People + Tech", description: "Our expertly trained team and cutting-edge technology work in sync to provide a superior, proactive security solution." },
-                { title: "Proven Track Record", description: "With over five decades of excellence, we have built a reputation for reliability and trust across Kenya." }
+                { title: "Over 55 Years of Experience", description: "SGA Security has been operating since 1969, making it one of the longest-serving private security companies in East Africa. Its long track record has helped build credibility with individuals, businesses, and government institutions." },
+                { title: "Highly Trained Security Personnel", description: "The company has received recognition as Kenya's Most Professional and Well-Trained Security Company, highlighting its strong focus on continuous training, discipline, and professional standards for its security officers." },
+                { title: "Comprehensive Security Solutions", description: "SGA offers a wide range of services including manned guarding, alarm response, cash-in-transit, cash management, K-9 services, electronic tracking solutions, and home security services. This allows clients to obtain multiple security solutions from a single trusted provider." },
+                { title: "International Standards and Certifications", description: "The company is ISO 18788:2015 certified and is a member of the International Code of Conduct Association (ICoCA), demonstrating commitment to globally recognized security, accountability, and ethical standards." },
+                { title: "Proven Reputation and Industry Recognition", description: "SGA has earned multiple awards and recognitions for professionalism, service delivery, responsible security practices, and customer satisfaction. These achievements reinforce public confidence in the company's ability to protect people and assets effectively." }
             ]
         }
     },
@@ -87,12 +90,11 @@ export const homeData: Record<string, HomeContent> = {
             imageUrl: "/images/ug/about.png"
         },
         industries: {
-            subtext: 'From small businesses to large institutions, SGA Uganda delivers custom security solutions to match diverse industry needs.',
+            subtext: 'From banking to logistics and residential communities, SGA Uganda delivers custom security solutions to match diverse industry needs.',
             items: [
-                { name: "Homes", icon: "mdi:home", image: "/images/group/industries/residentials.png" },
-                { name: "Businesses", icon: "mdi:school", image: "/images/group/industries/education.png" },
-                { name: "Institutions", icon: "mdi:hospital", image: "/images/group/industries/healthcare.png" },
-                { name: "Real Estate", icon: "mdi:store", image: "/images/group/industries/hospitality.png" }
+                { name: "Banking & Finance", icon: "mdi:bank", image: "/images/ke/industries/banking/hero.png" },
+                { name: "Logistics", icon: "mdi:truck", image: "/images/ke/placeholder.png" },
+                { name: "Residential", icon: "mdi:home", image: "/images/ug/residentials.png" }
             ]
         },
         whyUs: {
@@ -128,12 +130,11 @@ export const homeData: Record<string, HomeContent> = {
             imageUrl: "/images/tz/about.png"
         },
         industries: {
-            subtext: 'SGA Tanzania provides tailored security for homes, businesses, real estate, and institutions nationwide.',
+            subtext: 'SGA Tanzania provides tailored security for banking, mining, and logistics operations nationwide.',
             items: [
-                { name: "Homes", icon: "mdi:bank", image: "/images/group/industries/residentials.png" },
-                { name: "Businesses", icon: "mdi:pickaxe", image: "/images/group/industries/education.png" },
-                { name: "Institutions", icon: "mdi:shield-account", image: "/images/group/industries/healthcare.png" },
-                { name: "Real Estate", icon: "mdi:truck", image: "/images/group/industries/hospitality.png" }
+                { name: "Banking & Finance", icon: "mdi:bank", image: "/images/ke/industries/banking/hero.png" },
+                { name: "Mining & Extractives", icon: "mdi:pickaxe", image: "/images/ke/placeholder.png" },
+                { name: "Logistics", icon: "mdi:truck", image: "/images/ke/placeholder.png" }
             ]
         },
         whyUs: {

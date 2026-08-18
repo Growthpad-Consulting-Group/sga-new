@@ -1,7 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
-
 const countryData = {
   ke: {
     name: 'Kenya',
@@ -38,12 +36,7 @@ export default function IndustriesHero({ countryCode, imageUrl }: IndustriesHero
   return (
     <section id="hero" className="bg-gray-100 text-dark-charcoal pt-32 sm:pt-40 lg:pt-48 pb-0">
       <div className="w-full max-w-7xl mx-auto container-fluid">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-left space-y-2 pb-4"
-        >
+        <div className="text-left space-y-2 pb-4">
           <h2 className="text-sm md:text-base font-semibold text-gray-700 uppercase tracking-wide">
             Industries We Serve - SGA Security {country.name}
           </h2>
@@ -51,16 +44,13 @@ export default function IndustriesHero({ countryCode, imageUrl }: IndustriesHero
             <span className="text-primary-orange">{country.title}</span>
           </h1>
           <p className="text-sm md:text-base text-gray-700 leading-relaxed">{country.description}</p>
-        </motion.div>
+        </div>
       </div>
 
       {/* Large image with parallax effect */}
       <div className="w-full">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="relative w-full h-[400px] md:h-[500px] lg:h-[600px]"
+        <div
+          className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] bg-gray-300"
           style={{
             backgroundImage: `url(${heroImage})`,
             backgroundSize: 'cover',
@@ -69,7 +59,7 @@ export default function IndustriesHero({ countryCode, imageUrl }: IndustriesHero
           }}
         >
           <div className="absolute inset-0 bg-black/10"></div>
-        </motion.div>
+        </div>
       </div>
     </section>
   )

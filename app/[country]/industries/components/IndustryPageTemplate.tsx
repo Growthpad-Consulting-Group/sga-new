@@ -157,7 +157,7 @@ export default function IndustryPageTemplate({
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="relative w-full max-w-7xl mx-auto h-[280px] sm:h-[380px] md:h-[450px] lg:h-[520px] shadow-xl"
+            className="relative w-full max-w-7xl mx-auto h-[280px] sm:h-[380px] md:h-[450px] lg:h-[520px] shadow-xl bg-gray-300 rounded-xl"
           >
             <Image
               src={heroImage}
@@ -221,7 +221,7 @@ export default function IndustryPageTemplate({
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-primary-orange rounded-xl p-6 lg:p-7 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105 flex flex-col h-full"
+                  className="bg-primary-orange rounded-xl p-6 lg:p-7 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-[1.02] flex flex-col h-full"
                 >
                   <h3 className="text-base md:text-lg lg:text-xl font-bold text-white mb-3 lg:mb-4">
                     {solution.title}
@@ -239,7 +239,7 @@ export default function IndustryPageTemplate({
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="relative w-full h-[350px] sm:h-[450px] lg:h-full shadow-xl order-2 lg:order-2"
+              className="relative w-full h-[350px] sm:h-[450px] lg:h-full shadow-xl order-2 lg:order-2 bg-gray-300 rounded-xl"
             >
               <Image
                 src={heroImage}
@@ -301,7 +301,7 @@ export default function IndustryPageTemplate({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-primary-orange rounded-xl p-6 lg:p-8 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105 flex flex-col items-center text-center flex-1 min-w-[240px] max-w-[270px]"
+                className="bg-primary-orange rounded-xl p-6 lg:p-8 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-[1.02] flex flex-col items-center text-center flex-1 min-w-[240px] max-w-[270px]"
               >
                 <h3 className="text-lg md:text-xl font-bold text-white mb-3 lg:mb-4">
                   {advantage.title}
@@ -377,13 +377,13 @@ export default function IndustryPageTemplate({
                     <motion.a
                       href={service.link || '#'}
                       whileHover={{ opacity: 0.9 }}
-                      className="relative w-full h-56 block cursor-pointer overflow-hidden"
+                      className="relative w-full h-56 block cursor-pointer overflow-hidden bg-gray-300"
                     >
                       <Image
                         src={service.image}
                         alt={service.title}
                         fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                     </motion.a>
 

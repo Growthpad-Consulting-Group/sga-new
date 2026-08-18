@@ -45,10 +45,10 @@ export default function FAQsContent({ searchQuery = '' }: FAQsContentProps) {
 
     return (
         <section id="faqs-content" className="bg-white py-16 sm:py-20">
-            <div className="w-full max-w-7xl mx-auto container-fluid">
+            <div className="w-full mx-auto container-fluid">
                 <div className="grid lg:grid-cols-3 gap-8">
                     <div className="lg:col-span-1">
-                        <div className="bg-primary-orange p-6 rounded-lg">
+                        <div className="bg-primary-orange p-6 rounded-lg lg:sticky lg:top-24">
                             <h2 className="text-xl font-bold text-white mb-6">Categories</h2>
                             <div className="space-y-0">
                                 {categories.map((category) => (

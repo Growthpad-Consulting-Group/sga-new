@@ -234,8 +234,8 @@ export default function SafetyTipsCards() {
   }
 
   return (
-    <section id="safety-tips-cards" className="bg-light-grey py-16 sm:py-20">
-      <div className="w-full max-w-7xl mx-auto container-fluid">
+    <section id="safety-tips-cards" className="bg-white py-16 sm:py-20">
+      <div className="w-full container-fluid">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -252,9 +252,9 @@ export default function SafetyTipsCards() {
                   <button
                     key={category}
                     onClick={() => handleCategoryChange(category)}
-                    className={`px-4 py-2 rounded-full border border-navy-blue text-xs font-semibold uppercase transition-colors ${selectedCategory === category
+                    className={`px-4 py-2 rounded-full border border-dark-charcoal text-xs font-semibold uppercase transition-colors ${selectedCategory === category
                         ? 'bg-primary-orange border-primary-orange text-white'
-                        : 'text-navy-blue hover:bg-primary-orange hover:border-primary-orange hover:text-white'
+                        : 'text-dark-charcoal hover:bg-primary-orange hover:border-primary-orange hover:text-white'
                       }`}
                   >
                     {category}
@@ -316,7 +316,7 @@ export default function SafetyTipsCards() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
-                className="bg-white text-navy-blue border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-xl hover:bg-primary-orange hover:text-white transition-shadow flex flex-col"
+                className="bg-white text-dark-charcoal border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-xl hover:bg-primary-orange hover:text-white transition-shadow flex flex-col"
               >
                 <div className="p-6 flex flex-col flex-1">
                   {/* Category Badge */}
@@ -341,7 +341,7 @@ export default function SafetyTipsCards() {
                   <div className='flex justify-start gap-2 mt-auto'>
                     <button
                       onClick={() => handleViewDetails(item)}
-                      className="py-2 px-3 flex uppercase bg-white border border-navy-blue text-navy-blue rounded-full items-center gap-2 hover:bg-primary-orange hover:text-white transition-colors text-sm font-semibold"
+                      className="py-2 px-3 flex uppercase bg-white border border-dark-charcoal text-dark-charcoal rounded-full items-center gap-2 hover:bg-primary-orange hover:text-white transition-colors text-sm font-semibold"
                     >
                       <span>VIEW DETAILS</span>
                       <Icon icon="mdi:arrow-right" className="w-4 h-4" />
@@ -366,9 +366,9 @@ export default function SafetyTipsCards() {
               <button
                 onClick={() => goToPage(currentPage - 1)}
                 disabled={currentPage === 1}
-                className={`px-4 py-2 rounded-full border border-navy-blue text-sm font-semibold transition-colors flex items-center gap-2 ${currentPage === 1
+                className={`px-4 py-2 rounded-full border border-dark-charcoal text-sm font-semibold transition-colors flex items-center gap-2 ${currentPage === 1
                     ? 'opacity-50 cursor-not-allowed text-gray-400 border-gray-300'
-                    : 'text-navy-blue hover:bg-navy-blue hover:text-white'
+                    : 'text-dark-charcoal hover:bg-dark-charcoal hover:text-white'
                   }`}
               >
                 <Icon icon="mdi:chevron-left" className="w-5 h-5" />
@@ -401,8 +401,8 @@ export default function SafetyTipsCards() {
                       key={page}
                       onClick={() => goToPage(page)}
                       className={`w-10 h-10 rounded-full border text-sm font-semibold transition-colors ${currentPage === page
-                          ? 'bg-navy-blue text-white border-navy-blue'
-                          : 'text-navy-blue border-navy-blue hover:bg-navy-blue hover:text-white'
+                          ? 'bg-dark-charcoal text-white border-dark-charcoal'
+                          : 'text-dark-charcoal border-dark-charcoal hover:bg-dark-charcoal hover:text-white'
                         }`}
                     >
                       {page}
@@ -415,9 +415,9 @@ export default function SafetyTipsCards() {
               <button
                 onClick={() => goToPage(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                className={`px-4 py-2 rounded-full border border-navy-blue text-sm font-semibold transition-colors flex items-center gap-2 ${currentPage === totalPages
+                className={`px-4 py-2 rounded-full border border-dark-charcoal text-sm font-semibold transition-colors flex items-center gap-2 ${currentPage === totalPages
                     ? 'opacity-50 cursor-not-allowed text-gray-400 border-gray-300'
-                    : 'text-navy-blue hover:bg-navy-blue hover:text-white'
+                    : 'text-dark-charcoal hover:bg-dark-charcoal hover:text-white'
                   }`}
               >
                 Next
@@ -459,7 +459,7 @@ export default function SafetyTipsCards() {
                   </div>                  
 
                   {/* Safety Tip Description */}
-                  <h3 className="text-lg font-bold text-navy-blue mb-4">Safety Tip</h3>
+                  <h3 className="text-lg font-bold text-dark-charcoal mb-4">Safety Tip</h3>
                   <div className="text-gray-700 mb-8 leading-relaxed">
                     <p className="text-base">{selectedTip.summary}</p>
                   </div>
@@ -467,7 +467,7 @@ export default function SafetyTipsCards() {
                   {/* Recommendation Actions List */}
                   {selectedTip.recommendations && selectedTip.recommendations.length > 0 && (
                     <div className="mb-6">
-                      <h3 className="text-lg font-semibold text-navy-blue mb-4">Recommended Actions</h3>
+                      <h3 className="text-lg font-semibold text-dark-charcoal mb-4">Recommended Actions</h3>
                       <ul className="space-y-3">
                         {selectedTip.recommendations.map((recommendation, index) => (
                           <li key={index} className="flex items-start gap-3">

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 
 export default function Hero() {
   return (
-    <section id="hero" className=" bg-gray-100 text-dark-charcoal pt-32 sm:pt-40 lg:pt-48 pb-16">
+    <section id="hero" className=" bg-white text-dark-charcoal pt-32 sm:pt-40 lg:pt-48 pb-16">
       <div className="container-fluid mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

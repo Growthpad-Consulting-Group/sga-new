@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import Image from 'next/image'
 import SectionSeparator from '@/components/SectionSeparator'
@@ -46,20 +45,9 @@ export default function IndustriesDetail({
 
   return (
     <section id="industries-detail" className=" flex items-center justify-center bg-white text-dark-charcoal py-16 sm:py-20 relative">
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-100px' }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="w-full max-w-7xl mx-auto container-fluid"
-      >
+      <div className="w-full max-w-7xl mx-auto container-fluid">
         <div className="mb-12">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="space-y-3"
-          >
+          <div className="space-y-3">
             <p className="text-xs font-semibold text-navy uppercase tracking-wider">
               {subtitle}
             </p>
@@ -76,21 +64,17 @@ export default function IndustriesDetail({
             <p className="text-sm md:text-base text-gray-700 leading-relaxed max-w-3xl">
               {description || defaultDescription}
             </p>
-          </motion.div>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-          {industries.map((industry, index) => (
-            <motion.div
+          {industries.map((industry) => (
+            <div
               key={industry.id}
               id={industry.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
               className="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow overflow-hidden border border-gray-200 scroll-mt-20"
             >
-              <div className="relative h-48 md:h-56">
+              <div className="relative h-48 md:h-56 bg-gray-300">
                 <Image
                   src={industry.image}
                   alt={industry.name}
@@ -123,29 +107,22 @@ export default function IndustriesDetail({
                   </ul>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mt-12 text-center"
-        >
+        <div className="mt-12 text-center">
           <p className="text-gray-700 mb-6 text-base md:text-lg">
             Don't see your industry listed? We customize our security solutions to meet your specific needs.
           </p>
-          <motion.a
+          <a
             href={ctaLink}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-block bg-navy-blue text-white px-8 py-3 rounded-full font-semibold text-sm uppercase hover:bg-primary-orange transition-colors"
+            className="inline-block bg-navy-blue text-white px-8 py-3 rounded-full font-semibold text-sm uppercase hover:bg-primary-orange transition-all duration-300 hover:scale-105 active:scale-95"
           >
             {ctaText}
-          </motion.a>
-        </motion.div>
-      </motion.div>
+          </a>
+        </div>
+      </div>
       <SectionSeparator />
     </section>
   )

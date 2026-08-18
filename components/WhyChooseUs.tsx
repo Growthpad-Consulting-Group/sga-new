@@ -22,20 +22,24 @@ export default function WhyChooseUs({
   image = '/images/ke/why-choose-us.jpg',
   accordionItems = [
     {
-      title: 'Local & Regional',
-      description: 'We are a security partner with deep roots in Kenya, providing local expertise with a world-class regional network.',
+      title: 'Over 55 Years of Experience',
+      description: 'SGA Security has been operating since 1969, making it one of the longest-serving private security companies in East Africa. Its long track record has helped build credibility with individuals, businesses, and government institutions.',
     },
     {
-      title: '24/7 Control Room',
-      description: 'Our state-of-the-art control room operates around the clock, ensuring constant monitoring and immediate response.',
+      title: 'Highly Trained Security Personnel',
+      description: "The company has received recognition as Kenya's Most Professional and Well-Trained Security Company, highlighting its strong focus on continuous training, discipline, and professional standards for its security officers.",
     },
     {
-      title: 'People + Tech',
-      description: 'Our expertly trained team and cutting-edge technology work in sync to provide a superior, proactive security solution.',
+      title: 'Comprehensive Security Solutions',
+      description: 'SGA offers a wide range of services including manned guarding, alarm response, cash-in-transit, cash management, K-9 services, electronic tracking solutions, and home security services. This allows clients to obtain multiple security solutions from a single trusted provider.',
     },
     {
-      title: 'Proven Track Record',
-      description: 'For over 55 years, our consistent delivery of world-class security has earned the trust of homes and businesses across Kenya.',
+      title: 'International Standards and Certifications',
+      description: 'The company is ISO 18788:2015 certified and is a member of the International Code of Conduct Association (ICoCA), demonstrating commitment to globally recognized security, accountability, and ethical standards.',
+    },
+    {
+      title: 'Proven Reputation and Industry Recognition',
+      description: "SGA has earned multiple awards and recognitions for professionalism, service delivery, responsible security practices, and customer satisfaction. These achievements reinforce public confidence in the company's ability to protect people and assets effectively.",
     },
   ],
 }: WhyChooseUsProps) {
@@ -113,25 +117,6 @@ export default function WhyChooseUs({
                 </motion.div>
               ))}
             </div>
-
-            {/* CTA Section */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="w-full"
-            >
-              <motion.a
-                href="/contact"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-3 bg-primary-orange text-white px-8 py-4 rounded-full font-semibold text-base uppercase hover:bg-primary-orange/90 transition-colors shadow-lg hover:shadow-xl"
-              >
-                <Icon icon="mdi:phone" className="w-5 h-5" />
-                Talk to Our Team
-              </motion.a>
-            </motion.div>
           </div>
 
           {/* Image - Right */}
