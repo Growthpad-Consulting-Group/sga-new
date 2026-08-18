@@ -95,9 +95,11 @@ export default function Hero({
               </h1>
             )}
 
-            <p className={`text-lg md:text-2xl ${secondaryTextColorClass} max-w-2xl`}>
-              {customDescription || countryDescription}
-            </p>
+            {(customDescription ?? countryDescription) && (
+              <p className={`text-lg md:text-2xl ${secondaryTextColorClass} max-w-2xl`}>
+                {customDescription ?? countryDescription}
+              </p>
+            )}
 
             {showToggle && (
               <div className="relative inline-flex items-center bg-gray-200 rounded-full p-1">

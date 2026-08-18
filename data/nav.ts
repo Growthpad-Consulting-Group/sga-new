@@ -39,6 +39,7 @@ export const getCountryNavItems = (countryCode: string): NavItem[] => {
     { href: `${baseUrl}/why-us`, label: 'WHY US' },
     { href: `${baseUrl}/updates`, label: 'NEWS & INSIGHTS' },
     { href: `${baseUrl}#contact`, label: 'CONTACT' },
+    { href: '/', label: 'SGA GROUP' },
   ]
 }
 

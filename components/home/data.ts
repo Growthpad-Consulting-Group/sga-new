@@ -25,12 +25,12 @@ export interface HomeContent {
 export const homeData: Record<string, HomeContent> = {
     ke: {
         hero: {
-            title: "Protect what matters most - your home and family.",
-            description: "SGA Kenya protects families, homes, and businesses nationwide with reliable 24/7 security solutions.",
+            title: "Protect what matters most, your home, business and community.",
+            description: "",
             imageUrl: "/images/ke/hero.png",
             buttons: [
-                { label: "Explore Home Security", href: "/ke/services/individual", primary: true, separator: "Explore " },
-                { label: "Explore Business Security", href: "/ke/services/corporate", primary: true, separator: "Explore " }
+                { label: "Explore Individual", href: "/ke/services/individual", primary: true, separator: "Explore " },
+                { label: "Explore Corporate", href: "/ke/services/corporate", primary: true, separator: "Explore " }
             ]
         },
         about: {
