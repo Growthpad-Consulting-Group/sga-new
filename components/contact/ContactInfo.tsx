@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
-import { Link } from 'next-view-transitions'
 
 import { contactOffices } from '@/components/contact/data'
 
@@ -120,16 +119,6 @@ export default function ContactInfo({ providedCountry }: ContactInfoProps): Reac
                     </a>
                   </div>
 
-                  {/* Visit Website */}
-                  <div className="mb-6">
-                    <Link
-                      href={office.websiteUrl}
-                      className="flex items-center gap-2 text-sm md:text-lg font-normal text-white hover:opacity-80 transition-opacity"
-                    >
-                      <Icon icon="mdi:link-circle" className="w-8 h-8 shrink-0" />
-                      <span>Visit website</span>
-                    </Link>
-                  </div>
                 </div>
 
                 {/* View on Map Button */}

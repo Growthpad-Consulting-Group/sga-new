@@ -1,9 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Icon } from '@iconify/react'
 import Image from 'next/image'
-import { Link } from 'next-view-transitions'
 import { useEnquiryModal } from '@/contexts/EnquiryModalContext'
 
 interface ServicesTypeHeroProps {
@@ -16,20 +14,12 @@ interface ServicesTypeHeroProps {
 }
 
 export default function ServicesTypeHero({
-    country,
     countryName,
     isIndividual,
     description,
     heroImage
 }: ServicesTypeHeroProps) {
     const { openModal } = useEnquiryModal()
-
-    const emergencyPhones: Record<string, string> = {
-        ke: '0733 700 500',
-        ug: '0717 800 752',
-        tz: '0784 700 299',
-    }
-    const emergencyPhone = emergencyPhones[country] || '0733 700 500'
 
     return (
         <>
@@ -83,15 +73,6 @@ export default function ServicesTypeHero({
                                         Request a Quote
                                     </button>
                                 </motion.div>
-                                <motion.a
-                                    href={`tel:${emergencyPhone.replace(/\s/g, '')}`}
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    className="w-full sm:w-auto bg-transparent border-2 border-primary-orange text-primary-orange px-8 py-3.5 rounded-full font-bold text-sm md:text-base hover:bg-primary-orange hover:text-white transition-colors flex items-center justify-center gap-2 text-center"
-                                >
-                                    <Icon icon="streamline-sharp:emergency-call-remix" className="w-5 h-5" />
-                                    <span>View Emergency Numbers</span>
-                                </motion.a>
                             </div>
 
                             {/* Explore More Animated Arrow */}
@@ -145,46 +126,6 @@ export default function ServicesTypeHero({
                             />
                         </motion.div>
                     </div>
-
-                    {/* Integrated Control Room Bar */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.6 }}
-                        className="mt-4 mb-8"
-                    >
-                        <div className="flex flex-col lg:flex-row items-center justify-between gap-6 p-6 md:p-8 rounded-[40px] border border-gray-100 bg-white shadow-xl shadow-gray-100/50 relative z-10">
-                            <div className="text-center lg:text-left flex items-start gap-4">
-                                <div className="mt-1 shrink-0">
-                                    <Icon icon="solar:phone-calling-bold-duotone" className="w-8 h-8 text-primary-orange" />
-                                </div>
-                                <div className="space-y-1">
-                                    <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Talk to us now</p>
-                                    <h3 className="text-xl md:text-2xl font-bold text-navy-blue">
-                                        Talk to our {countryName} Control Room
-                                    </h3>
-                                </div>
-                            </div>
-                            <div className="flex flex-col sm:flex-row items-center gap-4 w-full lg:w-auto">
-                                <motion.a
-                                    href={`tel:${emergencyPhone.replace(/\s/g, '')}`}
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    className="w-full sm:w-auto bg-primary-orange text-white px-10 py-5 rounded-full font-bold flex items-center justify-center gap-3 shadow-lg shadow-primary-orange/20 transition-all uppercase text-sm tracking-widest"
-                                >
-                                    CALL FOR FREE
-                                </motion.a>
-                                <motion.button
-                                    onClick={openModal}
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    className="w-full sm:w-auto bg-white text-navy-blue px-10 py-5 rounded-full font-bold flex items-center justify-center gap-3 shadow-lg transition-all uppercase text-sm tracking-widest border-2 border-navy-blue hover:bg-navy-blue hover:text-white"
-                                >
-                                    BOOK SERVICE
-                                </motion.button>
-                            </div>
-                        </div>
-                    </motion.div>
                 </div>
             </section>
         </>

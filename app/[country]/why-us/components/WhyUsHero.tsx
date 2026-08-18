@@ -62,7 +62,7 @@ export default function WhyUsHero({ countryCode, imageUrl }: WhyUsHeroProps) {
                         transition={{ duration: 0.8, delay: 0.4 }}
                         className="relative w-full h-[300px] sm:h-[350px] lg:h-[400px] xl:h-[550px]"
                     >
-                        <div className="relative w-full h-full bg-light-grey rounded-2xl flex items-center justify-center overflow-hidden border border-gray-100">
+                        <div className="relative w-full h-full rounded-2xl flex items-center justify-center overflow-hidden border border-gray-100">
                             <Image
                                 src={imageUrl || `/images/${countryCode}/about-sga.png`}
                                 alt={`SGA Security ${c.name}`}
