@@ -25,7 +25,7 @@ export interface HomeContent {
 export const homeData: Record<string, HomeContent> = {
     ke: {
         hero: {
-            title: "Protect what matters most, your home, business and community.",
+            title: "Protect what matters most, your home, business and community",
             description: "",
             imageUrl: "/images/ke/hero.png",
             buttons: [
@@ -79,8 +79,8 @@ export const homeData: Record<string, HomeContent> = {
         },
         about: {
             title: "WHO WE ARE",
-            largeTitle: "Decades of trusted security in Uganda.",
-            description: "SGA Uganda delivers guarding, alarms, and 24/7 monitoring powered by a professional team dedicated to protecting homes, businesses, and communities nationwide.",
+            largeTitle: "Decades of trusted security in Uganda",
+            description: "SGA Uganda is a trusted provider of security solutions, delivering professional guarding services, advanced alarm systems, and 24/7 monitoring to protect homes, businesses, and communities across the country.",
             points: [
                 "Fully licensed and compliant with Ugandan regulations",
                 "Extensive network across Kampala and major regions",
@@ -100,10 +100,11 @@ export const homeData: Record<string, HomeContent> = {
         whyUs: {
             imageUrl: "/images/ug/why-choose-us.png",
             accordion: [
-                { title: "Local & Regional", description: "We are a trusted security partner with strong roots in Uganda, backed by a regional network that extends across East Africa." },
-                { title: "24/7 Control Room", description: "Our advanced control room in Kampala operates day and night to ensure constant monitoring and rapid response." },
-                { title: "People + Tech", description: "Our trained Ugandan security professionals, supported by innovative technology, provide tailored and dependable protection." },
-                { title: "Proven Track Record", description: "With decades of service, we've safeguarded homes, businesses, and institutions across Uganda with consistency and trust." }
+                { title: "Over 55 Years of Experience", description: "SGA Security has been operating since 1969, making it one of the longest-serving private security companies in East Africa. Its long track record has helped build credibility with individuals, businesses, and government institutions." },
+                { title: "Highly Trained Security Personnel", description: "SGA has received recognition as one of Uganda's most professional and well-trained security companies, reflecting its strong focus on continuous training, discipline, and professional standards for its security officers." },
+                { title: "Comprehensive Security Solutions", description: "SGA offers a wide range of services including manned guarding, alarm response, cash-in-transit, cash management, K-9 services, electronic tracking solutions, and home security services. This allows clients to obtain multiple security solutions from a single trusted provider." },
+                { title: "International Standards and Certifications", description: "The company is ISO 18788:2015 certified and is a member of the International Code of Conduct Association (ICoCA), demonstrating commitment to globally recognized security, accountability, and ethical standards." },
+                { title: "Proven Reputation and Industry Recognition", description: "SGA has earned multiple awards and recognitions for professionalism, service delivery, responsible security practices, and customer satisfaction. These achievements reinforce public confidence in the company's ability to protect people and assets effectively." }
             ]
         }
     },

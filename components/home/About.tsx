@@ -80,7 +80,7 @@ export default function About({
                 </div>
               )}
               {h2Title && (
-                <h2 className="text-2xl md:text-5xl font-bold text-primary-orange pt-4">
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-primary-orange pt-4 md:whitespace-nowrap">
                   {h2Title}
                 </h2>
               )}
