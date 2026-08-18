@@ -1,6 +1,6 @@
 import Hero from '@/components/Hero'
 import About from '@/components/home/About'
-import IntegratedSolutions from '@/components/IntegratedSolutions'
+import GroupIntegratedSolutions from '@/components/home/GroupIntegratedSolutions'
 import WhyChooseUs from '@/components/WhyChooseUs'
 import Industries from '@/components/home/Industries'
 import News from '@/components/home/News'
@@ -74,12 +74,11 @@ export default async function CountryHomePage({ params }: Props) {
                     buttonText="Discover Our Story"
                     buttonHref={`/${country}/about`}
                     imageUrl={data.about.imageUrl}
-                    hideCountriesStat={true}
                 />
             </div>
 
             <div id="services" className="relative">
-                <IntegratedSolutions whiteBackground={true} />
+                <GroupIntegratedSolutions title="Our Products and Services" />
                 <SectionSeparator imageUrl={`/images/misc/section-pattern-${country}.svg`} />
             </div>
 

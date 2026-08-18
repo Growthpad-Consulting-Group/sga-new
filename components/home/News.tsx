@@ -183,7 +183,7 @@ export default function News({ hideCountryDropdown = false, backgroundColor = 'b
   }
 
   return (
-    <section id="news" className={`flex items-center justify-center relative pt-14 py-4 overflow-x-hidden ${backgroundColor}`}>
+    <section id="news" className={`flex items-center justify-center relative pt-16 md:pt-24 py-4 overflow-x-hidden ${backgroundColor}`}>
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}

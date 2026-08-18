@@ -336,7 +336,7 @@ export default function Header() {
               {currentNavItems.filter(item => !item.icon).map((item) => {
                 const isRoute = !item.href.startsWith('#')
                 const isActive = isRoute ? pathname === item.href : false
-                const NavComponent = isRoute ? motion(Link) : motion.a
+                const NavComponent = isRoute ? motion.create(Link) : motion.a
 
                 return (
                   <NavComponent
@@ -358,7 +358,7 @@ export default function Header() {
             {currentNavItems.filter(item => item.icon).map((item) => {
               const isRoute = !item.href.startsWith('#')
               const isActive = isRoute ? pathname === item.href : false
-              const NavComponent = isRoute ? motion(Link) : motion.a
+              const NavComponent = isRoute ? motion.create(Link) : motion.a
 
               return (
                 <NavComponent

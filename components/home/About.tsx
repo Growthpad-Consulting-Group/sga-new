@@ -21,7 +21,6 @@ interface AboutProps {
   buttonText?: string | null
   buttonHref?: string
   imageUrl?: string | null
-  hideCountriesStat?: boolean
 }
 
 export default function About({
@@ -35,7 +34,6 @@ export default function About({
   buttonText = null,
   buttonHref = '#about',
   imageUrl = null,
-  hideCountriesStat = false,
 }: AboutProps) {
   const defaultContent = {
     title: 'About SGA Security Group',
@@ -52,7 +50,7 @@ export default function About({
 
   if (customLayout) {
     return (
-      <section id="about" className=" flex items-center justify-center bg-light-grey relative pb-0 overflow-x-hidden">
+      <section id="about" className="flex items-center justify-center bg-light-grey relative py-16 md:py-24 overflow-x-hidden">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -101,22 +99,6 @@ export default function About({
                   {buttonText}
                 </motion.a>
               )}
-              <div className="flex flex-wrap gap-20 mt-8 pt-6">
-                <div className="flex flex-col items-center">
-                  <span className="text-2xl md:text-5xl font-bold text-primary-orange">24/7</span>
-                  <span className="text-lg text-dark-charcoal mt-1 text-center">Control Room</span>
-                </div>
-                <div className="flex flex-col items-center">
-                  <span className="text-2xl md:text-5xl font-bold text-primary-orange">50+ yrs</span>
-                  <span className="text-lg text-dark-charcoal mt-1 text-center">Experience</span>
-                </div>
-                {!hideCountriesStat && (
-                  <div className="flex flex-col items-center">
-                    <span className="text-2xl md:text-5xl font-bold text-primary-orange">3</span>
-                    <span className="text-lg text-dark-charcoal mt-1 text-center">countries</span>
-                  </div>
-                )}
-              </div>
             </motion.div>
 
             {imageUrl && (

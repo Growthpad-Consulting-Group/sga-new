@@ -114,7 +114,7 @@ export default function CountryHeader(): React.JSX.Element {
   ]
 
   const navItems: NavItem[] = [
-    { href: countryPrefix || '/', label: 'HOME' },
+    { href: '/', label: 'SGA GROUP' },
     { href: `${countryPrefix}/about`, label: 'ABOUT US' },
     { href: '#services', label: 'SERVICES', isDropdown: true, dropdownType: 'services' },
     { href: `${countryPrefix}/industries`, label: 'INDUSTRIES', isDropdown: true, dropdownType: 'industries' },
@@ -233,7 +233,7 @@ export default function CountryHeader(): React.JSX.Element {
 
               const isRoute = !item.href.startsWith('#')
               const isActive = isRoute ? pathname === item.href : false
-              const NavComponent = isRoute ? motion(Link) : motion.a
+              const NavComponent = isRoute ? motion.create(Link) : motion.a
 
               return (
                 <NavComponent

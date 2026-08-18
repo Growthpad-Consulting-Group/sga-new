@@ -111,14 +111,9 @@ export default function GroupIntegratedSolutions({
   const carousel = useCarousel(solutions.length, itemsPerPage)
 
   const renderSolution = (solution: Solution, index: number) => (
-    <motion.div
+    <div
       key={index}
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.9 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      whileHover={{ scale: 1.05, y: -8 }}
-      className="flex flex-col items-center"
+      className="flex flex-col items-center transition-transform duration-300 hover:-translate-y-1.5 hover:scale-[1.02]"
     >
       <div className="relative w-80 h-80 md:w-[400px] md:h-[400px] rounded-full overflow-hidden shadow-2xl group cursor-pointer">
         {/* Background Image */}
@@ -126,7 +121,7 @@ export default function GroupIntegratedSolutions({
           src={solution.imageUrl}
           alt={solution.title}
           fill
-          className="object-cover transition-transform duration-300 group-hover:scale-110"
+          className="object-cover transition-transform duration-300 group-hover:scale-105"
         />
         {/* Overlay */}
         <div className="absolute inset-0 bg-dark-charcoal/60 group-hover:bg-primary-orange/80 transition-colors duration-300"></div>
@@ -144,7 +139,7 @@ export default function GroupIntegratedSolutions({
           />
         </div>
       </div>
-    </motion.div>
+    </div>
   )
 
   return (
