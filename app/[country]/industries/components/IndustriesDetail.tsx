@@ -45,7 +45,7 @@ export default function IndustriesDetail({
 
   return (
     <section id="industries-detail" className=" flex items-center justify-center bg-white text-dark-charcoal py-16 sm:py-20 relative">
-      <div className="w-full max-w-7xl mx-auto container-fluid">
+      <div className="w-full  mx-auto container-fluid">
         <div className="mb-12">
           <div className="space-y-3">
             <p className="text-xs font-semibold text-navy uppercase tracking-wider">

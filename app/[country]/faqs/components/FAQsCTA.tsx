@@ -7,7 +7,7 @@ import { Icon } from '@iconify/react'
 export default function FAQsCTA() {
   return (
     <section id="faqs-cta" className="py-8 sm:py-10">
-      <div className="w-full max-w-7xl mx-auto container-fluid">
+      <div className="w-full  mx-auto container-fluid">
         <div className="bg-primary-orange rounded-lg py-6 sm:py-8 px-6 sm:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

@@ -35,7 +35,7 @@ export default function SitemapPage(): React.JSX.Element {
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <section className="bg-primary-orange text-white py-16 md:py-24 mt-16 sm:mt-24">
-        <div className="max-w-7xl mx-auto container-fluid">
+        <div className="container-fluid">
           <div className="flex items-center gap-3 mb-4">
             <Icon icon="mdi:sitemap" className="w-12 h-12" />
             <h1 className="text-4xl md:text-5xl font-bold">Site Map</h1>
@@ -48,7 +48,7 @@ export default function SitemapPage(): React.JSX.Element {
 
       {/* Sitemap Content */}
       <section className="py-16 md:py-20">
-        <div className="max-w-7xl mx-auto container-fluid">
+        <div className="container-fluid">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
             {sitemapSections.map((section, index) => (
               <div key={index} className="space-y-4">

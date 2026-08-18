@@ -43,10 +43,25 @@ export function getAllRoutes(): Route[] {
       if (entry.isDirectory()) {
         // Handle route groups (folders with parentheses)
         const isRouteGroup = entry.name.startsWith('(') && entry.name.endsWith(')')
-        const newBasePath = isRouteGroup 
-          ? basePath 
+
+        if (entry.name === '[country]') {
+          // Expand the dynamic country segment into each real country code
+          for (const countryCode of ['ke', 'ug', 'tz']) {
+            scanDirectory(fullPath, `${basePath}/${countryCode}`)
+          }
+          continue
+        }
+
+        if (entry.name.startsWith('[') && entry.name.endsWith(']')) {
+          // Other dynamic segments (e.g. [slug]) can't be resolved to a
+          // concrete link without their content data, so skip them.
+          continue
+        }
+
+        const newBasePath = isRouteGroup
+          ? basePath
           : `${basePath}/${entry.name}`
-        
+
         scanDirectory(fullPath, newBasePath)
       } else if (entry.name === 'page.tsx' || entry.name === 'page.js') {
         // Found a page route

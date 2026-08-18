@@ -102,7 +102,7 @@ export default function ResourcesDocuments() {
   }
 
   return (
-    <section id="resources-documents" className="bg-white py-16 sm:py-20 max-w-7xl mx-auto container-fluid">
+    <section id="resources-documents" className="bg-white py-16 sm:py-20  mx-auto container-fluid">
       <div className="">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

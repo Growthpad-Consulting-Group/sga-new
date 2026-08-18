@@ -82,22 +82,6 @@ export default function ServicePageTemplate({
         setRelatedServicesIndex((prev) => (prev >= relatedServices.length - 3 ? 0 : prev + 1))
     }
 
-    const advantagePoints = [
-        'Instant alarm and panic signal relay to our 24/7 Control Room.',
-        'GPS-tracked units dispatched based on your location and alert type.',
-        'First responders trained in first aid, fire safety, and conflict control.',
-        'Seamless coordination with Police, Fire, and Ambulance services.',
-        'Verified alerts via CCTV or mobile panic app to avoid false alarms.',
-        'Digital reporting with photos, timestamps, and follow-up actions.',
-    ]
-
-    const stats = [
-        { value: '24/7', label: 'Emergency Dispatch' },
-        { value: '<5min', label: 'Average Response Time' },
-        { value: 'GPS', label: 'Live Tracking & Updates' },
-        { value: '100%', label: 'Verified Response' },
-    ]
-
     const handlePoints = [
         'Panic & intrusion alarms at home',
         'Perimeter breaches or suspicious activity',
@@ -105,33 +89,6 @@ export default function ServicePageTemplate({
         'Medical first-aid & ambulance coordination',
         'Break-ins, theft, or vandalism',
         'Home power/UPS system alerts',
-    ]
-
-    const howItWorksSteps = [
-        {
-            step: 1,
-            title: 'Alert Received',
-            description: `Panic, alarm or CCTV signal triggers dispatch from our 24/7 ${countryName} Control Room.`,
-            icon: 'si:alert-line',
-        },
-        {
-            step: 2,
-            title: 'Unit Deployed',
-            description: 'Nearest GPS-tracked team mobilizes; you get a live ETA via call/SMS.',
-            icon: '/images/misc/icons/security-guard.svg',
-        },
-        {
-            step: 3,
-            title: 'Stabilize',
-            description: 'Responders secure the scene, provide first-aid and de-escalate threats.',
-            icon: 'hugeicons:security-lock',
-        },
-        {
-            step: 4,
-            title: 'Report',
-            description: 'Digital report with photos and recommendations is shared with you.',
-            icon: '/images/misc/icons/report-file.svg',
-        },
     ]
 
     const responsePackages = [
@@ -316,90 +273,6 @@ export default function ServicePageTemplate({
                 <SectionSeparator />
             </section>
 
-            {/* Overview Section - SGA Response Advantage */}
-            <section id="overview" className="flex items-center justify-center bg-light-grey text-dark-charcoal py-16 sm:py-24 relative">
-                <motion.div
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: '-100px' }}
-                    transition={{ duration: 0.6, ease: 'easeOut' }}
-                    className="container-fluid mx-auto"
-                >
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-                        {/* Content */}
-                        <motion.div
-                            initial={{ opacity: 0, x: -30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            className="space-y-8"
-                        >
-                            <div className="section-title-container w-full">
-                                <h2 className="section-title text-3xl md:text-5xl font-bold text-primary-orange capitalize">
-                                    SGA Response Advantage
-                                </h2>
-                                <div className="section-title-bar w-32 h-1.5 bg-navy-blue mt-4"></div>
-                            </div>
-                            <ul className="space-y-5">
-                                {advantagePoints.map((point, index) => (
-                                    <motion.li
-                                        key={index}
-                                        initial={{ opacity: 0, x: -20 }}
-                                        whileInView={{ opacity: 1, x: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: index * 0.1 }}
-                                        className="flex items-start gap-4 text-base md:text-lg text-gray-700 leading-relaxed font-medium"
-                                    >
-                                        <div className="mt-1 shrink-0">
-                                            <Icon
-                                                icon="si:check-circle-fill"
-                                                className="w-6 h-6 text-primary-orange"
-                                            />
-                                        </div>
-                                        <span>{point}</span>
-                                    </motion.li>
-                                ))}
-                            </ul>
-                            <motion.button
-                                onClick={openModal}
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="inline-block bg-primary-orange text-white px-10 py-4 rounded-full font-bold text-sm md:text-base shadow-lg shadow-primary-orange/30 hover:shadow-xl transition-all uppercase tracking-widest"
-                            >
-                                Get Started Now
-                            </motion.button>
-                        </motion.div>
-
-                        {/* Stats Grid */}
-                        <motion.div
-                            initial={{ opacity: 0, x: 30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            className="grid grid-cols-2 gap-6 md:gap-8 w-full max-w-lg mx-auto lg:mx-0"
-                        >
-                            {stats.map((stat, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, scale: 0.9 }}
-                                    whileInView={{ opacity: 1, scale: 1 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: index * 0.1 }}
-                                    whileHover={{ scale: 1.05, rotate: index % 2 === 0 ? 2 : -2 }}
-                                    className="bg-primary-orange rounded-full aspect-square flex flex-col items-center justify-center p-6 shadow-xl shadow-primary-orange/20 transition-all border-4 border-white/10"
-                                >
-                                    <div className="text-3xl md:text-5xl font-extrabold text-white mb-2 leading-none">
-                                        {stat.value}
-                                    </div>
-                                    <div className="text-xs md:text-sm text-white font-bold text-center uppercase tracking-[0.15em] max-w-[120px] leading-tight opacity-90">
-                                        {stat.label}
-                                    </div>
-                                </motion.div>
-                            ))}
-                        </motion.div>
-                    </div>
-                </motion.div>
-                <SectionSeparator />
-            </section>
-
             {/* What We Handle Section */}
             <section className="flex items-center justify-center bg-primary-orange text-white py-20 sm:py-28 relative overflow-hidden">
                 <motion.div
@@ -460,81 +333,6 @@ export default function ServicePageTemplate({
                                 className="object-cover rounded-[40px] shadow-2xl relative z-10"
                             />
                         </motion.div>
-                    </div>
-                </motion.div>
-                <SectionSeparator />
-            </section>
-
-            {/* How It Works Section */}
-            <section className="flex items-center justify-center bg-white text-dark-charcoal py-20 sm:py-28 relative">
-                <motion.div
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: '-100px' }}
-                    transition={{ duration: 0.6, ease: 'easeOut' }}
-                    className="container-fluid mx-auto"
-                >
-                    <div className="mb-16 text-center lg:text-left">
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="space-y-4"
-                        >
-                            <div className="section-title-container w-full">
-                                <h2 className="section-title text-3xl md:text-5xl font-extrabold text-primary-orange capitalize tracking-tight">
-                                    How It Works
-                                </h2>
-                                <div className="section-title-bar w-24 h-1.5 bg-navy-blue mt-4 mx-auto lg:mx-0"></div>
-                            </div>
-                        </motion.div>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-                        {howItWorksSteps.map((step, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: index * 0.1 }}
-                                whileHover={{ y: -12 }}
-                                className="bg-primary-orange rounded-3xl p-8 shadow-xl shadow-primary-orange/20 hover:shadow-2xl hover:shadow-primary-orange/30 transition-all relative group h-full flex flex-col"
-                            >
-                                {/* Step Badge */}
-                                <div className="absolute -top-4 left-8 bg-navy-blue text-white text-[10px] font-black px-4 py-2 rounded-xl shadow-lg z-10 uppercase tracking-[0.2em]">
-                                    Step {step.step}
-                                </div>
-
-                                {/* Icon */}
-                                <div className="mb-8 mt-4 flex items-center justify-center lg:justify-start">
-                                    <div className="w-16 h-16 rounded-2xl bg-white/20 flex items-center justify-center group-hover:bg-white/30 transition-colors">
-                                        {step.icon.startsWith('/') ? (
-                                            <div className="relative w-8 h-8">
-                                                <Image
-                                                    src={step.icon}
-                                                    alt={step.title}
-                                                    fill
-                                                    className="object-contain brightness-0 invert"
-                                                />
-                                            </div>
-                                        ) : (
-                                            <Icon
-                                                icon={step.icon}
-                                                className="w-10 h-10 text-white"
-                                            />
-                                        )}
-                                    </div>
-                                </div>
-
-                                <h3 className="text-xl lg:text-3xl font-bold text-white mb-4 tracking-tight leading-none group-hover:translate-x-1 transition-transform">
-                                    {step.title}
-                                </h3>
-                                <p className="text-sm lg:text-base text-white/90 leading-relaxed font-medium">
-                                    {step.description}
-                                </p>
-                            </motion.div>
-                        ))}
                     </div>
                 </motion.div>
                 <SectionSeparator />
@@ -688,7 +486,7 @@ export default function ServicePageTemplate({
                                 className="space-y-4"
                             >
                                 <div className="section-title-container w-full flex items-end justify-between border-b-2 border-gray-100 pb-8">
-                                    <h3 className="section-title text-3xl md:text-5xl font-extrabold text-primary-orange tracking-tight uppercase">
+                                    <h3 className="section-title text-3xl md:text-5xl font-bold text-primary-orange tracking-tight">
                                         Related Services
                                     </h3>
                                     <div className="flex items-center gap-4">

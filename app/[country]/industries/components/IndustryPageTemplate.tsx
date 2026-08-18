@@ -84,7 +84,7 @@ export default function IndustryPageTemplate({
     <>
       {/* Hero Section */}
       <section id="hero" className="bg-white text-dark-charcoal pt-16 sm:pt-20 pb-12 sm:pb-16 relative overflow-hidden">
-        <div className="w-full max-w-7xl mx-auto container-fluid">
+        <div className="w-full  mx-auto container-fluid">
           <div className="py-8 sm:py-12 lg:py-16 space-y-6 sm:space-y-8">
             {/* Orange Badge */}
             <motion.div
@@ -157,7 +157,7 @@ export default function IndustryPageTemplate({
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="relative w-full max-w-7xl mx-auto h-[280px] sm:h-[380px] md:h-[450px] lg:h-[520px] shadow-xl bg-gray-300 rounded-xl"
+            className="relative w-full  mx-auto h-[280px] sm:h-[380px] md:h-[450px] lg:h-[520px] shadow-xl bg-gray-300 rounded-xl"
           >
             <Image
               src={heroImage}
@@ -167,151 +167,6 @@ export default function IndustryPageTemplate({
               priority
             />
           </motion.div>
-        </div>
-
-        <SectionSeparator />
-      </section>
-
-      {/* Our Key Solutions Section */}
-      <section className="bg-white text-dark-charcoal py-16 sm:py-20 lg:py-24 relative">
-        <div className="w-full max-w-7xl mx-auto container-fluid">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-10 sm:mb-12 lg:mb-16"
-          >
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary-orange relative pb-3">
-              <span>Our Key Solutions</span>
-              <span
-                className="absolute bottom-0 left-0 w-full"
-                style={{
-                  background: 'linear-gradient(to right, #00043E 0%, #00043E 70%, transparent 100%)',
-                  height: '1px'
-                }}
-              ></span>
-            </h2>
-          </motion.div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-stretch">
-            {/* Left Column - Grid Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 lg:gap-6 order-1 lg:order-1 h-full">
-              {[
-                {
-                  title: '24/7 Alarm Monitoring',
-                  description: 'Linked to SGA\'s national control centre for instant alerts and verified dispatch.'
-                },
-                {
-                  title: 'Rapid Response Teams',
-                  description: 'Strategically deployed mobile units for immediate neighbourhood response.'
-                },
-                {
-                  title: 'Professional Guarding',
-                  description: 'Trained officers for access control, patrols, and visitor screening for homes and estates.'
-                },
-                {
-                  title: 'Remote CCTV Surveillance',
-                  description: 'Real-time monitoring with cloud access for complete visibility.'
-                }
-              ].map((solution, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-primary-orange rounded-xl p-6 lg:p-7 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-[1.02] flex flex-col h-full"
-                >
-                  <h3 className="text-base md:text-lg lg:text-xl font-bold text-white mb-3 lg:mb-4">
-                    {solution.title}
-                  </h3>
-                  <p className="text-sm md:text-base text-white/90 leading-relaxed">
-                    {solution.description}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Right Column - Image */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="relative w-full h-[350px] sm:h-[450px] lg:h-full shadow-xl order-2 lg:order-2 bg-gray-300 rounded-xl"
-            >
-              <Image
-                src={heroImage}
-                alt="Our Key Solutions"
-                fill
-                className="object-cover rounded-xl"
-              />
-            </motion.div>
-          </div>
-        </div>
-
-        <SectionSeparator />
-      </section>
-
-      {/* The SGA Advantage Section */}
-      <section className="bg-white text-dark-charcoal py-16 sm:py-20 lg:py-24 relative">
-        <div className="w-full max-w-7xl mx-auto container-fluid">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-10 sm:mb-12 lg:mb-16 text-center"
-          >
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary-orange relative pb-3 inline-block">
-              <span>The SGA Advantage</span>
-              <span
-                className="absolute bottom-0 left-0 w-full"
-                style={{
-                  background: 'linear-gradient(to right, #00043E 0%, #00043E 70%, transparent 100%)',
-                  height: '1px'
-                }}
-              ></span>
-            </h2>
-          </motion.div>
-
-          <div className="flex flex-wrap justify-center gap-6 lg:gap-8">
-            {[
-              {
-                title: '50+ Years Experience',
-                description: 'Decades of trusted security solutions in East Africa.'
-              },
-              {
-                title: '24/7 Verified Response',
-                description: 'Always on standby with swift, professional assistance.'
-              },
-              {
-                title: 'Trained & Vetted Personnel',
-                description: 'Highly skilled guards ensuring your complete safety.'
-              },
-              {
-                title: 'Regional Presence',
-                description: 'Operating seamlessly across Kenya, Uganda & Tanzania.'
-              }
-            ].map((advantage, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-primary-orange rounded-xl p-6 lg:p-8 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-[1.02] flex flex-col items-center text-center flex-1 min-w-[240px] max-w-[270px]"
-              >
-                <h3 className="text-lg md:text-xl font-bold text-white mb-3 lg:mb-4">
-                  {advantage.title}
-                </h3>
-                <p className="text-sm md:text-base text-white/90 leading-relaxed">
-                  {advantage.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
         </div>
 
         <SectionSeparator />

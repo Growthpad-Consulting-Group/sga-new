@@ -56,7 +56,6 @@ const banking: IndustryData = {
     relatedServices: [
         { image: '/images/ug/residentials.png', category: 'Security Service', title: 'Alarm & Response', summary: '24/7 monitoring with rapid deployment.', link: '/{cc}/services/individual/24-7-monitoring' },
         { image: '/images/ug/education.png', category: 'Security Service', title: 'Security Guarding', summary: 'Professional guards for financial institutions.', link: '/{cc}/services/corporate/security-guarding' },
-        { image: '/images/ug/healthcare.png', category: 'Security Service', title: 'Personal Panic App', summary: 'One-tap SOS linked to our control room.', link: '/contact' },
     ],
     metaTitle: 'Banking & Finance Security - SGA Security {country}',
     metaDescription: 'High-security solutions for banks, financial institutions, and ATMs in {country}. Protecting financial assets, staff, and customers with advanced security systems.',

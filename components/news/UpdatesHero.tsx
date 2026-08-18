@@ -10,7 +10,7 @@ interface UpdatesHeroProps {
 export default function UpdatesHero({ imageUrl = '/images/contact/hero.png' }: UpdatesHeroProps): React.JSX.Element {
   return (
     <section id="hero" className=" bg-gray-100 text-dark-charcoal pt-32 sm:pt-40 lg:pt-48 pb-0">
-      <div className="w-full max-w-7xl mx-auto container-fluid">
+      <div className="w-full  mx-auto container-fluid">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}

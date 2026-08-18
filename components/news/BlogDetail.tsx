@@ -487,7 +487,7 @@ export default function BlogDetail({ blog, relatedPosts = [] }: BlogDetailProps)
                 </div>
             </div>
 
-            <div className="max-w-7xl mx-auto container-fluid py-20 relative z-20">
+            <div className=" mx-auto container-fluid py-20 relative z-20">
                 <div className="flex flex-col lg:flex-row gap-16">
 
                     <TableOfContents headings={headings} />

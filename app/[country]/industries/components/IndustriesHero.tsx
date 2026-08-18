@@ -35,7 +35,7 @@ export default function IndustriesHero({ countryCode, imageUrl }: IndustriesHero
 
   return (
     <section id="hero" className="bg-gray-100 text-dark-charcoal pt-32 sm:pt-40 lg:pt-48 pb-0">
-      <div className="w-full max-w-7xl mx-auto container-fluid">
+      <div className="w-full  mx-auto container-fluid">
         <div className="text-left space-y-2 pb-4">
           <h2 className="text-sm md:text-base font-semibold text-gray-700 uppercase tracking-wide">
             Industries We Serve - SGA Security {country.name}
