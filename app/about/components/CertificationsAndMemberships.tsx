@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import Image from 'next/image'
@@ -50,8 +50,14 @@ export default function CertificationsAndMemberships({ documents }: Certificatio
     const [searchQuery, setSearchQuery] = useState('')
     const [currentPage, setCurrentPage] = useState(1)
     const [previewDoc, setPreviewDoc] = useState<DocumentItem | null>(null)
-    // Randomize documents on mount to avoid country bias
-    const [randomizedDocuments] = useState(() => shuffleArray(documents))
+    // Start with the server-rendered order so hydration matches, then
+    // shuffle client-side only (avoids a random order on the server and a
+    // different random order on the client causing a hydration mismatch).
+    const [randomizedDocuments, setRandomizedDocuments] = useState(documents)
+    useEffect(() => {
+        setRandomizedDocuments(shuffleArray(documents))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     const filteredDocuments = randomizedDocuments.filter((doc) => {
         const matchCategory = activeCategory === 'ALL' || doc.category === activeCategory
