@@ -174,7 +174,7 @@ export default function Hero({
                   const defaultBorderColor = orangeBackground ? 'border-white' : 'border-primary-orange'
                   const defaultHoverBg = orangeBackground ? 'hover:bg-white' : 'hover:bg-primary-orange'
 
-                  const buttonClassName = button.className || `group relative bg-transparent border-2 ${defaultBorderColor} px-6 py-4 rounded-2xl font-semibold transition-all text-left ${defaultHoverBg} w-full sm:flex-1 h-44`
+                  const buttonClassName = button.className || `group relative bg-transparent border-2 ${defaultBorderColor} px-6 py-4 rounded-2xl font-semibold transition-all duration-300 text-left ${defaultHoverBg} w-full sm:flex-1 h-44`
 
                   // Simple button structure for rounded-full buttons
                   if (isSimple) {
