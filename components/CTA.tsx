@@ -141,15 +141,13 @@ export default function CTA(): React.JSX.Element {
             </motion.div>
           )}
 
-          <motion.button
+          <button
             type="submit"
             disabled={submitting}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="w-full bg-primary-orange text-white px-8 py-4 rounded-lg font-semibold text-lg shadow-lg hover:shadow-xl transition-shadow disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full bg-primary-orange text-white px-8 py-4 rounded-lg font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
           >
             {submitting ? 'Submitting...' : 'Send Message'}
-          </motion.button>
+          </button>
         </motion.form>
       </div>
     </SectionWrapper>

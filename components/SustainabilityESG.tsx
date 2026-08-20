@@ -174,18 +174,14 @@ export default function SustainabilityESG(): React.JSX.Element {
                 Learn More About Our Sustainability Impact
               </h4>
               <div className="flex-1"></div>
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="w-full"
-              >
+              <div className="w-full transition-transform duration-200 hover:scale-105 active:scale-95">
                 <Link
                   href="/sustainability"
                   className="bg-primary-orange text-white px-6 py-3 rounded-full font-semibold text-xs md:text-sm uppercase hover:bg-[#d84c1e] transition-colors shadow-md hover:shadow-lg flex items-center justify-center gap-2 w-full"
                 >
                   Learn More
                 </Link>
-              </motion.div>
+              </div>
             </div>
           </motion.div>
         </div>

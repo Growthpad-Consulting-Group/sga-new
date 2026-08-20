@@ -227,14 +227,12 @@ export default function WhistleblowingForm(): React.JSX.Element {
           </span>
         </label>
 
-        <motion.button
+        <button
           type="submit"
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          className="bg-primary-orange text-white px-10 py-4 rounded-full font-bold uppercase text-sm shadow-lg hover:shadow-xl transition-all"
+          className="bg-primary-orange text-white px-10 py-4 rounded-full font-bold uppercase text-sm shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
         >
           Submit Report
-        </motion.button>
+        </button>
       </form>
     </motion.div>
   )

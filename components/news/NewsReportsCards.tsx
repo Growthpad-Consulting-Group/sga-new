@@ -233,10 +233,7 @@ export default function NewsReportsCards({ providedCountry, initialNewsItems }: 
               >
                 {/* Featured Image */}
                 <Link href={`${basePath}/${item.slug.current || item.slug}`}>
-                  <motion.div
-                    whileHover={{ opacity: 0.9 }}
-                    className="relative w-full h-64 block cursor-pointer"
-                  >
+                  <div className="relative w-full h-64 block cursor-pointer transition-opacity duration-200 hover:opacity-90">
                     <Image
                       src={item.image || (item.mainImage ? urlFor(item.mainImage).url() : '/images/misc/blog-placeholder')}
                       alt={item.title}
@@ -248,7 +245,7 @@ export default function NewsReportsCards({ providedCountry, initialNewsItems }: 
                       <Icon icon="mdi:map-marker" className="w-5 h-5 text-white" />
                       {(item as any).country}
                     </div>
-                  </motion.div>
+                  </div>
                 </Link>
 
                 <div className="p-6 flex flex-col flex-1 bg-primary-orange text-white">

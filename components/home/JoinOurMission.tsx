@@ -40,22 +40,18 @@ export default function JoinOurMission(): React.JSX.Element {
 
             {/* Call to Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-3 pt-2">
-              <motion.a
+              <a
                 href="/careers"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-primary-orange text-white px-8 py-4 border border-primary-orange rounded-full font-semibold text-xs md:text-sm uppercase shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
+                className="bg-primary-orange text-white px-8 py-4 border border-primary-orange rounded-full font-semibold text-xs md:text-sm uppercase shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2"
               >
                 VIEW OPEN ROLES
-              </motion.a>
-              <motion.button
+              </a>
+              <button
                 onClick={openModal}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-transparent text-dark-charcoal border border-dark-charcoal px-8 py-4 rounded-full font-semibold text-xs md:text-sm uppercase hover:bg-primary-orange hover:border-primary-orange hover:text-white transition-colors"
+                className="bg-transparent text-dark-charcoal border border-dark-charcoal px-8 py-4 rounded-full font-semibold text-xs md:text-sm uppercase hover:bg-primary-orange hover:border-primary-orange hover:text-white transition-all duration-200 hover:scale-105 active:scale-95"
               >
                 SEND US YOUR CV
-              </motion.button>
+              </button>
             </div>
 
             {/* Team Image at Bottom */}

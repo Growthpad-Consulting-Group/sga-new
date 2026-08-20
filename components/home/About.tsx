@@ -90,14 +90,12 @@ export default function About({
                 </p>
               )}
               {buttonText && (
-                <motion.a
+                <a
                   href={buttonHref}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="inline-block bg-primary-orange text-white px-10 py-4 rounded-full font-semibold text-md uppercase hover:bg-primary-orange/90 transition-colors"
+                  className="inline-block bg-primary-orange text-white px-10 py-4 rounded-full font-semibold text-md uppercase hover:bg-primary-orange/90 transition-all duration-200 hover:scale-105 active:scale-95"
                 >
                   {buttonText}
-                </motion.a>
+                </a>
               )}
             </motion.div>
 
