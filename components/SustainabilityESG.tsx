@@ -1,6 +1,7 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import Image from 'next/image'
 import { Link } from 'next-view-transitions'
@@ -66,6 +67,8 @@ const sdgGoals: SDGGoal[] = [
 ]
 
 export default function SustainabilityESG(): React.JSX.Element {
+  const [expandedGoal, setExpandedGoal] = useState<number | null>(null)
+
   return (
     <section id="sustainability-esg" className="flex items-center justify-center bg-light-grey relative py-12 md:py-16">
       <motion.div
@@ -108,7 +111,8 @@ export default function SustainabilityESG(): React.JSX.Element {
                 opacity: { duration: 0.5, delay: index * 0.1 },
                 y: { duration: 0.15 }
               }}
-              className="rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 min-h-[160px] md:min-h-[240px] capitalize"
+              onClick={() => setExpandedGoal(expandedGoal === sdg.goal ? null : sdg.goal)}
+              className="rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 min-h-[160px] md:min-h-[240px] capitalize cursor-pointer"
               style={{ backgroundColor: sdg.bgColor }}
             >
               <div className="p-5 md:p-6 h-full flex flex-col text-white">
@@ -130,6 +134,19 @@ export default function SustainabilityESG(): React.JSX.Element {
                   <h4 className="text-base md:text-2xl font-bold leading-tight">
                     {sdg.title}
                   </h4>
+                  <AnimatePresence>
+                    {expandedGoal === sdg.goal && (
+                      <motion.p
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.25, ease: 'easeOut' }}
+                        className="text-sm md:text-base text-white/90 leading-relaxed mt-3 overflow-hidden"
+                      >
+                        {sdg.description}
+                      </motion.p>
+                    )}
+                  </AnimatePresence>
                 </div>
               </div>
             </motion.div>
