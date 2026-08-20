@@ -142,7 +142,12 @@ export default function Header() {
   }
 
   // Common class strings
-  const containerClasses = 'max-w-9xl mx-auto container-fluid'
+  // container-fluid's clamp(1rem,5vw,8rem) side padding is sized for a
+  // full-width header. Once scrolled, the outer wrapper already insets the
+  // pill with its own mx-4/mx-6/lg:mx-12 margin, so keeping container-fluid
+  // on top of that stacks both and pushes content too far from the pill's
+  // edge — swap to a smaller fixed padding instead.
+  const containerClasses = `max-w-9xl mx-auto ${isScrolled ? 'px-4 sm:px-6 lg:px-8' : 'container-fluid'}`
   const buttonHoverClasses = 'transition-colors'
   const flagButtonClasses = 'w-8 h-8 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full transition-all'
   const mobileMenuItemClasses = 'flex items-center gap-2 py-3 sm:py-3.5 transition-colors text-sm sm:text-base font-nav'
