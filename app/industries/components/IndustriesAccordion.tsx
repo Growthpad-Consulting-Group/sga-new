@@ -64,7 +64,6 @@ export default function IndustriesAccordion({ industries }: { industries: Indust
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="max-w-4xl mx-auto"
         >
           <div className="mb-12">
             <p className="text-md font-medium text-dark-charcoal uppercase tracking-wider mb-2">
