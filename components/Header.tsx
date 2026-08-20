@@ -228,18 +228,16 @@ export default function Header() {
             {/* Social Icons - Left */}
             <div className="flex items-center space-x-2 sm:space-x-3 md:space-x-4">
               {socialLinks.map((social) => (
-                <motion.a
+                <a
                   key={social.icon}
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  whileHover={{ scale: 1.2 }}
-                  whileTap={{ scale: 0.9 }}
-                  className={`${buttonHoverClasses} ${getTextColor()}`}
+                  className={`transition-all duration-200 hover:scale-[1.2] active:scale-90 ${getTextColor()}`}
                   aria-label={social.label}
                 >
                   <Icon icon={social.icon} className="w-6 h-6 sm:w-6 sm:h-6" />
-                </motion.a>
+                </a>
               ))}
             </div>
 
@@ -247,16 +245,14 @@ export default function Header() {
             <div className="flex items-center space-x-1 sm:space-x-2">
               {/* Call Number - Only show on country pages */}
               {isCountryPage && countryPhone && (
-                <motion.a
+                <a
                   href={`tel:${countryPhone.replace(/\s/g, '')}`}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className={`hidden sm:flex items-center gap-1 text-md font-semibold uppercase ${buttonHoverClasses} ${getTextColor()}`}
+                  className={`hidden sm:flex items-center gap-1 text-md font-semibold uppercase transition-all duration-200 hover:scale-105 active:scale-95 ${getTextColor()}`}
                   aria-label={`Call ${countryPhone}`}
                 >
                   <Icon icon="mdi:phone" className="w-3 h-3" />
                   <span>Call: {countryPhone}</span>
-                </motion.a>
+                </a>
               )}
 
               {countries.map((country) => {
@@ -268,20 +264,18 @@ export default function Header() {
                     : 'text-black/80 hover:text-black hover:bg-light-grey'
 
                 return (
-                  <motion.button
+                  <button
                     key={country.code}
                     onClick={() => router.push(country.path)}
                     disabled={active}
-                    whileHover={!active ? { scale: 1.1 } : {}}
-                    whileTap={!active ? { scale: 0.95 } : {}}
-                    className={`${flagButtonClasses} ${flagButtonColor} ${active ? 'cursor-default' : 'cursor-pointer'}`}
+                    className={`${flagButtonClasses} ${flagButtonColor} ${active ? 'cursor-default' : 'cursor-pointer hover:scale-110 active:scale-95'}`}
                     aria-label={active ? `Currently in ${country.name}` : `Switch to ${country.name}`}
                     title={country.name}
                   >
                     <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden flex items-center justify-center ring-1 ring-white/20">
                       <Icon icon={country.flag} className="w-8 h-8 sm:w-8 sm:h-8" />
                     </div>
-                  </motion.button>
+                  </button>
                 )
               })}
 
@@ -295,15 +289,13 @@ export default function Header() {
               )}
 
               {/* Down Arrow Button */}
-              <motion.button
+              <button
                 onClick={() => openCountryModal()}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                className={`${buttonHoverClasses} ${getTextColor()}`}
+                className={`transition-all duration-200 hover:scale-110 active:scale-95 ${getTextColor()}`}
                 aria-label="Open country selector"
               >
                 <Icon icon="mdi:chevron-down" className="w-4 h-4 sm:w-5 sm:h-5" />
-              </motion.button>
+              </button>
             </div>
           </div>
         </div>
@@ -346,14 +338,13 @@ export default function Header() {
               {currentNavItems.filter(item => !item.icon).map((item) => {
                 const isRoute = !item.href.startsWith('#')
                 const isActive = isRoute ? pathname === item.href : false
-                const NavComponent = isRoute ? motion.create(Link) : motion.a
+                const NavComponent = isRoute ? Link : 'a'
 
                 return (
                   <NavComponent
                     key={item.href}
                     href={item.href}
-                    whileHover={{ y: -2 }}
-                    className={`${buttonHoverClasses} font-nav font-bold tracking-widest text-md ${getNavTextColor(isActive)}`}
+                    className={`transition-all duration-200 hover:-translate-y-0.5 font-nav font-bold tracking-widest text-md ${getNavTextColor(isActive)}`}
                   >
                     {item.label}
                   </NavComponent>
@@ -368,14 +359,13 @@ export default function Header() {
             {currentNavItems.filter(item => item.icon).map((item) => {
               const isRoute = !item.href.startsWith('#')
               const isActive = isRoute ? pathname === item.href : false
-              const NavComponent = isRoute ? motion.create(Link) : motion.a
+              const NavComponent = isRoute ? Link : 'a'
 
               return (
                 <NavComponent
                   key={item.href}
                   href={item.href}
-                  whileHover={{ y: -2 }}
-                  className={`${buttonHoverClasses} font-nav font-medium flex items-center gap-1.5 text-md ${getNavTextColor(isActive)}`}
+                  className={`transition-all duration-200 hover:-translate-y-0.5 font-nav font-medium flex items-center gap-1.5 text-md ${getNavTextColor(isActive)}`}
                 >
                   {item.icon && (
                     <Icon
@@ -390,17 +380,15 @@ export default function Header() {
             })}
 
             {/* Enquire Now Button */}
-            <motion.button
+            <button
               onClick={openModal}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
               className={`${isCountryPage && !isScrolled
                 ? 'bg-white text-primary-orange'
                 : 'bg-primary-orange text-white'
-                } px-4 py-2 xl:px-6 xl:py-3 rounded-full font-heading font-medium uppercase text-sm shadow-md hover:shadow-lg transition-shadow`}
+                } px-4 py-2 xl:px-6 xl:py-3 rounded-full font-heading font-medium uppercase text-sm shadow-md hover:shadow-lg transition-all duration-200 hover:scale-105 active:scale-95`}
             >
               Enquire Now
-            </motion.button>
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -482,16 +470,15 @@ export default function Header() {
                 )
               })}
 
-              <motion.button
+              <button
                 onClick={() => {
                   setMobileMenuOpen(false)
                   openModal()
                 }}
-                whileTap={{ scale: 0.95 }}
-                className="mt-4 sm:mt-5 bg-primary-orange text-white px-6 py-3 sm:py-3.5 rounded-full font-heading font-semibold text-center text-sm sm:text-base shadow-md w-full"
+                className="mt-4 sm:mt-5 bg-primary-orange text-white px-6 py-3 sm:py-3.5 rounded-full font-heading font-semibold text-center text-sm sm:text-base shadow-md w-full transition-transform duration-150 active:scale-95"
               >
                 Enquire Now
-              </motion.button>
+              </button>
             </motion.div>
           )}
         </AnimatePresence>
@@ -524,15 +511,13 @@ export default function Header() {
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* Close Button - Now closer to content */}
-                <motion.button
+                <button
                   onClick={() => closeCountryModal()}
-                  className="absolute -top-12 -right-4 sm:-top-16 sm:-right-8 text-white hover:text-primary-orange transition-colors z-60"
-                  whileHover={{ scale: 1.1, rotate: 90 }}
-                  whileTap={{ scale: 0.9 }}
+                  className="absolute -top-12 -right-4 sm:-top-16 sm:-right-8 text-white hover:text-primary-orange transition-all duration-200 hover:scale-110 hover:rotate-90 active:scale-90 z-60"
                   aria-label="Close modal"
                 >
                   <Icon icon="teenyicons:x-circle-outline" className="w-8 h-8 sm:w-9 sm:h-9" />
-                </motion.button>
+                </button>
 
                 <div className="flex flex-row flex-wrap sm:flex-nowrap items-center justify-center gap-6 sm:gap-8 md:gap-12 px-4">
                   {countries.map((country, index) => (
@@ -543,22 +528,20 @@ export default function Header() {
                       transition={{ delay: index * 0.1 }}
                       className="group relative"
                     >
-                      <motion.button
+                      <button
                         onClick={() => {
                           if (!isActiveCountry(country.path)) {
                             // If redirectPath is set, combine country path with redirectPath
-                            const targetPath = redirectPath 
-                              ? `/${country.code}${redirectPath}` 
+                            const targetPath = redirectPath
+                              ? `/${country.code}${redirectPath}`
                               : country.path
-                            
+
                             router.push(targetPath)
                             closeCountryModal()
                           }
                         }}
                         disabled={isActiveCountry(country.path)}
-                        whileHover={!isActiveCountry(country.path) ? { scale: 1.05 } : {}}
-                        whileTap={!isActiveCountry(country.path) ? { scale: 0.95 } : {}}
-                        className={`group relative w-52 h-52 sm:w-64 sm:h-64 md:w-96 md:h-96 rounded-full bg-white border-2 sm:border-4 border-primary-orange flex items-center justify-center shadow-2xl transition-all overflow-hidden ${isActiveCountry(country.path) ? 'cursor-default opacity-80' : 'cursor-pointer'}`}
+                        className={`group relative w-52 h-52 sm:w-64 sm:h-64 md:w-96 md:h-96 rounded-full bg-white border-2 sm:border-4 border-primary-orange flex items-center justify-center shadow-2xl transition-all duration-200 overflow-hidden ${isActiveCountry(country.path) ? 'cursor-default opacity-80' : 'cursor-pointer hover:scale-105 active:scale-95'}`}
                         aria-label={isActiveCountry(country.path) ? `Currently in ${country.name}` : `Enter ${country.name}`}
                       >
                         {/* ENTER label at the top - shows only on hover and if NOT active */}
@@ -588,7 +571,7 @@ export default function Header() {
                             />
                           </div>
                         )}
-                      </motion.button>
+                      </button>
                     </motion.div>
                   ))}
                 </div>

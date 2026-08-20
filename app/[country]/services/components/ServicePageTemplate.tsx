@@ -152,27 +152,21 @@ export default function ServicePageTemplate({
 
                             {/* Buttons */}
                             <div className="flex flex-col sm:flex-row items-center gap-4 pt-4">
-                                <motion.div
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    className="w-full sm:w-auto"
-                                >
+                                <div className="w-full sm:w-auto transition-transform duration-200 hover:scale-105 active:scale-95">
                                     <Link
                                         href="/contact"
                                         className="w-full inline-block bg-primary-orange text-white px-8 py-4 rounded-full font-bold text-sm md:text-base hover:bg-primary-orange/90 transition-colors text-center shadow-lg shadow-primary-orange/20"
                                     >
                                         Request a Quote
                                     </Link>
-                                </motion.div>
-                                <motion.a
+                                </div>
+                                <a
                                     href={`tel:${emergencyPhone.replace(/\s/g, '')}`}
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    className="w-full sm:w-auto bg-transparent border-2 border-primary-orange text-primary-orange px-8 py-3.5 rounded-full font-bold text-sm md:text-base hover:bg-primary-orange hover:text-white transition-colors flex items-center justify-center gap-2 text-center"
+                                    className="w-full sm:w-auto bg-transparent border-2 border-primary-orange text-primary-orange px-8 py-3.5 rounded-full font-bold text-sm md:text-base hover:bg-primary-orange hover:text-white transition-all duration-200 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 text-center"
                                 >
                                     <Icon icon="streamline-sharp:emergency-call-remix" className="w-5 h-5" />
                                     <span>View Emergency Numbers</span>
-                                </motion.a>
+                                </a>
                             </div>
 
                             {/* Explore More Animated Arrow */}
@@ -247,23 +241,19 @@ export default function ServicePageTemplate({
                                 </div>
                             </div>
                             <div className="flex flex-col sm:flex-row items-center gap-4 w-full lg:w-auto">
-                                <motion.a
+                                <a
                                     href={`tel:${emergencyPhone.replace(/\s/g, '')}`}
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    className="w-full sm:w-auto bg-primary-orange text-white px-10 py-5 rounded-full font-bold flex items-center justify-center gap-3 shadow-lg shadow-primary-orange/20 transition-all uppercase text-sm tracking-widest"
+                                    className="w-full sm:w-auto bg-primary-orange text-white px-10 py-5 rounded-full font-bold flex items-center justify-center gap-3 shadow-lg shadow-primary-orange/20 transition-all duration-200 hover:scale-105 active:scale-95 uppercase text-sm tracking-widest"
                                 >
                                     CALL FOR FREE
-                                </motion.a>
-                                <motion.button
+                                </a>
+                                <button
                                     onClick={openModal}
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    className="w-full sm:w-auto bg-[#E8F0F7] text-navy-blue px-10 py-5 rounded-full font-bold flex items-center justify-center gap-2 hover:bg-[#D1E1EF] transition-all uppercase tracking-widest text-sm"
+                                    className="w-full sm:w-auto bg-[#E8F0F7] text-navy-blue px-10 py-5 rounded-full font-bold flex items-center justify-center gap-2 hover:bg-[#D1E1EF] transition-all duration-200 hover:scale-105 active:scale-95 uppercase tracking-widest text-sm"
                                 >
                                     BOOK SERVICE
                                     <Icon icon="lucide:chevron-right" className="w-5 h-5" />
-                                </motion.button>
+                                </button>
                             </div>
                         </div>
                     </motion.div>
@@ -395,14 +385,12 @@ export default function ServicePageTemplate({
                                     ))}
                                 </ul>
                                 <div className="mt-auto">
-                                    <motion.button
+                                    <button
                                         onClick={openModal}
-                                        whileHover={{ scale: 1.05 }}
-                                        whileTap={{ scale: 0.95 }}
-                                        className="w-full bg-white text-primary-orange py-4 px-8 rounded-full font-black text-sm uppercase tracking-[0.2em] shadow-lg hover:bg-gray-50 transition-colors"
+                                        className="w-full bg-white text-primary-orange py-4 px-8 rounded-full font-black text-sm uppercase tracking-[0.2em] shadow-lg hover:bg-gray-50 transition-all duration-200 hover:scale-105 active:scale-95"
                                     >
                                         CONTACT US
-                                    </motion.button>
+                                    </button>
                                 </div>
                             </motion.div>
                         ))}
