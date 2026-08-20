@@ -45,31 +45,34 @@ export const getCountryNavItems = (countryCode: string): NavItem[] => {
   ]
 }
 
-// Country header "Services" mega menu — Individual tab
+// Country header "Services" mega menu — Individual tab. Items without a
+// dedicated page yet link to the Individual services listing page rather
+// than a dead link or an unrelated Contact page.
 export const getIndividualServicesItems = (countryPrefix: string): NavItem[] => [
   { href: 'https://sgasecurity.com/home-security-solution/', label: 'Home Security Solutions' },
   { href: `${countryPrefix}/services/corporate/security-guarding`, label: 'Guarding' },
-  { href: `${countryPrefix}/contact`, label: 'K-9 Services' },
-  { href: `${countryPrefix}/contact`, label: 'Alarm Response Services' },
-  { href: `${countryPrefix}/contact`, label: 'Control Room Services' },
-  { href: `${countryPrefix}/contact`, label: 'Courier Services' },
-  { href: `${countryPrefix}/contact`, label: 'Close Protection Officer' },
+  { href: `${countryPrefix}/services/individual`, label: 'K-9 Services' },
+  { href: `${countryPrefix}/services/individual`, label: 'Alarm Response Services' },
+  { href: `${countryPrefix}/services/individual`, label: 'Control Room Services' },
+  { href: `${countryPrefix}/services/individual`, label: 'Courier Services' },
+  { href: `${countryPrefix}/services/individual`, label: 'Close Protection Officer' },
 ]
 
-// Country header "Services" mega menu — Corporate tab
+// Country header "Services" mega menu — Corporate tab. Same fallback rule
+// as above, pointing at the Corporate services listing page instead.
 export const getCorporateServicesItems = (countryPrefix: string): NavItem[] => [
   { href: 'https://sgasecurity.com/home-security-solution/', label: 'Business Security Solutions' },
-  { href: `${countryPrefix}/contact`, label: 'CCTV Services' },
-  { href: `${countryPrefix}/contact`, label: 'Cash-In-Transit Services' },
-  { href: `${countryPrefix}/contact`, label: 'Cash Management Solutions' },
+  { href: `${countryPrefix}/services/corporate`, label: 'CCTV Services' },
+  { href: `${countryPrefix}/services/corporate`, label: 'Cash-In-Transit Services' },
+  { href: `${countryPrefix}/services/corporate`, label: 'Cash Management Solutions' },
   { href: `${countryPrefix}/services/corporate/security-guarding`, label: 'Guarding Services' },
-  { href: `${countryPrefix}/contact`, label: 'K-9 Services' },
-  { href: `${countryPrefix}/contact`, label: 'Alarm Response Services' },
-  { href: `${countryPrefix}/contact`, label: 'Courier Services' },
-  { href: `${countryPrefix}/contact`, label: 'Control Room Services' },
-  { href: `${countryPrefix}/contact`, label: 'Electronic Cargo Tracking System (ECTS)' },
-  { href: `${countryPrefix}/contact`, label: 'Reception Services' },
-  { href: `${countryPrefix}/contact`, label: 'Close Protection Officer' },
+  { href: `${countryPrefix}/services/corporate`, label: 'K-9 Services' },
+  { href: `${countryPrefix}/services/corporate`, label: 'Alarm Response Services' },
+  { href: `${countryPrefix}/services/corporate`, label: 'Courier Services' },
+  { href: `${countryPrefix}/services/corporate`, label: 'Control Room Services' },
+  { href: `${countryPrefix}/services/corporate`, label: 'Electronic Cargo Tracking System (ECTS)' },
+  { href: `${countryPrefix}/services/corporate`, label: 'Reception Services' },
+  { href: `${countryPrefix}/services/corporate`, label: 'Close Protection Officer' },
 ]
 
 // Country header "Industries" mega menu — all industries now live on the
