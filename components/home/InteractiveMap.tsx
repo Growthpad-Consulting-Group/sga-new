@@ -4,6 +4,7 @@ import { useState, forwardRef, useImperativeHandle } from 'react'
 import Image from 'next/image'
 import { Icon } from '@iconify/react'
 import { Link } from 'next-view-transitions'
+import { motion, AnimatePresence } from 'framer-motion'
 
 interface Location {
   name: string
@@ -542,56 +543,63 @@ const InteractiveMap = forwardRef<InteractiveMapRef>((props, ref) => {
       </svg>
 
       {/* Info popup */}
-      {selectedLocation && (
-        <div 
-          className="absolute bg-primary-orange rounded-lg shadow-xl p-4 max-w-sm z-10 sticky"
-          style={{
-            left: `${popupPosition.x + 20}px`,
-            top: `${popupPosition.y}px`,
-            transform: popupPosition.x > 400 ? 'translateX(-100%) translateX(-20px)' : 'none'
-          }}
-        >
-          <button
-            onClick={() => setSelectedLocation(null)}
-            className="absolute top-2 right-2 text-white hover:text-gray-200 text-xl font-bold leading-none"
+      <AnimatePresence>
+        {selectedLocation && (
+          <motion.div
+            key={selectedLocation.name}
+            initial={{ opacity: 0, scale: 0.9, y: 8 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 8 }}
+            transition={{ duration: 0.2, ease: 'easeOut' }}
+            className="absolute bg-primary-orange rounded-lg shadow-xl p-4 max-w-sm z-10 sticky"
+            style={{
+              left: `${popupPosition.x + 20}px`,
+              top: `${popupPosition.y}px`,
+              transform: popupPosition.x > 400 ? 'translateX(-100%) translateX(-20px)' : 'none'
+            }}
           >
-            ×
-          </button>
-          <h3 className="text-lg font-bold text-white mb-3 pr-6">
-            {selectedLocation.name}
-          </h3>
-          <div className="space-y-2 text-sm text-white">
-            <p className="flex items-start gap-2">
-              <Icon icon="mdi:home" className="w-5 h-5 shrink-0 mt-0.5" />
-              <span>{selectedLocation.address}</span>
-            </p>
-            {selectedLocation.phone.map((phone, idx) => (
-              <p key={idx} className="flex items-center gap-2">
-                <Icon icon="mdi:phone" className="w-5 h-5 shrink-0" />
-                <a href={`tel:${phone}`} className="hover:text-gray-200 underline">
-                  {phone}
+            <button
+              onClick={() => setSelectedLocation(null)}
+              className="absolute top-2 right-2 text-white hover:text-gray-200 text-xl font-bold leading-none"
+            >
+              ×
+            </button>
+            <h3 className="text-lg font-bold text-white mb-3 pr-6">
+              {selectedLocation.name}
+            </h3>
+            <div className="space-y-2 text-sm text-white">
+              <p className="flex items-start gap-2">
+                <Icon icon="mdi:home" className="w-5 h-5 shrink-0 mt-0.5" />
+                <span>{selectedLocation.address}</span>
+              </p>
+              {selectedLocation.phone.map((phone, idx) => (
+                <p key={idx} className="flex items-center gap-2">
+                  <Icon icon="mdi:phone" className="w-5 h-5 shrink-0" />
+                  <a href={`tel:${phone}`} className="hover:text-gray-200 underline">
+                    {phone}
+                  </a>
+                </p>
+              ))}
+              <p className="flex items-center gap-2">
+                <Icon icon="mdi:email" className="w-5 h-5 shrink-0" />
+                <a
+                  href={`mailto:${selectedLocation.email}`}
+                  className="hover:text-gray-200 underline break-all"
+                >
+                  {selectedLocation.email}
                 </a>
               </p>
-            ))}
-            <p className="flex items-center gap-2">
-              <Icon icon="mdi:email" className="w-5 h-5 shrink-0" />
-              <a
-                href={`mailto:${selectedLocation.email}`}
-                className="hover:text-gray-200 underline break-all"
-              >
-                {selectedLocation.email}
-              </a>
-            </p>
-            <Link
-              href={selectedLocation.mapsUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 mt-3 px-4 py-2 border border-white uppercase text-xs bg-primary-orange text-white rounded-full transition-all duration-200 hover:bg-primary-orange hover:scale-105 font-semibold"            >
-              Get Directions
-            </Link>
-          </div>
-        </div>
-      )}
+              <Link
+                href={selectedLocation.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 mt-3 px-4 py-2 border border-white uppercase text-xs bg-primary-orange text-white rounded-full transition-all duration-200 hover:bg-primary-orange hover:scale-105 font-semibold"            >
+                Get Directions
+              </Link>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Hover tooltip */}
       {hoveredLocation && !selectedLocation && (
