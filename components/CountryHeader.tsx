@@ -89,7 +89,7 @@ export default function CountryHeader(): React.JSX.Element {
 
   const servicesItems = servicesViewType === 'Individual' ? individualServicesItems : corporateServicesItems
 
-  const industriesItems: ServiceItem[] = getIndustriesItems()
+  const industriesItems: ServiceItem[] = getIndustriesItems(countryPrefix)
 
   const shortcuts: ServiceItem[] = getHeaderShortcuts(countryPrefix)
 
