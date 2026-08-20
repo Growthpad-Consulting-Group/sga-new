@@ -94,19 +94,8 @@ export default function OurImpactInNumbers({ showPattern = true }: OurImpactInNu
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="flex flex-col items-center"
             >
-              <motion.div
-                className="w-44 h-44 md:w-48 md:h-48 lg:w-56 lg:h-56 rounded-full border border-primary-orange bg-primary-orange flex flex-col items-center justify-center shadow-lg group relative p-3 md:p-4 cursor-pointer"
-                whileHover={{
-                  scale: 1.04,
-                  y: -4,
-                  backgroundColor: '#d84c1e',
-                  borderColor: '#d84c1e',
-                  boxShadow: '0 20px 40px rgba(216, 76, 30, 0.3)',
-                }}
-                transition={{
-                  duration: 0.3,
-                  ease: 'easeOut'
-                }}
+              <div
+                className="w-44 h-44 md:w-48 md:h-48 lg:w-56 lg:h-56 rounded-full border border-primary-orange bg-primary-orange flex flex-col items-center justify-center shadow-lg group relative p-3 md:p-4 cursor-pointer transition-all duration-300 ease-out hover:scale-[1.04] hover:-translate-y-1 hover:border-[#d84c1e] hover:bg-[#d84c1e] hover:shadow-[0_20px_40px_rgba(216,76,30,0.3)]"
               >
                 <span className="text-3xl md:text-4xl lg:text-5xl font-bold text-white transition-colors mb-2">
                   {stat.number}
@@ -114,7 +103,7 @@ export default function OurImpactInNumbers({ showPattern = true }: OurImpactInNu
                 <span className="text-white text-center text-sm md:text-base lg:text-lg font-normal px-2 leading-tight">
                   {stat.label}
                 </span>
-              </motion.div>
+              </div>
             </motion.div>
           ))}
         </div>
@@ -130,19 +119,8 @@ export default function OurImpactInNumbers({ showPattern = true }: OurImpactInNu
               transition={{ duration: 0.5, delay: (index + 3) * 0.1 }}
               className="flex flex-col items-center"
             >
-              <motion.div
-                className="w-44 h-44 md:w-48 md:h-48 lg:w-56 lg:h-56 rounded-full border border-primary-orange bg-primary-orange flex flex-col items-center justify-center shadow-lg group relative p-3 md:p-4 cursor-pointer"
-                whileHover={{
-                  scale: 1.04,
-                  y: -4,
-                  backgroundColor: '#d84c1e',
-                  borderColor: '#d84c1e',
-                  boxShadow: '0 20px 40px rgba(216, 76, 30, 0.3)',
-                }}
-                transition={{
-                  duration: 0.3,
-                  ease: 'easeOut'
-                }}
+              <div
+                className="w-44 h-44 md:w-48 md:h-48 lg:w-56 lg:h-56 rounded-full border border-primary-orange bg-primary-orange flex flex-col items-center justify-center shadow-lg group relative p-3 md:p-4 cursor-pointer transition-all duration-300 ease-out hover:scale-[1.04] hover:-translate-y-1 hover:border-[#d84c1e] hover:bg-[#d84c1e] hover:shadow-[0_20px_40px_rgba(216,76,30,0.3)]"
               >
                 <span className="text-3xl md:text-4xl lg:text-5xl font-bold text-white transition-colors mb-2">
                   {stat.number}
@@ -150,7 +128,7 @@ export default function OurImpactInNumbers({ showPattern = true }: OurImpactInNu
                 <span className="text-white text-center text-sm md:text-base lg:text-lg font-normal px-2 leading-tight">
                   {stat.label}
                 </span>
-              </motion.div>
+              </div>
             </motion.div>
           ))}
         </div>
