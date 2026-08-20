@@ -43,6 +43,53 @@ export const getCountryNavItems = (countryCode: string): NavItem[] => {
   ]
 }
 
+// Country header "Services" mega menu — Individual tab
+export const getIndividualServicesItems = (countryPrefix: string): NavItem[] => [
+  { href: 'https://sgasecurity.com/home-security-solution/', label: 'Home Security Solutions' },
+  { href: `${countryPrefix}/services/corporate/security-guarding`, label: 'Guarding' },
+  { href: `${countryPrefix}/contact`, label: 'K-9 Services' },
+  { href: `${countryPrefix}/contact`, label: 'Alarm Response Services' },
+  { href: `${countryPrefix}/contact`, label: 'Control Room Services' },
+  { href: `${countryPrefix}/contact`, label: 'Courier Services' },
+  { href: `${countryPrefix}/contact`, label: 'Close Protection Officer' },
+]
+
+// Country header "Services" mega menu — Corporate tab
+export const getCorporateServicesItems = (countryPrefix: string): NavItem[] => [
+  { href: 'https://sgasecurity.com/home-security-solution/', label: 'Business Security Solutions' },
+  { href: `${countryPrefix}/contact`, label: 'CCTV Services' },
+  { href: `${countryPrefix}/contact`, label: 'Cash-In-Transit Services' },
+  { href: `${countryPrefix}/contact`, label: 'Cash Management Solutions' },
+  { href: `${countryPrefix}/services/corporate/security-guarding`, label: 'Guarding Services' },
+  { href: `${countryPrefix}/contact`, label: 'K-9 Services' },
+  { href: `${countryPrefix}/contact`, label: 'Alarm Response Services' },
+  { href: `${countryPrefix}/contact`, label: 'Courier Services' },
+  { href: `${countryPrefix}/contact`, label: 'Control Room Services' },
+  { href: `${countryPrefix}/contact`, label: 'Electronic Cargo Tracking System (ECTS)' },
+  { href: `${countryPrefix}/contact`, label: 'Reception Services' },
+  { href: `${countryPrefix}/contact`, label: 'Close Protection Officer' },
+]
+
+// Country header "Industries" mega menu
+export const getIndustriesItems = (countryPrefix: string): NavItem[] => [
+  { href: `${countryPrefix}/industries/banking`, label: 'Banking & Finance' },
+  { href: `${countryPrefix}/industries/retail`, label: 'Retail & FMCG' },
+  { href: `${countryPrefix}/industries/logistics`, label: 'Logistics & Ports' },
+  { href: `${countryPrefix}/industries/manufacturing`, label: 'Manufacturing & Industrial' },
+  { href: `${countryPrefix}/industries/real-estate`, label: 'Real Estate & Offices' },
+  { href: `${countryPrefix}/industries/education`, label: 'Education & Healthcare' },
+  { href: `${countryPrefix}/industries/events`, label: 'Events & Venues' },
+  { href: `${countryPrefix}/industries/diplomatic`, label: 'Diplomatic & Government' },
+]
+
+// Country header mega menu "Shortcuts" column
+export const getHeaderShortcuts = (countryPrefix: string): NavItem[] => [
+  { href: `${countryPrefix}/safety-tips`, label: 'Safety tips' },
+  { href: `${countryPrefix}/faqs`, label: 'FAQs' },
+  { href: `${countryPrefix}/contact`, label: 'Contact' },
+  { href: `${countryPrefix}/resources`, label: 'Resources' },
+]
+
 export const socialLinks: SocialLink[] = [
   { icon: 'mdi:facebook', url: 'https://www.facebook.com/people/SGA-Security/100091922621281/', label: 'Facebook' },
   { icon: 'tabler:brand-x', url: 'https://twitter.com/SGA_Security', label: 'Twitter' },

@@ -7,6 +7,12 @@ import Image from 'next/image'
 import { Icon } from '@iconify/react'
 import { usePathname } from 'next/navigation'
 import { countries as countriesData } from '@/data/countries-data'
+import {
+  getIndividualServicesItems,
+  getCorporateServicesItems,
+  getIndustriesItems,
+  getHeaderShortcuts,
+} from '@/data/nav'
 import { useEnquiryModal } from '@/contexts/EnquiryModalContext'
 import TopBar from './header/TopBar'
 import MegaMenuDropdown from './header/MegaMenuDropdown'
@@ -76,50 +82,14 @@ export default function CountryHeader(): React.JSX.Element {
   const currentCountryCode = pathname.split('/')[1] as keyof typeof countriesData
   const currentCountry = countriesData[currentCountryCode]
 
-  const individualServicesItems: ServiceItem[] = [
-    { href: 'https://sgasecurity.com/home-security-solution/', label: 'Home Security Solutions' },
-    { href: `${countryPrefix}/services/corporate/security-guarding`, label: 'Guarding' },
-    { href: `${countryPrefix}/contact`, label: 'K-9 Services' },
-    { href: `${countryPrefix}/contact`, label: 'Alarm Response Services' },
-    { href: `${countryPrefix}/contact`, label: 'Control Room Services' },
-    { href: `${countryPrefix}/contact`, label: 'Courier Services' },
-    { href: `${countryPrefix}/contact`, label: 'Close Protection Officer' },
-  ]
-
-  const corporateServicesItems: ServiceItem[] = [
-    { href: 'https://sgasecurity.com/home-security-solution/', label: 'Business Security Solutions' },
-    { href: `${countryPrefix}/contact`, label: 'CCTV Services' },
-    { href: `${countryPrefix}/contact`, label: 'Cash-In-Transit Services' },
-    { href: `${countryPrefix}/contact`, label: 'Cash Management Solutions' },
-    { href: `${countryPrefix}/services/corporate/security-guarding`, label: 'Guarding Services' },
-    { href: `${countryPrefix}/contact`, label: 'K-9 Services' },
-    { href: `${countryPrefix}/contact`, label: 'Alarm Response Services' },
-    { href: `${countryPrefix}/contact`, label: 'Courier Services' },
-    { href: `${countryPrefix}/contact`, label: 'Control Room Services' },
-    { href: `${countryPrefix}/contact`, label: 'Electronic Cargo Tracking System (ECTS)' },
-    { href: `${countryPrefix}/contact`, label: 'Reception Services' },
-    { href: `${countryPrefix}/contact`, label: 'Close Protection Officer' },
-  ]
+  const individualServicesItems: ServiceItem[] = getIndividualServicesItems(countryPrefix)
+  const corporateServicesItems: ServiceItem[] = getCorporateServicesItems(countryPrefix)
 
   const servicesItems = servicesViewType === 'Individual' ? individualServicesItems : corporateServicesItems
 
-  const industriesItems: ServiceItem[] = [
-    { href: `${countryPrefix}/industries/banking`, label: 'Banking & Finance' },
-    { href: `${countryPrefix}/industries/retail`, label: 'Retail & FMCG' },
-    { href: `${countryPrefix}/industries/logistics`, label: 'Logistics & Ports' },
-    { href: `${countryPrefix}/industries/manufacturing`, label: 'Manufacturing & Industrial' },
-    { href: `${countryPrefix}/industries/real-estate`, label: 'Real Estate & Offices' },
-    { href: `${countryPrefix}/industries/education`, label: 'Education & Healthcare' },
-    { href: `${countryPrefix}/industries/events`, label: 'Events & Venues' },
-    { href: `${countryPrefix}/industries/diplomatic`, label: 'Diplomatic & Government' },
-  ]
+  const industriesItems: ServiceItem[] = getIndustriesItems(countryPrefix)
 
-  const shortcuts: ServiceItem[] = [
-    { href: `${countryPrefix}/safety-tips`, label: 'Safety tips' },
-    { href: `${countryPrefix}/faqs`, label: 'FAQs' },
-    { href: `${countryPrefix}/contact`, label: 'Contact' },
-    { href: `${countryPrefix}/resources`, label: 'Resources' },
-  ]
+  const shortcuts: ServiceItem[] = getHeaderShortcuts(countryPrefix)
 
   const navItems: NavItem[] = [
     { href: '/', label: 'SGA GROUP' },
