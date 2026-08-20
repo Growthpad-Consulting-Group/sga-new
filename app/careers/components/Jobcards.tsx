@@ -180,8 +180,20 @@ export default function JobCards() {
   }
 
   return (
-    <section id="news-reports-cards" className="bg-white py-16 sm:py-20">
-      <div className="w-full  mx-auto">
+    <section id="careers-jobs" className="bg-white py-16 sm:py-20">
+      <div className="w-full mx-auto container-fluid">
+        <div className="mb-10">
+          <p className="text-xs font-semibold text-primary-orange uppercase tracking-wider mb-2">
+            Careers
+          </p>
+          <div className="section-title-container w-full">
+            <h2 className="section-title text-xl md:text-3xl font-bold text-primary-orange">
+              Open Positions
+            </h2>
+            <div className="section-title-bar"></div>
+          </div>
+        </div>
+
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

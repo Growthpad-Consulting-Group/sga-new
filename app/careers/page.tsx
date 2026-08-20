@@ -1,6 +1,7 @@
 import Hero from './components/Hero'
 import JobCards from './components/Jobcards'
 import FloatingWhatsApp from '@/components/FloatingWhatsApp'
+import SectionSeparator from '@/components/SectionSeparator'
 
 export const metadata = {
   title: 'Careers at SGA Security Group - Leading Security Solutions in East Africa',
@@ -13,7 +14,10 @@ export default function CareersPage() {
       <Hero
         imageUrl="/images/group/our-mission.png"
       />
-      <JobCards />
+      <div className="relative">
+        <JobCards />
+        <SectionSeparator />
+      </div>
       <FloatingWhatsApp />
     </>
   )
