@@ -154,16 +154,15 @@ export default function MobileMenu({
           </NavComponent>
         )
       })}
-      <motion.button
+      <button
         onClick={() => {
           onClose()
           openModal()
         }}
-        whileTap={{ scale: 0.95 }}
-        className="block mt-4 sm:mt-5 bg-primary-orange text-white px-6 py-3 sm:py-3.5 rounded-full font-semibold text-center text-sm sm:text-base shadow-md w-full"
+        className="block mt-4 sm:mt-5 bg-primary-orange text-white px-6 py-3 sm:py-3.5 rounded-full font-semibold text-center text-sm sm:text-base shadow-md w-full transition-transform duration-150 active:scale-95"
       >
         Enquire Now
-      </motion.button>
+      </button>
     </motion.div>
   )
 }

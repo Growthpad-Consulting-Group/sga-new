@@ -55,14 +55,12 @@ export default function CountryModal({ isOpen, onClose, countries }: CountryModa
               transition={{ delay: index * 0.1 }}
               className="group relative"
             >
-              <motion.button
+              <button
                 onClick={() => {
                   router.push(country.path)
                   onClose()
                 }}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                className="group relative w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 rounded-full bg-white border-2 sm:border-4 border-white flex flex-col items-center justify-center shadow-xl transition-all overflow-hidden"
+                className="group relative w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 rounded-full bg-white border-2 sm:border-4 border-white flex flex-col items-center justify-center shadow-xl transition-all duration-200 hover:scale-110 active:scale-95 overflow-hidden"
                 aria-label={`Enter ${country.name}`}
               >
                 {/* Country Flag - Smaller, always visible */}
@@ -78,7 +76,7 @@ export default function CountryModal({ isOpen, onClose, countries }: CountryModa
                     className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-primary-orange"
                   />
                 </div>
-              </motion.button>
+              </button>
             </motion.div>
           ))}
         </div>

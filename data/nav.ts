@@ -120,16 +120,11 @@ export const socialLinks: SocialLink[] = [
 ]
 
 export const countries: Country[] = [
-  { code: 'tz', name: 'Tanzania', path: '/tz', flag: 'emojione:flag-for-tanzania' },
-  { code: 'ug', name: 'Uganda', path: '/ug', flag: 'emojione:flag-for-uganda' },
   { code: 'ke', name: 'Kenya', path: '/ke', flag: 'emojione:flag-for-kenya' },
+  { code: 'ug', name: 'Uganda', path: '/ug', flag: 'emojione:flag-for-uganda' },
+  { code: 'tz', name: 'Tanzania', path: '/tz', flag: 'emojione:flag-for-tanzania' },
 ]
 
-// Same data, Kenya-first order — kept separate from `countries` above so
-// moving CountryHeader's inline copy here doesn't silently reorder the
-// group header's (Header.tsx) country switcher, which relies on `countries`.
-export const countryHeaderCountries: Country[] = [
-  { code: 'ke', name: 'Kenya', path: '/ke', flag: 'emojione:flag-for-kenya' },
-  { code: 'ug', name: 'Uganda', path: '/ug', flag: 'emojione:flag-for-uganda' },
-  { code: 'tz', name: 'Tanzania', path: '/tz', flag: 'emojione:flag-for-tanzania' },
-]
+// Kept as an alias for now — CountryHeader.tsx and Header.tsx both reference
+// this name; remove it if that call site is ever consolidated onto `countries`.
+export const countryHeaderCountries: Country[] = countries

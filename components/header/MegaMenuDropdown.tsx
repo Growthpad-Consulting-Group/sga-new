@@ -96,14 +96,12 @@ export default function MegaMenuDropdown({
               </div>
             )}
 
-            <motion.button
+            <button
               onClick={onClose}
-              whileHover={{ rotate: 90, scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-white text-white hover:bg-white/10 transition-colors"
+              className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-white text-white hover:bg-white/10 transition-all duration-200 hover:rotate-90 hover:scale-110 active:scale-90"
             >
               <Icon icon="mdi:close" className="w-6 h-6" />
-            </motion.button>
+            </button>
           </div>
         </div>
 

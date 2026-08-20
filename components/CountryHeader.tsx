@@ -165,17 +165,16 @@ export default function CountryHeader(): React.JSX.Element {
 
                 return (
                   <div key={item.href} className="relative">
-                    <motion.button
+                    <button
                       onClick={() => setDropdownOpen(!dropdownOpen)}
-                      whileHover={{ y: -2 }}
-                      className={`transition-colors font-nav! font-bold tracking-widest flex items-center gap-1.5 text-sm xl:text-base ${(isScrolled || isAboutPage) ? 'text-dark-charcoal hover:text-primary-orange' : 'text-white'}`}
+                      className={`transition-all duration-200 hover:-translate-y-0.5 font-nav! font-bold tracking-widest flex items-center gap-1.5 text-sm xl:text-base ${(isScrolled || isAboutPage) ? 'text-dark-charcoal hover:text-primary-orange' : 'text-white'}`}
                     >
                       {item.label}
                       <Icon
                         icon="mdi:plus"
                         className={`w-4 h-4 xl:w-5 xl:h-5 ${(isScrolled || isAboutPage) ? 'text-dark-charcoal' : 'text-white'}`}
                       />
-                    </motion.button>
+                    </button>
 
                     <AnimatePresence>
                       {dropdownOpen && (
@@ -201,14 +200,13 @@ export default function CountryHeader(): React.JSX.Element {
 
               const isRoute = !item.href.startsWith('#')
               const isActive = isRoute ? pathname === item.href : false
-              const NavComponent = isRoute ? motion.create(Link) : motion.a
+              const NavComponent = isRoute ? Link : 'a'
 
               return (
                 <NavComponent
                   key={item.href}
                   href={item.href}
-                  whileHover={{ y: -2 }}
-                  className={`transition-colors font-nav! font-bold tracking-widest flex items-center gap-1.5 text-sm xl:text-base ${isActive
+                  className={`transition-all duration-200 hover:-translate-y-0.5 font-nav! font-bold tracking-widest flex items-center gap-1.5 text-sm xl:text-base ${isActive
                     ? (isScrolled || isAboutPage) ? 'text-primary-orange' : 'text-white'
                     : (isScrolled || isAboutPage) ? 'text-dark-charcoal hover:text-primary-orange' : 'text-white/90 hover:text-white'
                     }`}
@@ -218,14 +216,12 @@ export default function CountryHeader(): React.JSX.Element {
                 </NavComponent>
               )
             })}
-            <motion.button
+            <button
               onClick={openModal}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className={(isScrolled || isAboutPage) ? "bg-primary-orange text-white px-4 py-2 xl:px-6 xl:py-2 rounded-full font-semibold text-sm xl:text-base shadow-md hover:shadow-lg transition-shadow ml-2 xl:ml-4 font-nav!" : "bg-white text-primary-orange px-4 py-2 xl:px-6 xl:py-2 rounded-full font-semibold text-sm xl:text-base shadow-md hover:shadow-lg transition-shadow ml-2 xl:ml-4 font-nav!"}
+              className={(isScrolled || isAboutPage) ? "bg-primary-orange text-white px-4 py-2 xl:px-6 xl:py-2 rounded-full font-semibold text-sm xl:text-base shadow-md hover:shadow-lg transition-all duration-200 hover:scale-105 active:scale-95 ml-2 xl:ml-4 font-nav!" : "bg-white text-primary-orange px-4 py-2 xl:px-6 xl:py-2 rounded-full font-semibold text-sm xl:text-base shadow-md hover:shadow-lg transition-all duration-200 hover:scale-105 active:scale-95 ml-2 xl:ml-4 font-nav!"}
             >
               Enquire Now
-            </motion.button>
+            </button>
           </div>
 
           {/* Mobile Menu Button */}

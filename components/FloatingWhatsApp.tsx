@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Icon } from '@iconify/react'
 
@@ -21,6 +21,7 @@ export default function FloatingWhatsApp({
 }: FloatingWhatsAppProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [isVisible, setIsVisible] = useState(false)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -29,6 +30,19 @@ export default function FloatingWhatsApp({
 
     return () => clearTimeout(timer)
   }, [])
+
+  useEffect(() => {
+    if (!isOpen) return
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        setIsOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [isOpen])
 
   const defaultContacts = [
     {
@@ -58,14 +72,14 @@ export default function FloatingWhatsApp({
   if (!isVisible) return null
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div ref={containerRef} className="fixed bottom-6 right-6 z-50 w-12 h-12">
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, y: 20, scale: 0.8 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.8 }}
-            className="mb-4 bg-white rounded-lg shadow-xl border border-gray-200 overflow-hidden"
+            className="absolute bottom-full right-0 mb-4 w-72 bg-white rounded-lg shadow-xl border border-gray-200 overflow-hidden"
           >
             <div className="p-4">
               <div className="flex items-center justify-between mb-3">
@@ -100,15 +114,13 @@ export default function FloatingWhatsApp({
         )}
       </AnimatePresence>
 
-      <motion.button
+      <button
         onClick={() => setIsOpen(!isOpen)}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        className="text-white rounded-fulltransition-colors"
+        className="text-white rounded-full transition-all duration-200 hover:scale-110 active:scale-90"
         aria-label="Open WhatsApp chat"
       >
         <Icon icon="logos:whatsapp-icon" className="w-12 h-12" />
-      </motion.button>
+      </button>
     </div>
   )
 }
