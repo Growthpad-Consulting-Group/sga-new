@@ -61,18 +61,14 @@ export default function ServicesTypeHero({
 
                             {/* Buttons */}
                             <div className="flex flex-col sm:flex-row items-center gap-4 pt-4">
-                                <motion.div
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    className="w-full sm:w-auto"
-                                >
+                                <div className="w-full sm:w-auto transition-transform duration-200 hover:scale-105 active:scale-95">
                                     <button
                                         onClick={openModal}
                                         className="w-full inline-block bg-primary-orange text-white px-8 py-4 rounded-full font-bold text-sm md:text-base hover:bg-primary-orange/90 transition-colors text-center capitalize shadow-lg shadow-primary-orange/20"
                                     >
                                         Request a Quote
                                     </button>
-                                </motion.div>
+                                </div>
                             </div>
 
                             {/* Explore More Animated Arrow */}

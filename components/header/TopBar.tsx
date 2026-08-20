@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import { useTransitionRouter } from 'next-view-transitions'
 import { socialLinks } from '@/data/nav'
@@ -41,18 +40,16 @@ export default function TopBar({
             {/* Social Icons - Left */}
             <div className="flex items-center space-x-2 sm:space-x-3 md:space-x-4">
               {socialLinks.map((social) => (
-                <motion.a
+                <a
                   key={social.icon}
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  whileHover={{ scale: 1.2 }}
-                  whileTap={{ scale: 0.9 }}
-                  className={isAboutPage ? 'text-dark-charcoal hover:text-primary-orange transition-colors' : 'text-white hover:text-white/80 transition-colors'}
+                  className={`transition-transform duration-200 hover:scale-[1.2] active:scale-90 ${isAboutPage ? 'text-dark-charcoal hover:text-primary-orange' : 'text-white hover:text-white/80'}`}
                   aria-label={social.label}
                 >
                   <Icon icon={social.icon} className="w-6 h-6 sm:w-6 sm:h-6" />
-                </motion.a>
+                </a>
               ))}
             </div>
 
@@ -60,15 +57,13 @@ export default function TopBar({
             <div className="flex items-center space-x-2 sm:space-x-3 md:space-x-4">
               {/* Country Phone Number - Before Flags */}
               {countryPhone && (
-                <motion.a
+                <a
                   href={`tel:${countryPhone.replace(/\s/g, '')}`}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className={isAboutPage ? "flex items-center gap-1.5 text-dark-charcoal hover:text-primary-orange transition-colors" : "flex items-center gap-1.5 text-white hover:text-white/80 transition-colors"}
+                  className={`flex items-center gap-1.5 transition-all duration-200 hover:scale-105 active:scale-95 ${isAboutPage ? "text-dark-charcoal hover:text-primary-orange" : "text-white hover:text-white/80"}`}
                   aria-label={`Call ${countryPhone}`}
                 >
                   <span className="font-bold text-[10px] sm:text-sm tracking-wider uppercase">CALL: {countryPhone}</span>
-                </motion.a>
+                </a>
               )}
 
               {/* Country Flags */}
@@ -76,13 +71,11 @@ export default function TopBar({
                 {countries.map((country) => {
                   const active = isActiveCountry(country.path)
                   return (
-                    <motion.button
+                    <button
                       key={country.code}
                       onClick={() => router.push(country.path)}
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
                       className={`
-                        w-8 h-8 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full transition-all
+                        w-8 h-8 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full transition-all duration-200 hover:scale-110 active:scale-95
                         ${active
                           ? isAboutPage ? 'bg-primary-orange text-white' : 'bg-white text-primary-orange'
                           : isAboutPage ? 'text-dark-charcoal/80 hover:text-primary-orange hover:bg-primary-orange/10' : 'text-white/80 hover:text-white hover:bg-white/20'
@@ -94,20 +87,18 @@ export default function TopBar({
                       <div className="w-6 h-6 sm:w-6 sm:h-6 md:w-8 md:h-8 rounded-full overflow-hidden flex items-center justify-center ring-1 ring-white/20">
                         <Icon icon={country.flag} className="w-full h-full scale-125" />
                       </div>
-                    </motion.button>
+                    </button>
                   )
                 })}
 
                 {/* Down Arrow Button */}
-                <motion.button
+                <button
                   onClick={onCountryModalOpen}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  className={isAboutPage ? 'text-dark-charcoal/80 hover:text-primary-orange transition-colors' : 'text-white/80 hover:text-white transition-colors'}
+                  className={`transition-all duration-200 hover:scale-110 active:scale-95 ${isAboutPage ? 'text-dark-charcoal/80 hover:text-primary-orange' : 'text-white/80 hover:text-white'}`}
                   aria-label="Open country selector"
                 >
                   <Icon icon="mdi:chevron-down" className="w-6 h-6 sm:w-5 sm:h-5" />
-                </motion.button>
+                </button>
               </div>
 
               {/* Country HQ Text */}

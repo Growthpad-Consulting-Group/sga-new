@@ -179,17 +179,15 @@ export default function Hero({
                   // Simple button structure for rounded-full buttons
                   if (isSimple) {
                     return (
-                      <motion.a
+                      <a
                         key={`button-${index}`}
                         href={button.href}
                         onClick={handleClick}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.98 }}
-                        className={buttonClassName}
+                        className={`${buttonClassName} hover:scale-105 active:scale-[0.98]`}
                         style={button.style}
                       >
                         {mainText}
-                      </motion.a>
+                      </a>
                     )
                   }
 
@@ -200,12 +198,11 @@ export default function Hero({
                   const readMoreTextColor = hasNavyBg ? 'text-white' : (orangeBackground ? 'text-dark-charcoal' : 'text-white')
 
                   return (
-                    <motion.a
+                    <a
                       key={`button-${index}`}
                       href={button.href}
                       onClick={handleClick}
-                      whileTap={{ scale: 0.98 }}
-                      className={`${buttonClassName} relative`}
+                      className={`${buttonClassName} relative active:scale-[0.98]`}
                       style={button.style}
                     >
                       <div className={`transition-colors duration-300 ${hoverTextColor} absolute top-4 left-6 right-6`}>
@@ -224,28 +221,24 @@ export default function Hero({
                           className={`w-7 h-7 ${orangeBackground ? 'text-primary-orange' : 'text-dark-charcoal'}`}
                         />
                       </div>
-                    </motion.a>
+                    </a>
                   )
                 })}
               </div>
             ) : (
               <div className="flex flex-col sm:flex-row gap-4">
-                <motion.a
+                <a
                   href="/contact"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-primary-orange text-white px-8 py-4 rounded-lg font-semibold text-lg shadow-lg hover:shadow-xl transition-shadow text-center"
+                  className="bg-primary-orange text-white px-8 py-4 rounded-lg font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 active:scale-95 text-center"
                 >
                   Get Started
-                </motion.a>
-                <motion.a
+                </a>
+                <a
                   href="#services"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className={`${whiteBackground ? 'bg-gray-100 text-dark-charcoal border-2 border-gray-300' : 'bg-white/10 backdrop-blur-xs text-white border-2 border-white/20'} px-8 py-4 rounded-lg font-semibold text-lg hover:opacity-90 transition-colors text-center`}
+                  className={`${whiteBackground ? 'bg-gray-100 text-dark-charcoal border-2 border-gray-300' : 'bg-white/10 backdrop-blur-xs text-white border-2 border-white/20'} px-8 py-4 rounded-lg font-semibold text-lg hover:opacity-90 transition-all duration-200 hover:scale-105 active:scale-95 text-center`}
                 >
                   Our Services
-                </motion.a>
+                </a>
               </div>
             )}
           </motion.div>
@@ -489,22 +482,18 @@ export default function Hero({
           transition={{ duration: 0.8, delay: 0.6 }}
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
-          <motion.a
+          <a
             href="/contact"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="bg-primary-orange text-white px-8 py-4 rounded-lg font-semibold text-lg shadow-lg hover:shadow-xl transition-shadow"
+            className="bg-primary-orange text-white px-8 py-4 rounded-lg font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 active:scale-95"
           >
             Get Started
-          </motion.a>
-          <motion.a
+          </a>
+          <a
             href="#services"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className={`${whiteBackground ? "bg-gray-100 text-dark-charcoal border-2 border-gray-300" : "bg-white/10 backdrop-blur-xs text-white border-2 border-white/20"} px-8 py-4 rounded-lg font-semibold text-lg hover:opacity-90 transition-colors`}
+            className={`${whiteBackground ? "bg-gray-100 text-dark-charcoal border-2 border-gray-300" : "bg-white/10 backdrop-blur-xs text-white border-2 border-white/20"} px-8 py-4 rounded-lg font-semibold text-lg hover:opacity-90 transition-all duration-200 hover:scale-105 active:scale-95`}
           >
             Our Services
-          </motion.a>
+          </a>
         </motion.div>
       </div>
     </SectionWrapper>
