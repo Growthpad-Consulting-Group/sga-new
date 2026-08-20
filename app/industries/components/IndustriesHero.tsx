@@ -1,18 +1,42 @@
-export default function IndustriesHero() {
+'use client'
+
+import { motion } from 'framer-motion'
+
+export default function IndustriesHero(): React.JSX.Element {
   return (
-    <section id="hero" className="bg-white text-dark-charcoal pt-32 sm:pt-40 lg:pt-48 pb-16">
-      <div className="w-full max-w-7xl mx-auto container-fluid">
-        <div className="text-left space-y-4 max-w-3xl">
-          <h2 className="text-sm md:text-base font-semibold text-gray-700 uppercase tracking-wide">
+    <section id="hero" className="relative bg-gray-100 text-dark-charcoal pt-32 sm:pt-40 lg:pt-48 pb-0">
+      <div className="container-fluid mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-left space-y-2 pb-4"
+        >
+          <h2 className="text-sm md:text-base font-normal text-gray-700 uppercase tracking-wide">
             Industries We Serve
           </h2>
-          <h1 className="text-3xl md:text-5xl font-bold text-primary-orange">
-            Security Solutions Tailored to Every Sector
+          <h1 className="text-xl md:text-2xl lg:text-4xl font-bold">
+            <span className="text-primary-orange">Security Solutions Tailored to Every Sector</span>
           </h1>
-          <p className="text-base md:text-lg text-gray-700 leading-relaxed">
-            SGA Security protects businesses, institutions, and communities across banking, logistics, manufacturing, retail, and more throughout Kenya, Uganda, and Tanzania. Explore the industries we serve below, along with the services we typically deliver in each sector.
-          </p>
-        </div>
+        </motion.div>
+      </div>
+
+      {/* Large image with parallax effect */}
+      <div className="w-full">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="relative w-full h-[400px] md:h-[500px] lg:h-[600px]"
+          style={{
+            backgroundImage: `url(/images/group/about/hero.png)`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundAttachment: 'fixed',
+          }}
+        >
+          <div className="absolute inset-0 bg-black/10"></div>
+        </motion.div>
       </div>
     </section>
   )

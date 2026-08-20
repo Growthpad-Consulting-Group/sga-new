@@ -1,8 +1,9 @@
 import fs from 'fs'
 import path from 'path'
 import IndustriesHero from './components/IndustriesHero'
-import IndustriesAccordionList from './components/IndustriesAccordionList'
+import IndustriesGrid from './components/IndustriesGrid'
 import FloatingWhatsApp from '@/components/FloatingWhatsApp'
+import SectionSeparator from '@/components/SectionSeparator'
 import { industriesData, resolveIndustryData } from '@/data/industries-data'
 import type { Metadata } from 'next'
 
@@ -36,11 +37,10 @@ export default function IndustriesPage() {
     return (
         <>
             <IndustriesHero />
-            <section className="bg-white pb-20 sm:pb-24">
-                <div className="w-full max-w-5xl mx-auto container-fluid">
-                    <IndustriesAccordionList industries={industries} />
-                </div>
-            </section>
+            <div className="relative">
+                <IndustriesGrid industries={industries} />
+                <SectionSeparator />
+            </div>
             <FloatingWhatsApp />
         </>
     )
