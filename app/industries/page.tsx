@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import IndustriesHero from './components/IndustriesHero'
-import IndustriesGrid from './components/IndustriesGrid'
+import IndustriesAccordion from './components/IndustriesAccordion'
 import FloatingWhatsApp from '@/components/FloatingWhatsApp'
 import SectionSeparator from '@/components/SectionSeparator'
 import { industriesData, resolveIndustryData } from '@/data/industries-data'
@@ -38,7 +38,7 @@ export default function IndustriesPage() {
         <>
             <IndustriesHero />
             <div className="relative">
-                <IndustriesGrid industries={industries} />
+                <IndustriesAccordion industries={industries} />
                 <SectionSeparator />
             </div>
             <FloatingWhatsApp />
