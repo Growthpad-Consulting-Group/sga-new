@@ -7,6 +7,10 @@ import { NextRequest, NextResponse } from 'next/server'
 export async function GET(request: NextRequest) {
     const fileUrl = request.nextUrl.searchParams.get('url')
     const filename = request.nextUrl.searchParams.get('filename') || 'document.pdf'
+    // "inline" lets the browser's built-in PDF viewer show the real title
+    // (used for the preview modal's iframe) instead of Sanity's hash-named
+    // asset filename; "attachment" (default) forces an actual download.
+    const disposition = request.nextUrl.searchParams.get('disposition') === 'inline' ? 'inline' : 'attachment'
 
     if (!fileUrl || !fileUrl.startsWith('https://cdn.sanity.io/')) {
         return NextResponse.json({ error: 'Invalid file URL' }, { status: 400 })
@@ -20,7 +24,7 @@ export async function GET(request: NextRequest) {
     return new NextResponse(res.body, {
         headers: {
             'Content-Type': res.headers.get('content-type') || 'application/pdf',
-            'Content-Disposition': `attachment; filename="${filename.replace(/"/g, '')}"`,
+            'Content-Disposition': `${disposition}; filename="${filename.replace(/"/g, '')}"`,
         },
     })
 }

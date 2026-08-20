@@ -54,7 +54,7 @@ export default function DocumentPreviewModal({ isOpen, onClose, title, fileUrl }
                         {/* PDF Viewer */}
                         <div className="flex-1 bg-gray-100">
                             <iframe
-                                src={fileUrl}
+                                src={`/api/documents/download?url=${encodeURIComponent(fileUrl)}&filename=${encodeURIComponent(title)}.pdf&disposition=inline`}
                                 title={title}
                                 className="w-full h-full"
                             />
