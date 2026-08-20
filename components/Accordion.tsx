@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, ReactNode } from 'react'
+import { useState, useEffect, ReactNode } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Icon } from '@iconify/react'
 
@@ -13,10 +13,10 @@ interface AccordionItemProps {
   variant?: 'default' | 'footer'
 }
 
-function AccordionItem({ title, children, isOpen, onToggle, variant = 'default' }: AccordionItemProps) {
+function AccordionItem({ id, title, children, isOpen, onToggle, variant = 'default' }: AccordionItemProps) {
   const variants = {
     default: {
-      container: 'border border-gray-200 rounded-lg overflow-hidden',
+      container: 'border border-gray-200 rounded-lg overflow-hidden scroll-mt-28',
       button: 'w-full text-left p-6 bg-white hover:bg-primary-orange/5 transition-colors flex items-center justify-between',
       title: 'text-lg font-semibold text-dark-charcoal pr-4',
       icon: 'w-6 h-6 text-primary-orange shrink-0',
@@ -34,7 +34,7 @@ function AccordionItem({ title, children, isOpen, onToggle, variant = 'default' 
   const styles = variants[variant]
 
   return (
-    <div className={styles.container}>
+    <div id={id} className={styles.container}>
       <button onClick={onToggle} className={styles.button}>
         {typeof title === 'string' ? (
           <h4 className={styles.title}>{title}</h4>
@@ -78,6 +78,17 @@ interface AccordionProps {
 
 export default function Accordion({ items, defaultOpenId, variant = 'default', allowMultiple = false }: AccordionProps) {
   const [openIds, setOpenIds] = useState<string[]>(defaultOpenId ? [defaultOpenId] : [])
+
+  // Open (and scroll to) the item matching the URL hash, e.g. a mega menu
+  // link to /industries#banking. Done post-mount rather than in the
+  // initial state so server and client render the same closed state first.
+  useEffect(() => {
+    const hashId = window.location.hash.slice(1)
+    if (!hashId || !items.some((item) => item.id === hashId)) return
+    setOpenIds((prev) => (prev.includes(hashId) ? prev : [...prev, hashId]))
+    document.getElementById(hashId)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const toggleItem = (id: string) => {
     if (allowMultiple) {

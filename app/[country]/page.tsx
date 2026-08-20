@@ -86,7 +86,7 @@ export default async function CountryHomePage({ params }: Props) {
                 <Industries
                     industries={data.industries.items}
                     countryName={c.name}
-                    ctaLink={`/${country}/industries`}
+                    ctaLink="/industries"
                     backgroundColor="bg-light-grey"
                     subtext={data.industries.subtext}
                 />
