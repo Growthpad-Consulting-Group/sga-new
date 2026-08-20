@@ -140,7 +140,10 @@ export default function SustainabilityESG(): React.JSX.Element {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.25, ease: 'easeOut' }}
+                        transition={{
+                          height: { duration: 0.45, ease: 'easeInOut' },
+                          opacity: { duration: 0.3, ease: 'easeOut', delay: expandedGoal === sdg.goal ? 0.15 : 0 },
+                        }}
                         className="text-sm md:text-base text-white/90 leading-relaxed mt-3 overflow-hidden"
                       >
                         {sdg.description}
