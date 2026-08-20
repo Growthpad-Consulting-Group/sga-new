@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, ReactNode } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Icon } from '@iconify/react'
 
 interface AccordionItemProps {
@@ -16,10 +17,10 @@ function AccordionItem({ title, children, isOpen, onToggle, variant = 'default' 
   const variants = {
     default: {
       container: 'border border-gray-200 rounded-lg overflow-hidden',
-      button: 'w-full text-left p-6 bg-white hover:bg-gray-50 transition-colors flex items-center justify-between',
-      title: 'text-lg font-semibold text-navy-blue pr-4',
+      button: 'w-full text-left p-6 bg-white hover:bg-primary-orange/5 transition-colors flex items-center justify-between',
+      title: 'text-lg font-semibold text-dark-charcoal pr-4',
       icon: 'w-6 h-6 text-primary-orange shrink-0',
-      content: 'p-6 bg-gray-50 border-t border-gray-200',
+      content: 'p-6 bg-white border-t border-gray-200',
     },
     footer: {
       container: 'border border-white/20 rounded-lg overflow-hidden',
@@ -45,11 +46,21 @@ function AccordionItem({ title, children, isOpen, onToggle, variant = 'default' 
           className={`${styles.icon} transition-transform ${isOpen ? 'rotate-180' : ''}`}
         />
       </button>
-      {isOpen && (
-        <div className={styles.content}>
-          {children}
-        </div>
-      )}
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className="overflow-hidden"
+          >
+            <div className={styles.content}>
+              {children}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }

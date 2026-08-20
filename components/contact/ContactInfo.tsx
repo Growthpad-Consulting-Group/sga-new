@@ -54,8 +54,7 @@ export default function ContactInfo({ providedCountry }: ContactInfoProps): Reac
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ scale: 1.02, y: -4 }}
-                className="bg-primary-orange rounded-lg shadow-lg p-6 md:p-8 hover:shadow-xl transition-all duration-300 flex flex-col h-full"
+                className="bg-primary-orange rounded-lg shadow-lg p-6 md:p-8 hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 flex flex-col h-full"
               >
                 <div className="grow">
                   {/* Header */}
