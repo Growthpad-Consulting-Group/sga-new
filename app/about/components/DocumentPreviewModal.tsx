@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion'
 import { Icon } from '@iconify/react'
+import GlassPanel from '@/components/GlassPanel'
 
 interface DocumentPreviewModalProps {
     isOpen: boolean
@@ -19,8 +20,9 @@ export default function DocumentPreviewModal({ isOpen, onClose, title, fileUrl }
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     onClick={onClose}
-                    className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4"
+                    className="fixed inset-0 z-50"
                 >
+                    <GlassPanel mode="dark" borderRadius={0} className="w-full h-full flex items-center justify-center p-4">
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95, y: 20 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -60,6 +62,7 @@ export default function DocumentPreviewModal({ isOpen, onClose, title, fileUrl }
                             />
                         </div>
                     </motion.div>
+                    </GlassPanel>
                 </motion.div>
             )}
         </AnimatePresence>

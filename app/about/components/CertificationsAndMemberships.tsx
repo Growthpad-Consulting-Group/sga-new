@@ -187,7 +187,13 @@ export default function CertificationsAndMemberships({ documents }: Certificatio
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: 20 }}
                                     transition={{ duration: 0.4, delay: index * 0.04 }}
-                                    className="flex flex-col bg-white border border-gray-50 rounded-2xl overflow-hidden shadow-gray-400/10 shadow-xl hover:shadow-primary-orange/10 transition-shadow"
+                                    onClick={() => setPreviewDoc(doc)}
+                                    role="button"
+                                    tabIndex={0}
+                                    onKeyDown={(e) => {
+                                        if (e.key === 'Enter' || e.key === ' ') setPreviewDoc(doc)
+                                    }}
+                                    className="flex flex-col bg-white border border-gray-50 rounded-2xl overflow-hidden shadow-gray-400/10 shadow-xl hover:shadow-primary-orange/10 transition-shadow cursor-pointer"
                                 >
                                     {/* Cover Image */}
                                     <div className="relative w-full aspect-4/3 bg-gray-100">
@@ -232,14 +238,30 @@ export default function CertificationsAndMemberships({ documents }: Certificatio
                                             </span>
                                         </div>
 
-                                        {/* View document */}
-                                        <button
-                                            onClick={() => setPreviewDoc(doc)}
-                                            className="mt-auto self-start flex items-center gap-2 text-primary-orange font-bold hover:gap-3 transition-all"
-                                        >
-                                            View document
-                                            <Icon icon="mdi:arrow-right" className="w-5 h-5" />
-                                        </button>
+                                        {/* View document / Download */}
+                                        <div className="mt-auto flex items-center justify-between gap-4">
+                                            <button
+                                                onClick={(e) => {
+                                                    e.stopPropagation()
+                                                    setPreviewDoc(doc)
+                                                }}
+                                                className="flex items-center gap-2 text-primary-orange font-bold hover:gap-3 transition-all"
+                                            >
+                                                View document
+                                                <Icon icon="mdi:arrow-right" className="w-5 h-5" />
+                                            </button>
+                                            <a
+                                                href={doc.link}
+                                                download
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                onClick={(e) => e.stopPropagation()}
+                                                aria-label={`Download ${doc.title}`}
+                                                className="shrink-0 flex items-center justify-center w-9 h-9 rounded-full text-dark-charcoal/60 hover:text-primary-orange hover:bg-primary-orange/10 transition-colors"
+                                            >
+                                                <Icon icon="solar:download-minimalistic-broken" className="w-5 h-5" />
+                                            </a>
+                                        </div>
                                     </div>
                                 </motion.div>
                             ))}
