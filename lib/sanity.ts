@@ -45,8 +45,10 @@ export interface CertificateDocument {
   title: string
   category: 'CERTIFICATION' | 'MEMBERSHIP' | 'LICENSE'
   country: 'Kenya' | 'Uganda' | 'Tanzania'
+  year?: string
   expiryDate?: string
   fileUrl: string
+  coverImage?: any
 }
 
 // Fetch all news posts

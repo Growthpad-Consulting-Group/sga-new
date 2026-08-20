@@ -6,6 +6,7 @@ import CertificationsAndMemberships from './components/CertificationsAndMembersh
 import type { Metadata } from 'next'
 import SectionSeparator from '@/components/SectionSeparator'
 import { getAllCertificateDocuments } from '@/lib/sanity'
+import { urlFor } from '@/sanity/lib/image'
 
 export const metadata: Metadata = {
   title: 'About SGA Security Group - Leading Security Solutions in East Africa',
@@ -18,6 +19,8 @@ export default async function AboutPage(): Promise<React.JSX.Element> {
     category: doc.category,
     country: doc.country,
     link: doc.fileUrl,
+    year: doc.year,
+    coverImageUrl: doc.coverImage ? urlFor(doc.coverImage).width(600).height(400).url() : null,
   }))
 
   return (

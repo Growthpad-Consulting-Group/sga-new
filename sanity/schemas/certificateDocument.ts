@@ -48,6 +48,21 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'coverImage',
+      title: 'Cover Image',
+      type: 'image',
+      description: 'Thumbnail shown on the card. Falls back to a generic PDF placeholder if left empty.',
+      options: {
+        hotspot: true,
+      },
+    }),
+    defineField({
+      name: 'year',
+      title: 'Year',
+      type: 'string',
+      description: 'e.g. "2023" — shown on the card above the title.',
+    }),
+    defineField({
       name: 'expiryDate',
       title: 'Expiry Date',
       type: 'date',
@@ -59,12 +74,14 @@ export default defineType({
       title: 'title',
       category: 'category',
       country: 'country',
+      media: 'coverImage',
     },
     prepare(selection) {
-      const { title, category, country } = selection
+      const { title, category, country, media } = selection
       return {
         title,
         subtitle: `${country} • ${category}`,
+        media,
       }
     },
   },

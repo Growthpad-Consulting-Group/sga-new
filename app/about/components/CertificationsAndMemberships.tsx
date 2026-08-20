@@ -3,6 +3,8 @@
 import { useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Icon } from '@iconify/react'
+import Image from 'next/image'
+import DocumentPreviewModal from './DocumentPreviewModal'
 
 type Category = 'ALL' | 'CERTIFICATION' | 'MEMBERSHIP' | 'LICENSE'
 type Country = 'All Country' | 'Kenya' | 'Tanzania' | 'Uganda'
@@ -12,6 +14,8 @@ interface DocumentItem {
     category: Exclude<Category, 'ALL'>
     country: Exclude<Country, 'All Country'>
     link: string
+    year?: string
+    coverImageUrl?: string | null
 }
 
 interface CertificationsAndMembershipsProps {
@@ -45,6 +49,7 @@ export default function CertificationsAndMemberships({ documents }: Certificatio
     const [selectedCountry, setSelectedCountry] = useState<Country>('All Country')
     const [searchQuery, setSearchQuery] = useState('')
     const [currentPage, setCurrentPage] = useState(1)
+    const [previewDoc, setPreviewDoc] = useState<DocumentItem | null>(null)
     // Randomize documents on mount to avoid country bias
     const [randomizedDocuments] = useState(() => shuffleArray(documents))
 
@@ -169,35 +174,48 @@ export default function CertificationsAndMemberships({ documents }: Certificatio
                     <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                         <AnimatePresence mode="popLayout">
                             {paginatedDocuments.map((doc, index) => (
-                                <motion.a
+                                <motion.div
                                     layout
                                     key={`${doc.country}-${doc.title}`}
-                                    href={doc.link}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
                                     initial={{ opacity: 0, y: 30 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: 20 }}
                                     transition={{ duration: 0.4, delay: index * 0.04 }}
-                                    whileHover={{ y: -4 }}
-                                    className="group flex flex-col bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow"
+                                    className="flex flex-col bg-white border border-gray-50 rounded-2xl overflow-hidden shadow-gray-400/10 shadow-xl hover:shadow-primary-orange/10 transition-shadow"
                                 >
-                                    {/* Top coloured band = primary-orange per brand */}
-                                    <div className="" />
+                                    {/* Cover Image */}
+                                    <div className="relative w-full aspect-4/3 bg-gray-100">
+                                        {doc.coverImageUrl ? (
+                                            <Image
+                                                src={doc.coverImageUrl}
+                                                alt={doc.title}
+                                                fill
+                                                className="object-cover"
+                                            />
+                                        ) : (
+                                            <div className="w-full h-full flex items-center justify-center bg-light-grey">
+                                                <Icon icon={getCategoryIcon(doc.category)} className="w-16 h-16 text-dark-charcoal/20" />
+                                            </div>
+                                        )}
+                                        {/* PDF Badge */}
+                                        <div className="absolute top-4 left-4 flex items-center gap-1.5 bg-dark-charcoal/80 text-white text-[10px] font-bold px-2 py-1 rounded-full">
+                                            <Icon icon="mdi:file-pdf-box" className="w-3 h-3" />
+                                            PDF
+                                        </div>
+                                    </div>
 
                                     <div className="flex flex-col flex-1 p-6">
-                                        {/* Icon */}
-                                        <div className="w-12 h-12 mb-4 flex items-center justify-center rounded-full bg-primary-orange/10 text-primary-orange group-hover:bg-primary-orange group-hover:text-white transition-colors duration-300">
-                                            <Icon icon={getCategoryIcon(doc.category)} className="w-6 h-6" />
-                                        </div>
+                                        {doc.year && (
+                                            <span className="text-sm font-bold text-primary-orange mb-2">{doc.year}</span>
+                                        )}
 
                                         {/* Title */}
-                                        <h3 className="text-lg font-bold text-dark-charcoal mb-3 leading-tight">
+                                        <h3 className="text-lg font-bold text-dark-charcoal mb-2 leading-tight">
                                             {doc.title}
                                         </h3>
 
                                         {/* Tags */}
-                                        <div className="flex flex-wrap items-center gap-2 mt-auto">
+                                        <div className="flex flex-wrap items-center gap-2 mb-4">
                                             <span className="flex items-center gap-1 text-xs font-medium text-dark-charcoal/60 uppercase tracking-wide">
                                                 <Icon icon="solar:map-point-broken" className="w-3.5 h-3.5" />
                                                 {doc.country}
@@ -207,18 +225,28 @@ export default function CertificationsAndMemberships({ documents }: Certificatio
                                                 {doc.category.charAt(0) + doc.category.slice(1).toLowerCase()}
                                             </span>
                                         </div>
-                                    </div>
 
-                                    {/* Download footer */}
-                                    <div className="px-6 py-3 border-t border-gray-100 flex items-center justify-between text-sm font-medium text-dark-charcoal group-hover:text-primary-orange transition-colors">
-                                        <span>View PDF</span>
-                                        <Icon icon="solar:download-minimalistic-broken" className="w-4 h-4" />
+                                        {/* View document */}
+                                        <button
+                                            onClick={() => setPreviewDoc(doc)}
+                                            className="mt-auto self-start flex items-center gap-2 text-primary-orange font-bold hover:gap-3 transition-all"
+                                        >
+                                            View document
+                                            <Icon icon="mdi:arrow-right" className="w-5 h-5" />
+                                        </button>
                                     </div>
-                                </motion.a>
+                                </motion.div>
                             ))}
                         </AnimatePresence>
                     </div>
                 )}
+
+                <DocumentPreviewModal
+                    isOpen={previewDoc !== null}
+                    onClose={() => setPreviewDoc(null)}
+                    title={previewDoc?.title ?? ''}
+                    fileUrl={previewDoc?.link ?? ''}
+                />
 
                 {/* Pagination — matching news/reports style */}
                 {filteredDocuments.length > ITEMS_PER_PAGE && (

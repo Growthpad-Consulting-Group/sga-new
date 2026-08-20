@@ -100,7 +100,9 @@ export const certificateDocumentsQuery = groq`
     title,
     category,
     country,
+    year,
     expiryDate,
-    "fileUrl": file.asset->url
+    "fileUrl": file.asset->url,
+    coverImage
   }
 `
