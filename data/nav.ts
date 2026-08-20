@@ -2,6 +2,8 @@ export interface NavItem {
   href: string
   label: string
   icon?: string
+  isDropdown?: boolean
+  dropdownType?: 'services' | 'industries'
 }
 
 export interface SocialLink {
@@ -90,6 +92,19 @@ export const getHeaderShortcuts = (countryPrefix: string): NavItem[] => [
   { href: `${countryPrefix}/resources`, label: 'Resources' },
 ]
 
+// Country header's top nav bar (distinct from getCountryNavItems above,
+// which is unreachable dead code — Header.tsx only renders on non-country
+// pages, so its isCountryPage branch never executes)
+export const getCountryHeaderNavItems = (countryPrefix: string): NavItem[] => [
+  { href: '/', label: 'SGA GROUP' },
+  { href: `${countryPrefix}/about`, label: 'ABOUT US' },
+  { href: '#services', label: 'SERVICES', isDropdown: true, dropdownType: 'services' },
+  { href: `${countryPrefix}/industries`, label: 'INDUSTRIES', isDropdown: true, dropdownType: 'industries' },
+  { href: `${countryPrefix}/why-us`, label: 'WHY US' },
+  { href: `${countryPrefix}/updates`, label: 'NEWS & INSIGHTS' },
+  { href: `${countryPrefix}/contact`, label: 'CONTACT' },
+]
+
 export const socialLinks: SocialLink[] = [
   { icon: 'mdi:facebook', url: 'https://www.facebook.com/people/SGA-Security/100091922621281/', label: 'Facebook' },
   { icon: 'tabler:brand-x', url: 'https://twitter.com/SGA_Security', label: 'Twitter' },
@@ -102,4 +117,13 @@ export const countries: Country[] = [
   { code: 'tz', name: 'Tanzania', path: '/tz', flag: 'emojione:flag-for-tanzania' },
   { code: 'ug', name: 'Uganda', path: '/ug', flag: 'emojione:flag-for-uganda' },
   { code: 'ke', name: 'Kenya', path: '/ke', flag: 'emojione:flag-for-kenya' },
+]
+
+// Same data, Kenya-first order — kept separate from `countries` above so
+// moving CountryHeader's inline copy here doesn't silently reorder the
+// group header's (Header.tsx) country switcher, which relies on `countries`.
+export const countryHeaderCountries: Country[] = [
+  { code: 'ke', name: 'Kenya', path: '/ke', flag: 'emojione:flag-for-kenya' },
+  { code: 'ug', name: 'Uganda', path: '/ug', flag: 'emojione:flag-for-uganda' },
+  { code: 'tz', name: 'Tanzania', path: '/tz', flag: 'emojione:flag-for-tanzania' },
 ]

@@ -12,6 +12,8 @@ import {
   getCorporateServicesItems,
   getIndustriesItems,
   getHeaderShortcuts,
+  getCountryHeaderNavItems,
+  countryHeaderCountries,
 } from '@/data/nav'
 import { useEnquiryModal } from '@/contexts/EnquiryModalContext'
 import TopBar from './header/TopBar'
@@ -91,21 +93,9 @@ export default function CountryHeader(): React.JSX.Element {
 
   const shortcuts: ServiceItem[] = getHeaderShortcuts(countryPrefix)
 
-  const navItems: NavItem[] = [
-    { href: '/', label: 'SGA GROUP' },
-    { href: `${countryPrefix}/about`, label: 'ABOUT US' },
-    { href: '#services', label: 'SERVICES', isDropdown: true, dropdownType: 'services' },
-    { href: `${countryPrefix}/industries`, label: 'INDUSTRIES', isDropdown: true, dropdownType: 'industries' },
-    { href: `${countryPrefix}/why-us`, label: 'WHY US' },
-    { href: `${countryPrefix}/updates`, label: 'NEWS & INSIGHTS' },
-    { href: `${countryPrefix}/contact`, label: 'CONTACT' },
-  ]
+  const navItems: NavItem[] = getCountryHeaderNavItems(countryPrefix)
 
-  const countries: Country[] = [
-    { code: 'ke', name: 'Kenya', path: '/ke', flag: 'emojione:flag-for-kenya' },
-    { code: 'ug', name: 'Uganda', path: '/ug', flag: 'emojione:flag-for-uganda' },
-    { code: 'tz', name: 'Tanzania', path: '/tz', flag: 'emojione:flag-for-tanzania' },
-  ]
+  const countries: Country[] = countryHeaderCountries
 
   const isActiveCountry = (path: string): boolean => {
     if (path === '/') return pathname === '/'
