@@ -77,20 +77,28 @@ export default function CountryHeader(): React.JSX.Element {
   const currentCountry = countriesData[currentCountryCode]
 
   const individualServicesItems: ServiceItem[] = [
-    { href: `${countryPrefix}/services/individual/home-security`, label: 'Home Security' },
-    { href: `${countryPrefix}/services/individual/emergency-response`, label: 'Emergency Response' },
-    { href: `${countryPrefix}/services/individual/safe-home-packages`, label: 'Safe Home Packages' },
-    { href: `${countryPrefix}/services/individual/personal-security`, label: 'Personal Security' },
-    { href: `${countryPrefix}/services/individual/24-7-monitoring`, label: '24/7 Monitoring' },
+    { href: 'https://sgasecurity.com/home-security-solution/', label: 'Home Security Solutions' },
+    { href: `${countryPrefix}/services/corporate/security-guarding`, label: 'Guarding' },
+    { href: `${countryPrefix}/contact`, label: 'K-9 Services' },
+    { href: `${countryPrefix}/contact`, label: 'Alarm Response Services' },
+    { href: `${countryPrefix}/contact`, label: 'Control Room Services' },
+    { href: `${countryPrefix}/contact`, label: 'Courier Services' },
+    { href: `${countryPrefix}/contact`, label: 'Close Protection Officer' },
   ]
 
   const corporateServicesItems: ServiceItem[] = [
-    { href: `${countryPrefix}/services/corporate/security-guarding`, label: 'Security Guarding' },
-    { href: `${countryPrefix}/services/corporate/electronic-security`, label: 'Electronic Security' },
-    { href: `${countryPrefix}/services/corporate/risk-assessment`, label: 'Risk Assessment' },
-    { href: `${countryPrefix}/services/corporate/consulting-services`, label: 'Consulting Services' },
-    { href: `${countryPrefix}/services/corporate/event-security`, label: 'Event Security' },
-    { href: `${countryPrefix}/services/corporate/emergency-response`, label: 'Emergency Response' },
+    { href: 'https://sgasecurity.com/home-security-solution/', label: 'Business Security Solutions' },
+    { href: `${countryPrefix}/contact`, label: 'CCTV Services' },
+    { href: `${countryPrefix}/contact`, label: 'Cash-In-Transit Services' },
+    { href: `${countryPrefix}/contact`, label: 'Cash Management Solutions' },
+    { href: `${countryPrefix}/services/corporate/security-guarding`, label: 'Guarding Services' },
+    { href: `${countryPrefix}/contact`, label: 'K-9 Services' },
+    { href: `${countryPrefix}/contact`, label: 'Alarm Response Services' },
+    { href: `${countryPrefix}/contact`, label: 'Courier Services' },
+    { href: `${countryPrefix}/contact`, label: 'Control Room Services' },
+    { href: `${countryPrefix}/contact`, label: 'Electronic Cargo Tracking System (ECTS)' },
+    { href: `${countryPrefix}/contact`, label: 'Reception Services' },
+    { href: `${countryPrefix}/contact`, label: 'Close Protection Officer' },
   ]
 
   const servicesItems = servicesViewType === 'Individual' ? individualServicesItems : corporateServicesItems
