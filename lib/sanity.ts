@@ -6,6 +6,7 @@ import {
   newsPostsByCategoryQuery,
   featuredNewsPostsQuery,
   categoriesQuery,
+  certificateDocumentsQuery,
 } from '@/sanity/lib/queries'
 
 export interface NewsPost {
@@ -39,6 +40,15 @@ export interface Category {
   description?: string
 }
 
+export interface CertificateDocument {
+  _id: string
+  title: string
+  category: 'CERTIFICATION' | 'MEMBERSHIP' | 'LICENSE'
+  country: 'Kenya' | 'Uganda' | 'Tanzania'
+  expiryDate?: string
+  fileUrl: string
+}
+
 // Fetch all news posts
 export async function getAllNewsPosts(): Promise<NewsPost[]> {
   return await client.fetch(newsPostsQuery)
@@ -67,4 +77,9 @@ export async function getFeaturedNewsPosts(): Promise<NewsPost[]> {
 // Fetch all categories
 export async function getAllCategories(): Promise<Category[]> {
   return await client.fetch(categoriesQuery)
+}
+
+// Fetch all certificate/license/membership documents
+export async function getAllCertificateDocuments(): Promise<CertificateDocument[]> {
+  return await client.fetch(certificateDocumentsQuery)
 }

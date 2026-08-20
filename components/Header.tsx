@@ -162,21 +162,26 @@ export default function Header() {
       </defs>
     </svg>
 
-    <header className="fixed inset-x-0 top-0 z-40">
+    <header className="pointer-events-none fixed inset-x-0 top-0 z-40">
       {/* Out of document flow (fixed, not sticky/static) so page content —
           starting with the hero — sits at y:0 and scrolls up through the
           transparent header instead of being pushed down by its box.
           Hide-on-scroll-down transform lives on this inner wrapper rather
           than on <header> itself — a transform on <header> would turn any
           `position: fixed` descendant (the country modal below) into being
-          positioned relative to the header instead of the viewport. */}
+          positioned relative to the header instead of the viewport.
+          <header> itself is pointer-events-none because a transform on a
+          child doesn't shrink the parent's box: even fully hidden, this
+          wrapper's untransformed height would otherwise keep intercepting
+          clicks/selection at the top of the page. Only this inner,
+          actually-visible (and transform-following) layer takes events. */}
       <div
         style={{
           transform: hidden ? 'translateY(calc(-100% - 1rem))' : 'translateY(0)',
           transition:
             'margin 500ms cubic-bezier(0.22, 1, 0.36, 1), border-radius 500ms cubic-bezier(0.22, 1, 0.36, 1), transform 550ms cubic-bezier(0.65, 0, 0.35, 1)',
         }}
-        className={`relative isolate ${
+        className={`pointer-events-auto relative isolate ${
           isScrolled ? 'mx-4 mt-4 rounded-3xl sm:mx-6 sm:mt-4 lg:mx-12' : 'mx-0 mt-0 w-full rounded-none'
         }`}
       >
@@ -497,7 +502,7 @@ export default function Header() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-black/30 backdrop-blur-md z-50"
+              className="pointer-events-auto fixed inset-0 bg-black/30 backdrop-blur-md z-50"
               onClick={() => closeCountryModal()}
             />
 
@@ -506,7 +511,7 @@ export default function Header() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.3 }}
-              className="fixed inset-0 z-50 flex items-center justify-center p-4"
+              className="pointer-events-auto fixed inset-0 z-50 flex items-center justify-center p-4"
               onClick={() => closeCountryModal()}
             >
               <div

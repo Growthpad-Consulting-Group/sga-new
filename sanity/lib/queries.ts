@@ -92,3 +92,15 @@ export const categoriesQuery = groq`
     description
   }
 `
+
+// Get all certificate/license/membership documents
+export const certificateDocumentsQuery = groq`
+  *[_type == "certificateDocument"] | order(country asc, title asc) {
+    _id,
+    title,
+    category,
+    country,
+    expiryDate,
+    "fileUrl": file.asset->url
+  }
+`

@@ -14,48 +14,9 @@ interface DocumentItem {
     link: string
 }
 
-const documents: DocumentItem[] = [
-    // Kenya
-    { title: 'ISO 18788', category: 'CERTIFICATION', country: 'Kenya', link: 'https://www.sgasecurity.com/application/files/7916/8188/5715/ISO_18788_2015_certificate.pdf' },
-    { title: 'ISO 9001', category: 'CERTIFICATION', country: 'Kenya', link: 'https://www.sgasecurity.com/application/files/9716/8000/5535/ISO-9001.pdf' },
-    { title: 'ISO 14001', category: 'CERTIFICATION', country: 'Kenya', link: 'https://www.sgasecurity.com/application/files/7716/8000/9363/ISO_14001.pdf' },
-    { title: 'ISO 45001', category: 'CERTIFICATION', country: 'Kenya', link: 'https://www.sgasecurity.com/application/files/9916/8000/9364/ISO_45001.pdf' },
-    { title: 'ICoCA', category: 'MEMBERSHIP', country: 'Kenya', link: 'https://www.sgasecurity.com/application/files/7717/6894/5928/ICoCA_Certified_Member_Recertificate_SGA_Certificate_1_2_1.pdf' },
-    { title: 'PSRA', category: 'LICENSE', country: 'Kenya', link: 'https://www.sgasecurity.com/application/files/9816/8188/6489/SGA_K-PSRA_Registration_Certificate_2022-2027_001.pdf' },
-    { title: 'KASA 2023', category: 'MEMBERSHIP', country: 'Kenya', link: 'https://www.sgasecurity.com/application/files/2916/8188/7806/KASA_certificate-2023_rotated.pdf' },
-    { title: 'KSIA 2023', category: 'MEMBERSHIP', country: 'Kenya', link: 'https://www.sgasecurity.com/application/files/2116/8000/9364/KSIA_2023.pdf' },
-    { title: 'CAK', category: 'LICENSE', country: 'Kenya', link: 'https://www.sgasecurity.com/application/files/6816/8190/7269/2022-CAK_LICENCE.pdf' },
-    { title: 'KCAA', category: 'LICENSE', country: 'Kenya', link: 'https://www.sgasecurity.com/application/files/5916/8190/7362/KCAA_DOCS_2022-2024_.pdf' },
-    { title: 'NITA', category: 'LICENSE', country: 'Kenya', link: 'https://www.sgasecurity.com/application/files/2816/8190/7440/NITA_Licence_2020-2021_001.pdf' },
-    { title: 'SASA Membership', category: 'MEMBERSHIP', country: 'Kenya', link: 'https://www.sgasecurity.com/application/files/6716/8190/7516/SASA_Membership_2022_to_2023.pdf' },
-    { title: 'SGA 2023', category: 'CERTIFICATION', country: 'Kenya', link: 'https://www.sgasecurity.com/application/files/2716/8190/7570/SGA_cert_2023.pdf' },
-    { title: 'NEMA', category: 'LICENSE', country: 'Kenya', link: 'https://www.sgasecurity.com/application/files/7616/8190/7626/SGA_NEMA_CERTIFICATE_2021.pdf' },
-
-    // Tanzania
-    { title: 'ISO 14001 (EMS)', category: 'CERTIFICATION', country: 'Tanzania', link: 'https://www.sgasecurity.com/application/files/3316/9088/5555/EMS.pdf' },
-    { title: 'ISO 45001 (OHS)', category: 'CERTIFICATION', country: 'Tanzania', link: 'https://www.sgasecurity.com/application/files/5016/9088/5887/OHS1.pdf' },
-    { title: 'ISO 9001 (QMS)', category: 'CERTIFICATION', country: 'Tanzania', link: 'https://www.sgasecurity.com/application/files/9716/9088/6037/QMS2.pdf' },
-    { title: 'ISO 18788 (SOMS)', category: 'CERTIFICATION', country: 'Tanzania', link: 'https://www.sgasecurity.com/application/files/9216/9088/6181/SOMS3.pdf' },
-    { title: 'ICoCA', category: 'MEMBERSHIP', country: 'Tanzania', link: 'https://www.sgasecurity.com/application/files/9116/8189/1776/ICoCA_Certificate_SGA_Security_rotated.pdf' },
-    { title: 'LATRA', category: 'LICENSE', country: 'Tanzania', link: 'https://www.sgasecurity.com/application/files/6316/8189/1969/Certificate-_LATRA_rotated.pdf' },
-    { title: 'CIT Business Licence', category: 'LICENSE', country: 'Tanzania', link: 'https://www.sgasecurity.com/application/files/9916/8001/1949/SGA_CIT__business_licence.pdf' },
-    { title: 'CIT Courier', category: 'LICENSE', country: 'Tanzania', link: 'https://www.sgasecurity.com/application/files/7416/8001/1952/SGA_CIT__Courier__2023.pdf' },
-    { title: 'SASA Membership', category: 'MEMBERSHIP', country: 'Tanzania', link: 'https://www.sgasecurity.com/application/files/9016/8001/1969/SASA_Membership_2022_to_2023.pdf' },
-    { title: 'Business Licence', category: 'LICENSE', country: 'Tanzania', link: 'https://www.sgasecurity.com/application/files/7916/8001/1971/SGA_SECURITY_-_BUSINESS_LICENSEI_SELLING__FIRE_FIGHTING_2022_-2023.pdf' },
-    { title: 'TCRA', category: 'LICENSE', country: 'Tanzania', link: 'https://www.sgasecurity.com/application/files/8516/8001/1973/TCRA_-_Installation_systems_licence_2021-2024.pdf' },
-    { title: 'TSIA', category: 'MEMBERSHIP', country: 'Tanzania', link: 'https://www.sgasecurity.com/application/files/2416/8189/2154/TSIA_-_SGA_Security_rotated.pdf' },
-
-    // Uganda
-    { title: 'ISO 18788', category: 'CERTIFICATION', country: 'Uganda', link: 'https://www.sgasecurity.com/application/files/1916/8191/5979/ISO_18788_2015_certificate_1.pdf' },
-    { title: 'ISO 9001', category: 'CERTIFICATION', country: 'Uganda', link: 'https://www.sgasecurity.com/application/files/9616/8001/0376/ISO_9001_-_SECURITY_GROUP_UGANDA.pdf' },
-    { title: 'ISO 14001', category: 'CERTIFICATION', country: 'Uganda', link: 'https://www.sgasecurity.com/application/files/4116/8001/0376/ISO_14001_-SECURITY_GROUP_UGAND._.pdf' },
-    { title: 'ISO 22301', category: 'CERTIFICATION', country: 'Uganda', link: 'https://www.sgasecurity.com/application/files/8916/8001/0376/ISO_22301-_SECURITY_GROUP_UGANDA_LIMITED.pdf' },
-    { title: 'ISO 27001', category: 'CERTIFICATION', country: 'Uganda', link: 'https://www.sgasecurity.com/application/files/4416/8001/0376/ISO_27001_-_SECURITY_GROUP_UGANDA_LIMITED.pdf' },
-    { title: 'ISO 45001', category: 'CERTIFICATION', country: 'Uganda', link: 'https://www.sgasecurity.com/application/files/6716/8001/0376/ISO_45001-SECURITY_GROUP_UGA._.pdf' },
-    { title: 'ICoCA', category: 'MEMBERSHIP', country: 'Uganda', link: 'https://www.sgasecurity.com/application/files/5716/8189/2332/ICoCA_Certificate_SGA_Security_rotated_1.pdf' },
-    { title: 'PPDA', category: 'LICENSE', country: 'Uganda', link: 'https://www.sgasecurity.com/application/files/5816/8001/0376/PPDA_Certificate.pdf' },
-    { title: 'Workplace Registration', category: 'LICENSE', country: 'Uganda', link: 'https://www.sgasecurity.com/application/files/1216/8001/0376/Workplace_Registration_Certificate.pdf' },
-]
+interface CertificationsAndMembershipsProps {
+    documents: DocumentItem[]
+}
 
 const ITEMS_PER_PAGE = 12
 
@@ -78,7 +39,7 @@ const getCategoryIcon = (category: string) => {
     }
 }
 
-export default function CertificationsAndMemberships() {
+export default function CertificationsAndMemberships({ documents }: CertificationsAndMembershipsProps) {
     const sectionRef = useRef<HTMLElement>(null)
     const [activeCategory, setActiveCategory] = useState<Category>('ALL')
     const [selectedCountry, setSelectedCountry] = useState<Country>('All Country')
