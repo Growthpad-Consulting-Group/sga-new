@@ -13,6 +13,12 @@ export const metadata: Metadata = {
   description: 'Learn about SGA Security Group, our mission, values, and commitment to providing exceptional security services across Kenya, Uganda, and Tanzania.',
 }
 
+// Without this, Next.js statically caches this page at build/deploy time
+// and never refetches — so certificates added, edited, or removed in
+// Sanity Studio wouldn't show up until the next deploy. Revalidate
+// periodically so content updates land within a minute.
+export const revalidate = 60
+
 export default async function AboutPage(): Promise<React.JSX.Element> {
   const certificateDocuments = (await getAllCertificateDocuments()).map((doc) => ({
     title: doc.title,
