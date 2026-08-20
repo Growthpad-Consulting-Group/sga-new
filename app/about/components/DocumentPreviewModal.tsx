@@ -35,13 +35,11 @@ export default function DocumentPreviewModal({ isOpen, onClose, title, fileUrl }
                             <h3 className="text-lg font-bold text-dark-charcoal truncate">{title}</h3>
                             <div className="flex items-center gap-4 shrink-0">
                                 <a
-                                    href={fileUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
+                                    href={`/api/documents/download?url=${encodeURIComponent(fileUrl)}&filename=${encodeURIComponent(title)}.pdf`}
                                     className="hidden sm:flex items-center gap-1.5 text-sm font-semibold text-primary-orange hover:underline"
                                 >
                                     <Icon icon="solar:download-minimalistic-broken" className="w-4 h-4" />
-                                    Open in new tab
+                                    Download
                                 </a>
                                 <button
                                     onClick={onClose}
