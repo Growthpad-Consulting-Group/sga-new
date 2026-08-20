@@ -451,6 +451,7 @@ const InteractiveMap = forwardRef<InteractiveMapRef>((props, ref) => {
   const [popupPosition, setPopupPosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 })
 
   const handleMarkerClick = (location: Location, event: React.MouseEvent<SVGCircleElement>) => {
+    event.stopPropagation()
     const svg = event.currentTarget.ownerSVGElement
     if (!svg) return
 
@@ -478,7 +479,10 @@ const InteractiveMap = forwardRef<InteractiveMapRef>((props, ref) => {
   }))
 
   return (
-    <div className="w-full h-full rounded-lg overflow-hidden relative">
+    <div
+      className="w-full h-full rounded-lg overflow-hidden relative"
+      onClick={() => setSelectedLocation(null)}
+    >
       {/* Background SVG Map */}
       <div className="absolute inset-0">
         <Image
@@ -551,6 +555,7 @@ const InteractiveMap = forwardRef<InteractiveMapRef>((props, ref) => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 8 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
+            onClick={(e) => e.stopPropagation()}
             className="absolute bg-primary-orange rounded-lg shadow-xl p-4 max-w-sm z-10 sticky"
             style={{
               left: `${popupPosition.x + 20}px`,
