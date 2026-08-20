@@ -109,7 +109,7 @@ export default function SustainabilityESG(): React.JSX.Element {
                 duration: 0.15,
                 ease: "easeOut",
                 opacity: { duration: 0.5, delay: index * 0.1 },
-                y: { duration: 0.15 }
+                y: { duration: 0.35, ease: "easeOut" }
               }}
               onClick={() => setExpandedGoal(expandedGoal === sdg.goal ? null : sdg.goal)}
               className="rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 min-h-[160px] md:min-h-[240px] capitalize cursor-pointer"
@@ -165,7 +165,7 @@ export default function SustainabilityESG(): React.JSX.Element {
               duration: 0.15,
               ease: "easeOut",
               opacity: { duration: 0.5, delay: 0.7 },
-              y: { duration: 0.15 }
+              y: { duration: 0.35, ease: "easeOut" }
             }}
             className="rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-150 border border-dark-charcoal bg-transparent min-h-[160px] md:min-h-[240px] cursor-pointer"
           >
