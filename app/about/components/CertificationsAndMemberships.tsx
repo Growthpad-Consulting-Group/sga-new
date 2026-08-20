@@ -251,7 +251,7 @@ export default function CertificationsAndMemberships({ documents }: Certificatio
                                                 <Icon icon="mdi:arrow-right" className="w-5 h-5" />
                                             </button>
                                             <a
-                                                href={`/api/documents/download?url=${encodeURIComponent(doc.link)}&filename=${encodeURIComponent(doc.title)}.pdf`}
+                                                href={`/api/documents/download/${encodeURIComponent(doc.title)}.pdf?url=${encodeURIComponent(doc.link)}`}
                                                 onClick={(e) => e.stopPropagation()}
                                                 aria-label={`Download ${doc.title}`}
                                                 className="shrink-0 flex items-center justify-center w-9 h-9 rounded-full text-dark-charcoal/60 hover:text-primary-orange hover:bg-primary-orange/10 transition-colors"

@@ -35,7 +35,7 @@ export default function DocumentPreviewModal({ isOpen, onClose, title, fileUrl }
                             <h3 className="text-lg font-bold text-dark-charcoal truncate">{title}</h3>
                             <div className="flex items-center gap-4 shrink-0">
                                 <a
-                                    href={`/api/documents/download?url=${encodeURIComponent(fileUrl)}&filename=${encodeURIComponent(title)}.pdf`}
+                                    href={`/api/documents/download/${encodeURIComponent(title)}.pdf?url=${encodeURIComponent(fileUrl)}`}
                                     className="hidden sm:flex items-center gap-1.5 text-sm font-semibold text-primary-orange hover:underline"
                                 >
                                     <Icon icon="solar:download-minimalistic-broken" className="w-4 h-4" />
@@ -54,7 +54,7 @@ export default function DocumentPreviewModal({ isOpen, onClose, title, fileUrl }
                         {/* PDF Viewer */}
                         <div className="flex-1 bg-gray-100">
                             <iframe
-                                src={`/api/documents/download?url=${encodeURIComponent(fileUrl)}&filename=${encodeURIComponent(title)}.pdf&disposition=inline`}
+                                src={`/api/documents/download/${encodeURIComponent(title)}.pdf?url=${encodeURIComponent(fileUrl)}&disposition=inline`}
                                 title={title}
                                 className="w-full h-full"
                             />
