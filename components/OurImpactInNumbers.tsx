@@ -92,14 +92,13 @@ export default function OurImpactInNumbers({ showPattern = true }: OurImpactInNu
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ scale: 1.05 }}
               className="flex flex-col items-center"
             >
               <motion.div
                 className="w-44 h-44 md:w-48 md:h-48 lg:w-56 lg:h-56 rounded-full border border-primary-orange bg-primary-orange flex flex-col items-center justify-center shadow-lg group relative p-3 md:p-4 cursor-pointer"
                 whileHover={{
-                  scale: 1.08,
-                  y: -8,
+                  scale: 1.04,
+                  y: -4,
                   backgroundColor: '#d84c1e',
                   borderColor: '#d84c1e',
                   boxShadow: '0 20px 40px rgba(216, 76, 30, 0.3)',
@@ -129,14 +128,13 @@ export default function OurImpactInNumbers({ showPattern = true }: OurImpactInNu
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: (index + 3) * 0.1 }}
-              whileHover={{ scale: 1.05 }}
               className="flex flex-col items-center"
             >
               <motion.div
                 className="w-44 h-44 md:w-48 md:h-48 lg:w-56 lg:h-56 rounded-full border border-primary-orange bg-primary-orange flex flex-col items-center justify-center shadow-lg group relative p-3 md:p-4 cursor-pointer"
                 whileHover={{
-                  scale: 1.08,
-                  y: -8,
+                  scale: 1.04,
+                  y: -4,
                   backgroundColor: '#d84c1e',
                   borderColor: '#d84c1e',
                   boxShadow: '0 20px 40px rgba(216, 76, 30, 0.3)',
