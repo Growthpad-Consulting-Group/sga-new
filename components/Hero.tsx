@@ -405,7 +405,7 @@ export default function Hero({
                 src={imageUrl}
                 alt={`${countryName} Security Services`}
                 fill
-                className="object-contain"
+                className="object-contain object-bottom mt-0.5 sm:mt-1 lg:mt-1.5"
                 priority
               />
             </motion.div>

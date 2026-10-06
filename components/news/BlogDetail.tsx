@@ -10,6 +10,7 @@ import { usePathname } from 'next/navigation'
 import { PortableText } from '@portabletext/react'
 import { urlFor } from '@/sanity/lib/image'
 import { NewsPost } from '@/lib/sanity'
+import DocumentPreviewModal from '@/app/about/components/DocumentPreviewModal'
 
 // --- Types ---
 
@@ -239,7 +240,7 @@ const Gallery = ({ images, onImageClick }: { images: any[]; onImageClick: (img: 
     )
 }
 
-const PortableTextComponents = (onImageClick: (img: any) => void) => ({
+const PortableTextComponents = (onImageClick: (img: any) => void, onPdfClick: (url: string, title: string) => void) => ({
     types: {
         image: ({ value }: { value: any }) => {
             const ref = value?.asset?._ref || '';
@@ -295,6 +296,31 @@ const PortableTextComponents = (onImageClick: (img: any) => void) => ({
         bullet: ({ children }: any) => <li>{children}</li>,
         number: ({ children }: any) => <li>{children}</li>,
     },
+    marks: {
+        link: ({ value, children }: any) => {
+            const href = value?.href || ''
+            const isPdf = /\.pdf($|\?)/i.test(href)
+
+            if (isPdf) {
+                return (
+                    <button
+                        type="button"
+                        onClick={() => onPdfClick(href, children?.toString() || 'Document')}
+                        className="inline-flex items-center gap-1.5 text-primary-orange font-black underline-offset-4 underline hover:text-primary-orange/80 transition-colors mt-10 block"
+                    >
+                        <Icon icon="solar:file-text-broken" className="w-5 h-5" />
+                        {children}
+                    </button>
+                )
+            }
+
+            return (
+                <a href={href} target="_blank" rel="noopener noreferrer">
+                    {children}
+                </a>
+            )
+        },
+    },
 })
 
 // --- Main Article Component ---
@@ -328,6 +354,7 @@ export default function BlogDetail({ blog, relatedPosts = [] }: BlogDetailProps)
     const pathname = usePathname()
     const [currentUrl, setCurrentUrl] = useState('')
     const [selectedImageIndex, setSelectedImageIndex] = useState(-1)
+    const [previewPdf, setPreviewPdf] = useState<{ url: string; title: string } | null>(null)
     const [isSubmitted, setIsSubmitted] = useState(false)
     const [isSubmitting, setIsSubmitting] = useState(false)
 
@@ -435,6 +462,13 @@ export default function BlogDetail({ blog, relatedPosts = [] }: BlogDetailProps)
                 )}
             </AnimatePresence>
 
+            <DocumentPreviewModal
+                isOpen={previewPdf !== null}
+                onClose={() => setPreviewPdf(null)}
+                title={previewPdf?.title ?? 'Document'}
+                fileUrl={previewPdf?.url ?? ''}
+            />
+
             <SocialShare url={currentUrl} title={blog.title} />
 
             {/* Hero Header */}
@@ -509,7 +543,10 @@ export default function BlogDetail({ blog, relatedPosts = [] }: BlogDetailProps)
               prose-strong:text-dark-charcoal prose-strong:font-black
               prose-a:text-primary-orange prose-a:font-black prose-a:underline-offset-4">
                             {blog.body ? (
-                                <PortableText value={processedBody} components={PortableTextComponents(openImageModal)} />
+                                <PortableText
+                                    value={processedBody}
+                                    components={PortableTextComponents(openImageModal, (url, title) => setPreviewPdf({ url, title }))}
+                                />
                             ) : (
                                 <p className="whitespace-pre-line">{blog.summary}</p>
                             )}
