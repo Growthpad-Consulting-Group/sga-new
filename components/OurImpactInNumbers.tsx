@@ -45,17 +45,22 @@ const bottomRowStats: Stat[] = [
 
 interface OurImpactInNumbersProps {
   showPattern?: boolean
+  backgroundImage?: string
 }
 
-export default function OurImpactInNumbers({ showPattern = true }: OurImpactInNumbersProps): React.JSX.Element {
+export default function OurImpactInNumbers({
+  showPattern = true,
+  backgroundImage = '/images/group/impact-background.jpg',
+}: OurImpactInNumbersProps): React.JSX.Element {
   return (
     <SectionWrapper id="our-impact" className="bg-white relative overflow-hidden">
       {/* Background Image - Static, no scroll animation */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/group/fam.jpg"
+          src={backgroundImage}
           alt="Our Impact in Numbers Background"
           fill
+          sizes="100vw"
           className="object-cover"
           priority={false}
         />

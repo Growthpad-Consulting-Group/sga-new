@@ -27,13 +27,13 @@ export default async function HomePage(): Promise<React.JSX.Element> {
         whiteBackground={true}
         twoCardLayout={true}
         images={[
-          "/images/group/1.png",
-          "/images/group/2.png",
-          "/images/group/3.png",
-          "/images/group/4.png",
-          "/images/group/5.png",
-          "/images/group/6.png",
-          "/images/group/7.png"
+          "/images/group/homepage/slide-1.jpg",
+          "/images/group/homepage/slide-2.jpg",
+          "/images/group/homepage/slide-3.jpg",
+          "/images/group/homepage/slide-4.jpg",
+          "/images/group/homepage/slide-5.jpg",
+          "/images/group/homepage/slide-6.jpg",
+          "/images/group/homepage/slide-7.jpg"
         ]}
         customH3="Welcome to SGA Security Official Group Website"
         customTitle={

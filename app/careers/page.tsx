@@ -12,7 +12,7 @@ export default function CareersPage() {
   return (
     <>
       <Hero
-        imageUrl="/images/group/our-mission.png"
+        imageUrl="/images/careers/hero.jpg"
       />
       <div className="relative">
         <JobCards />

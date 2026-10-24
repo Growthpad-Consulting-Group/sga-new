@@ -63,9 +63,10 @@ export default function JoinOurMission(): React.JSX.Element {
               className="relative w-full h-[250px] md:h-[450px] mt-6"
             >
               <Image
-                src="/images/group/our-mission.png"
+                src="/images/careers/hero.jpg"
                 alt="SGA Team"
                 fill
+                sizes="(max-width: 768px) 100vw, 90vw"
                 className="object-cover rounded-2xl"
               />
             </motion.div>

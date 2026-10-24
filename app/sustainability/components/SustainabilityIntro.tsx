@@ -14,17 +14,17 @@ const esgCards: ESGCard[] = [
   {
     title: 'Environment',
     description: 'We are committed to reducing our environmental footprint through sustainable practices, energy efficiency, and responsible resource management across all our operations.',
-    imageUrl: '/images/group/about/about-2.png',
+    imageUrl: '/images/sustainability/group/environment.jpg',
   },
   {
     title: 'Social',
     description: 'We prioritize the well-being of our employees, communities, and stakeholders through fair labor practices, community engagement, and social responsibility initiatives.',
-    imageUrl: '/images/sustainability/social.png',
+    imageUrl: '/images/sustainability/group/social.jpg',
   },
   {
     title: 'Governance',
     description: 'We maintain the highest standards of ethical conduct, transparency, and accountability, ensuring compliance with ICoCA and ISO 18788:2015 standards.',
-    imageUrl: '/images/sustainability/governance.png',
+    imageUrl: '/images/sustainability/group/governance.jpg',
   },
 ]
 
@@ -73,6 +73,7 @@ export default function SustainabilityIntro(): React.JSX.Element {
                 src={card.imageUrl}
                 alt={card.title}
                 fill
+                sizes="(max-width: 767px) 100vw, 33vw"
                 className="object-cover transition-transform duration-300 group-hover:scale-110"
               />
               {/* Overlay */}

@@ -13,7 +13,7 @@ export default function ContactPage(): React.JSX.Element {
   return (
     <>
       <ContactHero
-        imageUrl="/images/contact/hero.png"
+        imageUrl="/images/contact/group/hero.jpg"
       />
       <ContactInfo />
       <CustomerCare />

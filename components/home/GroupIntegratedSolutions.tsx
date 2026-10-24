@@ -27,37 +27,37 @@ const defaultSolutions: Solution[] = [
   {
     title: 'Courier',
     description: 'Secure courier services for sensitive documents and valuable items with tracked delivery.',
-    imageUrl: '/images/group/cctv.png',
+    imageUrl: '/images/group/core-services/courier.jpg',
   },
   {
     title: 'Guarding',
     description: 'Professional guarding for offices, malls, logistics yards and estates.',
-    imageUrl: '/images/group/cit.png',
+    imageUrl: '/images/group/core-services/guarding.jpg',
   },
   {
     title: 'Alarm Response',
     description: 'Rapid alarm response teams ready to respond to security alerts 24/7.',
-    imageUrl: '/images/group/cctv.png',
+    imageUrl: '/images/group/core-services/alarm.jpg',
   },
   {
     title: 'Electronic Cargo Tracking System',
     description: 'Advanced GPS tracking solutions for vehicles and assets with real-time monitoring.',
-    imageUrl: '/images/group/cit.png',
+    imageUrl: '/images/group/core-services/tracking.jpg',
   },
   {
     title: 'CIT and Cash Management',
     description: 'Secure movement of valuables with armored fleet and vetted crews.',
-    imageUrl: '/images/group/cit.png',
+    imageUrl: '/images/group/core-services/cit.jpg',
   },
   {
     title: 'CCTV Services',
     description: 'Installation and maintenance of security systems including CCTV, access control, and alarms.',
-    imageUrl: '/images/group/cctv.png',
+    imageUrl: '/images/group/core-services/cctv.jpg',
   },
   {
     title: 'K-9 Services',
     description: 'Trained K9 units for enhanced security patrols and detection services.',
-    imageUrl: '/images/group/guarding.png',
+    imageUrl: '/images/group/core-services/k9.jpg',
   },
   {
     title: 'Special Services',
@@ -77,17 +77,17 @@ const defaultSolutions: Solution[] = [
   {
     title: 'Reception Services',
     description: 'Professional front-of-house teams managing access and visitor experience.',
-    imageUrl: '/images/group/guarding.png',
+    imageUrl: '/images/group/core-services/reception.jpg',
   },
   {
     title: 'Customer Service',
     description: 'Dedicated support teams ensuring responsive, client-focused service delivery.',
-    imageUrl: '/images/group/guarding.png',
+    imageUrl: '/images/group/core-services/customer-service.jpg',
   },
   {
-    title: 'Close Protection Office',
+    title: 'Close Protection Officer',
     description: 'Specialized close protection officers for executive and VIP security.',
-    imageUrl: '/images/group/cit.png',
+    imageUrl: '/images/group/core-services/close-protection.jpg',
   },
 ]
 
@@ -108,7 +108,7 @@ export default function GroupIntegratedSolutions({
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  const carousel = useCarousel(solutions.length, itemsPerPage)
+  const carousel = useCarousel(solutions.length, itemsPerPage, true)
 
   const renderSolution = (solution: Solution, index: number) => (
     <div
@@ -121,6 +121,7 @@ export default function GroupIntegratedSolutions({
           src={solution.imageUrl}
           alt={solution.title}
           fill
+          sizes="(max-width: 767px) 320px, 400px"
           className="object-cover transition-transform duration-300 group-hover:scale-105"
         />
         {/* Overlay */}
@@ -173,9 +174,15 @@ export default function GroupIntegratedSolutions({
           </motion.div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 md:gap-12">
+        <motion.div
+          key={`${carousel.currentPage}-${itemsPerPage}`}
+          initial={{ opacity: 0.35, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.25, ease: 'easeOut' }}
+          className="grid md:grid-cols-3 gap-8 md:gap-12"
+        >
           {carousel.currentItems(solutions).map((solution, index) => renderSolution(solution, index))}
-        </div>
+        </motion.div>
 
         {/* Page Indicator */}
         {carousel.totalPages > 1 && (

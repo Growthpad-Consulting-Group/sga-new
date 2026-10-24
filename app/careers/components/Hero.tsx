@@ -34,6 +34,7 @@ export default function Hero({ imageUrl = '/images/misc/blog-placeholder' }) {
             src={imageUrl}
             alt="SGA Security Group - Security That Matters Across Africa"
             fill
+            sizes="100vw"
             className="object-cover"
             priority
           />

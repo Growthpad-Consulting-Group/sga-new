@@ -15,7 +15,7 @@ export default function SustainabilityPage(): React.JSX.Element {
   return (
     <>
       <SustainabilityHero
-        imageUrl="/images/sustainability/sustainable.png"
+        imageUrl="/images/sustainability/group/hero.jpg"
       />
       <div className="relative">
         <SustainabilityIntro />
@@ -27,7 +27,10 @@ export default function SustainabilityPage(): React.JSX.Element {
         <SectionSeparator />
       </div>
 
-      <OurImpactInNumbers showPattern={false} />
+      <OurImpactInNumbers
+        showPattern={false}
+        backgroundImage="/images/sustainability/group/impact.jpg"
+      />
       <FloatingWhatsApp />
     </>
   )

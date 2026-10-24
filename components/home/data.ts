@@ -57,7 +57,7 @@ export const homeData: Record<string, HomeContent> = {
             ]
         },
         whyUs: {
-            imageUrl: "/images/ke/why-choose-us.png",
+            imageUrl: "/images/ke/why-trust-sga.jpg",
             accordion: [
                 { title: "Over 55 Years of Experience", description: "SGA Security has been operating since 1969, making it one of the longest-serving private security companies in East Africa. Its long track record has helped build credibility with individuals, businesses, and government institutions." },
                 { title: "Highly Trained Security Personnel", description: "The company has received recognition as Kenya's Most Professional and Well-Trained Security Company, highlighting its strong focus on continuous training, discipline, and professional standards for its security officers." },

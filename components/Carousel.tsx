@@ -15,7 +15,7 @@ interface CarouselProps {
 }
 
 // Custom hook for carousel logic
-export function useCarousel(totalItems: number, itemsPerPage: number = 3) {
+export function useCarousel(totalItems: number, itemsPerPage: number = 3, loop: boolean = false) {
   const [currentPage, setCurrentPage] = useState(1)
   const totalPages = Math.ceil(totalItems / itemsPerPage)
 
@@ -29,15 +29,15 @@ export function useCarousel(totalItems: number, itemsPerPage: number = 3) {
     items.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
 
   const nextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(prev => prev + 1)
-    }
+    if (totalPages <= 1) return
+
+    setCurrentPage(prev => prev < totalPages ? prev + 1 : loop ? 1 : prev)
   }
 
   const prevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(prev => prev - 1)
-    }
+    if (totalPages <= 1) return
+
+    setCurrentPage(prev => prev > 1 ? prev - 1 : loop ? totalPages : prev)
   }
 
   const goToPage = (page: number) => {
@@ -53,8 +53,8 @@ export function useCarousel(totalItems: number, itemsPerPage: number = 3) {
     nextPage,
     prevPage,
     goToPage,
-    canGoPrev: currentPage > 1,
-    canGoNext: currentPage < totalPages,
+    canGoPrev: totalPages > 1 && (loop || currentPage > 1),
+    canGoNext: totalPages > 1 && (loop || currentPage < totalPages),
   }
 }
 

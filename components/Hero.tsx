@@ -245,13 +245,13 @@ export default function Hero({
 
           {/* Right Card - Two Images as Marquees in Columns */}
           {images && images.length > 0 ? (
-            <div className="relative w-full h-[60vh] lg:h-[90vh] rounded-lg overflow-hidden flex flex-row lg:col-span-5">
+            <div className="relative w-full h-[60vh] lg:h-[90vh] rounded-lg overflow-hidden flex flex-row gap-4 px-2 lg:col-span-5">
               {/* Top feather effect */}
               <div className="absolute top-0 left-0 right-0 h-12 bg-linear-to-b from-white via-white/50 to-transparent z-10 pointer-events-none"></div>
               {/* Bottom feather effect */}
               <div className="absolute bottom-0 left-0 right-0 h-12 bg-linear-to-t from-white via-white/50 to-transparent z-10 pointer-events-none"></div>
               {/* Left Column - Scrolls Down */}
-              <div className="relative w-1/2 h-full rounded-l-lg overflow-hidden -mr-1">
+              <div className="relative min-w-0 flex-1 h-full rounded-l-lg overflow-hidden">
                 <motion.div
                   className="flex flex-col gap-3"
                   animate={{
@@ -264,24 +264,26 @@ export default function Hero({
                   }}
                 >
                   {images.slice(0, Math.ceil(images.length / 2)).map((img, idx) => (
-                    <div key={`left-${idx}`} className="relative w-full h-[220px] lg:h-[260px] shrink-0">
+                    <div key={`left-${idx}`} className="relative mx-auto aspect-square w-[92%] shrink-0 overflow-hidden rounded-full">
                       <Image
                         src={img}
                         alt={`${countryName} Security Services ${idx + 1}`}
                         fill
-                        className="object-contain"
+                        sizes="(max-width: 1024px) 50vw, 21vw"
+                        className="object-cover"
                         priority={idx === 0}
                       />
                     </div>
                   ))}
                   {/* Duplicate for seamless loop */}
                   {images.slice(0, Math.ceil(images.length / 2)).map((img, idx) => (
-                    <div key={`left-dup-${idx}`} className="relative w-full h-[220px] lg:h-[260px] shrink-0">
+                    <div key={`left-dup-${idx}`} className="relative mx-auto aspect-square w-[92%] shrink-0 overflow-hidden rounded-full">
                       <Image
                         src={img}
                         alt={`${countryName} Security Services ${idx + 1}`}
                         fill
-                        className="object-contain"
+                        sizes="(max-width: 1024px) 50vw, 21vw"
+                        className="object-cover"
                       />
                     </div>
                   ))}
@@ -289,7 +291,7 @@ export default function Hero({
               </div>
 
               {/* Right Column - Scrolls Up */}
-              <div className="relative w-1/2 h-full rounded-r-lg overflow-hidden -ml-1">
+              <div className="relative min-w-0 flex-1 h-full rounded-r-lg overflow-hidden">
                 <motion.div
                   className="flex flex-col gap-3"
                   animate={{
@@ -302,24 +304,26 @@ export default function Hero({
                   }}
                 >
                   {images.slice(Math.ceil(images.length / 2)).map((img, idx) => (
-                    <div key={`right-${idx}`} className="relative w-full h-[220px] lg:h-[260px] shrink-0">
+                    <div key={`right-${idx}`} className="relative mx-auto aspect-square w-[92%] shrink-0 overflow-hidden rounded-full">
                       <Image
                         src={img}
                         alt={`${countryName} Security Services ${Math.ceil(images.length / 2) + idx + 1}`}
                         fill
-                        className="object-contain"
+                        sizes="(max-width: 1024px) 50vw, 21vw"
+                        className="object-cover"
                         priority={idx === 0}
                       />
                     </div>
                   ))}
                   {/* Duplicate for seamless loop */}
                   {images.slice(Math.ceil(images.length / 2)).map((img, idx) => (
-                    <div key={`right-dup-${idx}`} className="relative w-full h-[220px] lg:h-[260px] shrink-0">
+                    <div key={`right-dup-${idx}`} className="relative mx-auto aspect-square w-[92%] shrink-0 overflow-hidden rounded-full">
                       <Image
                         src={img}
                         alt={`${countryName} Security Services ${Math.ceil(images.length / 2) + idx + 1}`}
                         fill
-                        className="object-contain"
+                        sizes="(max-width: 1024px) 50vw, 21vw"
+                        className="object-cover"
                       />
                     </div>
                   ))}
