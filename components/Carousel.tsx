@@ -134,24 +134,24 @@ export function CarouselArrows({
       <button
         onClick={onPrev}
         disabled={!canGoPrev}
-        className={`w-10 h-10 rounded-full border-2 border-dark-charcoal flex items-center justify-center transition-all duration-300 ${!canGoPrev
+        className={`w-8 h-8 xl:w-10 xl:h-10 rounded-full border-2 border-dark-charcoal flex items-center justify-center transition-all duration-300 ${!canGoPrev
             ? 'opacity-30 cursor-not-allowed text-dark-charcoal'
             : 'text-dark-charcoal hover:border-primary-orange hover:text-primary-orange'
           }`}
         aria-label="Previous page"
       >
-        <Icon icon="mingcute:arrow-left-line" className="w-6 h-6" />
+        <Icon icon="mingcute:arrow-left-line" className="w-5 h-5 xl:w-6 xl:h-6" />
       </button>
       <button
         onClick={onNext}
         disabled={!canGoNext}
-        className={`w-10 h-10 rounded-full border-2 border-dark-charcoal flex items-center justify-center transition-all duration-300 ${!canGoNext
+        className={`w-8 h-8 xl:w-10 xl:h-10 rounded-full border-2 border-dark-charcoal flex items-center justify-center transition-all duration-300 ${!canGoNext
             ? 'opacity-30 cursor-not-allowed text-dark-charcoal'
             : 'text-dark-charcoal hover:border-primary-orange hover:text-primary-orange'
           }`}
         aria-label="Next page"
       >
-        <Icon icon="mingcute:arrow-right-line" className="w-6 h-6" />
+        <Icon icon="mingcute:arrow-right-line" className="w-5 h-5 xl:w-6 xl:h-6" />
       </button>
     </div>
   )

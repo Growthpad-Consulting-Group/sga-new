@@ -26,15 +26,15 @@ export default function JoinOurMission(): React.JSX.Element {
           className="bg-white border border-navy-blue rounded-2xl p-6 md:p-8"
         >
           <div className="">
-            <p className="text-md font-normal text-navy uppercase tracking-wider mb-2">
+            <p className="text-sm xl:text-base font-medium text-navy uppercase tracking-wider mb-2">
               Join our mission
             </p>
-            <div className="mb-4">
-              <h2 className="text-xl md:text-2xl lg:text-4xl font-semibold text-primary-orange capitalize">
+            <div className="section-title-container">
+              <h2 className="section-title text-2xl md:text-3xl lg:text-4xl font-bold text-primary-orange capitalize">
                 Build a career where security matters
               </h2>
             </div>
-            <p className="text-sm md:text-xl text-dark-charcoal leading-relaxed mb-2">
+            <p className="text-sm md:text-2xl lg:text-base xl:text-2xl text-dark-charcoal leading-relaxed mb-2">
               From field operations to technology and leadership roles — grow with training, mentorship and purpose.
             </p>
 
@@ -42,15 +42,15 @@ export default function JoinOurMission(): React.JSX.Element {
             <div className="flex flex-col sm:flex-row gap-3 pt-2">
               <a
                 href="/careers"
-                className="bg-primary-orange text-white px-8 py-4 border border-primary-orange rounded-full font-semibold text-xs md:text-sm uppercase shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2"
+                className="bg-primary-orange text-white px-6 py-3 border border-primary-orange rounded-full font-semibold text-xs md:text-sm hover:bg-white hover:text-primary-orange shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2"
               >
-                VIEW OPEN ROLES
+                View Open Roles
               </a>
               <button
                 onClick={openModal}
-                className="bg-transparent text-dark-charcoal border border-dark-charcoal px-8 py-4 rounded-full font-semibold text-xs md:text-sm uppercase hover:bg-primary-orange hover:border-primary-orange hover:text-white transition-all duration-200 hover:scale-105 active:scale-95"
+                className="bg-transparent text-dark-charcoal border border-dark-charcoal px-5 py-1.5 xl:px-6 xl:py-3 rounded-full font-semibold text-xs xl:text-sm hover:bg-primary-orange hover:border-primary-orange hover:text-white transition-all duration-200 hover:scale-105 active:scale-95"
               >
-                SEND US YOUR CV
+                Send Us Your CV
               </button>
             </div>
 

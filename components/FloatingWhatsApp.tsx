@@ -72,7 +72,7 @@ export default function FloatingWhatsApp({
   if (!isVisible) return null
 
   return (
-    <div ref={containerRef} className="fixed bottom-6 right-6 z-50 w-12 h-12">
+    <div ref={containerRef} className="fixed bottom-6 right-6 z-50 w-10 h-10">
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -119,7 +119,7 @@ export default function FloatingWhatsApp({
         className="text-white rounded-full transition-all duration-200 hover:scale-110 active:scale-90"
         aria-label="Open WhatsApp chat"
       >
-        <Icon icon="logos:whatsapp-icon" className="w-12 h-12" />
+        <Icon icon="logos:whatsapp-icon" className="w-10 h-10" />
       </button>
     </div>
   )

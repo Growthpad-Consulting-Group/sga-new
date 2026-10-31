@@ -113,25 +113,25 @@ export default function GroupIntegratedSolutions({
   const renderSolution = (solution: Solution, index: number) => (
     <div
       key={index}
-      className="flex flex-col items-center transition-transform duration-300 hover:-translate-y-1.5 hover:scale-[1.02]"
+      className="flex flex-col items-center transition-transform duration-300 hover:-translate-y-0.5"
     >
-      <div className="relative w-80 h-80 md:w-[400px] md:h-[400px] rounded-full overflow-hidden shadow-2xl group cursor-pointer">
+      <div className="relative w-80 h-80 md:w-[400px] md:h-[400px] lg:w-[320px] lg:h-[320px] xl:w-[400px] xl:h-[400px] rounded-full overflow-hidden shadow-2xl group cursor-pointer">
         {/* Background Image */}
         <Image
           src={solution.imageUrl}
           alt={solution.title}
           fill
           sizes="(max-width: 767px) 320px, 400px"
-          className="object-cover transition-transform duration-300 group-hover:scale-105"
+          className="object-cover transition-transform duration-300"
         />
         {/* Overlay */}
         <div className="absolute inset-0 bg-dark-charcoal/60 group-hover:bg-primary-orange/80 transition-colors duration-300"></div>
         {/* Content */}
         <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-10">
-          <h3 className="text-2xl md:text-4xl font-bold text-white mb-3">
+          <h3 className="text-2xl md:text-4xl lg:text-2xl xl:text-4xl font-bold text-white mb-3">
             {solution.title}
           </h3>
-          <p className="text-white/90 text-sm md:text-lg leading-relaxed max-w-xs mb-3">
+          <p className="text-white/90 text-sm md:text-lg lg:text-sm xl:text-lg leading-relaxed max-w-xs mb-3">
             {solution.description}
           </p>
           <Icon
@@ -159,8 +159,8 @@ export default function GroupIntegratedSolutions({
             viewport={{ once: true }}
             className="space-y-3"
           >
-            <div className="flex items-end justify-between section-title-container w-full pb-4!">
-              <h3 className="section-title text-xl md:text-5xl font-bold text-primary-orange">
+            <div className="flex items-center justify-between section-title-container w-full pb-1!">
+              <h3 className="section-title text-2xl md:text-3xl lg:text-4xl font-bold text-primary-orange">
                 {title}
               </h3>
               <CarouselArrows
@@ -208,11 +208,13 @@ export default function GroupIntegratedSolutions({
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="bg-primary-orange text-white px-14 py-5 rounded-full font-semibold text-base uppercase hover:bg-[#d84c1e] transition-all duration-300 shadow-xl hover:shadow-2xl"
+            className="bg-primary-orange text-white px-14 lg:px-10 xl:px-14 hover:px-18 lg:hover:px-14 xl:hover:px-18 py-3 rounded-full font-semibold text-sm xl:text-base hover:bg-white hover:text-primary-orange transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 flex items-center justify-center group relative"
           >
             Request a Quote
+            <Icon
+              icon="iconoir:arrow-right-circle"
+              className="w-5 h-5 text-primary-orange opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute right-4"
+            />
           </motion.button>
         </div>
       </motion.div>

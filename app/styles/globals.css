@@ -43,11 +43,11 @@
 
 @utility section-title {
   /* Section Title Components */
-  @apply font-bold mb-4 block;
+  @apply font-bold mb-2 block;
 }
 
 @utility section-title-container {
-  @apply relative mb-8 md:mb-12 pb-1;
+  @apply relative mb-4 md:mb-6 pb-1;
 
   &::after {
     content: '';
@@ -73,7 +73,7 @@
 @utility section-title-container-white {
   /* Variant for white borders */
   @apply relative;
-  padding-bottom: 1rem;
+  padding-bottom: 0.25rem;
 
   &::after {
     content: '';

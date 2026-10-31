@@ -31,7 +31,7 @@ export default function ParallaxSection({
     <section
       ref={ref}
       id={id}
-      className="relative w-full overflow-hidden flex flex-col justify-center py-20 md:py-28 mt-20"
+      className="relative w-full overflow-hidden flex flex-col justify-center py-12 md:py-16 h-screen"
     >
       {/* Background Image - overflows top/bottom by 10% so the parallax
           translate never slides an edge into view and exposes the page
@@ -64,15 +64,15 @@ export default function ParallaxSection({
             transition={{ duration: 0.8, ease: 'easeOut' }}
             className="space-y-6"
           >
-            <p className="text-md font-medium text-white/90 uppercase tracking-wider">
+            <p className="text-sm xl:text-base font-medium text-white/90 uppercase tracking-wider">
               {title}
             </p>
             <div className="section-title-container-white">
-              <h2 className="section-title text-2xl md:text-3xl lg:text-5xl font-bold text-white">
+              <h2 className="section-title text-2xl md:text-3xl lg:text-4xl font-bold text-white">
                 {h2Title}
               </h2>
             </div>
-            <div className="relative max-w-6xl mx-auto pt-12 md:pt-16">
+            <div className="relative max-w-6xl xl:max-w-none mx-auto pt-8 md:pt-10">
               <div className="relative">
                 {/* Plus Icon - Top Left of Text */}
                 <motion.div
@@ -80,22 +80,22 @@ export default function ParallaxSection({
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.3 }}
-                  className="absolute -top-14 -left-6 md:-top-20 md:-left-24 z-20"
+                  className="absolute -top-14 -left-6 md:-top-20 md:-left-24 lg:-top-12 lg:-left-14 xl:-top-20 xl:-left-24 z-20"
                 >
                   <Icon
                     icon="mdi:plus-thick"
-                    className="w-12 h-12 md:w-28 md:h-28 text-white"
+                    className="w-12 h-12 md:w-28 md:h-28 lg:w-20 lg:h-20 xl:w-28 xl:h-28 text-white"
                   />
                 </motion.div>
-                <p className="text-base md:text-2xl lg:text-4xl max-w-6xl text-white font-semibold leading-relaxed text-left">
+                <p className="text-base md:text-2xl lg:text-3xl xl:text-4xl max-w-6xl xl:max-w-none text-white font-semibold leading-relaxed text-left">
                   {description}
                 </p>
               </div>
               {/* Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-start items-stretch sm:items-start mt-8 md:mt-12 w-full sm:w-auto">
+              <div className="flex flex-col sm:flex-row gap-4 justify-start items-stretch sm:items-start mt-6 md:mt-8 w-full sm:w-auto">
                 <a
                   href="#what-we-do"
-                  className="bg-transparent hover:bg-white text-white hover:text-primary-orange border border-white px-14 hover:px-18 py-3 rounded-full font-semibold text-md shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center group relative w-full sm:w-auto"
+                  className="bg-transparent hover:bg-white text-white hover:text-primary-orange border border-white px-14 lg:px-10 xl:px-14 hover:px-18 lg:hover:px-14 xl:hover:px-18 py-3 rounded-full font-semibold text-md shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center group relative w-full sm:w-auto"
                 >
                   What We Do
                   <Icon
@@ -105,7 +105,7 @@ export default function ParallaxSection({
                 </a>
                 <a
                   href="#sustainability"
-                  className="bg-transparent hover:bg-white text-white hover:text-primary-orange border border-white px-14 hover:px-18 py-3 rounded-full font-semibold text-md shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center group relative w-full sm:w-auto"
+                  className="bg-transparent hover:bg-white text-white hover:text-primary-orange border border-white px-14 lg:px-10 xl:px-14 hover:px-18 lg:hover:px-14 xl:hover:px-18 py-3 rounded-full font-semibold text-md shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center group relative w-full sm:w-auto"
                 >
                   Our Sustainability Impact
                   <Icon

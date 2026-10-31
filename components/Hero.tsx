@@ -83,7 +83,7 @@ export default function Hero({
                 {customTitle}
               </h2>
             ) : (
-              <h1 className={`text-4xl md:text-6xl font-bold ${textColorClass}`}>
+              <h1 className={`text-4xl md:text-5xl font-bold ${textColorClass}`}>
                 {customTitle || (
                   <>
                     SGA Security
@@ -174,7 +174,7 @@ export default function Hero({
                   const defaultBorderColor = orangeBackground ? 'border-white' : 'border-primary-orange'
                   const defaultHoverBg = orangeBackground ? 'hover:bg-white' : 'hover:bg-primary-orange'
 
-                  const buttonClassName = button.className || `group relative bg-transparent border-2 ${defaultBorderColor} px-6 py-4 rounded-2xl font-semibold transition-all duration-300 text-left ${defaultHoverBg} w-full sm:flex-1 h-44`
+                  const buttonClassName = button.className || `group relative bg-transparent border-2 ${defaultBorderColor} px-6 py-4 rounded-2xl font-semibold transition-all duration-300 text-left ${defaultHoverBg} w-full sm:flex-1 h-32`
 
                   // Simple button structure for rounded-full buttons
                   if (isSimple) {
@@ -212,7 +212,7 @@ export default function Hero({
                         <span className="text-3xl font-bold block">{mainText}</span>
                       </div>
                       <span className={`absolute bottom-4 left-6 flex items-center ${readMoreTextColor} opacity-0 group-hover:opacity-100 transition-all duration-300`}>
-                        <span className="text-md uppercase font-bold">{button.readMoreText || 'Read More'}</span>
+                        <span className="text-xs uppercase font-bold">{button.readMoreText || 'Read More'}</span>
                       </span>
                       {/* Arrow Icon - Bottom Right */}
                       <div className="absolute bottom-4 right-6 opacity-0 group-hover:opacity-100 transition-all duration-300">
@@ -421,7 +421,7 @@ export default function Hero({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 0.5 }}
-          className="absolute bottom-8 sm:bottom-12 left-1/2 transform -translate-x-1/2 z-20"
+          className="absolute bottom-0 sm:bottom-2 left-1/2 transform -translate-x-1/2 z-20"
         >
           <motion.div
             animate={{
@@ -436,7 +436,8 @@ export default function Hero({
             onClick={() => {
               const nextSection = document.querySelector('#about') || document.querySelector('section:nth-of-type(2)')
               if (nextSection) {
-                nextSection.scrollIntoView({ behavior: 'smooth' })
+                const sectionTop = nextSection.getBoundingClientRect().top + window.scrollY
+                window.scrollTo({ top: sectionTop, behavior: 'smooth' })
               }
             }}
           >

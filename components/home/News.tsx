@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import Image from 'next/image'
-import { useCarousel, CarouselArrows } from '@/components/Carousel'
+import { useCarousel } from '@/components/Carousel'
 
 interface NewsItem {
   category: string
@@ -198,23 +198,15 @@ export default function News({ hideCountryDropdown = false, backgroundColor = 'b
             viewport={{ once: true }}
             className="space-y-4 flex flex-col items-start text-left"
           >
-            <p className="text-md font-medium text-dark-charcoal uppercase tracking-wider">
+            <p className="text-sm xl:text-base font-medium text-dark-charcoal uppercase tracking-wider">
               news & insights
             </p>
             <div className="section-title-container w-full flex items-end justify-between">
-              <h3 className="section-title text-xl md:text-3xl lg:text-5xl text-primary-orange capitalize">
+              <h3 className="section-title text-2xl md:text-3xl lg:text-4xl text-primary-orange capitalize">
                 Stay informed, stay secure
               </h3>
-              <div className="section-title-bar"></div>
-              <CarouselArrows
-                onPrev={carousel.prevPage}
-                onNext={carousel.nextPage}
-                canGoPrev={carousel.canGoPrev}
-                canGoNext={carousel.canGoNext}
-                className="mb-1 relative z-20"
-              />
             </div>
-            <p className="text-base font-normal md:text-2xl text-dark-charcoal pb-4 mt-4">
+            <p className="text-sm font-normal md:text-2xl lg:text-base xl:text-2xl text-dark-charcoal pb-4">
               {customSubtext || `Get the latest news, safety tips, and updates from SGA ${country || 'Security'}.`}
             </p>
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-4 w-full">
@@ -228,7 +220,7 @@ export default function News({ hideCountryDropdown = false, backgroundColor = 'b
                     <button
                       key={filter}
                       onClick={() => handleFilterChange(filter)}
-                      className={`shrink-0 whitespace-nowrap px-6 py-3 rounded-full border transition-colors flex items-center gap-1 text-md font-medium uppercase ${activeFilter === filter
+                      className={`shrink-0 whitespace-nowrap px-4 py-2 xl:px-6 xl:py-3 rounded-full border transition-colors flex items-center gap-1 text-xs xl:text-base font-medium uppercase ${activeFilter === filter
                         ? 'bg-primary-orange text-white border-primary-orange'
                         : 'border-dark-charcoal text-dark-charcoal hover:border-primary-orange hover:text-primary-orange'
                         }`}
@@ -248,7 +240,7 @@ export default function News({ hideCountryDropdown = false, backgroundColor = 'b
                     <select
                       value={selectedCountry}
                       onChange={(e) => handleCountryChange(e.target.value)}
-                      className="appearance-none w-full pl-4 pr-10 py-2 border border-dark-charcoal rounded-full text-sm focus:outline-hidden focus:border-primary-orange bg-white text-dark-charcoal cursor-pointer"
+                      className="appearance-none w-full pl-4 pr-10 py-2 border border-dark-charcoal rounded-full text-xs xl:text-sm focus:outline-hidden focus:border-primary-orange bg-white text-dark-charcoal cursor-pointer"
                     >
                       <option value="All Country">All Country</option>
                       <option value="Kenya">Kenya</option>
@@ -269,7 +261,7 @@ export default function News({ hideCountryDropdown = false, backgroundColor = 'b
                     value={searchQuery}
                     onChange={handleSearchChange}
                     placeholder="SEARCH..."
-                    className="pl-4 pr-10 py-2 border border-dark-charcoal rounded-full text-sm focus:outline-hidden focus:border-primary-orange w-full sm:w-64 text-dark-charcoal placeholder:text-dark-charcoal/50"
+                    className="pl-4 pr-10 py-2 border border-dark-charcoal rounded-full text-xs xl:text-sm focus:outline-hidden focus:border-primary-orange w-full sm:w-64 text-dark-charcoal placeholder:text-dark-charcoal/50"
                   />
                   <Icon
                     icon="lucide:search"
@@ -289,13 +281,12 @@ export default function News({ hideCountryDropdown = false, backgroundColor = 'b
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -5 }}
-              className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow flex flex-col min-h-[500px]"
+              className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col min-h-[400px] xl:min-h-[500px]"
             >
               {/* Featured Image - Clickable */}
               <Link
                 href={`/news-reports/${item.slug.current || item.slug}`}
-                className="relative w-full h-64 block cursor-pointer"
+                className="relative w-full h-48 xl:h-64 block cursor-pointer"
               >
                 <Image
                   src={item.image || (item.mainImage ? urlFor(item.mainImage).url() : '/images/misc/blog-placeholder')}
@@ -304,27 +295,27 @@ export default function News({ hideCountryDropdown = false, backgroundColor = 'b
                   className="object-cover rounded-t-lg"
                 />
                 {/* Country Pill */}
-                <div className="absolute top-3 left-3 flex items-center gap-1 px-5 py-2 rounded-full bg-primary-orange text-white text-sm uppercase font-normal z-10">
-                  <Icon icon="mdi:map-marker" className="w-5 h-5 text-white" />
+                <div className="absolute top-3 left-3 flex items-center gap-1 px-3 py-1 xl:px-5 xl:py-2 rounded-full bg-primary-orange text-white text-xs xl:text-sm uppercase font-normal z-10">
+                  <Icon icon="mdi:map-marker" className="w-4 h-4 xl:w-5 xl:h-5 text-white" />
                   {item.country}
                 </div>
               </Link>
 
               <div className="p-6 flex flex-col flex-1 bg-primary-orange text-white">
                 {/* Category and Date */}
-                <p className="text-lg font-normal text-white uppercase tracking-wider mb-2">
+                <p className="text-sm xl:text-xs font-normal text-white uppercase tracking-wider mb-2">
                   {item.category || 'Blog'} • {item.date || new Date(item.publishedAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
                 </p>
 
                 {/* Title */}
                 <Link href={`/news-reports/${item.slug.current || item.slug}`}>
-                  <h3 className="text-xl md:text-3xl font-bold text-white mb-3 line-clamp-2 hover:opacity-80 transition-opacity">
+                  <h3 className="text-lg md:text-3xl lg:text-xl xl:text-[22px] font-bold text-white mb-3 line-clamp-2 hover:opacity-80 transition-opacity">
                     {item.title}
                   </h3>
                 </Link>
 
                 {/* Summary */}
-                <p className="text-white text-lg leading-relaxed line-clamp-3">
+                <p className="text-white text-sm xl:text-base leading-relaxed line-clamp-3">
                   {item.summary}
                 </p>
               </div>

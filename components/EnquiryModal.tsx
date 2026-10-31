@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Icon } from '@iconify/react'
+import { useBodyScrollLock } from '@/lib/useBodyScrollLock'
 
 const interestOptions = [
   'Guarding',
@@ -113,6 +114,8 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
     })
     setEnquiryType('Individual')
   }
+
+  useBodyScrollLock(isOpen)
 
   if (!isOpen) return null
 

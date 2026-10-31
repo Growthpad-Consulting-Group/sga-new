@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link, useTransitionRouter } from 'next-view-transitions'
 import Image from 'next/image'
@@ -13,13 +13,10 @@ import { navItems, getCountryNavItems, socialLinks, countries } from '@/data/nav
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
-  const [hidden, setHidden] = useState(false)
-  const lastYRef = useRef(0)
-  const mobileMenuOpenRef = useRef(false)
   const pathname = usePathname()
   const router = useTransitionRouter()
   const { openModal } = useEnquiryModal()
-  const { isOpen: countryModalOpen, openModal: openCountryModal, closeModal: closeCountryModal, redirectPath } = useCountryModal()
+  const { isOpen: countryModalOpen, closeModal: closeCountryModal, redirectPath } = useCountryModal()
 
   // Determine if we're on a country page and get appropriate nav items
   const isHomePage = pathname === '/'
@@ -61,32 +58,10 @@ export default function Header() {
     }
   }, [])
 
-  // Keep the mobile-menu-open flag available inside the scroll handler
-  // without re-subscribing the listener every time it toggles.
+  // Handle scroll detection: glass/scrolled state
   useEffect(() => {
-    mobileMenuOpenRef.current = mobileMenuOpen
-  }, [mobileMenuOpen])
-
-  // Handle scroll detection: glass/scrolled state, plus hide-on-scroll-down
-  useEffect(() => {
-    lastYRef.current = window.scrollY
-
     const handleScroll = () => {
-      const y = window.scrollY
-      setIsScrolled(y > 8)
-
-      // Body scroll is locked while the mobile menu is open, so scroll
-      // position can't legitimately change then — skip the hide logic
-      // entirely rather than risk it closing the menu right after opening.
-      setHidden((prevHidden) => {
-        if (mobileMenuOpenRef.current) return prevHidden
-        const delta = y - lastYRef.current
-        if (y < 80) return false
-        if (delta > 4) return true
-        if (delta < -4) return false
-        return prevHidden
-      })
-      lastYRef.current = y
+      setIsScrolled(window.scrollY > 8)
     }
 
     handleScroll()
@@ -147,9 +122,9 @@ export default function Header() {
   // pill with its own mx-4/mx-6/lg:mx-12 margin, so keeping container-fluid
   // on top of that stacks both and pushes content too far from the pill's
   // edge — swap to a smaller fixed padding instead.
-  const containerClasses = `max-w-9xl mx-auto ${isScrolled ? 'px-4 sm:px-6 lg:px-8' : 'container-fluid'}`
+  const containerClasses = `max-w-9xl mx-auto ${isScrolled ? 'px-4 sm:px-6 lg:px-4' : 'px-4 sm:px-6 lg:px-4 xl:container-fluid'}`
   const buttonHoverClasses = 'transition-colors'
-  const flagButtonClasses = 'w-8 h-8 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full transition-all'
+  const flagButtonClasses = 'w-8 h-8 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-7 lg:h-7 xl:w-10 xl:h-10 flex items-center justify-center rounded-full transition-all'
   const mobileMenuItemClasses = 'flex items-center gap-2 py-3 sm:py-3.5 transition-colors text-sm sm:text-base font-nav'
 
   return (
@@ -182,7 +157,6 @@ export default function Header() {
           actually-visible (and transform-following) layer takes events. */}
       <div
         style={{
-          transform: hidden ? 'translateY(calc(-100% - 1rem))' : 'translateY(0)',
           transition:
             'margin 500ms cubic-bezier(0.22, 1, 0.36, 1), border-radius 500ms cubic-bezier(0.22, 1, 0.36, 1), transform 550ms cubic-bezier(0.65, 0, 0.35, 1)',
         }}
@@ -226,7 +200,7 @@ export default function Header() {
         <div className={containerClasses}>
           <div className="flex items-center justify-between h-10 sm:h-12 text-xs sm:text-sm">
             {/* Social Icons - Left */}
-            <div className="flex items-center space-x-2 sm:space-x-3 md:space-x-4">
+            <div className="flex items-center space-x-2 sm:space-x-3 md:space-x-4 lg:space-x-2 xl:space-x-4">
               {socialLinks.map((social) => (
                 <a
                   key={social.icon}
@@ -236,13 +210,13 @@ export default function Header() {
                   className={`transition-all duration-200 hover:scale-[1.2] active:scale-90 ${getTextColor()}`}
                   aria-label={social.label}
                 >
-                  <Icon icon={social.icon} className="w-6 h-6 sm:w-6 sm:h-6" />
+                  <Icon icon={social.icon} className="w-6 h-6 sm:w-6 sm:h-6 lg:w-5 lg:h-5 xl:w-6 xl:h-6" />
                 </a>
               ))}
             </div>
 
             {/* Country Flags - Right */}
-            <div className="flex items-center space-x-1 sm:space-x-2">
+            <div className="flex items-center space-x-1 sm:space-x-2 lg:space-x-0.5 xl:space-x-2">
               {/* Call Number - Only show on country pages */}
               {isCountryPage && countryPhone && (
                 <a
@@ -272,8 +246,8 @@ export default function Header() {
                     aria-label={active ? `Currently in ${country.name}` : `Switch to ${country.name}`}
                     title={country.name}
                   >
-                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden flex items-center justify-center ring-1 ring-white/20">
-                      <Icon icon={country.flag} className="w-8 h-8 sm:w-8 sm:h-8" />
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-7 lg:h-7 xl:w-10 xl:h-10 rounded-full overflow-hidden flex items-center justify-center ring-1 ring-white/20">
+                      <Icon icon={country.flag} className="w-8 h-8 sm:w-8 sm:h-8 lg:w-6 lg:h-6 xl:w-8 xl:h-8" />
                     </div>
                   </button>
                 )
@@ -288,14 +262,6 @@ export default function Header() {
                 </div>
               )}
 
-              {/* Down Arrow Button */}
-              <button
-                onClick={() => openCountryModal()}
-                className={`transition-all duration-200 hover:scale-110 active:scale-95 ${getTextColor()}`}
-                aria-label="Open country selector"
-              >
-                <Icon icon="mdi:chevron-down" className="w-4 h-4 sm:w-5 sm:h-5" />
-              </button>
             </div>
           </div>
         </div>
@@ -311,7 +277,7 @@ export default function Header() {
       <nav className={`relative ${containerClasses}`}>
         <div
           className={`flex items-center justify-between transition-[height] duration-500 ease-out ${
-            isScrolled ? 'h-16 sm:h-20' : 'h-20 sm:h-24'
+            isScrolled ? 'h-16 sm:h-20 lg:h-16 xl:h-20' : 'h-20 sm:h-24 lg:h-[4.5rem] xl:h-24'
           }`}
         >
           {/* Logo - Left */}
@@ -325,8 +291,9 @@ export default function Header() {
               <Image
                 src={getLogoSrc()}
                 alt="SGA Security Logo"
-                width={200}
+                width={160}
                 height={0}
+                className="w-[160px] lg:w-[128px] xl:w-[160px] h-auto"
                 priority
               />
             </Link>
@@ -344,7 +311,7 @@ export default function Header() {
                   <NavComponent
                     key={item.href}
                     href={item.href}
-                    className={`transition-all duration-200 hover:-translate-y-0.5 font-nav font-bold tracking-widest text-md ${getNavTextColor(isActive)}`}
+                    className={`transition-all duration-200 hover:-translate-y-0.5 font-nav font-bold tracking-widest text-xs xl:text-base ${getNavTextColor(isActive)}`}
                   >
                     {item.label}
                   </NavComponent>
@@ -365,7 +332,7 @@ export default function Header() {
                 <NavComponent
                   key={item.href}
                   href={item.href}
-                  className={`transition-all duration-200 hover:-translate-y-0.5 font-nav font-medium flex items-center gap-1.5 text-md ${getNavTextColor(isActive)}`}
+                  className={`transition-all duration-200 hover:-translate-y-0.5 font-nav font-medium flex items-center gap-1.5 text-xs xl:text-base ${getNavTextColor(isActive)}`}
                 >
                   {item.icon && (
                     <Icon
@@ -385,7 +352,7 @@ export default function Header() {
               className={`${isCountryPage && !isScrolled
                 ? 'bg-white text-primary-orange'
                 : 'bg-primary-orange text-white'
-                } px-4 py-2 xl:px-6 xl:py-3 rounded-full font-heading font-medium uppercase text-sm shadow-md hover:shadow-lg transition-all duration-200 hover:scale-105 active:scale-95`}
+                } px-3 py-1.5 xl:px-6 xl:py-3 rounded-full font-heading font-medium uppercase text-xs xl:text-sm shadow-md hover:shadow-lg transition-all duration-200 hover:scale-105 active:scale-95`}
             >
               Enquire Now
             </button>

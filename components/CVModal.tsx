@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Icon } from '@iconify/react'
 
@@ -50,6 +50,18 @@ export default function CVModal({ isOpen, onClose }: CVModalProps): React.JSX.El
   })
 
   const [fileError, setFileError] = useState<string>('')
+  const [isDraggingFile, setIsDraggingFile] = useState(false)
+
+  useEffect(() => {
+    if (!isOpen) return
+
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+
+    return () => {
+      document.body.style.overflow = previousOverflow
+    }
+  }, [isOpen])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -59,27 +71,34 @@ export default function CVModal({ isOpen, onClose }: CVModalProps): React.JSX.El
     }))
   }
 
+  const selectCVFile = (file: File) => {
+    if (file.size > 10 * 1024 * 1024) {
+      setFileError('File size must be less than 10MB')
+      setFormData(prev => ({ ...prev, cvFile: null }))
+      return
+    }
+
+    if (file.type !== 'application/pdf') {
+      setFileError('Please upload a PDF file')
+      setFormData(prev => ({ ...prev, cvFile: null }))
+      return
+    }
+
+    setFileError('')
+    setFormData(prev => ({ ...prev, cvFile: file }))
+  }
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
-    if (file) {
-      // Check file size (10MB = 10 * 1024 * 1024 bytes)
-      if (file.size > 10 * 1024 * 1024) {
-        setFileError('File size must be less than 10MB')
-        setFormData(prev => ({ ...prev, cvFile: null }))
-        return
-      }
-      // Check if it's a PDF
-      if (file.type !== 'application/pdf') {
-        setFileError('Please upload a PDF file')
-        setFormData(prev => ({ ...prev, cvFile: null }))
-        return
-      }
-      setFileError('')
-      setFormData(prev => ({
-        ...prev,
-        cvFile: file
-      }))
-    }
+    if (file) selectCVFile(file)
+  }
+
+  const handleFileDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault()
+    setIsDraggingFile(false)
+
+    const file = e.dataTransfer.files?.[0]
+    if (file) selectCVFile(file)
   }
 
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -149,42 +168,77 @@ export default function CVModal({ isOpen, onClose }: CVModalProps): React.JSX.El
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-white rounded-lg shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="cv-modal-title"
+              className="bg-white rounded-lg shadow-2xl w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col md:flex-row"
             >
-              {/* Header with Orange Title */}
-              <div className="bg-white p-6 md:p-8 border-b-2 border-gray-200">
-                <div className="flex items-start justify-between">
-                  <div>
-                    <h2 className="text-3xl md:text-4xl font-bold mb-3 text-primary-orange">
-                      Send your CV
-                    </h2>
-                    <p className="text-dark-charcoal text-base md:text-lg mb-2">
-                      It takes under a minute. PDF preferred, max 10MB.
-                    </p>
-                    <p className="text-gray-600 text-sm">
-                      We only use your information for recruitment. Your file is encrypted in transit.
-                    </p>
+              <aside className="w-full md:w-[30%] bg-primary-orange text-white p-7 md:p-10 flex flex-col justify-between">
+                <div>
+                  <h2 id="cv-modal-title" className="text-3xl md:text-4xl font-bold mb-4 text-white">
+                    Join our team
+                  </h2>
+                  <p className="text-white/90 text-base md:text-lg leading-relaxed">
+                    Build a meaningful career protecting people, businesses and communities across East Africa.
+                  </p>
+                </div>
+
+                <div className="space-y-5 my-7 md:my-10">
+                  <div className="flex items-start gap-3">
+                    <Icon icon="mdi:briefcase-search-outline" className="w-6 h-6 text-white shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-semibold">A role that fits</p>
+                      <p className="text-white/80 text-sm">Field, technology and leadership</p>
+                    </div>
                   </div>
-                  {/* Close Button */}
+                  <div className="flex items-start gap-3">
+                    <Icon icon="mdi:school-outline" className="w-6 h-6 text-white shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-semibold">Room to grow</p>
+                      <p className="text-white/80 text-sm">Training and mentorship</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Icon icon="mdi:shield-check-outline" className="w-6 h-6 text-white shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-semibold">Secure handling</p>
+                      <p className="text-white/80 text-sm">Recruitment use only</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="hidden md:flex justify-center">
+                  <Icon icon="mdi:plus-thick" className="w-20 h-20 text-white/20" />
+                </div>
+              </aside>
+
+              <div className="w-full md:w-[70%] p-6 md:p-8 overflow-y-auto relative">
+                <div className="sticky -top-6 md:-top-8 z-20 bg-white -mx-6 md:-mx-8 -mt-6 md:-mt-8 px-6 md:px-8 pt-4 pb-2 mb-7 border-b border-gray-200">
                   <button
+                    type="button"
                     onClick={onClose}
-                    className="text-dark-charcoal hover:text-primary-orange transition-colors z-10"
+                    className="absolute top-2 right-4 md:right-6 w-10 h-10 rounded-full flex items-center justify-center text-dark-charcoal hover:text-primary-orange hover:bg-light-grey transition-colors"
                     aria-label="Close modal"
                   >
                     <Icon icon="mdi:close" className="w-6 h-6" />
                   </button>
-                </div>
-              </div>
 
-              {/* Form Content */}
-              <div className="p-6 md:p-8 overflow-y-auto flex-1">
+                  <div className="pr-12">
+                  <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-2">
+                    <p className="text-xs font-bold tracking-[0.18em] uppercase text-primary-orange">Careers at SGA</p>
+                    <span className="h-4 border-l border-gray-300 self-center" aria-hidden="true" />
+                    <h3 className="text-xs font-bold tracking-[0.18em] uppercase text-dark-charcoal">Send us your CV</h3>
+                  </div>
+                  </div>
+                </div>
+
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {/* Form Fields Grid */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {/* Full Name */}
                     <div>
                       <label htmlFor="fullName" className="block text-sm font-semibold text-dark-charcoal mb-2">
-                        Full name
+                        Full name *
                       </label>
                       <input
                         type="text"
@@ -201,7 +255,7 @@ export default function CVModal({ isOpen, onClose }: CVModalProps): React.JSX.El
                     {/* Email */}
                     <div>
                       <label htmlFor="email" className="block text-sm font-semibold text-dark-charcoal mb-2">
-                        Email
+                        Email *
                       </label>
                       <input
                         type="email"
@@ -256,7 +310,7 @@ export default function CVModal({ isOpen, onClose }: CVModalProps): React.JSX.El
                     {/* Job Title */}
                     <div className="md:col-span-2">
                       <label htmlFor="jobTitle" className="block text-sm font-semibold text-dark-charcoal mb-2">
-                        Job Title
+                        Job title *
                       </label>
                       <select
                         id="jobTitle"
@@ -281,24 +335,43 @@ export default function CVModal({ isOpen, onClose }: CVModalProps): React.JSX.El
                     <label htmlFor="cvFile" className="block text-sm font-semibold text-dark-charcoal mb-2">
                       Upload CV *
                     </label>
-                    <div className="relative">
-                      <input
-                        type="file"
-                        id="cvFile"
-                        name="cvFile"
-                        accept=".pdf,application/pdf"
-                        required
-                        onChange={handleFileChange}
-                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-hidden transition-colors file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary-orange file:text-white hover:file:bg-navy-blue file:cursor-pointer"
-                      />
+                    <div
+                      onDragEnter={(e) => {
+                        e.preventDefault()
+                        setIsDraggingFile(true)
+                      }}
+                      onDragOver={(e) => e.preventDefault()}
+                      onDragLeave={(e) => {
+                        if (!e.currentTarget.contains(e.relatedTarget as Node)) setIsDraggingFile(false)
+                      }}
+                      onDrop={handleFileDrop}
+                      className={`relative rounded-xl border-2 border-dashed p-5 transition-colors ${fileError ? 'border-red-400 bg-red-50' : formData.cvFile ? 'border-green-500 bg-green-50' : isDraggingFile ? 'border-primary-orange bg-orange-50' : 'border-gray-300 bg-light-grey/60 hover:border-primary-orange'}`}
+                    >
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+                        <div className="w-11 h-11 rounded-full bg-white flex items-center justify-center shrink-0 shadow-sm">
+                          <Icon icon={formData.cvFile ? 'mdi:file-check-outline' : 'mdi:file-upload-outline'} className={`w-6 h-6 ${formData.cvFile ? 'text-green-600' : 'text-primary-orange'}`} />
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <p className="font-semibold text-dark-charcoal truncate">
+                            {formData.cvFile ? formData.cvFile.name : isDraggingFile ? 'Drop your CV here' : 'Choose or drop your CV'}
+                          </p>
+                          <p className="text-sm text-gray-600">
+                            {formData.cvFile ? `${(formData.cvFile.size / 1024 / 1024).toFixed(2)} MB · PDF` : 'PDF format · Maximum file size 10MB'}
+                          </p>
+                        </div>
+                        <input
+                          type="file"
+                          id="cvFile"
+                          name="cvFile"
+                          accept=".pdf,application/pdf"
+                          required
+                          onChange={handleFileChange}
+                          className="block w-full sm:w-auto text-sm text-transparent file:mr-0 file:py-2.5 file:px-5 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary-orange file:text-white hover:file:bg-navy-blue file:cursor-pointer cursor-pointer"
+                        />
+                      </div>
                     </div>
                     {fileError && (
-                      <p className="text-red-500 text-xs mt-2">{fileError}</p>
-                    )}
-                    {formData.cvFile && !fileError && (
-                      <p className="text-green-600 text-xs mt-2">
-                        File selected: {formData.cvFile.name} ({(formData.cvFile.size / 1024 / 1024).toFixed(2)} MB)
-                      </p>
+                      <p className="text-red-600 text-xs mt-2" role="alert">{fileError}</p>
                     )}
                   </div>
 
@@ -319,7 +392,7 @@ export default function CVModal({ isOpen, onClose }: CVModalProps): React.JSX.El
                   </div>
 
                   {/* Checkbox */}
-                  <div className="flex items-start gap-3">
+                  <div className="flex items-start gap-3 rounded-lg bg-light-grey/70 p-4">
                     <input
                       type="checkbox"
                       id="agreeToPrivacy"
@@ -339,7 +412,7 @@ export default function CVModal({ isOpen, onClose }: CVModalProps): React.JSX.El
                   </div>
 
                   {/* Buttons */}
-                  <div className="flex items-center justify-end gap-4 pt-4">
+                  <div className="flex flex-col-reverse sm:flex-row sm:items-center sm:justify-end gap-3 pt-2">
                     <button
                       type="button"
                       onClick={onClose}
@@ -350,7 +423,7 @@ export default function CVModal({ isOpen, onClose }: CVModalProps): React.JSX.El
                     <button
                       type="submit"
                       disabled={!formData.agreeToPrivacy || !formData.cvFile || !!fileError}
-                      className="bg-primary-orange text-white px-6 py-3 rounded-full font-semibold text-base hover:bg-navy-blue transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+                      className="bg-primary-orange text-white px-7 py-3 rounded-full font-semibold text-base hover:bg-navy-blue transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
                     >
                       Submit application
                     </button>

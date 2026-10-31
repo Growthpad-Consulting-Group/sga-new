@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { Icon } from '@iconify/react'
-import { useCarousel, CarouselArrows } from '@/components/Carousel'
+import { useCarousel } from '@/components/Carousel'
 
 interface Client {
   name: string
@@ -48,7 +48,7 @@ export default function HappyClients() {
     : clients.filter(client => client.category === activeFilter)
 
   // Use carousel for pagination (show 8 clients per page - 2 rows of 4)
-  const carousel = useCarousel(filteredClients.length, 8)
+  const carousel = useCarousel(filteredClients.length, 12)
 
   const handleFilterChange = (filter: string) => {
     setActiveFilter(filter)
@@ -70,20 +70,13 @@ export default function HappyClients() {
             viewport={{ once: true }}
             className="space-y-3"
           >
-            <p className="text-md font-medium text-dark-charcoal uppercase tracking-wider">
+            <p className="text-sm xl:text-base font-medium text-dark-charcoal uppercase tracking-wider">
               Trusted by leading organizations
             </p>
-            <div className="flex items-end justify-between section-title-container pb-4! mb-4">
-              <h3 className="section-title text-xl md:text-5xl font-bold text-primary-orange">
+            <div className="flex items-end justify-between section-title-container pb-1! mb-4">
+              <h3 className="section-title text-2xl md:text-3xl lg:text-4xl font-bold text-primary-orange">
                 Happy Clients
               </h3>
-              <CarouselArrows
-                onPrev={carousel.prevPage}
-                onNext={carousel.nextPage}
-                canGoPrev={carousel.canGoPrev}
-                canGoNext={carousel.canGoNext}
-                className="mb-1"
-              />
             </div>
           </motion.div>
         </div>
@@ -99,7 +92,7 @@ export default function HappyClients() {
                 <button
                   key={filter}
                   onClick={() => handleFilterChange(filter)}
-                  className={`shrink-0 whitespace-nowrap px-6 py-3 rounded-full border transition-colors flex items-center gap-1 text-md font-medium uppercase ${activeFilter === filter
+                  className={`shrink-0 whitespace-nowrap px-4 py-2 xl:px-6 xl:py-3 rounded-full border transition-colors flex items-center gap-1 text-xs xl:text-base font-medium uppercase ${activeFilter === filter
                     ? 'bg-primary-orange text-white border-primary-orange'
                     : 'border-dark-charcoal text-dark-charcoal hover:border-primary-orange hover:text-primary-orange'
                     }`}
@@ -112,21 +105,8 @@ export default function HappyClients() {
           </div>
         </div>
 
-        <div className="border-2 border-dark-charcoal/30 rounded-xl grid grid-cols-2 md:grid-cols-4 overflow-hidden">
+        <div className="grid grid-cols-2 md:grid-cols-6 overflow-hidden border-t border-l border-dark-charcoal/10">
           {carousel.currentItems(filteredClients).map((client, index) => {
-            // Calculate row and column for desktop (4 cols) and mobile (2 cols)
-            const currentPageClients = carousel.currentItems(filteredClients)
-            const rowDesktop = Math.floor(index / 4);
-            const colDesktop = index % 4;
-            const rowMobile = Math.floor(index / 2);
-            const colMobile = index % 2;
-            const totalRowsDesktop = Math.ceil(currentPageClients.length / 4);
-            const totalRowsMobile = Math.ceil(currentPageClients.length / 2);
-            const isLastRowDesktop = rowDesktop === totalRowsDesktop - 1;
-            const isLastRowMobile = rowMobile === totalRowsMobile - 1;
-            const isLastColDesktop = colDesktop === 3;
-            const isLastColMobile = colMobile === 1;
-
             return (
               <motion.div
                 key={index}
@@ -136,23 +116,17 @@ export default function HappyClients() {
                 transition={{ duration: 0.5, delay: index * 0.05 }}
                 whileHover={{ scale: 1.02, zIndex: 10 }}
                 className={`
-                  border-r-2 border-b-2 border-dark-charcoal/30
-                  ${isLastColDesktop ? 'md:border-r-0' : ''}
-                  ${isLastColMobile ? 'border-r-0 md:border-r' : ''}
-                  ${isLastRowMobile ? 'border-b-0 md:border-b' : ''}
-                  ${isLastRowDesktop ? 'md:border-b-0' : ''}
-                  p-2 md:p-4 flex items-center justify-center h-32 md:h-52 
+                  border-r border-b border-dark-charcoal/10 aspect-square p-6 sm:p-8 flex items-center justify-center
                   hover:bg-light-grey transition-all duration-300
                 `}
               >
-                <div className="relative w-full h-24 md:h-40">
-                  <Image
-                    src={client.logo}
-                    alt={client.name}
-                    fill
-                    className="object-contain transition-all duration-300"
-                  />
-                </div>
+                <Image
+                  src={client.logo}
+                  alt={client.name}
+                  width={160}
+                  height={160}
+                  className="h-auto max-h-32 w-full object-contain transition-all duration-300"
+                />
               </motion.div>
             );
           })}

@@ -151,16 +151,16 @@ export default function CountryFooter(): React.JSX.Element {
                 <h4 className="font-semibold mb-6 text-white text-3xl">SGA Group</h4>
                 <ul className="space-y-4 text-xl text-white/90">
                   <li>
-                    <Link href="/" className="hover:text-navy-blue transition-colors cursor-pointer block">Group Website</Link>
+                    <Link href="/" className="hover:text-dark-charcoal transition-colors cursor-pointer block">Group Website</Link>
                   </li>
                   <li>
-                    <Link href="/sustainability" className="hover:text-navy-blue transition-colors cursor-pointer block">Sustainability</Link>
+                    <Link href="/sustainability" className="hover:text-dark-charcoal transition-colors cursor-pointer block">Sustainability</Link>
                   </li>
                   <li>
-                    <Link href="/careers" className="hover:text-navy-blue transition-colors cursor-pointer block">Careers</Link>
+                    <Link href="/careers" className="hover:text-dark-charcoal transition-colors cursor-pointer block">Careers</Link>
                   </li>
                   <li>
-                    <Link href="/news-reports" className="hover:text-navy-blue transition-colors cursor-pointer block">News & Insights</Link>
+                    <Link href="/news-reports" className="hover:text-dark-charcoal transition-colors cursor-pointer block">News & Insights</Link>
                   </li>
                 </ul>
               </div>
@@ -169,13 +169,13 @@ export default function CountryFooter(): React.JSX.Element {
                 <h4 className="font-semibold mb-6 text-white text-3xl">Legal</h4>
                 <ul className="space-y-4 text-xl text-white/90">
                   <li>
-                    <Link href="/privacy-policy" className="hover:text-navy-blue transition-colors cursor-pointer block">Privacy Policy</Link>
+                    <Link href="/privacy-policy" className="hover:text-dark-charcoal transition-colors cursor-pointer block">Privacy Policy</Link>
                   </li>
                   <li>
-                    <Link href="/terms-conditions" className="hover:text-navy-blue transition-colors cursor-pointer block">Terms & Conditions</Link>
+                    <Link href="/terms-conditions" className="hover:text-dark-charcoal transition-colors cursor-pointer block">Terms & Conditions</Link>
                   </li>
                   <li>
-                    <Link href="/site-map" className="hover:text-navy-blue transition-colors cursor-pointer block">Site Map</Link>
+                    <Link href="/site-map" className="hover:text-dark-charcoal transition-colors cursor-pointer block">Site Map</Link>
                   </li>
                 </ul>
               </div>
@@ -197,7 +197,7 @@ export default function CountryFooter(): React.JSX.Element {
                         <span className="font-normal">{phone.label}:</span>
                         <a 
                           href={phone.label === 'WhatsApp' ? `https://wa.me/${phone.number.replace(/\s/g, '').replace(/[()]/g, '').replace(/\+/g, '')}` : `tel:${phone.number.replace(/\s/g, '').replace(/[()]/g, '')}`} 
-                          className="hover:text-navy-blue transition-colors"
+                          className="hover:text-dark-charcoal transition-colors"
                         >
                           {phone.number}
                         </a>
@@ -208,7 +208,7 @@ export default function CountryFooter(): React.JSX.Element {
                   <div className="">
                     <a 
                       href={`mailto:${country.email}`} 
-                      className="hover:text-navy-blue transition-colors text-xl break-all underline"
+                      className="hover:text-dark-charcoal transition-colors text-xl break-all underline"
                     >
                       {country.email}
                     </a>
@@ -222,7 +222,7 @@ export default function CountryFooter(): React.JSX.Element {
                             href={social.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-white/90 hover:text-navy-blue transition-colors"
+                            className="text-white/90 hover:text-dark-charcoal transition-colors"
                             aria-label={social.label}
                           >
                             <Icon icon={social.icon} className="w-10 h-10" />
@@ -251,8 +251,8 @@ export default function CountryFooter(): React.JSX.Element {
             <p>&copy; {currentYear} SGA Security. All rights reserved.</p>
             
             <div className="flex items-center gap-8 mt-4 sm:mt-0">
-              <Link href="/privacy-policy" className="hover:text-navy-blue transition-colors">Privacy Policy</Link>
-              <Link href="/site-map" className="hover:text-navy-blue transition-colors">Site Map</Link>
+              <Link href="/privacy-policy" className="hover:text-dark-charcoal transition-colors">Privacy Policy</Link>
+              <Link href="/site-map" className="hover:text-dark-charcoal transition-colors">Site Map</Link>
             </div>
           </div>
         </div>
