@@ -169,7 +169,6 @@ export default function GroupFooter(): React.JSX.Element {
             <div className="lg:col-span-4">
               <Accordion
                 items={locationItems}
-                defaultOpenId="kenya"
                 variant="footer"
               />
 
