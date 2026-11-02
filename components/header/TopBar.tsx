@@ -18,7 +18,6 @@ interface TopBarProps {
   isActiveCountry: (path: string) => boolean
   countryPhone: string | null
   currentCountryName: string
-  onCountryModalOpen: () => void
 }
 
 export default function TopBar({
@@ -28,7 +27,6 @@ export default function TopBar({
   isActiveCountry,
   countryPhone,
   currentCountryName,
-  onCountryModalOpen,
 }: TopBarProps): React.JSX.Element {
   const router = useTransitionRouter()
 
@@ -48,7 +46,7 @@ export default function TopBar({
                   className={`transition-transform duration-200 hover:scale-[1.2] active:scale-90 ${isAboutPage ? 'text-dark-charcoal hover:text-primary-orange' : 'text-white hover:text-white/80'}`}
                   aria-label={social.label}
                 >
-                  <Icon icon={social.icon} className="w-6 h-6 sm:w-6 sm:h-6" />
+                  <Icon icon={social.icon} className="w-6 h-6 sm:w-6 sm:h-6 lg:w-5 lg:h-5 xl:w-6 xl:h-6" />
                 </a>
               ))}
             </div>
@@ -62,12 +60,12 @@ export default function TopBar({
                   className={`flex items-center gap-1.5 transition-all duration-200 hover:scale-105 active:scale-95 ${isAboutPage ? "text-dark-charcoal hover:text-primary-orange" : "text-white hover:text-white/80"}`}
                   aria-label={`Call ${countryPhone}`}
                 >
-                  <span className="font-bold text-[10px] sm:text-sm tracking-wider uppercase">CALL: {countryPhone}</span>
+                  <span className="font-bold text-[10px] sm:text-sm lg:text-xs xl:text-smtracking-wider uppercase">CALL: {countryPhone}</span>
                 </a>
               )}
 
               {/* Country Flags */}
-              <div className="flex items-center space-x-1.5 sm:space-x-2 md:space-x-1">
+              <div className="flex items-center space-x-1.5 sm:space-x-2 md:space-x-1 lg:space-x-0.5 xl:space-x-2">
                 {countries.map((country) => {
                   const active = isActiveCountry(country.path)
                   return (
@@ -75,7 +73,7 @@ export default function TopBar({
                       key={country.code}
                       onClick={() => router.push(country.path)}
                       className={`
-                        w-8 h-8 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full transition-all duration-200 hover:scale-110 active:scale-95
+                        w-8 h-8 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-7 lg:h-7 xl:w-10 xl:h-10 flex items-center justify-center rounded-full transition-all duration-200 hover:scale-110 active:scale-95
                         ${active
                           ? isAboutPage ? 'bg-primary-orange text-white' : 'bg-white text-primary-orange'
                           : isAboutPage ? 'text-dark-charcoal/80 hover:text-primary-orange hover:bg-primary-orange/10' : 'text-white/80 hover:text-white hover:bg-white/20'
@@ -84,27 +82,19 @@ export default function TopBar({
                       aria-label={`Switch to ${country.name}`}
                       title={country.name}
                     >
-                      <div className="w-6 h-6 sm:w-6 sm:h-6 md:w-8 md:h-8 rounded-full overflow-hidden flex items-center justify-center ring-1 ring-white/20">
+                      <div className="w-6 h-6 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-6 lg:h-6 xl:w-8 xl:h-8 rounded-full overflow-hidden flex items-center justify-center ring-1 ring-white/20 lg:ring-0 xl:ring-1">
                         <Icon icon={country.flag} className="w-full h-full scale-125" />
                       </div>
                     </button>
                   )
                 })}
 
-                {/* Down Arrow Button */}
-                <button
-                  onClick={onCountryModalOpen}
-                  className={`transition-all duration-200 hover:scale-110 active:scale-95 ${isAboutPage ? 'text-dark-charcoal/80 hover:text-primary-orange' : 'text-white/80 hover:text-white'}`}
-                  aria-label="Open country selector"
-                >
-                  <Icon icon="mdi:chevron-down" className="w-6 h-6 sm:w-5 sm:h-5" />
-                </button>
               </div>
 
               {/* Country HQ Text */}
               {currentCountryName && (
                 <div className="hidden sm:flex items-center border-l border-white/20 py-1">
-                  <span className={`text-[10px] sm:text-sm font-bold tracking-widest uppercase ${isAboutPage ? 'text-dark-charcoal' : 'text-white'}`}>
+                  <span className={`text-[10px] sm:text-sm lg:text-xs xl:text-smfont-bold tracking-widest uppercase ${isAboutPage ? 'text-dark-charcoal' : 'text-white'}`}>
                     {currentCountryName} HQ
                   </span>
                 </div>

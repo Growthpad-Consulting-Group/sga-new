@@ -99,7 +99,7 @@ export default function GroupFooter(): React.JSX.Element {
                   className="absolute -top-8 -left-14 md:-top-10 md:-left-14 lg:-top-8 lg:-left-12 xl:-top-10 xl:-left-14 w-10 h-10 md:w-20 md:h-20 lg:w-14 lg:h-14 xl:w-20 xl:h-20 text-white font-bold"
                   style={{ strokeWidth: 3 }}
                 />
-                <p className="text-white/90 text-4xl lg:text-2xl xl:text-3xl font-bold">
+                <p className="text-white/90 text-2xl sm:text-3xl lg:text-2xl xl:text-3xl font-bold">
                   Integrated security across Kenya, Uganda and Tanzania protecting what matters for people and organizations.
                 </p>
               </div>
@@ -184,7 +184,7 @@ export default function GroupFooter(): React.JSX.Element {
                       className="text-white/90 hover:text-dark-charcoal transition-colors"
                       aria-label={social.label}
                     >
-                      <Icon icon={social.icon} className="w-10 h-10 lg:w-7 lg:h-7 xl:w-10 xl:h-10" />
+                      <Icon icon={social.icon} className="w-8 h-8 lg:w-7 lg:h-7 xl:w-10 xl:h-10" />
                     </a>
                   ))}
                 </div>

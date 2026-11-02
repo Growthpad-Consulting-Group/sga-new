@@ -24,10 +24,10 @@ function AccordionItem({ id, title, children, isOpen, onToggle, variant = 'defau
     },
     footer: {
       container: 'border border-white/20 rounded-lg overflow-hidden',
-      button: 'w-full flex items-center justify-between p-4 bg-white/10 hover:bg-white/20 transition-colors',
+      button: 'w-full flex items-center justify-between px-4 py-2.5 sm:py-3 bg-white/10 hover:bg-white/20 transition-colors',
       title: 'font-semibold text-white capitalize text-xl sm:text-2xl lg:text-lg xl:text-2xl',
       icon: 'w-6 h-6 text-white',
-      content: 'p-4',
+      content: 'px-4 py-3',
     },
   }
 

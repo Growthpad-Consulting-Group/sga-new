@@ -466,6 +466,11 @@ const InteractiveMap = forwardRef<InteractiveMapRef>((props, ref) => {
   // Expose method to parent component
   useImperativeHandle(ref, () => ({
     selectLocationByCountry: (country: string) => {
+      if (selectedLocation?.country === country && selectedLocation.isHQ) {
+        setSelectedLocation(null)
+        return
+      }
+
       const hqLocation = locations.find(
         loc => loc.country === country && loc.isHQ && loc.name.includes('HQ') && !loc.name.includes('CIT')
       )

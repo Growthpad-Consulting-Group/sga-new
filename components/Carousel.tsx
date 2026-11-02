@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, ReactNode, useEffect } from 'react'
+import { useState, ReactNode, useEffect, useRef, Fragment } from 'react'
 import { Icon } from '@iconify/react'
 
 interface CarouselProps {
@@ -13,6 +13,7 @@ interface CarouselProps {
   gridCols?: string
   controlsPosition?: 'top' | 'bottom'
   loop?: boolean
+  autoplay?: number
   onPageChange?: (page: number) => void
 }
 
@@ -70,49 +71,85 @@ export default function Carousel({
   gridCols = 'md:grid-cols-3',
   controlsPosition = 'bottom',
   loop = false,
+  autoplay,
   onPageChange,
 }: CarouselProps) {
   const carousel = useCarousel(items.length, itemsPerPage, loop)
+
+  // Pause autoplay while the pointer is over the items or a finger is on them
+  const [paused, setPaused] = useState(false)
+
+  // Advance automatically every `autoplay` ms when set
+  useEffect(() => {
+    if (!autoplay || paused) return
+    const id = setInterval(() => carousel.nextPage(), autoplay)
+    return () => clearInterval(id)
+  }, [autoplay, paused, carousel.currentPage])
+
+  // Swipe left/right to change page
+  const touchStartX = useRef<number | null>(null)
 
   const handlePageChange = (page: number) => {
     carousel.goToPage(page)
     onPageChange?.(page)
   }
 
+  // Dots sit between the previous and next arrows
+  const dots = showDots && carousel.totalPages > 1 ? (
+    <div className="flex items-center gap-2">
+      {Array.from({ length: carousel.totalPages }, (_, i) => (
+        <button
+          key={i}
+          onClick={() => handlePageChange(i + 1)}
+          className={`rounded-full transition-all duration-300 ${carousel.currentPage === i + 1
+              ? 'bg-primary-orange w-8 h-2'
+              : 'bg-dark-charcoal/30 w-2 h-2'
+            }`}
+          aria-label={`Go to page ${i + 1}`}
+        />
+      ))}
+    </div>
+  ) : null
+
   return (
     <div className={`flex flex-col ${className}`}>
       {/* Items Grid */}
-      <div className={`grid ${gridCols} gap-6 md:gap-8`}>
-        {carousel.currentItems(items).map((item, index) => renderItem(item, index))}
+      <div
+        className={`grid ${gridCols} gap-6 md:gap-8`}
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+        onTouchStart={(e) => {
+          setPaused(true)
+          touchStartX.current = e.touches[0].clientX
+        }}
+        onTouchEnd={(e) => {
+          setPaused(false)
+          if (touchStartX.current === null) return
+          const dx = e.changedTouches[0].clientX - touchStartX.current
+          touchStartX.current = null
+          if (dx < -40) carousel.nextPage()
+          else if (dx > 40) carousel.prevPage()
+        }}
+      >
+        {carousel.currentItems(items).map((item, index) => (
+          <Fragment key={`${carousel.currentPage}-${index}`}>
+            {renderItem(item, index)}
+          </Fragment>
+        ))}
       </div>
 
       {/* Bottom Controls */}
-      <div className={`flex flex-col items-center justify-center gap-4 ${controlsPosition === 'top' ? 'order-first mb-6' : 'mt-4'}`}>
-        {/* Arrows */}
-        {showArrows && (
+      <div className={`flex items-center justify-center gap-4 ${controlsPosition === 'top' ? 'order-first mb-6' : 'mt-4'}`}>
+        {showArrows ? (
           <CarouselArrows
             onPrev={carousel.prevPage}
             onNext={carousel.nextPage}
             canGoPrev={carousel.canGoPrev}
             canGoNext={carousel.canGoNext}
+            middle={dots}
           />
-        )}
-
-        {/* Dots Indicator */}
-        {showDots && carousel.totalPages > 1 && (
-          <div className="flex items-center gap-2">
-            {Array.from({ length: carousel.totalPages }, (_, i) => (
-              <button
-                key={i}
-                onClick={() => handlePageChange(i + 1)}
-                className={`rounded-full transition-all duration-300 ${carousel.currentPage === i + 1
-                    ? 'bg-primary-orange w-8 h-2'
-                    : 'bg-dark-charcoal/30 w-2 h-2'
-                  }`}
-                aria-label={`Go to page ${i + 1}`}
-              />
-            ))}
-          </div>
+        ) : (
+          dots
         )}
       </div>
     </div>
@@ -126,12 +163,14 @@ export function CarouselArrows({
   canGoPrev,
   canGoNext,
   className = '',
+  middle,
 }: {
   onPrev: () => void
   onNext: () => void
   canGoPrev: boolean
   canGoNext: boolean
   className?: string
+  middle?: ReactNode
 }) {
   return (
     <div className={`flex items-center gap-3 ${className}`}>
@@ -146,6 +185,7 @@ export function CarouselArrows({
       >
         <Icon icon="mingcute:arrow-left-line" className="w-5 h-5 xl:w-6 xl:h-6" />
       </button>
+      {middle}
       <button
         onClick={onNext}
         disabled={!canGoNext}

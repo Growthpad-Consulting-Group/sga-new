@@ -18,7 +18,6 @@ import {
 import { useEnquiryModal } from '@/contexts/EnquiryModalContext'
 import TopBar from './header/TopBar'
 import MegaMenuDropdown from './header/MegaMenuDropdown'
-import CountryModal from './header/CountryModal'
 import MobileMenu from './header/MobileMenu'
 
 interface NavItem {
@@ -43,7 +42,6 @@ interface Country {
 
 export default function CountryHeader(): React.JSX.Element {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [countryModalOpen, setCountryModalOpen] = useState(false)
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false)
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false)
   const [servicesViewType, setServicesViewType] = useState<'Individual' | 'Corporate'>('Individual')
@@ -62,7 +60,7 @@ export default function CountryHeader(): React.JSX.Element {
 
   // Prevent background scroll when modal or dropdowns are open
   useEffect(() => {
-    if (countryModalOpen || servicesDropdownOpen || industriesDropdownOpen) {
+    if (servicesDropdownOpen || industriesDropdownOpen) {
       document.body.style.overflow = 'hidden'
     } else {
       document.body.style.overflow = 'unset'
@@ -70,7 +68,7 @@ export default function CountryHeader(): React.JSX.Element {
     return () => {
       document.body.style.overflow = 'unset'
     }
-  }, [countryModalOpen, servicesDropdownOpen, industriesDropdownOpen])
+  }, [servicesDropdownOpen, industriesDropdownOpen])
 
   // Get country prefix for navigation links
   const getCountryPrefix = (): string => {
@@ -131,24 +129,23 @@ export default function CountryHeader(): React.JSX.Element {
         isActiveCountry={isActiveCountry}
         countryPhone={countryPhone}
         currentCountryName={currentCountryName}
-        onCountryModalOpen={() => setCountryModalOpen(true)}
       />
 
       {/* Main Navigation */}
-      <nav className="mx-auto container-fluid">
-        <div className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? 'h-16' : 'h-16 sm:h-28'}`}>
+      <nav className="mx-auto max-w-9xl px-4 sm:px-6 lg:px-4 xl:container-fluid">
+        <div className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? 'h-16 sm:h-20 lg:h-16 xl:h-20' : 'h-20 sm:h-24 lg:h-[4.5rem] xl:h-24'}`}>
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <Link href="/" className="flex items-center">
+            <Link href={countryPrefix || '/'} className="flex items-center">
               <Image
                 src={(isScrolled || isAboutPage) ? "/images/logo.svg" : "/images/logo-white.svg"}
                 alt="SGA Security Logo"
-                width={260}
-                height={75}
-                className={`transition-all duration-300 ${isScrolled ? 'h-10 sm:h-12' : 'h-12 sm:h-16'} w-auto`}
+                width={220}
+                height={0}
+                className="h-auto w-[220px] lg:w-[180px] xl:w-[220px] transition-all duration-300"
                 priority
               />
             </Link>
@@ -218,7 +215,7 @@ export default function CountryHeader(): React.JSX.Element {
             })}
             <button
               onClick={openModal}
-              className={(isScrolled || isAboutPage) ? "bg-primary-orange text-white px-4 py-2 xl:px-6 xl:py-2 rounded-full font-semibold text-sm xl:text-base shadow-md hover:shadow-lg transition-all duration-200 hover:scale-105 active:scale-95 ml-2 xl:ml-4 font-nav!" : "bg-white text-primary-orange px-4 py-2 xl:px-6 xl:py-2 rounded-full font-semibold text-sm xl:text-base shadow-md hover:shadow-lg transition-all duration-200 hover:scale-105 active:scale-95 ml-2 xl:ml-4 font-nav!"}
+              className={(isScrolled || isAboutPage) ? "bg-primary-orange text-white px-3 py-1.5 xl:px-6 xl:py-3 rounded-full font-semibold text-xs xl:text-sm shadow-md hover:shadow-lg transition-all duration-200 hover:scale-105 active:scale-95 ml-2 xl:ml-4 font-nav!" : "bg-white text-primary-orange px-3 py-1.5 xl:px-6 xl:py-3 rounded-full font-semibold text-xs xl:text-sm shadow-md hover:shadow-lg transition-all duration-200 hover:scale-105 active:scale-95 ml-2 xl:ml-4 font-nav!"}
             >
               Enquire Now
             </button>
@@ -272,15 +269,6 @@ export default function CountryHeader(): React.JSX.Element {
       </nav>
 
       {/* Country Selection Modal */}
-      <AnimatePresence>
-        {countryModalOpen && (
-          <CountryModal
-            isOpen={countryModalOpen}
-            onClose={() => setCountryModalOpen(false)}
-            countries={countries}
-          />
-        )}
-      </AnimatePresence>
     </header>
   )
 }

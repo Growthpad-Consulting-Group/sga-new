@@ -69,9 +69,9 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Prevent background scroll when modal is open
+  // Prevent background scroll while an overlay is open
   useEffect(() => {
-    if (countryModalOpen) {
+    if (countryModalOpen || mobileMenuOpen) {
       document.body.style.overflow = 'hidden'
     } else {
       document.body.style.overflow = 'unset'
@@ -79,7 +79,7 @@ export default function Header() {
     return () => {
       document.body.style.overflow = 'unset'
     }
-  }, [countryModalOpen])
+  }, [countryModalOpen, mobileMenuOpen])
 
   const isActiveCountry = (path: string): boolean => {
     return path === '/' ? pathname === '/' : pathname.startsWith(path)
@@ -291,8 +291,8 @@ export default function Header() {
               <Image
                 src={getLogoSrc()}
                 alt="SGA Security Logo"
-                width={160}
-                height={0}
+                width={202}
+                height={72}
                 className="w-[160px] lg:w-[128px] xl:w-[160px] h-auto"
                 priority
               />
@@ -387,17 +387,28 @@ export default function Header() {
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden pb-4 px-4 overflow-hidden bg-white shadow-2xl rounded-b-2xl absolute left-0 right-0 top-full z-50 border-t border-gray-100"
+              initial={{ opacity: 0, y: -10, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -10, scale: 0.98 }}
+              transition={{ duration: 0.2, ease: 'easeOut' }}
+              className="absolute left-0 right-0 top-full z-50 mx-1 mt-2 max-h-[calc(100dvh-7rem)] overflow-y-auto rounded-3xl border border-white/70 bg-white/95 p-4 shadow-2xl shadow-black/15 backdrop-blur-xl sm:mx-2 sm:p-5 lg:hidden"
             >
+              <div className="mb-3 flex items-center justify-between px-1">
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-primary-orange">Navigation</p>
+                  <p className="mt-0.5 text-xs text-dark-charcoal/55">Explore SGA Security</p>
+                </div>
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary-orange/10 text-primary-orange">
+                  <Icon icon="solar:compass-big-broken" className="h-5 w-5" />
+                </span>
+              </div>
+
               {/* Call Number - Mobile */}
               {isCountryPage && countryPhone && (
                 <motion.a
                   href={`tel:${countryPhone.replace(/\s/g, '')}`}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`${mobileMenuItemClasses} text-primary-orange font-semibold border-b border-gray-200`}
+                  className="mb-3 flex items-center gap-3 rounded-2xl bg-primary-orange/10 px-4 py-3 text-sm font-semibold text-primary-orange"
                   aria-label={`Call ${countryPhone}`}
                 >
                   <Icon icon="mdi:phone" className="w-5 h-5 text-primary-orange shrink-0" />
@@ -405,46 +416,58 @@ export default function Header() {
                 </motion.a>
               )}
 
-              {currentNavItems.map((item) => {
-                const isRoute = !item.href.startsWith('#')
-                const isActive = isRoute ? pathname === item.href : false
-                const itemClasses = `${mobileMenuItemClasses} ${isActive ? 'text-primary-orange font-semibold' : 'text-dark-charcoal hover:text-primary-orange font-semibold'}`
+              <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                {currentNavItems.map((item) => {
+                  const isRoute = !item.href.startsWith('#')
+                  const isActive = isRoute ? pathname === item.href : false
+                  const itemClasses = `group flex min-h-12 items-center justify-between gap-3 rounded-2xl px-4 py-3 text-sm font-semibold transition-colors ${isActive
+                    ? 'bg-primary-orange text-white shadow-md shadow-primary-orange/20'
+                    : 'bg-light-grey/70 text-dark-charcoal hover:bg-primary-orange/10 hover:text-primary-orange'
+                  }`
 
-                if (isRoute) {
-                  return (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className={itemClasses}
-                    >
-                      {item.icon && <Icon icon={item.icon} className="w-5 h-5 text-primary-orange shrink-0" />}
-                      <span>{item.label}</span>
-                    </Link>
+                  const content = (
+                    <>
+                      <span className="flex min-w-0 items-center gap-2.5">
+                        {item.icon && (
+                          <Icon
+                            icon={item.icon}
+                            className={`h-5 w-5 shrink-0 ${isActive ? 'text-white' : 'text-primary-orange'}`}
+                          />
+                        )}
+                        <span className="truncate">{item.label}</span>
+                      </span>
+                      <Icon
+                        icon="solar:arrow-right-up-linear"
+                        className={`h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 ${isActive ? 'text-white/80' : 'text-dark-charcoal/35 group-hover:text-primary-orange'}`}
+                      />
+                    </>
                   )
-                }
 
-                return (
-                  <a
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={itemClasses}
-                  >
-                    {item.icon && <Icon icon={item.icon} className="w-5 h-5 text-primary-orange shrink-0" />}
-                    <span>{item.label}</span>
-                  </a>
-                )
-              })}
+                  if (isRoute) {
+                    return (
+                      <Link key={item.href} href={item.href} onClick={() => setMobileMenuOpen(false)} className={itemClasses}>
+                        {content}
+                      </Link>
+                    )
+                  }
+
+                  return (
+                    <a key={item.href} href={item.href} onClick={() => setMobileMenuOpen(false)} className={itemClasses}>
+                      {content}
+                    </a>
+                  )
+                })}
+              </div>
 
               <button
                 onClick={() => {
                   setMobileMenuOpen(false)
                   openModal()
                 }}
-                className="mt-4 sm:mt-5 bg-primary-orange text-white px-6 py-3 sm:py-3.5 rounded-full font-heading font-semibold text-center text-sm sm:text-base shadow-md w-full transition-transform duration-150 active:scale-95"
+                className="mt-4 flex w-full items-center justify-center gap-2 rounded-2xl bg-primary-orange px-6 py-3.5 text-center font-heading text-sm font-semibold text-white shadow-lg shadow-primary-orange/20 transition-transform duration-150 active:scale-[0.98] sm:text-base"
               >
                 Enquire Now
+                <Icon icon="solar:arrow-right-linear" className="h-5 w-5" />
               </button>
             </motion.div>
           )}

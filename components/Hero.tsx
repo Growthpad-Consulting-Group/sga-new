@@ -71,7 +71,7 @@ export default function Hero({
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-8 pt-20 lg:col-span-7 flex flex-col justify-start"
+            className="space-y-8 pt-36 sm:pt-40 lg:col-span-7 lg:pt-20 flex flex-col justify-start"
           >
             {customH3 && (
               <h3 className={`text-sm md:text-2xl font-bold tracking-wider ${secondaryTextColorClass}`}>

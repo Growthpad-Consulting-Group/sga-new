@@ -6,95 +6,19 @@ import { Icon } from '@iconify/react'
 import { useEnquiryModal } from '@/contexts/EnquiryModalContext'
 import Carousel, { useCarousel, CarouselArrows } from '@/components/Carousel'
 import { useState, useEffect } from 'react'
+import { coreServices, type CoreService } from '@/data/coreServices'
 
-interface Solution {
-  title: string
-  description: string
-  imageUrl: string
-}
+type Solution = CoreService
 
 interface GroupIntegratedSolutionsProps {
   title?: string
   description?: string
 }
 
-const defaultSolutions: Solution[] = [
-  {
-    title: 'Home Security',
-    description: 'Comprehensive security solutions for residential properties with 24/7 monitoring and rapid response.',
-    imageUrl: '/images/group/guarding.png',
-  },
-  {
-    title: 'Courier',
-    description: 'Secure courier services for sensitive documents and valuable items with tracked delivery.',
-    imageUrl: '/images/group/core-services/courier.jpg',
-  },
-  {
-    title: 'Guarding',
-    description: 'Professional guarding for offices, malls, logistics yards and estates.',
-    imageUrl: '/images/group/core-services/guarding.jpg',
-  },
-  {
-    title: 'Alarm Response',
-    description: 'Rapid alarm response teams ready to respond to security alerts 24/7.',
-    imageUrl: '/images/group/core-services/alarm.jpg',
-  },
-  {
-    title: 'Electronic Cargo Tracking System',
-    description: 'Advanced GPS tracking solutions for vehicles and assets with real-time monitoring.',
-    imageUrl: '/images/group/core-services/tracking.jpg',
-  },
-  {
-    title: 'CIT and Cash Management',
-    description: 'Secure movement of valuables with armored fleet and vetted crews.',
-    imageUrl: '/images/group/core-services/cit.jpg',
-  },
-  {
-    title: 'CCTV Services',
-    description: 'Installation and maintenance of security systems including CCTV, access control, and alarms.',
-    imageUrl: '/images/group/core-services/cctv.jpg',
-  },
-  {
-    title: 'K-9 Services',
-    description: 'Trained K9 units for enhanced security patrols and detection services.',
-    imageUrl: '/images/group/core-services/k9.jpg',
-  },
-  {
-    title: 'Special Services',
-    description: 'Customized security solutions tailored to unique client requirements and high-risk scenarios.',
-    imageUrl: '/images/group/cit.png',
-  },
-  {
-    title: 'Workshop',
-    description: 'In-house workshop for vehicle maintenance and security equipment servicing.',
-    imageUrl: '/images/group/guarding.png',
-  },
-  {
-    title: 'Control Room Services',
-    description: '24/7 monitored control room coordinating rapid response across all client sites.',
-    imageUrl: '/images/group/cctv.png',
-  },
-  {
-    title: 'Reception Services',
-    description: 'Professional front-of-house teams managing access and visitor experience.',
-    imageUrl: '/images/group/core-services/reception.jpg',
-  },
-  {
-    title: 'Customer Service',
-    description: 'Dedicated support teams ensuring responsive, client-focused service delivery.',
-    imageUrl: '/images/group/core-services/customer-service.jpg',
-  },
-  {
-    title: 'Close Protection Officer',
-    description: 'Specialized close protection officers for executive and VIP security.',
-    imageUrl: '/images/group/core-services/close-protection.jpg',
-  },
-]
-
 export default function GroupIntegratedSolutions({
   title = "What We Offer",
   description = "Security solutions built to keep your business, family, home, and property safe every day across Kenya, Uganda, and Tanzania.",
-  solutions = defaultSolutions
+  solutions = coreServices
 }: GroupIntegratedSolutionsProps & { solutions?: Solution[] }) {
   const { openModal } = useEnquiryModal()
   const [itemsPerPage, setItemsPerPage] = useState(3)
@@ -115,7 +39,7 @@ export default function GroupIntegratedSolutions({
       key={index}
       className="flex flex-col items-center transition-transform duration-300 hover:-translate-y-0.5"
     >
-      <div className="relative w-80 h-80 md:w-[400px] md:h-[400px] lg:w-[320px] lg:h-[320px] xl:w-[400px] xl:h-[400px] rounded-full overflow-hidden shadow-2xl group cursor-pointer">
+      <div className={`relative w-80 h-80 md:w-[400px] md:h-[400px] lg:w-[320px] lg:h-[320px] xl:w-[400px] xl:h-[400px] rounded-full overflow-hidden shadow-2xl group ${solution.href ? 'cursor-pointer' : ''}`}>
         {/* Background Image */}
         <Image
           src={solution.imageUrl}
@@ -134,11 +58,20 @@ export default function GroupIntegratedSolutions({
           <p className="text-white/90 text-sm md:text-lg lg:text-sm xl:text-lg leading-relaxed max-w-xs mb-3">
             {solution.description}
           </p>
-          <Icon
-            icon="iconoir:arrow-right-circle"
-            className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-          />
+          {solution.href && (
+            <Icon
+              icon="iconoir:arrow-right-circle"
+              className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            />
+          )}
         </div>
+        {solution.href && (
+          <a
+            href={solution.href}
+            aria-label={`Learn more about ${solution.title}`}
+            className="absolute inset-0 z-20 rounded-full focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-primary-orange"
+          />
+        )}
       </div>
     </div>
   )

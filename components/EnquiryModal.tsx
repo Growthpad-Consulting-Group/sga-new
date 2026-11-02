@@ -4,17 +4,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import { useBodyScrollLock } from '@/lib/useBodyScrollLock'
-
-const interestOptions = [
-  'Guarding',
-  'Alarm & Response',
-  'Dog & handler',
-  'Remote Surveillance (CCTV/Monitoring)',
-  'Cash Management/CIT',
-  'Courier & Logistics Security',
-  'Fire & Rescue',
-  'Event security'
-]
+import { coreServiceInterestOptions } from '@/data/coreServices'
 
 interface FormData {
   fullName: string
@@ -421,7 +411,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                       What are you interested in? (choose one or more) *
                     </label>
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                      {interestOptions.map((option) => (
+                      {coreServiceInterestOptions.map((option) => (
                         <button
                           key={option}
                           type="button"

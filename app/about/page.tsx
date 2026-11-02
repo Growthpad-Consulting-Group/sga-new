@@ -33,6 +33,7 @@ export default async function AboutPage(): Promise<React.JSX.Element> {
   const certificateDocuments = (await getAllCertificateDocuments()).map((doc) => {
     const coverNeedsRotation = rotatedCertificateCovers.has(`${doc.country}:${doc.title}`)
     const coverBuilder = doc.coverImage ? urlFor(doc.coverImage) : null
+    const previewRotation: 0 | 90 = coverNeedsRotation ? 90 : 0
 
     return {
       title: doc.title,
@@ -40,6 +41,7 @@ export default async function AboutPage(): Promise<React.JSX.Element> {
       country: doc.country,
       link: doc.fileUrl,
       year: doc.year,
+      previewRotation,
       coverImageUrl: coverBuilder
         ? (coverNeedsRotation ? coverBuilder.ignoreImageParams().orientation(90) : coverBuilder)
           .width(600)

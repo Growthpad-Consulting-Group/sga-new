@@ -26,6 +26,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
         headers: {
             'Content-Type': res.headers.get('content-type') || 'application/pdf',
             'Content-Disposition': `${disposition}; filename="${decodeURIComponent(filename).replace(/"/g, '')}"`,
+            'Cache-Control': 'public, max-age=86400',
         },
     })
 }

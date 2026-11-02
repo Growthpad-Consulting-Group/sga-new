@@ -1,8 +1,10 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { useRef } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import Image from 'next/image'
 import SectionWrapper from './SectionWrapper'
+import Carousel from '@/components/Carousel'
 
 interface Stat {
   number: string
@@ -48,24 +50,46 @@ interface OurImpactInNumbersProps {
   backgroundImage?: string
 }
 
+function renderStat(stat: Stat) {
+  return (
+    <div className="w-44 h-44 md:w-48 md:h-48 lg:w-48 lg:h-48 xl:w-56 xl:h-56 rounded-full border border-primary-orange bg-primary-orange flex flex-col items-center justify-center shadow-lg group relative p-3 md:p-4 cursor-pointer transition-all duration-300 ease-out hover:scale-[1.02] hover:-translate-y-0.5 hover:border-[#d84c1e] hover:bg-[#d84c1e] hover:shadow-[0_20px_40px_rgba(216,76,30,0.3)]">
+      <span className="text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-bold text-white transition-colors mb-2">
+        {stat.number}
+      </span>
+      <span className="text-white text-center text-sm md:text-base lg:text-sm xl:text-lg font-normal px-2 leading-tight">
+        {stat.label}
+      </span>
+    </div>
+  )
+}
+
 export default function OurImpactInNumbers({
   showPattern = true,
   backgroundImage = '/images/group/impact-background.jpg',
 }: OurImpactInNumbersProps): React.JSX.Element {
+  const bgRef = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: bgRef,
+    offset: ['start end', 'end start'],
+  })
+  const y = useTransform(scrollYProgress, [0, 1], ['-10%', '10%'])
+
   return (
     <SectionWrapper id="our-impact" className="bg-white relative overflow-hidden">
-      {/* Background Image - Static, no scroll animation */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src={backgroundImage}
-          alt="Our Impact in Numbers Background"
-          fill
-          sizes="100vw"
-          className="object-cover"
-          priority={false}
-        />
-        {/* White Overlay */}
-        <div className="absolute inset-0 bg-white/80"></div>
+      {/* Background Image - parallax on scroll */}
+      <div ref={bgRef} className="absolute inset-0 z-0 overflow-hidden">
+        <motion.div style={{ y }} className="absolute inset-x-0 top-[-10%] bottom-[-10%]">
+          <Image
+            src={backgroundImage}
+            alt="Our Impact in Numbers Background"
+            fill
+            sizes="100vw"
+            className="object-cover"
+            priority={false}
+          />
+          {/* White Overlay */}
+          <div className="absolute inset-0 bg-black/50"></div>
+        </motion.div>
       </div>
 
       {/* Content */}
@@ -77,7 +101,7 @@ export default function OurImpactInNumbers({
             viewport={{ once: true }}
             className="space-y-3"
           >
-            <p className="text-sm xl:text-base font-medium text-dark-charcoal uppercase tracking-wider">
+            <p className="text-sm xl:text-base font-medium text-white uppercase tracking-wider">
               our impact in numbers
             </p>
             <div className="section-title-container">
@@ -88,8 +112,20 @@ export default function OurImpactInNumbers({
           </motion.div>
         </div>
 
+        {/* Phones and tablets: one circle per page */}
+        <div className="lg:hidden">
+          <Carousel
+            items={[...topRowStats, ...bottomRowStats]}
+            itemsPerPage={2}
+            loop
+            autoplay={4000}
+            gridCols="grid-cols-2 justify-items-center"
+            renderItem={(stat: Stat) => renderStat(stat)}
+          />
+        </div>
+
         {/* Top Row - 3 Circles */}
-        <div className="flex justify-center items-center gap-1 md:gap-6 mb-4 md:mb-6 flex-wrap capitalize">
+        <div className="hidden lg:flex justify-center items-center gap-1 md:gap-6 mb-4 md:mb-6 flex-wrap capitalize">
           {topRowStats.map((stat, index) => (
             <motion.div
               key={`top-${index}`}
@@ -99,22 +135,13 @@ export default function OurImpactInNumbers({
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="flex flex-col items-center"
             >
-              <div
-                className="w-44 h-44 md:w-48 md:h-48 lg:w-48 lg:h-48 xl:w-56 xl:h-56 rounded-full border border-primary-orange bg-primary-orange flex flex-col items-center justify-center shadow-lg group relative p-3 md:p-4 cursor-pointer transition-all duration-300 ease-out hover:scale-[1.02] hover:-translate-y-0.5 hover:border-[#d84c1e] hover:bg-[#d84c1e] hover:shadow-[0_20px_40px_rgba(216,76,30,0.3)]"
-              >
-                <span className="text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-bold text-white transition-colors mb-2">
-                  {stat.number}
-                </span>
-                <span className="text-white text-center text-sm md:text-base lg:text-sm xl:text-lg font-normal px-2 leading-tight">
-                  {stat.label}
-                </span>
-              </div>
+              {renderStat(stat)}
             </motion.div>
           ))}
         </div>
 
         {/* Bottom Row - 4 Circles */}
-        <div className="flex justify-center items-center gap-1 md:gap-6 flex-wrap capitalize">
+        <div className="hidden lg:flex justify-center items-center gap-1 md:gap-6 flex-wrap capitalize">
           {bottomRowStats.map((stat, index) => (
             <motion.div
               key={`bottom-${index}`}
@@ -124,16 +151,7 @@ export default function OurImpactInNumbers({
               transition={{ duration: 0.5, delay: (index + 3) * 0.1 }}
               className="flex flex-col items-center"
             >
-              <div
-                className="w-44 h-44 md:w-48 md:h-48 lg:w-48 lg:h-48 xl:w-56 xl:h-56 rounded-full border border-primary-orange bg-primary-orange flex flex-col items-center justify-center shadow-lg group relative p-3 md:p-4 cursor-pointer transition-all duration-300 ease-out hover:scale-[1.02] hover:-translate-y-0.5 hover:border-[#d84c1e] hover:bg-[#d84c1e] hover:shadow-[0_20px_40px_rgba(216,76,30,0.3)]"
-              >
-                <span className="text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-bold text-white transition-colors mb-2">
-                  {stat.number}
-                </span>
-                <span className="text-white text-center text-sm md:text-base lg:text-sm xl:text-lg font-normal px-2 leading-tight">
-                  {stat.label}
-                </span>
-              </div>
+              {renderStat(stat)}
             </motion.div>
           ))}
         </div>

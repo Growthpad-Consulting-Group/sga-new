@@ -52,14 +52,14 @@ export default function AboutIntro({ imageUrl = '/images/group/about/about-2.png
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="relative w-full h-full min-h-[350px] lg:min-h-[450px]"
+            className="relative w-full h-full min-h-[350px] lg:min-h-[450px] overflow-hidden rounded-lg"
           >
             <Image
               src={imageUrl}
               alt="SGA Security - Protecting people, businesses, and communities"
-              width={500}
-              height={0}
-              className="object-cover rounded-lg"
+              fill
+              sizes="(max-width: 1023px) 100vw, 50vw"
+              className="object-cover"
             />
           </motion.div>
         </div>

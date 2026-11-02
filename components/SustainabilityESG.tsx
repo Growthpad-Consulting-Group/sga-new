@@ -110,10 +110,13 @@ export default function SustainabilityESG(): React.JSX.Element {
                 opacity: { duration: 0.5, delay: index * 0.1 },
                 y: { duration: 0.35, ease: "easeOut" }
               }}
-              onPointerEnter={(e) => { if (e.pointerType === 'mouse') setExpandedGoal(sdg.goal) }}
-              onPointerLeave={(e) => { if (e.pointerType === 'mouse') setExpandedGoal(null) }}
-              onClick={() => setExpandedGoal(expandedGoal === sdg.goal ? null : sdg.goal)}
-              className="rounded-lg overflow-hidden shadow-lg hover:shadow-xl hover:-translate-y-1 transition-[translate,box-shadow] duration-300 min-h-[160px] md:min-h-[240px] lg:min-h-[180px] xl:min-h-[240px] capitalize cursor-pointer"
+              onPointerEnter={(event) => {
+                if (event.pointerType === 'mouse') setExpandedGoal(sdg.goal)
+              }}
+              onPointerLeave={(event) => {
+                if (event.pointerType === 'mouse') setExpandedGoal(null)
+              }}
+              className="rounded-lg overflow-hidden shadow-lg hover:shadow-xl hover:-translate-y-1 transition-[translate,box-shadow] duration-300 min-h-[160px] md:min-h-[240px] lg:min-h-[180px] xl:min-h-[240px] capitalize cursor-default"
               style={{ backgroundColor: sdg.bgColor }}
             >
               <div className="p-5 md:p-6 lg:p-4 xl:p-6 h-full flex flex-col text-white">

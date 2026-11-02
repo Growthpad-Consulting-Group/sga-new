@@ -1,6 +1,6 @@
 import SustainabilityHero from './components/SustainabilityHero'
 import SustainabilityIntro from './components/SustainabilityIntro'
-import SustainabilityESGPage from './components/SustainabilityESGPage'
+import SustainabilityESG from '@/components/SustainabilityESG'
 import FloatingWhatsApp from '@/components/FloatingWhatsApp'
 import OurImpactInNumbers from '@/components/OurImpactInNumbers'
 import { Metadata } from 'next'
@@ -23,7 +23,7 @@ export default function SustainabilityPage(): React.JSX.Element {
       </div>
 
       <div className="relative">
-        <SustainabilityESGPage />
+        <SustainabilityESG />
         <SectionSeparator />
       </div>
 

@@ -16,6 +16,7 @@ interface DocumentItem {
     link: string
     year?: string
     coverImageUrl?: string | null
+    previewRotation?: 0 | 90
 }
 
 interface CertificationsAndMembershipsProps {
@@ -61,6 +62,16 @@ export default function CertificationsAndMemberships({ documents }: Certificatio
     const totalPages = Math.ceil(filteredDocuments.length / ITEMS_PER_PAGE)
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE
     const paginatedDocuments = filteredDocuments.slice(startIndex, startIndex + ITEMS_PER_PAGE)
+    const previewDocumentIndex = previewDoc
+        ? filteredDocuments.findIndex((doc) => doc.link === previewDoc.link && doc.country === previewDoc.country)
+        : -1
+
+    const showAdjacentDocument = (direction: -1 | 1) => {
+        if (previewDocumentIndex < 0 || filteredDocuments.length < 2) return
+
+        const nextIndex = (previewDocumentIndex + direction + filteredDocuments.length) % filteredDocuments.length
+        setPreviewDoc(filteredDocuments[nextIndex])
+    }
 
     const handleFilterChange = (filter: Category) => { setActiveCategory(filter); setCurrentPage(1) }
     const handleCountryChange = (country: Country) => { setSelectedCountry(country); setCurrentPage(1) }
@@ -191,6 +202,7 @@ export default function CertificationsAndMemberships({ documents }: Certificatio
                                                 src={doc.coverImageUrl}
                                                 alt={doc.title}
                                                 fill
+                                                sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, (max-width: 1279px) 33vw, 25vw"
                                                 className="object-cover"
                                             />
                                         ) : (
@@ -260,6 +272,14 @@ export default function CertificationsAndMemberships({ documents }: Certificatio
                     onClose={() => setPreviewDoc(null)}
                     title={previewDoc?.title ?? ''}
                     fileUrl={previewDoc?.link ?? ''}
+                    rotation={previewDoc?.previewRotation ?? 0}
+                    onPreviousDocument={() => showAdjacentDocument(-1)}
+                    onNextDocument={() => showAdjacentDocument(1)}
+                    documentPosition={previewDocumentIndex >= 0 ? previewDocumentIndex + 1 : 1}
+                    documentCount={filteredDocuments.length}
+                    category={previewDoc?.category}
+                    country={previewDoc?.country}
+                    year={previewDoc?.year}
                 />
 
                 {/* Pagination — matching news/reports style */}
