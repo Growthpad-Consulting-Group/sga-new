@@ -16,7 +16,7 @@ A production-ready corporate website for SGA Security Group, built with Next.js,
 
 1. **Install Dependencies**
    ```bash
-   pnpm install
+   npm install
    ```
 
 4. **Run Development Server**
@@ -28,16 +28,16 @@ A production-ready corporate website for SGA Security Group, built with Next.js,
 
 ## 📝 Available Scripts
 
-- `pnpm dev` - Start development server
-- `pnpm build` - Build for production
-- `pnpm start` - Start production server
-- `pnpm lint` - Run ESLint
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm start` - Start production server
+- `npm run lint` - Run ESLint
 
 ## 📦 Production Build
 
 ```bash
-pnpm build
-pnpm start
+npm run build
+npm start
 ```
 
 ## 📄 License
