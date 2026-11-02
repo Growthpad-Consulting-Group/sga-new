@@ -139,7 +139,7 @@ export default function OurJourney(): React.JSX.Element {
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary-orange mb-4">
                 Our Journey
               </h2>
-              <p className="text-base md:text-xl text-gray-700">
+              <p className="text-sm xl:text-base text-gray-700">
                 More than five decades of growth, innovation, and trusted security across East Africa.
               </p>
             </div>
@@ -172,7 +172,7 @@ export default function OurJourney(): React.JSX.Element {
             className="relative"
           >
             {/* Timeline Line */}
-            <div className="absolute top-6 left-0 right-0 h-0.5 bg-gray-300 z-0"></div>
+            <div className="absolute top-[15px] left-0 right-0 h-0.5 bg-gray-300 z-0"></div>
 
             {/* Timeline Events */}
             <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4">
@@ -189,17 +189,17 @@ export default function OurJourney(): React.JSX.Element {
 
                   {/* Year */}
                   <div className="ml-0 mt-16">
-                    <h3 className="text-3xl md:text-4xl lg:text-6xl font-bold text-primary-orange mb-4">
+                    <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary-orange mb-4">
                       {event.year}
                     </h3>
 
                     {/* Title */}
-                    <h4 className="text-lg md:text-3xl font-semibold text-dark-charcoal mb-3">
+                    <h4 className="text-lg md:text-3xl lg:text-2xl xl:text-3xl font-semibold text-dark-charcoal mb-3">
                       {event.title}
                     </h4>
 
                     {/* Description */}
-                    <p className="text-sm md:text-xl text-gray-700 leading-relaxed">
+                    <p className="text-sm md:text-xl lg:text-sm xl:text-xl text-gray-700 leading-relaxed">
                       {event.description}
                     </p>
                   </div>

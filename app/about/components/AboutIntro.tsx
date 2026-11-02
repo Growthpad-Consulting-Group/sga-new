@@ -33,12 +33,12 @@ export default function AboutIntro({ imageUrl = '/images/group/about/about-2.png
                 className="absolute -top-6 -left-6 md:-top-10 md:-left-8 w-12 h-12 md:w-12 md:h-12 text-primary-orange z-0"
               />
               <div className="relative z-10">
-                <h2 className="text-xl md:text-6xl font-bold text-primary-orange">
+                <h2 className="text-xl md:text-6xl lg:text-5xl xl:text-6xl font-bold text-primary-orange">
                   Protecting people, businesses, and communities since 1969.
                 </h2>
               </div>
             </div>
-            <p className="text-sm md:text-2xl text-gray-600">
+            <p className="text-sm md:text-2xl lg:text-xl xl:text-2xl text-gray-600">
               SGA Security is the region's leading Security Solutions provider with fixed base operations in East Africa servicing security contracts throughout the continent.
               <br />
               <br />

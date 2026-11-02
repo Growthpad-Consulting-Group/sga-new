@@ -268,7 +268,7 @@ export default function Header() {
 
         {/* Border Bottom */}
         <div className={containerClasses}>
-          <div className={`border-b-2 ${getBorderColor()} transition-all duration-300`}></div>
+          <div className={`border-b-2 lg:border-b ${getBorderColor()} transition-all duration-300`}></div>
         </div>
         </div>
       </div>

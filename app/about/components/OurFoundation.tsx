@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useEnquiryModal } from '@/contexts/EnquiryModalContext'
+import Carousel from '@/components/Carousel'
 
 interface Foundation {
   title: string
@@ -32,6 +33,22 @@ interface OurFoundationProps {
   description?: string
 }
 
+function renderCircle(foundation: Foundation) {
+  return (
+    <div className="relative w-80 h-80 md:w-[400px] md:h-[400px] lg:w-[320px] lg:h-[320px] xl:w-[400px] xl:h-[400px] rounded-full overflow-hidden shadow-xl bg-primary-orange group cursor-pointer">
+      {/* Content */}
+      <div className="absolute inset-0 flex flex-col items-center justify-center p-6 md:p-8 text-center z-10">
+        <h3 className="text-2xl md:text-4xl lg:text-2xl xl:text-4xl font-bold text-white mb-3">
+          {foundation.title}
+        </h3>
+        <p className="text-white/90 text-sm md:text-lg lg:text-sm xl:text-lg leading-relaxed max-w-xs mb-3">
+          {foundation.longDescription}
+        </p>
+      </div>
+    </div>
+  )
+}
+
 export default function OurFoundation({
   title = "Our Foundation",
   description = "Built on the pillars that define who we are and drive our commitment to excellence."
@@ -53,18 +70,28 @@ export default function OurFoundation({
             viewport={{ once: true }}
             className="space-y-3"
           >
-            <p className="text-5xl font-bold text-primary-orange capitalize">
+            <p className="text-5xl lg:text-4xl xl:text-5xl font-bold text-primary-orange capitalize">
               our foundation
             </p>
             <div className="section-title-container">
-              <h3 className="section-title text-xl md:text-xl font-normal text-dark-charcoal">
+              <h3 className="section-title text-sm xl:text-base font-normal text-dark-charcoal">
                 Guided by purpose, driven by values.
               </h3>
             </div>
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-8 lg:gap-12 justify-items-center">
+        <div className="lg:hidden">
+          <Carousel
+            items={foundations}
+            itemsPerPage={1}
+            gridCols="grid-cols-1 justify-items-center"
+            loop
+            renderItem={(foundation: Foundation) => renderCircle(foundation)}
+          />
+        </div>
+
+        <div className="hidden lg:grid lg:grid-cols-3 gap-12 md:gap-8 lg:gap-12 justify-items-center">
           {foundations.map((foundation, index) => (
             <motion.div
               key={index}
@@ -72,20 +99,9 @@ export default function OurFoundation({
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ scale: 1.05, y: -8 }}
-              className="flex flex-col items-center w-full max-w-sm"
+              className="flex flex-col items-center w-full max-w-sm transition-transform duration-300 hover:-translate-y-0.5"
             >
-              <div className="relative w-72 h-72 sm:w-80 sm:h-80 md:w-72 md:h-72 lg:w-96 lg:h-96 rounded-full overflow-hidden shadow-xl bg-primary-orange group cursor-pointer">
-                {/* Content */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center p-6 md:p-8 text-center z-10">
-                  <h3 className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-bold text-white mb-3 md:mb-4">
-                    {foundation.title}
-                  </h3>
-                  <p className="text-white text-sm sm:text-base md:text-base lg:text-lg leading-relaxed px-2">
-                    {foundation.longDescription}
-                  </p>
-                </div>
-              </div>
+              {renderCircle(foundation)}
             </motion.div>
           ))}
         </div>

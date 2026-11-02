@@ -284,7 +284,7 @@ export default function NewsReportsCards({ providedCountry, initialNewsItems }: 
               <button
                 onClick={() => goToPage(currentPage - 1)}
                 disabled={currentPage === 1}
-                className={`px-6 py-3 rounded-full border transition-colors flex items-center gap-2 text-md font-medium uppercase ${currentPage === 1
+                className={`px-3 py-1.5 xl:px-6 xl:py-3 rounded-full border transition-colors flex items-center gap-2 text-xs xl:text-base font-medium uppercase ${currentPage === 1
                   ? 'opacity-50 cursor-not-allowed text-gray-400 border-gray-300'
                   : 'border-dark-charcoal text-dark-charcoal hover:border-primary-orange hover:text-primary-orange'
                   }`}
@@ -318,7 +318,7 @@ export default function NewsReportsCards({ providedCountry, initialNewsItems }: 
                     <button
                       key={page}
                       onClick={() => goToPage(page)}
-                      className={`w-12 h-12 rounded-full border text-md font-medium transition-colors ${currentPage === page
+                      className={`w-8 h-8 xl:w-12 xl:h-12 rounded-full border text-xs xl:text-base font-medium transition-colors ${currentPage === page
                         ? 'bg-primary-orange text-white border-primary-orange'
                         : 'border-dark-charcoal text-dark-charcoal hover:border-primary-orange hover:text-primary-orange'
                         }`}
@@ -333,7 +333,7 @@ export default function NewsReportsCards({ providedCountry, initialNewsItems }: 
               <button
                 onClick={() => goToPage(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                className={`px-6 py-3 rounded-full border transition-colors flex items-center gap-2 text-md font-medium uppercase ${currentPage === totalPages
+                className={`px-3 py-1.5 xl:px-6 xl:py-3 rounded-full border transition-colors flex items-center gap-2 text-xs xl:text-base font-medium uppercase ${currentPage === totalPages
                   ? 'opacity-50 cursor-not-allowed text-gray-400 border-gray-300'
                   : 'border-dark-charcoal text-dark-charcoal hover:border-primary-orange hover:text-primary-orange'
                   }`}

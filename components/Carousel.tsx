@@ -11,6 +11,8 @@ interface CarouselProps {
   showDots?: boolean
   className?: string
   gridCols?: string
+  controlsPosition?: 'top' | 'bottom'
+  loop?: boolean
   onPageChange?: (page: number) => void
 }
 
@@ -66,9 +68,11 @@ export default function Carousel({
   showDots = true,
   className = '',
   gridCols = 'md:grid-cols-3',
+  controlsPosition = 'bottom',
+  loop = false,
   onPageChange,
 }: CarouselProps) {
-  const carousel = useCarousel(items.length, itemsPerPage)
+  const carousel = useCarousel(items.length, itemsPerPage, loop)
 
   const handlePageChange = (page: number) => {
     carousel.goToPage(page)
@@ -76,14 +80,14 @@ export default function Carousel({
   }
 
   return (
-    <div className={className}>
+    <div className={`flex flex-col ${className}`}>
       {/* Items Grid */}
       <div className={`grid ${gridCols} gap-6 md:gap-8`}>
         {carousel.currentItems(items).map((item, index) => renderItem(item, index))}
       </div>
 
       {/* Bottom Controls */}
-      <div className="mt-8 flex items-center justify-center gap-8">
+      <div className={`flex flex-col items-center justify-center gap-4 ${controlsPosition === 'top' ? 'order-first mb-6' : 'mt-4'}`}>
         {/* Arrows */}
         {showArrows && (
           <CarouselArrows

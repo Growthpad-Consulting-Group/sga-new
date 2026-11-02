@@ -7,6 +7,7 @@ import {
   featuredNewsPostsQuery,
   categoriesQuery,
   certificateDocumentsQuery,
+  jobPostingsQuery,
 } from '@/sanity/lib/queries'
 
 export interface NewsPost {
@@ -51,6 +52,20 @@ export interface CertificateDocument {
   coverImage?: any
 }
 
+export interface JobPosting {
+  _id: string
+  title: string
+  country: 'Kenya' | 'Uganda' | 'Tanzania'
+  city: string
+  department: string
+  employmentType: string
+  summary: string
+  responsibilities?: string[]
+  requirements?: string[]
+  publishedAt: string
+  applicationDeadline?: string
+}
+
 // Fetch all news posts
 export async function getAllNewsPosts(): Promise<NewsPost[]> {
   return await client.fetch(newsPostsQuery)
@@ -84,4 +99,9 @@ export async function getAllCategories(): Promise<Category[]> {
 // Fetch all certificate/license/membership documents
 export async function getAllCertificateDocuments(): Promise<CertificateDocument[]> {
   return await client.fetch(certificateDocumentsQuery)
+}
+
+// Fetch all roles marked open for applications
+export async function getAllJobPostings(): Promise<JobPosting[]> {
+  return await client.fetch(jobPostingsQuery)
 }

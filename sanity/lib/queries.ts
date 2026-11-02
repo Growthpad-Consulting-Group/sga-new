@@ -106,3 +106,20 @@ export const certificateDocumentsQuery = groq`
     coverImage
   }
 `
+
+// Get all job postings currently open for applications
+export const jobPostingsQuery = groq`
+  *[_type == "jobPosting" && isActive == true] | order(publishedAt desc) {
+    _id,
+    title,
+    country,
+    city,
+    department,
+    employmentType,
+    summary,
+    responsibilities,
+    requirements,
+    publishedAt,
+    applicationDeadline
+  }
+`

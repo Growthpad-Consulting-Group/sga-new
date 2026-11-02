@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import Image from 'next/image'
@@ -24,16 +24,6 @@ interface CertificationsAndMembershipsProps {
 
 const ITEMS_PER_PAGE = 12
 
-// Shuffle array to randomize display order
-const shuffleArray = <T,>(array: T[]): T[] => {
-    const shuffled = [...array]
-    for (let i = shuffled.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
-    }
-    return shuffled
-}
-
 const getCategoryIcon = (category: string) => {
     switch (category) {
         case 'CERTIFICATION': return 'solar:medal-ribbon-broken'
@@ -50,16 +40,15 @@ export default function CertificationsAndMemberships({ documents }: Certificatio
     const [searchQuery, setSearchQuery] = useState('')
     const [currentPage, setCurrentPage] = useState(1)
     const [previewDoc, setPreviewDoc] = useState<DocumentItem | null>(null)
-    // Start with the server-rendered order so hydration matches, then
-    // shuffle client-side only (avoids a random order on the server and a
-    // different random order on the client causing a hydration mismatch).
-    const [randomizedDocuments, setRandomizedDocuments] = useState(documents)
-    useEffect(() => {
-        setRandomizedDocuments(shuffleArray(documents))
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    const prioritizedDocuments = [...documents].sort((a, b) => {
+        const aIsIso18788 = a.title.includes('18788')
+        const bIsIso18788 = b.title.includes('18788')
 
-    const filteredDocuments = randomizedDocuments.filter((doc) => {
+        if (aIsIso18788 === bIsIso18788) return 0
+        return aIsIso18788 ? -1 : 1
+    })
+
+    const filteredDocuments = prioritizedDocuments.filter((doc) => {
         const matchCategory = activeCategory === 'ALL' || doc.category === activeCategory
         const matchCountry = selectedCountry === 'All Country' || doc.country === selectedCountry
         const matchSearch = !searchQuery ||
@@ -286,7 +275,7 @@ export default function CertificationsAndMemberships({ documents }: Certificatio
                             <button
                                 onClick={() => goToPage(currentPage - 1)}
                                 disabled={currentPage === 1}
-                                className={`px-6 py-3 rounded-full border transition-colors flex items-center gap-2 text-md font-medium uppercase ${currentPage === 1
+                                className={`px-3 py-1.5 xl:px-6 xl:py-3 rounded-full border transition-colors flex items-center gap-2 text-xs xl:text-base font-medium uppercase ${currentPage === 1
                                     ? 'opacity-50 cursor-not-allowed text-gray-400 border-gray-300'
                                     : 'border-dark-charcoal text-dark-charcoal hover:border-primary-orange hover:text-primary-orange'
                                     }`}
@@ -314,7 +303,7 @@ export default function CertificationsAndMemberships({ documents }: Certificatio
                                         <button
                                             key={page}
                                             onClick={() => goToPage(page)}
-                                            className={`w-12 h-12 rounded-full border text-md font-medium transition-colors ${currentPage === page
+                                            className={`w-8 h-8 xl:w-12 xl:h-12 rounded-full border text-xs xl:text-base font-medium transition-colors ${currentPage === page
                                                 ? 'bg-primary-orange text-white border-primary-orange'
                                                 : 'border-dark-charcoal text-dark-charcoal hover:border-primary-orange hover:text-primary-orange'
                                                 }`}
@@ -329,7 +318,7 @@ export default function CertificationsAndMemberships({ documents }: Certificatio
                             <button
                                 onClick={() => goToPage(currentPage + 1)}
                                 disabled={currentPage === totalPages}
-                                className={`px-6 py-3 rounded-full border transition-colors flex items-center gap-2 text-md font-medium uppercase ${currentPage === totalPages
+                                className={`px-3 py-1.5 xl:px-6 xl:py-3 rounded-full border transition-colors flex items-center gap-2 text-xs xl:text-base font-medium uppercase ${currentPage === totalPages
                                     ? 'opacity-50 cursor-not-allowed text-gray-400 border-gray-300'
                                     : 'border-dark-charcoal text-dark-charcoal hover:border-primary-orange hover:text-primary-orange'
                                     }`}

@@ -6,105 +6,52 @@ import { Icon } from '@iconify/react'
 import JobDetailsModal from './JobDetailsModal'
 import JobApplicationModal from './JobApplicationModal'
 
-const newsItems = [
-  {
-    location: 'Nairobi, Kenya',
-    title: 'Security Supervisor',
-    jobtype: 'Guarding Operations • Full-Time',
-    summary: 'Oversee site operations, manage guard teams, and ensure service excellence at assigned client locations.',
-    date: 'March 15, 2024',
-  },
-  {
-    location: 'Dar es Salaam, Tanzania',
-    title: 'CCTV / Control Room Operator',
-    jobtype: 'Control Room • Shift-Based',
-    summary: 'Monitor CCTV feeds, escalate incidents, and maintain accurate control-room logs to support rapid response.',
-    date: 'March 15, 2024',
-  },
-  {
-    location: 'Nairobi, Kenya',
-    title: 'HR Officer',
-    jobtype: 'Guarding Operations • Full-Time',
-    summary: 'Support recruitment, employee relations, and HR compliance while ensuring an excellent employee experience.',
-    date: 'March 15, 2024',
-  },
-  {
-    location: 'Nairobi, Kenya',
-    title: 'Security Supervisor',
-    jobtype: 'Guarding Operations • Full-Time',
-    summary: 'Oversee site operations, manage guard teams, and ensure service excellence at assigned client locations.',
-    date: 'March 15, 2024',
-  },
-  {
-    location: 'Nairobi, Kenya',
-    title: 'Security Supervisor',
-    jobtype: 'Guarding Operations • Full-Time',
-    summary: 'Oversee site operations, manage guard teams, and ensure service excellence at assigned client locations.',
-    date: 'March 15, 2024',
-  },
-  {
-    location: 'Nairobi, Kenya',
-    title: 'Security Supervisor',
-    jobtype: 'Guarding Operations • Full-Time',
-    summary: 'Oversee site operations, manage guard teams, and ensure service excellence at assigned client locations.',
-    date: 'March 15, 2024',
-  },
-  {
-    location: 'Nairobi, Kenya',
-    title: 'Security Supervisor',
-    jobtype: 'Guarding Operations • Full-Time',
-    summary: 'Oversee site operations, manage guard teams, and ensure service excellence at assigned client locations.',
-    date: 'March 15, 2024',
-  },
-]
+export interface JobItem {
+  _id: string
+  location: string
+  country: string
+  city: string
+  department: string
+  title: string
+  jobtype: string
+  summary: string
+  date: string
+  responsibilities?: string[]
+  requirements?: string[]
+  applicationDeadline?: string
+}
+
+interface JobCardsProps {
+  jobs: JobItem[]
+}
 
 const ITEMS_PER_PAGE = 6
 
-export default function JobCards() {
+export default function JobCards({ jobs }: JobCardsProps) {
   const [activeFilter, setActiveFilter] = useState('ALL COUNTRIES')
-  const [selectedCity, setSelectedCity] = useState('ALL CITIES')
   const [selectedDepartment, setSelectedDepartment] = useState('ALL DEPARTMENTS')
   const [searchQuery, setSearchQuery] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
-  const [selectedJob, setSelectedJob] = useState(null)
+  const [selectedJob, setSelectedJob] = useState<JobItem | null>(null)
   const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false)
   const [isApplicationModalOpen, setIsApplicationModalOpen] = useState(false)
 
-  // Extract unique cities and departments from data
-  const uniqueCities = ['ALL CITIES', ...Array.from(new Set(newsItems.map(item => {
-    const city = item.location.split(',').shift()?.trim()
-    return city
-  }))).filter(Boolean).sort()]
-
-  const uniqueDepartments = ['ALL DEPARTMENTS', ...Array.from(new Set(newsItems.map(item => {
-    const department = item.jobtype.split('•').shift()?.trim()
-    return department
-  }))).filter(Boolean).sort()]
+  const uniqueDepartments = ['ALL DEPARTMENTS', ...Array.from(new Set(jobs.map(item => item.department))).sort()]
 
   const filteredItems = (() => {
-    let filtered = newsItems
+    let filtered = jobs
 
     // Filter by country
     if (activeFilter !== 'ALL COUNTRIES') {
       filtered = filtered.filter(item => {
-        const country = item.location.split(',').pop()?.trim().toUpperCase()
-        return country === activeFilter
-      })
-    }
-
-    // Filter by city/branch
-    if (selectedCity !== 'ALL CITIES') {
-      filtered = filtered.filter(item => {
-        const city = item.location.split(',').shift()?.trim()
-        return city === selectedCity
+        return item.country.toUpperCase() === activeFilter
       })
     }
 
     // Filter by department
     if (selectedDepartment !== 'ALL DEPARTMENTS') {
       filtered = filtered.filter(item => {
-        const department = item.jobtype.split('•').shift()?.trim()
-        return department === selectedDepartment
+        return item.department === selectedDepartment
       })
     }
 
@@ -134,11 +81,6 @@ export default function JobCards() {
     setCurrentPage(1)
   }
 
-  const handleCityChange = (city: string) => {
-    setSelectedCity(city)
-    setCurrentPage(1)
-  }
-
   const handleDepartmentChange = (department: string) => {
     setSelectedDepartment(department)
     setCurrentPage(1)
@@ -154,12 +96,12 @@ export default function JobCards() {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
-  const handleViewDetails = (job: any) => {
+  const handleViewDetails = (job: JobItem) => {
     setSelectedJob(job)
     setIsDetailsModalOpen(true)
   }
 
-  const handleApply = (job: any) => {
+  const handleApply = (job: JobItem) => {
     setSelectedJob(job)
     setIsApplicationModalOpen(true)
   }
@@ -201,62 +143,11 @@ export default function JobCards() {
           className="mb-12"
         >
           {/* Search and Filter Section */}
-          <div className="mb-8 space-y-4">
-            {/* City/Branch and Department Dropdowns */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              {/* City/Branch Dropdown */}
-              <div className="relative flex-1 sm:flex-initial sm:w-64">
-                <label className="block text-xs font-semibold text-dark-charcoal mb-2 uppercase">
-                  City/Branch
-                </label>
-                <div className="relative">
-                  <select
-                    value={selectedCity}
-                    onChange={(e) => handleCityChange(e.target.value)}
-                    className="w-full pl-4 pr-10 py-2 border border-gray-300 rounded-full text-sm focus:outline-hidden focus:border-primary-orange appearance-none bg-white text-dark-charcoal cursor-pointer"
-                  >
-                    {uniqueCities.map((city) => (
-                      <option key={city} value={city}>
-                        {city}
-                      </option>
-                    ))}
-                  </select>
-                  <Icon
-                    icon="mdi:chevron-down"
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"
-                  />
-                </div>
-              </div>
-
-              {/* Department Dropdown */}
-              <div className="relative flex-1 sm:flex-initial sm:w-64">
-                <label className="block text-xs font-semibold text-dark-charcoal mb-2 uppercase">
-                  Department
-                </label>
-                <div className="relative">
-                  <select
-                    value={selectedDepartment}
-                    onChange={(e) => handleDepartmentChange(e.target.value)}
-                    className="w-full pl-4 pr-10 py-2 border border-gray-300 rounded-full text-sm focus:outline-hidden focus:border-primary-orange appearance-none bg-white text-dark-charcoal cursor-pointer"
-                  >
-                    {uniqueDepartments.map((dept) => (
-                      <option key={dept} value={dept}>
-                        {dept}
-                      </option>
-                    ))}
-                  </select>
-                  <Icon
-                    icon="mdi:chevron-down"
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* Country Filter Buttons and Search */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div className="mb-8">
+            {/* Country, department and search filters */}
+            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
               {/* Filter Buttons */}
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 lg:pb-px">
                 {['ALL COUNTRIES', 'KENYA', 'TANZANIA', 'UGANDA'].map((filter) => (
                   <button
                     key={filter}
@@ -271,27 +162,56 @@ export default function JobCards() {
                 ))}
               </div>
 
-              {/* Search Input */}
-              <div className="relative w-full sm:w-auto">
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => handleSearchChange(e.target.value)}
-                  placeholder="e.g. Security Guard, Driver, etc..."
-                  className="pl-10 pr-4 py-2 border border-gray-300 rounded-full text-sm focus:outline-hidden focus:border-primary-orange w-full sm:w-64"
-                />
-                <Icon
-                  icon="mdi:magnify"
-                  className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"
-                />
-                {searchQuery && (
-                  <button
-                    onClick={() => handleSearchChange('')}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-primary-orange"
-                  >
-                    <Icon icon="mdi:close" className="w-4 h-4" />
-                  </button>
-                )}
+              <div className="flex flex-col sm:flex-row sm:items-end gap-4 w-full lg:w-auto">
+                {/* Department Dropdown */}
+                <div className="relative w-full sm:w-64">
+                  <div className="relative">
+                    <select
+                      aria-label="Filter jobs by department"
+                      value={selectedDepartment}
+                      onChange={(e) => handleDepartmentChange(e.target.value)}
+                      className="w-full pl-4 pr-10 py-2 border border-gray-300 rounded-full text-sm focus:outline-hidden focus:border-primary-orange appearance-none bg-white text-dark-charcoal cursor-pointer"
+                    >
+                      {uniqueDepartments.map((dept) => (
+                        <option key={dept} value={dept}>
+                          {dept}
+                        </option>
+                      ))}
+                    </select>
+                    <Icon
+                      icon="mdi:chevron-down"
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"
+                    />
+                  </div>
+                </div>
+
+                {/* Search Input */}
+                <div className="relative w-full sm:w-72">
+                  <div className="relative">
+                    <input
+                      id="career-search"
+                      aria-label="Search open positions"
+                      type="text"
+                      value={searchQuery}
+                      onChange={(e) => handleSearchChange(e.target.value)}
+                      placeholder="e.g. Security Guard, Driver, etc..."
+                      className="pl-10 pr-9 py-2 border border-gray-300 rounded-full text-sm focus:outline-hidden focus:border-primary-orange w-full"
+                    />
+                    <Icon
+                      icon="mdi:magnify"
+                      className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"
+                    />
+                    {searchQuery && (
+                      <button
+                        onClick={() => handleSearchChange('')}
+                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-primary-orange"
+                        aria-label="Clear job search"
+                      >
+                        <Icon icon="mdi:close" className="w-4 h-4" />
+                      </button>
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -308,8 +228,12 @@ export default function JobCards() {
           {filteredItems.length === 0 && (
             <div className="text-center py-12">
               <Icon icon="mdi:file-search-outline" className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-              <p className="text-gray-600 text-lg mb-2">No results found</p>
-              <p className="text-gray-500 text-sm">Try adjusting your search or filter criteria</p>
+              <p className="text-gray-600 text-lg mb-2">
+                {jobs.length === 0 ? 'No open positions at the moment' : 'No results found'}
+              </p>
+              <p className="text-gray-500 text-sm">
+                {jobs.length === 0 ? 'Please check back soon for new opportunities.' : 'Try adjusting your search or filter criteria'}
+              </p>
             </div>
           )}
         </motion.div>
@@ -319,7 +243,7 @@ export default function JobCards() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {paginatedItems.map((item, index) => (
               <motion.div
-                key={index}
+                key={item._id}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}

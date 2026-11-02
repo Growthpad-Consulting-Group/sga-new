@@ -19,15 +19,36 @@ export const metadata: Metadata = {
 // periodically so content updates land within a minute.
 export const revalidate = 60
 
+const rotatedCertificateCovers = new Set([
+  'Kenya:KSIA 2023',
+  'Kenya:KASA 2023',
+  'Kenya:PSRA',
+  'Tanzania:LATRA',
+  'Tanzania:TSIA',
+  'Tanzania:ICoCA',
+  'Uganda:ICoCA',
+])
+
 export default async function AboutPage(): Promise<React.JSX.Element> {
-  const certificateDocuments = (await getAllCertificateDocuments()).map((doc) => ({
-    title: doc.title,
-    category: doc.category,
-    country: doc.country,
-    link: doc.fileUrl,
-    year: doc.year,
-    coverImageUrl: doc.coverImage ? urlFor(doc.coverImage).width(600).height(400).url() : null,
-  }))
+  const certificateDocuments = (await getAllCertificateDocuments()).map((doc) => {
+    const coverNeedsRotation = rotatedCertificateCovers.has(`${doc.country}:${doc.title}`)
+    const coverBuilder = doc.coverImage ? urlFor(doc.coverImage) : null
+
+    return {
+      title: doc.title,
+      category: doc.category,
+      country: doc.country,
+      link: doc.fileUrl,
+      year: doc.year,
+      coverImageUrl: coverBuilder
+        ? (coverNeedsRotation ? coverBuilder.ignoreImageParams().orientation(90) : coverBuilder)
+          .width(600)
+          .height(400)
+          .fit('crop')
+          .url()
+        : null,
+    }
+  })
 
   return (
     <>
