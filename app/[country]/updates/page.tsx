@@ -11,6 +11,11 @@ interface Props {
     params: Promise<{ country: string }>
 }
 
+const updatesHeroImages: Record<string, string> = {
+    ke: '/images/ke/updates-hero-spa2435.jpg',
+    tz: '/images/tz/updates-hero-spa0109.jpg',
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { country } = await params
     const c = countries[country]
@@ -36,7 +41,7 @@ export default async function UpdatesPage({ params }: Props) {
     return (
         <>
             <UpdatesHero
-                imageUrl={country === 'ke' ? '/images/ke/updates-hero-spa2435.jpg' : '/images/contact/hero.png'}
+                imageUrl={updatesHeroImages[country] || '/images/contact/hero.png'}
             />
             <NewsReportsCards providedCountry={c.name} initialNewsItems={newsPosts} />
             <FloatingWhatsApp

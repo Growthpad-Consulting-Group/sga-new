@@ -28,7 +28,7 @@ export default function ContactInfo({ providedCountry }: ContactInfoProps): Reac
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-8"
+          className={providedCountry ? '' : 'mb-8'}
         >
           {!providedCountry && (
             <div className="section-title-container">
@@ -37,15 +37,15 @@ export default function ContactInfo({ providedCountry }: ContactInfoProps): Reac
               </h2>
             </div>
           )}
-          <p className="text-sm md:text-lg text-gray-700 leading-relaxed max-w-4xl">
-            {providedCountry
-              ? `Direct lines and offices for SGA Security ${providedCountry}.`
-              : 'Direct lines and offices for each country. You can also visit the country website for more local information.'}
-          </p>
+          {!providedCountry && (
+            <p className="text-sm md:text-lg text-gray-700 leading-relaxed max-w-4xl">
+              Direct lines and offices for each country. You can also visit the country website for more local information.
+            </p>
+          )}
         </motion.div>
 
         {/* Contact Content Area */}
-        <div className={`mt-8 ${providedCountry ? 'grid lg:grid-cols-3 gap-8 items-stretch' : 'grid md:grid-cols-3 gap-6 md:gap-8'}`}>
+        <div className={`${providedCountry ? 'mt-0' : 'mt-8'} ${providedCountry ? 'grid lg:grid-cols-3 gap-8 items-stretch' : 'grid md:grid-cols-3 gap-6 md:gap-8'}`}>
           {/* Contact Cards */}
           <div className={providedCountry ? 'lg:col-span-1 space-y-6' : 'contents'}>
             {filteredOffices.map((office, index) => (

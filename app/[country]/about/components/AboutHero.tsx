@@ -8,6 +8,13 @@ interface AboutHeroProps {
     imageUrl?: string
 }
 
+// Years of operation per country
+const yearsByCountry: Record<string, number> = {
+    Kenya: 55,
+    Uganda: 42,
+    Tanzania: 40,
+}
+
 export default function AboutHero({
     countryName,
     imageUrl = '/images/group/about/hero.png'
@@ -28,7 +35,7 @@ export default function AboutHero({
                         <span className="text-primary-orange">Security That Matters</span>
                     </h1>
                     <p className="text-sm md:text-base lg:text-sm xl:text-base text-gray-700 ">
-                        Over 55 years of trusted, integrated security for homes, businesses, and institutions across {countryName}.
+                        Over {yearsByCountry[countryName] ?? 55} years of trusted, integrated security for homes, businesses, and institutions across {countryName}.
                     </p>
                 </motion.div>
             </div>
