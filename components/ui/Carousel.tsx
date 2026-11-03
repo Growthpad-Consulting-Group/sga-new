@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, ReactNode, useEffect, useRef, Fragment } from 'react'
+import type { CSSProperties, TransitionEvent } from 'react'
 import { Icon } from '@iconify/react'
 
 interface CarouselProps {
@@ -61,6 +62,86 @@ export function useCarousel(totalItems: number, itemsPerPage: number = 3, loop: 
   }
 }
 
+export function useInfiniteCarousel(
+  totalItems: number,
+  itemsPerView: number,
+  autoplay = 5000,
+) {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [isResetting, setIsResetting] = useState(false)
+  const [isTransitioning, setIsTransitioning] = useState(false)
+  const canMove = totalItems > itemsPerView
+
+  const next = () => {
+    if (!canMove || isResetting || isTransitioning) return
+    setIsTransitioning(true)
+    setCurrentIndex((index) => Math.min(index + 1, totalItems))
+  }
+
+  const previous = () => {
+    if (!canMove || isResetting || isTransitioning) return
+
+    if (currentIndex > 0) {
+      setIsTransitioning(true)
+      setCurrentIndex((index) => index - 1)
+      return
+    }
+
+    setIsResetting(true)
+    setCurrentIndex(totalItems)
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        setIsResetting(false)
+        setIsTransitioning(true)
+        setCurrentIndex(totalItems - 1)
+      })
+    })
+  }
+
+  useEffect(() => {
+    if (!canMove || !autoplay || isResetting || isTransitioning) return
+
+    const autoplayId = window.setInterval(() => {
+      setIsTransitioning(true)
+      setCurrentIndex((index) => Math.min(index + 1, totalItems))
+    }, autoplay)
+
+    return () => window.clearInterval(autoplayId)
+  }, [autoplay, canMove, currentIndex, isResetting, isTransitioning, totalItems])
+
+  const handleTransitionEnd = (event: TransitionEvent<HTMLDivElement>) => {
+    if (event.target !== event.currentTarget) return
+
+    if (currentIndex !== totalItems) {
+      setIsTransitioning(false)
+      return
+    }
+
+    setIsResetting(true)
+    setIsTransitioning(false)
+    setCurrentIndex(0)
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => setIsResetting(false))
+    })
+  }
+
+  const trackStyle: CSSProperties = {
+    transform: `translate3d(-${currentIndex * (100 / itemsPerView)}%, 0, 0)`,
+    transition: isResetting
+      ? 'none'
+      : 'transform 650ms cubic-bezier(0.22, 1, 0.36, 1)',
+    willChange: 'transform',
+  }
+
+  return {
+    canMove,
+    handleTransitionEnd,
+    next,
+    previous,
+    trackStyle,
+  }
+}
+
 export default function Carousel({
   items,
   itemsPerPage = 3,
@@ -86,8 +167,8 @@ export default function Carousel({
     return () => clearInterval(id)
   }, [autoplay, paused, carousel.currentPage])
 
-  // Swipe left/right to change page
-  const touchStartX = useRef<number | null>(null)
+  // Drag or swipe left/right to change page
+  const startX = useRef<number | null>(null)
 
   const handlePageChange = (page: number) => {
     carousel.goToPage(page)
@@ -115,18 +196,18 @@ export default function Carousel({
     <div className={`flex flex-col ${className}`}>
       {/* Items Grid */}
       <div
-        className={`grid ${gridCols} gap-6 md:gap-8`}
+        className={`grid ${gridCols} gap-6 md:gap-8 select-none cursor-grab active:cursor-grabbing`}
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
-        onTouchStart={(e) => {
+        onPointerDown={(e) => {
           setPaused(true)
-          touchStartX.current = e.touches[0].clientX
+          startX.current = e.clientX
         }}
-        onTouchEnd={(e) => {
+        onPointerUp={(e) => {
           setPaused(false)
-          if (touchStartX.current === null) return
-          const dx = e.changedTouches[0].clientX - touchStartX.current
-          touchStartX.current = null
+          if (startX.current === null) return
+          const dx = e.clientX - startX.current
+          startX.current = null
           if (dx < -40) carousel.nextPage()
           else if (dx > 40) carousel.prevPage()
         }}

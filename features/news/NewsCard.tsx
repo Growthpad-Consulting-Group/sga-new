@@ -66,9 +66,19 @@ export default function NewsCard({ item, index = 0 }: NewsCardProps) {
       </Link>
 
       <div className="flex flex-1 flex-col bg-primary-orange p-6 text-white">
-        <p className="mb-2 text-sm font-normal uppercase tracking-wider text-white xl:text-xs">
-          {item.category || 'Blog'}{date && ` • ${date}`}
-        </p>
+        <div className="mb-4 flex flex-wrap items-center gap-2">
+          <span className="rounded-full bg-white px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-primary-orange xl:text-xs">
+            {item.category || 'Blog'}
+          </span>
+          {date && (
+            <time
+              dateTime={item.publishedAt || item.date}
+              className="rounded-full border border-white/60 bg-white/10 px-3 py-1 text-[11px] font-medium uppercase tracking-wide text-white backdrop-blur-sm xl:text-xs"
+            >
+              {date}
+            </time>
+          )}
+        </div>
 
         <Link href={href}>
           <h3 className="mb-3 line-clamp-2 text-lg font-bold text-white transition-opacity hover:opacity-80 md:text-3xl lg:text-xl xl:text-[22px]">

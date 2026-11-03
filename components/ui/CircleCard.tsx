@@ -6,13 +6,14 @@ interface CircleCardProps {
   imageUrl: string
   description?: string
   href?: string
+  withShadow?: boolean
 }
 
 // Circle card with image, dark overlay and text, as used in "Our Products and Services"
-export default function CircleCard({ title, imageUrl, description, href }: CircleCardProps) {
+export default function CircleCard({ title, imageUrl, description, href, withShadow = true }: CircleCardProps) {
   return (
     <div className="flex flex-col items-center transition-transform duration-300 hover:-translate-y-0.5">
-      <div className={`relative w-80 h-80 md:w-[400px] md:h-[400px] lg:w-[320px] lg:h-[320px] xl:w-[400px] xl:h-[400px] rounded-full overflow-hidden shadow-2xl group ${href ? 'cursor-pointer' : ''}`}>
+      <div className={`relative w-80 h-80 md:w-[400px] md:h-[400px] lg:w-[320px] lg:h-[320px] xl:w-[400px] xl:h-[400px] rounded-full overflow-hidden group ${withShadow ? 'shadow-2xl' : ''} ${href ? 'cursor-pointer' : ''}`}>
         {/* Background Image */}
         <Image
           src={imageUrl}

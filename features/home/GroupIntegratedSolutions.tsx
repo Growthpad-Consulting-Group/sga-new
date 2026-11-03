@@ -1,13 +1,11 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Image from 'next/image'
-import { Icon } from '@iconify/react'
 import { useEnquiryModal } from '@/contexts/EnquiryModalContext'
-import Carousel, { useCarousel, CarouselArrows } from '@/components/ui/Carousel'
+import { CarouselArrows, useInfiniteCarousel } from '@/components/ui/Carousel'
 import Button from '@/components/ui/Button'
 import CircleCard from '@/components/ui/CircleCard'
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { coreServices, type CoreService } from '@/data/coreServices'
 
 type Solution = CoreService
@@ -24,27 +22,25 @@ export default function GroupIntegratedSolutions({
 }: GroupIntegratedSolutionsProps & { solutions?: Solution[] }) {
   const { openModal } = useEnquiryModal()
   const [itemsPerPage, setItemsPerPage] = useState(3)
+  const [isHovered, setIsHovered] = useState(false)
 
   useEffect(() => {
-    const handleResize = () => {
-      setItemsPerPage(window.innerWidth < 768 ? 1 : 3)
-    }
+    const handleResize = () => setItemsPerPage(window.innerWidth < 768 ? 1 : 3)
     handleResize()
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  const carousel = useCarousel(solutions.length, itemsPerPage, true)
-
-  const renderSolution = (solution: Solution, index: number) => (
-    <CircleCard
-      key={index}
-      title={solution.title}
-      description={solution.description}
-      imageUrl={solution.imageUrl}
-      href={solution.href}
-    />
+  const infiniteCarousel = useInfiniteCarousel(
+    solutions.length,
+    itemsPerPage,
+    isHovered ? 0 : 5000,
   )
+
+  const loopedSolutions = [
+    ...solutions,
+    ...solutions.slice(0, Math.min(itemsPerPage, solutions.length)),
+  ]
 
   return (
     <section id="integrated-solutions" className="flex items-center justify-center bg-gray-200/90 relative min-h-[85vh] py-12 md:py-16">
@@ -67,42 +63,48 @@ export default function GroupIntegratedSolutions({
                 {title}
               </h3>
               <CarouselArrows
-                onPrev={carousel.prevPage}
-                onNext={carousel.nextPage}
-                canGoPrev={carousel.canGoPrev}
-                canGoNext={carousel.canGoNext}
+                onPrev={infiniteCarousel.previous}
+                onNext={infiniteCarousel.next}
+                canGoPrev={infiniteCarousel.canMove}
+                canGoNext={infiniteCarousel.canMove}
                 className="mb-1"
               />
             </div>
           </motion.div>
         </div>
 
-        <motion.div
-          key={`${carousel.currentPage}-${itemsPerPage}`}
-          initial={{ opacity: 0.35, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.25, ease: 'easeOut' }}
-          className="grid md:grid-cols-3 gap-8 md:gap-12"
+        <div
+          className="relative overflow-hidden py-2"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
         >
-          {carousel.currentItems(solutions).map((solution, index) => renderSolution(solution, index))}
-        </motion.div>
+          <div
+            className="flex w-full"
+            style={infiniteCarousel.trackStyle}
+            onTransitionEnd={infiniteCarousel.handleTransitionEnd}
+          >
+            {loopedSolutions.map((solution, index) => {
+              const isClone = index >= solutions.length
 
-        {/* Page Indicator */}
-        {carousel.totalPages > 1 && (
-          <div className="flex justify-center items-center gap-2 mt-8">
-            {Array.from({ length: carousel.totalPages }, (_, i) => (
-              <button
-                key={i}
-                onClick={() => carousel.goToPage(i + 1)}
-                className={`rounded-full transition-all duration-300 ${carousel.currentPage === i + 1
-                    ? 'bg-primary-orange w-8 h-2'
-                    : 'bg-dark-charcoal/30 w-2 h-2'
-                  }`}
-                aria-label={`Go to page ${i + 1}`}
-              />
-            ))}
+              return (
+                <div
+                  key={`${solution.title}-${index}`}
+                  className="flex shrink-0 justify-center px-4 md:px-6"
+                  style={{ width: `${100 / itemsPerPage}%` }}
+                  aria-hidden={isClone || undefined}
+                >
+                  <CircleCard
+                    title={solution.title}
+                    description={solution.description}
+                    imageUrl={solution.imageUrl}
+                    href={isClone ? undefined : solution.href}
+                    withShadow={false}
+                  />
+                </div>
+              )
+            })}
           </div>
-        )}
+        </div>
 
         {/* Request a Quote Button */}
         <motion.div
