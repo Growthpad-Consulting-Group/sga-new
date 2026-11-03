@@ -17,7 +17,7 @@ export default function WhyUsHero({ countryCode, imageUrl }: WhyUsHeroProps) {
     const emergencyPhone = c.phone
 
     return (
-        <section id="hero" className="bg-white text-dark-charcoal pt-32 sm:pt-40 lg:pt-48 pb-20 relative">
+        <section id="hero" className="bg-white text-dark-charcoal pt-40 sm:pt-40 lg:pt-48 pb-20 relative">
             <div className="container-fluid mx-auto">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start lg:items-center py-8">
                     <motion.div

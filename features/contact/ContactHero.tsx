@@ -17,7 +17,7 @@ export default function ContactHero({ imageUrl = '/images/contact/hero.png' }: C
   const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '12%'])
 
   return (
-    <section ref={heroRef} id="hero" className="bg-gray-100 text-dark-charcoal pt-32 sm:pt-40 lg:pt-48 pb-0">
+    <section ref={heroRef} id="hero" className="bg-gray-100 text-dark-charcoal pt-40 sm:pt-40 lg:pt-48 pb-0">
       <div className="container-fluid mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

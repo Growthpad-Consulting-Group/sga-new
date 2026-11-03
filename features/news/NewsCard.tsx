@@ -21,6 +21,8 @@ export interface NewsCardItem {
 interface NewsCardProps {
   item: NewsCardItem
   index?: number
+  /** When set (country pages), the card links to that country's article */
+  countryCode?: string
 }
 
 export function getNewsCardKey(item: NewsCardItem, index: number) {
@@ -28,9 +30,11 @@ export function getNewsCardKey(item: NewsCardItem, index: number) {
   return item._id || slug || `${item.title}-${index}`
 }
 
-export default function NewsCard({ item }: NewsCardProps) {
+export default function NewsCard({ item, countryCode }: NewsCardProps) {
   const slug = typeof item.slug === 'string' ? item.slug : item.slug?.current
-  const href = slug ? `/news-reports/${slug}` : '/news-reports'
+  const href = slug
+    ? countryCode ? `/${countryCode}/updates/${slug}` : `/news-reports/${slug}`
+    : countryCode ? `/${countryCode}/updates` : '/news-reports'
   const imageUrl = item.image || (item.mainImage ? urlFor(item.mainImage).url() : '/images/misc/blog-placeholder')
   const date = item.date || (item.publishedAt
     ? new Date(item.publishedAt).toLocaleDateString('en-US', {

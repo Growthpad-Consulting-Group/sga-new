@@ -10,10 +10,11 @@ const ITEMS_PER_PAGE = 6
 
 interface NewsReportsCardsProps {
   providedCountry?: string
+  providedCountryCode?: string
   initialNewsItems?: any[]
 }
 
-export default function NewsReportsCards({ providedCountry, initialNewsItems }: NewsReportsCardsProps) {
+export default function NewsReportsCards({ providedCountry, providedCountryCode, initialNewsItems }: NewsReportsCardsProps) {
   const displayItems = initialNewsItems || newsItems
   const [activeFilter, setActiveFilter] = useState('ALL')
   const [searchQuery, setSearchQuery] = useState('')
@@ -218,7 +219,7 @@ export default function NewsReportsCards({ providedCountry, initialNewsItems }: 
         {paginatedItems.length > 0 && (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {paginatedItems.map((item, index) => (
-              <NewsCard key={getNewsCardKey(item, index)} item={item} index={index} />
+              <NewsCard key={getNewsCardKey(item, index)} item={item} index={index} countryCode={providedCountryCode} />
             ))}
           </div>
         )}

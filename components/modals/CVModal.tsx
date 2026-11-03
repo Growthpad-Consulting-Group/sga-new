@@ -160,7 +160,7 @@ export default function CVModal({ isOpen, onClose }: CVModalProps): React.JSX.El
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/30 backdrop-blur-md z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/30 backdrop-blur-md z-50 flex items-center justify-center p-0 sm:p-4"
           >
             {/* Modal Container */}
             <motion.div
@@ -171,9 +171,9 @@ export default function CVModal({ isOpen, onClose }: CVModalProps): React.JSX.El
               role="dialog"
               aria-modal="true"
               aria-labelledby="cv-modal-title"
-              className="bg-white rounded-lg shadow-2xl w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col md:flex-row"
+              className="flex h-[100dvh] max-h-[100dvh] w-full max-w-6xl flex-col overflow-hidden bg-white shadow-2xl sm:h-auto sm:max-h-[90vh] sm:rounded-lg md:flex-row"
             >
-              <aside className="w-full md:w-[30%] bg-primary-orange text-white p-7 md:p-10 flex flex-col justify-between">
+              <aside className="hidden w-full bg-primary-orange p-7 text-white md:flex md:w-[30%] md:flex-col md:justify-between md:p-10">
                 <div>
                   <h2 id="cv-modal-title" className="text-3xl md:text-4xl font-bold mb-4 text-white">
                     Join our team
@@ -212,8 +212,8 @@ export default function CVModal({ isOpen, onClose }: CVModalProps): React.JSX.El
                 </div>
               </aside>
 
-              <div className="w-full md:w-[70%] p-6 md:p-8 overflow-y-auto relative">
-                <div className="sticky -top-6 md:-top-8 z-20 bg-white -mx-6 md:-mx-8 -mt-6 md:-mt-8 px-6 md:px-8 pt-4 pb-2 mb-7 border-b border-gray-200">
+              <div className="relative h-full w-full overflow-y-auto p-4 sm:p-6 md:w-[70%] md:p-8">
+                <div className="sticky -top-4 z-20 -mx-4 -mt-4 mb-5 border-b border-gray-200 bg-white px-4 pb-3 pt-4 sm:-top-6 sm:-mx-6 sm:-mt-6 sm:mb-7 sm:px-6 md:-top-8 md:-mx-8 md:-mt-8 md:px-8">
                   <button
                     type="button"
                     onClick={onClose}
@@ -232,9 +232,9 @@ export default function CVModal({ isOpen, onClose }: CVModalProps): React.JSX.El
                   </div>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
                   {/* Form Fields Grid */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-6">
                     {/* Full Name */}
                     <div>
                       <label htmlFor="fullName" className="block text-sm font-semibold text-dark-charcoal mb-2">
@@ -247,7 +247,7 @@ export default function CVModal({ isOpen, onClose }: CVModalProps): React.JSX.El
                         required
                         value={formData.fullName}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-hidden transition-colors"
+                        className="w-full px-4 py-3 text-base border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-hidden transition-colors"
                         placeholder="Enter your full name"
                       />
                     </div>
@@ -264,7 +264,7 @@ export default function CVModal({ isOpen, onClose }: CVModalProps): React.JSX.El
                         required
                         value={formData.email}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-hidden transition-colors"
+                        className="w-full px-4 py-3 text-base border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-hidden transition-colors"
                         placeholder="Enter your email"
                       />
                     </div>
@@ -281,7 +281,7 @@ export default function CVModal({ isOpen, onClose }: CVModalProps): React.JSX.El
                         required
                         value={formData.phone}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-hidden transition-colors"
+                        className="w-full px-4 py-3 text-base border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-hidden transition-colors"
                         placeholder="Enter your phone number"
                       />
                     </div>
@@ -297,7 +297,7 @@ export default function CVModal({ isOpen, onClose }: CVModalProps): React.JSX.El
                         required
                         value={formData.country}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-hidden transition-colors"
+                        className="w-full px-4 py-3 text-base border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-hidden transition-colors"
                       >
                         <option value="">Select your country</option>
                         <option value="Kenya">Kenya</option>
@@ -318,7 +318,7 @@ export default function CVModal({ isOpen, onClose }: CVModalProps): React.JSX.El
                         required
                         value={formData.jobTitle}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-hidden transition-colors"
+                        className="w-full px-4 py-3 text-base border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-hidden transition-colors"
                       >
                         <option value="">Select job title</option>
                         {jobTitleOptions.map((title) => (
@@ -345,7 +345,7 @@ export default function CVModal({ isOpen, onClose }: CVModalProps): React.JSX.El
                         if (!e.currentTarget.contains(e.relatedTarget as Node)) setIsDraggingFile(false)
                       }}
                       onDrop={handleFileDrop}
-                      className={`relative rounded-xl border-2 border-dashed p-5 transition-colors ${fileError ? 'border-red-400 bg-red-50' : formData.cvFile ? 'border-green-500 bg-green-50' : isDraggingFile ? 'border-primary-orange bg-orange-50' : 'border-gray-300 bg-light-grey/60 hover:border-primary-orange'}`}
+                      className={`relative rounded-xl border-2 border-dashed p-4 transition-colors sm:p-5 ${fileError ? 'border-red-400 bg-red-50' : formData.cvFile ? 'border-green-500 bg-green-50' : isDraggingFile ? 'border-primary-orange bg-orange-50' : 'border-gray-300 bg-light-grey/60 hover:border-primary-orange'}`}
                     >
                       <div className="flex flex-col sm:flex-row sm:items-center gap-4">
                         <div className="w-11 h-11 rounded-full bg-white flex items-center justify-center shrink-0 shadow-sm">
@@ -386,7 +386,7 @@ export default function CVModal({ isOpen, onClose }: CVModalProps): React.JSX.El
                       rows={4}
                       value={formData.coverNote}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-hidden transition-colors resize-none"
+                      className="w-full px-4 py-3 text-base border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-hidden transition-colors resize-none"
                       placeholder="Tell us why you're interested in joining SGA..."
                     />
                   </div>
@@ -416,14 +416,14 @@ export default function CVModal({ isOpen, onClose }: CVModalProps): React.JSX.El
                     <button
                       type="button"
                       onClick={onClose}
-                      className="px-6 py-3 border-2 border-gray-300 text-dark-charcoal rounded-full font-semibold text-base hover:bg-gray-100 transition-colors"
+                      className="w-full px-6 py-3 border-2 border-gray-300 text-dark-charcoal rounded-full font-semibold text-base hover:bg-gray-100 transition-colors sm:w-auto"
                     >
                       Cancel
                     </button>
                     <button
                       type="submit"
                       disabled={!formData.agreeToPrivacy || !formData.cvFile || !!fileError}
-                      className="bg-primary-orange text-white px-7 py-3 rounded-full font-semibold text-base hover:bg-navy-blue transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+                      className="w-full bg-primary-orange text-white px-7 py-3 rounded-full font-semibold text-base hover:bg-navy-blue transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed sm:w-auto"
                     >
                       Submit application
                     </button>

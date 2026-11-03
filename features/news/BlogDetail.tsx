@@ -446,6 +446,9 @@ export default function BlogDetail({ blog, relatedPosts = [] }: BlogDetailProps)
     if (!blog) return null
 
     const isBlog = blog.category?.toLowerCase() === 'blog'
+    // On country pages, related articles and the back link stay within that country
+    const countryCode = pathname.match(/^\/(ke|ug|tz)(\/|$)/)?.[1]
+    const articlesBase = countryCode ? `/${countryCode}/updates` : '/news-reports'
     const backLabel = isBlog ? 'Return to Blog' : 'Return to News'
 
     return (
@@ -494,7 +497,7 @@ export default function BlogDetail({ blog, relatedPosts = [] }: BlogDetailProps)
                 <div className="absolute top-40 right-20 w-48 h-48 bg-white/20 rounded-full blur-3xl" />
                 <div className="absolute bottom-40 left-10 w-64 h-64 bg-primary-orange opacity-10 rounded-full blur-3xl" />
 
-                <div className="relative z-10 w-full max-w-6xl mx-auto px-4 text-center mt-32 md:mt-32 lg:mt-24">
+                <div className="relative z-10 w-full max-w-6xl mx-auto px-4 text-center mt-48 md:mt-32 lg:mt-24">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -577,7 +580,7 @@ export default function BlogDetail({ blog, relatedPosts = [] }: BlogDetailProps)
                                 </div>
                                 <div className={`grid md:grid-cols-2 ${headings.length === 0 ? 'lg:grid-cols-3' : ''} gap-8`}>
                                     {(headings.length > 0 ? relatedPosts.slice(0, 2) : relatedPosts.slice(0, 3)).map((post) => (
-                                        <Link key={post._id} href={`/news-reports/${post.slug.current || post.slug}`} className="group">
+                                        <Link key={post._id} href={`${articlesBase}/${post.slug.current || post.slug}`} className="group">
                                             <div className="bg-white rounded-[2.5rem] border border-gray-100 overflow-hidden transition-all hover:border-primary-orange hover:shadow-2xl hover:shadow-primary-orange/20 h-full flex flex-col">
                                                 <div className="relative h-48 w-full">
                                                     <Image
@@ -602,7 +605,7 @@ export default function BlogDetail({ blog, relatedPosts = [] }: BlogDetailProps)
                         {/* Back Button */}
                         <div className="mt-24 flex justify-center">
                             <Link
-                                href="/news-reports#news"
+                                href={`${articlesBase}#news`}
                                 className="group relative inline-flex items-center justify-center bg-primary-orange text-white px-10 py-5 rounded-full font-bold text-lg shadow-lg hover:shadow-xl transition-all hover:scale-105"
                             >
                                 <Icon icon="mdi:chevron-left" className="w-6 h-6 mr-2 transition-transform group-hover:-translate-x-1" />

@@ -5,7 +5,7 @@ import Image from 'next/image'
 
 export default function IndustriesHero(): React.JSX.Element {
   return (
-    <section id="hero" className="relative bg-gray-100 text-dark-charcoal pt-32 sm:pt-40 lg:pt-48 pb-0">
+    <section id="hero" className="relative bg-gray-100 text-dark-charcoal pt-40 sm:pt-40 lg:pt-48 pb-0">
       <div className="container-fluid mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

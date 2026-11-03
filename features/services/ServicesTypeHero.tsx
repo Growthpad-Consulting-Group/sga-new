@@ -25,7 +25,7 @@ export default function ServicesTypeHero({
     return (
         <>
             {/* Hero Section */}
-            <section id="hero" className="bg-white text-dark-charcoal pt-32 sm:pt-40 lg:pt-48 pb-12 relative overflow-hidden">
+            <section id="hero" className="bg-white text-dark-charcoal pt-40 sm:pt-40 lg:pt-48 pb-12 relative overflow-hidden">
                 <div className="container-fluid mx-auto">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start lg:items-center py-8">
                         {/* Left Column - Content */}

@@ -92,11 +92,11 @@ export default function MobileMenu({
                   >
                     {/* Toggle for Services in Mobile */}
                     {isServices && (
-                      <div className="pl-4 mb-3">
-                        <div className="flex items-center gap-2 bg-primary-orange/20 rounded-full px-2 py-1 w-fit">
+                      <div className="px-4 mb-3">
+                        <div className="flex w-full items-center gap-2 bg-primary-orange/20 rounded-full px-2 py-1">
                           <button
                             onClick={() => setServicesViewType('Individual')}
-                            className={`px-3 py-1 rounded-full text-xs font-semibold transition-all ${servicesViewType === 'Individual'
+                            className={`flex-1 px-3 py-1 rounded-full text-xs font-semibold transition-all ${servicesViewType === 'Individual'
                                 ? 'bg-primary-orange text-white'
                                 : 'text-primary-orange hover:text-primary-orange/80'
                               }`}
@@ -105,7 +105,7 @@ export default function MobileMenu({
                           </button>
                           <button
                             onClick={() => setServicesViewType('Corporate')}
-                            className={`px-3 py-1 rounded-full text-xs font-semibold transition-all ${servicesViewType === 'Corporate'
+                            className={`flex-1 px-3 py-1 rounded-full text-xs font-semibold transition-all ${servicesViewType === 'Corporate'
                                 ? 'bg-primary-orange text-white'
                                 : 'text-primary-orange hover:text-primary-orange/80'
                               }`}

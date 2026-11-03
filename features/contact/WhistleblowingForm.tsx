@@ -71,11 +71,11 @@ export default function WhistleblowingForm(): React.JSX.Element {
           <label className="block text-sm font-semibold text-dark-charcoal mb-3">
             Would you like to remain anonymous? <span className="text-primary-orange">*</span>
           </label>
-          <div className="flex gap-3">
+          <div className="flex flex-col sm:flex-row gap-3">
             <button
               type="button"
               onClick={() => setIsAnonymous(true)}
-              className={`px-6 py-2.5 rounded-full font-semibold text-sm transition-all ${isAnonymous
+              className={`w-full sm:w-auto px-6 py-2.5 rounded-full font-semibold text-sm transition-all ${isAnonymous
                 ? 'bg-primary-orange text-white'
                 : 'bg-white text-dark-charcoal border border-gray-300 hover:border-primary-orange'
                 }`}
@@ -85,7 +85,7 @@ export default function WhistleblowingForm(): React.JSX.Element {
             <button
               type="button"
               onClick={() => setIsAnonymous(false)}
-              className={`px-6 py-2.5 rounded-full font-semibold text-sm transition-all ${!isAnonymous
+              className={`w-full sm:w-auto px-6 py-2.5 rounded-full font-semibold text-sm transition-all ${!isAnonymous
                 ? 'bg-primary-orange text-white'
                 : 'bg-white text-dark-charcoal border border-gray-300 hover:border-primary-orange'
                 }`}

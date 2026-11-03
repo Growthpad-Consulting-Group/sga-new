@@ -57,7 +57,7 @@ export default function TopBar({
               {countryPhone && (
                 <a
                   href={`tel:${countryPhone.replace(/\s/g, '')}`}
-                  className={`flex items-center gap-1.5 transition-all duration-200 hover:scale-105 active:scale-95 ${isAboutPage ? "text-dark-charcoal hover:text-primary-orange" : "text-white hover:text-white/80"}`}
+                  className={`hidden sm:flex items-center gap-1.5 transition-all duration-200 hover:scale-105 active:scale-95 ${isAboutPage ? "text-dark-charcoal hover:text-primary-orange" : "text-white hover:text-white/80"}`}
                   aria-label={`Call ${countryPhone}`}
                 >
                   <span className="font-bold text-[10px] sm:text-sm lg:text-xs xl:text-sm tracking-widest uppercase">CALL: {countryPhone}</span>

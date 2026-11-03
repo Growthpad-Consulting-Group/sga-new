@@ -18,7 +18,7 @@ export default function UpdatesHero({ imageUrl = '/images/contact/hero.png' }: U
   const imageY = useTransform(scrollYProgress, [0, 1], ['-4%', '8%'])
 
   return (
-    <section ref={heroRef} id="hero" className="bg-gray-100 text-dark-charcoal pt-32 sm:pt-40 lg:pt-48 pb-0">
+    <section ref={heroRef} id="hero" className="bg-gray-100 text-dark-charcoal pt-40 sm:pt-40 lg:pt-48 pb-0">
       <div className="w-full  mx-auto container-fluid">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -26,10 +26,10 @@ export default function UpdatesHero({ imageUrl = '/images/contact/hero.png' }: U
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-left space-y-2 pb-4"
         >
-          <h2 className="text-sm md:text-base font-semibold text-gray-700 uppercase tracking-wide">
+          <h2 className="text-sm md:text-base font-normal text-gray-700 uppercase tracking-wide">
             News & Insights
           </h2>
-          <h1 className="text-xl md:text-2xl lg:text-3xl font-bold">
+          <h1 className="text-xl md:text-2xl lg:text-4xl font-bold">
             <span className="text-primary-orange">Latest News & Insights From SGA Security</span>
           </h1>
         </motion.div>

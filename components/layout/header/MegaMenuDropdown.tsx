@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import { Link, useTransitionRouter } from 'next-view-transitions'
 import Image from 'next/image'
 import { Icon } from '@iconify/react'
@@ -52,12 +51,7 @@ export default function MegaMenuDropdown({
   if (!isOpen) return null
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 bg-primary-orange z-60 overflow-y-auto"
-    >
+    <div className="fixed inset-0 bg-primary-orange z-60 overflow-y-auto">
       <div className="mx-auto container-fluid py-8">
         {/* Top row: Logo, Toggle, Close */}
         <div className="flex items-center justify-between border-b border-white/20 pb-8 mb-16">
@@ -67,16 +61,17 @@ export default function MegaMenuDropdown({
               alt="SGA Security"
               width={220}
               height={65}
+              priority
               className="h-12 w-auto"
             />
           </Link>
 
           <div className="flex items-center gap-6">
             {isServices && (
-              <div className="flex items-center gap-2 bg-[#ecf2f7] rounded-full p-1">
+              <div className="flex w-full sm:w-auto items-center gap-2 bg-[#ecf2f7] rounded-full p-1">
                 <button
                   onClick={() => setServicesViewType('Individual')}
-                  className={`px-8 py-2.5 rounded-full text-sm font-bold transition-all font-nav! ${
+                  className={`flex-1 sm:flex-none px-8 py-2.5 rounded-full text-sm font-bold transition-all font-nav! ${
                     servicesViewType === 'Individual'
                       ? 'bg-primary-orange text-white shadow-lg'
                       : 'text-[#2e2e2e] hover:text-primary-orange'
@@ -86,7 +81,7 @@ export default function MegaMenuDropdown({
                 </button>
                 <button
                   onClick={() => setServicesViewType('Corporate')}
-                  className={`px-8 py-2.5 rounded-full text-sm font-bold transition-all font-nav! ${
+                  className={`flex-1 sm:flex-none px-8 py-2.5 rounded-full text-sm font-bold transition-all font-nav! ${
                     servicesViewType === 'Corporate'
                       ? 'bg-primary-orange text-white shadow-lg'
                       : 'text-[#2e2e2e] hover:text-primary-orange'
@@ -213,6 +208,6 @@ export default function MegaMenuDropdown({
           </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   )
 }
