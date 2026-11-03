@@ -3,7 +3,8 @@ import FloatingWhatsApp from '@/components/FloatingWhatsApp'
 import SectionSeparator from '@/components/SectionSeparator'
 import ServicesGrid from './ServicesGrid'
 import ServicesTypeHero from './ServicesTypeHero'
-import { individualServices, corporateServices, resolveServiceData } from '../services-data'
+import { individualServices, corporateServices } from '../services-data'
+import { coreServices } from '@/data/coreServices'
 import { countries } from '@/data/countries-data'
 import type { Metadata } from 'next'
 
@@ -36,10 +37,28 @@ export default async function ServicesTypePage({ params }: Props) {
     if (!c || (type !== 'individual' && type !== 'corporate')) notFound()
 
     const servicesMap = type === 'individual' ? individualServices : corporateServices
-    const services = Object.entries(servicesMap).map(([slug, data]) => ({
-        slug,
-        ...resolveServiceData(data, c.name, country),
-    }))
+
+    // Cards come from the shared core services list (same as the country menu).
+    // A card links to its detail page where one exists for this service type,
+    // otherwise to the service's own URL, otherwise to the country's contact page.
+    const detailSlugs: Record<string, string> = {
+        'Home Security Solutions': 'home-security',
+        'Guarding Services': 'security-guarding',
+    }
+    const services = coreServices.map((service) => {
+        const detailSlug = detailSlugs[service.title]
+        const hasDetail = !!detailSlug && !!servicesMap[detailSlug]
+        return {
+            slug: detailSlug ?? service.title.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+            serviceName: service.title,
+            serviceIcon: '',
+            heroImage: service.imageUrl,
+            heroDescription: service.description,
+            href: hasDetail
+                ? `/${country}/services/${type}/${detailSlug}`
+                : service.href ?? `/${country}/contact`,
+        }
+    })
 
     const isIndividual = type === 'individual'
     const description = isIndividual

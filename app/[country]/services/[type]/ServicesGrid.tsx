@@ -12,6 +12,7 @@ interface ServiceCard {
     serviceIcon: string
     heroImage: string
     heroDescription: string
+    href: string
 }
 
 interface ServicesGridProps {
@@ -45,7 +46,7 @@ export default function ServicesGrid({ services, country, type, isIndividual, co
                             whileHover={{ y: -12 }}
                             className="bg-white rounded-[40px] overflow-hidden shadow-xl hover:shadow-2xl transition-all flex flex-col group h-full"
                         >
-                            <Link href={`/${country}/services/${type}/${service.slug}`} className="flex flex-col h-full">
+                            <Link href={service.href} className="flex flex-col h-full">
                                 {/* Image Section */}
                                 <div className="relative w-full aspect-16/10 overflow-hidden">
                                     <Image

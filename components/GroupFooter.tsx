@@ -122,7 +122,6 @@ export default function GroupFooter(): React.JSX.Element {
                 <h4 className="font-semibold mb-6 text-white text-3xl lg:text-xl xl:text-3xl">SGA Group</h4>
                 <ul className="space-y-2 text-xl lg:text-sm xl:text-xl text-white/90">
                   <li>
-                    <Link href="/" className="hover:text-dark-charcoal transition-colors cursor-pointer block">Group Website</Link>
                   </li>
                   <li>
                     <Link href="/sustainability" className="hover:text-dark-charcoal transition-colors cursor-pointer block">Sustainability</Link>
@@ -161,7 +160,7 @@ export default function GroupFooter(): React.JSX.Element {
 
               <div className="pt-8 border-t border-white/20">
                 <h4 className="font-semibold mb-4 text-white text-2xl lg:text-base xl:text-2xl tracking-wider">Connect With Us</h4>
-                <div className="flex items-center space-x-6 lg:space-x-3 xl:space-x-6 py-2">
+                <div className="flex items-center space-x-4 lg:space-x-2 xl:space-x-4 py-2">
                   {socialLinks.map((social) => (
                     <a
                       key={social.icon}
@@ -179,7 +178,7 @@ export default function GroupFooter(): React.JSX.Element {
             </div>
           </div>
 
-          <div className="border-t border-white/20 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center text-xl lg:text-sm xl:text-xl text-white/90">
+          <div className="border-t border-white/20 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center text-sm lg:text-xs xl:text-base text-white/90">
             <p>&copy; {currentYear} SGA Security. All rights reserved.</p>
             <div className="flex items-center gap-8 mt-4 sm:mt-0">
               <Link href="/privacy-policy" className="hover:text-dark-charcoal transition-colors">Privacy Policy</Link>

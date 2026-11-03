@@ -186,7 +186,7 @@ export default function CountryFooter(): React.JSX.Element {
                   </div>
 
                     <div className="pt-6">
-                      <div className="flex items-center space-x-6 lg:space-x-3 xl:space-x-6 py-2">
+                      <div className="flex items-center space-x-4 lg:space-x-2 xl:space-x-4 py-2">
                         {socialLinks.map((social) => (
                           <a
                             key={social.icon}
@@ -206,7 +206,7 @@ export default function CountryFooter(): React.JSX.Element {
             </div>
           </div>
 
-          <div className="border-t border-white/20 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center text-xl lg:text-sm xl:text-xl text-white/90">
+          <div className="border-t border-white/20 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center text-sm lg:text-xs xl:text-base text-white/90">
             <p>&copy; {currentYear} SGA Security. All rights reserved.</p>
             
             <div className="flex items-center gap-8 mt-4 sm:mt-0">

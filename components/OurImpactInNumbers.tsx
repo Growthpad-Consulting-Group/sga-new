@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import Image from 'next/image'
 import SectionWrapper from './SectionWrapper'
@@ -50,11 +50,52 @@ interface OurImpactInNumbersProps {
   backgroundImage?: string
 }
 
+// Counts from 0 up to the figure (e.g. "19,000+", "$19m") when it scrolls into view.
+// The prefix ($) and suffix (+, m) are kept as they are.
+function CountUp({ value }: { value: string }) {
+  const match = value.match(/^(\D*)([\d,.]+)(.*)$/)
+  const prefix = match?.[1] ?? ''
+  const target = match ? Number(match[2].replace(/,/g, '')) : 0
+  const suffix = match?.[3] ?? ''
+  const [current, setCurrent] = useState(0)
+  const ref = useRef<HTMLSpanElement>(null)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    let frame = 0
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return
+      observer.disconnect()
+      const duration = 1600
+      const start = performance.now()
+      const tick = (now: number) => {
+        const progress = Math.min((now - start) / duration, 1)
+        const eased = 1 - Math.pow(1 - progress, 3)
+        setCurrent(Math.round(target * eased))
+        if (progress < 1) frame = requestAnimationFrame(tick)
+      }
+      frame = requestAnimationFrame(tick)
+    }, { threshold: 0.5 })
+    observer.observe(el)
+    return () => {
+      observer.disconnect()
+      cancelAnimationFrame(frame)
+    }
+  }, [target])
+
+  return (
+    <span ref={ref}>
+      {prefix}{current.toLocaleString('en-US')}{suffix}
+    </span>
+  )
+}
+
 function renderStat(stat: Stat) {
   return (
-    <div className="w-44 h-44 md:w-48 md:h-48 lg:w-48 lg:h-48 xl:w-56 xl:h-56 rounded-full border border-primary-orange bg-primary-orange flex flex-col items-center justify-center shadow-lg group relative p-3 md:p-4 cursor-pointer transition-all duration-300 ease-out hover:scale-[1.02] hover:-translate-y-0.5 hover:border-[#d84c1e] hover:bg-[#d84c1e] hover:shadow-[0_20px_40px_rgba(216,76,30,0.3)]">
+    <div className="w-44 h-44 md:w-48 md:h-48 lg:w-48 lg:h-48 xl:w-56 xl:h-56 rounded-full border border-primary-orange bg-primary-orange flex flex-col items-center justify-center shadow-lg group relative p-3 md:p-4 transition-all duration-300 ease-out hover:scale-[1.02] hover:-translate-y-0.5 hover:border-[#d84c1e] hover:bg-[#d84c1e] hover:shadow-[0_20px_40px_rgba(216,76,30,0.3)]">
       <span className="text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-bold text-white transition-colors mb-2">
-        {stat.number}
+        <CountUp value={stat.number} />
       </span>
       <span className="text-white text-center text-sm md:text-base lg:text-sm xl:text-lg font-normal px-2 leading-tight">
         {stat.label}
