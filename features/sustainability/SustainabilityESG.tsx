@@ -71,13 +71,7 @@ export default function SustainabilityESG(): React.JSX.Element {
 
   return (
     <section id="sustainability-esg" className="flex items-center justify-center bg-light-grey relative py-12 md:py-16">
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-100px' }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="container-fluid mx-auto"
-      >
+      <div className="container-fluid mx-auto">
         <div className="mb-12">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -98,18 +92,9 @@ export default function SustainabilityESG(): React.JSX.Element {
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 items-start">
-          {sdgGoals.map((sdg, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 0.15,
-                ease: "easeOut",
-                opacity: { duration: 0.5, delay: index * 0.1 },
-                y: { duration: 0.35, ease: "easeOut" }
-              }}
+          {sdgGoals.map((sdg) => (
+            <div
+              key={sdg.goal}
               onPointerEnter={(event) => {
                 if (event.pointerType === 'mouse') setExpandedGoal(sdg.goal)
               }}
@@ -156,22 +141,11 @@ export default function SustainabilityESG(): React.JSX.Element {
                   </AnimatePresence>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
 
           {/* Learn More Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{
-              duration: 0.15,
-              ease: "easeOut",
-              opacity: { duration: 0.5, delay: 0.7 },
-              y: { duration: 0.35, ease: "easeOut" }
-            }}
-            className="rounded-lg overflow-hidden shadow-lg border border-dark-charcoal bg-transparent min-h-[160px] md:min-h-[240px] lg:min-h-[180px] xl:min-h-[240px] cursor-pointer flex flex-col"
-          >
+          <div className="rounded-lg overflow-hidden shadow-lg border border-dark-charcoal bg-transparent min-h-[160px] md:min-h-[240px] lg:min-h-[180px] xl:min-h-[240px] cursor-pointer flex flex-col">
             <div className="p-5 md:p-6 lg:p-4 xl:p-6 flex-1 flex flex-col">
               <h4 className="text-base md:text-2xl lg:text-lg xl:text-2xl font-medium text-dark-charcoal mb-4 leading-tight">
                 Learn More About Our Sustainability Impact
@@ -181,9 +155,9 @@ export default function SustainabilityESG(): React.JSX.Element {
                 Learn More
               </Button>
             </div>
-          </motion.div>
+          </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   )
 }

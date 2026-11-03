@@ -1,8 +1,8 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
 import { Icon } from '@iconify/react'
+import { AnimatePresence, motion } from 'framer-motion'
 
 const MAX_PREVIEW_PAGES = 40
 const pageCache = new Map<string, Promise<string[]>>()
@@ -131,17 +131,18 @@ export default function DocumentPreviewModal({
         <AnimatePresence>
             {isOpen && (
                 <motion.div
-                    initial={{ opacity: 0 }}
+                    initial={{ opacity: 1 }}
                     animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
+                    exit={{ opacity: 0.999 }}
+                    transition={{ duration: 0.22 }}
                     onClick={onClose}
                     className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
                 >
                   <motion.div
-                    initial={{ opacity: 0, scale: 0.97, y: 12 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.97, y: 12 }}
-                    transition={{ duration: 0.2 }}
+                    initial={{ scale: 0.98, y: 12 }}
+                    animate={{ scale: 1, y: 0 }}
+                    exit={{ scale: 0.98, y: 12 }}
+                    transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
                     onClick={(event) => event.stopPropagation()}
                     role="dialog"
                     aria-modal="true"
@@ -229,11 +230,7 @@ export default function DocumentPreviewModal({
                         )}
 
                         {pages && (
-                            <motion.div
-                                initial={{ opacity: 0, y: 8 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                className="mx-auto flex w-full flex-col items-center gap-6"
-                            >
+                            <div className="mx-auto flex w-full flex-col items-center gap-6">
                                 {pages.map((page, index) => (
                                     // eslint-disable-next-line @next/next/no-img-element
                                     <img
@@ -244,7 +241,7 @@ export default function DocumentPreviewModal({
                                         style={{ width: `${zoom * 100}%` }}
                                     />
                                 ))}
-                            </motion.div>
+                            </div>
                         )}
                     </div>
 

@@ -19,8 +19,10 @@ export default function PrivacyPolicyPage() {
             <h2 className="text-sm md:text-base font-normal text-gray-700 uppercase tracking-wide">
               Legal
             </h2>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary-orange">
+            <h1 className="text-xl md:text-2xl lg:text-4xl font-bold">
+                <span className="text-primary-orange">
               Privacy Policy
+                </span>
             </h1>
             <p className="text-lg text-gray-600">
               Last updated: February 23, 2026

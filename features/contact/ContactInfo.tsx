@@ -1,6 +1,7 @@
 'use client'
 
 import { Icon } from '@iconify/react'
+import Button from '@/components/ui/Button'
 
 import { contactOffices } from '@/features/contact/data'
 
@@ -107,14 +108,9 @@ export default function ContactInfo({ providedCountry }: ContactInfoProps): Reac
 
                 {/* View on Map Button */}
                 <div className="mt-auto pt-6">
-                  <a
-                    href={office.mapUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center bg-white text-primary-orange hover:bg-dark-charcoal hover:text-white px-10 py-3 rounded-full transition-colors text-sm md:text-md font-semibold uppercase w-fit"
-                  >
-                    <span>VIEW ON MAP</span>
-                  </a>
+                  <Button href={office.mapUrl} variant="white" size="small" arrow={false} newTab className="w-fit!">
+                    View on Map
+                  </Button>
                 </div>
               </div>
             ))}

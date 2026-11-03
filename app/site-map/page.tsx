@@ -2,6 +2,8 @@
 
 import { Link } from 'next-view-transitions'
 import { Icon } from '@iconify/react'
+import { motion } from 'framer-motion'
+import Button from '@/components/ui/Button'
 import { useEffect, useState } from 'react'
 
 interface SitemapSection {
@@ -36,13 +38,20 @@ export default function SitemapPage(): React.JSX.Element {
       {/* Hero Section */}
       <section className="bg-primary-orange text-white py-16 md:py-24 mt-16 sm:mt-24">
         <div className="container-fluid">
-          <div className="flex items-center gap-3 mb-4">
-            <Icon icon="mdi:sitemap" className="w-12 h-12" />
-            <h1 className="text-4xl md:text-5xl font-bold">Site Map</h1>
-          </div>
-          <p className="text-xl text-white/90 max-w-3xl">
-            Navigate through all pages of SGA Security Group website. Find information about our security services across Kenya, Tanzania, and Uganda.
-          </p>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-left space-y-4"
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <Icon icon="mdi:sitemap" className="w-12 h-12" />
+              <h1 className="text-xl md:text-2xl lg:text-4xl font-bold">Site Map</h1>
+            </div>
+            <p className="text-xl text-white/90 max-w-3xl">
+              Navigate through all pages of SGA Security Group website. Find information about our security services across Kenya, Tanzania, and Uganda.
+            </p>
+          </motion.div>
         </div>
       </section>
 
@@ -78,26 +87,18 @@ export default function SitemapPage(): React.JSX.Element {
           </div>
 
           {/* Quick Contact Section */}
-          <div className="mt-16 p-8 bg-light-grey rounded-lg">
+          <div className="mt-16 p-8 md:p-10 bg-white rounded-[40px] shadow-xl">
             <h2 className="text-2xl font-bold text-dark-charcoal mb-4">Need Help Finding Something?</h2>
             <p className="text-lg text-dark-charcoal mb-6">
               Can't find what you're looking for? Our team is here to help you navigate our services.
             </p>
-            <div className="flex flex-wrap gap-4">
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 bg-primary-orange text-white px-6 py-3 rounded-full font-semibold hover:bg-[#d84c1e] transition-colors"
-              >
-                <Icon icon="mdi:email" className="w-5 h-5" />
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button href="/contact" variant="solid" size="small" icon="mdi:email" arrow={false}>
                 Contact Us
-              </Link>
-              <Link
-                href="/careers"
-                className="inline-flex items-center gap-2 bg-navy-blue text-white px-6 py-3 rounded-full font-semibold hover:bg-dark-charcoal transition-colors"
-              >
-                <Icon icon="mdi:briefcase" className="w-5 h-5" />
+              </Button>
+              <Button href="/careers" variant="light" size="small" icon="mdi:briefcase" arrow={false}>
                 View Careers
-              </Link>
+              </Button>
             </div>
           </div>
         </div>

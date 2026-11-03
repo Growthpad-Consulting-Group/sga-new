@@ -92,7 +92,7 @@ export default function HappyClients() {
                 <button
                   key={filter}
                   onClick={() => handleFilterChange(filter)}
-                  className={`shrink-0 whitespace-nowrap px-4 py-2 xl:px-6 xl:py-3 rounded-full border transition-colors flex items-center gap-1 text-xs xl:text-base font-medium uppercase ${activeFilter === filter
+                  className={`shrink-0 whitespace-nowrap px-4 py-2 xl:px-4 xl:py-2 rounded-full border transition-colors flex items-center gap-1 text-xs xl:text-sm font-medium uppercase ${activeFilter === filter
                     ? 'bg-primary-orange text-white border-primary-orange'
                     : 'border-dark-charcoal text-dark-charcoal hover:border-primary-orange hover:text-primary-orange'
                     }`}
