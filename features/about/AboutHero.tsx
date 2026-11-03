@@ -12,7 +12,7 @@ interface AboutHeroProps {
 const yearsByCountry: Record<string, number> = {
     Kenya: 55,
     Uganda: 42,
-    Tanzania: 40,
+    Tanzania: 42,
 }
 
 export default function AboutHero({

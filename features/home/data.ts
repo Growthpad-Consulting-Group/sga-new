@@ -91,7 +91,7 @@ export const homeData: Record<string, HomeContent> = {
         whyUs: {
             imageUrl: "/images/ug/why-choose-us.png",
             accordion: [
-                { title: "Over 55 Years of Experience", description: "SGA Security has been operating since 1969, making it one of the longest-serving private security companies in East Africa. Its long track record has helped build credibility with individuals, businesses, and government institutions." },
+                { title: "Over 32 Years of Experience", description: "SGA Security has been operating since 1969, making it one of the longest-serving private security companies in East Africa. Its long track record has helped build credibility with individuals, businesses, and government institutions." },
                 { title: "Highly Trained Security Personnel", description: "SGA has received recognition as one of Uganda's most professional and well-trained security companies, reflecting its strong focus on continuous training, discipline, and professional standards for its security officers." },
                 { title: "Comprehensive Security Solutions", description: "SGA offers a wide range of services including manned guarding, alarm response, cash-in-transit, cash management, K-9 services, electronic tracking solutions, and home security services. This allows clients to obtain multiple security solutions from a single trusted provider." },
                 { title: "International Standards and Certifications", description: "The company is ISO 18788:2015 certified and is a member of the International Code of Conduct Association (ICoCA), demonstrating commitment to globally recognized security, accountability, and ethical standards." },
@@ -112,7 +112,7 @@ export const homeData: Record<string, HomeContent> = {
         about: {
             title: "WHO WE ARE",
             largeTitle: "Protecting Tanzania with trusted experience",
-            description: "For more than 40 years, SGA Tanzania has provided reliable guarding, alarms, and monitoring backed by dedicated professionals and modern security technology.",
+            description: "For more than 42 years, SGA Tanzania has provided reliable guarding, alarms, and monitoring backed by dedicated professionals and modern security technology.",
             points: [
                 "Fully licensed and compliant with Tanzanian laws",
                 "Wide coverage in Dar es Salaam and all major towns",
