@@ -49,7 +49,7 @@ export default function ServicesTypeHero({
                                 <span>{isIndividual ? 'Individual' : 'Corporate'} Service</span>
                             </nav>
 
-                            <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold text-primary-orange leading-none">
+                            <h2 className="text-3xl md:text-5xl lg:text-5xl xl:text-7xl font-bold text-primary-orange leading-none">
                                 {isIndividual ? (
                                     <>Protecting You <br className="hidden md:block" /> & Your Family</>
                                 ) : (

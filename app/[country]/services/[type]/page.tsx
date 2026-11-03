@@ -39,8 +39,7 @@ export default async function ServicesTypePage({ params }: Props) {
     const servicesMap = type === 'individual' ? individualServices : corporateServices
 
     // Cards come from the shared core services list (same as the country menu).
-    // A card links to its detail page where one exists for this service type,
-    // otherwise to the service's own URL, otherwise to the country's contact page.
+    // A card links to its detail page only where one exists for this service type.
     const detailSlugs: Record<string, string> = {
         'Home Security Solutions': 'home-security',
         'Guarding Services': 'security-guarding',
@@ -52,11 +51,9 @@ export default async function ServicesTypePage({ params }: Props) {
             slug: detailSlug ?? service.title.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
             serviceName: service.title,
             serviceIcon: '',
-            heroImage: service.imageUrl,
+            heroImage: service.countryImageUrls?.[country as 'ke' | 'ug' | 'tz'] ?? service.imageUrl,
             heroDescription: service.description,
-            href: hasDetail
-                ? `/${country}/services/${type}/${detailSlug}`
-                : service.href ?? `/${country}/contact`,
+            href: service.href ?? (hasDetail ? `/${country}/services/${type}/${detailSlug}` : undefined),
         }
     })
 
@@ -87,7 +84,6 @@ export default async function ServicesTypePage({ params }: Props) {
                     countryName={c.name}
                 />
 
-                <SectionSeparator className="bottom-0 translate-y-1/2" />
             </div>
 
             <FloatingWhatsApp

@@ -8,6 +8,7 @@ import { Link } from 'next-view-transitions'
 import SectionSeparator from '@/components/ui/SectionSeparator'
 import { useEnquiryModal } from '@/contexts/EnquiryModalContext'
 import Button from '@/components/ui/Button'
+import { CarouselArrows } from '@/components/ui/Carousel'
 
 interface ServicePageTemplateProps {
     serviceName?: string
@@ -153,16 +154,18 @@ export default function ServicePageTemplate({
 
                             {/* Buttons */}
                             <div className="flex flex-col sm:flex-row items-center gap-4 pt-4">
-                                <Button href="/contact" variant="solid" size="small">
+                                <Button href={ctaButtonLink || "/contact"} variant="solid" size="small">
                                     Request a Quote
                                 </Button>
-                                <a
+                                <Button
                                     href={`tel:${emergencyPhone.replace(/\s/g, '')}`}
-                                    className="w-full sm:w-auto bg-transparent border-2 border-primary-orange text-primary-orange px-8 py-3.5 rounded-full font-bold text-sm md:text-base hover:bg-primary-orange hover:text-white transition-all duration-200 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 text-center"
+                                    variant="light"
+                                    size="small"
+                                    icon="streamline-sharp:emergency-call-remix"
+                                    arrow={false}
                                 >
-                                    <Icon icon="streamline-sharp:emergency-call-remix" className="w-5 h-5" />
-                                    <span>View Emergency Numbers</span>
-                                </a>
+                                    View Emergency Numbers
+                                </Button>
                             </div>
 
                             {/* Explore More Animated Arrow */}
@@ -237,19 +240,17 @@ export default function ServicePageTemplate({
                                 </div>
                             </div>
                             <div className="flex flex-col sm:flex-row items-center gap-4 w-full lg:w-auto">
-                                <a
+                                <Button
                                     href={`tel:${emergencyPhone.replace(/\s/g, '')}`}
-                                    className="w-full sm:w-auto bg-primary-orange text-white px-10 py-5 rounded-full font-bold flex items-center justify-center gap-3 shadow-lg shadow-primary-orange/20 transition-all duration-200 hover:scale-105 active:scale-95 uppercase text-sm tracking-widest"
+                                    variant="solid"
+                                    size="small"
+                                    arrow={false}
                                 >
-                                    CALL FOR FREE
-                                </a>
-                                <button
-                                    onClick={openModal}
-                                    className="w-full sm:w-auto bg-[#E8F0F7] text-navy-blue px-10 py-5 rounded-full font-bold flex items-center justify-center gap-2 hover:bg-[#D1E1EF] transition-all duration-200 hover:scale-105 active:scale-95 uppercase tracking-widest text-sm"
-                                >
-                                    BOOK SERVICE
-                                    <Icon icon="lucide:chevron-right" className="w-5 h-5" />
-                                </button>
+                                    Call for Free
+                                </Button>
+                                <Button onClick={openModal} variant="light" size="small" arrow={false}>
+                                    Book Service
+                                </Button>
                             </div>
                         </div>
                     </motion.div>
@@ -341,10 +342,9 @@ export default function ServicePageTemplate({
                             className="space-y-4"
                         >
                             <div className="section-title-container w-full">
-                                <h2 className="section-title text-3xl md:text-5xl font-extrabold text-primary-orange capitalize tracking-tight">
+                                <h2 className="section-title text-2xl md:text-3xl lg:text-4xl font-bold text-primary-orange">
                                     {serviceType === 'Corporate' ? 'Corporate Response Packages' : 'Response Packages'}
                                 </h2>
-                                <div className="section-title-bar w-24 h-1.5 bg-navy-blue mt-4 mx-auto lg:mx-0"></div>
                             </div>
                         </motion.div>
                     </div>
@@ -357,11 +357,10 @@ export default function ServicePageTemplate({
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                                whileHover={{ y: -10 }}
-                                className="bg-primary-orange rounded-[40px] p-10 shadow-2xl shadow-primary-orange/20 hover:shadow-primary-orange/30 transition-all flex flex-col relative overflow-hidden group"
+                                className="bg-primary-orange rounded-[40px] p-10 shadow-2xl shadow-primary-orange/20 hover:shadow-primary-orange/30 hover:-translate-y-1 transition-[translate,box-shadow] duration-300 flex flex-col relative overflow-hidden group"
                             >
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16 group-hover:scale-110 transition-transform"></div>
-                                <h3 className="text-2xl lg:text-3xl font-bold text-white mb-8 tracking-tight leading-tight">
+                                <h3 className="text-2xl lg:text-3xl font-semibold text-white mb-8 tracking-tight leading-tight">
                                     {pkg.title}
                                 </h3>
                                 <ul className="space-y-4 grow mb-10">
@@ -381,12 +380,9 @@ export default function ServicePageTemplate({
                                     ))}
                                 </ul>
                                 <div className="mt-auto">
-                                    <button
-                                        onClick={openModal}
-                                        className="w-full bg-white text-primary-orange py-4 px-8 rounded-full font-black text-sm uppercase tracking-[0.2em] shadow-lg hover:bg-gray-50 transition-all duration-200 hover:scale-105 active:scale-95"
-                                    >
-                                        CONTACT US
-                                    </button>
+                                    <Button onClick={openModal} variant="white" size="small" arrow={false} className="w-full">
+                                        Contact Us
+                                    </Button>
                                 </div>
                             </motion.div>
                         ))}
@@ -413,10 +409,9 @@ export default function ServicePageTemplate({
                                 className="space-y-4"
                             >
                                 <div className="section-title-container w-full">
-                                    <h2 className="section-title text-3xl md:text-5xl font-extrabold text-primary-orange capitalize tracking-tight">
+                                    <h2 className="section-title text-2xl md:text-3xl lg:text-4xl font-bold text-primary-orange">
                                         {whyChooseTitle}
                                     </h2>
-                                    <div className="section-title-bar w-24 h-1.5 bg-navy-blue mt-4"></div>
                                 </div>
                                 {whyChooseDescription && (
                                     <p className="text-lg text-gray-700 leading-relaxed max-w-3xl font-medium">
@@ -469,24 +464,18 @@ export default function ServicePageTemplate({
                                 viewport={{ once: true }}
                                 className="space-y-4"
                             >
-                                <div className="section-title-container w-full flex items-end justify-between border-b-2 border-gray-100 pb-8">
-                                    <h3 className="section-title text-3xl md:text-5xl font-bold text-primary-orange tracking-tight">
+                                <div className="section-title-container w-full">
+                                  <div className="flex items-end justify-between">
+                                    <h3 className="section-title text-2xl md:text-3xl lg:text-4xl font-bold text-primary-orange">
                                         Related Services
                                     </h3>
-                                    <div className="flex items-center gap-4">
-                                        <button
-                                            onClick={handlePrevRelated}
-                                            className="w-12 h-12 rounded-full border-2 border-navy-blue flex items-center justify-center text-navy-blue hover:bg-navy-blue hover:text-white transition-all duration-300 shadow-lg"
-                                        >
-                                            <Icon icon="solar:arrow-left-linear" className="w-6 h-6" />
-                                        </button>
-                                        <button
-                                            onClick={handleNextRelated}
-                                            className="w-12 h-12 rounded-full border-2 border-navy-blue flex items-center justify-center text-navy-blue hover:bg-navy-blue hover:text-white transition-all duration-300 shadow-lg"
-                                        >
-                                            <Icon icon="solar:arrow-right-linear" className="w-6 h-6" />
-                                        </button>
-                                    </div>
+                                    <CarouselArrows
+                                        onPrev={handlePrevRelated}
+                                        onNext={handleNextRelated}
+                                        canGoPrev
+                                        canGoNext
+                                    />
+                                  </div>
                                 </div>
                             </motion.div>
                         </div>
@@ -499,8 +488,7 @@ export default function ServicePageTemplate({
                                         initial={{ opacity: 0, scale: 0.95 }}
                                         animate={{ opacity: 1, scale: 1 }}
                                         transition={{ duration: 0.4, delay: index * 0.1 }}
-                                        whileHover={{ y: -12 }}
-                                        className="bg-white rounded-[40px] overflow-hidden shadow-xl hover:shadow-2xl transition-all flex flex-col group h-full"
+                                        className="bg-white rounded-[40px] overflow-hidden shadow-xl hover:shadow-xl hover:-translate-y-1 transition-[translate,box-shadow] duration-300 flex flex-col group h-full"
                                     >
                                         <div className="relative w-full aspect-16/10 overflow-hidden">
                                             <Image
@@ -521,12 +509,14 @@ export default function ServicePageTemplate({
                                                 {service.summary}
                                             </p>
                                             <div className="self-start">
-                                                <Link
+                                                <Button
                                                     href={service.link || "/contact"}
-                                                    className="inline-block bg-white text-primary-orange px-8 py-3.5 rounded-full font-black text-xs uppercase tracking-[0.2em] hover:bg-gray-50 transition-all shadow-lg"
+                                                    variant="white"
+                                                    size="small"
+                                                    arrow={false}
                                                 >
-                                                    REQUEST A QUOTE
-                                                </Link>
+                                                    Request a Quote
+                                                </Button>
                                             </div>
                                         </div>
                                     </motion.div>

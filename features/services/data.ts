@@ -29,6 +29,8 @@ export interface ServiceData {
     metaTitle: string
     /** Use `{country}` as placeholder */
     metaDescription: string
+    /** Where the "Request a Quote" button goes. Defaults to the contact page. */
+    ctaButtonLink?: string
 }
 
 // -------------------------------------------------------------------
@@ -36,6 +38,7 @@ export interface ServiceData {
 // -------------------------------------------------------------------
 
 const homeSecurity: ServiceData = {
+    ctaButtonLink: 'https://www.sgasecurity.com/home-security-solution/',
     serviceName: 'Home Security',
     serviceIcon: 'mdi:home-shield',
     serviceType: 'Individual',

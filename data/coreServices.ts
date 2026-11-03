@@ -2,6 +2,7 @@ export interface CoreService {
   title: string
   description: string
   imageUrl: string
+  countryImageUrls?: Partial<Record<'ke' | 'ug' | 'tz', string>>
   href?: string
 }
 
@@ -51,6 +52,9 @@ export const coreServices: CoreService[] = [
     title: 'Special Services',
     description: 'Customized security solutions tailored to unique client requirements and high-risk scenarios.',
     imageUrl: '/images/group/cit.png',
+    countryImageUrls: {
+      ke: '/images/ke/core-services/special-services-spa0908.jpg',
+    },
   },
   {
     title: 'Workshop Services',
