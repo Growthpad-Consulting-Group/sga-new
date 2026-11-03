@@ -51,7 +51,7 @@ export const coreServices: CoreService[] = [
   {
     title: 'Special Services',
     description: 'Customized security solutions tailored to unique client requirements and high-risk scenarios.',
-    imageUrl: '/images/group/cit.png',
+    imageUrl: '/images/group/core-services/cit.jpg',
     countryImageUrls: {
       ke: '/images/ke/core-services/special-services-spa0908.jpg',
     },
