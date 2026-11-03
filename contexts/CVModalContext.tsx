@@ -1,7 +1,7 @@
 'use client'
 
 import { createContext, useContext, useState, ReactNode } from 'react'
-import CVModal from '@/components/CVModal'
+import CVModal from '@/components/modals/CVModal'
 
 /**
  * CV Modal Context Value Interface

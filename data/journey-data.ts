@@ -1,4 +1,4 @@
-import type { TimelineEvent } from '@/components/OurJourney'
+import type { TimelineEvent } from '@/features/about/OurJourney'
 
 export const timelineEvents: TimelineEvent[] = [
     {

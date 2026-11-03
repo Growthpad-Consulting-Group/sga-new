@@ -1,7 +1,7 @@
 'use client'
 
 import { createContext, useContext, useState, ReactNode } from 'react'
-import EnquiryModal from '@/components/EnquiryModal'
+import EnquiryModal from '@/components/modals/EnquiryModal'
 
 /**
  * Enquiry Modal Context Value Interface
