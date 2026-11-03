@@ -1,8 +1,4 @@
-export interface TimelineEvent {
-    year: string
-    title: string
-    description: string
-}
+import type { TimelineEvent } from '@/components/OurJourney'
 
 export const timelineEvents: TimelineEvent[] = [
     {

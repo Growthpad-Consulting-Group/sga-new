@@ -1,12 +1,13 @@
 import AboutHero from './components/AboutHero'
 import AboutIntro from './components/AboutIntro'
-import OurFoundation from './components/OurFoundation'
-import OurJourney from './components/OurJourney'
+import OurFoundation from '@/components/OurFoundation'
+import OurJourney from '@/components/OurJourney'
 import OurPeople from './components/OurPeople'
 import SectionSeparator from '@/components/SectionSeparator'
 import FloatingWhatsApp from '@/components/FloatingWhatsApp'
 import { countries } from '@/data/countries-data'
 import { resolveMetadata } from '@/data/metadata-data'
+import { timelineEvents } from '@/data/journey-data'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 
@@ -45,11 +46,11 @@ export default async function AboutPage({ params }: Props) {
                 <SectionSeparator />
             </div>
             <div className="relative">
-                <OurFoundation countryName={c.name} />
+                <OurFoundation />
                 <SectionSeparator />
             </div>
             <div className="relative">
-                <OurJourney />
+                <OurJourney events={timelineEvents} />
             </div>
             <div className="relative">
                 <OurPeople countryName={c.name} />

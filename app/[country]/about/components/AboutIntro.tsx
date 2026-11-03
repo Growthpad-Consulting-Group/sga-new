@@ -40,7 +40,7 @@ export default function AboutIntro({
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
-                        className="relative h-[300px] md:h-[800px] rounded-2xl overflow-hidden shadow-2xl"
+                        className="relative h-[300px] md:h-[600px] lg:h-[560px] rounded-2xl overflow-hidden shadow-2xl"
                     >
                         <Image
                             src={imageUrl}

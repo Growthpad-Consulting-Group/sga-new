@@ -1,30 +1,25 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useEnquiryModal } from '@/contexts/EnquiryModalContext'
 import Carousel from '@/components/Carousel'
 
 interface Foundation {
   title: string
   longDescription: string
-  imageUrl: string
 }
 
 const foundations: Foundation[] = [
   {
     title: 'Mission',
     longDescription: 'To provide sustainable safety and security solutions built on people, innovation, and responsibility.',
-    imageUrl: '',
   },
   {
     title: 'Vision',
     longDescription: 'To be Africa’s trusted security solutions provider of choice, driven by quality, integrity, innovation, and strong customer relationships.',
-    imageUrl: '',
   },
   {
     title: 'Values',
     longDescription: 'SGA Security fosters a culture of safety, pride, and professionalism, empowering our teams to deliver with quality, discipline, loyalty, and integrity.',
-    imageUrl: '',
   },
 ]
 
@@ -50,10 +45,9 @@ function renderCircle(foundation: Foundation) {
 }
 
 export default function OurFoundation({
-  title = "Our Foundation",
-  description = "Built on the pillars that define who we are and drive our commitment to excellence."
+  title = 'Our Foundation',
+  description = 'Guided by purpose, driven by values.'
 }: OurFoundationProps): React.JSX.Element {
-  const { openModal } = useEnquiryModal()
   return (
     <div id="our-foundation" className="bg-white relative pt-20 pb-24">
       <motion.div
@@ -71,11 +65,11 @@ export default function OurFoundation({
             className="space-y-3"
           >
             <p className="text-5xl lg:text-4xl xl:text-5xl font-bold text-primary-orange capitalize">
-              our foundation
+              {title}
             </p>
             <div className="section-title-container">
               <h3 className="section-title text-sm xl:text-base font-normal text-dark-charcoal">
-                Guided by purpose, driven by values.
+                {description}
               </h3>
             </div>
           </motion.div>
@@ -94,7 +88,7 @@ export default function OurFoundation({
         <div className="hidden lg:grid lg:grid-cols-3 gap-12 md:gap-8 lg:gap-12 justify-items-center">
           {foundations.map((foundation, index) => (
             <motion.div
-              key={index}
+              key={foundation.title}
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}

@@ -24,11 +24,10 @@ export default function OurPeople({
                         className="space-y-8"
                     >
                         <div className="space-y-6">
-                            <div className="section-title-container">
-                                <h2 className="section-title text-2xl md:text-4xl font-bold">
+                            <div className="section-title-container w-full pb-1!">
+                                <h2 className="section-title text-2xl md:text-3xl lg:text-4xl font-bold text-primary-orange">
                                     Our People
                                 </h2>
-                                <div className="section-title-bar"></div>
                             </div>
                             <p className="text-sm md:text-xl text-gray-700 leading-relaxed max-w-2xl">
                                 Our strength is our people. Officers are vetted and trained in customer service, incident response, and site protocols—with continuous refresher courses through regional training programs and supervision from experienced team leaders.
@@ -36,11 +35,10 @@ export default function OurPeople({
                         </div>
 
                         <div className="space-y-6 pt-8">
-                            <div className="section-title-container">
-                                <h2 className="section-title text-2xl md:text-4xl font-bold">
+                            <div className="section-title-container w-full pb-1!">
+                                <h2 className="section-title text-2xl md:text-3xl lg:text-4xl font-bold text-primary-orange">
                                     Quality & Compliance
                                 </h2>
-                                <div className="section-title-bar"></div>
                             </div>
                             <p className="text-sm md:text-xl text-gray-700 leading-relaxed max-w-2xl">
                                 We align with international best practice and local regulations, emphasizing safety, confidentiality, and fair employment. Site SOPs, regular drills, and performance reviews help us maintain high standards.

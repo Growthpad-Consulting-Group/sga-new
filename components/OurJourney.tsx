@@ -5,13 +5,13 @@ import { motion } from 'framer-motion'
 
 import { useCarousel, CarouselArrows } from '@/components/Carousel'
 
-interface TimelineEvent {
+export interface TimelineEvent {
   year: string
   title: string
   description: string
 }
 
-const timelineEvents: TimelineEvent[] = [
+const groupTimelineEvents: TimelineEvent[] = [
   {
     year: '1969',
     title: 'Factory Guards',
@@ -49,7 +49,11 @@ const timelineEvents: TimelineEvent[] = [
   },
 ]
 
-export default function OurJourney(): React.JSX.Element {
+interface OurJourneyProps {
+  events?: TimelineEvent[]
+}
+
+export default function OurJourney({ events = groupTimelineEvents }: OurJourneyProps): React.JSX.Element {
   const [touchStart, setTouchStart] = useState<number | null>(null)
   const [touchEnd, setTouchEnd] = useState<number | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
@@ -66,7 +70,7 @@ export default function OurJourney(): React.JSX.Element {
   }, [])
 
   // Use carousel hook for pagination (show itemsToShow items at a time)
-  const carousel = useCarousel(timelineEvents.length, itemsToShow)
+  const carousel = useCarousel(events.length, itemsToShow)
 
   // Minimum swipe distance (in px)
   const minSwipeDistance = 50
@@ -176,9 +180,9 @@ export default function OurJourney(): React.JSX.Element {
 
             {/* Timeline Events */}
             <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4">
-              {carousel.currentItems(timelineEvents).map((event, index) => (
+              {carousel.currentItems(events).map((event, index) => (
                 <motion.div
-                  key={`${carousel.currentPage}-${index}`}
+                  key={event.year}
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
