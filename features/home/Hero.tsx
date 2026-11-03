@@ -208,9 +208,9 @@ export default function Hero({
                     >
                       <div className={`transition-colors duration-300 ${hoverTextColor} absolute top-4 left-6 right-6`}>
                         {topText && (
-                          <span className="text-lg mb-1 block font-normal">{topText}</span>
+                          <span className="text-lg lg:text-base xl:text-lg mb-1 block font-normal">{topText}</span>
                         )}
-                        <span className="text-3xl font-bold block">{mainText}</span>
+                        <span className="text-3xl lg:text-2xl xl:text-3xl font-bold block">{mainText}</span>
                       </div>
                       <span className={`absolute bottom-4 left-6 flex items-center ${readMoreTextColor} opacity-0 group-hover:opacity-100 transition-all duration-300`}>
                         <span className="text-xs uppercase font-bold">{button.readMoreText || 'Read More'}</span>
