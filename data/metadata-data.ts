@@ -3,7 +3,7 @@ export interface PageMetadata {
     description: string
 }
 
-export type PageType = 'about' | 'contact' | 'faqs' | 'services' | 'industries' | 'why-us' | 'updates'
+export type PageType = 'about' | 'contact' | 'faqs' | 'services' | 'industries' | 'updates'
 
 export const globalMetadata: Record<PageType, PageMetadata> = {
     about: {
@@ -17,10 +17,6 @@ export const globalMetadata: Record<PageType, PageMetadata> = {
     faqs: {
         title: 'FAQs - SGA Security {country} - Frequently Asked Questions',
         description: 'Clear answers to common questions about SGA Group, our security services, operating standards, and how we support clients in {country}.',
-    },
-    'why-us': {
-        title: 'Why Choose SGA Security {country} - Trusted Security Solutions',
-        description: 'Discover why SGA Security {country} is the leading choice for security solutions. Over 55 years of excellence and local expertise.',
     },
     updates: {
         title: 'News & Insights - SGA Security {country}',

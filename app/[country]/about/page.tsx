@@ -36,7 +36,10 @@ export default async function AboutPage({ params }: Props) {
 
     return (
         <>
-            <AboutHero countryName={c.name} />
+            <AboutHero
+                countryName={c.name}
+                imageUrl={country === 'ke' ? '/images/ke/about-hero-spa1913.jpg' : undefined}
+            />
             <div className="relative">
                 <AboutIntro countryName={c.name} />
                 <SectionSeparator />

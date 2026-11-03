@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { Link, useTransitionRouter } from 'next-view-transitions'
 import Image from 'next/image'
 import { Icon } from '@iconify/react'
+import Button from '@/components/Button'
 
 interface ServiceItem {
   href: string
@@ -110,7 +111,7 @@ export default function MegaMenuDropdown({
           {/* Column 1: Country & Shortcuts */}
           <div className="lg:col-span-1 space-y-16">
             <div>
-              <h3 className="text-white font-normal text-lg uppercase tracking-[0.2em] mb-6">Country</h3>
+              <h3 className="text-white font-normal text-base lg:text-sm xl:text-lg uppercase tracking-[0.2em] mb-6">Country</h3>
               <div className="grid grid-cols-3 gap-2">
                 {countries.map((country) => {
                   const active = isActiveCountry(country.path)
@@ -135,29 +136,14 @@ export default function MegaMenuDropdown({
               </div>
             </div>
 
-            <div>
-              <h3 className="text-white font-normal text-lg uppercase tracking-[0.2em] mb-6">Shortcuts</h3>
-              <div className="flex flex-col gap-6">
-                {shortcuts.map((shortcut) => (
-                  <Link
-                    key={shortcut.label}
-                    href={shortcut.href}
-                    onClick={onClose}
-                    className="text-white text-xl font-bold hover:translate-x-2 transition-transform duration-300 block"
-                  >
-                    {shortcut.label}
-                  </Link>
-                ))}
-              </div>
-            </div>
           </div>
 
           {/* Column 2: Services/Industries List */}
           <div className="lg:col-span-1">
-            <h3 className="text-white font-normal text-lg uppercase tracking-[0.2em] mb-6">
+            <h3 className="text-white font-normal text-base lg:text-sm xl:text-lg uppercase tracking-[0.2em] mb-6">
               {isServices ? `Services — ${servicesViewType.toUpperCase()}` : 'Industries'}
             </h3>
-            <div className="flex flex-col gap-6">
+            <div className={`flex flex-col gap-6 ${isServices ? 'max-h-[60vh] overflow-y-auto pr-2' : ''}`}>
               {dropdownItems.map((service) => (
                 <Link
                   key={service.label}
@@ -168,7 +154,7 @@ export default function MegaMenuDropdown({
                   <div className="absolute left-0 -top-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform -translate-x-3 group-hover:translate-x-0">
                     <Icon icon="mdi:plus" className="w-8 h-8 font-bold" />
                   </div>
-                  <span className="text-lg lg:text-2xl font-bold leading-tight capitalize tracking-wider transition-transform duration-300 group-hover:translate-x-10 inline-block">
+                  <span className="text-base lg:text-lg xl:text-2xl font-bold leading-tight capitalize tracking-wider transition-transform duration-300 group-hover:translate-x-10 inline-block">
                     {service.label}
                   </span>
                 </Link>
@@ -181,38 +167,47 @@ export default function MegaMenuDropdown({
             <div className="bg-white/10 backdrop-blur-md rounded-xl p-8 border border-white/60 h-fit">
               <div className="mb-6 text-white">
                 <h3 className="text-sm uppercase tracking-[0.2em] font-bold mb-4 opacity-80">Need Help?</h3>
-                <h2 className="text-xl lg:text-2xl font-bold leading-none">Talk to us fast</h2>
+                <h2 className="text-xl lg:text-lg xl:text-2xl font-bold leading-none">Talk to us fast</h2>
               </div>
 
               <div className="space-y-4">
-                <button
+                <Button
+                  variant="dark"
+                  size="small"
+                  className="w-full! sm:w-full!"
+                  icon="mdi:file-document-outline"
+                  arrow={false}
                   onClick={() => {
                     onClose()
                     openModal()
                   }}
-                  className="w-full bg-white text-primary-orange py-4 rounded-full font-bold uppercase tracking-widest text-sm flex items-center justify-center gap-3 shadow-xl hover:bg-white/90 transition-colors"
                 >
-                  <Icon icon="mdi:file-document-outline" className="w-5 h-5 outline-hidden" />
                   Request a Quote
-                </button>
-                <button
+                </Button>
+                <Button
+                  variant="dark"
+                  size="small"
+                  className="w-full! sm:w-full!"
+                  icon="mdi:phone-outline"
+                  arrow={false}
                   onClick={() => {
                     onClose()
                     router.push(`${countryPrefix}/contact`)
                   }}
-                  className="w-full bg-transparent text-white border-2 border-white/40 py-4 rounded-full font-bold uppercase tracking-widest text-sm flex items-center justify-center gap-3 hover:bg-white hover:text-primary-orange hover:border-white transition-all"
                 >
-                  <Icon icon="mdi:phone-outline" className="w-5 h-5" />
                   Talk to Sales
-                </button>
-                <a
+                </Button>
+                <Button
                   href={`tel:${countryPhone?.replace(/\s/g, '') || '+254733700500'}`}
-                  className="w-full bg-transparent text-white border-2 border-white/40 py-4 rounded-full font-bold uppercase tracking-widest text-sm flex items-center justify-center gap-3 hover:bg-white hover:text-primary-orange hover:border-white transition-all"
+                  variant="dark"
+                  size="small"
+                  className="w-full! sm:w-full!"
+                  icon="material-symbols:e911-emergency-outline"
+                  arrow={false}
                   onClick={onClose}
                 >
-                  <Icon icon="material-symbols:e911-emergency-outline" className="w-6 h-6" />
                   Emergency Line
-                </a>
+                </Button>
               </div>
             </div>
           </div>

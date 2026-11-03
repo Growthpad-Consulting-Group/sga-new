@@ -1,3 +1,4 @@
+import { coreServices } from './coreServices'
 export interface NavItem {
   href: string
   label: string
@@ -38,28 +39,24 @@ export const getCountryNavItems = (countryCode: string): NavItem[] => {
     { href: `${baseUrl}/about`, label: 'ABOUT US' },
     { href: `${baseUrl}#services`, label: 'SERVICES' },
     { href: `${baseUrl}#industries`, label: 'INDUSTRIES' },
-    { href: `${baseUrl}/why-us`, label: 'WHY US' },
     { href: `${baseUrl}/updates`, label: 'NEWS & INSIGHTS' },
     { href: `${baseUrl}#contact`, label: 'CONTACT' },
     { href: '/', label: 'SGA GROUP' },
   ]
 }
 
-// Country header "Services" mega menu — Individual tab. Items without a
-// dedicated page yet link to the Individual services listing page rather
-// than a dead link or an unrelated Contact page.
-export const getIndividualServicesItems = (countryPrefix: string): NavItem[] => [
-  { href: 'https://sgasecurity.com/home-security-solution/', label: 'Home Security Solutions' },
-  { href: `${countryPrefix}/services/corporate/security-guarding`, label: 'Guarding' },
-  { href: `${countryPrefix}/services/individual`, label: 'K-9 Services' },
-  { href: `${countryPrefix}/services/individual`, label: 'Alarm Response Services' },
-  { href: `${countryPrefix}/services/individual`, label: 'Control Room Services' },
-  { href: `${countryPrefix}/services/individual`, label: 'Courier Services' },
-  { href: `${countryPrefix}/services/individual`, label: 'Close Protection Officer' },
-]
+// Country header "Services" mega menu. Both tabs read from the shared core
+// services list (data/coreServices.ts), so the menu stays in sync with the
+// services shown on the homepage.
+const toServiceNavItems = (countryPrefix: string, servicesPath: 'individual' | 'corporate'): NavItem[] =>
+  coreServices.map((service) => ({
+    href: service.href ?? `${countryPrefix}/services/${servicesPath}`,
+    label: service.title,
+  }))
 
-// Country header "Services" mega menu — Corporate tab. Same fallback rule
-// as above, pointing at the Corporate services listing page instead.
+export const getIndividualServicesItems = (countryPrefix: string): NavItem[] =>
+  toServiceNavItems(countryPrefix, 'individual')
+
 export const getCorporateServicesItems = (countryPrefix: string): NavItem[] => [
   { href: 'https://sgasecurity.com/home-security-solution/', label: 'Business Security Solutions' },
   { href: `${countryPrefix}/services/corporate`, label: 'CCTV Services' },
@@ -106,7 +103,6 @@ export const getCountryHeaderNavItems = (countryPrefix: string): NavItem[] => [
   { href: `${countryPrefix}/about`, label: 'ABOUT US' },
   { href: '#services', label: 'SERVICES', isDropdown: true, dropdownType: 'services' },
   { href: `${countryPrefix}/industries`, label: 'INDUSTRIES', isDropdown: true, dropdownType: 'industries' },
-  { href: `${countryPrefix}/why-us`, label: 'WHY US' },
   { href: `${countryPrefix}/updates`, label: 'NEWS & INSIGHTS' },
   { href: `${countryPrefix}/contact`, label: 'CONTACT' },
 ]

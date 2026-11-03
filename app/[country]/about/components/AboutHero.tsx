@@ -13,7 +13,7 @@ export default function AboutHero({
     imageUrl = '/images/group/about/hero.png'
 }: AboutHeroProps) {
     return (
-        <section id="hero" className="bg-gray-100 text-dark-charcoal pt-32 sm:pt-40 lg:pt-48 pb-0">
+        <section id="hero" className="relative bg-gray-100 text-dark-charcoal pt-32 sm:pt-40 lg:pt-40 xl:pt-48 pb-0">
             <div className="container-fluid mx-auto">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
@@ -27,7 +27,7 @@ export default function AboutHero({
                     <h1 className="text-xl md:text-2xl lg:text-4xl font-bold">
                         <span className="text-primary-orange">Security That Matters</span>
                     </h1>
-                    <p className="text-sm md:text-xl text-gray-700 ">
+                    <p className="text-sm md:text-base lg:text-sm xl:text-base text-gray-700 ">
                         Over 55 years of trusted, integrated security for homes, businesses, and institutions across {countryName}.
                     </p>
                 </motion.div>

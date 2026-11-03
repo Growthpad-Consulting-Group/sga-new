@@ -14,6 +14,10 @@ interface ButtonProps {
   variant?: 'dark' | 'light' | 'solid'
   size?: 'default' | 'small'
   className?: string
+  /** Optional icon shown before the label (iconify name, e.g. "mdi:phone-outline") */
+  icon?: string
+  /** Show the arrow that fades in on hover (default true) */
+  arrow?: boolean
 }
 
 // Same look and hover as the "Our Sustainability Impact" button on the About section
@@ -35,22 +39,25 @@ const arrowColors = {
   solid: 'text-primary-orange',
 }
 
-export default function Button({ children, href, onClick, variant = 'light', size = 'default', className = '' }: ButtonProps) {
-  const classes = `${variants[variant]} ${sizes[size]} rounded-full font-semibold shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center group relative w-full sm:w-auto ${className}`
+export default function Button({ children, href, onClick, variant = 'light', size = 'default', className = '', icon, arrow = true }: ButtonProps) {
+  const classes = `${variants[variant]} ${sizes[size]} rounded-full font-semibold shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 text-center group relative w-full sm:w-auto ${className}`
 
   const content = (
     <>
+      {icon && <Icon icon={icon} className="w-5 h-5 shrink-0" />}
       {children}
-      <Icon
-        icon="iconoir:arrow-right-circle"
-        className={`w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute right-4 ${arrowColors[variant]}`}
-      />
+      {arrow && (
+        <Icon
+          icon="iconoir:arrow-right-circle"
+          className={`w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute right-4 ${arrowColors[variant]}`}
+        />
+      )}
     </>
   )
 
   if (href) {
     return (
-      <Link href={href} className={classes}>
+      <Link href={href} onClick={onClick} className={classes}>
         {content}
       </Link>
     )

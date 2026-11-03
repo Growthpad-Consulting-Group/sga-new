@@ -113,8 +113,7 @@ export default function CountryHeader(): React.JSX.Element {
 
   const isAboutPage = pathname.includes('/about') ||
     pathname.includes('/industries') ||
-    pathname.includes('/services') ||
-    pathname.includes('/why-us')
+    pathname.includes('/services')
 
   return (
     <>
