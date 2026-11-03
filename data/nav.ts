@@ -100,7 +100,7 @@ export const getCountryHeaderNavItems = (countryPrefix: string): NavItem[] => [
   { href: '/', label: 'SGA GROUP' },
   { href: '#services', label: 'SERVICES', isDropdown: true, dropdownType: 'services' },
   { href: `${countryPrefix}/industries`, label: 'INDUSTRIES', isDropdown: true, dropdownType: 'industries' },
-  { href: `${countryPrefix}/why-us`, label: 'WHY US' },
+  { href: `${countryPrefix}/why-us`, label: 'ABOUT US' },
   { href: `${countryPrefix}/updates`, label: 'NEWS & INSIGHTS' },
   { href: `${countryPrefix}/contact`, label: 'CONTACT' },
 ]

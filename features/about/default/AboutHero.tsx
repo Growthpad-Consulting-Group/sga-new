@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 interface AboutHeroProps {
   imageUrl?: string
@@ -26,21 +27,16 @@ export default function AboutHero({ imageUrl = '/images/misc/blog-placeholder' }
       </div>
 
       {/* Large image with parallax effect */}
-      <div className="w-full">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="relative w-full h-[400px] md:h-[500px] lg:h-[600px]"
-          style={{
-            backgroundImage: `url(${imageUrl})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundAttachment: 'fixed',
-          }}
-        >
+      <div className="relative h-[400px] w-full md:h-[500px] lg:h-[600px]">
+          <Image
+            src={imageUrl}
+            alt="SGA Security Group"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
+          />
           <div className="absolute inset-0 bg-black/10"></div>
-        </motion.div>
       </div>
     </section>
   )

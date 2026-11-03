@@ -50,12 +50,7 @@ export default function WhyUsHero({ countryCode, imageUrl }: WhyUsHeroProps) {
                         </div>
                     </motion.div>
 
-                    <motion.div
-                        initial={{ opacity: 0, x: 30 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8, delay: 0.4 }}
-                        className="relative w-full h-[300px] sm:h-[350px] lg:h-[400px] xl:h-[550px]"
-                    >
+                    <div className="relative w-full h-[300px] sm:h-[350px] lg:h-[400px] xl:h-[550px]">
                         <div className="relative w-full h-full rounded-2xl flex items-center justify-center overflow-hidden border border-gray-100">
                             <Image
                                 src={imageUrl || `/images/${countryCode}/about-sga.png`}
@@ -63,13 +58,14 @@ export default function WhyUsHero({ countryCode, imageUrl }: WhyUsHeroProps) {
                                 fill
                                 className="object-cover rounded-2xl"
                                 priority
+                                sizes="(min-width: 1024px) 50vw, 100vw"
                                 onError={(e) => {
                                     // Fallback if country image doesn't exist
                                     (e.target as HTMLImageElement).src = '/images/group/about/hero.png'
                                 }}
                             />
                         </div>
-                    </motion.div>
+                    </div>
                 </div>
             </div>
         </section>

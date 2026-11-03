@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 interface SustainabilityHeroProps {
   imageUrl?: string
@@ -25,22 +26,17 @@ export default function SustainabilityHero({ imageUrl = '/images/sustainability/
         </motion.div>
       </div>
 
-      {/* Large image with parallax effect using CSS */}
-      <div className="w-full">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="relative w-full h-[400px] md:h-[500px] lg:h-[600px]"
-          style={{
-            backgroundImage: `url(${imageUrl})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'top',
-          }}
-        >
+      <div className="relative h-[400px] w-full md:h-[500px] lg:h-[600px]">
+          <Image
+            src={imageUrl}
+            alt="SGA Sustainability and ESG"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-top"
+          />
           {/* Optional overlay for better text readability if needed */}
           <div className="absolute inset-0 bg-black/10"></div>
-        </motion.div>
       </div>
     </section>
   )

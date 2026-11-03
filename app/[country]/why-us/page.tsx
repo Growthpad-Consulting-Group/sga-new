@@ -1,17 +1,74 @@
+import AboutHero from '@/features/about/AboutHero'
+import AboutIntro from '@/features/about/AboutIntro'
+import OurFoundation from '@/features/about/OurFoundation'
+import OurJourney from '@/features/about/OurJourney'
+import OurPeople from '@/features/about/OurPeople'
+import SectionSeparator from '@/components/ui/SectionSeparator'
+import FloatingWhatsApp from '@/components/ui/FloatingWhatsApp'
 import { countries } from '@/data/countries-data'
-import { notFound, permanentRedirect } from 'next/navigation'
+import { resolveMetadata } from '@/data/metadata-data'
+import { timelineEvents } from '@/data/journey-data'
+import { notFound } from 'next/navigation'
+import type { Metadata } from 'next'
 
 interface Props {
     params: Promise<{ country: string }>
+}
+
+const aboutHeroImages: Record<string, string> = {
+    ke: '/images/ke/about-hero-spa1913.jpg',
+    ug: '/images/ug/about-hero-spa2124.jpg',
+    tz: '/images/tz/about-hero-spa0485.jpg',
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+    const { country } = await params
+    const c = countries[country]
+    if (!c) return {}
+    const meta = resolveMetadata('about', c.name)
+    return {
+        title: meta.title,
+        description: meta.description,
+    }
 }
 
 export async function generateStaticParams() {
     return [{ country: 'ke' }, { country: 'ug' }, { country: 'tz' }]
 }
 
-export default async function WhyUsPage({ params }: Props) {
+export default async function AboutPage({ params }: Props) {
     const { country } = await params
-    if (!countries[country]) notFound()
+    const c = countries[country]
+    if (!c) notFound()
 
-    permanentRedirect(`/${country}/about`)
+    return (
+        <>
+            <AboutHero
+                countryName={c.name}
+                imageUrl={aboutHeroImages[country]}
+            />
+            <div className="relative">
+                <AboutIntro countryName={c.name} />
+                <SectionSeparator />
+            </div>
+            <div className="relative">
+                <OurFoundation />
+                <SectionSeparator />
+            </div>
+            <div className="relative">
+                <OurJourney events={timelineEvents} />
+            </div>
+            <div className="relative">
+                <OurPeople countryName={c.name} />
+                <SectionSeparator />
+            </div>
+            <FloatingWhatsApp
+                singleCountry={true}
+                country={c.name}
+                phone={c.whatsapp}
+                url={c.whatsappUrl}
+                flag={c.flag}
+            />
+        </>
+    )
 }

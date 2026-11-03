@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
+import Image from 'next/image'
 
 interface ContactHeroProps {
   imageUrl?: string
@@ -36,17 +37,17 @@ export default function ContactHero({ imageUrl = '/images/contact/hero.png' }: C
       {/* Large image with scroll-linked parallax effect */}
       <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden">
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
           className="absolute inset-x-0 top-[-12%] bottom-[-12%] will-change-transform"
-          style={{
-            y: imageY,
-            backgroundImage: `url(${imageUrl})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'top',
-          }}
+          style={{ y: imageY }}
         >
+          <Image
+            src={imageUrl}
+            alt="Contact SGA Security"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-top"
+          />
           <div className="absolute inset-0 bg-black/10"></div>
         </motion.div>
       </div>

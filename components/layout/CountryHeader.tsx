@@ -112,7 +112,7 @@ export default function CountryHeader(): React.JSX.Element {
   }
   const currentCountryName = getCountryName()
 
-  const isAboutPage = pathname.includes('/about') ||
+  const isAboutPage = pathname.includes('/about') || pathname.includes('/why-us') ||
     pathname.includes('/industries') ||
     pathname.includes('/services')
 

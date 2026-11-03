@@ -80,7 +80,7 @@ export default function Hero({
               </h3>
             )}
             {customTitle && orangeBackground ? (
-              <h2 className={`text-4xl md:text-5xl font-bold ${textColorClass}`}>
+              <h2 className={`text-4xl md:text-5xl xl:text-6xl font-bold ${textColorClass}`}>
                 {customTitle}
               </h2>
             ) : (
@@ -400,20 +400,16 @@ export default function Hero({
               </div>
             </div>
           ) : (
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="relative w-full h-[400px] lg:h-[800px] rounded-lg overflow-hidden lg:col-span-5"
-            >
+            <div className="relative w-full h-[400px] lg:h-[800px] rounded-lg overflow-hidden lg:col-span-5">
               <Image
                 src={imageUrl}
                 alt={`${countryName} Security Services`}
                 fill
                 className="object-contain object-top"
                 priority
+                sizes="(min-width: 1024px) 42vw, 100vw"
               />
-            </motion.div>
+            </div>
           )}
         </div>
 

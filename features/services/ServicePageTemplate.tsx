@@ -204,20 +204,16 @@ export default function ServicePageTemplate({
                         </motion.div>
 
                         {/* Right Column - Image */}
-                        <motion.div
-                            initial={{ opacity: 0, x: 30 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.8, delay: 0.4 }}
-                            className="relative w-full aspect-4/3 lg:aspect-square"
-                        >
+                        <div className="relative w-full aspect-4/3 lg:aspect-square">
                             <Image
                                 src={heroImage}
                                 alt={`${serviceName} Service - ${heroTitle}`}
                                 fill
                                 className="object-cover rounded-3xl shadow-2xl"
                                 priority
+                                sizes="(min-width: 1024px) 50vw, 100vw"
                             />
-                        </motion.div>
+                        </div>
                     </div>
 
                     {/* Integrated Control Room Bar */}

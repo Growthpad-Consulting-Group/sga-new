@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import Image from 'next/image'
 import { Link } from 'next-view-transitions'
@@ -29,7 +28,7 @@ export function getNewsCardKey(item: NewsCardItem, index: number) {
   return item._id || slug || `${item.title}-${index}`
 }
 
-export default function NewsCard({ item, index = 0 }: NewsCardProps) {
+export default function NewsCard({ item }: NewsCardProps) {
   const slug = typeof item.slug === 'string' ? item.slug : item.slug?.current
   const href = slug ? `/news-reports/${slug}` : '/news-reports'
   const imageUrl = item.image || (item.mainImage ? urlFor(item.mainImage).url() : '/images/misc/blog-placeholder')
@@ -42,11 +41,7 @@ export default function NewsCard({ item, index = 0 }: NewsCardProps) {
     : '')
 
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+    <article
       className="flex min-h-[400px] flex-col overflow-hidden rounded-lg border border-gray-200 bg-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl xl:min-h-[500px]"
     >
       <Link href={href} className="relative block h-48 w-full cursor-pointer xl:h-64">
@@ -90,6 +85,6 @@ export default function NewsCard({ item, index = 0 }: NewsCardProps) {
           {item.summary}
         </p>
       </div>
-    </motion.article>
+    </article>
   )
 }

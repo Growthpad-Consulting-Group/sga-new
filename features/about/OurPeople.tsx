@@ -51,7 +51,7 @@ export default function OurPeople({
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
-                        className="relative h-[400px] md:h-[700px] rounded-2xl overflow-hidden shadow-2xl"
+                        className="relative h-[400px] md:h-[480px] lg:h-[520px] rounded-2xl overflow-hidden shadow-2xl"
                     >
                         <Image
                             src={imageUrl}

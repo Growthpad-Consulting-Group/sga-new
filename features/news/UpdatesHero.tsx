@@ -35,12 +35,7 @@ export default function UpdatesHero({ imageUrl = '/images/contact/hero.png' }: U
         </motion.div>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.4 }}
-        className="relative h-[400px] w-full overflow-hidden md:h-[500px] lg:h-[600px]"
-      >
+      <div className="relative h-[400px] w-full overflow-hidden md:h-[500px] lg:h-[600px]">
         {/* Keep the mobile crop stable and avoid scroll-linked motion on smaller screens. */}
         <Image
           src={imageUrl}
@@ -66,7 +61,7 @@ export default function UpdatesHero({ imageUrl = '/images/contact/hero.png' }: U
             priority
           />
         </motion.div>
-      </motion.div>
+      </div>
     </section>
   )
 }

@@ -85,7 +85,7 @@ export default function About({
                 </h2>
               )}
               {customDescription && (
-                <p className="text-base font-normal md:text-2xl lg:text-base xl:text-2xl text-dark-charcoal pb-4">
+                <p className="text-base font-normal md:text-2xl lg:text-base xl:text-xl text-dark-charcoal pb-4">
                   {customDescription}
                 </p>
               )}
@@ -104,7 +104,7 @@ export default function About({
                 transition={{ duration: 0.6 }}
                 className="flex flex-col justify-center h-full w-full"
               >
-                <div className="relative w-full h-[450px] md:h-[420px] lg:h-[430px]">
+                <div className="relative w-full h-[450px] md:h-[420px] lg:h-[430px] xl:h-[480px]">
                   <Image
                     src={imageUrl}
                     alt={typeof h2Title === 'string' ? h2Title : 'About SGA'}

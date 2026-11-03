@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { Icon } from '@iconify/react'
 import Carousel from '@/components/ui/Carousel'
 
 interface Foundation {
@@ -33,15 +34,28 @@ function renderCircle(foundation: Foundation) {
     <div className="relative w-80 h-80 md:w-[400px] md:h-[400px] lg:w-[320px] lg:h-[320px] xl:w-[400px] xl:h-[400px] rounded-full overflow-hidden shadow-xl bg-primary-orange group cursor-pointer">
       {/* Content */}
       <div className="absolute inset-0 flex flex-col items-center justify-center p-6 md:p-8 text-center z-10">
-        <h3 className="text-2xl md:text-4xl lg:text-2xl xl:text-4xl font-bold text-white mb-3">
-          {foundation.title}
-        </h3>
+        <div className="flex items-center justify-center gap-3 mb-3">
+          <Icon
+            icon={foundationIcons[foundation.title] ?? 'mdi:star-outline'}
+            className="w-8 h-8 md:w-10 md:h-10 lg:w-8 lg:h-8 xl:w-10 xl:h-10 text-white shrink-0"
+          />
+          <h3 className="text-2xl md:text-4xl lg:text-2xl xl:text-4xl font-bold text-white">
+            {foundation.title}
+          </h3>
+        </div>
         <p className="text-white/90 text-sm md:text-lg lg:text-sm xl:text-lg leading-relaxed max-w-xs mb-3">
           {foundation.longDescription}
         </p>
       </div>
     </div>
   )
+}
+
+// Icon shown above each circle title
+const foundationIcons: Record<string, string> = {
+  Mission: 'mdi:target',
+  Vision: 'mdi:eye-outline',
+  Values: 'mdi:heart-outline',
 }
 
 export default function OurFoundation({

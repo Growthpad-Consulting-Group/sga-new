@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 export default function IndustriesHero(): React.JSX.Element {
   return (
@@ -21,22 +22,16 @@ export default function IndustriesHero(): React.JSX.Element {
         </motion.div>
       </div>
 
-      {/* Large image with parallax effect */}
-      <div className="w-full">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="relative w-full h-[400px] md:h-[500px] lg:h-[600px]"
-          style={{
-            backgroundImage: `url(/images/group/about/hero.png)`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundAttachment: 'fixed',
-          }}
-        >
+      <div className="relative h-[400px] w-full md:h-[500px] lg:h-[600px]">
+          <Image
+            src="/images/group/about/hero.png"
+            alt="Industries served by SGA Security"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
+          />
           <div className="absolute inset-0 bg-black/10"></div>
-        </motion.div>
       </div>
     </section>
   )

@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 
 import { contactOffices } from '@/features/contact/data'
@@ -16,20 +15,9 @@ export default function ContactInfo({ providedCountry }: ContactInfoProps): Reac
 
   return (
     <section id="contact-info" className=" flex items-center justify-center bg-white text-dark-charcoal py-20 relative">
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-100px' }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="container-fluid mx-auto"
-      >
+      <div className="container-fluid mx-auto">
         {/* Title Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className={providedCountry ? '' : 'mb-8'}
-        >
+        <div className={providedCountry ? '' : 'mb-8'}>
           {!providedCountry && (
             <div className="section-title-container">
               <h2 className="section-title text-xl md:text-5xl font-bold text-primary-orange">
@@ -42,19 +30,15 @@ export default function ContactInfo({ providedCountry }: ContactInfoProps): Reac
               Direct lines and offices for each country. You can also visit the country website for more local information.
             </p>
           )}
-        </motion.div>
+        </div>
 
         {/* Contact Content Area */}
         <div className={`${providedCountry ? 'mt-0' : 'mt-8'} ${providedCountry ? 'grid lg:grid-cols-3 gap-8 items-stretch' : 'grid md:grid-cols-3 gap-6 md:gap-8'}`}>
           {/* Contact Cards */}
           <div className={providedCountry ? 'lg:col-span-1 space-y-6' : 'contents'}>
             {filteredOffices.map((office, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="bg-primary-orange rounded-lg shadow-lg p-6 md:p-8 hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 flex flex-col h-full"
               >
                 <div className="grow">
@@ -132,19 +116,13 @@ export default function ContactInfo({ providedCountry }: ContactInfoProps): Reac
                     <span>VIEW ON MAP</span>
                   </a>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
 
           {/* Map Section (Only if country is provided) */}
           {providedCountry && filteredOffices.length > 0 && (
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="lg:col-span-2 relative min-h-[400px] lg:min-h-full rounded-2xl overflow-hidden shadow-2xl border-4 border-primary-orange/20"
-            >
+            <div className="lg:col-span-2 relative min-h-[400px] lg:min-h-full rounded-2xl overflow-hidden shadow-2xl border-4 border-primary-orange/20">
               <iframe
                 src={filteredOffices[0].mapEmbedUrl}
                 width="100%"
@@ -155,10 +133,10 @@ export default function ContactInfo({ providedCountry }: ContactInfoProps): Reac
                 referrerPolicy="no-referrer-when-downgrade"
                 className="w-full h-full grayscale hover:grayscale-0 transition-all duration-700"
               ></iframe>
-            </motion.div>
+            </div>
           )}
         </div>
-      </motion.div>
+      </div>
     </section>
   )
 }

@@ -108,16 +108,11 @@ export default function HappyClients() {
         <div className="grid grid-cols-2 md:grid-cols-6 overflow-hidden border-t border-l border-dark-charcoal/10">
           {carousel.currentItems(filteredClients).map((client, index) => {
             return (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
-                whileHover={{ scale: 1.02, zIndex: 10 }}
                 className={`
                   border-r border-b border-dark-charcoal/10 aspect-square p-6 sm:p-8 flex items-center justify-center
-                  hover:bg-light-grey transition-all duration-300
+                  hover:z-10 hover:scale-[1.02] hover:bg-light-grey transition-all duration-300
                 `}
               >
                 <Image
@@ -127,7 +122,7 @@ export default function HappyClients() {
                   height={160}
                   className="h-auto max-h-32 w-full object-contain transition-all duration-300"
                 />
-              </motion.div>
+              </div>
             );
           })}
         </div>

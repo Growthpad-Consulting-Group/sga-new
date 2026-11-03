@@ -1,9 +1,9 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 
-import { useCarousel, CarouselArrows } from '@/components/ui/Carousel'
+import { useInfiniteCarousel, CarouselArrows } from '@/components/ui/Carousel'
 
 export interface TimelineEvent {
   year: string
@@ -56,8 +56,6 @@ interface OurJourneyProps {
 export default function OurJourney({ events = groupTimelineEvents }: OurJourneyProps): React.JSX.Element {
   const [touchStart, setTouchStart] = useState<number | null>(null)
   const [touchEnd, setTouchEnd] = useState<number | null>(null)
-  const containerRef = useRef<HTMLDivElement>(null)
-
   const [itemsToShow, setItemsToShow] = useState(3)
 
   useEffect(() => {
@@ -69,8 +67,11 @@ export default function OurJourney({ events = groupTimelineEvents }: OurJourneyP
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  // Use carousel hook for pagination (show itemsToShow items at a time)
-  const carousel = useCarousel(events.length, itemsToShow)
+  const infiniteCarousel = useInfiniteCarousel(events.length, itemsToShow, 5000)
+  const loopedEvents = [
+    ...events,
+    ...events.slice(0, Math.min(itemsToShow, events.length)),
+  ]
 
   // Minimum swipe distance (in px)
   const minSwipeDistance = 50
@@ -93,9 +94,9 @@ export default function OurJourney({ events = groupTimelineEvents }: OurJourneyP
     const isRightSwipe = distance < -minSwipeDistance
 
     if (isLeftSwipe) {
-      carousel.nextPage()
+      infiniteCarousel.next()
     } else if (isRightSwipe) {
-      carousel.prevPage()
+      infiniteCarousel.previous()
     }
   }
 
@@ -107,17 +108,17 @@ export default function OurJourney({ events = groupTimelineEvents }: OurJourneyP
     // Check if it's a horizontal scroll (trackpad swipe)
     if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
       if (e.deltaX > 30) {
-        carousel.nextPage()
+        infiniteCarousel.next()
       } else if (e.deltaX < -30) {
-        carousel.prevPage()
+        infiniteCarousel.previous()
       }
     }
     // Also handle vertical scroll for mouse wheel
     else if (Math.abs(e.deltaY) > 30) {
       if (e.deltaY > 0) {
-        carousel.nextPage()
+        infiniteCarousel.next()
       } else {
-        carousel.prevPage()
+        infiniteCarousel.previous()
       }
     }
   }
@@ -149,10 +150,10 @@ export default function OurJourney({ events = groupTimelineEvents }: OurJourneyP
             </div>
             <div className="flex items-center gap-2 shrink-0">
               <CarouselArrows
-                onPrev={carousel.prevPage}
-                onNext={carousel.nextPage}
-                canGoPrev={carousel.canGoPrev}
-                canGoNext={carousel.canGoNext}
+                onPrev={infiniteCarousel.previous}
+                onNext={infiniteCarousel.next}
+                canGoPrev={infiniteCarousel.canMove}
+                canGoNext={infiniteCarousel.canMove}
               />
             </div>
           </motion.div>
@@ -160,57 +161,44 @@ export default function OurJourney({ events = groupTimelineEvents }: OurJourneyP
 
         {/* Horizontal Timeline */}
         <div
-          ref={containerRef}
           className="relative overflow-hidden"
           onTouchStart={onTouchStart}
           onTouchMove={onTouchMove}
           onTouchEnd={onTouchEnd}
           onWheel={handleWheel}
         >
-          <motion.div
-            key={carousel.currentPage}
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -50 }}
-            transition={{ duration: 0.5, ease: 'easeOut' }}
-            className="relative"
+          <div className="absolute top-[15px] left-0 right-0 h-0.5 bg-gray-300 z-0"></div>
+
+          <div
+            className="relative z-10 flex w-full"
+            style={infiniteCarousel.trackStyle}
+            onTransitionEnd={infiniteCarousel.handleTransitionEnd}
           >
-            {/* Timeline Line */}
-            <div className="absolute top-[15px] left-0 right-0 h-0.5 bg-gray-300 z-0"></div>
+            {loopedEvents.map((event, index) => (
+              <div
+                key={`${event.year}-${index}`}
+                className="relative shrink-0 px-2 md:px-4"
+                style={{ width: `${100 / itemsToShow}%` }}
+                aria-hidden={index >= events.length || undefined}
+              >
+                <div className="absolute top-0 left-2 md:left-4 w-8 h-8 bg-primary-orange rounded-full z-20"></div>
 
-            {/* Timeline Events */}
-            <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4">
-              {carousel.currentItems(events).map((event, index) => (
-                <motion.div
-                  key={event.year}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="relative"
-                >
-                  {/* Timeline Dot - Aligned with year */}
-                  <div className="absolute top-0 left-0 w-8 h-8 bg-primary-orange rounded-full z-20"></div>
+                <div className="ml-0 mt-16">
+                  <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary-orange mb-4">
+                    {event.year}
+                  </h3>
 
-                  {/* Year */}
-                  <div className="ml-0 mt-16">
-                    <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary-orange mb-4">
-                      {event.year}
-                    </h3>
+                  <h4 className="text-lg md:text-3xl lg:text-2xl xl:text-2xl font-semibold text-dark-charcoal mb-3">
+                    {event.title}
+                  </h4>
 
-                    {/* Title */}
-                    <h4 className="text-lg md:text-3xl lg:text-2xl xl:text-3xl font-semibold text-dark-charcoal mb-3">
-                      {event.title}
-                    </h4>
-
-                    {/* Description */}
-                    <p className="text-sm md:text-xl lg:text-sm xl:text-xl text-gray-700 leading-relaxed">
-                      {event.description}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+                  <p className="text-sm md:text-xl lg:text-sm xl:text-base text-gray-700 leading-relaxed">
+                    {event.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </motion.div>
     </div>

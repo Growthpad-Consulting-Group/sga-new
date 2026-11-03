@@ -41,20 +41,16 @@ export default function AboutHero({
             </div>
 
             <div className="w-full">
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
-                    className="relative w-full h-[400px] md:h-[500px] lg:h-[600px]"
-                >
+                <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px]">
                     <Image
                         src={imageUrl}
                         alt={`SGA Security ${countryName} - Security Excellence Since 1969`}
                         fill
                         className="object-cover"
                         priority
+                        sizes="100vw"
                     />
-                </motion.div>
+                </div>
             </div>
         </section>
     )

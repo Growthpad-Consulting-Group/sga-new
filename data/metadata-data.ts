@@ -3,12 +3,16 @@ export interface PageMetadata {
     description: string
 }
 
-export type PageType = 'about' | 'contact' | 'faqs' | 'services' | 'industries' | 'updates'
+export type PageType = 'about' | 'why-us' | 'contact' | 'faqs' | 'services' | 'industries' | 'updates'
 
 export const globalMetadata: Record<PageType, PageMetadata> = {
     about: {
         title: 'About SGA Security {country} - Leading Security East Africa',
         description: 'Learn about SGA Security {country}, our history, values, and commitment to providing top-tier security solutions across East Africa.',
+    },
+    'why-us': {
+        title: 'Why Us - SGA Security {country} - Why Choose Us',
+        description: 'Why choose SGA Security {country}: our experience, trained personnel, and integrated security solutions.',
     },
     contact: {
         title: 'Contact Us - SGA Security {country} - Get In Touch',

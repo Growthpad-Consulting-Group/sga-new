@@ -62,6 +62,24 @@ export function useCarousel(totalItems: number, itemsPerPage: number = 3, loop: 
   }
 }
 
+export function useCarouselAutoplay(
+  nextPage: () => void,
+  interval: number | undefined,
+  paused = false,
+) {
+  const nextPageRef = useRef(nextPage)
+
+  useEffect(() => {
+    nextPageRef.current = nextPage
+  }, [nextPage])
+
+  useEffect(() => {
+    if (!interval || paused) return
+    const autoplayId = window.setInterval(() => nextPageRef.current(), interval)
+    return () => window.clearInterval(autoplayId)
+  }, [interval, paused])
+}
+
 export function useInfiniteCarousel(
   totalItems: number,
   itemsPerView: number,
@@ -160,12 +178,7 @@ export default function Carousel({
   // Pause autoplay while the pointer is over the items or a finger is on them
   const [paused, setPaused] = useState(false)
 
-  // Advance automatically every `autoplay` ms when set
-  useEffect(() => {
-    if (!autoplay || paused) return
-    const id = setInterval(() => carousel.nextPage(), autoplay)
-    return () => clearInterval(id)
-  }, [autoplay, paused, carousel.currentPage])
+  useCarouselAutoplay(carousel.nextPage, autoplay, paused)
 
   // Drag or swipe left/right to change page
   const startX = useRef<number | null>(null)
