@@ -199,14 +199,22 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
 
               {/* Right Container - 70% width */}
               <div className="w-full md:w-[70%] p-6 md:p-8 overflow-y-auto relative">
-                {/* Close Button */}
-                <button
-                  onClick={onClose}
-                  className="absolute top-4 right-4 text-dark-charcoal hover:text-primary-orange transition-colors z-10"
-                  aria-label="Close modal"
-                >
-                  <Icon icon="mdi:close" className="w-6 h-6" />
-                </button>
+                {/* Sticky header with close button (same as the CV modal) */}
+                <div className="sticky -top-6 md:-top-8 z-20 bg-white -mx-6 md:-mx-8 -mt-6 md:-mt-8 px-6 md:px-8 pt-4 pb-2 mb-7 border-b border-gray-200">
+                  <button
+                    type="button"
+                    onClick={onClose}
+                    className="absolute top-1/2 -translate-y-1/2 right-4 md:right-6 w-10 h-10 rounded-full flex items-center justify-center text-dark-charcoal hover:text-primary-orange hover:bg-light-grey transition-colors"
+                    aria-label="Close modal"
+                  >
+                    <Icon icon="mdi:close" className="w-6 h-6" />
+                  </button>
+                  <div className="pr-12 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                    <p className="text-xs font-bold tracking-[0.18em] uppercase text-primary-orange">SGA Security</p>
+                    <span className="h-4 border-l border-gray-300 self-center" aria-hidden="true" />
+                    <h3 className="text-xs font-bold tracking-[0.18em] uppercase text-dark-charcoal">Enquire Now</h3>
+                  </div>
+                </div>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {/* Enquiry Type Toggle */}

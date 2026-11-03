@@ -1,3 +1,5 @@
+import { industryCards } from '@/data/industries-data'
+
 export interface HomeContent {
     hero: {
         title: string | React.JSX.Element
@@ -47,14 +49,7 @@ export const homeData: Record<string, HomeContent> = {
         },
         industries: {
             subtext: 'From banking to logistics, manufacturing to diplomatic missions, we deliver tailored security solutions across every sector in Kenya.',
-            items: [
-                { name: "Banking & Finance", icon: "mdi:bank", image: "/images/ke/industries/banking/hero.png" },
-                { name: "Logistics & Supply Chain", icon: "mdi:truck", image: "/images/ke/placeholder.png" },
-                { name: "Manufacturing", icon: "mdi:factory", image: "/images/ke/placeholder.png" },
-                { name: "Retail & Commerce", icon: "mdi:store", image: "/images/ke/placeholder.png" },
-                { name: "Residential Estates", icon: "mdi:home", image: "/images/ke/residentials.png" },
-                { name: "Diplomatic & Government", icon: "mdi:shield-account", image: "/images/ke/placeholder.png" }
-            ]
+            items: industryCards
         },
         whyUs: {
             imageUrl: "/images/ke/why-trust-sga.jpg",
@@ -91,11 +86,7 @@ export const homeData: Record<string, HomeContent> = {
         },
         industries: {
             subtext: 'From banking to logistics and residential communities, SGA Uganda delivers custom security solutions to match diverse industry needs.',
-            items: [
-                { name: "Banking & Finance", icon: "mdi:bank", image: "/images/ke/industries/banking/hero.png" },
-                { name: "Logistics", icon: "mdi:truck", image: "/images/ke/placeholder.png" },
-                { name: "Residential", icon: "mdi:home", image: "/images/ug/residentials.png" }
-            ]
+            items: industryCards
         },
         whyUs: {
             imageUrl: "/images/ug/why-choose-us.png",
@@ -132,11 +123,7 @@ export const homeData: Record<string, HomeContent> = {
         },
         industries: {
             subtext: 'SGA Tanzania provides tailored security for banking, mining, and logistics operations nationwide.',
-            items: [
-                { name: "Banking & Finance", icon: "mdi:bank", image: "/images/ke/industries/banking/hero.png" },
-                { name: "Mining & Extractives", icon: "mdi:pickaxe", image: "/images/ke/placeholder.png" },
-                { name: "Logistics", icon: "mdi:truck", image: "/images/ke/placeholder.png" }
-            ]
+            items: industryCards
         },
         whyUs: {
             imageUrl: "/images/tz/why-choose-us.png",

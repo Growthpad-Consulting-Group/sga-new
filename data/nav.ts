@@ -1,3 +1,4 @@
+import { industriesData } from './industries-data'
 import { coreServices } from './coreServices'
 export interface NavItem {
   href: string
@@ -76,16 +77,13 @@ export const getCorporateServicesItems = (countryPrefix: string): NavItem[] => [
 // worth of content (accordion sections), but it's served at both /industries
 // and /[country]/industries so navigating from a country page doesn't kick
 // you out of that country's header/context. Link within the current country.
-export const getIndustriesItems = (countryPrefix: string): NavItem[] => [
-  { href: `${countryPrefix}/industries#banking`, label: 'Banking & Finance' },
-  { href: `${countryPrefix}/industries#retail`, label: 'Retail & FMCG' },
-  { href: `${countryPrefix}/industries#logistics`, label: 'Logistics & Ports' },
-  { href: `${countryPrefix}/industries#manufacturing`, label: 'Manufacturing & Industrial' },
-  { href: `${countryPrefix}/industries#real-estate`, label: 'Real Estate & Offices' },
-  { href: `${countryPrefix}/industries#education`, label: 'Education & Healthcare' },
-  { href: `${countryPrefix}/industries#events`, label: 'Events & Venues' },
-  { href: `${countryPrefix}/industries#diplomatic`, label: 'Diplomatic & Government' },
-]
+// Country header "Industries" mega menu. Reads from the single industries
+// source (data/industries-data.ts), so the menu always matches the industries shown.
+export const getIndustriesItems = (countryPrefix: string): NavItem[] =>
+  Object.entries(industriesData).map(([slug, industry]) => ({
+    href: `${countryPrefix}/industries#${slug}`,
+    label: industry.industryName,
+  }))
 
 // Country header mega menu "Shortcuts" column
 export const getHeaderShortcuts = (countryPrefix: string): NavItem[] => [

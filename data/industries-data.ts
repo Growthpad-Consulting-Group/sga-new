@@ -139,127 +139,49 @@ const events: IndustryData = {
     metaDescription: 'Professional event security services for concerts, conferences, and sports events in {country}. Ensuring safe and secure experiences.',
 }
 
-const logistics: IndustryData = {
-    industryName: 'Logistics & Supply Chain',
-    industryIcon: 'mdi:truck-delivery',
-    heroImage: '/images/ke/industries/logistics/hero.png',
-    heroTitle: 'Securing the Flow of Commerce',
-    heroDescription:
-        'High-security solutions for logistics facilities, warehouses, and distribution centers across {country}. We protect inventory, staff, and supply chain operations with advanced security and professional personnel.',
-    overviewTitle: 'About this industry',
-    overviewDescription:
-        'Logistics and supply chain facilities operate as high-volume environments that handle valuable inventory and diverse transportation activities daily. These environments combine complex layouts, high vehicle traffic, and the need to protect assets from theft and tampering. Security must be robust enough to protect high-value areas, controlled enough to manage vehicle and personnel movement, and responsive enough to handle incidents quickly without disrupting supply chain operations. This is why logistics security works best when it is grounded in clear access control at entry points, consistent monitoring of loading docks and storage zones, and disciplined cargo protection protocols that logistics managers and clients can trust.',
-    overviewImage: '/images/ke/industries/logistics/hero.png',
-    servicesTitle: 'What we typically secure',
-    services: [
-        { title: 'Warehouse and distribution center gates', description: 'Controlled entry points to manage vehicle and personnel flow while preventing unauthorized access.' },
-        { title: 'Loading docks and cargo zones', description: 'Monitoring and access control to protect assets during loading and unloading activities.' },
-        { title: 'Inventory storage and high-value cages', description: 'Strict access control and monitoring to protect valuable goods and sensitive inventory.' },
-        { title: 'Vehicle parking and transit areas', description: 'Monitoring to ensure driver safety and protect transport vehicles while on premises.' },
-    ],
-    relatedServices: [
-        { image: '/images/ug/residentials.png', category: 'Security Service', title: 'Security Guarding', summary: 'Professional on-site security personnel.', link: '/{cc}/services/corporate/security-guarding' },
-        { image: '/images/ug/education.png', category: 'Security Service', title: 'Electronic Security', summary: 'Advanced surveillance and monitoring.', link: '/{cc}/services/corporate/electronic-security' },
-        { image: '/images/ug/healthcare.png', category: 'Security Service', title: '24/7 Monitoring', summary: 'Continuous monitoring of your facility.', link: '/{cc}/services/individual/24-7-monitoring' },
-    ],
-    metaTitle: 'Logistics & Supply Chain Security - SGA Security {country}',
-    metaDescription: 'High-security solutions for logistics facilities and warehouses in {country}. Protecting inventory and supply chain operations.',
-}
-
-const manufacturing: IndustryData = {
-    industryName: 'Manufacturing & Industry',
-    industryIcon: 'mdi:factory',
-    heroImage: '/images/ke/industries/manufacturing/hero.png',
-    heroTitle: 'Industrial-Strength Security Solutions',
-    heroDescription:
-        'High-security solutions for manufacturing facilities, factories, and industrial sites across {country}. We protect assets, production processes, and staff with specialized security solutions.',
-    overviewTitle: 'About this industry',
-    overviewDescription:
-        'Manufacturing and industrial facilities operate as complex environments that combine production activities, valuable equipment, and diverse personnel movement. These environments require security that balances safety compliance with protection of assets and operational continuity. Security must be visible enough to deter theft, robust enough to protect restricted zones, and responsive enough to handle incidents quickly without disrupting production schedules. This is why manufacturing security works best when it is grounded in clear access control procedures, consistent coverage of production and storage areas, and disciplined safety-security coordination that facility managers and staff can trust.',
-    overviewImage: '/images/ke/industries/manufacturing/hero.png',
-    servicesTitle: 'What we typically secure',
-    services: [
-        { title: 'Main factory and site entrances', description: 'Controlled entry points to manage employee and visitor flow while preventing unauthorized access.' },
-        { title: 'Production floors and equipment areas', description: 'Restricted access zones to protect valuable manufacturing equipment and production processes.' },
-        { title: 'Warehouses and inventory storage', description: 'Strict access control and monitoring to protect raw materials and finished products.' },
-    ],
-    relatedServices: [
-        { image: '/images/ug/residentials.png', category: 'Security Service', title: 'Security Guarding', summary: 'Professional on-site security for factories.', link: '/{cc}/services/corporate/security-guarding' },
-        { image: '/images/ug/education.png', category: 'Security Service', title: 'Electronic Security', summary: 'Advanced surveillance and access control.', link: '/{cc}/services/corporate/electronic-security' },
-        { image: '/images/ug/healthcare.png', category: 'Security Service', title: 'Risk Assessment', summary: 'Comprehensive security audits for industrial sites.', link: '/{cc}/services/corporate/risk-assessment' },
-    ],
-    metaTitle: 'Manufacturing & Industry Security - SGA Security {country}',
-    metaDescription: 'High-security solutions for manufacturing facilities and factories in {country}. Protecting assets and production processes.',
-}
-
-const realEstate: IndustryData = {
-    industryName: 'Real Estate & Offices',
-    industryIcon: 'mdi:office-building',
-    heroImage: '/images/ug/education.png',
-    heroTitle: 'Securing Your Property Investments',
-    heroDescription:
-        'Comprehensive security solutions for office buildings, commercial properties, and real estate developments across {country}. We protect tenants, assets, and property value with professional security services.',
-    overviewTitle: 'About this industry',
-    overviewDescription:
-        'Office buildings and commercial real estate require security that balances accessibility for tenants and visitors with protection of assets and property. These facilities combine high foot traffic, multiple tenants, and the need to maintain a professional business environment. Security must be visible enough to deter threats, professional enough to support business operations, and responsive enough to handle incidents quickly without disrupting daily activities. This is why real estate security works best when it is grounded in clear access control procedures at building entrances, consistent coverage of common areas and parking facilities, and disciplined incident response that property managers and tenants can trust.',
-    overviewImage: '/images/ug/education.png',
-    servicesTitle: 'What we typically secure',
-    services: [
-        { title: 'Building entrances and lobbies', description: 'Controlled access points to manage visitor flow and ensure only authorized individuals enter the premises.' },
-        { title: 'Parking facilities and garages', description: 'Monitoring and access control to protect vehicles and ensure tenant safety during arrival and departure.' },
-        { title: 'Common areas and corridors', description: 'Security coverage for shared spaces to maintain a safe environment for all tenants and visitors.' },
-        { title: 'Perimeter boundaries and loading docks', description: 'Monitoring to prevent unauthorized access and protect property assets.' },
-    ],
-    relatedServices: [
-        { image: '/images/ug/residentials.png', category: 'Security Service', title: 'Security Guarding', summary: 'Professional guards for office buildings.', link: '/{cc}/services/corporate/security-guarding' },
-        { image: '/images/ug/education.png', category: 'Security Service', title: 'Electronic Security', summary: 'Advanced surveillance and access control.', link: '/{cc}/services/corporate/electronic-security' },
-        { image: '/images/ug/healthcare.png', category: 'Security Service', title: 'Alarm & Response', summary: '24/7 monitoring with rapid deployment.', link: '/{cc}/services/individual/24-7-monitoring' },
-    ],
-    metaTitle: 'Real Estate & Offices Security - SGA Security {country}',
-    metaDescription: 'Comprehensive security solutions for office buildings and commercial properties in {country}. Protecting tenants and property value.',
-}
-
-const retail: IndustryData = {
-    industryName: 'Retail & Commercial',
-    industryIcon: 'mdi:store',
-    heroImage: '/images/ke/industries/retail/hero.png',
-    heroTitle: 'Securing Success in Every Transaction',
-    heroDescription:
-        'Professional security solutions for retail stores, shopping malls, and commercial centers across {country}. We protect merchandise, staff, and customers with advanced security and professional personnel.',
-    overviewTitle: 'About this industry',
-    overviewDescription:
-        'Retail and commercial facilities operate as high-traffic environments that balance welcoming customer experiences with the need to protect merchandise and people. These environments combine open accessibility, valuable inventory, and diverse personnel movement daily. Security must be discreet enough to support shopping experience, alert enough to prevent loss and theft, and responsive enough to handle incidents quickly without disrupting business operations. This is why retail security works best when it is grounded in clear entry and exit monitoring, consistent coverage of retail floors and storage zones, and disciplined incident response that retail managers and customers can trust.',
-    overviewImage: '/images/ke/industries/retail/hero.png',
-    servicesTitle: 'What we typically secure',
-    services: [
-        { title: 'Main store and mall entrances', description: 'Controlled access points to manage customer flow and ensure a safe shopping environment.' },
-        { title: 'Retail floors and product zones', description: 'Visible security presence and monitoring to deter theft and ensure customer safety.' },
-        { title: 'Cash offices and payment areas', description: 'Monitoring and controlled access to protect financial transactions and staff.' },
-        { title: 'Warehouses and stock storage', description: 'Strict access control and monitoring to protect merchandise and inventory assets.' },
-    ],
-    relatedServices: [
-        { image: '/images/ug/residentials.png', category: 'Security Service', title: 'Security Guarding', summary: 'Professional guards for retail stores.', link: '/{cc}/services/corporate/security-guarding' },
-        { image: '/images/ug/education.png', category: 'Security Service', title: 'Electronic Security', summary: 'Advanced surveillance and loss prevention.', link: '/{cc}/services/corporate/electronic-security' },
-        { image: '/images/ug/healthcare.png', category: 'Security Service', title: 'Alarm & Response', summary: '24/7 monitoring with rapid deployment.', link: '/{cc}/services/individual/24-7-monitoring' },
-    ],
-    metaTitle: 'Retail & Commercial Security - SGA Security {country}',
-    metaDescription: 'Professional security solutions for retail stores and shopping malls in {country}. Protecting merchandise, staff, and customers.',
-}
-
 // -------------------------------------------------------------------
 // LOOKUP MAP
 // -------------------------------------------------------------------
 
+// Placeholder for industries whose content hasn't been provided yet.
+// Keeps the name and image slot so the page structure is ready.
+const placeholderIndustry = (industryName: string): IndustryData => ({
+    industryName,
+    industryIcon: 'mdi:help-circle-outline',
+    heroImage: '/images/ke/placeholder.png',
+    heroTitle: industryName,
+    heroDescription: '',
+    overviewTitle: industryName,
+    overviewDescription: '',
+    overviewImage: '/images/ke/placeholder.png',
+    servicesTitle: '',
+    services: [],
+    relatedServices: [],
+    metaTitle: industryName,
+    metaDescription: '',
+})
+
+// Single source of truth for the industries we serve. Used by the homepage
+// carousel and the industry pages. Descriptions and images are reused from
+// the closest existing industry where one matches.
 export const industriesData: Record<string, IndustryData> = {
-    banking: banking,
-    diplomatic: diplomatic,
-    education: education,
-    events: events,
-    logistics: logistics,
-    manufacturing: manufacturing,
-    'real-estate': realEstate,
-    retail: retail,
+    'financial-institutions': { ...banking, industryName: 'Financial Institutions' },
+    'government-institutions': { ...diplomatic, industryName: 'Government Institutions' },
+    'diplomatic-missions': { ...diplomatic, industryName: 'Diplomatic Missions' },
+    hospitals: { ...education, industryName: 'Hospitals' },
+    'schools-institutions': { ...education, industryName: 'Schools & Institutions' },
+    hotels: { ...events, industryName: 'Hotels' },
+    multinationals: placeholderIndustry('Multinationals'),
+    ngos: placeholderIndustry("NGO's"),
+    'other-industries': placeholderIndustry('Other Industries'),
 }
+
+// Homepage carousel cards, derived from industriesData
+export const industryCards = Object.values(industriesData).map((industry) => ({
+    name: industry.industryName,
+    icon: industry.industryIcon,
+    image: industry.heroImage,
+}))
 
 /** Inject country name and country code into template strings */
 export function resolveIndustryData(data: IndustryData, countryName: string, countryCode: string): IndustryData {
