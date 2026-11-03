@@ -34,7 +34,7 @@ export default async function CareersPage() {
   return (
     <>
       <Hero
-        imageUrl="/images/careers/hero.jpg"
+        imageUrl="/images/careers/20260720-162a9092.jpg"
       />
       <div className="relative">
         <JobCards jobs={jobs} />

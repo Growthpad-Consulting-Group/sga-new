@@ -211,7 +211,13 @@ export default function News({ hideCountryDropdown = false, backgroundColor = 'b
             </p>
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-4 w-full">
               <div className="flex overflow-x-auto sm:flex-wrap gap-2 w-full max-w-[100vw] sm:max-w-none pb-2 sm:pb-0 [&::-webkit-scrollbar]:hidden" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-                {['ALL', 'ADVISORY REPORT', 'BLOG', 'MEDIA'].map((filter) => {
+                {['ALL', 'ADVISORY REPORT', 'BLOG', 'MEDIA']
+                  .filter((filter) => filter === 'ALL' || allNewsItems.some(item =>
+                    (item.category || '').toUpperCase() === filter &&
+                    (selectedCountry === 'All Country' || item.country === selectedCountry) &&
+                    (country ? item.country === country : true)
+                  ))
+                  .map((filter) => {
                   const count = allNewsItems.filter(item => {
                     const matchesCategory = filter === 'ALL' || (item.category || '').toUpperCase() === filter
                     const matchesCountry = selectedCountry === 'All Country' || item.country === selectedCountry

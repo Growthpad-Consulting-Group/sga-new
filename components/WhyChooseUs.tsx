@@ -61,21 +61,17 @@ export default function WhyChooseUs({
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="space-y-4 mb-8 items-start flex flex-col w-full"
+              className="mb-8 w-full"
             >
-              <p className="text-md font-normal text-dark-charcoal uppercase tracking-wider">
-                why us
-              </p>
-              <div className="section-title-container w-full">
-                <h2 className="section-title text-xl md:text-3xl lg:text-5xl font-bold text-primary-orange">
+              <div className="section-title-container w-full pb-1!">
+                <h2 className="section-title text-2xl md:text-3xl lg:text-4xl font-bold text-primary-orange">
                   Why {countryName} trusts SGA Security
                 </h2>
-                <div className="section-title-bar"></div>
               </div>
             </motion.div>
 
             {/* Accordion */}
-            <div className="space-y-2 flex-1 w-full mb-8">
+            <div className="space-y-1 flex-1 w-full mb-8">
               {accordionItems.map((item, index) => (
                 <motion.div
                   key={index}
@@ -89,15 +85,15 @@ export default function WhyChooseUs({
                 >
                   <button
                     onClick={() => setOpenIndex(openIndex === index ? -1 : index)}
-                    className="w-full flex items-center justify-between p-4 text-left transition-colors group"
+                    className="w-full flex items-center justify-between px-4 py-2 text-left transition-colors group"
                   >
-                    <h3 className={`text-xl md:text-3xl font-bold capitalize transition-colors duration-300 ${openIndex === index ? 'text-primary-orange' : 'text-black group-hover:text-primary-orange'
+                    <h3 className={`text-xl md:text-3xl lg:text-xl xl:text-2xl font-bold capitalize transition-colors duration-300 ${openIndex === index ? 'text-primary-orange' : 'text-black group-hover:text-primary-orange'
                       }`} style={{ textTransform: 'capitalize' }}>
                       {item.title}
                     </h3>
                     <Icon
                       icon={openIndex === index ? 'mynaui:arrow-up-circle' : 'mynaui:arrow-down-circle'}
-                      className={`w-10 h-10 shrink-0 ml-4 ${openIndex === index ? 'text-primary-orange' : 'text-dark-charcoal'
+                      className={`w-7 h-7 md:w-10 md:h-10 shrink-0 ml-4 ${openIndex === index ? 'text-primary-orange' : 'text-dark-charcoal'
                         }`}
                     />
                   </button>
@@ -109,7 +105,7 @@ export default function WhyChooseUs({
                       transition={{ duration: 0.3 }}
                       className="overflow-hidden"
                     >
-                      <p className="px-6 pb-6 text-base md:text-lg text-dark-charcoal leading-relaxed">
+                      <p className="px-6 pb-6 text-base md:text-lg lg:text-sm xl:text-base text-dark-charcoal leading-relaxed">
                         {item.description}
                       </p>
                     </motion.div>

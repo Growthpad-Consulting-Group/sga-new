@@ -104,7 +104,7 @@ export default function About({
                 transition={{ duration: 0.6 }}
                 className="flex flex-col justify-center h-full w-full"
               >
-                <div className="relative w-full h-[450px] md:h-full">
+                <div className="relative w-full h-[450px] md:h-[420px] lg:h-[430px]">
                   <Image
                     src={imageUrl}
                     alt={typeof h2Title === 'string' ? h2Title : 'About SGA'}

@@ -1,12 +1,11 @@
 'use client'
 
-import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { Icon } from '@iconify/react'
 import { usePathname } from 'next/navigation'
 import { Link } from 'next-view-transitions'
-import { useEnquiryModal } from '@/contexts/EnquiryModalContext'
 import { socialLinks } from '@/data/nav'
+import ScrollToTop from '@/components/ScrollToTop'
 
 interface Phone {
   label: string
@@ -76,8 +75,6 @@ const countryData: CountryDataMap = {
 export default function CountryFooter(): React.JSX.Element {
   const pathname = usePathname()
   const currentYear = new Date().getFullYear()
-  const { openModal } = useEnquiryModal()
-  const [showScrollTop, setShowScrollTop] = useState(false)
 
   // Determine country from pathname
   let countryCode: keyof CountryDataMap = 'ke'
@@ -89,32 +86,6 @@ export default function CountryFooter(): React.JSX.Element {
   }
 
   const country = countryData[countryCode]
-
-  // Check if user has scrolled to bottom
-  useEffect(() => {
-    const handleScroll = () => {
-      const windowHeight = window.innerHeight
-      const documentHeight = document.documentElement.scrollHeight
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop
-      const scrollBottom = scrollTop + windowHeight
-      
-      // Show button when user is near the bottom (within 200px)
-      if (scrollBottom >= documentHeight - 500) {
-        setShowScrollTop(true)
-      } else {
-        setShowScrollTop(false)
-      }
-    }
-
-    if (typeof window !== 'undefined') {
-      window.addEventListener('scroll', handleScroll)
-      return () => window.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
 
   return (
     <div className="bg-white px-4 sm:px-6 lg:px-3 py-4">
@@ -129,16 +100,16 @@ export default function CountryFooter(): React.JSX.Element {
                   alt="SGA Security"
                   width={220}
                   height={0}
-                  className="h-auto"
+                  className="h-auto w-[220px] lg:w-[180px] xl:w-[220px]"
                 />
               </div>
-              <div className="relative mb-20 pt-10">
+              <div className="relative mb-6 pt-2 md:pt-4">
                 <Icon
                   icon="mdi:plus-thick"
-                  className="absolute -top-4 -left-2 w-14 h-14 text-white font-bold"
+                  className="absolute -top-8 -left-14 md:-top-10 md:-left-14 lg:-top-8 lg:-left-12 xl:-top-10 xl:-left-14 w-10 h-10 md:w-20 md:h-20 lg:w-14 lg:h-14 xl:w-20 xl:h-20 text-white font-bold"
                   style={{ strokeWidth: 3 }}
                 />
-                <p className="text-white/90 text-4xl pl-6 font-bold">
+                <p className="text-white/90 text-2xl sm:text-3xl lg:text-2xl xl:text-3xl font-bold">
                   Integrated security across Kenya, Uganda and Tanzania protecting what matters for people and organizations.
                 </p>
               </div>
@@ -148,8 +119,8 @@ export default function CountryFooter(): React.JSX.Element {
             {/* SGA Group Section */}
             <div className="lg:col-span-3">
               <div className="mb-10">
-                <h4 className="font-semibold mb-6 text-white text-3xl">SGA Group</h4>
-                <ul className="space-y-4 text-xl text-white/90">
+                <h4 className="font-semibold mb-6 text-white text-3xl lg:text-xl xl:text-3xl">SGA Group</h4>
+                <ul className="space-y-2 text-xl lg:text-sm xl:text-xl text-white/90">
                   <li>
                     <Link href="/" className="hover:text-dark-charcoal transition-colors cursor-pointer block">Group Website</Link>
                   </li>
@@ -166,8 +137,8 @@ export default function CountryFooter(): React.JSX.Element {
               </div>
               
               <div>
-                <h4 className="font-semibold mb-6 text-white text-3xl">Legal</h4>
-                <ul className="space-y-4 text-xl text-white/90">
+                <h4 className="font-semibold mb-6 text-white text-3xl lg:text-xl xl:text-3xl">Legal</h4>
+                <ul className="space-y-2 text-xl lg:text-sm xl:text-xl text-white/90">
                   <li>
                     <Link href="/privacy-policy" className="hover:text-dark-charcoal transition-colors cursor-pointer block">Privacy Policy</Link>
                   </li>
@@ -184,8 +155,8 @@ export default function CountryFooter(): React.JSX.Element {
             {/* Contact Section */}
             <div className="lg:col-span-4 space-y-8">
               <div>
-                <h4 className="font-semibold mb-4 text-white text-3xl">Talk to us</h4>
-                <div className="space-y-3 text-xl text-white/90 leading-relaxed">
+                <h4 className="font-semibold mb-4 text-white text-xl sm:text-2xl lg:text-lg xl:text-2xl">Talk to us</h4>
+                <div className="space-y-1.5 text-lg lg:text-sm xl:text-lg text-white/90 leading-relaxed">
                   <div className="space-y-1">
                     {country.address.map((line, index) => (
                       <p key={index}>{line}</p>
@@ -208,14 +179,14 @@ export default function CountryFooter(): React.JSX.Element {
                   <div className="">
                     <a 
                       href={`mailto:${country.email}`} 
-                      className="hover:text-dark-charcoal transition-colors text-xl break-all underline"
+                      className="hover:text-dark-charcoal transition-colors break-all underline"
                     >
                       {country.email}
                     </a>
                   </div>
 
                     <div className="pt-6">
-                      <div className="flex items-center space-x-6 py-2">
+                      <div className="flex items-center space-x-6 lg:space-x-3 xl:space-x-6 py-2">
                         {socialLinks.map((social) => (
                           <a
                             key={social.icon}
@@ -225,7 +196,7 @@ export default function CountryFooter(): React.JSX.Element {
                             className="text-white/90 hover:text-dark-charcoal transition-colors"
                             aria-label={social.label}
                           >
-                            <Icon icon={social.icon} className="w-10 h-10" />
+                            <Icon icon={social.icon} className="w-8 h-8 lg:w-7 lg:h-7 xl:w-10 xl:h-10" />
                           </a>
                         ))}
                     </div>
@@ -235,19 +206,7 @@ export default function CountryFooter(): React.JSX.Element {
             </div>
           </div>
 
-          <div className="flex justify-end mt-12">
-            {showScrollTop && (
-              <button
-                onClick={scrollToTop}
-                className="flex items-center justify-center w-12 h-12 rounded-full bg-white text-primary-orange hover:bg-navy-blue hover:text-white transition-all duration-300 hover:scale-110 shadow-lg"
-                aria-label="Scroll to top"
-              >
-                <Icon icon="mdi:chevron-up" className="w-8 h-8" />
-              </button>
-            )}
-          </div>
-
-          <div className="border-t border-white/20 mt-4 pt-8 flex flex-col sm:flex-row justify-between items-center text-xl text-white/90">
+          <div className="border-t border-white/20 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center text-xl lg:text-sm xl:text-xl text-white/90">
             <p>&copy; {currentYear} SGA Security. All rights reserved.</p>
             
             <div className="flex items-center gap-8 mt-4 sm:mt-0">
@@ -257,6 +216,7 @@ export default function CountryFooter(): React.JSX.Element {
           </div>
         </div>
       </footer>
+      <ScrollToTop />
     </div>
   )
 }

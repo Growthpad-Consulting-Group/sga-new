@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Icon } from '@iconify/react'
-import Image from 'next/image'
 import Button from '@/components/Button'
+import CircleCard from '@/components/CircleCard'
+import { useCarousel, CarouselArrows } from '@/components/Carousel'
 export interface IndustryCarouselItem {
   name: string
   icon: string
@@ -26,28 +26,21 @@ export default function Industries({
   ctaLink = '#industries',
   subtext,
 }: IndustriesProps) {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [itemsToShow, setItemsToShow] = useState(4)
+  const [itemsPerPage, setItemsPerPage] = useState(3)
 
   useEffect(() => {
     const handleResize = () => {
-      setItemsToShow(window.innerWidth < 768 ? 1 : 4)
+      setItemsPerPage(window.innerWidth < 768 ? 1 : 3)
     }
     handleResize()
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  const handlePrev = () => {
-    setCurrentIndex((prev) => (prev <= 0 ? Math.max(0, industries.length - itemsToShow) : prev - 1))
-  }
-
-  const handleNext = () => {
-    setCurrentIndex((prev) => (prev >= industries.length - itemsToShow ? 0 : prev + 1))
-  }
+  const carousel = useCarousel(industries.length, itemsPerPage, true)
 
   return (
-    <section id="industries" className={`flex items-center justify-center ${backgroundColor} relative py-16 md:py-24 overflow-x-hidden`}>
+    <section id="industries" className={`flex items-center justify-center ${backgroundColor} relative min-h-[85vh] py-12 md:py-16 overflow-x-hidden`}>
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -60,71 +53,55 @@ export default function Industries({
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="space-y-4 flex flex-col justify-center items-start text-left"
+            className="space-y-3"
           >
-            <p className="text-md font-medium text-dark-charcoal uppercase tracking-wider">
-              industries
-            </p>
-            <div className="section-title-container w-full flex items-end justify-between">
-              <h3 className="section-title text-xl md:text-3xl lg:text-5xl text-primary-orange">
+            <div className="flex items-center justify-between section-title-container w-full pb-1!">
+              <h3 className="section-title text-2xl md:text-3xl lg:text-4xl font-bold text-primary-orange">
                 Industries We Serve
               </h3>
-              <div className="section-title-bar"></div>
-              <div className="flex items-center gap-3 mb-1 relative z-20">
-                <button
-                  onClick={handlePrev}
-                  className="w-10 h-10 rounded-full border-2 border-dark-charcoal flex items-center justify-center text-dark-charcoal hover:border-primary-orange hover:text-primary-orange transition-all duration-300"
-                >
-                  <Icon icon="mingcute:arrow-left-line" className="w-6 h-6" />
-                </button>
-                <button
-                  onClick={handleNext}
-                  className="w-10 h-10 rounded-full border-2 border-dark-charcoal flex items-center justify-center text-dark-charcoal hover:border-primary-orange hover:text-primary-orange transition-all duration-300"
-                >
-                  <Icon icon="mingcute:arrow-right-line" className="w-6 h-6" />
-                </button>
-              </div>
+              <CarouselArrows
+                onPrev={carousel.prevPage}
+                onNext={carousel.nextPage}
+                canGoPrev={carousel.canGoPrev}
+                canGoNext={carousel.canGoNext}
+                className="mb-1"
+              />
             </div>
-            <p className="text-base font-normal md:text-2xl text-dark-charcoal pb-4 mt-4">
+            <p className="text-sm md:text-base text-dark-charcoal pt-3">
               {subtext ?? `Beyond homes, we provide tailored solutions for businesses, institutions, and real estate developments across ${countryName}.`}
             </p>
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {industries.slice(currentIndex, currentIndex + itemsToShow).map((industry, index) => (
-            <motion.div
-              key={currentIndex + index}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ scale: 1.05 }}
-              className="flex flex-col items-center gap-4"
-            >
-              {/* Circle with Image */}
-              <div className="w-64 h-64 md:w-80 md:h-80 mb-4 rounded-full overflow-hidden shadow-lg hover:shadow-2xl transition-all">
-                {industry.image && (
-                  <div className="relative w-full h-full">
-                    <Image
-                      src={industry.image}
-                      alt={industry.name}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                )}
-              </div>
-
-              {/* Text Below */}
-              <h4 className="text-center text-base md:text-2xl font-bold text-dark-charcoal">
-                {industry.name}
-              </h4>
-            </motion.div>
+        <motion.div
+          key={`${carousel.currentPage}-${itemsPerPage}`}
+          initial={{ opacity: 0.35, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.25, ease: 'easeOut' }}
+          className="grid md:grid-cols-3 gap-8 md:gap-12"
+        >
+          {carousel.currentItems(industries).map((industry) => (
+            <CircleCard key={industry.name} title={industry.name} imageUrl={industry.image} />
           ))}
-        </div>
+        </motion.div>
 
-        <div className="flex justify-center mt-12">
+        {carousel.totalPages > 1 && (
+          <div className="flex justify-center items-center gap-2 mt-8">
+            {Array.from({ length: carousel.totalPages }, (_, index) => (
+              <button
+                key={index}
+                onClick={() => carousel.goToPage(index + 1)}
+                className={`rounded-full transition-all duration-300 ${carousel.currentPage === index + 1
+                    ? 'bg-primary-orange w-8 h-2'
+                    : 'bg-dark-charcoal/30 w-2 h-2'
+                  }`}
+                aria-label={`Go to page ${index + 1}`}
+              />
+            ))}
+          </div>
+        )}
+
+        <div className="flex justify-center mt-12 md:mt-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
