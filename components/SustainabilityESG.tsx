@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import Image from 'next/image'
-import { Link } from 'next-view-transitions'
+import Button from '@/components/Button'
 
 interface SDGGoal {
   goal: number
@@ -177,14 +177,9 @@ export default function SustainabilityESG(): React.JSX.Element {
                 Learn More About Our Sustainability Impact
               </h4>
               <div className="flex-1"></div>
-              <div className="w-full transition-transform duration-200 hover:scale-105 active:scale-95">
-                <Link
-                  href="/sustainability"
-                  className="bg-primary-orange text-white px-6 py-3 lg:px-4 lg:py-2 xl:px-6 xl:py-3 rounded-full font-semibold text-xs md:text-sm lg:text-xs xl:text-sm hover:bg-white hover:text-primary-orange transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 flex items-center justify-center gap-2 w-full"
-                >
-                  Learn More
-                </Link>
-              </div>
+              <Button href="/sustainability" variant="solid" size="small">
+                Learn More
+              </Button>
             </div>
           </motion.div>
         </div>

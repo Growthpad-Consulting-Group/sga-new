@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import Image from 'next/image'
 import { useCVModal } from '@/contexts/CVModalContext'
+import Button from '@/components/Button'
 
 export default function JoinOurMission(): React.JSX.Element {
   const { openModal } = useCVModal()
@@ -40,18 +41,12 @@ export default function JoinOurMission(): React.JSX.Element {
 
             {/* Call to Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-3 pt-2">
-              <a
-                href="/careers"
-                className="bg-primary-orange text-white px-6 py-3 border border-primary-orange rounded-full font-semibold text-xs md:text-sm hover:bg-white hover:text-primary-orange shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2"
-              >
+              <Button href="/careers" variant="solid" size="small">
                 View Open Roles
-              </a>
-              <button
-                onClick={openModal}
-                className="bg-transparent text-dark-charcoal border border-dark-charcoal px-5 py-1.5 xl:px-6 xl:py-3 rounded-full font-semibold text-xs xl:text-sm hover:bg-primary-orange hover:border-primary-orange hover:text-white transition-all duration-200 hover:scale-105 active:scale-95"
-              >
+              </Button>
+              <Button onClick={openModal} variant="light" size="small">
                 Send Us Your CV
-              </button>
+              </Button>
             </div>
 
             {/* Team Image at Bottom */}

@@ -144,8 +144,8 @@ export default function CountryHeader(): React.JSX.Element {
         <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden rounded-[inherit]">
           <div
             aria-hidden
-            style={{ filter: 'url(#header-glass-distortion)' }}
-            className="absolute inset-0 backdrop-blur-[3px]"
+            style={isScrolled ? { filter: 'url(#header-glass-distortion)' } : undefined}
+            className={`absolute inset-0 ${isScrolled ? 'backdrop-blur-[3px]' : ''}`}
           />
           <div
             aria-hidden
@@ -155,8 +155,8 @@ export default function CountryHeader(): React.JSX.Element {
           />
           <div
             aria-hidden
-            className={`absolute inset-0 ring-1 ring-inset transition-shadow duration-500 ${
-              isScrolled ? 'shadow-lg shadow-black/5 ring-white/40' : 'ring-white/20'
+            className={`absolute inset-0 transition-shadow duration-500 ${
+              isScrolled ? 'ring-1 ring-inset shadow-lg shadow-black/5 ring-white/40' : ''
             }`}
           />
         </div>

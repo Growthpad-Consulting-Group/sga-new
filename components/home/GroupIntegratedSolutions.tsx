@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { Icon } from '@iconify/react'
 import { useEnquiryModal } from '@/contexts/EnquiryModalContext'
 import Carousel, { useCarousel, CarouselArrows } from '@/components/Carousel'
+import Button from '@/components/Button'
 import { useState, useEffect } from 'react'
 import { coreServices, type CoreService } from '@/data/coreServices'
 
@@ -135,21 +136,16 @@ export default function GroupIntegratedSolutions({
         )}
 
         {/* Request a Quote Button */}
-        <div className="flex justify-center mt-12 md:mt-16">
-          <motion.button
-            onClick={openModal}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-primary-orange text-white px-14 lg:px-10 xl:px-14 hover:px-18 lg:hover:px-14 xl:hover:px-18 py-3 rounded-full font-semibold text-sm xl:text-base hover:bg-white hover:text-primary-orange transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 flex items-center justify-center group relative"
-          >
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="flex justify-center mt-12 md:mt-16"
+        >
+          <Button variant="solid" onClick={openModal} className="w-auto">
             Request a Quote
-            <Icon
-              icon="iconoir:arrow-right-circle"
-              className="w-5 h-5 text-primary-orange opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute right-4"
-            />
-          </motion.button>
-        </div>
+          </Button>
+        </motion.div>
       </motion.div>
     </section>
   )

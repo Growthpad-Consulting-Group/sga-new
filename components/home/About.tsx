@@ -1,6 +1,7 @@
 'use client'
 
 import SectionWrapper from '@/components/SectionWrapper'
+import Button from '@/components/Button'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 
@@ -67,35 +68,31 @@ export default function About({
               className="space-y-4 flex flex-col justify-center items-start"
             >
               {smallTitle && (
-                <p className="text-md font-medium text-dark-charcoal uppercase tracking-wider">
+                <p className="text-sm xl:text-base font-medium text-dark-charcoal uppercase tracking-wider">
                   {smallTitle}
                 </p>
               )}
               {h3Title && (
                 <div className="section-title-container w-full">
-                  <h3 className="section-title text-xl md:text-5xl font-bold text-primary-orange">
+                  <h3 className="section-title text-2xl md:text-3xl lg:text-4xl font-bold text-primary-orange">
                     {h3Title}
                   </h3>
-                  <div className="section-title-bar"></div>
                 </div>
               )}
               {h2Title && (
-                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-primary-orange pt-4 md:whitespace-nowrap">
+                <h2 className="text-2xl md:text-3xl lg:text-3xl xl:text-4xl font-bold text-primary-orange pt-4 md:whitespace-nowrap">
                   {h2Title}
                 </h2>
               )}
               {customDescription && (
-                <p className="text-base font-normal md:text-2xl text-dark-charcoal pb-4">
+                <p className="text-base font-normal md:text-2xl lg:text-base xl:text-2xl text-dark-charcoal pb-4">
                   {customDescription}
                 </p>
               )}
               {buttonText && (
-                <a
-                  href={buttonHref}
-                  className="inline-block bg-primary-orange text-white px-10 py-4 rounded-full font-semibold text-md uppercase hover:bg-primary-orange/90 transition-all duration-200 hover:scale-105 active:scale-95"
-                >
+                <Button href={buttonHref} variant="light" size="small">
                   {buttonText}
-                </a>
+                </Button>
               )}
             </motion.div>
 

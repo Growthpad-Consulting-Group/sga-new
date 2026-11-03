@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import Image from 'next/image'
+import Button from '@/components/Button'
 export interface IndustryCarouselItem {
   name: string
   icon: string
@@ -124,17 +125,15 @@ export default function Industries({
         </div>
 
         <div className="flex justify-center mt-12">
-          <motion.a
-            href={ctaLink}
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="bg-primary-orange text-white px-10 py-5 rounded-full font-semibold text-sm uppercase hover:bg-primary-orange/90 transition-colors"
           >
-            Find Your Industry Solution
-          </motion.a>
+            <Button href={ctaLink} variant="solid" size="small">
+              Find Your Industry Solution
+            </Button>
+          </motion.div>
         </div>
       </motion.div>
     </section>

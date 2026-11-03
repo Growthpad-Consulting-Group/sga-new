@@ -25,12 +25,11 @@ export default function AboutIntro({
                         className="space-y-6"
                     >
                         <div className="section-title-container">
-                            <h2 className="section-title text-2xl md:text-5xl font-bold capitalize">
+                            <h2 className="section-title text-2xl md:text-3xl lg:text-4xl font-bold capitalize">
                                 <span className="text-primary-orange">Who we are</span>
                             </h2>
-                            <div className="section-title-bar"></div>
                         </div>
-                        <p className="text-sm md:text-xl text-gray-700 leading-relaxed">
+                        <p className="text-sm xl:text-base text-gray-700 leading-relaxed">
                             SGA {countryName} delivers integrated security solutions for individuals, businesses, and institutions. We combine trained personnel, proven processes, and modern technology to keep people and assets safe—24/7.
                         </p>
                         <FeatureCircles />

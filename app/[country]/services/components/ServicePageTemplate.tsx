@@ -7,6 +7,7 @@ import Image from 'next/image'
 import { Link } from 'next-view-transitions'
 import SectionSeparator from '@/components/SectionSeparator'
 import { useEnquiryModal } from '@/contexts/EnquiryModalContext'
+import Button from '@/components/Button'
 
 interface ServicePageTemplateProps {
     serviceName?: string
@@ -152,14 +153,9 @@ export default function ServicePageTemplate({
 
                             {/* Buttons */}
                             <div className="flex flex-col sm:flex-row items-center gap-4 pt-4">
-                                <div className="w-full sm:w-auto transition-transform duration-200 hover:scale-105 active:scale-95">
-                                    <Link
-                                        href="/contact"
-                                        className="w-full inline-block bg-primary-orange text-white px-8 py-4 rounded-full font-bold text-sm md:text-base hover:bg-primary-orange/90 transition-colors text-center shadow-lg shadow-primary-orange/20"
-                                    >
-                                        Request a Quote
-                                    </Link>
-                                </div>
+                                <Button href="/contact" variant="solid" size="small">
+                                    Request a Quote
+                                </Button>
                                 <a
                                     href={`tel:${emergencyPhone.replace(/\s/g, '')}`}
                                     className="w-full sm:w-auto bg-transparent border-2 border-primary-orange text-primary-orange px-8 py-3.5 rounded-full font-bold text-sm md:text-base hover:bg-primary-orange hover:text-white transition-all duration-200 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 text-center"

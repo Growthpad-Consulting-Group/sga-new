@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { Link } from 'next-view-transitions'
 import { Icon } from '@iconify/react'
 import { countries } from '@/data/countries-data'
+import Button from '@/components/Button'
 
 interface WhyUsHeroProps {
     countryCode: string
@@ -36,14 +37,9 @@ export default function WhyUsHero({ countryCode, imageUrl }: WhyUsHeroProps) {
                         </p>
 
                         <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                            <div className="transition-transform duration-200 hover:scale-105 active:scale-95">
-                                <Link
-                                    href="/contact"
-                                    className="inline-block bg-primary-orange uppercase text-white px-6 py-3 rounded-full font-semibold text-sm md:text-base hover:bg-primary-orange/90 transition-colors"
-                                >
-                                    request a quote
-                                </Link>
-                            </div>
+                            <Button href="/contact" variant="solid" size="small">
+                                Request a Quote
+                            </Button>
                             <a
                                 href={`tel:${emergencyPhone.replace(/\s/g, '')}`}
                                 className="bg-transparent border-2 border-dark-charcoal uppercase text-dark-charcoal px-6 py-3 rounded-full font-semibold text-sm md:text-base hover:bg-dark-charcoal hover:text-white transition-all duration-200 hover:scale-105 active:scale-95 flex items-center justify-center gap-2"

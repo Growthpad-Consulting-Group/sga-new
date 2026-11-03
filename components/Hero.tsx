@@ -61,17 +61,18 @@ export default function Hero({
 
   const textColorClass = orangeBackground ? 'text-white' : whiteBackground ? 'text-dark-charcoal' : 'text-white'
   const secondaryTextColorClass = orangeBackground ? 'text-white/90' : whiteBackground ? 'text-gray-700' : 'text-light-grey'
+  const hasSingleHeroImage = !images?.length && !imageUrl2
 
   if (twoCardLayout) {
     return (
-      <SectionWrapper id="hero" className={`${bgClass} relative  min-h-screen`}>
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-center min-h-[80vh]">
+      <SectionWrapper id="hero" className={`${bgClass} relative min-h-screen ${hasSingleHeroImage ? 'items-start' : ''}`}>
+        <div className={`grid grid-cols-1 lg:grid-cols-12 gap-0 min-h-[80vh] ${hasSingleHeroImage ? 'items-start pt-36 sm:pt-40 lg:pt-40' : 'items-center'}`}>
           {/* Left Card - Content */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-8 pt-36 sm:pt-40 lg:col-span-7 lg:pt-20 flex flex-col justify-start"
+            className={`lg:col-span-7 flex flex-col justify-start ${hasSingleHeroImage ? 'space-y-8 lg:relative lg:-top-24 lg:self-center lg:space-y-16' : 'space-y-8 pt-36 sm:pt-40 lg:pt-20'}`}
           >
             {customH3 && (
               <h3 className={`text-sm md:text-2xl font-bold tracking-wider ${secondaryTextColorClass}`}>
@@ -79,7 +80,7 @@ export default function Hero({
               </h3>
             )}
             {customTitle && orangeBackground ? (
-              <h2 className={`text-4xl md:text-5xl lg:text-6xl font-bold ${textColorClass}`}>
+              <h2 className={`text-4xl md:text-5xl font-bold ${textColorClass}`}>
                 {customTitle}
               </h2>
             ) : (
@@ -331,7 +332,7 @@ export default function Hero({
               </div>
             </div>
           ) : imageUrl2 ? (
-            <div className="relative w-full h-[60vh] lg:h-[70vh] rounded-lg overflow-hidden flex flex-row">
+            <div className="relative w-full h-[60vh] lg:h-[55vh] rounded-lg overflow-hidden flex flex-row">
               {/* First Image Marquee - Left Column - Scrolls Down */}
               <div className="relative w-1/2 h-full rounded-l-lg overflow-hidden -mr-1">
                 <motion.div
@@ -409,7 +410,7 @@ export default function Hero({
                 src={imageUrl}
                 alt={`${countryName} Security Services`}
                 fill
-                className="object-contain object-bottom mt-0.5 sm:mt-1 lg:mt-1.5"
+                className="object-contain object-top"
                 priority
               />
             </motion.div>
@@ -417,37 +418,39 @@ export default function Hero({
         </div>
 
         {/* Scroll Down Animation */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 0.5 }}
-          className="absolute bottom-0 sm:bottom-2 left-1/2 transform -translate-x-1/2 z-20"
-        >
+        <div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-[100dvh]">
           <motion.div
-            animate={{
-              y: [0, 10, 0],
-            }}
-            transition={{
-              duration: 1.5,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className="flex flex-col items-center cursor-pointer"
-            onClick={() => {
-              const nextSection = document.querySelector('#about') || document.querySelector('section:nth-of-type(2)')
-              if (nextSection) {
-                const sectionTop = nextSection.getBoundingClientRect().top + window.scrollY
-                window.scrollTo({ top: sectionTop, behavior: 'smooth' })
-              }
-            }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.5, duration: 0.5 }}
+            className="pointer-events-auto absolute bottom-0 left-1/2 -translate-x-1/2 sm:bottom-2"
           >
-            <Icon
-              icon="iconoir:arrow-down-circle"
-              className={`w-8 h-8 mb-2 ${secondaryTextColorClass}`}
-            />
-            <span className={`text-sm ${secondaryTextColorClass} font-bold uppercase`}>SCROLL DOWN</span>
+            <motion.div
+              animate={{
+                y: [0, 10, 0],
+              }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="flex flex-col items-center cursor-pointer"
+              onClick={() => {
+                const nextSection = document.querySelector('#about') || document.querySelector('section:nth-of-type(2)')
+                if (nextSection) {
+                  const sectionTop = nextSection.getBoundingClientRect().top + window.scrollY
+                  window.scrollTo({ top: sectionTop, behavior: 'smooth' })
+                }
+              }}
+            >
+              <Icon
+                icon="iconoir:arrow-down-circle"
+                className={`w-8 h-8 mb-2 ${secondaryTextColorClass}`}
+              />
+              <span className={`text-sm ${secondaryTextColorClass} font-bold uppercase`}>SCROLL DOWN</span>
+            </motion.div>
           </motion.div>
-        </motion.div>
+        </div>
       </SectionWrapper>
     )
   }

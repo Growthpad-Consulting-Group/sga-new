@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 import Image from 'next/image'
 import { Icon } from '@iconify/react'
+import Button from '@/components/Button'
 
 interface ParallaxSectionProps {
   title?: string
@@ -93,26 +94,12 @@ export default function ParallaxSection({
               </div>
               {/* Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 justify-start items-stretch sm:items-start mt-6 md:mt-8 w-full sm:w-auto">
-                <a
-                  href="#what-we-do"
-                  className="bg-transparent hover:bg-white text-white hover:text-primary-orange border border-white px-14 lg:px-10 xl:px-14 hover:px-18 lg:hover:px-14 xl:hover:px-18 py-3 rounded-full font-semibold text-md shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center group relative w-full sm:w-auto"
-                >
+                <Button href="#what-we-do" variant="dark" size="default">
                   What We Do
-                  <Icon
-                    icon="iconoir:arrow-right-circle"
-                    className="w-5 h-5 text-primary-orange opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute right-4"
-                  />
-                </a>
-                <a
-                  href="#sustainability"
-                  className="bg-transparent hover:bg-white text-white hover:text-primary-orange border border-white px-14 lg:px-10 xl:px-14 hover:px-18 lg:hover:px-14 xl:hover:px-18 py-3 rounded-full font-semibold text-md shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center group relative w-full sm:w-auto"
-                >
+                </Button>
+                <Button href="#sustainability" variant="dark" size="default">
                   Our Sustainability Impact
-                  <Icon
-                    icon="iconoir:arrow-right-circle"
-                    className="w-5 h-5 text-primary-orange opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute right-4"
-                  />
-                </a>
+                </Button>
               </div>
             </div>
           </motion.div>

@@ -4,6 +4,7 @@ import { Link } from 'next-view-transitions'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
+import Button from '@/components/Button'
 
 interface ServiceCard {
     slug: string
@@ -94,12 +95,9 @@ export default function ServicesGrid({ services, country, type, isIndividual, co
                             Explore our {isIndividual ? 'business-focused' : 'specialized home'} security solutions.
                         </p>
                     </div>
-                    <Link
-                        href={`/${country}/services/${isIndividual ? 'corporate' : 'individual'}`}
-                        className="inline-block bg-white text-primary-orange px-10 py-5 rounded-full font-black text-sm hover:bg-navy-blue hover:text-white transition-all duration-300 shadow-xl"
-                    >
-                        EXPLORE {isIndividual ? 'CORPORATE' : 'INDIVIDUAL'}
-                    </Link>
+                    <Button href={`/${country}/services/${isIndividual ? 'corporate' : 'individual'}`} variant="solid" size="small">
+                        Explore {isIndividual ? 'Corporate' : 'Individual'}
+                    </Button>
                 </motion.div>
             </div>
         </section>

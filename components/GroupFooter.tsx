@@ -6,6 +6,7 @@ import { useEnquiryModal } from '@/contexts/EnquiryModalContext'
 import { Link } from 'next-view-transitions'
 import Accordion from './Accordion'
 import { socialLinks } from '@/data/nav'
+import Button from '@/components/Button'
 
 export default function GroupFooter(): React.JSX.Element {
   const currentYear = new Date().getFullYear()
@@ -105,26 +106,12 @@ export default function GroupFooter(): React.JSX.Element {
               </div>
               <div>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Link
-                    href="/contact"
-                    className="bg-white text-primary-orange px-4 py-4 lg:py-2 xl:py-3 rounded-full font-semibold text-xs xl:text-sm hover:bg-primary-orange hover:text-white border border-white hover:border-white transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 group relative text-center flex-1"
-                  >
+                  <Button href="/contact" variant="dark" size="small" className="flex-1">
                     Contact Us
-                    <Icon
-                      icon="iconoir:arrow-right-circle"
-                      className="w-5 h-5 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute right-4 top-1/2 -translate-y-1/2"
-                    />
-                  </Link>
-                  <button
-                    onClick={openModal}
-                    className="bg-transparent text-white border border-white px-4 py-4 lg:py-2 xl:py-3 rounded-full font-semibold text-xs xl:text-sm hover:bg-white hover:text-primary-orange transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 group relative text-center flex-1"
-                  >
+                  </Button>
+                  <Button onClick={openModal} variant="dark" size="small" className="flex-1">
                     Request Quote
-                    <Icon
-                      icon="iconoir:arrow-right-circle"
-                      className="w-5 h-5 text-primary-orange opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute right-4 top-1/2 -translate-y-1/2"
-                    />
-                  </button>
+                  </Button>
                 </div>
               </div>
             </div>

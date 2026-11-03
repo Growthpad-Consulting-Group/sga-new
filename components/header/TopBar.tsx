@@ -33,7 +33,7 @@ export default function TopBar({
   return (
     <div className={`transition-all duration-300 ${isScrolled ? 'h-0 opacity-0 overflow-hidden' : ''}`}>
       <div className={isAboutPage ? 'bg-white text-dark-charcoal' : 'bg-primary-orange text-white'}>
-        <div className="mx-auto container-fluid">
+        <div className="mx-auto px-4 sm:px-6 lg:px-4 xl:container-fluid">
           <div className="flex items-center justify-between h-10 sm:h-12 text-xs sm:text-sm">
             {/* Social Icons - Left */}
             <div className="flex items-center space-x-2 sm:space-x-3 md:space-x-4">
@@ -73,7 +73,7 @@ export default function TopBar({
                       key={country.code}
                       onClick={() => router.push(country.path)}
                       className={`
-                        w-8 h-8 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-7 lg:h-7 xl:w-10 xl:h-10 flex items-center justify-center rounded-full transition-all duration-200 hover:scale-110 active:scale-95
+                        w-8 h-8 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-7 lg:h-7 xl:w-[34px] xl:h-[34px] flex items-center justify-center rounded-full transition-all duration-200 hover:scale-110 active:scale-95
                         ${active
                           ? isAboutPage ? 'bg-primary-orange text-white' : 'bg-white text-primary-orange'
                           : isAboutPage ? 'text-dark-charcoal/80 hover:text-primary-orange hover:bg-primary-orange/10' : 'text-white/80 hover:text-white hover:bg-white/20'
@@ -103,7 +103,7 @@ export default function TopBar({
           </div>
         </div>
         {/* Border Bottom */}
-        <div className="mx-auto container-fluid">
+        <div className="mx-auto px-4 sm:px-6 lg:px-4 xl:container-fluid">
           <div className={`border-b ${isAboutPage ? 'border-dark-charcoal/20' : 'border-white/30'} pt-2`}></div>
         </div>
       </div>

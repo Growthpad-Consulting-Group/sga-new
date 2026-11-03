@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { Link } from 'next-view-transitions'
 import { Icon } from '@iconify/react'
+import Button from '@/components/Button'
 
 export default function FAQsCTA() {
   return (
@@ -24,13 +25,9 @@ export default function FAQsCTA() {
               </p>
             </div>
             <div className="shrink-0">
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 bg-white text-primary-orange px-6 py-3 rounded-full font-semibold text-xs uppercase shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-              >
-                <span>Get in touch</span>
-                <Icon icon="mdi:arrow-right" className="w-4 h-4" />
-              </Link>
+              <Button href="/contact" variant="solid" size="small">
+                Get in touch
+              </Button>
             </div>
           </motion.div>
         </div>
