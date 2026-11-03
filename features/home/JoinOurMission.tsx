@@ -1,7 +1,8 @@
 'use client'
 
 import SectionWrapper from '@/components/ui/SectionWrapper'
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { useRef } from 'react'
 import { Icon } from '@iconify/react'
 import Image from 'next/image'
 import { useCVModal } from '@/contexts/CVModalContext'
@@ -9,6 +10,12 @@ import Button from '@/components/ui/Button'
 
 export default function JoinOurMission(): React.JSX.Element {
   const { openModal } = useCVModal()
+  const imageRef = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: imageRef,
+    offset: ['start end', 'end start'],
+  })
+  const y = useTransform(scrollYProgress, [0, 1], ['-10%', '10%'])
 
   return (
     <SectionWrapper id="join-our-mission" className="bg-light-grey py-8 md:py-12 relative">
@@ -55,15 +62,19 @@ export default function JoinOurMission(): React.JSX.Element {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative w-full h-[250px] md:h-[450px] mt-6"
+              ref={imageRef}
+              className="relative w-full h-[250px] md:h-[450px] mt-6 overflow-hidden rounded-2xl"
             >
-              <Image
-                src="/images/careers/hero.jpg"
-                alt="SGA Team"
-                fill
-                sizes="(max-width: 768px) 100vw, 90vw"
-                className="object-cover rounded-2xl"
-              />
+              {/* Parallax: the image is taller than its frame and moves slightly on scroll */}
+              <motion.div style={{ y }} className="absolute inset-x-0 top-[-10%] bottom-[-10%]">
+                <Image
+                  src="/images/careers/hero.jpg"
+                  alt="SGA Team"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 90vw"
+                  className="object-cover"
+                />
+              </motion.div>
             </motion.div>
           </div>
         </motion.div>

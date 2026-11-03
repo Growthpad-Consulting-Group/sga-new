@@ -4,11 +4,14 @@ export interface CoreService {
   imageUrl: string
   countryImageUrls?: Partial<Record<'ke' | 'ug' | 'tz', string>>
   href?: string
+  /** Detail page slug per service type (the page exists under services/individual or services/corporate) */
+  detailSlugs?: { individual?: string; corporate?: string }
 }
 
 export const coreServices: CoreService[] = [
   {
     title: 'Home Security Solutions',
+    detailSlugs: { individual: 'home-security' },
     description: 'Comprehensive security solutions for residential properties with 24/7 monitoring and rapid response.',
     imageUrl: '/images/group/guarding.png',
     href: 'https://www.sgasecurity.com/home-security-solution/',
@@ -20,6 +23,7 @@ export const coreServices: CoreService[] = [
   },
   {
     title: 'Guarding Services',
+    detailSlugs: { corporate: 'security-guarding' },
     description: 'Professional guarding for offices, malls, logistics yards and estates.',
     imageUrl: '/images/group/core-services/guarding.jpg',
   },

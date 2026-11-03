@@ -40,18 +40,14 @@ export default async function ServicesTypePage({ params }: Props) {
 
     // Cards come from the shared core services list (same as the country menu).
     // A card links to its detail page only where one exists for this service type.
-    const detailSlugs: Record<string, string> = {
-        'Home Security Solutions': 'home-security',
-        'Guarding Services': 'security-guarding',
-    }
     const services = coreServices.map((service) => {
-        const detailSlug = detailSlugs[service.title]
+        const detailSlug = service.detailSlugs?.[type]
         const hasDetail = !!detailSlug && !!servicesMap[detailSlug]
         return {
             slug: detailSlug ?? service.title.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
             serviceName: service.title,
             serviceIcon: '',
-            heroImage: service.countryImageUrls?.[country as 'ke' | 'ug' | 'tz'] ?? service.imageUrl,
+            heroImage: service.imageUrl,
             heroDescription: service.description,
             href: service.href ?? (hasDetail ? `/${country}/services/${type}/${detailSlug}` : undefined),
         }
