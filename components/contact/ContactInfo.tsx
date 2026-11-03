@@ -30,12 +30,13 @@ export default function ContactInfo({ providedCountry }: ContactInfoProps): Reac
           viewport={{ once: true }}
           className="mb-8"
         >
-          <div className="section-title-container">
-            <h2 className="section-title text-xl md:text-5xl font-bold text-primary-orange">
-              {providedCountry ? `${providedCountry} Contact` : 'Contact Information'}
-            </h2>
-            <div className="section-title-bar"></div>
-          </div>
+          {!providedCountry && (
+            <div className="section-title-container">
+              <h2 className="section-title text-xl md:text-5xl font-bold text-primary-orange">
+                Contact Information
+              </h2>
+            </div>
+          )}
           <p className="text-sm md:text-lg text-gray-700 leading-relaxed max-w-4xl">
             {providedCountry
               ? `Direct lines and offices for SGA Security ${providedCountry}.`

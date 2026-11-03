@@ -3,8 +3,8 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
-import Image from 'next/image'
 import { useCarousel } from '@/components/Carousel'
+import NewsCard, { getNewsCardKey } from '@/components/news/NewsCard'
 
 interface NewsItem {
   category: string
@@ -127,9 +127,6 @@ const newsItems: NewsItem[] = [
     date: 'August 5, 2025',
   },
 ]
-
-import { urlFor } from '@/sanity/lib/image'
-import { Link } from 'next-view-transitions'
 
 export default function News({ hideCountryDropdown = false, backgroundColor = 'bg-white', country, customSubtext, initialNewsItems }: NewsProps) {
   const [activeFilter, setActiveFilter] = useState('ALL')
@@ -284,51 +281,7 @@ export default function News({ hideCountryDropdown = false, backgroundColor = 'b
 
         <div className="grid md:grid-cols-3 gap-6 pb-12">
           {carousel.currentItems(displayItems).map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col min-h-[400px] xl:min-h-[500px]"
-            >
-              {/* Featured Image - Clickable */}
-              <Link
-                href={`/news-reports/${item.slug.current || item.slug}`}
-                className="relative w-full h-48 xl:h-64 block cursor-pointer"
-              >
-                <Image
-                  src={item.image || (item.mainImage ? urlFor(item.mainImage).url() : '/images/misc/blog-placeholder')}
-                  alt={item.title}
-                  fill
-                  className="object-cover rounded-t-lg"
-                />
-                {/* Country Pill */}
-                <div className="absolute top-3 left-3 flex items-center gap-1 px-3 py-1 xl:px-5 xl:py-2 rounded-full bg-primary-orange text-white text-xs xl:text-sm uppercase font-normal z-10">
-                  <Icon icon="mdi:map-marker" className="w-4 h-4 xl:w-5 xl:h-5 text-white" />
-                  {item.country}
-                </div>
-              </Link>
-
-              <div className="p-6 flex flex-col flex-1 bg-primary-orange text-white">
-                {/* Category and Date */}
-                <p className="text-sm xl:text-xs font-normal text-white uppercase tracking-wider mb-2">
-                  {item.category || 'Blog'} • {item.date || new Date(item.publishedAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
-                </p>
-
-                {/* Title */}
-                <Link href={`/news-reports/${item.slug.current || item.slug}`}>
-                  <h3 className="text-lg md:text-3xl lg:text-xl xl:text-[22px] font-bold text-white mb-3 line-clamp-2 hover:opacity-80 transition-opacity">
-                    {item.title}
-                  </h3>
-                </Link>
-
-                {/* Summary */}
-                <p className="text-white text-sm xl:text-base leading-relaxed line-clamp-3">
-                  {item.summary}
-                </p>
-              </div>
-            </motion.div>
+            <NewsCard key={getNewsCardKey(item, index)} item={item} index={index} />
           ))}
         </div>
       </motion.div>

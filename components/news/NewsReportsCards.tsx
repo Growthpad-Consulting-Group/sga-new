@@ -1,13 +1,10 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
-import Image from 'next/image'
-import { Link } from 'next-view-transitions'
-import { usePathname } from 'next/navigation'
 import { newsItems } from '@/data/newsItems'
-import { urlFor } from '@/sanity/lib/image'
+import NewsCard, { getNewsCardKey } from '@/components/news/NewsCard'
 
 const ITEMS_PER_PAGE = 6
 
@@ -17,7 +14,6 @@ interface NewsReportsCardsProps {
 }
 
 export default function NewsReportsCards({ providedCountry, initialNewsItems }: NewsReportsCardsProps) {
-  const pathname = usePathname()
   const displayItems = initialNewsItems || newsItems
   const [activeFilter, setActiveFilter] = useState('ALL')
   const [searchQuery, setSearchQuery] = useState('')
@@ -30,9 +26,6 @@ export default function NewsReportsCards({ providedCountry, initialNewsItems }: 
   const availableYears = Array.from(
     new Set(displayItems.map(item => new Date(item.date || item.publishedAt).getFullYear()))
   ).sort((a, b) => b - a) // Sort descending (newest first)
-
-  // Determine base path for slugs - always point to /news-reports as the canonical detail route
-  const basePath = '/news-reports'
 
   const filteredItems = (() => {
     let filtered = displayItems.filter(item => {
@@ -163,7 +156,8 @@ export default function NewsReportsCards({ providedCountry, initialNewsItems }: 
               />
             </div>
 
-            {/* 3. Country Dropdown */}
+            {/* 3. Country Dropdown (hidden on country pages, which are already filtered) */}
+            {!providedCountry && (
             <div className="relative w-full">
               <select
                 value={selectedCountry}
@@ -180,6 +174,8 @@ export default function NewsReportsCards({ providedCountry, initialNewsItems }: 
                 className="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-dark-charcoal pointer-events-none"
               />
             </div>
+
+            )}
 
             {/* 4. Year Dropdown */}
             <div className="relative w-full">
@@ -222,51 +218,7 @@ export default function NewsReportsCards({ providedCountry, initialNewsItems }: 
         {paginatedItems.length > 0 && (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {paginatedItems.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
-                className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow flex flex-col min-h-[500px]"
-              >
-                {/* Featured Image */}
-                <Link href={`${basePath}/${item.slug.current || item.slug}`}>
-                  <div className="relative w-full h-64 block cursor-pointer transition-opacity duration-200 hover:opacity-90">
-                    <Image
-                      src={item.image || (item.mainImage ? urlFor(item.mainImage).url() : '/images/misc/blog-placeholder')}
-                      alt={item.title}
-                      fill
-                      className="object-cover rounded-t-lg"
-                    />
-                    {/* Country Pill */}
-                    <div className="absolute top-3 left-3 flex items-center gap-1 px-5 py-2 rounded-full bg-primary-orange text-white text-sm uppercase font-normal z-10">
-                      <Icon icon="mdi:map-marker" className="w-5 h-5 text-white" />
-                      {(item as any).country}
-                    </div>
-                  </div>
-                </Link>
-
-                <div className="p-6 flex flex-col flex-1 bg-primary-orange text-white">
-                  {/* Category and Date */}
-                  <p className="text-lg font-normal text-white uppercase tracking-wider mb-2">
-                    {item.category || 'Blog'} • {item.date || new Date(item.publishedAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
-                  </p>
-
-                  {/* Title */}
-                  <Link href={`${basePath}/${item.slug.current || item.slug}`}>
-                    <h3 className="text-xl md:text-3xl font-bold text-white mb-3 line-clamp-2 hover:opacity-80 transition-opacity capitalize">
-                      {item.title}
-                    </h3>
-                  </Link>
-
-                  {/* Summary */}
-                  <p className="text-white text-lg leading-relaxed line-clamp-3">
-                    {item.summary}
-                  </p>
-                </div>
-              </motion.div>
+              <NewsCard key={getNewsCardKey(item, index)} item={item} index={index} />
             ))}
           </div>
         )}

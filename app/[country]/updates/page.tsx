@@ -35,7 +35,9 @@ export default async function UpdatesPage({ params }: Props) {
 
     return (
         <>
-            <UpdatesHero imageUrl="/images/contact/hero.png" />
+            <UpdatesHero
+                imageUrl={country === 'ke' ? '/images/ke/updates-hero-spa2435.jpg' : '/images/contact/hero.png'}
+            />
             <NewsReportsCards providedCountry={c.name} initialNewsItems={newsPosts} />
             <FloatingWhatsApp
                 singleCountry={true}

@@ -33,7 +33,9 @@ export default async function ContactPage({ params }: Props) {
 
     return (
         <>
-            <ContactHero imageUrl="/images/contact/hero.png" />
+            <ContactHero
+                imageUrl={country === 'ke' ? '/images/contact/group/hero.jpg' : '/images/contact/hero.png'}
+            />
             <ContactInfo providedCountry={c.name} />
             <CustomerCare />
             <FloatingWhatsApp
