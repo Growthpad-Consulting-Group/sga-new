@@ -13,27 +13,27 @@ export const coreServices: CoreService[] = [
     href: 'https://www.sgasecurity.com/home-security-solution/',
   },
   {
-    title: 'Courier',
+    title: 'Courier Services',
     description: 'Secure courier services for sensitive documents and valuable items with tracked delivery.',
     imageUrl: '/images/group/core-services/courier.jpg',
   },
   {
-    title: 'Guarding',
+    title: 'Guarding Services',
     description: 'Professional guarding for offices, malls, logistics yards and estates.',
     imageUrl: '/images/group/core-services/guarding.jpg',
   },
   {
-    title: 'Alarm Response',
+    title: 'Alarm Response Services',
     description: 'Rapid alarm response teams ready to respond to security alerts 24/7.',
     imageUrl: '/images/group/core-services/alarm.jpg',
   },
   {
-    title: 'Electronic Cargo Tracking System',
+    title: 'Electronic Cargo Tracking Services',
     description: 'Advanced GPS tracking solutions for vehicles and assets with real-time monitoring.',
     imageUrl: '/images/group/core-services/tracking.jpg',
   },
   {
-    title: 'CIT and Cash Management',
+    title: 'CIT and Cash Management Services',
     description: 'Secure movement of valuables with armored fleet and vetted crews.',
     imageUrl: '/images/group/core-services/cit.jpg',
   },
@@ -53,7 +53,7 @@ export const coreServices: CoreService[] = [
     imageUrl: '/images/group/cit.png',
   },
   {
-    title: 'Workshop',
+    title: 'Workshop Services',
     description: 'In-house workshop for vehicle maintenance and security equipment servicing.',
     imageUrl: '/images/group/guarding.png',
   },
@@ -68,12 +68,12 @@ export const coreServices: CoreService[] = [
     imageUrl: '/images/group/core-services/reception.jpg',
   },
   {
-    title: 'Customer Service',
+    title: 'Customer Services',
     description: 'Dedicated support teams ensuring responsive, client-focused service delivery.',
     imageUrl: '/images/group/core-services/customer-service.jpg',
   },
   {
-    title: 'Close Protection Officer',
+    title: 'Close Protection Services',
     description: 'Specialized close protection officers for executive and VIP security.',
     imageUrl: '/images/group/core-services/close-protection.jpg',
   },

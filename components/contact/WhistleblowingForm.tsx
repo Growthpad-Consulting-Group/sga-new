@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
+import Button from '@/components/Button'
 
 const concernCategories = [
   'Corruption',
@@ -227,12 +228,9 @@ export default function WhistleblowingForm(): React.JSX.Element {
           </span>
         </label>
 
-        <button
-          type="submit"
-          className="bg-primary-orange text-white px-10 py-4 rounded-full font-bold uppercase text-sm shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
-        >
+        <Button type="submit" variant="solid" size="small" arrow={false}>
           Submit Report
-        </button>
+        </Button>
       </form>
     </motion.div>
   )

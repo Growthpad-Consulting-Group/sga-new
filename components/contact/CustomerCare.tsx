@@ -121,7 +121,7 @@ export default function CustomerCare(): React.JSX.Element {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-100px' }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="container-fluid mx-auto"
+        className="mx-auto"
       >
         {/* Title Section with Plus Icon */}
         <motion.div
@@ -136,7 +136,7 @@ export default function CustomerCare(): React.JSX.Element {
               className="absolute -top-12 -left-2 w-12 h-12 text-primary-orange font-bold"
               style={{ strokeWidth: 3 }}
             />
-            <h3 className="text-xl md:text-5xl font-bold text-primary-orange relative pl-6 pb-3">
+            <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-primary-orange relative pl-6 pb-3">
               Whistleblowing
             </h3>
           </div>
@@ -145,11 +145,11 @@ export default function CustomerCare(): React.JSX.Element {
           </p>
         </motion.div>
 
-        <div className="pl-6 mt-8">
+        <div className="mt-8">
           <Accordion items={whistleblowingItems} variant="default" />
         </div>
 
-        <div className="pl-6 mt-12">
+        <div className="mt-12">
           <WhistleblowingForm />
         </div>
       </motion.div>

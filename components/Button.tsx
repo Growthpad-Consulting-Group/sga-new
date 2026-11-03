@@ -16,6 +16,8 @@ interface ButtonProps {
   className?: string
   /** Optional icon shown before the label (iconify name, e.g. "mdi:phone-outline") */
   icon?: string
+  /** Button type for forms (default 'button') */
+  type?: 'button' | 'submit'
   /** Show the arrow that fades in on hover (default true) */
   arrow?: boolean
 }
@@ -39,7 +41,7 @@ const arrowColors = {
   solid: 'text-primary-orange',
 }
 
-export default function Button({ children, href, onClick, variant = 'light', size = 'default', className = '', icon, arrow = true }: ButtonProps) {
+export default function Button({ children, href, onClick, variant = 'light', size = 'default', className = '', icon, arrow = true, type = 'button' }: ButtonProps) {
   const classes = `${variants[variant]} ${sizes[size]} rounded-full font-semibold shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 text-center group relative w-full sm:w-auto ${className}`
 
   const content = (
@@ -64,7 +66,7 @@ export default function Button({ children, href, onClick, variant = 'light', siz
   }
 
   return (
-    <button type="button" onClick={onClick} className={classes}>
+    <button type={type} onClick={onClick} className={classes}>
       {content}
     </button>
   )

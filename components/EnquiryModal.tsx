@@ -1,10 +1,17 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Icon } from '@iconify/react'
+import { usePathname } from 'next/navigation'
 import { useBodyScrollLock } from '@/lib/useBodyScrollLock'
 import { coreServiceInterestOptions } from '@/data/coreServices'
+
+const COUNTRY_NAMES_BY_ROUTE: Record<string, string> = {
+  ke: 'Kenya',
+  ug: 'Uganda',
+  tz: 'Tanzania',
+}
 
 interface FormData {
   fullName: string
@@ -27,6 +34,9 @@ interface EnquiryModalProps {
 }
 
 export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): React.JSX.Element | null {
+  const pathname = usePathname()
+  const countryCode = pathname.split('/').filter(Boolean)[0] || ''
+  const routeCountry = COUNTRY_NAMES_BY_ROUTE[countryCode] || ''
   const [enquiryType, setEnquiryType] = useState<'Individual' | 'Corporate'>('Individual')
   const [formData, setFormData] = useState<FormData>({
     fullName: '',
@@ -42,6 +52,15 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
     companySize: '',
     industry: ''
   })
+
+  useEffect(() => {
+    if (!isOpen) return
+
+    setFormData(prev => ({
+      ...prev,
+      country: routeCountry,
+    }))
+  }, [isOpen, routeCountry])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
