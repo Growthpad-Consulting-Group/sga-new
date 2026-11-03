@@ -68,8 +68,8 @@ export const homeData: Record<string, HomeContent> = {
             description: "From Kampala neighborhoods to businesses across Uganda, SGA Security provides reliable, round-the-clock protection.",
             imageUrl: "/images/ug/ug-hero.png",
             buttons: [
-                { label: "Explore Home Security", href: "/ug/services/individual", primary: true, separator: "Explore " },
-                { label: "Explore Business Security", href: "/ug/services/corporate", primary: true, separator: "Explore " }
+                { label: "Explore for Individual", href: "/ug/services/individual", primary: true },
+                { label: "Explore for Corporate", href: "/ug/services/corporate", primary: true }
             ]
         },
         about: {
@@ -105,8 +105,8 @@ export const homeData: Record<string, HomeContent> = {
             description: "From Dar es Salaam to towns across Tanzania, SGA Security keeps families and businesses safe with dependable 24/7 protection.",
             imageUrl: "/images/tz/hero.png",
             buttons: [
-                { label: "Explore Home Security", href: "/tz/services/individual", primary: true, separator: "Explore " },
-                { label: "Explore Business Security", href: "/tz/services/corporate", primary: true, separator: "Explore " }
+                { label: "Explore for Individual", href: "/tz/services/individual", primary: true },
+                { label: "Explore for Corporate", href: "/tz/services/corporate", primary: true }
             ]
         },
         about: {
