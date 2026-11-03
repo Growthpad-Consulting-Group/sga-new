@@ -1,4 +1,4 @@
-import IndustriesPageContent from '@/app/industries/components/IndustriesPageContent'
+import IndustriesPageContent from '@/features/industries/IndustriesPageContent'
 import { countries } from '@/data/countries-data'
 import { resolveMetadata } from '@/data/metadata-data'
 import { notFound } from 'next/navigation'

@@ -1,6 +1,6 @@
-import NewsHero from '@/components/news/NewsHero'
-import NewsReportsCards from '@/components/news/NewsReportsCards'
-import FloatingWhatsApp from '@/components/FloatingWhatsApp'
+import NewsHero from '@/features/news/NewsHero'
+import NewsReportsCards from '@/features/news/NewsReportsCards'
+import FloatingWhatsApp from '@/components/ui/FloatingWhatsApp'
 import { Metadata } from 'next'
 import { getAllNewsPosts } from '@/lib/sanity'
 

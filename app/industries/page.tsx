@@ -1,4 +1,4 @@
-import IndustriesPageContent from './components/IndustriesPageContent'
+import IndustriesPageContent from '@/features/industries/IndustriesPageContent'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {

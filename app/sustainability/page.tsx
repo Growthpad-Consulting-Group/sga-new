@@ -1,10 +1,10 @@
-import SustainabilityHero from './components/SustainabilityHero'
-import SustainabilityIntro from './components/SustainabilityIntro'
-import SustainabilityESG from '@/components/SustainabilityESG'
-import FloatingWhatsApp from '@/components/FloatingWhatsApp'
-import OurImpactInNumbers from '@/components/OurImpactInNumbers'
+import SustainabilityHero from '@/features/sustainability/SustainabilityHero'
+import SustainabilityIntro from '@/features/sustainability/SustainabilityIntro'
+import SustainabilityESG from '@/features/sustainability/SustainabilityESG'
+import FloatingWhatsApp from '@/components/ui/FloatingWhatsApp'
+import OurImpactInNumbers from '@/features/about/OurImpactInNumbers'
 import { Metadata } from 'next'
-import SectionSeparator from '@/components/SectionSeparator'
+import SectionSeparator from '@/components/ui/SectionSeparator'
 
 export const metadata: Metadata = {
   title: 'Sustainability - SGA Security Group - Environmental Responsibility & Social Impact',

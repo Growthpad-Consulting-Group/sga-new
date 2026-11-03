@@ -1,7 +1,7 @@
-import ContactHero from '@/components/contact/ContactHero'
-import ContactInfo from '@/components/contact/ContactInfo'
-import CustomerCare from '@/components/contact/CustomerCare'
-import FloatingWhatsApp from '@/components/FloatingWhatsApp'
+import ContactHero from '@/features/contact/ContactHero'
+import ContactInfo from '@/features/contact/ContactInfo'
+import CustomerCare from '@/features/contact/CustomerCare'
+import FloatingWhatsApp from '@/components/ui/FloatingWhatsApp'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {

@@ -1,6 +1,6 @@
-import UpdatesHero from '@/components/news/UpdatesHero'
-import NewsReportsCards from '@/components/news/NewsReportsCards'
-import FloatingWhatsApp from '@/components/FloatingWhatsApp'
+import UpdatesHero from '@/features/news/UpdatesHero'
+import NewsReportsCards from '@/features/news/NewsReportsCards'
+import FloatingWhatsApp from '@/components/ui/FloatingWhatsApp'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {

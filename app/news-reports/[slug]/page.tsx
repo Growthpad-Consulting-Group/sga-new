@@ -1,6 +1,6 @@
 import { newsItems } from '@/data/newsItems'
-import BlogDetail from '@/components/news/BlogDetail'
-import FloatingWhatsApp from '@/components/FloatingWhatsApp'
+import BlogDetail from '@/features/news/BlogDetail'
+import FloatingWhatsApp from '@/components/ui/FloatingWhatsApp'
 import { notFound } from 'next/navigation'
 import { getAllNewsPosts, getNewsPostBySlug } from '@/lib/sanity'
 import { urlFor } from '@/sanity/lib/image'

@@ -1,0 +1,190 @@
+'use client'
+
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Icon } from '@iconify/react'
+import Image from 'next/image'
+import Button from '@/components/ui/Button'
+
+interface SDGGoal {
+  goal: number
+  title: string
+  description: string
+  bgColor: string
+  iconUrl: string
+}
+
+const sdgGoals: SDGGoal[] = [
+  {
+    goal: 3,
+    title: 'Good Health & Well‑Being',
+    description: 'Ensuring healthy lives and promoting well-being for all at all ages.',
+    bgColor: '#4C9F38',
+    iconUrl: '/images/group/sdg/sdg-3.svg',
+  },
+  {
+    goal: 4,
+    title: 'Quality Education',
+    description: 'Supporting inclusive and equitable education while promoting lifelong learning opportunities.',
+    bgColor: '#C5192D',
+    iconUrl: '/images/group/sdg/sdg-4.svg',
+  },
+  {
+    goal: 5,
+    title: 'Gender equality',
+    description: 'Advancing equality by empowering women and ensuring equal opportunities for all.',
+    bgColor: '#FF3A21',
+    iconUrl: '/images/group/sdg/sdg-5.svg',
+  },
+  {
+    goal: 8,
+    title: 'Decent Work & Economic Growth',
+    description: 'Advancing equality by empowering women and ensuring equal opportunities for all.',
+    bgColor: '#A21942',
+    iconUrl: '/images/group/sdg/sdg-8.svg',
+  },
+  {
+    goal: 9,
+    title: 'Industry, Innovation & Infrastructure',
+    description: 'Building resilient systems through innovation, sustainable solutions, and infrastructure support.',
+    bgColor: '#FD6925',
+    iconUrl: '/images/group/sdg/sdg-9.svg',
+  },
+  {
+    goal: 12,
+    title: 'Responsible Consumption & Production',
+    description: 'Supporting inclusive and equitable education while promoting lifelong learning opportunities.',
+    bgColor: '#BF8B2E',
+    iconUrl: '/images/group/sdg/sdg-12.svg',
+  },
+  {
+    goal: 16,
+    title: 'Peace, Justice & Strong Institutions',
+    description: 'Upholding integrity, accountability, and fostering safe, inclusive communities.',
+    bgColor: '#00689D',
+    iconUrl: '/images/group/sdg/sdg-16.svg',
+  },
+]
+
+export default function SustainabilityESG(): React.JSX.Element {
+  const [expandedGoal, setExpandedGoal] = useState<number | null>(null)
+
+  return (
+    <section id="sustainability-esg" className="flex items-center justify-center bg-light-grey relative py-12 md:py-16">
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-100px' }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        className="container-fluid mx-auto"
+      >
+        <div className="mb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="space-y-3"
+          >
+            <p className="text-sm xl:text-base font-medium text-dark-charcoal uppercase tracking-wider">
+              Sustainability & ESG
+            </p>
+            <div className="section-title-container">
+              <h3 className="section-title text-2xl md:text-3xl lg:text-4xl font-bold text-primary-orange">
+                Sustainable Development Goals
+              </h3>
+            </div>
+            <p className="text-base md:text-lg text-dark-charcoal leading-relaxed">SGA aligns its environmental, social and governance initiatives with the UN SDGs. Here are the goals we actively support.</p>
+          </motion.div>
+        </div>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 items-start">
+          {sdgGoals.map((sdg, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.15,
+                ease: "easeOut",
+                opacity: { duration: 0.5, delay: index * 0.1 },
+                y: { duration: 0.35, ease: "easeOut" }
+              }}
+              onPointerEnter={(event) => {
+                if (event.pointerType === 'mouse') setExpandedGoal(sdg.goal)
+              }}
+              onPointerLeave={(event) => {
+                if (event.pointerType === 'mouse') setExpandedGoal(null)
+              }}
+              className="rounded-lg overflow-hidden shadow-lg hover:shadow-xl hover:-translate-y-1 transition-[translate,box-shadow] duration-300 min-h-[160px] md:min-h-[240px] lg:min-h-[180px] xl:min-h-[240px] capitalize cursor-default"
+              style={{ backgroundColor: sdg.bgColor }}
+            >
+              <div className="p-5 md:p-6 lg:p-4 xl:p-6 h-full flex flex-col text-white">
+                <div className="flex items-start justify-between mb-3">
+                  <span className="text-4xl md:text-5xl lg:text-4xl xl:text-5xl font-bold leading-none">
+                    {sdg.goal}
+                  </span>
+                  <div className="relative w-16 h-16 lg:w-12 lg:h-12 xl:w-16 xl:h-16 md:w-20 md:h-20 shrink-0">
+                    <Image
+                      src={sdg.iconUrl}
+                      alt={`SDG Goal ${sdg.goal}`}
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                </div>
+                <div className="flex-1"></div>
+                <div>
+                  <h4 className="text-base md:text-2xl lg:text-lg xl:text-2xl font-bold leading-tight">
+                    {sdg.title}
+                  </h4>
+                  <AnimatePresence>
+                    {expandedGoal === sdg.goal && (
+                      <motion.p
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{
+                          height: { duration: 0.25, ease: 'easeOut' },
+                          opacity: { duration: 0.2, ease: 'easeOut' },
+                        }}
+                        className="text-sm md:text-base lg:text-xs xl:text-base text-white/90 leading-relaxed mt-3 overflow-hidden"
+                      >
+                        {sdg.description}
+                      </motion.p>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+
+          {/* Learn More Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 0.15,
+              ease: "easeOut",
+              opacity: { duration: 0.5, delay: 0.7 },
+              y: { duration: 0.35, ease: "easeOut" }
+            }}
+            className="rounded-lg overflow-hidden shadow-lg border border-dark-charcoal bg-transparent min-h-[160px] md:min-h-[240px] lg:min-h-[180px] xl:min-h-[240px] cursor-pointer flex flex-col"
+          >
+            <div className="p-5 md:p-6 lg:p-4 xl:p-6 flex-1 flex flex-col">
+              <h4 className="text-base md:text-2xl lg:text-lg xl:text-2xl font-medium text-dark-charcoal mb-4 leading-tight">
+                Learn More About Our Sustainability Impact
+              </h4>
+              <div className="flex-1"></div>
+              <Button href="/sustainability" variant="solid" size="small">
+                Learn More
+              </Button>
+            </div>
+          </motion.div>
+        </div>
+      </motion.div>
+    </section>
+  )
+}
+

@@ -1,7 +1,7 @@
-import Hero from './components/Hero'
-import JobCards from './components/Jobcards'
-import FloatingWhatsApp from '@/components/FloatingWhatsApp'
-import SectionSeparator from '@/components/SectionSeparator'
+import Hero from '@/features/careers/Hero'
+import JobCards from '@/features/careers/Jobcards'
+import FloatingWhatsApp from '@/components/ui/FloatingWhatsApp'
+import SectionSeparator from '@/components/ui/SectionSeparator'
 import { getAllJobPostings } from '@/lib/sanity'
 
 export const metadata = {

@@ -1,0 +1,110 @@
+'use client'
+
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { useRef } from 'react'
+import Image from 'next/image'
+import { Icon } from '@iconify/react'
+import Button from '@/components/ui/Button'
+
+interface ParallaxSectionProps {
+  title?: string
+  h2Title?: string
+  description?: string
+  id?: string
+}
+
+export default function ParallaxSection({
+  title = "Who We Are",
+  h2Title = "About SGA Group",
+  description = "For over five decades, SGA has safeguarded homes, businesses, and institutions across East Africa. With uncompromising integrity and deep local expertise, we combine proven processes, technology, and people to keep millions safe every day.",
+  id
+}: ParallaxSectionProps) {
+  const ref = useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  })
+
+  const y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"])
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.8, 1, 1, 0.8])
+
+  return (
+    <section
+      ref={ref}
+      id={id}
+      className="relative w-full overflow-hidden flex flex-col justify-center py-12 md:py-16 h-screen"
+    >
+      {/* Background Image - overflows top/bottom by 10% so the parallax
+          translate never slides an edge into view and exposes the page
+          background behind it. */}
+      <motion.div
+        style={{ y }}
+        className="absolute inset-x-0 top-[-10%] bottom-[-10%] z-0"
+      >
+        <Image
+          src="/images/group/about-sga-group.png"
+          alt="About SGA Group"
+          fill
+          className="object-cover"
+          priority={false}
+        />
+        {/* Overlay for better text readability - Orange tint */}
+        <div className="absolute inset-0 bg-primary-orange/85"></div>
+      </motion.div>
+
+      {/* Content */}
+      <div className="flex-1 flex items-center">
+        <motion.div
+          style={{ opacity }}
+          className="relative z-10 w-full max-w-9xl mx-auto container-fluid text-left"
+        >
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+            className="space-y-6"
+          >
+            <p className="text-sm xl:text-base font-medium text-white/90 uppercase tracking-wider">
+              {title}
+            </p>
+            <div className="section-title-container-white">
+              <h2 className="section-title text-2xl md:text-3xl lg:text-4xl font-bold text-white">
+                {h2Title}
+              </h2>
+            </div>
+            <div className="relative max-w-6xl xl:max-w-none mx-auto pt-8 md:pt-10">
+              <div className="relative">
+                {/* Plus Icon - Top Left of Text */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                  className="absolute -top-14 -left-6 md:-top-20 md:-left-24 lg:-top-12 lg:-left-14 xl:-top-20 xl:-left-24 z-20"
+                >
+                  <Icon
+                    icon="mdi:plus-thick"
+                    className="w-12 h-12 md:w-28 md:h-28 lg:w-20 lg:h-20 xl:w-28 xl:h-28 text-white"
+                  />
+                </motion.div>
+                <p className="text-base md:text-2xl lg:text-3xl xl:text-4xl max-w-6xl xl:max-w-none text-white font-semibold leading-relaxed text-left">
+                  {description}
+                </p>
+              </div>
+              {/* Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 justify-start items-stretch sm:items-start mt-6 md:mt-8 w-full sm:w-auto">
+                <Button href="#what-we-do" variant="dark" size="default">
+                  What We Do
+                </Button>
+                <Button href="#sustainability" variant="dark" size="default">
+                  Our Sustainability Impact
+                </Button>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
+  )
+}

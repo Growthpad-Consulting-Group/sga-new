@@ -1,4 +1,4 @@
-import FAQPageClient from './components/FAQPageClient'
+import FAQPageClient from '@/features/faqs/FAQPageClient'
 import { countries } from '@/data/countries-data'
 import { resolveMetadata } from '@/data/metadata-data'
 import { notFound } from 'next/navigation'
