@@ -15,6 +15,7 @@ import {
   getCountryHeaderNavItems,
   countryHeaderCountries,
 } from '@/data/nav'
+import Button from '@/components/Button'
 import { useEnquiryModal } from '@/contexts/EnquiryModalContext'
 import TopBar from './header/TopBar'
 import MegaMenuDropdown from './header/MegaMenuDropdown'
@@ -251,12 +252,14 @@ export default function CountryHeader(): React.JSX.Element {
                 </NavComponent>
               )
             })}
-            <button
+            <Button
+              variant={isScrolled ? 'solid' : 'white'}
+              size="compact"
+              className="w-auto! uppercase"
               onClick={openModal}
-              className={isScrolled ? "bg-primary-orange text-white px-3 py-1.5 xl:px-6 xl:py-3 rounded-full font-semibold text-xs xl:text-sm uppercase shadow-md hover:shadow-lg transition-all duration-200 hover:scale-105 active:scale-95 ml-2 xl:ml-4 font-nav!" : "bg-white text-primary-orange px-3 py-1.5 xl:px-6 xl:py-3 rounded-full font-semibold text-xs xl:text-sm uppercase shadow-md hover:shadow-lg transition-all duration-200 hover:scale-105 active:scale-95 ml-2 xl:ml-4 font-nav!"}
             >
               Enquire Now
-            </button>
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}

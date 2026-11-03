@@ -7,6 +7,7 @@ import Image from 'next/image'
 import { Icon } from '@iconify/react'
 import { usePathname } from 'next/navigation'
 import { useEnquiryModal } from '@/contexts/EnquiryModalContext'
+import Button from '@/components/Button'
 import { useCountryModal } from '@/contexts/CountryModalContext'
 import { navItems, getCountryNavItems, socialLinks, countries } from '@/data/nav'
 
@@ -347,15 +348,14 @@ export default function Header() {
             })}
 
             {/* Enquire Now Button */}
-            <button
+            <Button
+              variant={isCountryPage && !isScrolled ? 'white' : 'solid'}
+              size="compact"
+              className="w-auto! uppercase"
               onClick={openModal}
-              className={`${isCountryPage && !isScrolled
-                ? 'bg-white text-primary-orange'
-                : 'bg-primary-orange text-white'
-                } px-3 py-1.5 xl:px-6 xl:py-3 rounded-full font-heading font-medium uppercase text-xs xl:text-sm shadow-md hover:shadow-lg transition-all duration-200 hover:scale-105 active:scale-95`}
             >
               Enquire Now
-            </button>
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}
