@@ -14,9 +14,13 @@ interface WhyChooseUsProps {
   backgroundColor?: string
   accordionItems?: AccordionItem[]
   image?: string
+  title?: string
+  subtitle?: string
 }
 
 export default function WhyChooseUs({
+  title,
+  subtitle,
   countryName = 'Kenya',
   backgroundColor = 'bg-white',
   image = '/images/ke/why-choose-us.jpg',
@@ -54,21 +58,27 @@ export default function WhyChooseUs({
         transition={{ duration: 0.6, ease: 'easeOut' }}
         className="container-fluid mx-auto"
       >
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="mb-8 w-full"
+      >
+        <div className="section-title-container w-full pb-1!">
+          <h2 className="section-title text-2xl md:text-3xl lg:text-4xl font-bold text-primary-orange">
+            {title ?? `Why ${countryName} trusts SGA Security`}
+          </h2>
+        </div>
+        {subtitle && (
+          <p className="text-sm font-normal md:text-2xl lg:text-base xl:text-2xl text-dark-charcoal pt-4">
+            {subtitle}
+          </p>
+        )}
+      </motion.div>
+
         <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-stretch">
           {/* Left Content - Title + Accordion */}
           <div className="flex flex-col justify-center items-start text-left">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="mb-8 w-full"
-            >
-              <div className="section-title-container w-full pb-1!">
-                <h2 className="section-title text-2xl md:text-3xl lg:text-4xl font-bold text-primary-orange">
-                  Why {countryName} trusts SGA Security
-                </h2>
-              </div>
-            </motion.div>
 
             {/* Accordion */}
             <div className="space-y-1 flex-1 w-full mb-8">
@@ -87,7 +97,7 @@ export default function WhyChooseUs({
                     onClick={() => setOpenIndex(openIndex === index ? -1 : index)}
                     className="w-full flex items-center justify-between px-4 py-2 text-left transition-colors group"
                   >
-                    <h3 className={`text-xl md:text-3xl lg:text-xl xl:text-2xl font-bold capitalize transition-colors duration-300 ${openIndex === index ? 'text-primary-orange' : 'text-black group-hover:text-primary-orange'
+                    <h3 className={`text-xl md:text-3xl lg:text-xl xl:text-2xl font-medium capitalize transition-colors duration-300 ${openIndex === index ? 'text-primary-orange' : 'text-black group-hover:text-primary-orange'
                       }`} style={{ textTransform: 'capitalize' }}>
                       {item.title}
                     </h3>

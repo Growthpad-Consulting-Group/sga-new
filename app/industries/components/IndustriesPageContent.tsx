@@ -2,6 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import IndustriesHero from './IndustriesHero'
 import IndustriesAccordion from './IndustriesAccordion'
+import WhyChooseUs from '@/components/WhyChooseUs'
 import FloatingWhatsApp from '@/components/FloatingWhatsApp'
 import SectionSeparator from '@/components/SectionSeparator'
 import { industriesData, resolveIndustryData } from '@/data/industries-data'
@@ -39,7 +40,21 @@ export default function IndustriesPageContent({ country }: IndustriesPageContent
         <>
             <IndustriesHero />
             <div className="relative">
-                <IndustriesAccordion industries={industries} />
+                {country ? (
+                    <WhyChooseUs
+                        countryName={country.name}
+                        title="Industries We Serve"
+                        subtitle="Security Solutions for Every Industry"
+                        backgroundColor="bg-light-grey"
+                        accordionItems={industries.map((industry) => ({
+                            title: industry.industryName,
+                            description: industry.description,
+                        }))}
+                        image={industries[0]?.image}
+                    />
+                ) : (
+                    <IndustriesAccordion industries={industries} />
+                )}
                 <SectionSeparator />
             </div>
             {country ? (
