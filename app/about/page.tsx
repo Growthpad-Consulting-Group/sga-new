@@ -55,7 +55,7 @@ export default async function AboutPage(): Promise<React.JSX.Element> {
   return (
     <>
       <AboutHero
-        imageUrl="/images/group/about/hero.png"
+        imageUrl="/images/group/about/ceo-anniversary-186.jpg"
       />
       <div className="relative">
         <AboutIntro

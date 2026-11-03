@@ -25,7 +25,7 @@ const esgCards: ESGCard[] = [
   {
     title: 'Governance',
     description: 'We maintain the highest standards of ethical conduct, transparency, and accountability, ensuring compliance with ICoCA and ISO 18788:2015 standards.',
-    imageUrl: '/images/sustainability/group/governance.jpg',
+    imageUrl: '/images/sustainability/group/governance-spa-0032.jpg',
   },
 ]
 

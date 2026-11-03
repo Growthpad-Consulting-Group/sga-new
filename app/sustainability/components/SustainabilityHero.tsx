@@ -35,8 +35,7 @@ export default function SustainabilityHero({ imageUrl = '/images/sustainability/
           style={{
             backgroundImage: `url(${imageUrl})`,
             backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundAttachment: 'fixed',
+            backgroundPosition: 'top',
           }}
         >
           {/* Optional overlay for better text readability if needed */}

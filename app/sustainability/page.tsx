@@ -15,7 +15,7 @@ export default function SustainabilityPage(): React.JSX.Element {
   return (
     <>
       <SustainabilityHero
-        imageUrl="/images/sustainability/group/hero.jpg"
+        imageUrl="/images/sustainability/group/spa-0503-edit.jpg"
       />
       <div className="relative">
         <SustainabilityIntro />

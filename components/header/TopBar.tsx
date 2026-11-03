@@ -94,7 +94,7 @@ export default function TopBar({
               {/* Country HQ Text */}
               {currentCountryName && (
                 <div className="hidden sm:flex items-center border-l border-white/20 py-1">
-                  <span className={`text-[10px] sm:text-sm lg:text-xs xl:text-smfont-bold tracking-widest uppercase ${isAboutPage ? 'text-dark-charcoal' : 'text-white'}`}>
+                  <span className={`text-[10px] sm:text-sm lg:text-xs xl:text-sm font-bold tracking-widest uppercase ${isAboutPage ? 'text-dark-charcoal' : 'text-white'}`}>
                     {currentCountryName} HQ
                   </span>
                 </div>
