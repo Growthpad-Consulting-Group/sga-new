@@ -30,7 +30,7 @@ export default function IndustriesPageContent({ country }: IndustriesPageContent
             slug,
             industryName: resolved.industryName,
             industryIcon: resolved.industryIcon,
-            image: resolveImage(resolved.heroImage),
+            image: resolveImage(resolved.cardImage ?? resolved.heroImage),
             description: resolved.overviewDescription,
             services: resolved.services,
         }
@@ -47,8 +47,10 @@ export default function IndustriesPageContent({ country }: IndustriesPageContent
                         subtitle="Security Solutions for Every Industry"
                         backgroundColor="bg-light-grey"
                         accordionItems={industries.map((industry) => ({
+                            id: industry.slug,
                             title: industry.industryName,
                             description: industry.description,
+                            image: industry.image,
                         }))}
                         image={industries[0]?.image}
                     />

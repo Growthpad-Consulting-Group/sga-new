@@ -13,7 +13,7 @@ export const coreServices: CoreService[] = [
     title: 'Home Security Solutions',
     detailSlugs: { individual: 'home-security' },
     description: 'Comprehensive security solutions for residential properties with 24/7 monitoring and rapid response.',
-    imageUrl: '/images/group/guarding.png',
+    imageUrl: '/images/group/core-services/home-security-family.jpg',
     href: 'https://www.sgasecurity.com/home-security-solution/',
   },
   {

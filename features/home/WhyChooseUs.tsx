@@ -1,12 +1,14 @@
 'use client'
 
-import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import Image from 'next/image'
 export interface AccordionItem {
+  id?: string
   title: string
   description: string
+  image?: string
 }
 
 interface WhyChooseUsProps {
@@ -48,6 +50,51 @@ export default function WhyChooseUs({
   ],
 }: WhyChooseUsProps) {
   const [openIndex, setOpenIndex] = useState(0)
+  const activeImage = accordionItems[openIndex]?.image ?? image
+
+  useEffect(() => {
+    const openItem = (hashId: string, scrollDelay = 0) => {
+      if (!hashId) return
+
+      const matchingIndex = accordionItems.findIndex((item) => item.id === hashId)
+      if (matchingIndex === -1) return
+
+      setOpenIndex(matchingIndex)
+      window.setTimeout(() => {
+        document.getElementById(hashId)?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center',
+        })
+      }, scrollDelay)
+    }
+
+    const openItemFromHash = () => {
+      openItem(decodeURIComponent(window.location.hash.slice(1)))
+    }
+
+    const openItemFromSamePageLink = (event: MouseEvent) => {
+      const target = event.target
+      if (!(target instanceof Element)) return
+
+      const link = target.closest<HTMLAnchorElement>('a[href*="#"]')
+      if (!link) return
+
+      const url = new URL(link.href, window.location.href)
+      if (url.pathname !== window.location.pathname || !url.hash) return
+
+      // Transition-aware links may update the fragment without firing a
+      // native hashchange. Open directly, then scroll after the menu closes.
+      openItem(decodeURIComponent(url.hash.slice(1)), 350)
+    }
+
+    openItemFromHash()
+    window.addEventListener('hashchange', openItemFromHash)
+    document.addEventListener('click', openItemFromSamePageLink)
+    return () => {
+      window.removeEventListener('hashchange', openItemFromHash)
+      document.removeEventListener('click', openItemFromSamePageLink)
+    }
+  }, [accordionItems])
 
   return (
     <section id="why-choose-us" className={`flex items-center justify-center ${backgroundColor} relative py-16 md:py-24 overflow-x-hidden`}>
@@ -70,13 +117,13 @@ export default function WhyChooseUs({
           </h2>
         </div>
         {subtitle && (
-          <p className="text-sm font-normal md:text-2xl lg:text-base xl:text-2xl text-dark-charcoal pt-4">
+          <p className="text-sm font-normal md:text-2xl lg:text-base xl:text-xl text-dark-charcoal pt-4">
             {subtitle}
           </p>
         )}
       </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-stretch">
+        <div className="grid items-start gap-12 md:grid-cols-2 lg:gap-20">
           {/* Left Content - Title + Accordion */}
           <div className="flex flex-col justify-center items-start text-left">
 
@@ -85,11 +132,12 @@ export default function WhyChooseUs({
               {accordionItems.map((item, index) => (
                 <motion.div
                   key={index}
+                  id={item.id}
                   initial={{ opacity: 0, x: -30 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className={`rounded-2xl overflow-hidden transition-all duration-300 cursor-pointer ${openIndex === index ? 'border border-dark-charcoal' : 'hover:bg-dark-charcoal/5'
+                  className={`scroll-mt-32 rounded-2xl overflow-hidden transition-all duration-300 cursor-pointer ${openIndex === index ? 'border border-dark-charcoal' : 'hover:bg-dark-charcoal/5'
                     }`}
                   whileHover={openIndex !== index ? { scale: 1.01 } : {}}
                 >
@@ -131,16 +179,28 @@ export default function WhyChooseUs({
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="flex flex-col justify-center h-full w-full"
+            className="flex w-full flex-col justify-center"
           >
-            <div className="relative w-full h-[450px] md:h-full min-h-[500px] rounded-2xl overflow-hidden">
-              <Image
-                src={image}
-                alt={`Why choose SGA Security in ${countryName}`}
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
+            <div className="relative h-[450px] w-full overflow-hidden rounded-2xl md:h-[600px]">
+              <AnimatePresence initial={false} mode="sync">
+                <motion.div
+                  key={activeImage}
+                  initial={{ opacity: 0, scale: 1.02 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.99 }}
+                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                  className="absolute inset-0"
+                >
+                  <Image
+                    src={activeImage}
+                    alt={accordionItems[openIndex]?.title ?? `Why choose SGA Security in ${countryName}`}
+                    fill
+                    priority
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                </motion.div>
+              </AnimatePresence>
             </div>
           </motion.div>
         </div>

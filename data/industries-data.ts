@@ -15,6 +15,7 @@ export interface RelatedService {
 export interface IndustryData {
     industryName: string
     industryIcon: string
+    cardImage?: string
     heroImage: string
     heroTitle: string
     /** Use `{country}` as placeholder for country name e.g. "Kenya" */
@@ -165,22 +166,51 @@ const placeholderIndustry = (industryName: string): IndustryData => ({
 // carousel and the industry pages. Descriptions and images are reused from
 // the closest existing industry where one matches.
 export const industriesData: Record<string, IndustryData> = {
-    'financial-institutions': { ...banking, industryName: 'Financial Institutions' },
-    'government-institutions': { ...diplomatic, industryName: 'Government Institutions' },
-    'diplomatic-missions': { ...diplomatic, industryName: 'Diplomatic Missions' },
-    hospitals: { ...education, industryName: 'Hospitals' },
+    'financial-institutions': {
+        ...banking,
+        industryName: 'Financial Institutions',
+        cardImage: '/images/group/industries/government-institutions.png',
+    },
+    'government-institutions': {
+        ...diplomatic,
+        industryName: 'Government Institutions',
+        cardImage: '/images/group/industries/government-institutions.png',
+    },
+    'diplomatic-missions': {
+        ...diplomatic,
+        industryName: 'Diplomatic Missions',
+        cardImage: '/images/group/industries/multinational.png',
+    },
+    hospitals: {
+        ...education,
+        industryName: 'Hospitals',
+        cardImage: '/images/group/industries/hospitals.png',
+    },
     'schools-institutions': { ...education, industryName: 'Schools & Institutions' },
-    hotels: { ...events, industryName: 'Hotels' },
-    multinationals: placeholderIndustry('Multinationals'),
-    ngos: placeholderIndustry("NGO's"),
-    'other-industries': placeholderIndustry('Other Industries'),
+    hotels: {
+        ...events,
+        industryName: 'Hotels',
+        cardImage: '/images/group/industries/hotels.png',
+    },
+    multinationals: {
+        ...placeholderIndustry('Multinationals'),
+        cardImage: '/images/group/industries/multinational.png',
+    },
+    ngos: {
+        ...placeholderIndustry("NGO's"),
+        cardImage: '/images/group/industries/ngo.png',
+    },
+    'other-industries': {
+        ...placeholderIndustry('Other Industries'),
+        cardImage: '/images/group/industries/other-industries.png',
+    },
 }
 
 // Homepage carousel cards, derived from industriesData
 export const industryCards = Object.values(industriesData).map((industry) => ({
     name: industry.industryName,
     icon: industry.industryIcon,
-    image: industry.heroImage,
+    image: industry.cardImage ?? industry.heroImage,
 }))
 
 /** Inject country name and country code into template strings */
