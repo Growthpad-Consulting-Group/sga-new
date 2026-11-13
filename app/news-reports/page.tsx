@@ -15,7 +15,7 @@ export default async function NewsReportsPage(): Promise<React.JSX.Element> {
   return (
     <>
       <NewsHero
-        imageUrl="/images/news/hero.png"
+        imageUrl="/images/news/hero-8785.jpg"
       />
       <NewsReportsCards initialNewsItems={newsPosts} />
       <FloatingWhatsApp />
