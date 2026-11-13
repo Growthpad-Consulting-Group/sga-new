@@ -57,7 +57,6 @@ export default function IndustriesPageContent({ country }: IndustriesPageContent
                 ) : (
                     <IndustriesAccordion industries={industries} />
                 )}
-                <SectionSeparator />
             </div>
             {country ? (
                 <FloatingWhatsApp

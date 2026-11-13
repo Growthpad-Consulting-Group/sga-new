@@ -49,7 +49,6 @@ export default async function AboutPage({ params }: Props) {
             />
             <div className="relative">
                 <AboutIntro countryName={c.name} />
-                <SectionSeparator />
             </div>
             <div className="relative">
                 <OurFoundation />

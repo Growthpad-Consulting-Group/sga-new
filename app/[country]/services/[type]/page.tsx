@@ -68,19 +68,17 @@ export default async function ServicesTypePage({ params }: Props) {
                 description={description}
                 heroImage={services[0]?.heroImage}
             />
-
             <div className="relative">
                 <SectionSeparator />
+            </div>
 
-                <ServicesGrid
+            <ServicesGrid
                     services={services}
                     country={country}
                     type={type}
                     isIndividual={isIndividual}
                     countryName={c.name}
                 />
-
-            </div>
 
             <FloatingWhatsApp
                 singleCountry={true}
