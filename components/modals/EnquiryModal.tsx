@@ -148,7 +148,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               onClick={(e) => e.stopPropagation()}
-              className="flex h-[100dvh] max-h-[100dvh] w-full max-w-6xl flex-col overflow-hidden bg-white shadow-2xl sm:h-auto sm:max-h-[90vh] sm:rounded-lg md:flex-row"
+              className="flex h-[100dvh] max-h-[100dvh] w-full max-w-6xl flex-col overflow-hidden bg-white shadow-2xl sm:h-[90vh] sm:max-h-[90vh] sm:rounded-lg md:flex-row"
             >
               {/* Left Container - 30% width, Orange background */}
               <div className="hidden w-full bg-primary-orange p-8 text-white md:flex md:w-[30%] md:flex-col md:justify-between md:p-10">

@@ -171,7 +171,7 @@ export default function CVModal({ isOpen, onClose }: CVModalProps): React.JSX.El
               role="dialog"
               aria-modal="true"
               aria-labelledby="cv-modal-title"
-              className="flex h-[100dvh] max-h-[100dvh] w-full max-w-6xl flex-col overflow-hidden bg-white shadow-2xl sm:h-auto sm:max-h-[90vh] sm:rounded-lg md:flex-row"
+              className="flex h-[100dvh] max-h-[100dvh] w-full max-w-6xl flex-col overflow-hidden bg-white shadow-2xl sm:h-[90vh] sm:max-h-[90vh] sm:rounded-lg md:flex-row"
             >
               <aside className="hidden w-full bg-primary-orange p-7 text-white md:flex md:w-[30%] md:flex-col md:justify-between md:p-10">
                 <div>
