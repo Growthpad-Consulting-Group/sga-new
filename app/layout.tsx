@@ -11,6 +11,7 @@ import { getCanonicalUrl, formatHrefLangLinks, getCountryMetadata } from '@/lib/
 import { ReactNode } from 'react'
 import type { Metadata } from 'next'
 import { ViewTransitions } from 'next-view-transitions'
+import SmoothAnchorScroll from '@/components/ui/SmoothAnchorScroll'
 
 export const metadata: Metadata = {
   title: 'SGA Security Group - Leading Security Solutions in East Africa',
@@ -63,6 +64,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
         <meta name="geo.placename" content={countryMeta.name} />
       </head>
       <body>
+        <SmoothAnchorScroll />
         <CountryProvider country={country}>
           <CountryModalProvider>
             <EnquiryModalProvider>

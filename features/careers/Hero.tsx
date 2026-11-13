@@ -1,11 +1,20 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 import Image from 'next/image'
+import { useRef } from 'react'
 
 export default function Hero({ imageUrl = '/images/misc/blog-placeholder' }) {
+  const heroRef = useRef<HTMLElement>(null)
+  const prefersReducedMotion = useReducedMotion()
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  })
+  const imageY = useTransform(scrollYProgress, [0, 1], ['-4%', '8%'])
+
   return (
-    <section id="hero" className="relative bg-gray-100 text-dark-charcoal pt-40 sm:pt-40 lg:pt-40 xl:pt-48 pb-0">
+    <section ref={heroRef} id="hero" className="relative bg-gray-100 text-dark-charcoal pt-40 sm:pt-40 lg:pt-40 xl:pt-48 pb-0">
       <div className="container-fluid mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -22,8 +31,22 @@ export default function Hero({ imageUrl = '/images/misc/blog-placeholder' }) {
         </motion.div>
       </div>
 
-      {/* Large image without margin-x */}
-      <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px]">
+      <div className="relative h-[400px] w-full overflow-hidden md:h-[500px] lg:h-[600px]">
+        <Image
+          src={imageUrl}
+          alt="SGA Security Group - Security That Matters Across Africa"
+          fill
+          sizes="100vw"
+          className="object-cover md:hidden"
+          priority
+        />
+
+        <motion.div
+          className={prefersReducedMotion
+            ? 'absolute inset-0 hidden md:block'
+            : 'absolute inset-x-0 -bottom-[10%] -top-[10%] hidden will-change-transform md:block'}
+          style={{ y: prefersReducedMotion ? 0 : imageY }}
+        >
           <Image
             src={imageUrl}
             alt="SGA Security Group - Security That Matters Across Africa"
@@ -32,6 +55,7 @@ export default function Hero({ imageUrl = '/images/misc/blog-placeholder' }) {
             className="object-cover"
             priority
           />
+        </motion.div>
       </div>
     </section>
   )

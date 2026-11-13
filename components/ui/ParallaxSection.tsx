@@ -94,10 +94,10 @@ export default function ParallaxSection({
               </div>
               {/* Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 justify-start items-stretch sm:items-start mt-6 md:mt-8 w-full sm:w-auto">
-                <Button href="#what-we-do" variant="dark" size="default">
+                <Button href="#integrated-solutions" variant="dark" size="default">
                   What We Do
                 </Button>
-                <Button href="#sustainability" variant="dark" size="default">
+                <Button href="/sustainability#our-impact" variant="dark" size="default">
                   Our Sustainability Impact
                 </Button>
               </div>
