@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  experimental: {
+    agentUpgrade: 'security',
+  },
   // The native canvas binding used by the certificate-cover webhook must
   // stay external so its compiled .node files resolve at runtime. PDF.js is
   // intentionally bundled because v6 is ESM and cannot be loaded through
