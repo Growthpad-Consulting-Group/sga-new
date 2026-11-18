@@ -15,7 +15,7 @@ export default function GroupFooter(): React.JSX.Element {
   const locationItems = [
     {
       id: 'kenya',
-      title: 'Kenya - Headquarters',
+      title: 'Kenya - Head Office',
       content: (
         <div className="space-y-1.5 text-lg lg:text-sm xl:text-lg text-white/90 leading-relaxed">
           <p className="font-semibold text-white">Nairobi</p>
@@ -36,7 +36,7 @@ export default function GroupFooter(): React.JSX.Element {
     },
     {
       id: 'tanzania',
-      title: 'Tanzania - Headquarters',
+      title: 'Tanzania - Head Office',
       content: (
         <div className="space-y-1.5 text-lg lg:text-sm xl:text-lg text-white/90 leading-relaxed">
           <p className="font-semibold text-white">Dar es Salaam</p>
@@ -57,7 +57,7 @@ export default function GroupFooter(): React.JSX.Element {
     },
     {
       id: 'uganda',
-      title: 'Uganda - Headquarters',
+      title: 'Uganda - Head Office',
       content: (
         <div className="space-y-1.5 text-lg lg:text-sm xl:text-lg text-white/90 leading-relaxed">
           <p className="font-semibold text-white">Kampala</p>

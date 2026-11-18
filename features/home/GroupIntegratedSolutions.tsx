@@ -5,7 +5,7 @@ import { useEnquiryModal } from '@/contexts/EnquiryModalContext'
 import { CarouselArrows, useInfiniteCarousel } from '@/components/ui/Carousel'
 import Button from '@/components/ui/Button'
 import CircleCard from '@/components/ui/CircleCard'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { coreServices, type CoreService } from '@/data/coreServices'
 
 type Solution = CoreService
@@ -36,6 +36,18 @@ export default function GroupIntegratedSolutions({
     itemsPerPage,
     isHovered ? 0 : 5000,
   )
+
+  // Drag (mouse) or swipe (touch) left/right to change page
+  const dragStartX = useRef<number | null>(null)
+  const didDrag = useRef(false)
+
+  const finishDrag = (clientX: number) => {
+    if (dragStartX.current === null) return
+    const dx = clientX - dragStartX.current
+    dragStartX.current = null
+    if (dx < -40) infiniteCarousel.next()
+    else if (dx > 40) infiniteCarousel.previous()
+  }
 
   const loopedSolutions = [
     ...solutions,
@@ -74,9 +86,31 @@ export default function GroupIntegratedSolutions({
         </div>
 
         <div
-          className="relative overflow-hidden py-2"
+          className="relative overflow-hidden py-2 select-none cursor-grab active:cursor-grabbing touch-pan-y"
           onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
+          onMouseLeave={() => {
+            setIsHovered(false)
+            dragStartX.current = null
+          }}
+          onPointerDown={(e) => {
+            dragStartX.current = e.clientX
+            didDrag.current = false
+          }}
+          onPointerMove={(e) => {
+            if (dragStartX.current !== null && Math.abs(e.clientX - dragStartX.current) > 5) {
+              didDrag.current = true
+            }
+          }}
+          onPointerUp={(e) => finishDrag(e.clientX)}
+          onDragStart={(e) => e.preventDefault()}
+          onClickCapture={(e) => {
+            // Don't follow a card link at the end of a drag
+            if (didDrag.current) {
+              e.preventDefault()
+              e.stopPropagation()
+              didDrag.current = false
+            }
+          }}
         >
           <div
             className="flex w-full"

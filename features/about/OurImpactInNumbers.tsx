@@ -93,7 +93,7 @@ function CountUp({ value }: { value: string }) {
 
 function renderStat(stat: Stat) {
   return (
-    <div className="w-44 h-44 md:w-48 md:h-48 lg:w-48 lg:h-48 xl:w-56 xl:h-56 rounded-full border border-primary-orange bg-primary-orange flex flex-col items-center justify-center shadow-lg group relative p-3 md:p-4 transition-all duration-300 ease-out hover:scale-[1.02] hover:-translate-y-0.5 hover:border-[#d84c1e] hover:bg-[#d84c1e] hover:shadow-[0_20px_40px_rgba(216,76,30,0.3)]">
+    <div className="w-44 h-44 md:w-48 md:h-48 lg:w-40 lg:h-40 xl:w-56 xl:h-56 rounded-full border border-primary-orange bg-primary-orange flex flex-col items-center justify-center shadow-lg group relative p-3 md:p-4 transition-all duration-300 ease-out hover:scale-[1.02] hover:-translate-y-0.5 hover:border-[#d84c1e] hover:bg-[#d84c1e] hover:shadow-[0_20px_40px_rgba(216,76,30,0.3)]">
       <span className="text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-bold text-white transition-colors mb-2">
         <CountUp value={stat.number} />
       </span>

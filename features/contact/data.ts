@@ -13,7 +13,7 @@ export interface ContactOffice {
 export const contactOffices: ContactOffice[] = [
     {
         country: 'Kenya',
-        city: 'Headquarters',
+        city: 'Head Office',
         address: [
             'Tulip House, Ground Floor Mombasa road',
             'P.O. Box 18670 00500 Nairobi, Kenya',
@@ -29,7 +29,7 @@ export const contactOffices: ContactOffice[] = [
     },
     {
         country: 'Tanzania',
-        city: 'Headquarters',
+        city: 'Head Office',
         address: [
             'Plot No.74, Warioba/Serengeti Street, Mikocheni',
             'Kinondoni, Dar Es Salaam, Tanzania'
@@ -45,7 +45,7 @@ export const contactOffices: ContactOffice[] = [
     },
     {
         country: 'Uganda',
-        city: 'Headquarters',
+        city: 'Head Office',
         address: [
             'Plot 5 Mvule Close, Naguru Hill',
             'P.O. Box 20097, Kampala, Uganda'

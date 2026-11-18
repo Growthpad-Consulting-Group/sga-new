@@ -71,7 +71,7 @@ export default function WhereWeOperate(): React.JSX.Element {
                   Kenya
                 </h4>
                 <p className="text-sm md:text-lg lg:text-xs xl:text-lg text-white/90 leading-relaxed mb-4">
-                  Nairobi-based HQ serving nationwide clients.
+                  Nairobi-based Head Office serving nationwide clients.
                 </p>
                 <Link
                   href="/ke"

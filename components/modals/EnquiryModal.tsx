@@ -39,6 +39,8 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
   const routeCountry = COUNTRY_NAMES_BY_ROUTE[countryCode] || ''
   const [enquiryType, setEnquiryType] = useState<'Individual' | 'Corporate'>('Individual')
   const [isInterestsOpen, setIsInterestsOpen] = useState(false)
+  const [isCallbackOpen, setIsCallbackOpen] = useState(false)
+  const [callbackData, setCallbackData] = useState({ name: '', email: '', phone: '' })
   const [formData, setFormData] = useState<FormData>({
     fullName: '',
     email: '',
@@ -126,6 +128,16 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
     setEnquiryType('Individual')
   }
 
+  const handleCallbackSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    // Handle callback request here (same as the enquiry form, no backend yet)
+    console.log('Call back requested:', callbackData)
+    alert('Thank you! We will call you back shortly.')
+    setCallbackData({ name: '', email: '', phone: '' })
+    setIsCallbackOpen(false)
+  }
+
   useBodyScrollLock(isOpen)
 
   if (!isOpen) return null
@@ -193,6 +205,18 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                   </div>
                 </div>
 
+                {/* Request a call back */}
+                <div className="mt-8">
+                  <button
+                    type="button"
+                    onClick={() => setIsCallbackOpen(true)}
+                    className="w-full flex items-center justify-center gap-2 border border-white rounded-full px-4 py-3 font-semibold text-sm uppercase tracking-wide text-white hover:bg-white hover:text-primary-orange transition-colors"
+                  >
+                    <Icon icon="mdi:phone-in-talk" className="w-5 h-5" />
+                    Request a call back
+                  </button>
+                </div>
+
                 {/* Plus Icon */}
                 <div className="flex justify-center mt-8">
                   <Icon icon="mdi:plus-thick" className="w-16 h-16 md:w-20 md:h-20 text-white/20" style={{ strokeWidth: 3 }} />
@@ -218,6 +242,69 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                   </div>
                 </div>
 
+                {isCallbackOpen ? (
+                  <form onSubmit={handleCallbackSubmit} className="space-y-5 sm:space-y-6 max-w-xl">
+                    <div>
+                      <h2 className="text-2xl md:text-3xl font-bold text-primary-orange">Request a call back</h2>
+                      <p className="text-sm text-gray-600 mt-1">Leave your details and we'll call you back.</p>
+                    </div>
+
+                    <div>
+                      <label htmlFor="callback-name" className="block text-sm font-semibold text-dark-charcoal mb-2">Full Name *</label>
+                      <input
+                        id="callback-name"
+                        type="text"
+                        required
+                        placeholder="Enter your full name"
+                        value={callbackData.name}
+                        onChange={(e) => setCallbackData(prev => ({ ...prev, name: e.target.value }))}
+                        className="w-full rounded-lg border border-gray-300 px-4 py-3 text-dark-charcoal placeholder:text-gray-400 focus:outline-none focus:border-primary-orange"
+                      />
+                    </div>
+
+                    <div>
+                      <label htmlFor="callback-email" className="block text-sm font-semibold text-dark-charcoal mb-2">Email *</label>
+                      <input
+                        id="callback-email"
+                        type="email"
+                        required
+                        placeholder="Enter your email"
+                        value={callbackData.email}
+                        onChange={(e) => setCallbackData(prev => ({ ...prev, email: e.target.value }))}
+                        className="w-full rounded-lg border border-gray-300 px-4 py-3 text-dark-charcoal placeholder:text-gray-400 focus:outline-none focus:border-primary-orange"
+                      />
+                    </div>
+
+                    <div>
+                      <label htmlFor="callback-phone" className="block text-sm font-semibold text-dark-charcoal mb-2">Phone Number *</label>
+                      <input
+                        id="callback-phone"
+                        type="tel"
+                        required
+                        placeholder="Enter your phone number"
+                        value={callbackData.phone}
+                        onChange={(e) => setCallbackData(prev => ({ ...prev, phone: e.target.value }))}
+                        className="w-full rounded-lg border border-gray-300 px-4 py-3 text-dark-charcoal placeholder:text-gray-400 focus:outline-none focus:border-primary-orange"
+                      />
+                    </div>
+
+                    <div className="flex flex-wrap gap-3">
+                      <button
+                        type="submit"
+                        className="rounded-full bg-primary-orange px-6 py-3 font-semibold text-white hover:bg-navy-blue transition-colors"
+                      >
+                        Request call back
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setIsCallbackOpen(false)}
+                        className="rounded-full border border-dark-charcoal px-6 py-3 font-semibold text-dark-charcoal hover:border-primary-orange hover:text-primary-orange transition-colors"
+                      >
+                        Back
+                      </button>
+                    </div>
+                  </form>
+                ) : (
                 <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
                   {/* Enquiry Type Toggle */}
                   <div>
@@ -275,7 +362,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                     {/* Full Name */}
                     <div>
                       <label htmlFor="fullName" className="block text-sm font-semibold text-dark-charcoal mb-2">
-                        Full name *
+                        Full Name *
                       </label>
                       <input
                         type="text"
@@ -309,7 +396,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                     {/* Phone Number */}
                     <div>
                       <label htmlFor="phone" className="block text-sm font-semibold text-dark-charcoal mb-2">
-                        Phone number *
+                        Phone Number *
                       </label>
                       <input
                         type="tel"
@@ -351,7 +438,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                       {/* Company Name */}
                       <div>
                         <label htmlFor="companyName" className="block text-sm font-semibold text-dark-charcoal mb-2">
-                          Company name *
+                          Company Name *
                         </label>
                         <input
                           type="text"
@@ -368,7 +455,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                       {/* Job Title */}
                       <div>
                         <label htmlFor="jobTitle" className="block text-sm font-semibold text-dark-charcoal mb-2">
-                          Job title *
+                          Job Title *
                         </label>
                         <input
                           type="text"
@@ -385,7 +472,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                       {/* Company Size */}
                       <div>
                         <label htmlFor="companySize" className="block text-sm font-semibold text-dark-charcoal mb-2">
-                          Company size *
+                          Company Size *
                         </label>
                         <select
                           id="companySize"
@@ -515,7 +602,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                   {/* Additional Details */}
                   <div>
                     <label htmlFor="additionalDetails" className="block text-sm font-semibold text-dark-charcoal mb-2">
-                      Additional details
+                      Additional Details
                     </label>
                     <textarea
                       id="additionalDetails"
@@ -560,6 +647,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                     </p>
                   </div>
                 </form>
+                )}
               </div>
             </motion.div>
           </motion.div>
