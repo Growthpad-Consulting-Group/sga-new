@@ -29,14 +29,14 @@ const clients: Client[] = [
 
 const filterOptions: string[] = [
   'ALL',
-  'Multinationals',
-  'Government Institutions',
-  'Hospitals',
-  'Schools & Institutions',
   'Diplomatic missions',
-  'Hotels',
   'Financial institutions',
+  'Multinationals',
+  'Schools & Institutions',
   'NGOs',
+  'Hotels',
+  'Hospitals',
+  'Government Institutions',
   'Other industries'
 ]
 

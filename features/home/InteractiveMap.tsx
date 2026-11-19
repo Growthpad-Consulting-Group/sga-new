@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, forwardRef, useImperativeHandle } from 'react'
+import { useState, useEffect, forwardRef, useImperativeHandle } from 'react'
 import Image from 'next/image'
 import { Icon } from '@iconify/react'
 import { Link } from 'next-view-transitions'
@@ -25,8 +25,8 @@ export interface InteractiveMapRef {
 const locations: Location[] = [
   // Uganda Locations
   {
-    name: 'SGA Security Uganda HQ',
-    address: 'Plot 05 Mvule Close, Naguru Hill, Kampala Uganda',
+    name: 'SGA Security Uganda Head Office',
+    address: 'Plot 05 Mvule Close, Naguru Hill, Kampala, Uganda',
     phone: ['+256 417 114 400'],
     email: 'info@ug.sgasecurity.com',
     lat: 0.351011,
@@ -37,7 +37,7 @@ const locations: Location[] = [
   },
   {
     name: 'SGA Security Uganda Gulu Branch',
-    address: 'Plot 07 Abdi jivan Road, Layibi Railway Quarters, Gulu Uganda',
+    address: 'Plot 07 Abdi jivan Road, Layibi Railway Quarters, Gulu, Uganda',
     phone: ['+256 717 800 905'],
     email: 'gulu@sgasecurity.com',
     lat: 2.767973,
@@ -48,7 +48,7 @@ const locations: Location[] = [
   },
   {
     name: 'SGA Security Uganda Mbale Branch',
-    address: 'Plot 08 Budama/Muyembe Lane, Indian Quarters Mbale Uganda',
+    address: 'Plot 08 Budama/Muyembe Lane, Indian Quarters, Mbale, Uganda',
     phone: ['+256 717 800 735'],
     email: 'mbale@sgasecurity.com',
     lat: 1.078371,
@@ -59,7 +59,7 @@ const locations: Location[] = [
   },
   {
     name: 'SGA Security Uganda Jinja Branch',
-    address: 'Plot 12 Lubogo Lane, Magwa, Jinja Uganda',
+    address: 'Plot 12 Lubogo Lane, Magwa, Jinja, Uganda',
     phone: ['+256 717 800 929'],
     email: 'jinja@sgasecurity.com',
     lat: 0.44054,
@@ -70,7 +70,7 @@ const locations: Location[] = [
   },
   {
     name: 'SGA Security Uganda Entebbe Branch',
-    address: 'Plot 25 Barkeley Road, Post Office Ward, Entebbe Uganda',
+    address: 'Plot 25 Barkeley Road, Post Office Ward, Entebbe, Uganda',
     phone: ['+256 717 800 634'],
     email: 'entebbe@sgasecurity.com',
     lat: 0.063467,
@@ -81,7 +81,7 @@ const locations: Location[] = [
   },
   {
     name: 'SGA Security Uganda Mbarara Branch',
-    address: 'Strecher Road, Boma Cell, Mbarara Municipality',
+    address: 'Strecher Road, Boma Cell, Mbarara, Uganda',
     phone: ['+256 717 800 931'],
     email: 'mbarara@sgasecurity.com',
     lat: -0.609690,
@@ -92,7 +92,7 @@ const locations: Location[] = [
   },
   {
     name: 'SGA Security Uganda Mukono Branch',
-    address: 'Plot 260, Block No: 107, Upper Nabuti, Mukono Uganda',
+    address: 'Plot 260, Block No: 107, Upper Nabuti, Mukono, Uganda',
     phone: ['+256 717 800 346'],
     email: 'mukono@sgasecurity.com',
     lat: 0.354017,
@@ -103,7 +103,7 @@ const locations: Location[] = [
   },
   {
     name: 'SGA Security Uganda Arua Branch',
-    address: 'Plot 9 Off Pakwach Road, Oleva Village, Ojivu Parish, Oluko S/C, Arua Uganda',
+    address: 'Plot 9 Off Pakwach Road, Oleva Village, Ojivu Parish, Oluko S/C, Arua, Uganda',
     phone: ['+256 717 800 808'],
     email: 'arua@sgasecurity.com',
     lat: 3.000688,
@@ -114,7 +114,7 @@ const locations: Location[] = [
   },
   {
     name: 'SGA Security Uganda Hoima Branch',
-    address: 'Kiryatete Industrial Area',
+    address: 'Kiryatete Industrial Area, Hoima, Uganda',
     phone: ['+256 717 800 928'],
     email: 'hoima@sgasecurity.com',
     lat: 1.436837,
@@ -125,7 +125,7 @@ const locations: Location[] = [
   },
   {
     name: 'SGA Security Uganda Fort Portal Branch',
-    address: 'Kagote D, West Division, Fortportel Municipality',
+    address: 'Kagote D, West Division, Fort Portal, Uganda',
     phone: ['+256 717 800 717'],
     email: 'fortportal@sgasecurity.com',
     lat: 0.674965,
@@ -136,7 +136,7 @@ const locations: Location[] = [
   },
   {
     name: 'SGA Security Uganda Masaka Branch',
-    address: 'Plot 45 Kampala Road, Katwe Butebo Division Masaka, Uganda',
+    address: 'Plot 45 Kampala Road, Katwe Butebo Division, Masaka, Uganda',
     phone: ['+256 717 800 816'],
     email: 'masaka@sgasecurity.com',
     lat: 0.664647,
@@ -147,7 +147,7 @@ const locations: Location[] = [
   },
   {
     name: 'SGA Security Uganda Lira Branch',
-    address: 'Plot 22 Kabalega Road, Lira Uganda',
+    address: 'Plot 22 Kabalega Road, Lira, Uganda',
     phone: ['+256 716 800 392'],
     email: 'lira@sgasecurity.com',
     lat: 2.245635,
@@ -159,7 +159,7 @@ const locations: Location[] = [
   
   // Tanzania Locations
   {
-    name: 'SGA Security Tanzania HQ',
+    name: 'SGA Security Tanzania Head Office',
     address: 'Plot 12, Mwai Kibaki Road. P.O.Box 9390, Dar Es Salaam, Tanzania',
     phone: ['+255 222 164 800', '+255 222 164 808'],
     email: 'info@tz.sgasecurity.com',
@@ -170,7 +170,7 @@ const locations: Location[] = [
     mapsUrl: 'https://goo.gl/maps/hv7jesWvq732'
   },
   {
-    name: 'SGA Security CIT HQ',
+    name: 'SGA Security CIT Head Office',
     address: 'Plot 34, Galu Street Ada Estate, Dar Es Salaam, Tanzania',
     phone: ['+255 222 164 800', '+255 222 164 808'],
     email: 'info@tz.sgasecurity.com',
@@ -249,8 +249,8 @@ const locations: Location[] = [
   
   // Kenya Locations
   {
-    name: 'SGA Security Kenya HQ',
-    address: 'Tulip House, Ground Floor, Mombasa road',
+    name: 'SGA Security Kenya Head Office',
+    address: 'Tulip House, Ground Floor, Mombasa road, Nairobi, Kenya',
     phone: ['+254 206 901 000', '+254 733 700 500'],
     email: 'info@ke.sgasecurity.com',
     lat: -1.322641,
@@ -272,7 +272,7 @@ const locations: Location[] = [
   },
   {
     name: 'SGA Security Kenya, Kisumu Branch',
-    address: 'Tom Mboya road, Milimani next to oasis Doctors Plaza, Kisumu Hospital',
+    address: 'Tom Mboya road, Milimani next to oasis Doctors Plaza, Kisumu Hospital, Kisumu, Kenya',
     phone: ['+254 728 254 851', '+254 787 679 422'],
     email: 'kisumu@sgasecurity.com',
     lat: -0.115913,
@@ -283,7 +283,7 @@ const locations: Location[] = [
   },
   {
     name: 'SGA Security Kenya, Meru Branch',
-    address: 'Meru - Nanyuki Road, Opposite AP lines near Nakumatt Meru',
+    address: 'Meru - Nanyuki Road, Opposite AP lines near Nakumatt Meru, Meru, Kenya',
     phone: ['+254 775 389 881', '+254 713 144 323'],
     email: 'thika@sgasecurity.com',
     lat: 0.05147,
@@ -316,7 +316,7 @@ const locations: Location[] = [
   },
   {
     name: 'SGA Security Kenya, Kericho Branch',
-    address: 'Brooke Hotel – Kericho – Nakuru Highway',
+    address: 'Brooke Hotel, Kericho – Nakuru Highway, Kericho, Kenya',
     phone: ['+254 731 906 073'],
     email: 'kericho@sgasecurity.com',
     lat: -0.33380,
@@ -327,7 +327,7 @@ const locations: Location[] = [
   },
   {
     name: 'SGA Security Kenya, Bungoma Branch',
-    address: 'Along Mumias - Bungoma Road, Kanduyi',
+    address: 'Along Mumias - Bungoma Road, Kanduyi, Bungoma, Kenya',
     phone: ['+254 715 588 640', '+254 722 385 490'],
     email: 'eldoret@sgasecurity.com',
     lat: 0.589412,
@@ -338,7 +338,7 @@ const locations: Location[] = [
   },
   {
     name: 'SGA Security Kenya, Nyeri Branch',
-    address: 'Ring Road, Near Nyeri National Polytechnic',
+    address: 'Ring Road, Near Nyeri National Polytechnic, Nyeri, Kenya',
     phone: ['+254 731 906 075'],
     email: 'nyeri@sgasecurity.com',
     lat: -0.42523,
@@ -349,7 +349,7 @@ const locations: Location[] = [
   },
   {
     name: 'SGA Security Kenya, Naivasha Branch',
-    address: 'Moi Road, Mui House, Next to Lakeside Hotel',
+    address: 'Moi Road, Mui House, Next to Lakeside Hotel, Naivasha, Kenya',
     phone: ['+254 737 402 285'],
     email: 'naivasha@sgasecurity.com',
     lat: -0.71076,
@@ -360,7 +360,7 @@ const locations: Location[] = [
   },
   {
     name: 'SGA Security Kenya, Nakuru Branch',
-    address: 'Section 58, off Old Nairobi Highway',
+    address: 'Section 58, off Old Nairobi Highway, Nakuru, Kenya',
     phone: ['+254 737 402 286'],
     email: 'nakuru@sgasecurity.com',
     lat: -0.28702,
@@ -371,7 +371,7 @@ const locations: Location[] = [
   },
   {
     name: 'SGA Security Kenya, Malaba Office',
-    address: '1st Floor, Equity Bank Building, Eldoret – Malaba Road, Malaba',
+    address: '1st Floor, Equity Bank Building, Eldoret – Malaba Road, Malaba, Kenya',
     phone: ['+254 786 777 107'],
     email: 'eldoret@sgasecurity.com',
     lat: 0.634441,
@@ -382,7 +382,7 @@ const locations: Location[] = [
   },
   {
     name: 'SGA Security, Mombasa Branch',
-    address: 'Links Road, Nyali - Mombasa',
+    address: 'Links Road, Nyali, Mombasa, Kenya',
     phone: ['+254 414 475 480', '+254 723 244 406', '+254 733 636 383'],
     email: 'infomsa@sgasecurity.com',
     lat: -4.0445472,
@@ -393,7 +393,7 @@ const locations: Location[] = [
   },
   {
     name: 'SGA Security, Diani Branch',
-    address: 'Beach Road - Diani',
+    address: 'Beach Road, Diani, Kwale, Kenya',
     phone: ['+254 720 795 268', '+254 734 990 630'],
     email: 'diani@sgasecurity.com',
     lat: -4.2879004,
@@ -404,7 +404,7 @@ const locations: Location[] = [
   },
   {
     name: 'SGA Security, Kilifi Branch',
-    address: 'Mombasa-Malindi Road, Opposite Tuskys Supermarket',
+    address: 'Mombasa-Malindi Road, Opposite Tuskys Supermarket, Kilifi, Kenya',
     phone: ['+254 731 022 976', '+254 780 301 116'],
     email: 'kilifi@sgasecurity.com',
     lat: -3.6328541,
@@ -415,7 +415,7 @@ const locations: Location[] = [
   },
   {
     name: 'SGA Security, Malindi Branch',
-    address: 'Lamu Road, Opposite Tawfiq Hospital, Malindi',
+    address: 'Lamu Road, Opposite Tawfiq Hospital, Malindi, Kenya',
     phone: ['+254 780 700 501', '+254 780 331 189'],
     email: 'malindi@sgasecurity.com',
     lat: -3.2221536,
@@ -445,9 +445,40 @@ const latLngToPixel = (lat: number, lng: number) => {
   return { x, y }
 }
 
+// Country name labels, placed in the middle of each country's outline (SVG viewBox units)
+const countryLabels = [
+  { name: 'UGANDA', x: 185, y: 150, size: 26 },
+  { name: 'KENYA', x: 465, y: 240, size: 30 },
+  { name: 'TANZANIA', x: 300, y: 600, size: 30 },
+]
+
 const InteractiveMap = forwardRef<InteractiveMapRef>((props, ref) => {
   const [selectedLocation, setSelectedLocation] = useState<Location | null>(null)
   const [hoveredLocation, setHoveredLocation] = useState<Location | null>(null)
+  const [hoverPosition, setHoverPosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 })
+  // Close the popup when clicking/tapping anywhere outside it, or pressing Escape.
+  // Uses pointerdown so the click that opened it doesn't immediately close it.
+  useEffect(() => {
+    if (!selectedLocation) return
+
+    const handlePointerDown = (e: PointerEvent) => {
+      const target = e.target as Element
+      // Dots switch the popup themselves through their own click handler
+      if (target.closest?.('circle.cursor-pointer')) return
+      // Check the attribute on the element itself rather than a ref, which can be stale when switching popups
+      if (!target.closest?.('[data-map-popup]')) setSelectedLocation(null)
+    }
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setSelectedLocation(null)
+    }
+
+    document.addEventListener('pointerdown', handlePointerDown)
+    document.addEventListener('keydown', handleKeyDown)
+    return () => {
+      document.removeEventListener('pointerdown', handlePointerDown)
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [selectedLocation])
   const [popupPosition, setPopupPosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 })
 
   const handleMarkerClick = (location: Location, event: React.MouseEvent<SVGCircleElement>) => {
@@ -472,7 +503,7 @@ const InteractiveMap = forwardRef<InteractiveMapRef>((props, ref) => {
       }
 
       const hqLocation = locations.find(
-        loc => loc.country === country && loc.isHQ && loc.name.includes('HQ') && !loc.name.includes('CIT')
+        loc => loc.country === country && loc.isHQ && !loc.name.includes('CIT')
       )
       if (hqLocation) {
         const { x, y } = latLngToPixel(hqLocation.lat, hqLocation.lng)
@@ -485,8 +516,7 @@ const InteractiveMap = forwardRef<InteractiveMapRef>((props, ref) => {
 
   return (
     <div
-      className="w-full h-full rounded-lg overflow-hidden relative"
-      onClick={() => setSelectedLocation(null)}
+      className="w-full h-full rounded-lg relative"
     >
       {/* Background SVG Map */}
       <div className="absolute inset-0">
@@ -505,6 +535,24 @@ const InteractiveMap = forwardRef<InteractiveMapRef>((props, ref) => {
         className="absolute inset-0 w-full h-full"
         xmlns="http://www.w3.org/2000/svg"
       >
+        {/* Country names (drawn first so the location dots sit above them) */}
+        {countryLabels.map((label) => (
+          <text
+            key={label.name}
+            x={label.x}
+            y={label.y}
+            textAnchor="middle"
+            fill="#231f20"
+            stroke="white"
+            strokeWidth="5"
+            paintOrder="stroke"
+            className="pointer-events-none font-nav font-bold"
+            style={{ fontSize: label.size, letterSpacing: '0.12em' }}
+          >
+            {label.name}
+          </text>
+        ))}
+
         {locations.map((location, index) => {
           const { x, y } = latLngToPixel(location.lat, location.lng)
           const isSelected = selectedLocation?.name === location.name
@@ -531,7 +579,11 @@ const InteractiveMap = forwardRef<InteractiveMapRef>((props, ref) => {
                 r={location.isHQ ? 16 : 14}
                 fill="transparent"
                 className="cursor-pointer"
-                onMouseEnter={() => setHoveredLocation(location)}
+                onMouseEnter={(e) => {
+                  const rect = e.currentTarget.ownerSVGElement?.getBoundingClientRect()
+                  if (rect) setHoverPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top })
+                  setHoveredLocation(location)
+                }}
                 onMouseLeave={() => setHoveredLocation(null)}
                 onClick={(e) => handleMarkerClick(location, e)}
               />
@@ -555,6 +607,7 @@ const InteractiveMap = forwardRef<InteractiveMapRef>((props, ref) => {
       <AnimatePresence>
         {selectedLocation && (
           <motion.div
+            data-map-popup
             key={selectedLocation.name}
             initial={{ opacity: 0, scale: 0.9, y: 8 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -613,8 +666,20 @@ const InteractiveMap = forwardRef<InteractiveMapRef>((props, ref) => {
 
       {/* Hover tooltip */}
       {hoveredLocation && !selectedLocation && (
-        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-4 py-2 rounded-lg text-sm whitespace-nowrap pointer-events-none z-10">
-          {hoveredLocation.name}
+        <div
+          className="absolute bg-white text-dark-charcoal border border-gray-200 border-t-2 border-t-primary-orange shadow-lg px-4 py-1 rounded-lg text-sm font-semibold whitespace-nowrap pointer-events-none z-10"
+          style={{
+            left: `${hoverPosition.x}px`,
+            top: `${hoverPosition.y - 14}px`,
+            transform: 'translate(-50%, -100%)',
+          }}
+        >
+          {/* Drop "SGA Security" and the country from branch names, e.g. "SGA Security Uganda Arua Branch" -> "Arua Branch".
+              Head offices keep their country, e.g. "Uganda Head Office". */}
+          {(() => {
+            const label = hoveredLocation.name.replace(/^SGA Security,?\s*/, '')
+            return label.includes('Head Office') ? label : label.replace(/^(Kenya|Uganda|Tanzania),?\s*/, '')
+          })()}
         </div>
       )}
     </div>

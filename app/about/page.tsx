@@ -41,6 +41,7 @@ export default async function AboutPage(): Promise<React.JSX.Element> {
       country: doc.country,
       link: doc.fileUrl,
       year: doc.year,
+      summary: doc.summary,
       previewRotation,
       coverImageUrl: coverBuilder
         ? (coverNeedsRotation ? coverBuilder.ignoreImageParams().orientation(90) : coverBuilder)

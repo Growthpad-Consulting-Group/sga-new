@@ -48,6 +48,7 @@ export interface CertificateDocument {
   country: 'Kenya' | 'Uganda' | 'Tanzania'
   year?: string
   expiryDate?: string
+  summary?: string
   fileUrl: string
   coverImage?: any
 }

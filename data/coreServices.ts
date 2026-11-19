@@ -61,11 +61,6 @@ export const coreServices: CoreService[] = [
     },
   },
   {
-    title: 'Workshop Services',
-    description: 'In-house workshop for vehicle maintenance and security equipment servicing.',
-    imageUrl: '/images/group/guarding.png',
-  },
-  {
     title: 'Control Room Services',
     description: '24/7 monitored control room coordinating rapid response across all client sites.',
     imageUrl: '/images/group/cctv.png',

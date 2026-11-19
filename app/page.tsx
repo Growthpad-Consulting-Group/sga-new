@@ -44,8 +44,8 @@ export default async function HomePage(): Promise<React.JSX.Element> {
         customDescription="Your safety, our mission."
         showToggle={false}
         customButtons={[
-          { label: 'Explore for Individual', href: '/services/individual', primary: true },
-          { label: 'Explore for Corporate', href: '/services/corporate', primary: true }
+          { label: 'Explore services for Individual', href: '/services/individual', primary: true },
+          { label: 'Explore services for Corporate', href: '/services/corporate', primary: true }
         ]}
       />
 
@@ -61,7 +61,7 @@ export default async function HomePage(): Promise<React.JSX.Element> {
 
       <div className="relative ">
         <GroupIntegratedSolutions
-          title="Our Core Services"
+          title="Our Product & Services"
         />
         <SectionSeparator />
       </div>

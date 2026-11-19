@@ -63,6 +63,13 @@ export default defineType({
       description: 'e.g. "2023" — shown on the card above the title.',
     }),
     defineField({
+      name: 'summary',
+      title: 'About this certificate',
+      type: 'text',
+      rows: 6,
+      description: 'Shown in the sidebar when the document is previewed on the About page.',
+    }),
+    defineField({
       name: 'expiryDate',
       title: 'Expiry Date',
       type: 'date',

@@ -26,7 +26,7 @@ export const navItems: NavItem[] = [
   { href: '/', label: 'HOME' },
   { href: '/about', label: 'ABOUT US' },
   { href: '/sustainability', label: 'SUSTAINABILITY' },
-  { href: '/news-reports', label: 'NEWS & INSIGHTS' },
+  { href: '/news-reports', label: 'NEWS' },
   { href: '/careers', label: 'CAREERS' },
   { href: '/contact', label: 'CONTACT US' },
   // { href: '/updates', label: 'UPDATES', icon: 'material-symbols:news-outline-rounded' },
@@ -38,9 +38,9 @@ export const getCountryNavItems = (countryCode: string): NavItem[] => {
   return [
     { href: baseUrl, label: 'HOME' },
     { href: `${baseUrl}/about`, label: 'ABOUT US' },
-    { href: `${baseUrl}#services`, label: 'SERVICES' },
+    { href: `${baseUrl}#services`, label: 'PRODUCT & SERVICES' },
     { href: `${baseUrl}#industries`, label: 'INDUSTRIES' },
-    { href: `${baseUrl}/updates`, label: 'NEWS & INSIGHTS' },
+    { href: `${baseUrl}/updates`, label: 'NEWS' },
     { href: `${baseUrl}#contact`, label: 'CONTACT' },
     { href: '/', label: 'SGA GROUP' },
   ]
@@ -98,10 +98,10 @@ export const getHeaderShortcuts = (countryPrefix: string): NavItem[] => [
 // pages, so its isCountryPage branch never executes)
 export const getCountryHeaderNavItems = (countryPrefix: string): NavItem[] => [
   { href: '/', label: 'SGA GROUP' },
-  { href: '#services', label: 'SERVICES', isDropdown: true, dropdownType: 'services' },
+  { href: '#services', label: 'PRODUCT & SERVICES', isDropdown: true, dropdownType: 'services' },
   { href: `${countryPrefix}/industries`, label: 'INDUSTRIES', isDropdown: true, dropdownType: 'industries' },
   { href: `${countryPrefix}/why-us`, label: 'ABOUT US' },
-  { href: `${countryPrefix}/updates`, label: 'NEWS & INSIGHTS' },
+  { href: `${countryPrefix}/updates`, label: 'NEWS' },
   { href: `${countryPrefix}/contact`, label: 'CONTACT' },
 ]
 
