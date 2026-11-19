@@ -159,22 +159,10 @@ export default function DocumentPreviewModal({
                         </div>
 
                         <dl className="flex flex-col gap-4">
-                            {country && (
-                                <div className="flex flex-col gap-1">
-                                    <dt className="text-xs font-semibold uppercase tracking-[0.18em] text-white/70">Country</dt>
-                                    <dd className="text-base text-white/90">{country}</dd>
-                                </div>
-                            )}
                             {year && (
                                 <div className="flex flex-col gap-1">
                                     <dt className="text-xs font-semibold uppercase tracking-[0.18em] text-white/70">Year</dt>
                                     <dd className="text-base text-white/90">{year}</dd>
-                                </div>
-                            )}
-                            {pages && (
-                                <div className="flex flex-col gap-1">
-                                    <dt className="text-xs font-semibold uppercase tracking-[0.18em] text-white/70">Pages</dt>
-                                    <dd className="text-base text-white/90">{pages.length}</dd>
                                 </div>
                             )}
                         </dl>
