@@ -79,13 +79,19 @@ export default function CertificationsAndMemberships({ documents }: Certificatio
     // Documents with a summary are shown as cards; the rest as a compact list.
     const cardDocuments = filteredDocuments.filter((doc) => doc.summary)
     const listDocuments = filteredDocuments.filter((doc) => !doc.summary)
-    // Preview navigation follows the order on screen: cards first, then the list.
-    const displayedDocuments = [...cardDocuments, ...listDocuments]
     const visibleListDocuments = showAllList ? listDocuments : listDocuments.slice(0, LIST_PREVIEW_COUNT)
 
     const totalPages = Math.ceil(cardDocuments.length / itemsPerPage)
     const startIndex = (currentPage - 1) * itemsPerPage
     const pagedCardDocuments = cardDocuments.slice(startIndex, startIndex + itemsPerPage)
+
+    // Preview navigation follows only what is on screen: the current card page, then the visible list rows.
+    const displayedDocuments = [...pagedCardDocuments, ...visibleListDocuments]
+
+    // If the document set shrinks past the current page, move back to the last page.
+    useEffect(() => {
+        if (totalPages > 0 && currentPage > totalPages) setCurrentPage(totalPages)
+    }, [currentPage, totalPages])
 
     const goToPage = (page: number) => {
         setCurrentPage(page)
