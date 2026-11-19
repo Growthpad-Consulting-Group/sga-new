@@ -3,6 +3,7 @@
 import { Link } from 'next-view-transitions'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+import { useEffect } from 'react'
 import { Icon } from '@iconify/react'
 import Button from '@/components/ui/Button'
 
@@ -24,8 +25,22 @@ interface ServicesGridProps {
 }
 
 export default function ServicesGrid({ services, country, type, isIndividual, countryName }: ServicesGridProps) {
+    // Opened from a link with #services-grid: the browser jumps instantly on page load,
+    // so glide to the grid once the page is ready.
+    useEffect(() => {
+        // Opened from a country page with ?scroll=services-grid: the page loads at the top,
+        // then glides down to the grid.
+        if (new URLSearchParams(window.location.search).get('scroll') !== 'services-grid') return
+        const grid = document.getElementById('services-grid')
+        if (!grid) return
+        const timer = window.setTimeout(() => {
+            grid.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }, 300)
+        return () => window.clearTimeout(timer)
+    }, [])
+
     return (
-        <section id="services-grid" className="bg-white py-24 sm:py-10 container-fluid overflow-hidden">
+        <section id="services-grid" className="bg-white pt-16 pb-24 sm:pt-20 sm:pb-16 container-fluid overflow-hidden">
             <div className="mx-auto">
                 {/* Section Header */}
                 {/* <div className="mb-10 md:mb-16 flex items-end justify-between border-b-2 border-gray-100 pb-4">

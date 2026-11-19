@@ -1,6 +1,5 @@
 import { notFound } from 'next/navigation'
 import FloatingWhatsApp from '@/components/ui/FloatingWhatsApp'
-import SectionSeparator from '@/components/ui/SectionSeparator'
 import ServicesGrid from '@/features/services/ServicesGrid'
 import ServicesTypeHero from '@/features/services/ServicesTypeHero'
 import { individualServices, corporateServices } from '@/features/services/data'
@@ -69,10 +68,6 @@ export default async function ServicesTypePage({ params }: Props) {
                 description={description}
                 heroImage={services[0]?.heroImage}
             />
-            <div className="relative">
-                <SectionSeparator />
-            </div>
-
             <ServicesGrid
                     services={services}
                     country={country}

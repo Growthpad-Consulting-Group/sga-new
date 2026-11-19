@@ -6,9 +6,15 @@ import { useRef } from 'react'
 
 interface AboutHeroProps {
   imageUrl?: string
+  eyebrow?: string
+  title?: string
 }
 
-export default function AboutHero({ imageUrl = '/images/misc/blog-placeholder' }: AboutHeroProps): React.JSX.Element {
+export default function AboutHero({
+  imageUrl = '/images/misc/blog-placeholder',
+  eyebrow = 'Who We Are',
+  title = 'Security That Matters Across Africa',
+}: AboutHeroProps): React.JSX.Element {
   const heroRef = useRef<HTMLElement>(null)
   const prefersReducedMotion = useReducedMotion()
   const { scrollYProgress } = useScroll({
@@ -27,10 +33,10 @@ export default function AboutHero({ imageUrl = '/images/misc/blog-placeholder' }
           className="text-left space-y-2 pb-4"
         >
           <p className="text-sm md:text-base font-normal text-gray-700 uppercase tracking-wide">
-            Who We Are
+            {eyebrow}
           </p>
           <h1 className="text-xl md:text-2xl lg:text-4xl font-bold">
-            <span className="text-primary-orange">Security That Matters Across Africa</span>
+            <span className="text-primary-orange">{title}</span>
           </h1>
         </motion.div>
       </div>

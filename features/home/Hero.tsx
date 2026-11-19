@@ -63,6 +63,13 @@ export default function Hero({
   const secondaryTextColorClass = orangeBackground ? 'text-white/90' : whiteBackground ? 'text-gray-700' : 'text-light-grey'
   const hasSingleHeroImage = !images?.length && !imageUrl2
 
+  // Each column needs enough cards to fill its height before it loops (min 6)
+  const imageHalf = images ? Math.ceil(images.length / 2) : 0
+  const fillColumn = (items: string[]) =>
+    items.length ? Array.from({ length: Math.max(1, Math.ceil(6 / items.length)) }).flatMap(() => items) : []
+  const leftImages = fillColumn(images ? images.slice(0, imageHalf) : [])
+  const rightImages = fillColumn(images ? images.slice(imageHalf) : [])
+
   if (twoCardLayout) {
     return (
       <SectionWrapper id="hero" className={`${bgClass} relative min-h-screen ${hasSingleHeroImage ? 'items-start' : ''}`}>
@@ -175,7 +182,7 @@ export default function Hero({
                   const defaultBorderColor = orangeBackground ? 'border-white' : 'border-primary-orange'
                   const defaultHoverBg = orangeBackground ? 'hover:bg-white' : 'hover:bg-primary-orange'
 
-                  const buttonClassName = button.className || `group relative bg-transparent border-2 ${defaultBorderColor} px-6 py-4 rounded-2xl font-semibold transition-all duration-300 text-left ${defaultHoverBg} w-full sm:flex-1 h-32`
+                  const buttonClassName = button.className || `group relative bg-transparent border-2 ${defaultBorderColor} px-6 py-4 rounded-2xl font-semibold transition-colors duration-300 text-left ${defaultHoverBg} w-full sm:flex-1 h-32`
 
                   // Simple button structure for rounded-full buttons
                   if (isSimple) {
@@ -212,11 +219,11 @@ export default function Hero({
                         )}
                         <span className="text-3xl lg:text-2xl xl:text-3xl font-bold block">{mainText}</span>
                       </div>
-                      <span className={`absolute bottom-4 left-6 flex items-center ${readMoreTextColor} opacity-0 group-hover:opacity-100 transition-all duration-300`}>
+                      <span className={`absolute bottom-4 left-6 flex items-center ${readMoreTextColor} opacity-0 group-hover:opacity-100 transition-opacity duration-200 group-hover:delay-150`}>
                         <span className="text-xs uppercase font-bold">{button.readMoreText || 'Read More'}</span>
                       </span>
                       {/* Arrow Icon - Bottom Right */}
-                      <div className="absolute bottom-4 right-6 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                      <div className="absolute bottom-4 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-200 group-hover:delay-150">
                         <Icon
                           icon={button.arrowIcon || "iconoir:arrow-right-circle"}
                           className={`w-7 h-7 ${orangeBackground ? 'text-primary-orange' : 'text-dark-charcoal'}`}
@@ -259,12 +266,12 @@ export default function Hero({
                     y: ["0%", "-50%"],
                   }}
                   transition={{
-                    duration: 15,
+                    duration: leftImages.length * 5,
                     repeat: Infinity,
                     ease: "linear",
                   }}
                 >
-                  {images.slice(0, Math.ceil(images.length / 2)).map((img, idx) => (
+                  {leftImages.map((img, idx) => (
                     <div key={`left-${idx}`} className="relative mx-auto aspect-square w-[92%] shrink-0 overflow-hidden rounded-full">
                       <Image
                         src={img}
@@ -277,7 +284,7 @@ export default function Hero({
                     </div>
                   ))}
                   {/* Duplicate for seamless loop */}
-                  {images.slice(0, Math.ceil(images.length / 2)).map((img, idx) => (
+                  {leftImages.map((img, idx) => (
                     <div key={`left-dup-${idx}`} className="relative mx-auto aspect-square w-[92%] shrink-0 overflow-hidden rounded-full">
                       <Image
                         src={img}
@@ -299,12 +306,12 @@ export default function Hero({
                     y: ["-50%", "0%"],
                   }}
                   transition={{
-                    duration: 15,
+                    duration: rightImages.length * 5,
                     repeat: Infinity,
                     ease: "linear",
                   }}
                 >
-                  {images.slice(Math.ceil(images.length / 2)).map((img, idx) => (
+                  {rightImages.map((img, idx) => (
                     <div key={`right-${idx}`} className="relative mx-auto aspect-square w-[92%] shrink-0 overflow-hidden rounded-full">
                       <Image
                         src={img}
@@ -317,7 +324,7 @@ export default function Hero({
                     </div>
                   ))}
                   {/* Duplicate for seamless loop */}
-                  {images.slice(Math.ceil(images.length / 2)).map((img, idx) => (
+                  {rightImages.map((img, idx) => (
                     <div key={`right-dup-${idx}`} className="relative mx-auto aspect-square w-[92%] shrink-0 overflow-hidden rounded-full">
                       <Image
                         src={img}

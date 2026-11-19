@@ -36,8 +36,10 @@ export default async function RootLayout({ children }: RootLayoutProps) {
 
   // Get country metadata for locale
   const countryMeta = getCountryMetadata(country)
-  const canonicalUrl = getCanonicalUrl(country, pathname)
-  const hrefLangLinks = formatHrefLangLinks(pathname)
+  // The helpers add the country prefix themselves, so strip it from the path first
+  const pagePath = pathname.replace(/^\/(ke|ug|tz)(?=\/|$)/, '') || '/'
+  const canonicalUrl = getCanonicalUrl(country, pagePath)
+  const hrefLangLinks = formatHrefLangLinks(pagePath)
 
   // Determine if it's a country-specific layout that needs overlay header
   const isCountryPage = pathname.startsWith('/ke') || pathname.startsWith('/ug') || pathname.startsWith('/tz')
