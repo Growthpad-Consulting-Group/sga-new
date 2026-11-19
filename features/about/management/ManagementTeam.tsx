@@ -71,7 +71,7 @@ export default function ManagementTeam({ members }: ManagementTeamProps): React.
                             }}
                             className="flex flex-col bg-white border border-gray-50 rounded-2xl overflow-hidden shadow-gray-400/10 shadow-xl hover:shadow-primary-orange/10 transition-shadow cursor-pointer"
                         >
-                            <div className="relative w-full aspect-4/3 bg-gray-100">
+                            <div className="relative w-full aspect-3/4 bg-gray-100">
                                 {member.imageUrl && (
                                     <Image
                                         src={member.imageUrl}
