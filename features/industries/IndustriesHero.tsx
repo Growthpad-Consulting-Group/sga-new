@@ -13,9 +13,9 @@ export default function IndustriesHero(): React.JSX.Element {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-left space-y-2 pb-4"
         >
-          <h2 className="text-sm md:text-base font-normal text-gray-700 uppercase tracking-wide">
+          <p className="text-sm md:text-base font-normal text-gray-700 uppercase tracking-wide">
             Industries We Serve
-          </h2>
+          </p>
           <h1 className="text-xl md:text-2xl lg:text-4xl font-bold">
             <span className="text-primary-orange">Security Solutions Tailored to Every Sector</span>
           </h1>

@@ -13,9 +13,9 @@ export default function Hero({ imageUrl = '/images/misc/blog-placeholder' }) {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-left space-y-2 pb-4"
         >
-          <h2 className="text-sm md:text-base font-semibold text-gray-700 uppercase tracking-wide">
+          <p className="text-sm md:text-base font-semibold text-gray-700 uppercase tracking-wide">
             SGA Group Safety Tips
-          </h2>
+          </p>
           <h1 className="text-xl md:text-2xl lg:text-3xl font-bold">
             <span className="text-primary-orange">Stay Safe, Stay Secure</span>
           </h1>

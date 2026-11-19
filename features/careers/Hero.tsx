@@ -22,9 +22,9 @@ export default function Hero({ imageUrl = '/images/misc/blog-placeholder' }) {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-left space-y-2 pb-4"
         >
-          <h2 className="text-sm md:text-base font-normal text-gray-700 uppercase tracking-wide">
+          <p className="text-sm md:text-base font-normal text-gray-700 uppercase tracking-wide">
             SGA Group Careers
-          </h2>
+          </p>
           <h1 className="text-xl md:text-2xl lg:text-4xl font-bold">
             <span className="text-primary-orange">Build a Career That Protects What Matters</span>
           </h1>
