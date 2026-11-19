@@ -93,6 +93,17 @@ export const categoriesQuery = groq`
   }
 `
 
+// Get management team members in display order
+export const managementMembersQuery = groq`
+  *[_type == "managementMember"] | order(order asc, name asc) {
+    _id,
+    name,
+    title,
+    bio,
+    photo
+  }
+`
+
 // Get all certificate/license/membership documents
 export const certificateDocumentsQuery = groq`
   *[_type == "certificateDocument"] | order(country asc, title asc) {
