@@ -25,9 +25,9 @@ export default function ContactHero({ imageUrl = '/images/contact/hero.png' }: C
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-left space-y-2 pb-4"
         >
-          <h2 className="text-sm md:text-base font-normal text-gray-700 uppercase tracking-wide">
+          <p className="text-sm md:text-base font-normal text-gray-700 uppercase tracking-wide">
             We’re here to help
-          </h2>
+          </p>
           <h1 className="text-xl md:text-2xl lg:text-4xl font-bold">
             <span className="text-primary-orange">Get In Touch With SGA Security</span>
           </h1>

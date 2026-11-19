@@ -26,9 +26,9 @@ export default function UpdatesHero({ imageUrl = '/images/contact/hero.png' }: U
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-left space-y-2 pb-4"
         >
-          <h2 className="text-sm md:text-base font-normal text-gray-700 uppercase tracking-wide">
+          <p className="text-sm md:text-base font-normal text-gray-700 uppercase tracking-wide">
             News & Insights
-          </h2>
+          </p>
           <h1 className="text-xl md:text-2xl lg:text-4xl font-bold">
             <span className="text-primary-orange">Latest News & Insights From SGA Security</span>
           </h1>
