@@ -54,7 +54,7 @@ export default function ManagementTeam({ members }: ManagementTeamProps): React.
                     className="mb-10"
                 >
                     <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary-orange mb-4">
-                        Management
+                        Our Management Team
                     </h2>
                 </motion.div>
 
