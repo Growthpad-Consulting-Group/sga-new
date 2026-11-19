@@ -174,30 +174,36 @@ export default function OurJourney({ events = groupTimelineEvents }: OurJourneyP
             style={infiniteCarousel.trackStyle}
             onTransitionEnd={infiniteCarousel.handleTransitionEnd}
           >
-            {loopedEvents.map((event, index) => (
+            {loopedEvents.map((event, index) => {
+              // Looped copies are decorative: render them as plain text so they are not headings
+              const isLoopCopy = index >= events.length
+              const YearTag = isLoopCopy ? 'p' : 'h3'
+              const TitleTag = isLoopCopy ? 'p' : 'h4'
+              return (
               <div
                 key={`${event.year}-${index}`}
                 className="relative shrink-0 px-2 md:px-4"
                 style={{ width: `${100 / itemsToShow}%` }}
-                aria-hidden={index >= events.length || undefined}
+                aria-hidden={isLoopCopy || undefined}
               >
                 <div className="absolute top-0 left-2 md:left-4 w-8 h-8 bg-primary-orange rounded-full z-20"></div>
 
                 <div className="ml-0 mt-16">
-                  <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary-orange mb-4">
+                  <YearTag className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary-orange mb-4">
                     {event.year}
-                  </h3>
+                  </YearTag>
 
-                  <h4 className="text-lg md:text-3xl lg:text-2xl xl:text-2xl font-semibold text-dark-charcoal mb-3">
+                  <TitleTag className="text-lg md:text-3xl lg:text-2xl xl:text-2xl font-semibold text-dark-charcoal mb-3">
                     {event.title}
-                  </h4>
+                  </TitleTag>
 
                   <p className="text-sm md:text-xl lg:text-sm xl:text-base text-gray-700 leading-relaxed">
                     {event.description}
                   </p>
                 </div>
               </div>
-            ))}
+              )
+            })}
           </div>
         </div>
       </motion.div>
