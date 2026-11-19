@@ -31,8 +31,8 @@ export const homeData: Record<string, HomeContent> = {
             description: "",
             imageUrl: "/images/ke/hero.png",
             buttons: [
-                { label: "Explore Individual", href: "/ke/services/individual", primary: true, separator: "Explore " },
-                { label: "Explore Corporate", href: "/ke/services/corporate", primary: true, separator: "Explore " }
+                { label: "Explore services for Individual", href: "/ke/services/individual", primary: true },
+                { label: "Explore services for Corporate", href: "/ke/services/corporate", primary: true }
             ]
         },
         about: {

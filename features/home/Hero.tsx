@@ -419,7 +419,7 @@ export default function Hero({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.5, duration: 0.5 }}
-            className="pointer-events-auto absolute bottom-0 left-1/2 -translate-x-1/2 sm:bottom-2"
+            className="pointer-events-auto absolute bottom-0 left-1/2 hidden -translate-x-1/2 sm:bottom-2 sm:block"
           >
             <motion.div
               animate={{
