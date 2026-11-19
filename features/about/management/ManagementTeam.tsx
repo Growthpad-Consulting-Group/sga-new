@@ -143,7 +143,7 @@ export default function ManagementTeam({ members }: ManagementTeamProps): React.
                             role="dialog"
                             aria-modal="true"
                             aria-labelledby="management-bio-name"
-                            className="relative grid w-full max-w-4xl grid-cols-1 overflow-hidden rounded-xl bg-white shadow-2xl sm:grid-cols-[2fr_3fr]"
+                            className="relative grid w-full max-w-4xl grid-cols-1 overflow-hidden rounded-xl bg-white shadow-2xl sm:h-[min(80vh,640px)] sm:grid-cols-[2fr_3fr]"
                         >
                             {/* Image on the left */}
                             <div className="relative min-h-72 bg-gray-100 sm:min-h-full">
@@ -159,7 +159,7 @@ export default function ManagementTeam({ members }: ManagementTeamProps): React.
                             </div>
 
                             {/* Data on the right */}
-                            <div className="relative flex max-h-[80vh] flex-col">
+                            <div className="relative flex h-full min-h-0 flex-col">
                                 <button
                                     type="button"
                                     onClick={close}
