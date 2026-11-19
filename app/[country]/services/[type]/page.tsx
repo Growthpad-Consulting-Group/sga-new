@@ -38,7 +38,8 @@ export default async function ServicesTypePage({ params }: Props) {
 
     const servicesMap = type === 'individual' ? individualServices : corporateServices
 
-    // Cards come from the shared core services list (same as the country menu).
+    // Cards come from the shared core services list. The country header menu uses
+    // its own lists (data/nav.ts), so the two can differ.
     // A card links to its detail page only where one exists for this service type.
     const services = coreServices.map((service) => {
         const detailSlug = service.detailSlugs?.[type]

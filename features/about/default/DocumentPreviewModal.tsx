@@ -240,6 +240,14 @@ export default function DocumentPreviewModal({
                         </div>
                     </div>
 
+                    {/* Phones: summary shown above the preview (the desktop sidebar is hidden) */}
+                    {summary && (
+                        <div className="shrink-0 space-y-2 border-b border-white/10 bg-primary-orange px-5 py-4 text-white md:hidden">
+                            <h3 className="border-b border-white/40 pb-2 text-base font-bold">Strategic Significance</h3>
+                            <p className="max-h-28 overflow-y-auto whitespace-pre-line text-sm leading-6 text-white/90">{summary}</p>
+                        </div>
+                    )}
+
                     <div className="relative flex flex-1 items-center justify-center overflow-auto p-4 md:p-8">
                         {!pages && !error && (
                             <div className="flex flex-col items-center justify-center gap-4 text-white/60" role="status">

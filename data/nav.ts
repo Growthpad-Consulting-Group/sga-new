@@ -49,7 +49,7 @@ export const getCountryNavItems = (countryCode: string): NavItem[] => {
 // separate from the homepage services (data/coreServices.ts).
 export const getIndividualServicesItems = (countryPrefix: string): NavItem[] => [
   { href: 'https://www.sgasecurity.com/home-security-solution/', label: 'Home Security Solutions' },
-  { href: `${countryPrefix}/services/individual/security-guarding`, label: 'Guarding Services' },
+  { href: `${countryPrefix}/services/individual`, label: 'Guarding Services' },
   { href: `${countryPrefix}/services/individual`, label: 'K-9 Services' },
   { href: `${countryPrefix}/services/individual`, label: 'Alarm Response Services' },
   { href: `${countryPrefix}/services/individual`, label: 'CCTV Services' },
@@ -58,7 +58,7 @@ export const getIndividualServicesItems = (countryPrefix: string): NavItem[] => 
 ]
 
 export const getCorporateServicesItems = (countryPrefix: string): NavItem[] => [
-  { href: 'https://sgasecurity.com/home-security-solution/', label: 'Business Solutions Services' },
+  { href: `${countryPrefix}/services/corporate`, label: 'Business Solutions Services' },
   { href: `${countryPrefix}/services/corporate`, label: 'CCTV Services' },
   { href: `${countryPrefix}/services/corporate`, label: 'Alarm Response Services' },
   { href: `${countryPrefix}/services/corporate/security-guarding`, label: 'Guarding Services' },
@@ -70,7 +70,7 @@ export const getCorporateServicesItems = (countryPrefix: string): NavItem[] => [
   { href: `${countryPrefix}/services/corporate`, label: 'Control Room Services' },
   { href: `${countryPrefix}/services/corporate`, label: 'Close Protection Services' },
   { href: `${countryPrefix}/services/corporate`, label: 'Front Office & Reception Services' },
-  { href: `${countryPrefix}/services/corporate`, label: 'Risk Assessment Services' },
+  { href: `${countryPrefix}/services/corporate/risk-assessment`, label: 'Risk Assessment Services' },
 ]
 
 // Country header "Industries" mega menu — all industries share one page's
