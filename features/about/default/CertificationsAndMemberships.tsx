@@ -220,7 +220,7 @@ export default function CertificationsAndMemberships({ documents }: Certificatio
                                     onKeyDown={(e) => {
                                         if (e.key === 'Enter' || e.key === ' ') setPreviewDoc(doc)
                                     }}
-                                    className="flex flex-col bg-white border border-gray-50 rounded-2xl overflow-hidden shadow-gray-400/10 shadow-xl hover:shadow-primary-orange/10 transition-shadow cursor-pointer"
+                                    className="flex flex-col bg-white border border-gray-50 rounded-2xl overflow-hidden shadow-md shadow-gray-400/10 hover:shadow-xl hover:shadow-primary-orange/20 transition-shadow cursor-pointer"
                                 >
                                     {/* Cover Image */}
                                     <div className="relative w-full aspect-4/3 bg-gray-100">

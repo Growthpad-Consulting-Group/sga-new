@@ -69,7 +69,7 @@ export default function ManagementTeam({ members }: ManagementTeamProps): React.
                             onKeyDown={(e) => {
                                 if (e.key === 'Enter' || e.key === ' ') setSelectedIndex(index)
                             }}
-                            className="flex flex-col bg-white border border-gray-50 rounded-2xl overflow-hidden shadow-gray-400/10 shadow-xl hover:shadow-primary-orange/10 transition-shadow cursor-pointer"
+                            className="flex flex-col bg-white border border-gray-50 rounded-2xl overflow-hidden shadow-md shadow-gray-400/10 hover:shadow-xl hover:shadow-primary-orange/20 transition-shadow cursor-pointer"
                         >
                             <div className="relative w-full aspect-3/4 bg-gray-100">
                                 {member.imageUrl && (
