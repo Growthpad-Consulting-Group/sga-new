@@ -15,6 +15,7 @@ interface DocumentItem {
     country: Exclude<Country, 'All Country'>
     link: string
     year?: string
+    summary?: string
     coverImageUrl?: string | null
     previewRotation?: 0 | 90
 }
@@ -280,6 +281,7 @@ export default function CertificationsAndMemberships({ documents }: Certificatio
                     category={previewDoc?.category}
                     country={previewDoc?.country}
                     year={previewDoc?.year}
+                    summary={previewDoc?.summary}
                 />
 
                 {/* Pagination — matching news/reports style */}

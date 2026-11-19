@@ -20,6 +20,7 @@ interface DocumentPreviewModalProps {
     category?: string
     country?: string
     year?: string
+    summary?: string
 }
 
 async function renderPdfPages(fileUrl: string, title: string, rotation: 0 | 90): Promise<string[]> {
@@ -80,6 +81,7 @@ export default function DocumentPreviewModal({
     category,
     country,
     year,
+    summary,
 }: DocumentPreviewModalProps) {
     const [pages, setPages] = useState<string[] | null>(null)
     const [error, setError] = useState<string | null>(null)
@@ -147,8 +149,45 @@ export default function DocumentPreviewModal({
                     role="dialog"
                     aria-modal="true"
                     aria-labelledby="document-preview-title"
-                    className="flex h-[90vh] w-full max-w-4xl flex-col overflow-hidden rounded-xl border border-white/15 bg-primary-orange/10 shadow-2xl backdrop-blur-2xl"
+                    className="flex h-[90vh] w-full max-w-5xl flex-col overflow-hidden rounded-xl border border-white/15 bg-primary-orange/10 shadow-2xl backdrop-blur-2xl md:flex-row"
                   >
+                    {/* Sidebar (desktop): about this document */}
+                    <aside className="hidden shrink-0 flex-col gap-6 overflow-y-auto bg-primary-orange p-8 text-white md:flex md:w-[34%]">
+                        <div className="flex flex-col gap-2">
+                            {category && <p className="text-xs font-bold uppercase tracking-[0.18em] text-white/70">{category}</p>}
+                            <h2 className="text-2xl font-bold leading-snug">{title}</h2>
+                        </div>
+
+                        <dl className="flex flex-col gap-4">
+                            {country && (
+                                <div className="flex flex-col gap-1">
+                                    <dt className="text-xs font-semibold uppercase tracking-[0.18em] text-white/70">Country</dt>
+                                    <dd className="text-base text-white/90">{country}</dd>
+                                </div>
+                            )}
+                            {year && (
+                                <div className="flex flex-col gap-1">
+                                    <dt className="text-xs font-semibold uppercase tracking-[0.18em] text-white/70">Year</dt>
+                                    <dd className="text-base text-white/90">{year}</dd>
+                                </div>
+                            )}
+                            {pages && (
+                                <div className="flex flex-col gap-1">
+                                    <dt className="text-xs font-semibold uppercase tracking-[0.18em] text-white/70">Pages</dt>
+                                    <dd className="text-base text-white/90">{pages.length}</dd>
+                                </div>
+                            )}
+                        </dl>
+
+                        <div className="flex flex-col gap-3">
+                            <h3 className="text-lg font-bold">About this certification</h3>
+                            {summary && (
+                                <p className="whitespace-pre-line text-base leading-7 text-white/90">{summary}</p>
+                            )}
+                        </div>
+                    </aside>
+
+                    <div className="flex min-w-0 flex-1 flex-col">
                     <div className="grid min-h-18 shrink-0 grid-cols-[minmax(0,1fr)_auto] items-center gap-4 border-b border-white/10 px-4 py-3 sm:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] sm:px-6">
                         <div className="flex min-w-0 items-center gap-2">
                             <Icon icon="mdi:file-pdf-box" className="h-5 w-5 shrink-0 text-primary-orange" />
@@ -268,6 +307,7 @@ export default function DocumentPreviewModal({
                             </button>
                         </div>
                     )}
+                    </div>
                   </motion.div>
                 </motion.div>
             )}
