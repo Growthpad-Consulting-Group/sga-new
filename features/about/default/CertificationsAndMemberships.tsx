@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import Image from 'next/image'
@@ -24,7 +24,10 @@ interface CertificationsAndMembershipsProps {
     documents: DocumentItem[]
 }
 
-const ITEMS_PER_PAGE = 12
+// Cards per page: 6 fits the 2- and 3-column layouts; 8 fills the 4-column xl layout (1280px+).
+const ITEMS_PER_PAGE = 6
+const ITEMS_PER_PAGE_XL = 8
+const LIST_PREVIEW_COUNT = 6
 
 const getCategoryIcon = (category: string) => {
     switch (category) {
@@ -36,12 +39,25 @@ const getCategoryIcon = (category: string) => {
 }
 
 export default function CertificationsAndMemberships({ documents }: CertificationsAndMembershipsProps) {
-    const sectionRef = useRef<HTMLElement>(null)
     const [activeCategory, setActiveCategory] = useState<Category>('ALL')
     const [selectedCountry, setSelectedCountry] = useState<Country>('All Country')
     const [searchQuery, setSearchQuery] = useState('')
-    const [currentPage, setCurrentPage] = useState(1)
     const [previewDoc, setPreviewDoc] = useState<DocumentItem | null>(null)
+    const [showAllList, setShowAllList] = useState(false)
+    const [itemsPerPage, setItemsPerPage] = useState(ITEMS_PER_PAGE)
+
+    useEffect(() => {
+        const mediaQuery = window.matchMedia('(min-width: 1280px)')
+        const applyPageSize = () => {
+            setItemsPerPage(mediaQuery.matches ? ITEMS_PER_PAGE_XL : ITEMS_PER_PAGE)
+            setCurrentPage(1)
+        }
+        applyPageSize()
+        mediaQuery.addEventListener('change', applyPageSize)
+        return () => mediaQuery.removeEventListener('change', applyPageSize)
+    }, [])
+    const [currentPage, setCurrentPage] = useState(1)
+    const sectionRef = useRef<HTMLElement>(null)
     const prioritizedDocuments = [...documents].sort((a, b) => {
         const aIsIso18788 = a.title.includes('18788')
         const bIsIso18788 = b.title.includes('18788')
@@ -60,28 +76,33 @@ export default function CertificationsAndMemberships({ documents }: Certificatio
         return matchCategory && matchCountry && matchSearch
     })
 
-    const totalPages = Math.ceil(filteredDocuments.length / ITEMS_PER_PAGE)
-    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE
-    const paginatedDocuments = filteredDocuments.slice(startIndex, startIndex + ITEMS_PER_PAGE)
-    const previewDocumentIndex = previewDoc
-        ? filteredDocuments.findIndex((doc) => doc.link === previewDoc.link && doc.country === previewDoc.country)
-        : -1
+    // Documents with a summary are shown as cards; the rest as a compact list.
+    const cardDocuments = filteredDocuments.filter((doc) => doc.summary)
+    const listDocuments = filteredDocuments.filter((doc) => !doc.summary)
+    // Preview navigation follows the order on screen: cards first, then the list.
+    const displayedDocuments = [...cardDocuments, ...listDocuments]
+    const visibleListDocuments = showAllList ? listDocuments : listDocuments.slice(0, LIST_PREVIEW_COUNT)
 
-    const showAdjacentDocument = (direction: -1 | 1) => {
-        if (previewDocumentIndex < 0 || filteredDocuments.length < 2) return
+    const totalPages = Math.ceil(cardDocuments.length / itemsPerPage)
+    const startIndex = (currentPage - 1) * itemsPerPage
+    const pagedCardDocuments = cardDocuments.slice(startIndex, startIndex + itemsPerPage)
 
-        const nextIndex = (previewDocumentIndex + direction + filteredDocuments.length) % filteredDocuments.length
-        setPreviewDoc(filteredDocuments[nextIndex])
-    }
-
-    const handleFilterChange = (filter: Category) => { setActiveCategory(filter); setCurrentPage(1) }
-    const handleCountryChange = (country: Country) => { setSelectedCountry(country); setCurrentPage(1) }
-    const handleSearchChange = (query: string) => { setSearchQuery(query); setCurrentPage(1) }
     const goToPage = (page: number) => {
         setCurrentPage(page)
         if (sectionRef.current) {
             sectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
         }
+    }
+
+    const previewDocumentIndex = previewDoc
+        ? displayedDocuments.findIndex((doc) => doc.link === previewDoc.link && doc.country === previewDoc.country)
+        : -1
+
+    const showAdjacentDocument = (direction: -1 | 1) => {
+        if (previewDocumentIndex < 0 || displayedDocuments.length < 2) return
+
+        const nextIndex = (previewDocumentIndex + direction + displayedDocuments.length) % displayedDocuments.length
+        setPreviewDoc(displayedDocuments[nextIndex])
     }
 
     return (
@@ -109,7 +130,7 @@ export default function CertificationsAndMemberships({ documents }: Certificatio
                             <input
                                 type="text"
                                 value={searchQuery}
-                                onChange={(e) => handleSearchChange(e.target.value)}
+                                onChange={(e) => { setSearchQuery(e.target.value); setCurrentPage(1) }}
                                 placeholder="Search certifications..."
                                 className="w-full pl-12 pr-4 py-3 border border-dark-charcoal rounded-full text-sm focus:outline-hidden focus:border-primary-orange text-dark-charcoal placeholder:text-dark-charcoal/50"
                             />
@@ -119,7 +140,7 @@ export default function CertificationsAndMemberships({ documents }: Certificatio
                             />
                             {searchQuery && (
                                 <button
-                                    onClick={() => handleSearchChange('')}
+                                    onClick={() => { setSearchQuery(''); setCurrentPage(1) }}
                                     className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-primary-orange"
                                 >
                                     <Icon icon="mdi:close" className="w-4 h-4" />
@@ -131,7 +152,7 @@ export default function CertificationsAndMemberships({ documents }: Certificatio
                         <div className="relative w-full">
                             <select
                                 value={activeCategory}
-                                onChange={(e) => handleFilterChange(e.target.value as Category)}
+                                onChange={(e) => { setActiveCategory(e.target.value as Category); setCurrentPage(1) }}
                                 className="appearance-none w-full px-6 py-3 border border-dark-charcoal rounded-full text-sm focus:outline-hidden focus:border-primary-orange bg-white text-dark-charcoal cursor-pointer font-medium"
                             >
                                 <option value="ALL">All Types</option>
@@ -146,7 +167,7 @@ export default function CertificationsAndMemberships({ documents }: Certificatio
                         <div className="relative w-full">
                             <select
                                 value={selectedCountry}
-                                onChange={(e) => handleCountryChange(e.target.value as Country)}
+                                onChange={(e) => { setSelectedCountry(e.target.value as Country); setCurrentPage(1) }}
                                 className="appearance-none w-full px-6 py-3 border border-dark-charcoal rounded-full text-sm focus:outline-hidden focus:border-primary-orange bg-white text-dark-charcoal cursor-pointer font-medium"
                             >
                                 <option value="All Country">All Countries</option>
@@ -162,7 +183,6 @@ export default function CertificationsAndMemberships({ documents }: Certificatio
                     {(searchQuery || activeCategory !== 'ALL' || selectedCountry !== 'All Country') && (
                         <div className="mb-6 text-sm text-dark-charcoal/60">
                             Found {filteredDocuments.length} result{filteredDocuments.length !== 1 ? 's' : ''}
-                            {totalPages > 1 && ` — Page ${currentPage} of ${totalPages}`}
                         </div>
                     )}
 
@@ -176,11 +196,11 @@ export default function CertificationsAndMemberships({ documents }: Certificatio
                     )}
                 </motion.div>
 
-                {/* Cards Grid */}
-                {paginatedDocuments.length > 0 && (
+                {/* Cards: documents with a summary */}
+                {cardDocuments.length > 0 && (
                     <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                         <AnimatePresence mode="popLayout">
-                            {paginatedDocuments.map((doc, index) => (
+                            {pagedCardDocuments.map((doc, index) => (
                                 <motion.div
                                     layout
                                     key={`${doc.country}-${doc.title}`}
@@ -268,32 +288,10 @@ export default function CertificationsAndMemberships({ documents }: Certificatio
                     </div>
                 )}
 
-                <DocumentPreviewModal
-                    isOpen={previewDoc !== null}
-                    onClose={() => setPreviewDoc(null)}
-                    title={previewDoc?.title ?? ''}
-                    fileUrl={previewDoc?.link ?? ''}
-                    rotation={previewDoc?.previewRotation ?? 0}
-                    onPreviousDocument={() => showAdjacentDocument(-1)}
-                    onNextDocument={() => showAdjacentDocument(1)}
-                    documentPosition={previewDocumentIndex >= 0 ? previewDocumentIndex + 1 : 1}
-                    documentCount={filteredDocuments.length}
-                    category={previewDoc?.category}
-                    country={previewDoc?.country}
-                    year={previewDoc?.year}
-                    summary={previewDoc?.summary}
-                />
-
-                {/* Pagination — matching news/reports style */}
-                {filteredDocuments.length > ITEMS_PER_PAGE && (
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="flex flex-col items-center justify-center gap-4 mt-12"
-                    >
+                {/* Pagination for cards */}
+                {totalPages > 1 && (
+                    <div className="flex flex-col items-center justify-center gap-4 mt-12">
                         <div className="flex items-center gap-2">
-                            {/* Previous */}
                             <button
                                 onClick={() => goToPage(currentPage - 1)}
                                 disabled={currentPage === 1}
@@ -306,37 +304,21 @@ export default function CertificationsAndMemberships({ documents }: Certificatio
                                 Previous
                             </button>
 
-                            {/* Page numbers */}
                             <div className="flex items-center gap-2">
-                                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => {
-                                    const showPage =
-                                        page === 1 ||
-                                        page === totalPages ||
-                                        (page >= currentPage - 1 && page <= currentPage + 1)
-
-                                    if (!showPage) {
-                                        if (page === currentPage - 2 || page === currentPage + 2) {
-                                            return <span key={page} className="text-gray-400 px-2">...</span>
-                                        }
-                                        return null
-                                    }
-
-                                    return (
-                                        <button
-                                            key={page}
-                                            onClick={() => goToPage(page)}
-                                            className={`w-8 h-8 xl:w-10 xl:h-10 rounded-full border text-xs xl:text-sm font-medium transition-colors ${currentPage === page
-                                                ? 'bg-primary-orange text-white border-primary-orange'
-                                                : 'border-dark-charcoal text-dark-charcoal hover:border-primary-orange hover:text-primary-orange'
-                                                }`}
-                                        >
-                                            {page}
-                                        </button>
-                                    )
-                                })}
+                                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                                    <button
+                                        key={page}
+                                        onClick={() => goToPage(page)}
+                                        className={`w-8 h-8 xl:w-10 xl:h-10 rounded-full border text-xs xl:text-sm font-medium transition-colors ${currentPage === page
+                                            ? 'bg-primary-orange text-white border-primary-orange'
+                                            : 'border-dark-charcoal text-dark-charcoal hover:border-primary-orange hover:text-primary-orange'
+                                            }`}
+                                    >
+                                        {page}
+                                    </button>
+                                ))}
                             </div>
 
-                            {/* Next */}
                             <button
                                 onClick={() => goToPage(currentPage + 1)}
                                 disabled={currentPage === totalPages}
@@ -349,13 +331,75 @@ export default function CertificationsAndMemberships({ documents }: Certificatio
                                 <Icon icon="mdi:chevron-right" className="w-5 h-5" />
                             </button>
                         </div>
-
-                        {/* Page info */}
                         <p className="text-sm text-gray-600">
-                            Showing {startIndex + 1}–{Math.min(startIndex + ITEMS_PER_PAGE, filteredDocuments.length)} of {filteredDocuments.length} results
+                            Showing {startIndex + 1}–{Math.min(startIndex + itemsPerPage, cardDocuments.length)} of {cardDocuments.length} certifications
                         </p>
-                    </motion.div>
+                    </div>
                 )}
+
+                {/* List: documents without a summary */}
+                {listDocuments.length > 0 && (
+                    <>
+                    <ul className={`${cardDocuments.length > 0 ? 'mt-12' : ''} grid md:grid-cols-2 md:gap-x-12 border-t border-gray-200`}>
+                        {visibleListDocuments.map((doc) => (
+                            <li
+                                key={`${doc.country}-${doc.title}`}
+                                className="flex flex-wrap items-center justify-between gap-x-6 gap-y-2 py-4 border-b border-gray-200"
+                            >
+                                <div className="flex items-center gap-3 min-w-0">
+                                    <Icon icon={getCategoryIcon(doc.category)} className="w-5 h-5 shrink-0 text-dark-charcoal/40" />
+                                    <span className="font-bold text-dark-charcoal">{doc.title}</span>
+                                    <span className="text-xs font-medium text-dark-charcoal/60 uppercase tracking-wide">
+                                        {doc.country} • {doc.category.charAt(0) + doc.category.slice(1).toLowerCase()}
+                                    </span>
+                                </div>
+                                <div className="flex items-center gap-4">
+                                    <button
+                                        onClick={() => setPreviewDoc(doc)}
+                                        className="flex items-center gap-2 text-primary-orange font-bold hover:gap-3 transition-all"
+                                    >
+                                        View document
+                                        <Icon icon="mdi:arrow-right" className="w-5 h-5" />
+                                    </button>
+                                    <a
+                                        href={`/api/documents/download/${encodeURIComponent(doc.title)}.pdf?url=${encodeURIComponent(doc.link)}`}
+                                        aria-label={`Download ${doc.title}`}
+                                        className="shrink-0 flex items-center justify-center w-9 h-9 rounded-full text-dark-charcoal/60 hover:text-primary-orange hover:bg-primary-orange/10 transition-colors"
+                                    >
+                                        <Icon icon="solar:download-minimalistic-broken" className="w-5 h-5" />
+                                    </a>
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                    {listDocuments.length > LIST_PREVIEW_COUNT && (
+                        <div className="flex justify-center mt-8">
+                            <button
+                                onClick={() => setShowAllList((prev) => !prev)}
+                                className="px-5 py-2 rounded-full border border-dark-charcoal text-dark-charcoal hover:border-primary-orange hover:text-primary-orange text-xs xl:text-sm font-medium uppercase transition-colors"
+                            >
+                                {showAllList ? 'Show fewer' : `Show all ${listDocuments.length}`}
+                            </button>
+                        </div>
+                    )}
+                    </>
+                )}
+
+                <DocumentPreviewModal
+                    isOpen={previewDoc !== null}
+                    onClose={() => setPreviewDoc(null)}
+                    title={previewDoc?.title ?? ''}
+                    fileUrl={previewDoc?.link ?? ''}
+                    rotation={previewDoc?.previewRotation ?? 0}
+                    onPreviousDocument={() => showAdjacentDocument(-1)}
+                    onNextDocument={() => showAdjacentDocument(1)}
+                    documentPosition={previewDocumentIndex >= 0 ? previewDocumentIndex + 1 : 1}
+                    documentCount={displayedDocuments.length}
+                    category={previewDoc?.category}
+                    country={previewDoc?.country}
+                    year={previewDoc?.year}
+                    summary={previewDoc?.summary}
+                />
             </div>
         </section>
     )

@@ -151,7 +151,8 @@ export default function DocumentPreviewModal({
                     aria-labelledby="document-preview-title"
                     className="flex h-[90vh] w-full max-w-5xl flex-col overflow-hidden rounded-xl border border-white/15 bg-primary-orange/10 shadow-2xl backdrop-blur-2xl md:flex-row"
                   >
-                    {/* Sidebar (desktop): about this document */}
+                    {/* Sidebar (desktop): only for documents that have a summary */}
+                    {summary && (
                     <aside className="hidden shrink-0 flex-col gap-6 overflow-y-auto bg-primary-orange p-8 text-white md:flex md:w-[34%]">
                         <div className="flex flex-col gap-2">
                             {category && <p className="text-xs font-bold uppercase tracking-[0.18em] text-white/70">{category}</p>}
@@ -168,12 +169,11 @@ export default function DocumentPreviewModal({
                         </dl>
 
                         <div className="flex flex-col gap-3">
-                            <h3 className="text-lg font-bold">About this certification</h3>
-                            {summary && (
-                                <p className="whitespace-pre-line text-base leading-7 text-white/90">{summary}</p>
-                            )}
+                            <h3 className="border-b border-white/40 pb-2 text-lg font-bold">Strategic Significance</h3>
+                            <p className="whitespace-pre-line text-base leading-7 text-white/90">{summary}</p>
                         </div>
                     </aside>
+                    )}
 
                     <div className="flex min-w-0 flex-1 flex-col">
                     <div className="grid min-h-18 shrink-0 grid-cols-[minmax(0,1fr)_auto] items-center gap-4 border-b border-white/10 px-4 py-3 sm:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] sm:px-6">
