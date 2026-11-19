@@ -3,9 +3,10 @@ import AboutIntro from '@/features/about/default/AboutIntro'
 import OurFoundation from '@/features/about/OurFoundation'
 import OurJourney from '@/features/about/OurJourney'
 import CertificationsAndMemberships from '@/features/about/default/CertificationsAndMemberships'
+import ManagementTeam from '@/features/about/management/ManagementTeam'
 import type { Metadata } from 'next'
 import SectionSeparator from '@/components/ui/SectionSeparator'
-import { getAllCertificateDocuments } from '@/lib/sanity'
+import { getAllCertificateDocuments, getAllManagementMembers } from '@/lib/sanity'
 import { urlFor } from '@/sanity/lib/image'
 
 export const metadata: Metadata = {
@@ -30,6 +31,15 @@ const rotatedCertificateCovers = new Set([
 ])
 
 export default async function AboutPage(): Promise<React.JSX.Element> {
+  const managementMembers = (await getAllManagementMembers()).map((member) => ({
+    name: member.name,
+    title: member.title,
+    bio: member.bio,
+    imageUrl: member.photo
+      ? urlFor(member.photo).width(800).height(1000).fit('crop').url()
+      : null,
+  }))
+
   const certificateDocuments = (await getAllCertificateDocuments()).map((doc) => {
     const coverNeedsRotation = rotatedCertificateCovers.has(`${doc.country}:${doc.title}`)
     const coverBuilder = doc.coverImage ? urlFor(doc.coverImage) : null
@@ -70,6 +80,10 @@ export default async function AboutPage(): Promise<React.JSX.Element> {
       </div>
       <div className="relative">
         <OurJourney />
+        <SectionSeparator />
+      </div>
+      <div className="relative">
+        <ManagementTeam members={managementMembers} />
         <SectionSeparator />
       </div>
       <div className="relative">

@@ -7,8 +7,17 @@ import {
   featuredNewsPostsQuery,
   categoriesQuery,
   certificateDocumentsQuery,
+  managementMembersQuery,
   jobPostingsQuery,
 } from '@/sanity/lib/queries'
+
+export interface ManagementMemberDoc {
+  _id: string
+  name: string
+  title: string
+  bio?: string
+  photo?: any
+}
 
 export interface NewsPost {
   _id: string
@@ -100,6 +109,11 @@ export async function getAllCategories(): Promise<Category[]> {
 // Fetch all certificate/license/membership documents
 export async function getAllCertificateDocuments(): Promise<CertificateDocument[]> {
   return await client.fetch(certificateDocumentsQuery)
+}
+
+// Fetch management team members in display order
+export async function getAllManagementMembers(): Promise<ManagementMemberDoc[]> {
+  return await client.fetch(managementMembersQuery)
 }
 
 // Fetch all roles marked open for applications
