@@ -36,7 +36,7 @@ export default async function AboutPage(): Promise<React.JSX.Element> {
     title: member.title,
     bio: member.bio,
     imageUrl: member.photo
-      ? urlFor(member.photo).width(800).height(1000).fit('crop').url()
+      ? urlFor(member.photo).width(800).fit('max').url()
       : null,
   }))
 
