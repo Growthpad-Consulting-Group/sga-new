@@ -149,14 +149,12 @@ export default function CountryHeader(): React.JSX.Element {
           />
           <div
             aria-hidden
-            className={`absolute inset-0 backdrop-saturate-180 transition-colors duration-500 ${
-              isScrolled ? 'bg-white/70' : 'bg-primary-orange'
-            }`}
+            className="absolute inset-0 backdrop-saturate-180 bg-primary-orange"
           />
           <div
             aria-hidden
             className={`absolute inset-0 transition-shadow duration-500 ${
-              isScrolled ? 'ring-1 ring-inset shadow-lg shadow-black/5 ring-white/40' : ''
+              isScrolled ? 'shadow-lg shadow-black/5' : ''
             }`}
           />
         </div>
@@ -180,7 +178,7 @@ export default function CountryHeader(): React.JSX.Element {
           >
             <Link href={countryPrefix || '/'} className="flex items-center">
               <Image
-                src={isScrolled ? "/images/logo.svg" : "/images/logo-white.svg"}
+                src="/images/logo-white.svg"
                 alt="SGA Security Logo"
                 width={202}
                 height={72}
@@ -203,12 +201,12 @@ export default function CountryHeader(): React.JSX.Element {
                   <div key={item.href} className="relative">
                     <button
                       onClick={() => setDropdownOpen(!dropdownOpen)}
-                      className={`transition-all duration-200 hover:-translate-y-0.5 font-nav! font-bold tracking-widest flex items-center gap-1.5 text-xs xl:text-base ${isScrolled ? 'text-dark-charcoal hover:text-primary-orange' : 'text-white'}`}
+                      className="transition-all duration-200 hover:-translate-y-0.5 font-nav! font-bold tracking-widest flex items-center gap-1.5 text-xs xl:text-base text-white"
                     >
                       {item.label}
                       <Icon
                         icon="mdi:plus"
-                        className={`w-4 h-4 xl:w-5 xl:h-5 ${isScrolled ? 'text-dark-charcoal' : 'text-white'}`}
+                        className="w-4 h-4 xl:w-5 xl:h-5 text-white"
                       />
                     </button>
 
@@ -243,17 +241,17 @@ export default function CountryHeader(): React.JSX.Element {
                   key={item.href}
                   href={item.href}
                   className={`transition-all duration-200 hover:-translate-y-0.5 font-nav! font-bold tracking-widest flex items-center gap-1.5 text-xs xl:text-base ${isActive
-                    ? isScrolled ? 'text-primary-orange' : 'text-white'
-                    : isScrolled ? 'text-dark-charcoal hover:text-primary-orange' : 'text-white/90 hover:text-white'
+                    ? 'text-white'
+                    : 'text-white/90 hover:text-white'
                     }`}
                 >
-                  {item.icon && <Icon icon={item.icon} className={`w-4 h-4 xl:w-5 xl:h-5 ${isScrolled ? 'text-primary-orange' : 'text-white'}`} />}
+                  {item.icon && <Icon icon={item.icon} className="w-4 h-4 xl:w-5 xl:h-5 text-white" />}
                   {item.label}
                 </NavComponent>
               )
             })}
             <Button
-              variant={isScrolled ? 'solid' : 'white'}
+              variant="white"
               size="compact"
               className="w-auto! uppercase"
               onClick={openModal}
@@ -264,7 +262,7 @@ export default function CountryHeader(): React.JSX.Element {
 
           {/* Mobile Menu Button */}
           <button
-            className={isScrolled ? "lg:hidden p-2 text-dark-charcoal" : "lg:hidden p-2 text-white"}
+            className="lg:hidden p-2 text-white"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
