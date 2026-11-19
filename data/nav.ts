@@ -1,5 +1,4 @@
 import { industriesData } from './industries-data'
-import { coreServices } from './coreServices'
 export interface NavItem {
   href: string
   label: string
@@ -46,31 +45,32 @@ export const getCountryNavItems = (countryCode: string): NavItem[] => {
   ]
 }
 
-// Country header "Services" mega menu. Both tabs read from the shared core
-// services list (data/coreServices.ts), so the menu stays in sync with the
-// services shown on the homepage.
-const toServiceNavItems = (countryPrefix: string, servicesPath: 'individual' | 'corporate'): NavItem[] =>
-  coreServices.map((service) => ({
-    href: service.href ?? `${countryPrefix}/services/${servicesPath}`,
-    label: service.title,
-  }))
-
-export const getIndividualServicesItems = (countryPrefix: string): NavItem[] =>
-  toServiceNavItems(countryPrefix, 'individual')
+// Country header "Services" mega menu. Both tabs use the lists below, which are
+// separate from the homepage services (data/coreServices.ts).
+export const getIndividualServicesItems = (countryPrefix: string): NavItem[] => [
+  { href: 'https://www.sgasecurity.com/home-security-solution/', label: 'Home Security Solutions' },
+  { href: `${countryPrefix}/services/individual/security-guarding`, label: 'Guarding Services' },
+  { href: `${countryPrefix}/services/individual`, label: 'K-9 Services' },
+  { href: `${countryPrefix}/services/individual`, label: 'Alarm Response Services' },
+  { href: `${countryPrefix}/services/individual`, label: 'CCTV Services' },
+  { href: `${countryPrefix}/services/individual`, label: 'Courier Services' },
+  { href: `${countryPrefix}/services/individual`, label: 'Close Protection Services' },
+]
 
 export const getCorporateServicesItems = (countryPrefix: string): NavItem[] => [
-  { href: 'https://sgasecurity.com/home-security-solution/', label: 'Business Security Solutions' },
+  { href: 'https://sgasecurity.com/home-security-solution/', label: 'Business Solutions Services' },
   { href: `${countryPrefix}/services/corporate`, label: 'CCTV Services' },
-  { href: `${countryPrefix}/services/corporate`, label: 'Cash-In-Transit Services' },
-  { href: `${countryPrefix}/services/corporate`, label: 'Cash Management Solutions' },
-  { href: `${countryPrefix}/services/corporate/security-guarding`, label: 'Guarding Services' },
-  { href: `${countryPrefix}/services/corporate`, label: 'K-9 Services' },
   { href: `${countryPrefix}/services/corporate`, label: 'Alarm Response Services' },
+  { href: `${countryPrefix}/services/corporate/security-guarding`, label: 'Guarding Services' },
+  { href: `${countryPrefix}/services/corporate`, label: 'CIT & Cash Management Services' },
+  { href: `${countryPrefix}/services/corporate`, label: 'K-9 Services' },
+  { href: `${countryPrefix}/services/corporate`, label: 'Electronic Cargo Tracking System' },
   { href: `${countryPrefix}/services/corporate`, label: 'Courier Services' },
+  { href: `${countryPrefix}/services/corporate`, label: 'Fire Detection and Suppression Services' },
   { href: `${countryPrefix}/services/corporate`, label: 'Control Room Services' },
-  { href: `${countryPrefix}/services/corporate`, label: 'Electronic Cargo Tracking System (ECTS)' },
-  { href: `${countryPrefix}/services/corporate`, label: 'Reception Services' },
-  { href: `${countryPrefix}/services/corporate`, label: 'Close Protection Officer' },
+  { href: `${countryPrefix}/services/corporate`, label: 'Close Protection Services' },
+  { href: `${countryPrefix}/services/corporate`, label: 'Front Office & Reception Services' },
+  { href: `${countryPrefix}/services/corporate`, label: 'Risk Assessment Services' },
 ]
 
 // Country header "Industries" mega menu — all industries share one page's
