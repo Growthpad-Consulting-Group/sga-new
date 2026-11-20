@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import JobDetailsModal from '@/features/careers/JobDetailsModal'
@@ -30,13 +30,7 @@ interface JobCardsProps {
 const ITEMS_PER_PAGE = 6
 
 export default function JobCards({ jobs }: JobCardsProps) {
-  const { openModal, setJobTitles } = useCVModal()
-
-  // The CV form offers the job titles from Sanity while the careers page is open
-  useEffect(() => {
-    setJobTitles(Array.from(new Set(jobs.map((job) => job.title))))
-    return () => setJobTitles(null)
-  }, [jobs, setJobTitles])
+  const { openModal } = useCVModal()
   const [activeFilter, setActiveFilter] = useState('ALL COUNTRIES')
   const [selectedDepartment, setSelectedDepartment] = useState('ALL DEPARTMENTS')
   const [searchQuery, setSearchQuery] = useState('')

@@ -9,9 +9,6 @@ import CVModal from '@/components/modals/CVModal'
 export interface CVModalContextValue {
   openModal: () => void
   closeModal: () => void
-  /** Job titles for the form. null = use the default list (outside the careers page) */
-  jobTitles: string[] | null
-  setJobTitles: (titles: string[] | null) => void
 }
 
 /**
@@ -19,13 +16,14 @@ export interface CVModalContextValue {
  */
 export interface CVModalProviderProps {
   children: ReactNode
+  /** Open job titles from Sanity, loaded once in the root layout */
+  jobTitles: string[]
 }
 
 const CVModalContext = createContext<CVModalContextValue | null>(null)
 
-export function CVModalProvider({ children }: CVModalProviderProps) {
+export function CVModalProvider({ children, jobTitles }: CVModalProviderProps) {
   const [isOpen, setIsOpen] = useState(false)
-  const [jobTitles, setJobTitles] = useState<string[] | null>(null)
 
   const openModal = () => setIsOpen(true)
   const closeModal = () => setIsOpen(false)
@@ -33,8 +31,6 @@ export function CVModalProvider({ children }: CVModalProviderProps) {
   const value: CVModalContextValue = {
     openModal,
     closeModal,
-    jobTitles,
-    setJobTitles,
   }
 
   return (

@@ -5,23 +5,6 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import CountrySearchSelect from '@/components/ui/CountrySearchSelect'
 
-const jobTitleOptions = [
-  'Security Guard',
-  'Security Supervisor',
-  'Security Manager',
-  'CCTV Operator',
-  'Alarm Response Officer',
-  'Dog Handler',
-  'Cash-in-Transit Officer',
-  'Event Security Officer',
-  'Fire & Rescue Officer',
-  'Courier Security Officer',
-  'IT Security Specialist',
-  'Operations Manager',
-  'Administrative Assistant',
-  'Open Application'
-]
-
 interface CVFormData {
   fullName: string
   email: string
@@ -36,15 +19,12 @@ interface CVFormData {
 interface CVModalProps {
   isOpen: boolean
   onClose: () => void
-  /** Job titles from Sanity (careers page). null = use the default list */
-  jobTitles?: string[] | null
+  /** Open job titles from Sanity; "Open Application" is always offered last */
+  jobTitles: string[]
 }
 
-export default function CVModal({ isOpen, onClose, jobTitles = null }: CVModalProps): React.JSX.Element | null {
-  // Titles from Sanity plus "Other"; the default list is used outside the careers page
-  const titleOptions = jobTitles === null
-    ? jobTitleOptions
-    : [...jobTitles.filter((title) => title !== 'Open Application'), 'Open Application']
+export default function CVModal({ isOpen, onClose, jobTitles }: CVModalProps): React.JSX.Element | null {
+  const titleOptions = [...jobTitles.filter((title) => title !== 'Open Application'), 'Open Application']
   const [formData, setFormData] = useState<CVFormData>({
     fullName: '',
     email: '',

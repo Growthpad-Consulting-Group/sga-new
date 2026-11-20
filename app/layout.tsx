@@ -12,6 +12,7 @@ import { ReactNode } from 'react'
 import type { Metadata } from 'next'
 import { ViewTransitions } from 'next-view-transitions'
 import SmoothAnchorScroll from '@/components/ui/SmoothAnchorScroll'
+import { getAllJobPostings } from '@/lib/sanity'
 
 export const metadata: Metadata = {
   title: 'SGA Security Group - Leading Security Solutions in East Africa',
@@ -40,6 +41,10 @@ export default async function RootLayout({ children }: RootLayoutProps) {
   const pagePath = pathname.replace(/^\/(ke|ug|tz)(?=\/|$)/, '') || '/'
   const canonicalUrl = getCanonicalUrl(country, pagePath)
   const hrefLangLinks = formatHrefLangLinks(pagePath)
+
+  // Open job titles for the CV form come from Sanity, the source of truth
+  const jobs = await getAllJobPostings().catch(() => [])
+  const jobTitles = Array.from(new Set(jobs.map((job) => job.title)))
 
   // Determine if it's a country-specific layout that needs overlay header
   const isCountryPage = pathname.startsWith('/ke') || pathname.startsWith('/ug') || pathname.startsWith('/tz')
@@ -70,7 +75,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
         <CountryProvider country={country}>
           <CountryModalProvider>
             <EnquiryModalProvider>
-              <CVModalProvider>
+              <CVModalProvider jobTitles={jobTitles}>
                 <ConditionalHeader />
                 <main className={isCountryPage ? "" : ""}>
                   {children}
