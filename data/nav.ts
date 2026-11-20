@@ -1,4 +1,5 @@
 import { industriesData } from './industries-data'
+import { individualServicesMenu, corporateServicesMenu, resolveServiceHref } from './servicesMenu'
 export interface NavItem {
   href: string
   label: string
@@ -45,33 +46,13 @@ export const getCountryNavItems = (countryCode: string): NavItem[] => {
   ]
 }
 
-// Country header "Services" mega menu. Both tabs use the lists below, which are
-// separate from the homepage services (data/coreServices.ts).
-export const getIndividualServicesItems = (countryPrefix: string): NavItem[] => [
-  { href: 'https://www.sgasecurity.com/home-security-solution/', label: 'Home Security Solutions' },
-  { href: `${countryPrefix}/services/individual`, label: 'Guarding Services' },
-  { href: `${countryPrefix}/services/individual`, label: 'K-9 Services' },
-  { href: `${countryPrefix}/services/individual`, label: 'Alarm Response Services' },
-  { href: `${countryPrefix}/services/individual`, label: 'CCTV Services' },
-  { href: `${countryPrefix}/services/individual`, label: 'Courier Services' },
-  { href: `${countryPrefix}/services/individual`, label: 'Close Protection Services' },
-]
+// Country header "Services" mega menu. Both tabs read the shared list in data/servicesMenu.ts,
+// the same list the services page uses.
+export const getIndividualServicesItems = (countryPrefix: string): NavItem[] =>
+  individualServicesMenu.map((s) => ({ href: resolveServiceHref(countryPrefix, s.path), label: s.title }))
 
-export const getCorporateServicesItems = (countryPrefix: string): NavItem[] => [
-  { href: `${countryPrefix}/services/corporate`, label: 'Business Solutions Services' },
-  { href: `${countryPrefix}/services/corporate`, label: 'CCTV Services' },
-  { href: `${countryPrefix}/services/corporate`, label: 'Alarm Response Services' },
-  { href: `${countryPrefix}/services/corporate/security-guarding`, label: 'Guarding Services' },
-  { href: `${countryPrefix}/services/corporate`, label: 'CIT & Cash Management Services' },
-  { href: `${countryPrefix}/services/corporate`, label: 'K-9 Services' },
-  { href: `${countryPrefix}/services/corporate`, label: 'Electronic Cargo Tracking System' },
-  { href: `${countryPrefix}/services/corporate`, label: 'Courier Services' },
-  { href: `${countryPrefix}/services/corporate`, label: 'Fire Detection and Suppression Services' },
-  { href: `${countryPrefix}/services/corporate`, label: 'Control Room Services' },
-  { href: `${countryPrefix}/services/corporate`, label: 'Close Protection Services' },
-  { href: `${countryPrefix}/services/corporate`, label: 'Front Office & Reception Services' },
-  { href: `${countryPrefix}/services/corporate/risk-assessment`, label: 'Risk Assessment Services' },
-]
+export const getCorporateServicesItems = (countryPrefix: string): NavItem[] =>
+  corporateServicesMenu.map((s) => ({ href: resolveServiceHref(countryPrefix, s.path), label: s.title }))
 
 // Country header "Industries" mega menu — all industries share one page's
 // worth of content (accordion sections), but it's served at both /industries
