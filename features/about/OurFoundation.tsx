@@ -78,7 +78,7 @@ export default function OurFoundation({
             viewport={{ once: true }}
             className="space-y-3"
           >
-            <p className="text-5xl lg:text-4xl xl:text-5xl font-bold text-primary-orange capitalize">
+            <p className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary-orange capitalize">
               {title}
             </p>
             <div className="section-title-container">
