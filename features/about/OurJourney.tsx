@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 
 import { useInfiniteCarousel, CarouselArrows } from '@/components/ui/Carousel'
@@ -75,6 +75,20 @@ export default function OurJourney({ events = groupTimelineEvents }: OurJourneyP
 
   // Minimum swipe distance (in px)
   const minSwipeDistance = 50
+
+  // Mouse drag (touch is handled by the swipe handlers below)
+  const dragStartX = useRef<number | null>(null)
+  const onPointerDown = (e: React.PointerEvent) => {
+    if (e.pointerType !== 'mouse') return
+    dragStartX.current = e.clientX
+  }
+  const onPointerUp = (e: React.PointerEvent) => {
+    if (e.pointerType !== 'mouse' || dragStartX.current === null) return
+    const dx = e.clientX - dragStartX.current
+    dragStartX.current = null
+    if (dx < -40) infiniteCarousel.next()
+    else if (dx > 40) infiniteCarousel.previous()
+  }
 
   // Touch handlers for mobile
   const onTouchStart = (e: React.TouchEvent) => {
@@ -161,7 +175,10 @@ export default function OurJourney({ events = groupTimelineEvents }: OurJourneyP
 
         {/* Horizontal Timeline */}
         <div
-          className="relative overflow-hidden"
+          className="relative overflow-hidden select-none cursor-grab active:cursor-grabbing"
+          onPointerDown={onPointerDown}
+          onPointerUp={onPointerUp}
+          onPointerLeave={() => { dragStartX.current = null }}
           onTouchStart={onTouchStart}
           onTouchMove={onTouchMove}
           onTouchEnd={onTouchEnd}

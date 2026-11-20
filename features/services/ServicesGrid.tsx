@@ -89,7 +89,7 @@ export default function ServicesGrid({ services, country, type, isIndividual, co
 
                                     {service.href && (
                                         <div className="self-start">
-                                            <div className="inline-block bg-white text-primary-orange px-8 py-3.5 rounded-full font-black text-xs uppercase tracking-[0.2em] hover:bg-gray-50 transition-all shadow-lg">
+                                            <div className="inline-block bg-white text-primary-orange px-5 py-2 rounded-full font-black text-[10px] uppercase tracking-[0.16em] hover:bg-gray-50 transition-all shadow-lg">
                                                 {service.href?.startsWith("http") ? "LEARN MORE" : "VIEW DETAILS"}
                                             </div>
                                         </div>
