@@ -121,9 +121,12 @@ export const certificateDocumentsQuery = groq`
 
 // Get all job postings currently open for applications
 export const jobPostingsQuery = groq`
-  *[_type == "jobPosting" && isActive == true] | order(publishedAt desc) {
+  *[_type == "jobPosting" && isActive == true && (!defined(applicationDeadline) || applicationDeadline >= now())]
+    | order(featured desc, coalesce(applicationDeadline, "9999-12-31T00:00:00Z") asc, publishedAt desc) {
     _id,
     title,
+    slug,
+    featured,
     country,
     city,
     department,

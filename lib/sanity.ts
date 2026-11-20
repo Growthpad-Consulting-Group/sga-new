@@ -65,6 +65,8 @@ export interface CertificateDocument {
 export interface JobPosting {
   _id: string
   title: string
+  slug?: { current: string }
+  featured?: boolean
   country: 'Kenya' | 'Uganda' | 'Tanzania'
   city: string
   department: string

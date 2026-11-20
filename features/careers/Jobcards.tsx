@@ -1,10 +1,11 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import JobDetailsModal from '@/features/careers/JobDetailsModal'
 import JobApplicationModal from '@/features/careers/JobApplicationModal'
+import { useCVModal } from '@/contexts/CVModalContext'
 
 export interface JobItem {
   _id: string
@@ -19,6 +20,7 @@ export interface JobItem {
   responsibilities?: string[]
   requirements?: string[]
   applicationDeadline?: string
+  deadlineLabel?: string
 }
 
 interface JobCardsProps {
@@ -28,6 +30,13 @@ interface JobCardsProps {
 const ITEMS_PER_PAGE = 6
 
 export default function JobCards({ jobs }: JobCardsProps) {
+  const { openModal, setJobTitles } = useCVModal()
+
+  // The CV form offers the job titles from Sanity while the careers page is open
+  useEffect(() => {
+    setJobTitles(Array.from(new Set(jobs.map((job) => job.title))))
+    return () => setJobTitles(null)
+  }, [jobs, setJobTitles])
   const [activeFilter, setActiveFilter] = useState('ALL COUNTRIES')
   const [selectedDepartment, setSelectedDepartment] = useState('ALL DEPARTMENTS')
   const [searchQuery, setSearchQuery] = useState('')
@@ -234,6 +243,16 @@ export default function JobCards({ jobs }: JobCardsProps) {
               <p className="text-gray-500 text-sm">
                 {jobs.length === 0 ? 'Please check back soon for new opportunities.' : 'Try adjusting your search or filter criteria'}
               </p>
+              {jobs.length === 0 && (
+                <button
+                  type="button"
+                  onClick={openModal}
+                  className="mt-6 inline-flex items-center gap-2 rounded-full bg-primary-orange px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-primary-orange/20 transition-transform duration-150 active:scale-[0.98]"
+                >
+                  <Icon icon="mdi:file-send-outline" className="h-5 w-5" />
+                  Send us your CV
+                </button>
+              )}
             </div>
           )}
         </motion.div>
@@ -272,9 +291,16 @@ export default function JobCards({ jobs }: JobCardsProps) {
                   </p>
 
                   {/* Job type */}
-                  <p className="text-xs text-gray-600 leading-relaxed mb-4">
+                  <p className="text-xs text-gray-600 leading-relaxed mb-2">
                     {item.jobtype}
                   </p>
+
+                  {/* Deadline */}
+                  {item.deadlineLabel && (
+                    <p className="text-xs font-semibold text-primary-orange mb-4">
+                      Apply by {item.deadlineLabel}
+                    </p>
+                  )}
 
                   {/* Apply Link */}
                   <div className='flex justify-between gap-2 mt-auto'>
