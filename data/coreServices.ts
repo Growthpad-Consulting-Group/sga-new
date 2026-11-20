@@ -11,13 +11,13 @@ export interface CoreService {
 export const coreServices: CoreService[] = [
   {
     title: 'Home Security Solutions',
-    detailSlugs: { individual: 'home-security' },
     description: 'Comprehensive security solutions for residential properties with 24/7 monitoring and rapid response.',
     imageUrl: '/images/group/core-services/home-security-family.jpg',
     href: 'https://www.sgasecurity.com/home-security-solution/',
   },
   {
     title: 'Courier Services',
+    detailSlugs: { corporate: 'courier' },
     description: 'Secure courier services for sensitive documents and valuable items with tracked delivery.',
     imageUrl: '/images/group/core-services/courier.jpg',
   },
@@ -29,16 +29,19 @@ export const coreServices: CoreService[] = [
   },
   {
     title: 'Alarm Response Services',
+    detailSlugs: { corporate: 'alarm-response' },
     description: 'Rapid alarm response teams ready to respond to security alerts 24/7.',
     imageUrl: '/images/group/core-services/alarm.jpg',
   },
   {
     title: 'Electronic Cargo Tracking Services',
+    detailSlugs: { corporate: 'tracking' },
     description: 'Advanced GPS tracking solutions for vehicles and assets with real-time monitoring.',
     imageUrl: '/images/group/core-services/tracking.jpg',
   },
   {
     title: 'CIT and Cash Management Services',
+    detailSlugs: { corporate: 'cit-and-cash-management' },
     description: 'Secure movement of valuables with armored fleet and vetted crews.',
     imageUrl: '/images/group/core-services/cit.jpg',
   },
@@ -49,6 +52,7 @@ export const coreServices: CoreService[] = [
   },
   {
     title: 'K-9 Services',
+    detailSlugs: { corporate: 'security-dogs' },
     description: 'Trained K9 units for enhanced security patrols and detection services.',
     imageUrl: '/images/group/core-services/k9.jpg',
   },

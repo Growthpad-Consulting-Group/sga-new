@@ -50,23 +50,33 @@ interface OurImpactInNumbersProps {
   backgroundImage?: string
 }
 
+// Values that have already counted up on this page. The carousel remounts copies of
+// each item as it moves, so without this every slide would count again.
+const countedValues = new Set<string>()
+
 // Counts from 0 up to the figure (e.g. "19,000+", "$19m") when it scrolls into view.
+// Each figure counts up only once; later copies show the final number straight away.
 // The prefix ($) and suffix (+, m) are kept as they are.
 function CountUp({ value }: { value: string }) {
   const match = value.match(/^(\D*)([\d,.]+)(.*)$/)
   const prefix = match?.[1] ?? ''
   const target = match ? Number(match[2].replace(/,/g, '')) : 0
   const suffix = match?.[3] ?? ''
-  const [current, setCurrent] = useState(0)
+  const [current, setCurrent] = useState(() => (countedValues.has(value) ? target : 0))
   const ref = useRef<HTMLSpanElement>(null)
 
   useEffect(() => {
+    if (countedValues.has(value)) {
+      setCurrent(target)
+      return
+    }
     const el = ref.current
     if (!el) return
     let frame = 0
     const observer = new IntersectionObserver(([entry]) => {
       if (!entry.isIntersecting) return
       observer.disconnect()
+      countedValues.add(value)
       const duration = 1600
       const start = performance.now()
       const tick = (now: number) => {
@@ -82,7 +92,7 @@ function CountUp({ value }: { value: string }) {
       observer.disconnect()
       cancelAnimationFrame(frame)
     }
-  }, [target])
+  }, [value, target])
 
   return (
     <span ref={ref}>

@@ -78,7 +78,7 @@ export default async function CountryHomePage({ params }: Props) {
             </div>
 
             <div id="services" className="relative">
-                <GroupIntegratedSolutions title="Our Products and Services" />
+                <GroupIntegratedSolutions title="Our Products and Services" countryCode={country as 'ke' | 'ug' | 'tz'} />
                 <SectionSeparator imageUrl={`/images/misc/section-pattern-${country}.svg`} />
             </div>
 

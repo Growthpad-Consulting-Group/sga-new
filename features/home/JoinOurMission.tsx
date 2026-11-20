@@ -68,7 +68,7 @@ export default function JoinOurMission(): React.JSX.Element {
               {/* Parallax: the image is taller than its frame and moves slightly on scroll */}
               <motion.div style={{ y }} className="absolute inset-x-0 top-[-10%] bottom-[-10%]">
                 <Image
-                  src="/images/careers/hero.jpg"
+                  src="/images/careers/spa-0443-edit.jpg"
                   alt="SGA Team"
                   fill
                   sizes="(max-width: 768px) 100vw, 90vw"

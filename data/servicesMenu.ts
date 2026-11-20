@@ -40,10 +40,10 @@ const fromCore = (title: string, path: string, coreTitle: string = title): MenuS
 export const individualServicesMenu: MenuService[] = [
   fromCore('Home Security Solutions', 'https://www.sgasecurity.com/home-security-solution/'),
   fromCore('Guarding Services', '/services/individual'),
-  fromCore('K-9 Services', '/services/individual'),
-  fromCore('Alarm Response Services', '/services/individual'),
+  fromCore('K-9 Services', '/services/individual/security-dogs'),
+  fromCore('Alarm Response Services', '/services/individual/alarm-response'),
   fromCore('CCTV Services', '/services/individual'),
-  fromCore('Courier Services', '/services/individual'),
+  fromCore('Courier Services', '/services/individual/courier'),
   fromCore('Close Protection Services', '/services/individual'),
 ]
 
@@ -55,12 +55,12 @@ export const corporateServicesMenu: MenuService[] = [
     imageUrl: '/images/group/core-services/guarding.jpg',
   },
   fromCore('CCTV Services', '/services/corporate'),
-  fromCore('Alarm Response Services', '/services/corporate'),
+  fromCore('Alarm Response Services', '/services/corporate/alarm-response'),
   fromCore('Guarding Services', '/services/corporate/security-guarding'),
-  fromCore('CIT & Cash Management Services', '/services/corporate', 'CIT and Cash Management Services'),
-  fromCore('K-9 Services', '/services/corporate'),
-  fromCore('Electronic Cargo Tracking System', '/services/corporate', 'Electronic Cargo Tracking Services'),
-  fromCore('Courier Services', '/services/corporate'),
+  fromCore('CIT & Cash Management Services', '/services/corporate/cit-and-cash-management', 'CIT and Cash Management Services'),
+  fromCore('K-9 Services', '/services/corporate/security-dogs'),
+  fromCore('Electronic Cargo Tracking System', '/services/corporate/tracking', 'Electronic Cargo Tracking Services'),
+  fromCore('Courier Services', '/services/corporate/courier'),
   {
     title: 'Fire Detection and Suppression Services',
     path: '/services/corporate',

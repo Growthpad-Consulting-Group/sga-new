@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import Image from 'next/image'
 import { Icon } from '@iconify/react'
 
@@ -7,10 +8,12 @@ interface CircleCardProps {
   description?: string
   href?: string
   withShadow?: boolean
+  /** Optional call-to-action (e.g. a button) shown near the bottom of the circle */
+  action?: ReactNode
 }
 
 // Circle card with image, dark overlay and text, as used in "Our Products and Services"
-export default function CircleCard({ title, imageUrl, description, href, withShadow = true }: CircleCardProps) {
+export default function CircleCard({ title, imageUrl, description, href, withShadow = true, action }: CircleCardProps) {
   return (
     <div className="flex flex-col items-center transition-transform duration-300 hover:-translate-y-0.5">
       <div className={`relative w-80 h-80 md:w-[400px] md:h-[400px] lg:w-[320px] lg:h-[320px] xl:w-[400px] xl:h-[400px] rounded-full overflow-hidden group ${withShadow ? 'shadow-2xl' : ''} ${href ? 'cursor-pointer' : ''}`}>
@@ -26,7 +29,7 @@ export default function CircleCard({ title, imageUrl, description, href, withSha
         <div className="absolute inset-0 bg-dark-charcoal/60 group-hover:bg-primary-orange/80 transition-colors duration-300"></div>
         {/* Content */}
         <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-10">
-          <h3 className="text-2xl md:text-4xl lg:text-2xl xl:text-4xl font-bold text-white mb-3">
+          <h3 className="text-2xl md:text-3xl lg:text-2xl xl:text-3xl font-bold text-white mb-3">
             {title}
           </h3>
           {description && (
@@ -41,6 +44,11 @@ export default function CircleCard({ title, imageUrl, description, href, withSha
             />
           )}
         </div>
+        {action && (
+          <div className="absolute inset-x-0 bottom-8 flex flex-col items-center gap-2 px-6 z-30">
+            {action}
+          </div>
+        )}
         {href && (
           <a
             href={href}
