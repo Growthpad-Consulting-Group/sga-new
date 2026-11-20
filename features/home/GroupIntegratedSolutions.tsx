@@ -7,20 +7,40 @@ import Button from '@/components/ui/Button'
 import CircleCard from '@/components/ui/CircleCard'
 import { useEffect, useRef, useState } from 'react'
 import { coreServices, type CoreService } from '@/data/coreServices'
+import { Link } from 'next-view-transitions'
+
+type CountryCode = 'ke' | 'ug' | 'tz'
+const countryLabels: Record<CountryCode, string> = { ke: 'Kenya', ug: 'Uganda', tz: 'Tanzania' }
+const countryCodes: CountryCode[] = ['ke', 'ug', 'tz']
+
+/** Detail page for a service in one country, e.g. /ke/services/corporate/courier */
+const detailHref = (solution: Solution, cc: CountryCode): string | undefined => {
+  const slugs = solution.detailSlugs
+  if (!slugs) return undefined
+  return slugs.corporate
+    ? `/${cc}/services/corporate/${slugs.corporate}`
+    : `/${cc}/services/individual/${slugs.individual}`
+}
+
+const ctaClass = 'inline-block px-5 py-2 rounded-full bg-primary-orange text-white font-semibold text-sm lg:text-xs hover:opacity-90 transition-opacity duration-300 ease-in-out'
 
 type Solution = CoreService
 
 interface GroupIntegratedSolutionsProps {
   title?: string
   description?: string
+  /** Set on country pages so "Learn more" goes straight to that country */
+  countryCode?: CountryCode
 }
 
 export default function GroupIntegratedSolutions({
   title = "What We Offer",
   description = "Security solutions built to keep your business, family, home, and property safe every day across Kenya, Uganda, and Tanzania.",
+  countryCode,
   solutions = coreServices
 }: GroupIntegratedSolutionsProps & { solutions?: Solution[] }) {
   const { openModal } = useEnquiryModal()
+  const [openPickerIndex, setOpenPickerIndex] = useState<number | null>(null)
   const [itemsPerPage, setItemsPerPage] = useState(3)
   const [isHovered, setIsHovered] = useState(false)
 
@@ -120,6 +140,38 @@ export default function GroupIntegratedSolutions({
             {loopedSolutions.map((solution, index) => {
               const isClone = index >= solutions.length
 
+              const cta = !isClone && solution.detailSlugs ? (
+                countryCode ? (
+                  <Link href={detailHref(solution, countryCode) ?? '#'} className={ctaClass}>
+                    Learn more
+                  </Link>
+                ) : (
+                  <>
+                    {openPickerIndex === index && (
+                      <div className="flex flex-wrap justify-center gap-2">
+                        {countryCodes.map((cc) => (
+                          <Link
+                            key={cc}
+                            href={detailHref(solution, cc) ?? '#'}
+                            className="px-3 py-1 rounded-full bg-white text-dark-charcoal text-xs font-semibold transition-colors duration-300 ease-in-out hover:bg-primary-orange hover:text-white"
+                          >
+                            {countryLabels[cc]}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                    <button
+                      type="button"
+                      onClick={() => setOpenPickerIndex(openPickerIndex === index ? null : index)}
+                      className={ctaClass}
+                      aria-expanded={openPickerIndex === index}
+                    >
+                      Learn more
+                    </button>
+                  </>
+                )
+              ) : undefined
+
               return (
                 <div
                   key={`${solution.title}-${index}`}
@@ -133,6 +185,7 @@ export default function GroupIntegratedSolutions({
                     imageUrl={solution.imageUrl}
                     href={isClone ? undefined : solution.href}
                     withShadow={false}
+                    action={cta}
                   />
                 </div>
               )
