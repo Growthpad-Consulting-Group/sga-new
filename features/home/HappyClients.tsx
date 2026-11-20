@@ -111,7 +111,7 @@ export default function HappyClients() {
               <div
                 key={index}
                 className={`
-                  border-r border-b border-dark-charcoal/10 aspect-square p-6 sm:p-8 flex items-center justify-center
+                  border-r border-b border-dark-charcoal/10 aspect-[4/3] md:aspect-square p-4 sm:p-8 flex items-center justify-center
                   hover:z-10 hover:scale-[1.02] hover:bg-light-grey transition-all duration-300
                 `}
               >
@@ -120,7 +120,7 @@ export default function HappyClients() {
                   alt={client.name}
                   width={160}
                   height={160}
-                  className="h-auto max-h-32 w-full object-contain transition-all duration-300"
+                  className="h-auto max-h-20 sm:max-h-32 w-full object-contain transition-all duration-300"
                 />
               </div>
             );
