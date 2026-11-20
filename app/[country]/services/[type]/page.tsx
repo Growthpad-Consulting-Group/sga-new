@@ -2,8 +2,7 @@ import { notFound } from 'next/navigation'
 import FloatingWhatsApp from '@/components/ui/FloatingWhatsApp'
 import ServicesGrid from '@/features/services/ServicesGrid'
 import ServicesTypeHero from '@/features/services/ServicesTypeHero'
-import { individualServices, corporateServices } from '@/features/services/data'
-import { coreServices } from '@/data/coreServices'
+import { individualServicesMenu, corporateServicesMenu, resolveServiceHref } from '@/data/servicesMenu'
 import { countries } from '@/data/countries-data'
 import type { Metadata } from 'next'
 
@@ -35,21 +34,21 @@ export default async function ServicesTypePage({ params }: Props) {
 
     if (!c || (type !== 'individual' && type !== 'corporate')) notFound()
 
-    const servicesMap = type === 'individual' ? individualServices : corporateServices
-
-    // Cards come from the shared core services list. The country header menu uses
-    // its own lists (data/nav.ts), so the two can differ.
-    // A card links to its detail page only where one exists for this service type.
-    const services = coreServices.map((service) => {
-        const detailSlug = service.detailSlugs?.[type]
-        const hasDetail = !!detailSlug && !!servicesMap[detailSlug]
+    // Cards come from the same list as the country header menu (data/servicesMenu.ts).
+    // A card links out only where the menu item points to a detail page or an external site.
+    const menuList = type === 'individual' ? individualServicesMenu : corporateServicesMenu
+    const services = menuList.map((service) => {
+        const isDetailPage = service.path.split('/').length > 3
+        const href = service.path.startsWith('http')
+            ? service.path
+            : isDetailPage ? resolveServiceHref(`/${country}`, service.path) : undefined
         return {
-            slug: detailSlug ?? service.title.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+            slug: service.title.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
             serviceName: service.title,
             serviceIcon: '',
             heroImage: service.imageUrl,
             heroDescription: service.description,
-            href: service.href ?? (hasDetail ? `/${country}/services/${type}/${detailSlug}` : undefined),
+            href,
         }
     })
 

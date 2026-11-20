@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import Image from 'next/image'
@@ -73,6 +73,16 @@ export default function ServicePageTemplate({
 
     const { openModal } = useEnquiryModal()
     const [relatedServicesIndex, setRelatedServicesIndex] = useState(0)
+    const [relatedPaused, setRelatedPaused] = useState(false)
+
+    // Autoplay every 5s like the group page carousel; pauses while the mouse is over it
+    useEffect(() => {
+        if (relatedPaused || !relatedServices || relatedServices.length <= 3) return
+        const timer = setInterval(() => {
+            setRelatedServicesIndex((prev) => (prev >= relatedServices.length - 3 ? 0 : prev + 1))
+        }, 5000)
+        return () => clearInterval(timer)
+    }, [relatedPaused, relatedServices])
 
     const handlePrevRelated = () => {
         if (!relatedServices) return
@@ -131,80 +141,18 @@ export default function ServicePageTemplate({
                             transition={{ duration: 0.8, delay: 0.2 }}
                             className="space-y-4 sm:space-y-6 flex flex-col justify-center relative"
                         >
-                            {/* Service Type Badge */}
-                            <div className="mb-2">
-                                <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold bg-primary-orange text-white`}>
-                                    For {serviceType}
-                                </span>
-                            </div>
 
-                            {/* Breadcrumbs */}
-                            <nav className="flex items-center space-x-2 text-xs md:text-sm font-bold text-navy-blue tracking-wide uppercase">
-                                <span>{countryName}</span>
-                                <span className="text-gray-400">|</span>
-                                <span>{serviceType} Service</span>
-                            </nav>
-
-                            <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold text-primary-orange leading-none">
+                            <h2 className="text-xl md:text-2xl lg:text-4xl font-bold text-primary-orange leading-tight">
                                 {serviceName}
                             </h2>
                             <p className="text-base md:text-xl text-gray-700 leading-relaxed max-w-xl">
                                 {heroDescription}
                             </p>
 
-                            {/* Buttons */}
-                            <div className="flex flex-col sm:flex-row items-center gap-4 pt-4">
-                                <Button href={ctaButtonLink || "/contact"} variant="solid" size="small">
-                                    Request a Quote
-                                </Button>
-                                <Button
-                                    href={`tel:${emergencyPhone.replace(/\s/g, '')}`}
-                                    variant="light"
-                                    size="small"
-                                    icon="streamline-sharp:emergency-call-remix"
-                                    arrow={false}
-                                >
-                                    View Emergency Numbers
-                                </Button>
-                            </div>
-
-                            {/* Explore More Animated Arrow */}
-                            <motion.div
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ delay: 1, duration: 0.5 }}
-                                className="pt-8"
-                            >
-                                <motion.div
-                                    animate={{
-                                        y: [0, 8, 0],
-                                    }}
-                                    transition={{
-                                        duration: 2,
-                                        repeat: Infinity,
-                                        ease: "easeInOut",
-                                    }}
-                                    className="flex items-center gap-3 cursor-pointer group"
-                                    onClick={() => {
-                                        const nextSection = document.querySelector('#overview') || document.querySelector('section:nth-of-type(2)')
-                                        if (nextSection) {
-                                            nextSection.scrollIntoView({ behavior: 'smooth' })
-                                        }
-                                    }}
-                                >
-                                    <div className="flex items-center justify-center w-6 h-6 rounded-full border border-navy-blue group-hover:bg-navy-blue transition-colors">
-                                        <Icon
-                                            icon="lucide:arrow-down"
-                                            className="w-3.5 h-3.5 text-navy-blue group-hover:text-white transition-colors"
-                                        />
-                                    </div>
-                                    <span className="text-xs text-navy-blue uppercase font-bold tracking-widest">Explore more</span>
-                                </motion.div>
-                            </motion.div>
                         </motion.div>
 
                         {/* Right Column - Image */}
-                        <div className="relative w-full aspect-4/3 lg:aspect-square">
+                        <div className="relative w-full aspect-4/3 lg:aspect-square lg:max-w-[85%] lg:ml-auto">
                             <Image
                                 src={heroImage}
                                 alt={`${serviceName} Service - ${heroTitle}`}
@@ -216,40 +164,6 @@ export default function ServicePageTemplate({
                         </div>
                     </div>
 
-                    {/* Integrated Control Room Bar */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.6 }}
-                        className="mt-4 mb-8"
-                    >
-                        <div className="flex flex-col lg:flex-row items-center justify-between gap-6 p-6 md:p-8 rounded-[40px] border border-gray-100 bg-white shadow-xl shadow-gray-100/50 relative z-10">
-                            <div className="text-center lg:text-left flex items-start gap-4">
-                                <div className="mt-1 shrink-0">
-                                    <Icon icon="solar:phone-calling-bold-duotone" className="w-8 h-8 text-primary-orange" />
-                                </div>
-                                <div className="space-y-1">
-                                    <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Talk to us now</p>
-                                    <h3 className="text-xl md:text-2xl font-bold text-navy-blue">
-                                        Talk to our {countryName} Control Room
-                                    </h3>
-                                </div>
-                            </div>
-                            <div className="flex flex-col sm:flex-row items-center gap-4 w-full lg:w-auto">
-                                <Button
-                                    href={`tel:${emergencyPhone.replace(/\s/g, '')}`}
-                                    variant="solid"
-                                    size="small"
-                                    arrow={false}
-                                >
-                                    Call for Free
-                                </Button>
-                                <Button onClick={openModal} variant="light" size="small" arrow={false}>
-                                    Book Service
-                                </Button>
-                            </div>
-                        </div>
-                    </motion.div>
                 </div>
 
                 {/* Section Separator at Bottom */}
@@ -257,7 +171,7 @@ export default function ServicePageTemplate({
             </section>
 
             {/* What We Handle Section */}
-            <section className="flex items-center justify-center bg-primary-orange text-white py-20 sm:py-28 relative overflow-hidden">
+            <section className="flex items-center justify-center bg-primary-orange text-white py-20 sm:py-28 relative">
                 <motion.div
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -271,15 +185,14 @@ export default function ServicePageTemplate({
                             initial={{ opacity: 0, x: -30 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            className="space-y-10"
+                            className="space-y-10 lg:col-span-2"
                         >
                             <div className="section-title-container-white w-full">
-                                <h2 className="section-title text-3xl md:text-5xl font-bold text-white capitalize leading-tight">
+                                <h2 className="section-title text-2xl md:text-3xl lg:text-4xl font-bold text-white">
                                     What We Handle
                                 </h2>
-                                <div className="section-title-bar w-24 h-1.5 bg-white mt-4 opacity-30"></div>
                             </div>
-                            <ul className="grid grid-cols-1 gap-6">
+                            <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 {handlePoints.map((point, index) => (
                                     <motion.li
                                         key={index}
@@ -301,91 +214,11 @@ export default function ServicePageTemplate({
                             </ul>
                         </motion.div>
 
-                        {/* Image */}
-                        <motion.div
-                            initial={{ opacity: 0, x: 30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            className="relative w-full aspect-4/3 lg:aspect-square"
-                        >
-                            <div className="absolute inset-0 border-2 border-white/20 rounded-[40px] translate-x-4 translate-y-4"></div>
-                            <Image
-                                src={overviewImage}
-                                alt={`${serviceName} - What We Handle`}
-                                fill
-                                className="object-cover rounded-[40px] shadow-2xl relative z-10"
-                            />
-                        </motion.div>
                     </div>
                 </motion.div>
                 <SectionSeparator />
             </section>
 
-            {/* Response Packages Section */}
-            <section className="flex items-center justify-center bg-light-grey text-dark-charcoal py-20 sm:py-28 relative">
-                <motion.div
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: '-100px' }}
-                    transition={{ duration: 0.6, ease: 'easeOut' }}
-                    className="container-fluid mx-auto"
-                >
-                    <div className="mb-16 text-center lg:text-left">
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="space-y-4"
-                        >
-                            <div className="section-title-container w-full">
-                                <h2 className="section-title text-2xl md:text-3xl lg:text-4xl font-bold text-primary-orange">
-                                    {serviceType === 'Corporate' ? 'Corporate Response Packages' : 'Response Packages'}
-                                </h2>
-                            </div>
-                        </motion.div>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 items-stretch">
-                        {responsePackages.map((pkg, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: index * 0.1 }}
-                                className="bg-primary-orange rounded-[40px] p-10 shadow-2xl shadow-primary-orange/20 hover:shadow-primary-orange/30 hover:-translate-y-1 transition-[translate,box-shadow] duration-300 flex flex-col relative overflow-hidden group"
-                            >
-                                <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16 group-hover:scale-110 transition-transform"></div>
-                                <h3 className="text-2xl lg:text-3xl font-semibold text-white mb-8 tracking-tight leading-tight">
-                                    {pkg.title}
-                                </h3>
-                                <ul className="space-y-4 grow mb-10">
-                                    {pkg.features.map((feature, featureIndex) => (
-                                        <li
-                                            key={featureIndex}
-                                            className="flex items-start gap-4 text-white font-medium group/item"
-                                        >
-                                            <div className="mt-1 shrink-0 bg-white/20 p-1 rounded-full group-hover/item:bg-white/40 transition-colors">
-                                                <Icon
-                                                    icon="solar:check-circle-bold"
-                                                    className="w-4 h-4 text-white"
-                                                />
-                                            </div>
-                                            <span className="text-lg">{feature}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                                <div className="mt-auto">
-                                    <Button onClick={openModal} variant="white" size="small" arrow={false} className="w-full">
-                                        Contact Us
-                                    </Button>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </motion.div>
-                <SectionSeparator />
-            </section>
 
             {/* Why Choose Section (Optional, if points exist) */}
             {whyChoosePoints && whyChoosePoints.length > 0 && (
@@ -445,7 +278,11 @@ export default function ServicePageTemplate({
 
             {/* Related Services Section */}
             {relatedServices && relatedServices.length > 0 && (
-                <section className="flex items-center justify-center bg-white relative pb-20 pt-20 sm:pt-28 overflow-hidden">
+                <>
+                <div className="relative h-0 z-30">
+                    <SectionSeparator className="-top-7" />
+                </div>
+                <section className="flex items-center justify-center bg-white relative pb-8 pt-20 sm:pt-28 overflow-hidden">
                     <motion.div
                         initial={{ opacity: 0, y: 50 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -476,7 +313,7 @@ export default function ServicePageTemplate({
                             </motion.div>
                         </div>
 
-                        <div className="relative">
+                        <div className="relative" onMouseEnter={() => setRelatedPaused(true)} onMouseLeave={() => setRelatedPaused(false)}>
                             <div className="grid md:grid-cols-3 gap-8 pb-12">
                                 {relatedServices.slice(relatedServicesIndex, relatedServicesIndex + 3).map((service, index) => (
                                     <motion.div
@@ -486,7 +323,7 @@ export default function ServicePageTemplate({
                                         transition={{ duration: 0.4, delay: index * 0.1 }}
                                         className="bg-white rounded-[40px] overflow-hidden shadow-xl hover:shadow-xl hover:-translate-y-1 transition-[translate,box-shadow] duration-300 flex flex-col group h-full"
                                     >
-                                        <div className="relative w-full aspect-16/10 overflow-hidden">
+                                        <div className="relative w-full aspect-16/9 overflow-hidden">
                                             <Image
                                                 src={service.image}
                                                 alt={service.title}
@@ -496,32 +333,22 @@ export default function ServicePageTemplate({
                                             <div className="absolute inset-0 bg-navy-blue/10 group-hover:bg-transparent transition-colors"></div>
                                         </div>
 
-                                        <div className="bg-primary-orange p-8 lg:p-10 flex flex-col flex-1 relative">
+                                        <div className="bg-primary-orange p-6 lg:p-8 flex flex-col flex-1 relative">
                                             <div className="absolute top-0 right-0 w-24 h-24 bg-white/5 rounded-full -mr-12 -mt-12 group-hover:scale-110 transition-transform"></div>
-                                            <h3 className="text-2xl lg:text-3xl font-extrabold text-white mb-4 tracking-tight leading-tight">
+                                            <h3 className="text-xl lg:text-2xl font-extrabold text-white mb-3 tracking-tight leading-tight">
                                                 {service.title}
                                             </h3>
-                                            <p className="text-white/90 text-lg leading-relaxed mb-8 grow font-medium">
+                                            <p className="text-white/90 text-base leading-relaxed grow font-medium">
                                                 {service.summary}
                                             </p>
-                                            <div className="self-start">
-                                                <Button
-                                                    href={service.link || "/contact"}
-                                                    variant="white"
-                                                    size="small"
-                                                    arrow={false}
-                                                >
-                                                    Request a Quote
-                                                </Button>
-                                            </div>
                                         </div>
                                     </motion.div>
                                 ))}
                             </div>
                         </div>
                     </motion.div>
-                    <SectionSeparator />
                 </section>
+                </>
             )}
 
         </>
