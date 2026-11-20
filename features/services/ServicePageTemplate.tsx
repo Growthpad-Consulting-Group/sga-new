@@ -74,24 +74,34 @@ export default function ServicePageTemplate({
     const { openModal } = useEnquiryModal()
     const [relatedServicesIndex, setRelatedServicesIndex] = useState(0)
     const [relatedPaused, setRelatedPaused] = useState(false)
+    // Three cards on md and up, one card on mobile
+    const [relatedPerView, setRelatedPerView] = useState(3)
+
+    useEffect(() => {
+        const mq = window.matchMedia('(min-width: 768px)')
+        const update = () => setRelatedPerView(mq.matches ? 3 : 1)
+        update()
+        mq.addEventListener('change', update)
+        return () => mq.removeEventListener('change', update)
+    }, [])
 
     // Autoplay every 5s like the group page carousel; pauses while the mouse is over it
     useEffect(() => {
-        if (relatedPaused || !relatedServices || relatedServices.length <= 3) return
+        if (relatedPaused || !relatedServices || relatedServices.length <= relatedPerView) return
         const timer = setInterval(() => {
-            setRelatedServicesIndex((prev) => (prev >= relatedServices.length - 3 ? 0 : prev + 1))
+            setRelatedServicesIndex((prev) => (prev >= relatedServices.length - relatedPerView ? 0 : prev + 1))
         }, 5000)
         return () => clearInterval(timer)
-    }, [relatedPaused, relatedServices])
+    }, [relatedPaused, relatedServices, relatedPerView])
 
     const handlePrevRelated = () => {
         if (!relatedServices) return
-        setRelatedServicesIndex((prev) => (prev === 0 ? Math.max(0, relatedServices.length - 3) : prev - 1))
+        setRelatedServicesIndex((prev) => (prev === 0 ? Math.max(0, relatedServices.length - relatedPerView) : prev - 1))
     }
 
     const handleNextRelated = () => {
         if (!relatedServices) return
-        setRelatedServicesIndex((prev) => (prev >= relatedServices.length - 3 ? 0 : prev + 1))
+        setRelatedServicesIndex((prev) => (prev >= relatedServices.length - relatedPerView ? 0 : prev + 1))
     }
 
     const handlePoints = [
@@ -315,7 +325,7 @@ export default function ServicePageTemplate({
 
                         <div className="relative" onMouseEnter={() => setRelatedPaused(true)} onMouseLeave={() => setRelatedPaused(false)}>
                             <div className="grid md:grid-cols-3 gap-8 pb-12">
-                                {relatedServices.slice(relatedServicesIndex, relatedServicesIndex + 3).map((service, index) => (
+                                {relatedServices.slice(relatedServicesIndex, relatedServicesIndex + relatedPerView).map((service, index) => (
                                     <motion.div
                                         key={relatedServicesIndex + index}
                                         initial={{ opacity: 0, scale: 0.95 }}
