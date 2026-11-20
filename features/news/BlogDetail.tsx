@@ -590,9 +590,9 @@ export default function BlogDetail({ blog, relatedPosts = [] }: BlogDetailProps)
                                                         className="object-cover rounded-t-[2.5rem] group-hover:scale-105 transition-transform duration-500"
                                                     />
                                                 </div>
-                                                <div className="p-8 flex flex-col flex-1">
+                                                <div className="px-3 py-8 md:px-4 flex flex-col flex-1">
                                                     <span className="text-sm font-bold text-primary-orange uppercase tracking-widest mb-4 block">{post.category}</span>
-                                                    <h5 className="text-2xl font-bold text-dark-charcoal leading-tight mb-5 group-hover:text-primary-orange transition-colors capitalize">{post.title}</h5>
+                                                    <h5 className="text-lg md:text-xl lg:text-2xl font-semibold text-dark-charcoal leading-tight line-clamp-3 mb-5 group-hover:text-primary-orange transition-colors capitalize">{post.title}</h5>
                                                     <p className="text-gray-500 text-sm line-clamp-2 mt-auto font-medium leading-relaxed">{post.summary}</p>
                                                 </div>
                                             </div>
@@ -606,7 +606,7 @@ export default function BlogDetail({ blog, relatedPosts = [] }: BlogDetailProps)
                         <div className="mt-24 flex justify-center">
                             <Link
                                 href={`${articlesBase}#news`}
-                                className="group relative inline-flex items-center justify-center bg-primary-orange text-white px-10 py-5 rounded-full font-bold text-lg shadow-lg hover:shadow-xl transition-all hover:scale-105"
+                                className="group relative inline-flex items-center justify-center bg-primary-orange text-white px-6 py-3 rounded-full font-bold text-sm md:text-base shadow-lg hover:shadow-xl transition-all hover:scale-105"
                             >
                                 <Icon icon="mdi:chevron-left" className="w-6 h-6 mr-2 transition-transform group-hover:-translate-x-1" />
                                 {backLabel}
