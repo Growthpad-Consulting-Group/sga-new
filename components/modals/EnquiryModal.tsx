@@ -235,10 +235,19 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                   >
                     <Icon icon="mdi:close" className="w-6 h-6" />
                   </button>
-                  <div className="pr-12 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                    <p className="text-xs font-bold tracking-[0.18em] uppercase text-primary-orange">SGA Security</p>
-                    <span className="h-4 border-l border-gray-300 self-center" aria-hidden="true" />
+                  <div className="pr-12 flex flex-wrap items-center md:items-baseline gap-x-3 gap-y-1">
+                    <p className="hidden md:block text-xs font-bold tracking-[0.18em] uppercase text-primary-orange">SGA Security</p>
+                    <span className="hidden md:block h-4 border-l border-gray-300 self-center" aria-hidden="true" />
                     <h3 className="text-xs font-bold tracking-[0.18em] uppercase text-dark-charcoal">Enquire Now</h3>
+                    {/* Phones: the sidebar with the call back button is hidden, so it sits in the heading */}
+                    <button
+                      type="button"
+                      onClick={() => setIsCallbackOpen(true)}
+                      className="md:hidden ml-auto inline-flex items-center gap-1.5 rounded-full border border-primary-orange px-3 py-1 text-xs font-semibold uppercase tracking-wide text-primary-orange hover:bg-primary-orange hover:text-white transition-colors"
+                    >
+                      <Icon icon="mdi:phone-in-talk" className="w-4 h-4" />
+                      Call back
+                    </button>
                   </div>
                 </div>
 
