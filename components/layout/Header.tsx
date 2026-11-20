@@ -70,9 +70,9 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Prevent background scroll while an overlay is open
+  // Prevent background scroll while the country modal is open
   useEffect(() => {
-    if (countryModalOpen || mobileMenuOpen) {
+    if (countryModalOpen) {
       document.body.style.overflow = 'hidden'
     } else {
       document.body.style.overflow = 'unset'
@@ -80,7 +80,7 @@ export default function Header() {
     return () => {
       document.body.style.overflow = 'unset'
     }
-  }, [countryModalOpen, mobileMenuOpen])
+  }, [countryModalOpen])
 
   const isActiveCountry = (path: string): boolean => {
     return path === '/' ? pathname === '/' : pathname.startsWith(path)
