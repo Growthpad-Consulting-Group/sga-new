@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Icon } from '@iconify/react'
+import CountrySearchSelect from '@/components/ui/CountrySearchSelect'
 
 const jobTitleOptions = [
   'Security Guard',
@@ -18,7 +19,7 @@ const jobTitleOptions = [
   'IT Security Specialist',
   'Operations Manager',
   'Administrative Assistant',
-  'Other'
+  'Open Application'
 ]
 
 interface CVFormData {
@@ -35,9 +36,15 @@ interface CVFormData {
 interface CVModalProps {
   isOpen: boolean
   onClose: () => void
+  /** Job titles from Sanity (careers page). null = use the default list */
+  jobTitles?: string[] | null
 }
 
-export default function CVModal({ isOpen, onClose }: CVModalProps): React.JSX.Element | null {
+export default function CVModal({ isOpen, onClose, jobTitles = null }: CVModalProps): React.JSX.Element | null {
+  // Titles from Sanity plus "Other"; the default list is used outside the careers page
+  const titleOptions = jobTitles === null
+    ? jobTitleOptions
+    : [...jobTitles.filter((title) => title !== 'Open Application'), 'Open Application']
   const [formData, setFormData] = useState<CVFormData>({
     fullName: '',
     email: '',
@@ -237,7 +244,7 @@ export default function CVModal({ isOpen, onClose }: CVModalProps): React.JSX.El
                   <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-6">
                     {/* Full Name */}
                     <div>
-                      <label htmlFor="fullName" className="block text-sm font-semibold text-dark-charcoal mb-2">
+                      <label htmlFor="fullName" className="block text-sm font-semibold text-dark-charcoal mb-2 capitalize">
                         Full name *
                       </label>
                       <input
@@ -254,7 +261,7 @@ export default function CVModal({ isOpen, onClose }: CVModalProps): React.JSX.El
 
                     {/* Email */}
                     <div>
-                      <label htmlFor="email" className="block text-sm font-semibold text-dark-charcoal mb-2">
+                      <label htmlFor="email" className="block text-sm font-semibold text-dark-charcoal mb-2 capitalize">
                         Email *
                       </label>
                       <input
@@ -271,7 +278,7 @@ export default function CVModal({ isOpen, onClose }: CVModalProps): React.JSX.El
 
                     {/* Phone Number */}
                     <div>
-                      <label htmlFor="phone" className="block text-sm font-semibold text-dark-charcoal mb-2">
+                      <label htmlFor="phone" className="block text-sm font-semibold text-dark-charcoal mb-2 capitalize">
                         Phone number *
                       </label>
                       <input
@@ -288,28 +295,19 @@ export default function CVModal({ isOpen, onClose }: CVModalProps): React.JSX.El
 
                     {/* Country */}
                     <div>
-                      <label htmlFor="country" className="block text-sm font-semibold text-dark-charcoal mb-2">
+                      <label htmlFor="country" className="block text-sm font-semibold text-dark-charcoal mb-2 capitalize">
                         Country *
                       </label>
-                      <select
+                      <CountrySearchSelect
                         id="country"
-                        name="country"
-                        required
                         value={formData.country}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 text-base border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-hidden transition-colors"
-                      >
-                        <option value="">Select your country</option>
-                        <option value="Kenya">Kenya</option>
-                        <option value="Tanzania">Tanzania</option>
-                        <option value="Uganda">Uganda</option>
-                        <option value="Other">Other</option>
-                      </select>
+                        onChange={(country) => setFormData(prev => ({ ...prev, country }))}
+                      />
                     </div>
 
                     {/* Job Title */}
                     <div className="md:col-span-2">
-                      <label htmlFor="jobTitle" className="block text-sm font-semibold text-dark-charcoal mb-2">
+                      <label htmlFor="jobTitle" className="block text-sm font-semibold text-dark-charcoal mb-2 capitalize">
                         Job title *
                       </label>
                       <select
@@ -321,7 +319,7 @@ export default function CVModal({ isOpen, onClose }: CVModalProps): React.JSX.El
                         className="w-full px-4 py-3 text-base border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-hidden transition-colors"
                       >
                         <option value="">Select job title</option>
-                        {jobTitleOptions.map((title) => (
+                        {titleOptions.map((title) => (
                           <option key={title} value={title}>
                             {title}
                           </option>
@@ -332,7 +330,7 @@ export default function CVModal({ isOpen, onClose }: CVModalProps): React.JSX.El
 
                   {/* Upload CV Field */}
                   <div>
-                    <label htmlFor="cvFile" className="block text-sm font-semibold text-dark-charcoal mb-2">
+                    <label htmlFor="cvFile" className="block text-sm font-semibold text-dark-charcoal mb-2 capitalize">
                       Upload CV *
                     </label>
                     <div
@@ -377,7 +375,7 @@ export default function CVModal({ isOpen, onClose }: CVModalProps): React.JSX.El
 
                   {/* Cover Note */}
                   <div>
-                    <label htmlFor="coverNote" className="block text-sm font-semibold text-dark-charcoal mb-2">
+                    <label htmlFor="coverNote" className="block text-sm font-semibold text-dark-charcoal mb-2 capitalize">
                       Cover note (Optional)
                     </label>
                     <textarea
@@ -392,7 +390,7 @@ export default function CVModal({ isOpen, onClose }: CVModalProps): React.JSX.El
                   </div>
 
                   {/* Checkbox */}
-                  <div className="flex items-start gap-3 rounded-lg bg-light-grey/70 p-4">
+                  <div className="flex items-center gap-3 rounded-lg bg-light-grey/70 p-4">
                     <input
                       type="checkbox"
                       id="agreeToPrivacy"
@@ -400,7 +398,7 @@ export default function CVModal({ isOpen, onClose }: CVModalProps): React.JSX.El
                       required
                       checked={formData.agreeToPrivacy}
                       onChange={handleCheckboxChange}
-                      className="mt-1 w-5 h-5 text-navy-blue border-gray-300 rounded-sm focus:ring-navy-blue"
+                      className="w-5 h-5 shrink-0 text-navy-blue border-gray-300 rounded-sm focus:ring-navy-blue"
                     />
                     <label htmlFor="agreeToPrivacy" className="text-sm text-dark-charcoal">
                       I agree to SGA's{' '}

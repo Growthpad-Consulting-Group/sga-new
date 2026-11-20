@@ -28,6 +28,9 @@ export default async function CareersPage() {
     responsibilities: job.responsibilities,
     requirements: job.requirements,
     applicationDeadline: job.applicationDeadline,
+    deadlineLabel: job.applicationDeadline
+      ? new Intl.DateTimeFormat('en', { year: 'numeric', month: 'long', day: 'numeric' }).format(new Date(job.applicationDeadline))
+      : undefined,
   }))
 
   return (

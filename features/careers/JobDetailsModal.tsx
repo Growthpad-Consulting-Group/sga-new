@@ -106,6 +106,15 @@ export default function JobDetailsModal({ isOpen, onClose, job, onApply }: JobDe
                           <p className="text-gray-600">{job.date}</p>
                         </div>
                       </div>
+                      {job.deadlineLabel && (
+                        <div className="flex items-start gap-3">
+                          <Icon icon="mdi:calendar-clock" className="w-5 h-5 text-primary-orange mt-0.5" />
+                          <div>
+                            <p className="font-semibold text-gray-800">Apply By</p>
+                            <p className="text-gray-600">{job.deadlineLabel}</p>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
 

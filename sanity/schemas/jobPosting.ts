@@ -12,6 +12,13 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'slug',
+      title: 'URL Slug',
+      type: 'slug',
+      options: { source: 'title', maxLength: 96 },
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: 'country',
       title: 'Country',
       type: 'string',
@@ -83,8 +90,15 @@ export default defineType({
     defineField({
       name: 'applicationDeadline',
       title: 'Application Deadline',
-      type: 'date',
-      description: 'Optional. The role remains visible until it is marked closed.',
+      type: 'datetime',
+      description: 'Optional. The role is hidden from the site after this time.',
+    }),
+    defineField({
+      name: 'featured',
+      title: 'Featured',
+      type: 'boolean',
+      initialValue: false,
+      description: 'Pin this role to the top of the careers list.',
     }),
     defineField({
       name: 'isActive',
@@ -100,11 +114,13 @@ export default defineType({
       city: 'city',
       country: 'country',
       isActive: 'isActive',
+      deadline: 'applicationDeadline',
     },
-    prepare({ title, city, country, isActive }) {
+    prepare({ title, city, country, isActive, deadline }) {
+      const due = deadline ? ` • Apply by ${new Date(deadline).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}` : ''
       return {
         title,
-        subtitle: `${city}, ${country} • ${isActive ? 'Open' : 'Closed'}`,
+        subtitle: `${city}, ${country} • ${isActive ? 'Open' : 'Closed'}${due}`,
       }
     },
   },
