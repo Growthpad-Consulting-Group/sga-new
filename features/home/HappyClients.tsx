@@ -105,13 +105,13 @@ export default function HappyClients() {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-6 overflow-hidden border-t border-l border-dark-charcoal/10">
+        <div className="grid grid-cols-2 md:grid-cols-6 lg:grid-cols-8 overflow-hidden border-t border-l border-dark-charcoal/10">
           {carousel.currentItems(filteredClients).map((client, index) => {
             return (
               <div
                 key={index}
                 className={`
-                  border-r border-b border-dark-charcoal/10 aspect-[4/3] md:aspect-square p-4 sm:p-8 flex items-center justify-center
+                  border-r border-b border-dark-charcoal/10 aspect-[4/3] md:aspect-square p-2 sm:p-3 flex items-center justify-center
                   hover:z-10 hover:scale-[1.02] hover:bg-light-grey transition-all duration-300
                 `}
               >
