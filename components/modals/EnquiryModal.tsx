@@ -6,6 +6,7 @@ import { Icon } from '@iconify/react'
 import { usePathname } from 'next/navigation'
 import { useBodyScrollLock } from '@/lib/useBodyScrollLock'
 import { coreServiceInterestOptions } from '@/data/coreServices'
+import CountrySearchSelect from '@/components/ui/CountrySearchSelect'
 
 const COUNTRY_NAMES_BY_ROUTE: Record<string, string> = {
   ke: 'Kenya',
@@ -93,8 +94,8 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    // Validate form
-    if (formData.interests.length === 0 || !formData.agreeToContact) {
+    // Validate form (country is chosen in a react-select, so check it here)
+    if (!formData.country || formData.interests.length === 0 || !formData.agreeToContact) {
       return
     }
 
@@ -424,20 +425,11 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                       <label htmlFor="country" className="block text-sm font-semibold text-dark-charcoal mb-2">
                         Country *
                       </label>
-                      <select
+                      <CountrySearchSelect
                         id="country"
-                        name="country"
-                        required
                         value={formData.country}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 text-base border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-hidden transition-colors"
-                      >
-                        <option value="">Select your country</option>
-                        <option value="Kenya">Kenya</option>
-                        <option value="Tanzania">Tanzania</option>
-                        <option value="Uganda">Uganda</option>
-                        <option value="Other">Other</option>
-                      </select>
+                        onChange={(country) => setFormData(prev => ({ ...prev, country }))}
+                      />
                     </div>
                   </div>
 
