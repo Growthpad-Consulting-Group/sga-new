@@ -6,6 +6,7 @@ import { Icon } from '@iconify/react'
 import { usePathname } from 'next/navigation'
 import { useBodyScrollLock } from '@/lib/useBodyScrollLock'
 import { coreServiceInterestOptions } from '@/data/coreServices'
+import CountrySearchSelect from '@/components/ui/CountrySearchSelect'
 
 const COUNTRY_NAMES_BY_ROUTE: Record<string, string> = {
   ke: 'Kenya',
@@ -93,8 +94,8 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    // Validate form
-    if (formData.interests.length === 0 || !formData.agreeToContact) {
+    // Validate form (country is chosen in a react-select, so check it here)
+    if (!formData.country || formData.interests.length === 0 || !formData.agreeToContact) {
       return
     }
 
@@ -252,7 +253,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                 </div>
 
                 {isCallbackOpen ? (
-                  <form onSubmit={handleCallbackSubmit} className="space-y-5 sm:space-y-6 max-w-xl">
+                  <form onSubmit={handleCallbackSubmit} className="space-y-5 sm:space-y-6">
                     <div>
                       <h2 className="text-2xl md:text-3xl font-bold text-primary-orange">Request a call back</h2>
                       <p className="text-sm text-gray-600 mt-1">Leave your details and we'll call you back.</p>
@@ -424,20 +425,11 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                       <label htmlFor="country" className="block text-sm font-semibold text-dark-charcoal mb-2">
                         Country *
                       </label>
-                      <select
+                      <CountrySearchSelect
                         id="country"
-                        name="country"
-                        required
                         value={formData.country}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 text-base border-2 border-gray-300 rounded-lg focus:border-navy-blue focus:outline-hidden transition-colors"
-                      >
-                        <option value="">Select your country</option>
-                        <option value="Kenya">Kenya</option>
-                        <option value="Tanzania">Tanzania</option>
-                        <option value="Uganda">Uganda</option>
-                        <option value="Other">Other</option>
-                      </select>
+                        onChange={(country) => setFormData(prev => ({ ...prev, country }))}
+                      />
                     </div>
                   </div>
 
@@ -625,7 +617,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                   </div>
 
                   {/* Checkbox */}
-                  <div className="flex items-start gap-3">
+                  <div className="flex items-center gap-3">
                     <input
                       type="checkbox"
                       id="agreeToContact"
@@ -633,7 +625,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                       required
                       checked={formData.agreeToContact}
                       onChange={handleCheckboxChange}
-                      className="mt-1 w-5 h-5 text-navy-blue border-gray-300 rounded-sm focus:ring-navy-blue"
+                      className="w-5 h-5 shrink-0 text-navy-blue border-gray-300 rounded-sm focus:ring-navy-blue"
                     />
                     <label htmlFor="agreeToContact" className="text-sm text-dark-charcoal">
                       I agree to be contacted by SGA Security regarding my enquiry *
