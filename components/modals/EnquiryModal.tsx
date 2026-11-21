@@ -617,7 +617,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                   </div>
 
                   {/* Checkbox */}
-                  <div className="flex items-start gap-3">
+                  <div className="flex items-center gap-3">
                     <input
                       type="checkbox"
                       id="agreeToContact"
@@ -625,7 +625,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                       required
                       checked={formData.agreeToContact}
                       onChange={handleCheckboxChange}
-                      className="mt-1 w-5 h-5 text-navy-blue border-gray-300 rounded-sm focus:ring-navy-blue"
+                      className="w-5 h-5 shrink-0 text-navy-blue border-gray-300 rounded-sm focus:ring-navy-blue"
                     />
                     <label htmlFor="agreeToContact" className="text-sm text-dark-charcoal">
                       I agree to be contacted by SGA Security regarding my enquiry *
