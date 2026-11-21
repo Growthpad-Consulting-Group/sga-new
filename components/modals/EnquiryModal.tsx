@@ -253,7 +253,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                 </div>
 
                 {isCallbackOpen ? (
-                  <form onSubmit={handleCallbackSubmit} className="space-y-5 sm:space-y-6 max-w-xl">
+                  <form onSubmit={handleCallbackSubmit} className="space-y-5 sm:space-y-6">
                     <div>
                       <h2 className="text-2xl md:text-3xl font-bold text-primary-orange">Request a call back</h2>
                       <p className="text-sm text-gray-600 mt-1">Leave your details and we'll call you back.</p>
