@@ -28,5 +28,5 @@ export default async function CountryIndustriesPage({ params }: Props) {
     const c = countries[country]
     if (!c) notFound()
 
-    return <IndustriesPageContent country={c} />
+    return <IndustriesPageContent country={c} countryCode={country} />
 }

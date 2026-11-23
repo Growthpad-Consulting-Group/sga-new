@@ -1,4 +1,5 @@
 import { industriesData } from './industries-data'
+import { countryIndustries, type CountryCodeWithIndustries } from './industry-clients'
 import { individualServicesMenu, corporateServicesMenu, resolveServiceHref } from './servicesMenu'
 export interface NavItem {
   href: string
@@ -60,11 +61,21 @@ export const getCorporateServicesItems = (countryPrefix: string): NavItem[] =>
 // you out of that country's header/context. Link within the current country.
 // Country header "Industries" mega menu. Reads from the single industries
 // source (data/industries-data.ts), so the menu always matches the industries shown.
-export const getIndustriesItems = (countryPrefix: string): NavItem[] =>
-  Object.entries(industriesData).map(([slug, industry]) => ({
+// Kenya and Uganda list their own industries (same as their industries page); others use the shared list
+export const getIndustriesItems = (countryPrefix: string): NavItem[] => {
+  const code = countryPrefix.replace(/^\//, '') as CountryCodeWithIndustries
+  const ownIndustries = countryIndustries[code]
+  if (ownIndustries) {
+    return ownIndustries.map((industry) => ({
+      href: `${countryPrefix}/industries#${industry.id}`,
+      label: industry.title,
+    }))
+  }
+  return Object.entries(industriesData).map(([slug, industry]) => ({
     href: `${countryPrefix}/industries#${slug}`,
     label: industry.industryName,
   }))
+}
 
 // Country header mega menu "Shortcuts" column
 export const getHeaderShortcuts = (countryPrefix: string): NavItem[] => [

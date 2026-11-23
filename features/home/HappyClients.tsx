@@ -102,7 +102,7 @@ export default function HappyClients() {
                 key={index}
                 className={`
                   border-r border-b border-dark-charcoal/10 aspect-[4/3] md:aspect-square p-2 sm:p-3 flex items-center justify-center
-                  hover:z-10 hover:scale-[1.02] hover:bg-light-grey transition-all duration-300
+                  hover:z-10 hover:scale-[1.02] hover:bg-light-grey hover:shadow-xl hover:shadow-primary-orange/10 transition-all duration-300
                 `}
               >
                 <Image
