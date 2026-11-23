@@ -196,6 +196,14 @@ export const industriesData: Record<string, IndustryData> = {
         ...placeholderIndustry('Multinationals'),
         cardImage: '/images/group/industries/multinational.png',
     },
+    telecoms: {
+        ...placeholderIndustry('Telecoms'),
+        cardImage: '/images/group/industries/multinational.png',
+    },
+    mining: {
+        ...placeholderIndustry('Mining'),
+        cardImage: '/images/group/industries/multinational.png',
+    },
     ngos: {
         ...placeholderIndustry("NGO's"),
         cardImage: '/images/group/industries/ngo.png',
@@ -205,6 +213,9 @@ export const industriesData: Record<string, IndustryData> = {
         cardImage: '/images/group/industries/other-industries.png',
     },
 }
+
+// Industry names in display order, derived from industriesData. Client filters use these.
+export const industryNames: string[] = Object.values(industriesData).map((industry) => industry.industryName)
 
 // Homepage carousel cards, derived from industriesData
 export const industryCards = Object.values(industriesData).map((industry) => ({
