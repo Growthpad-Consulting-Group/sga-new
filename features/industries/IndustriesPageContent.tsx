@@ -6,6 +6,7 @@ import WhyChooseUs from '@/features/home/WhyChooseUs'
 import FloatingWhatsApp from '@/components/ui/FloatingWhatsApp'
 import SectionSeparator from '@/components/ui/SectionSeparator'
 import { industriesData, resolveIndustryData } from '@/data/industries-data'
+import { countryIndustries, type CountryCodeWithIndustries } from '@/data/industry-clients'
 import type { CountryContact } from '@/data/countries-data'
 
 // Some industry images referenced in the data haven't been uploaded yet —
@@ -21,9 +22,16 @@ interface IndustriesPageContentProps {
     /** Present when rendered under /[country]/industries, so the WhatsApp
      * button and header stay scoped to that country instead of the group. */
     country?: CountryContact
+    /** Country code for the country's own industries and clients (ke, ug) */
+    countryCode?: string
 }
 
-export default function IndustriesPageContent({ country }: IndustriesPageContentProps) {
+export default function IndustriesPageContent({ country, countryCode }: IndustriesPageContentProps) {
+    // Kenya and Uganda have their own industries and clients; Tanzania uses the shared list until its data is ready
+    const ownIndustries = countryCode && countryCode in countryIndustries
+        ? countryIndustries[countryCode as CountryCodeWithIndustries]
+        : undefined
+
     const industries = Object.entries(industriesData).map(([slug, data]) => {
         const resolved = resolveIndustryData(data, 'East Africa', '')
         return {
@@ -46,12 +54,22 @@ export default function IndustriesPageContent({ country }: IndustriesPageContent
                         title="Industries We Serve"
                         subtitle="Security Solutions for Every Industry"
                         backgroundColor="bg-light-grey"
-                        accordionItems={industries.map((industry) => ({
-                            id: industry.slug,
-                            title: industry.industryName,
-                            description: industry.description,
-                            image: industry.image,
-                        }))}
+                        compact
+                        accordionItems={ownIndustries
+                            ? ownIndustries.map((industry) => ({
+                                id: industry.id,
+                                title: industry.title,
+                                description: industry.descriptionFrom
+                                    ? industriesData[industry.descriptionFrom]?.overviewDescription ?? ''
+                                    : '',
+                                clients: industry.clients,
+                            }))
+                            : industries.map((industry) => ({
+                                id: industry.slug,
+                                title: industry.industryName,
+                                description: industry.description,
+                                image: industry.image,
+                            }))}
                         image={industries[0]?.image}
                     />
                 ) : (

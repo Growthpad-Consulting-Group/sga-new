@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import Image from 'next/image'
@@ -9,6 +9,8 @@ export interface AccordionItem {
   title: string
   description: string
   image?: string
+  /** Clients for this industry. When set, the right panel shows their logos instead of the image. */
+  clients?: { name: string; logo?: string }[]
 }
 
 interface WhyChooseUsProps {
@@ -18,11 +20,14 @@ interface WhyChooseUsProps {
   image?: string
   title?: string
   subtitle?: string
+  /** Shorter accordion rows, so a long list fits beside the panel */
+  compact?: boolean
 }
 
 export default function WhyChooseUs({
   title,
   subtitle,
+  compact = false,
   countryName = 'Kenya',
   backgroundColor = 'bg-white',
   image = '/images/ke/why-choose-us.jpg',
@@ -50,7 +55,10 @@ export default function WhyChooseUs({
   ],
 }: WhyChooseUsProps) {
   const [openIndex, setOpenIndex] = useState(0)
+  // Right-hand panel, so opening an item at the bottom of a long list can bring the logos into view
+  const panelRef = useRef<HTMLDivElement>(null)
   const activeImage = accordionItems[openIndex]?.image ?? image
+  const activeClients = accordionItems[openIndex]?.clients ?? []
 
   useEffect(() => {
     const openItem = (hashId: string, scrollDelay = 0) => {
@@ -142,16 +150,25 @@ export default function WhyChooseUs({
                   whileHover={openIndex !== index ? { scale: 1.01 } : {}}
                 >
                   <button
-                    onClick={() => setOpenIndex(openIndex === index ? -1 : index)}
-                    className="w-full flex items-center justify-between px-4 py-2 text-left transition-colors group"
+                    onClick={() => {
+                      const opening = openIndex !== index
+                      setOpenIndex(opening ? index : -1)
+                      if (opening) {
+                        // Let the panel update, then bring it into view
+                        window.setTimeout(() => {
+                          panelRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                        }, 150)
+                      }
+                    }}
+                    className={`w-full flex items-center justify-between px-4 ${compact ? 'py-1.5' : 'py-2'} text-left transition-colors group`}
                   >
-                    <h3 className={`text-xl md:text-3xl lg:text-xl xl:text-2xl font-medium capitalize transition-colors duration-300 ${openIndex === index ? 'text-primary-orange' : 'text-black group-hover:text-primary-orange'
+                    <h3 className={`${compact ? 'text-lg md:text-xl lg:text-lg xl:text-xl' : 'text-xl md:text-3xl lg:text-xl xl:text-2xl'} font-medium capitalize transition-colors duration-300 ${openIndex === index ? 'text-primary-orange' : 'text-black group-hover:text-primary-orange'
                       }`} style={{ textTransform: 'capitalize' }}>
                       {item.title}
                     </h3>
                     <Icon
                       icon={openIndex === index ? 'mynaui:arrow-up-circle' : 'mynaui:arrow-down-circle'}
-                      className={`w-7 h-7 md:w-10 md:h-10 shrink-0 ml-4 ${openIndex === index ? 'text-primary-orange' : 'text-dark-charcoal'
+                      className={`${compact ? 'w-6 h-6 md:w-8 md:h-8' : 'w-7 h-7 md:w-10 md:h-10'} shrink-0 ml-4 ${openIndex === index ? 'text-primary-orange' : 'text-dark-charcoal'
                         }`}
                     />
                   </button>
@@ -163,9 +180,11 @@ export default function WhyChooseUs({
                       transition={{ duration: 0.3 }}
                       className="overflow-hidden"
                     >
-                      <p className="px-6 pb-6 text-base md:text-lg lg:text-sm xl:text-base text-dark-charcoal leading-relaxed">
-                        {item.description}
-                      </p>
+                      {item.description && (
+                        <p className="px-6 pb-6 text-base md:text-lg lg:text-sm xl:text-base text-dark-charcoal leading-relaxed">
+                          {item.description}
+                        </p>
+                      )}
                     </motion.div>
                   )}
                 </motion.div>
@@ -179,8 +198,32 @@ export default function WhyChooseUs({
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="flex w-full flex-col justify-center"
+            ref={panelRef}
+            className="scroll-mt-32 flex w-full flex-col justify-center"
           >
+            {activeClients.length > 0 ? (
+              <div className="h-[450px] w-full overflow-y-auto rounded-2xl bg-white p-4 md:h-[640px] md:p-6">
+                <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+                  {activeClients.map((client) => (
+                    <div
+                      key={client.name}
+                      className="flex aspect-[4/3] items-center justify-center rounded-xl border border-dark-charcoal/10 p-3 text-center transition-shadow duration-700 hover:shadow-xl hover:shadow-primary-orange/10"
+                    >
+                      {client.logo ? (
+                        <img
+                          src={`/images/clients/${client.logo}`}
+                          alt={client.name}
+                          loading="lazy"
+                          className="max-h-full max-w-full object-contain"
+                        />
+                      ) : (
+                        <span className="text-sm font-semibold leading-snug text-dark-charcoal">{client.name}</span>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : (
             <div className="relative h-[450px] w-full overflow-hidden rounded-2xl md:h-[600px]">
               <AnimatePresence initial={false} mode="sync">
                 <motion.div
@@ -202,6 +245,7 @@ export default function WhyChooseUs({
                 </motion.div>
               </AnimatePresence>
             </div>
+            )}
           </motion.div>
         </div>
       </motion.div>
