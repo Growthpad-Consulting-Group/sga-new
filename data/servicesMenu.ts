@@ -50,7 +50,7 @@ export const individualServicesMenu: MenuService[] = [
 export const corporateServicesMenu: MenuService[] = [
   {
     title: 'Business Solutions Services',
-    path: '/services/corporate',
+    path: '/services/corporate/business-solutions',
     description: 'Integrated security solutions for businesses, combining guarding, electronic systems and monitoring.',
     imageUrl: '/images/group/core-services/guarding.jpg',
   },

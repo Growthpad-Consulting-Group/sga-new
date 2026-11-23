@@ -453,6 +453,31 @@ const closeProtection: ServiceData = {
     metaDescription: 'Specialized close protection officers for executive and VIP security from SGA Security in {country}.',
 }
 
+const businessSolutions: ServiceData = {
+    serviceName: 'Business Solutions',
+    serviceIcon: 'mdi:briefcase-outline',
+    serviceType: 'Corporate',
+    heroImage: '/images/group/core-services/guarding.jpg',
+    heroTitle: 'Integrated Security Solutions for Business',
+    heroDescription:
+        'Integrated security solutions for businesses across {country}, combining guarding, electronic systems and monitoring.',
+    overviewTitle: '',
+    overviewDescription: '',
+    overviewImage: '/images/group/core-services/guarding.jpg',
+    handlePointsIntro: '',
+    handlePointsTitle: '',
+    handlePoints: [],
+    featuresTitle: '',
+    features: [],
+    relatedServices: [
+        { image: '/images/services/guarding.jpg', category: 'Security Service', title: 'Security Guarding', summary: 'Professional on-site security personnel for your business.', link: '/{cc}/services/corporate/security-guarding' },
+        { image: '/images/services/cctv.jpg', category: 'Security Service', title: 'CCTV Services', summary: 'CCTV, access control and alarm systems.', link: '/{cc}/services/corporate/cctv' },
+        { image: '/images/services/alarm-response.jpg', category: 'Security Service', title: 'Alarm Response', summary: 'Monitored alarms with armed response teams on call.', link: '/{cc}/services/corporate/alarm-response' },
+    ],
+    metaTitle: 'Business Solutions - SGA Security {country}',
+    metaDescription: 'Integrated security solutions for businesses in {country}, combining guarding, electronic systems and monitoring.',
+}
+
 // -------------------------------------------------------------------
 // LOOKUP MAPS
 // -------------------------------------------------------------------
@@ -478,6 +503,7 @@ export const corporateServices: Record<string, ServiceData> = {
     'control-room': controlRoom,
     reception,
     'close-protection': closeProtection,
+    'business-solutions': businessSolutions,
 }
 
 /** Inject country name and country code into template strings */
