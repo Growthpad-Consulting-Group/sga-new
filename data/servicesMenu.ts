@@ -39,12 +39,12 @@ const fromCore = (title: string, path: string, coreTitle: string = title): MenuS
 
 export const individualServicesMenu: MenuService[] = [
   fromCore('Home Security Solutions', 'https://www.sgasecurity.com/home-security-solution/'),
-  fromCore('Guarding Services', '/services/individual'),
+  fromCore('Guarding Services', '/services/corporate/security-guarding'),
   fromCore('K-9 Services', '/services/individual/security-dogs'),
   fromCore('Alarm Response Services', '/services/individual/alarm-response'),
-  fromCore('CCTV Services', '/services/individual'),
+  fromCore('CCTV Services', '/services/individual/cctv'),
   fromCore('Courier Services', '/services/individual/courier'),
-  fromCore('Close Protection Services', '/services/individual'),
+  fromCore('Close Protection Services', '/services/individual/close-protection'),
 ]
 
 export const corporateServicesMenu: MenuService[] = [
@@ -54,7 +54,7 @@ export const corporateServicesMenu: MenuService[] = [
     description: 'Integrated security solutions for businesses, combining guarding, electronic systems and monitoring.',
     imageUrl: '/images/group/core-services/guarding.jpg',
   },
-  fromCore('CCTV Services', '/services/corporate'),
+  fromCore('CCTV Services', '/services/corporate/cctv'),
   fromCore('Alarm Response Services', '/services/corporate/alarm-response'),
   fromCore('Guarding Services', '/services/corporate/security-guarding'),
   fromCore('CIT & Cash Management Services', '/services/corporate/cit-and-cash-management', 'CIT and Cash Management Services'),
@@ -63,13 +63,13 @@ export const corporateServicesMenu: MenuService[] = [
   fromCore('Courier Services', '/services/corporate/courier'),
   {
     title: 'Fire Detection and Suppression Services',
-    path: '/services/corporate',
+    path: '/services/corporate/fire-detection',
     description: 'Fire detection, alarm and suppression systems designed, installed and maintained for your premises.',
     imageUrl: '/images/group/core-services/alarm.jpg',
   },
-  fromCore('Control Room Services', '/services/corporate'),
-  fromCore('Close Protection Services', '/services/corporate'),
-  fromCore('Front Office & Reception Services', '/services/corporate', 'Reception Services'),
+  fromCore('Control Room Services', '/services/corporate/control-room'),
+  fromCore('Close Protection Services', '/services/corporate/close-protection'),
+  fromCore('Front Office & Reception Services', '/services/corporate/reception', 'Reception Services'),
   {
     title: 'Risk Assessment Services',
     path: '/services/corporate/risk-assessment',

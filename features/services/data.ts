@@ -111,12 +111,12 @@ const riskAssessment: ServiceData = {
 
 const securityGuardingLive: Partial<ServiceData> = {
     heroDescription:
-        "SGA Security provides physical security services in combination with technology based on specific client requirements.",
+        "Professional guarding that welcomes visitors warmly and steps up when your assets need protecting.",
     overviewDescription:
-        "The group’s foundation in the field of intelligence gathering is always evident in the way recruitment as well as training and management of staff is conducted. The SGA Security approach embraces people, procedures, intelligence and technology to achieve real value and peace of mind while effectively offering a package of tailor made security solutions. Based on the needs of our clients, SGA Security offers the latest technology and supporting tools such as digital cameras, guarding monitoring systems, fixed and remote alarm response, sensor lights in combination with Control Room services. In Tanzania and Uganda, SGA Security offers its own armed guarding services while in Kenya SGA Security can provide contracted armed guarding services in cooperation with Police.\n\nSGA Security guarding services expand from airports to malls, commercial to residential buildings, manned guarding to canine security patrols. All personnel are specifically trained to match client’s exact requirements at the SGA Security training school where the training curriculums ensure that security officers have the skills and confidence to fully comply with contracted service requirements.",
+        "Security personnel at SGA are more than just a presence at your premises or office; SGA staff embody approachability, warmly welcome visitors and create a friendly and inviting atmosphere.\n\nHowever, when the situation calls for it, SGA staff seamlessly transition into a more assertive stance to safeguard your assets.",
     handlePointsIntro: '',
-    handlePointsTitle: 'Our Security Guarding Services Include',
-    handlePoints: ['Day & Night Guards', 'Mobile patrols', 'Diplomatic protection', 'Guard alert patrol systems', 'None core implant staff'],
+    handlePointsTitle: 'Unique Features',
+    handlePoints: ['Well trained', 'Vigilant', 'Physically fit', 'Good communication skills', 'Honesty and Integrity'],
     featuresTitle: '',
     features: [],
 }
@@ -128,20 +128,20 @@ const courier: ServiceData = {
     heroImage: '/images/services/courier.jpg',
     heroTitle: 'Secure Courier and Delivery Services',
     heroDescription:
-        "SGA Security Courier provides a range of professional and efficient courier services. With experienced and friendly staff SGA Security is dedicated to catering to all client delivery needs within a large network of branches, depots and drop off points in Uganda and Tanzania.",
-    overviewTitle: '',
-    overviewDescription: '',
+        "Secure courier and delivery services across Kenya, Uganda and Tanzania.",
+    overviewTitle: 'About Courier Services',
+    overviewDescription:
+        "SGA Courier offers a suite of professional and efficient courier services. The experienced and courteous team is committed to meeting diverse delivery requirements through an extensive network of branches, depots, and drop-off points across Kenya, Uganda and Tanzania.",
     overviewImage: '/images/services/courier.jpg',
     handlePointsIntro: '',
-    handlePointsTitle: 'Our Courier Services Include',
+    handlePointsTitle: 'Unique Features',
     handlePoints: [
-        'National and International Courier',
-        'High Value manned courier',
-        'Dedicated air courier',
-        'Secure and bonded warehousing',
-        'Contract storage and distribution',
-        'Messenger and mailroom services',
-        'Distribution and supply chain',
+        'Overnight courier services',
+        'Same-day express delivery services',
+        'Dedicated service',
+        'Countrywide network with adequate resources',
+        'Assured security of your package',
+        'Regional networks - East Africa Region',
     ],
     featuresTitle: '',
     features: [],
@@ -202,23 +202,24 @@ const alarmResponse: ServiceData = {
 }
 
 const fleetTracking: ServiceData = {
-    serviceName: 'Fleet Tracking',
+    serviceName: 'Electronic Cargo Tracking Services (ECTS)',
     serviceIcon: 'mdi:map-marker-path',
     serviceType: 'Corporate',
     heroImage: '/images/services/tracking.jpg',
-    heroTitle: 'Real-Time Fleet and Asset Tracking',
+    heroTitle: 'Electronic Cargo Tracking Services (ECTS)',
     heroDescription:
-        "As a business owner, you want to know how your vehicles are being handled, where they have travelled to and ensure that your drivers are arriving on time to your customers.",
-    overviewTitle: 'About Fleet Tracking',
+        "SGA Asset monitoring and fleet management solutions cater to dynamic needs, enhancing organizational business growth and service potential. It is a flexible solution that offers complete visibility into asset location and utilization through a convenient portal.",
+    overviewTitle: 'About Electronic Cargo Tracking',
     overviewDescription:
         "SGA Security fleet tracking solutions allows clients to monitor fleet and assets in real-time, save on (fuel) costs and improve the safety and efficiency of all fleet resulting in customer satisfaction.\n\nSGA Security uses GPS and Satellite systems to monitor installed units at the 24-hour operational Control Room where all alerts are logged and reported including Geofencing, remote immobilization and route monitoring.",
     overviewImage: '/images/services/tracking.jpg',
     handlePointsIntro: '',
-    handlePointsTitle: 'Our Fleet Tracking Services Include',
+    handlePointsTitle: 'Unique Features',
     handlePoints: [
-        'Asset tracking (including movable containers) and investigation',
-        'Telematics control systems',
-        'Outsourced fleet management',
+        'Comprehensive Asset Visibility',
+        'Convenient Portal Access',
+        'Enhanced Operational Efficiency',
+        'Real-Time Data Analytics',
     ],
     featuresTitle: '',
     features: [],
@@ -226,8 +227,8 @@ const fleetTracking: ServiceData = {
         { image: '/images/services/cit.jpg', category: 'Security Service', title: 'CIT & Cash Management', summary: 'Armoured cash transport and secure cash handling.', link: '/{cc}/services/corporate/cit-and-cash-management' },
         { image: '/images/services/guarding.jpg', category: 'Security Service', title: 'Security Guarding', summary: 'Professional on-site security personnel for your business.', link: '/{cc}/services/corporate/security-guarding' },
     ],
-    metaTitle: 'Fleet Tracking Services - SGA Security {country}',
-    metaDescription: 'Real-time GPS and satellite fleet and asset tracking from SGA Security, monitored 24 hours in {country}.',
+    metaTitle: 'Electronic Cargo Tracking Services (ECTS) - SGA Security {country}',
+    metaDescription: 'Electronic cargo, fleet and asset tracking from SGA Security in {country}, with real-time visibility through a convenient portal.',
 }
 
 const cashManagement: ServiceData = {
@@ -297,6 +298,161 @@ const securityDogs: ServiceData = {
     metaDescription: 'Trained security patrol, guard and screening dogs with expert handlers from SGA Security in {country}.',
 }
 
+const cctv: ServiceData = {
+    serviceName: 'CCTV Services',
+    serviceIcon: 'mdi:cctv',
+    serviceType: 'Corporate',
+    heroImage: '/images/services/cctv.jpg',
+    heroTitle: 'CCTV, Access Control and Alarm Systems',
+    heroDescription:
+        'CCTV, access control and alarm systems, installed and maintained for your premises across {country}.',
+    overviewTitle: 'About CCTV Services',
+    overviewDescription:
+        'SGA Security provides comprehensive CCTV services designed to enhance peace and security. The solutions cater to a wide range of needs, from basic single-camera setups to sophisticated systems with remote access capabilities, ensuring robust surveillance and protection.',
+    overviewImage: '/images/services/cctv.jpg',
+    handlePointsIntro: '',
+    handlePointsTitle: 'Our CCTV Services Include',
+    handlePoints: [
+        'Covert surveillance equipment',
+        'Digital incident recording cameras with analytics',
+        'Automated building management and integrated modular access control systems',
+        'Integrated vehicular access barriers',
+        'Security systems tailored for retail and financial institutions',
+    ],
+    featuresTitle: '',
+    features: [],
+    relatedServices: [
+        { image: '/images/services/alarm-response.jpg', category: 'Security Service', title: 'Alarm Response', summary: 'Monitored alarms with armed response teams on call.', link: '/{cc}/services/corporate/alarm-response' },
+        { image: '/images/services/guarding.jpg', category: 'Security Service', title: 'Security Guarding', summary: 'Professional on-site security personnel for your business.', link: '/{cc}/services/corporate/security-guarding' },
+    ],
+    metaTitle: 'CCTV Services - SGA Security {country}',
+    metaDescription: 'CCTV, access control and alarm system installation and maintenance from SGA Security in {country}, monitored from our Control Room.',
+}
+
+const fireDetection: ServiceData = {
+    serviceName: 'Fire Detection and Suppression',
+    serviceIcon: 'mdi:fire-alert',
+    serviceType: 'Corporate',
+    heroImage: '/images/group/core-services/alarm.jpg',
+    heroTitle: 'Fire Detection, Alarm and Suppression Systems',
+    heroDescription:
+        'Fire detection, alarm and suppression systems designed, installed and maintained for your premises across {country}.',
+    overviewTitle: 'About Fire Detection and Suppression',
+    overviewDescription:
+        "SGA Security's Fire Services provide comprehensive fire safety and prevention solutions, backed by over 55 years of expertise in both commercial and residential sectors. These include the design, supply, installation, and commissioning of diverse fire alarms and portable fire extinguishers.",
+    overviewImage: '/images/group/core-services/alarm.jpg',
+    handlePointsIntro: '',
+    handlePointsTitle: 'Our Fire Services Include',
+    handlePoints: [
+        'Comprehensive detection, protection, and suppression systems',
+        'Advanced fire alarm and response solutions',
+        'Effective fire risk assessments',
+        '24-hour fire engine services with fully equipped rescue teams',
+        'Prevention and preparedness training programs',
+        'Health and Safety: First Aid training and drills',
+    ],
+    featuresTitle: '',
+    features: [],
+    relatedServices: [
+        { image: '/images/services/alarm-response.jpg', category: 'Security Service', title: 'Alarm Response', summary: 'Monitored alarms with armed response teams on call.', link: '/{cc}/services/corporate/alarm-response' },
+        { image: '/images/services/cctv.jpg', category: 'Security Service', title: 'CCTV Services', summary: 'CCTV, access control and alarm systems.', link: '/{cc}/services/corporate/cctv' },
+        { image: '/images/services/guarding.jpg', category: 'Security Service', title: 'Security Guarding', summary: 'Professional on-site security personnel for your business.', link: '/{cc}/services/corporate/security-guarding' },
+    ],
+    metaTitle: 'Fire Detection and Suppression Services - SGA Security {country}',
+    metaDescription: 'Fire alarm, detection and suppression systems, fire risk assessments and training from SGA Security in {country}.',
+}
+
+const controlRoom: ServiceData = {
+    serviceName: 'Control Room',
+    serviceIcon: 'mdi:monitor-dashboard',
+    serviceType: 'Corporate',
+    heroImage: '/images/services/control-room.jpg',
+    heroTitle: 'Control Room Services',
+    heroDescription:
+        '24/7 monitored control room coordinating rapid response across all client sites in {country}.',
+    overviewTitle: 'About Control Room Services',
+    overviewDescription:
+        "SGA Security's Communications Centre operates 24/7, managing customer inquiries, emergency security responses, and CCTV performance monitoring. SGA also offers outsourced control room services, delivering comprehensive monitoring solutions to clients and other security companies.",
+    overviewImage: '/images/services/control-room.jpg',
+    handlePointsIntro: '',
+    handlePointsTitle: 'Unique Features',
+    handlePoints: [
+        '24/7 continuous monitoring and support, ensuring immediate response to security incidents and customer concerns at any time',
+        'Comprehensive real-time incidents coverage',
+        'Provision of high-level control room services outsourcing',
+        'Utilization of cutting-edge systems and tools for effective surveillance, communication, and data management',
+    ],
+    featuresTitle: '',
+    features: [],
+    relatedServices: [
+        { image: '/images/services/alarm-response.jpg', category: 'Security Service', title: 'Alarm Response', summary: 'Monitored alarms with armed response teams on call.', link: '/{cc}/services/corporate/alarm-response' },
+        { image: '/images/services/cctv.jpg', category: 'Security Service', title: 'CCTV Services', summary: 'CCTV, access control and alarm systems.', link: '/{cc}/services/corporate/cctv' },
+        { image: '/images/services/guarding.jpg', category: 'Security Service', title: 'Security Guarding', summary: 'Professional on-site security personnel for your business.', link: '/{cc}/services/corporate/security-guarding' },
+    ],
+    metaTitle: 'Control Room Services - SGA Security {country}',
+    metaDescription: '24/7 control room monitoring, incident response and outsourced control room services from SGA Security in {country}.',
+}
+
+const reception: ServiceData = {
+    serviceName: 'Customer Service and Reception',
+    serviceIcon: 'mdi:account-tie',
+    serviceType: 'Corporate',
+    heroImage: '/images/services/reception.jpg',
+    heroTitle: 'Customer Service and Reception Services',
+    heroDescription:
+        'Welcoming, professional customer service and reception teams for your premises across {country}.',
+    overviewTitle: 'About Customer Service and Reception',
+    overviewDescription:
+        "SGA Security understands the importance of delivering exceptional customer service and creating a welcoming environment for all visitors. The dedicated team of customer service representatives and receptionists are committed to providing a seamless experience for clients and guests alike.",
+    overviewImage: '/images/services/reception.jpg',
+    handlePointsIntro: '',
+    handlePointsTitle: 'Unique Features',
+    handlePoints: [
+        'Liaise between clients and security personnel',
+        'Ensuring that security protocols are implemented smoothly and effectively',
+        'Assist with access control, visitor management, and coordination of security measures',
+    ],
+    featuresTitle: '',
+    features: [],
+    relatedServices: [
+        { image: '/images/services/guarding.jpg', category: 'Security Service', title: 'Security Guarding', summary: 'Professional on-site security personnel for your business.', link: '/{cc}/services/corporate/security-guarding' },
+        { image: '/images/services/cctv.jpg', category: 'Security Service', title: 'CCTV Services', summary: 'CCTV, access control and alarm systems.', link: '/{cc}/services/corporate/cctv' },
+        { image: '/images/services/control-room.jpg', category: 'Security Service', title: 'Control Room', summary: '24/7 monitored control room coordinating response.', link: '/{cc}/services/corporate/control-room' },
+    ],
+    metaTitle: 'Customer Service and Reception Services - SGA Security {country}',
+    metaDescription: 'Professional reception, front office and customer service teams from SGA Security in {country}.',
+}
+
+const closeProtection: ServiceData = {
+    serviceName: 'Close Protection',
+    serviceIcon: 'mdi:shield-account',
+    serviceType: 'Corporate',
+    heroImage: '/images/group/core-services/close-protection.jpg',
+    heroTitle: 'Close Protection Services',
+    heroDescription:
+        'Specialized close protection officers for executive and VIP security across {country}.',
+    overviewTitle: '',
+    overviewDescription: '',
+    overviewImage: '/images/group/core-services/close-protection.jpg',
+    handlePointsIntro: '',
+    handlePointsTitle: 'Close Protection Officer',
+    handlePoints: [
+        'Ensuring personal safety',
+        'Monitoring for potential threats',
+        'Securing travel routes',
+        'Protecting clients at events',
+        'Responding to emergencies',
+    ],
+    featuresTitle: '',
+    features: [],
+    relatedServices: [
+        { image: '/images/services/guarding.jpg', category: 'Security Service', title: 'Security Guarding', summary: 'Professional on-site security personnel for your business.', link: '/{cc}/services/corporate/security-guarding' },
+        { image: '/images/services/alarm-response.jpg', category: 'Security Service', title: 'Alarm Response', summary: 'Monitored alarms with armed response teams on call.', link: '/{cc}/services/corporate/alarm-response' },
+    ],
+    metaTitle: 'Close Protection Services - SGA Security {country}',
+    metaDescription: 'Specialized close protection officers for executive and VIP security from SGA Security in {country}.',
+}
+
 // -------------------------------------------------------------------
 // LOOKUP MAPS
 // -------------------------------------------------------------------
@@ -305,6 +461,8 @@ export const individualServices: Record<string, ServiceData> = {
     courier: { ...courier, serviceType: 'Individual' },
     'alarm-response': { ...alarmResponse, serviceType: 'Individual' },
     'security-dogs': { ...securityDogs, serviceType: 'Individual' },
+    cctv: { ...cctv, serviceType: 'Individual' },
+    'close-protection': { ...closeProtection, serviceType: 'Individual' },
 }
 
 export const corporateServices: Record<string, ServiceData> = {
@@ -315,6 +473,11 @@ export const corporateServices: Record<string, ServiceData> = {
     tracking: fleetTracking,
     'cit-and-cash-management': cashManagement,
     'security-dogs': securityDogs,
+    cctv,
+    'fire-detection': fireDetection,
+    'control-room': controlRoom,
+    reception,
+    'close-protection': closeProtection,
 }
 
 /** Inject country name and country code into template strings */

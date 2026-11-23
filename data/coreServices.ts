@@ -47,6 +47,7 @@ export const coreServices: CoreService[] = [
   },
   {
     title: 'CCTV Services',
+    detailSlugs: { individual: 'cctv', corporate: 'cctv' },
     description: 'Installation and maintenance of security systems including CCTV, access control, and alarms.',
     imageUrl: '/images/group/core-services/cctv.jpg',
   },
@@ -66,11 +67,13 @@ export const coreServices: CoreService[] = [
   },
   {
     title: 'Control Room Services',
+    detailSlugs: { corporate: 'control-room' },
     description: '24/7 monitored control room coordinating rapid response across all client sites.',
     imageUrl: '/images/group/cctv.png',
   },
   {
     title: 'Reception Services',
+    detailSlugs: { corporate: 'reception' },
     description: 'Professional front-of-house teams managing access and visitor experience.',
     imageUrl: '/images/group/core-services/reception.jpg',
   },
