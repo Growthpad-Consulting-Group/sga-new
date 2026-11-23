@@ -428,9 +428,14 @@ export default function ServicePageTemplate({
                                             <h3 className="text-xl lg:text-2xl font-extrabold text-white mb-3 tracking-tight leading-tight">
                                                 {service.title}
                                             </h3>
-                                            <p className="text-white/90 text-base leading-relaxed grow font-medium">
+                                            <p className="text-white/90 text-base leading-relaxed grow font-medium mb-6">
                                                 {service.summary}
                                             </p>
+                                            <div className="self-start">
+                                                <div className="inline-block bg-white text-primary-orange px-5 py-2 rounded-full font-black text-[10px] uppercase tracking-[0.16em] hover:bg-gray-50 transition-all shadow-lg">
+                                                    {service.link.startsWith("http") ? "LEARN MORE" : "VIEW DETAILS"}
+                                                </div>
+                                            </div>
                                         </div>
                                     </motion.div>
                                     </Link>

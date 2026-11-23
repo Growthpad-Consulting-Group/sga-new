@@ -80,7 +80,7 @@ export default function ServicesGrid({ services, country, type, isIndividual, co
                                     {/* Simple Decorative Circle from sub-page */}
                                     <div className="absolute top-0 right-0 w-24 h-24 bg-white/5 rounded-full -mr-12 -mt-12 group-hover:scale-110 transition-transform"></div>
 
-                                    <h3 className="text-2xl lg:text-xl xl:text-3xl font-bold text-white mb-4 tracking-tight">
+                                    <h3 className="text-2xl lg:text-xl xl:text-2xl font-bold text-white mb-4 tracking-tight">
                                         {service.serviceName}
                                     </h3>
                                     <p className="text-white/90 text-lg lg:text-sm xl:text-lg leading-relaxed mb-8 grow font-medium">
