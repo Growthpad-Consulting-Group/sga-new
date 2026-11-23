@@ -5,8 +5,9 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import { usePathname } from 'next/navigation'
 import { useBodyScrollLock } from '@/lib/useBodyScrollLock'
-import { coreServiceInterestOptions } from '@/data/coreServices'
+import { individualServicesMenu, corporateServicesMenu } from '@/data/servicesMenu'
 import CountrySearchSelect from '@/components/ui/CountrySearchSelect'
+import Button from '@/components/ui/Button'
 
 const COUNTRY_NAMES_BY_ROUTE: Record<string, string> = {
   ke: 'Kenya',
@@ -39,6 +40,8 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
   const countryCode = pathname.split('/').filter(Boolean)[0] || ''
   const routeCountry = COUNTRY_NAMES_BY_ROUTE[countryCode] || ''
   const [enquiryType, setEnquiryType] = useState<'Individual' | 'Corporate'>('Individual')
+  // Same services as the Individual and Corporate lists in the header menu
+  const interestOptions = (enquiryType === 'Individual' ? individualServicesMenu : corporateServicesMenu).map((service) => service.title)
   const [isInterestsOpen, setIsInterestsOpen] = useState(false)
   const [isCallbackOpen, setIsCallbackOpen] = useState(false)
   const [callbackData, setCallbackData] = useState({ name: '', email: '', phone: '' })
@@ -56,6 +59,14 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
     companySize: '',
     industry: ''
   })
+
+  // Drop any selected services that don't belong to the chosen Individual or Corporate list
+  useEffect(() => {
+    setFormData(prev => ({
+      ...prev,
+      interests: prev.interests.filter(interest => interestOptions.includes(interest)),
+    }))
+  }, [enquiryType])
 
   useEffect(() => {
     if (!isOpen) return
@@ -208,14 +219,16 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
 
                 {/* Request a call back */}
                 <div className="mt-8">
-                  <button
-                    type="button"
+                  <Button
+                    variant="white"
+                    size="compact"
+                    arrow={false}
+                    icon="mdi:phone-in-talk"
                     onClick={() => setIsCallbackOpen(true)}
-                    className="w-full flex items-center justify-center gap-2 border border-white rounded-full px-4 py-3 font-semibold text-sm uppercase tracking-wide text-white hover:bg-white hover:text-primary-orange transition-colors"
+                    className="w-full sm:w-full uppercase tracking-wide"
                   >
-                    <Icon icon="mdi:phone-in-talk" className="w-5 h-5" />
                     Request a call back
-                  </button>
+                  </Button>
                 </div>
 
                 {/* Plus Icon */}
@@ -299,19 +312,18 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                     </div>
 
                     <div className="flex flex-wrap gap-3">
-                      <button
-                        type="submit"
-                        className="rounded-full bg-primary-orange px-6 py-3 font-semibold text-white hover:bg-navy-blue transition-colors"
-                      >
+                      <Button type="submit" variant="solid" size="small" arrow={false} className="w-auto">
                         Request call back
-                      </button>
-                      <button
-                        type="button"
+                      </Button>
+                      <Button
+                        variant="light"
+                        size="small"
+                        arrow={false}
+                        className="w-auto"
                         onClick={() => setIsCallbackOpen(false)}
-                        className="rounded-full border border-dark-charcoal px-6 py-3 font-semibold text-dark-charcoal hover:border-primary-orange hover:text-primary-orange transition-colors"
                       >
                         Back
-                      </button>
+                      </Button>
                     </div>
                   </form>
                 ) : (
@@ -548,7 +560,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
 
                       {isInterestsOpen && (
                         <div className="mt-2 max-h-64 overflow-y-auto rounded-xl border border-gray-200 bg-white p-2 shadow-inner">
-                          {coreServiceInterestOptions.map((option) => {
+                          {interestOptions.map((option) => {
                             const selected = formData.interests.includes(option)
 
                             return (
@@ -581,7 +593,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                     </div>
 
                     <div className="hidden gap-3 md:grid md:grid-cols-3">
-                      {coreServiceInterestOptions.map((option) => (
+                      {interestOptions.map((option) => (
                         <button
                           key={option}
                           type="button"
@@ -637,7 +649,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                     <button
                       type="submit"
                       disabled={formData.interests.length === 0 || !formData.agreeToContact}
-                      className="w-full bg-primary-orange text-white px-6 py-3 rounded-full font-semibold text-base hover:bg-navy-blue transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed sm:w-auto"
+                      className="w-full bg-primary-orange text-white px-6 py-2 rounded-full font-semibold text-sm hover:bg-navy-blue transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed sm:w-auto"
                     >
                       Submit enquiry
                     </button>
