@@ -35,7 +35,7 @@ const variants = {
 const sizes = {
   default: 'px-14 hover:px-18 py-3 text-md',
   small: 'px-6 hover:px-12 py-2 text-sm',
-  compact: 'px-3 hover:px-10 py-1.5 xl:px-6 xl:hover:px-12 xl:py-3 text-xs xl:text-sm',
+  compact: 'px-3 hover:px-10 py-1.5 xl:px-4 xl:hover:px-8 xl:py-2 text-xs xl:text-xs',
 }
 
 // Arrow colour is chosen so it stays visible on the hovered fill

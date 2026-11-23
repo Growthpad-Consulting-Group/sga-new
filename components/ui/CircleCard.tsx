@@ -16,13 +16,13 @@ interface CircleCardProps {
 export default function CircleCard({ title, imageUrl, description, href, withShadow = true, action }: CircleCardProps) {
   return (
     <div className="flex flex-col items-center transition-transform duration-300 hover:-translate-y-0.5">
-      <div className={`relative w-80 h-80 md:w-[400px] md:h-[400px] lg:w-[320px] lg:h-[320px] xl:w-[400px] xl:h-[400px] rounded-full overflow-hidden group ${withShadow ? 'shadow-2xl' : ''} ${href ? 'cursor-pointer' : ''}`}>
+      <div className={`relative w-80 h-80 md:w-[360px] md:h-[360px] lg:w-[300px] lg:h-[300px] xl:w-[360px] xl:h-[360px] rounded-full overflow-hidden group ${withShadow ? 'shadow-2xl' : ''} ${href ? 'cursor-pointer' : ''}`}>
         {/* Background Image */}
         <Image
           src={imageUrl}
           alt={title}
           fill
-          sizes="(max-width: 767px) 320px, 400px"
+          sizes="(max-width: 767px) 320px, 360px"
           className="object-cover transition-transform duration-300"
         />
         {/* Overlay */}
