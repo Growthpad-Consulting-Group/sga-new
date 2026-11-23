@@ -138,7 +138,7 @@ export default function MegaMenuDropdown({
             <h3 className="text-white font-normal text-base lg:text-sm xl:text-lg uppercase tracking-[0.2em] mb-6">
               {isServices ? `Services — ${servicesViewType.toUpperCase()}` : 'Industries'}
             </h3>
-            <div className={`flex flex-col gap-6 ${isServices ? 'max-h-[60vh] overflow-y-auto pr-2' : ''}`}>
+            <div className="flex flex-col gap-6 max-h-[60vh] overflow-y-auto pr-2">
               {dropdownItems.map((service) => (
                 <Link
                   key={service.label}
