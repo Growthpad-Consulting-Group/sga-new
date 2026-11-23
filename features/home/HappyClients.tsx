@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { Icon } from '@iconify/react'
 import { useCarousel } from '@/components/ui/Carousel'
+import { industryNames } from '@/data/industries-data'
 
 interface Client {
   name: string
@@ -17,28 +18,17 @@ const clients: Client[] = [
   { name: 'Client 2', logo: '/images/group/clients/2.svg', category: 'Government Institutions' },
   { name: 'Client 3', logo: '/images/group/clients/3.svg', category: 'Hospitals' },
   { name: 'Client 4', logo: '/images/group/clients/4.svg', category: 'Schools & Institutions' },
-  { name: 'Client 5', logo: '/images/group/clients/5.svg', category: 'Diplomatic missions' },
+  { name: 'Client 5', logo: '/images/group/clients/5.svg', category: 'Diplomatic Missions' },
   { name: 'Client 6', logo: '/images/group/clients/6.svg', category: 'Hotels' },
-  { name: 'Client 7', logo: '/images/group/clients/7.svg', category: 'Financial institutions' },
-  { name: 'Client 8', logo: '/images/group/clients/8.svg', category: 'NGOs' },
-  { name: 'Client 9', logo: '/images/group/clients/9.svg', category: 'Other industries' },
+  { name: 'Client 7', logo: '/images/group/clients/7.svg', category: 'Financial Institutions' },
+  { name: 'Client 8', logo: '/images/group/clients/8.svg', category: "NGO's" },
+  { name: 'Client 9', logo: '/images/group/clients/9.svg', category: 'Other Industries' },
   { name: 'Client 10', logo: '/images/group/clients/10.svg', category: 'Multinationals' },
   { name: 'Client 11', logo: '/images/group/clients/11.svg', category: 'Government Institutions' },
   { name: 'Client 12', logo: '/images/group/clients/12.svg', category: 'Hospitals' },
 ]
 
-const filterOptions: string[] = [
-  'ALL',
-  'Diplomatic missions',
-  'Financial institutions',
-  'Multinationals',
-  'Schools & Institutions',
-  'NGOs',
-  'Hotels',
-  'Hospitals',
-  'Government Institutions',
-  'Other industries'
-]
+const filterOptions: string[] = ['ALL', ...industryNames]
 
 export default function HappyClients() {
   const [activeFilter, setActiveFilter] = useState('ALL')

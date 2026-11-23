@@ -148,7 +148,7 @@ export default function WhereWeOperate(): React.JSX.Element {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="mx-auto w-full lg:col-span-3 lg:max-w-[58%] xl:max-w-full flex flex-col justify-center items-center lg:items-end h-full self-center"
+            className="mx-auto w-full lg:col-span-3 lg:max-w-[58%] xl:max-w-[55%] flex flex-col justify-center items-center lg:items-end h-full self-center"
           >
             <InteractiveMap ref={mapRef} />
           </motion.div>

@@ -445,12 +445,8 @@ const latLngToPixel = (lat: number, lng: number) => {
   return { x, y }
 }
 
-// Country name labels, placed in the middle of each country's outline (SVG viewBox units)
-const countryLabels = [
-  { name: 'UGANDA', x: 185, y: 150, size: 26 },
-  { name: 'KENYA', x: 465, y: 240, size: 30 },
-  { name: 'TANZANIA', x: 300, y: 600, size: 30 },
-]
+// Map pin shape (24 units wide, tip at 12,22.5), used for head offices
+const MAP_PIN_PATH = 'M12 22.5C12 22.5 4.5 15.2 4.5 10a7.5 7.5 0 0 1 15 0c0 5.2-7.5 12.5-7.5 12.5Z M12 7.2a2.8 2.8 0 1 0 0 5.6 2.8 2.8 0 0 0 0-5.6Z'
 
 const InteractiveMap = forwardRef<InteractiveMapRef>((props, ref) => {
   const [selectedLocation, setSelectedLocation] = useState<Location | null>(null)
@@ -481,7 +477,7 @@ const InteractiveMap = forwardRef<InteractiveMapRef>((props, ref) => {
   }, [selectedLocation])
   const [popupPosition, setPopupPosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 })
 
-  const handleMarkerClick = (location: Location, event: React.MouseEvent<SVGCircleElement>) => {
+  const handleMarkerClick = (location: Location, event: React.MouseEvent<SVGElement>) => {
     event.stopPropagation()
     const svg = event.currentTarget.ownerSVGElement
     if (!svg) return
@@ -535,64 +531,71 @@ const InteractiveMap = forwardRef<InteractiveMapRef>((props, ref) => {
         className="absolute inset-0 w-full h-full"
         xmlns="http://www.w3.org/2000/svg"
       >
-        {/* Country names (drawn first so the location dots sit above them) */}
-        {countryLabels.map((label) => (
-          <text
-            key={label.name}
-            x={label.x}
-            y={label.y}
-            textAnchor="middle"
-            fill="#231f20"
-            stroke="white"
-            strokeWidth="5"
-            paintOrder="stroke"
-            className="pointer-events-none font-nav font-bold"
-            style={{ fontSize: label.size, letterSpacing: '0.12em' }}
-          >
-            {label.name}
-          </text>
-        ))}
-
         {locations.map((location, index) => {
           const { x, y } = latLngToPixel(location.lat, location.lng)
           const isSelected = selectedLocation?.name === location.name
           const isHovered = hoveredLocation?.name === location.name
           
+          const pinScale = isSelected || isHovered ? 2.1 : 1.8
+          const handlers = {
+            onMouseEnter: (e: React.MouseEvent<SVGElement>) => {
+              const rect = e.currentTarget.ownerSVGElement?.getBoundingClientRect()
+              if (rect) setHoverPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top })
+              setHoveredLocation(location)
+            },
+            onMouseLeave: () => setHoveredLocation(null),
+            onClick: (e: React.MouseEvent<SVGElement>) => handleMarkerClick(location, e),
+          }
+
+          // Head offices and the Mombasa branch get a map pin; the rest keep the dot
+          if (location.isHQ) {
+            // Pin icon that bobs up and down
+            return (
+              <g
+                key={index}
+                transform={`translate(${x - 12 * pinScale}, ${y - 22.5 * pinScale}) scale(${pinScale})`}
+                className="cursor-pointer"
+                {...handlers}
+              >
+                <g>
+                  <animateTransform
+                    attributeName="transform"
+                    type="translate"
+                    values="0 0;0 -5;0 0"
+                    dur="3.5s"
+                    repeatCount="indefinite"
+                    additive="sum"
+                  />
+                  <path
+                    d={MAP_PIN_PATH}
+                    fill="#00043e"
+                    stroke="white"
+                    strokeWidth="1.5"
+                    fillRule="evenodd"
+                    strokeLinejoin="round"
+                  />
+                </g>
+              </g>
+            )
+          }
+
           return (
             <g key={index}>
-              {/* Outer glow for HQ locations */}
-              {location.isHQ && (
-                <circle
-                  cx={x}
-                  cy={y}
-                  r={isSelected || isHovered ? 24 : 20}
-                  fill="#ff5722"
-                  opacity="0.2"
-                  className="transition-all duration-200 pointer-events-none"
-                />
-              )}
-              
               {/* Invisible larger hit area to prevent flickering */}
               <circle
                 cx={x}
                 cy={y}
-                r={location.isHQ ? 16 : 14}
+                r={14}
                 fill="transparent"
                 className="cursor-pointer"
-                onMouseEnter={(e) => {
-                  const rect = e.currentTarget.ownerSVGElement?.getBoundingClientRect()
-                  if (rect) setHoverPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top })
-                  setHoveredLocation(location)
-                }}
-                onMouseLeave={() => setHoveredLocation(null)}
-                onClick={(e) => handleMarkerClick(location, e)}
+                {...handlers}
               />
-              
+
               {/* Main marker */}
               <circle
                 cx={x}
                 cy={y}
-                r={location.isHQ ? (isSelected || isHovered ? 12 : 10) : (isSelected || isHovered ? 10 : 8)}
+                r={isSelected || isHovered ? 10 : 8}
                 fill="#ff5722"
                 stroke="white"
                 strokeWidth="2.5"
