@@ -143,6 +143,13 @@ export function useInfiniteCarousel(
     })
   }
 
+  // Jump straight to an item (used by the dots)
+  const goTo = (index: number) => {
+    if (!canMove || isResetting || isTransitioning || index === currentIndex) return
+    setIsTransitioning(true)
+    setCurrentIndex(index)
+  }
+
   const trackStyle: CSSProperties = {
     transform: `translate3d(-${currentIndex * (100 / itemsPerView)}%, 0, 0)`,
     transition: isResetting
@@ -153,7 +160,10 @@ export function useInfiniteCarousel(
 
   return {
     canMove,
+    /** Index of the first visible item; equals totalItems while sliding into the looped copy */
+    currentIndex,
     handleTransitionEnd,
+    goTo,
     next,
     previous,
     trackStyle,
