@@ -117,7 +117,7 @@ export default function WhyChooseUs({
           </h2>
         </div>
         {subtitle && (
-          <p className="text-sm font-normal md:text-2xl lg:text-base xl:text-xl text-dark-charcoal pt-4">
+          <p className="text-sm font-normal md:text-2xl lg:text-base xl:text-xl text-dark-charcoal">
             {subtitle}
           </p>
         )}

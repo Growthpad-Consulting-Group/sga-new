@@ -76,7 +76,7 @@ export default function CircleCarousel({ title, description, items, autoplay = 5
             />
           </div>
           {description && (
-            <p className="text-sm md:text-base text-dark-charcoal pt-3">{description}</p>
+            <p className="text-sm md:text-base text-dark-charcoal">{description}</p>
           )}
         </div>
       </div>
