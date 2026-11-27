@@ -18,24 +18,8 @@ export default function NewsHero({ imageUrl = '/images/contact/hero.png' }: News
   const imageY = useTransform(scrollYProgress, [0, 1], ['-4%', '8%'])
 
   return (
-    <section ref={heroRef} id="hero" className="bg-gray-100 text-dark-charcoal pt-40 sm:pt-40 lg:pt-48 pb-0">
-      <div className="container-fluid mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-left space-y-2 pb-4"
-        >
-          <p className="text-sm md:text-base font-normal text-gray-700 uppercase tracking-wide">
-            Group Updates
-          </p>
-          <h1 className="text-xl md:text-2xl lg:text-4xl font-bold">
-            <span className="text-primary-orange">News & Insights</span>
-          </h1>
-        </motion.div>
-      </div>
-
-      <div className="relative h-[400px] w-full overflow-hidden md:h-[500px] lg:h-[600px]">
+    <section ref={heroRef} id="hero" className="relative bg-gray-100 pt-[129px] xl:pt-[153px] pb-0">
+      <div className="relative h-[400px] w-full overflow-hidden md:h-[480px] lg:h-[540px]">
         <Image
           src={imageUrl}
           alt="SGA Security News and Insights"
@@ -60,9 +44,28 @@ export default function NewsHero({ imageUrl = '/images/contact/hero.png' }: News
             className="object-cover object-top"
           />
         </motion.div>
-        <div className="pointer-events-none absolute inset-0 bg-black/10"></div>
+
+        {/* Dark wash so the text stays readable over the photo */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+
+        <div className="absolute inset-x-0 bottom-0 pb-12 md:pb-16">
+          <div className="container-fluid mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-left space-y-2 max-w-3xl"
+            >
+              <p className="text-sm md:text-base font-normal uppercase tracking-wide text-white/90">
+                Group Updates
+              </p>
+              <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold">
+                <span className="text-primary-orange">News & Insights</span>
+              </h1>
+            </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   )
 }
-

@@ -72,7 +72,7 @@ export default async function CountryHomePage({ params }: Props) {
                     h2Title={data.about.largeTitle}
                     customDescription={data.about.description}
                     buttonText="Discover Our Story"
-                    buttonHref={`/${country}/why-us`}
+                    buttonHref={`/${country}/about`}
                     imageUrl={data.about.imageUrl}
                 />
             </div>
