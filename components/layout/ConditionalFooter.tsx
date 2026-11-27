@@ -8,6 +8,9 @@ import CountryFooter from '@/components/layout/CountryFooter'
 export default function ConditionalFooter(): React.JSX.Element | null {
   const pathname = usePathname()
 
+  // The Sanity Studio has its own layout, so the site footer is hidden there
+  if (pathname.startsWith('/studio')) return null
+
   // Check if current path is a country page
   const isCountryPage = pathname.startsWith('/ke') || pathname.startsWith('/ug') || pathname.startsWith('/tz')
 

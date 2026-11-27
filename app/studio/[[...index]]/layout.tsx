@@ -10,7 +10,7 @@ export default function StudioLayout({
 }) {
   return (
     <html lang="en">
-      <body style={{ paddingTop: '90px' }}>{children}</body>
+      <body>{children}</body>
     </html>
   )
 }
