@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import { Icon } from '@iconify/react'
 import Button from '@/components/ui/Button'
 import Modal from '@/components/ui/Modal'
-import type { ServiceDetail } from '@/features/services/data'
+import type { ServiceDetail } from '@/data/services'
 import { useEnquiryModal } from '@/contexts/EnquiryModalContext'
 
 interface ServiceCard {
@@ -46,6 +46,15 @@ export default function ServicesGrid({ services, country, type, isIndividual, co
         return () => window.clearTimeout(timer)
     }, [])
 
+    // Services on another site go straight to that site; ours open the modal
+    const openService = (service: ServiceCard) => {
+        if (service.href?.startsWith('http')) {
+            window.location.href = service.href
+            return
+        }
+        setSelected(service)
+    }
+
     return (
         <section id="services-grid" className="bg-white pt-16 pb-24 sm:pt-20 sm:pb-16 container-fluid overflow-hidden">
             <div className="mx-auto">
@@ -68,10 +77,10 @@ export default function ServicesGrid({ services, country, type, isIndividual, co
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.4, delay: index * 0.1 }}
-                            onClick={clickable ? () => setSelected(service) : undefined}
+                            onClick={clickable ? () => openService(service) : undefined}
                             role={clickable ? 'button' : undefined}
                             tabIndex={clickable ? 0 : undefined}
-                            onKeyDown={clickable ? (e) => { if (e.key === 'Enter' || e.key === ' ') setSelected(service) } : undefined}
+                            onKeyDown={clickable ? (e) => { if (e.key === 'Enter' || e.key === ' ') openService(service) } : undefined}
                             className={`bg-white rounded-[40px] overflow-hidden shadow-xl hover:shadow-xl hover:-translate-y-1 transition-[translate,box-shadow] duration-300 flex flex-col group h-full ${clickable ? 'cursor-pointer' : ''}`}
                         >
                             <div className="flex flex-col h-full">
@@ -94,7 +103,7 @@ export default function ServicesGrid({ services, country, type, isIndividual, co
                                     <h3 className="text-2xl lg:text-xl xl:text-2xl font-bold text-white mb-4 tracking-tight">
                                         {service.serviceName}
                                     </h3>
-                                    <p className="text-white/90 text-lg lg:text-sm xl:text-lg leading-relaxed mb-8 grow font-medium">
+                                    <p className="text-white/90 text-lg lg:text-sm xl:text-lg leading-relaxed mb-8 grow font-medium line-clamp-2">
                                         {service.heroDescription}
                                     </p>
 

@@ -1,6 +1,6 @@
 import { industriesData } from './industries-data'
 import { countryIndustries, type CountryCodeWithIndustries } from './industry-clients'
-import { individualServicesMenu, corporateServicesMenu, resolveServiceHref } from './servicesMenu'
+import { individualServicesMenu, corporateServicesMenu, resolveServiceHref } from './services'
 export interface NavItem {
   href: string
   label: string

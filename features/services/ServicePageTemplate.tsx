@@ -181,30 +181,6 @@ export default function ServicePageTemplate({
                 <SectionSeparator className="-top-7" />
             </div>
 
-            {/* Overview Section */}
-            {overviewDescription && (
-                <section className="flex items-center justify-center bg-white text-dark-charcoal py-20 sm:py-28 relative">
-                    <motion.div
-                        initial={{ opacity: 0, y: 50 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: '-100px' }}
-                        transition={{ duration: 0.6, ease: 'easeOut' }}
-                        className="container-fluid mx-auto"
-                    >
-                        <div className="section-title-container w-full">
-                            <h2 className="section-title text-2xl md:text-3xl lg:text-4xl font-bold text-primary-orange">
-                                {overviewTitle}
-                            </h2>
-                        </div>
-                        <div className="space-y-5 text-lg text-gray-700 leading-relaxed font-medium">
-                            {overviewDescription.split('\n\n').map((paragraph, index) => (
-                                <p key={index}>{paragraph}</p>
-                            ))}
-                        </div>
-                    </motion.div>
-                </section>
-            )}
-
             {/* Extra Sections (e.g. Fire Alarm Response) */}
             {sections.map((section, sectionIndex) => (
                 <section key={sectionIndex} className="flex items-center justify-center bg-gray-200/90 text-dark-charcoal py-20 sm:py-28 relative">
