@@ -90,10 +90,11 @@ export const getHeaderShortcuts = (countryPrefix: string): NavItem[] => [
 // pages, so its isCountryPage branch never executes)
 export const getCountryHeaderNavItems = (countryPrefix: string): NavItem[] => [
   { href: '/', label: 'SGA GROUP' },
-  { href: '#services', label: 'PRODUCT & SERVICES', isDropdown: true, dropdownType: 'services' },
+  { href: '#services', label: 'SERVICES', isDropdown: true, dropdownType: 'services' },
   { href: `${countryPrefix}/industries`, label: 'INDUSTRIES', isDropdown: true, dropdownType: 'industries' },
   { href: `${countryPrefix}/why-us`, label: 'ABOUT US' },
   { href: `${countryPrefix}/updates`, label: 'NEWS' },
+  { href: `${countryPrefix}/careers`, label: 'CAREERS' },
   { href: `${countryPrefix}/contact`, label: 'CONTACT' },
 ]
 
