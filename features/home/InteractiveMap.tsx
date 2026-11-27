@@ -446,6 +446,14 @@ const latLngToPixel = (lat: number, lng: number) => {
 }
 
 // Map pin shape (24 units wide, tip at 12,22.5), used for head offices
+// City labels shown beside the head office pins
+// Labels on the eastern pins sit to the left so they stay inside the map
+const HQ_LABELS: Record<string, { text: string; left?: boolean }> = {
+  'SGA Security Kenya Head Office': { text: 'Nairobi – Kenya', left: true },
+  'SGA Security Uganda Head Office': { text: 'Kampala – Uganda' },
+  'SGA Security Tanzania Head Office': { text: 'Dar es Salaam – Tanzania' },
+}
+
 const MAP_PIN_PATH = 'M12 22.5C12 22.5 4.5 15.2 4.5 10a7.5 7.5 0 0 1 15 0c0 5.2-7.5 12.5-7.5 12.5Z M12 7.2a2.8 2.8 0 1 0 0 5.6 2.8 2.8 0 0 0 0-5.6Z'
 
 const InteractiveMap = forwardRef<InteractiveMapRef>((props, ref) => {
@@ -528,6 +536,7 @@ const InteractiveMap = forwardRef<InteractiveMapRef>((props, ref) => {
       {/* Interactive Markers Overlay */}
       <svg
         viewBox="0 0 675 900"
+        overflow="visible"
         className="absolute inset-0 w-full h-full"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -575,6 +584,23 @@ const InteractiveMap = forwardRef<InteractiveMapRef>((props, ref) => {
                     strokeLinejoin="round"
                   />
                 </g>
+                {HQ_LABELS[location.name] && (
+                  <text
+                    x={HQ_LABELS[location.name].left ? -14 : 14}
+                    y={6}
+                    textAnchor={HQ_LABELS[location.name].left ? 'end' : 'start'}
+                    fontSize={13}
+                    fontWeight={600}
+                    fill="#00043e"
+                    stroke="white"
+                    strokeWidth={3.5}
+                    paintOrder="stroke"
+                    strokeLinejoin="round"
+                    className="pointer-events-none select-none"
+                  >
+                    {HQ_LABELS[location.name].text}
+                  </text>
+                )}
               </g>
             )
           }
