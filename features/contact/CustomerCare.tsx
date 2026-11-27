@@ -145,12 +145,15 @@ export default function CustomerCare(): React.JSX.Element {
           </p>
         </motion.div>
 
-        <div className="mt-8">
-          <Accordion items={whistleblowingItems} variant="default" />
-        </div>
-
-        <div className="mt-12">
-          <WhistleblowingForm />
+        {/* Two columns on large screens: accordion on the left, form on the right.
+            The form is sticky so it stays in view while sections are opened. */}
+        <div className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-12 items-start">
+          <div className="min-w-0">
+            <Accordion items={whistleblowingItems} variant="default" />
+          </div>
+          <div className="min-w-0 lg:sticky lg:top-32">
+            <WhistleblowingForm />
+          </div>
         </div>
       </motion.div>
     </SectionWrapper>

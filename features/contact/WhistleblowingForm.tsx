@@ -57,7 +57,7 @@ export default function WhistleblowingForm(): React.JSX.Element {
       transition={{ duration: 0.6, ease: 'easeOut' }}
       className="bg-gray-100 border border-gray-200 rounded-2xl p-6 md:p-10"
     >
-      <h3 className="text-xl md:text-2xl font-bold text-dark-charcoal mb-2 capitalize">Send your grievance</h3>
+      <h3 className="text-xl md:text-2xl font-bold text-dark-charcoal mb-2">Report a Concern or Feedback</h3>
       <p className="text-sm md:text-base text-gray-700 leading-relaxed mb-8">
         You can reach out to us via our Toll-Free Number -{' '}
         <a href="tel:0800723910" className="text-primary-orange font-semibold hover:underline">
