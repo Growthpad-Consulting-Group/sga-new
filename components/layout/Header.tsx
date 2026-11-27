@@ -278,7 +278,7 @@ export default function Header() {
       <nav className={`relative ${containerClasses}`}>
         <div
           className={`flex items-center justify-between transition-[height] duration-500 ease-out ${
-            isScrolled ? 'h-16 sm:h-20 lg:h-16 xl:h-20' : 'h-20 sm:h-24 lg:h-[4.5rem] xl:h-24'
+            isScrolled ? 'h-12 sm:h-14 lg:h-12 xl:h-14' : 'h-20 sm:h-24 lg:h-[4.5rem] xl:h-24'
           }`}
         >
           {/* Logo - Left */}
@@ -294,7 +294,7 @@ export default function Header() {
                 alt="SGA Security Logo"
                 width={202}
                 height={72}
-                className="w-[160px] lg:w-[128px] xl:w-[160px] h-auto"
+                className={`${isScrolled ? 'w-[112px] lg:w-[96px] xl:w-[112px]' : 'w-[160px] lg:w-[128px] xl:w-[160px]'} h-auto transition-all duration-500`}
                 priority
               />
             </Link>
