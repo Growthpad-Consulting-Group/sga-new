@@ -169,40 +169,40 @@ export const industriesData: Record<string, IndustryData> = {
     'financial-institutions': {
         ...banking,
         industryName: 'Financial Institutions',
-        cardImage: '/images/group/industries/government-institutions.png',
+        cardImage: '/images/group/industries/government-institutions.jpg',
     },
     'government-institutions': {
         ...diplomatic,
         industryName: 'Government Institutions',
-        cardImage: '/images/group/industries/government-institutions.png',
+        cardImage: '/images/group/industries/government-institutions.jpg',
     },
     'diplomatic-missions': {
         ...diplomatic,
         industryName: 'Diplomatic Missions',
-        cardImage: '/images/group/industries/multinational.png',
+        cardImage: '/images/group/industries/multinational.jpg',
     },
     hospitals: {
         ...education,
         industryName: 'Hospitals',
-        cardImage: '/images/group/industries/hospitals.png',
+        cardImage: '/images/group/industries/hospitals.jpg',
     },
     'schools-institutions': { ...education, industryName: 'Schools & Institutions' },
     hotels: {
         ...events,
         industryName: 'Hotels',
-        cardImage: '/images/group/industries/hotels.png',
+        cardImage: '/images/group/industries/hotels.jpg',
     },
     multinationals: {
         ...placeholderIndustry('Multinationals'),
-        cardImage: '/images/group/industries/multinational.png',
+        cardImage: '/images/group/industries/multinational.jpg',
     },
     ngos: {
         ...placeholderIndustry("NGO's"),
-        cardImage: '/images/group/industries/ngo.png',
+        cardImage: '/images/group/industries/ngo.jpg',
     },
     'other-industries': {
         ...placeholderIndustry('Other Industries'),
-        cardImage: '/images/group/industries/other-industries.png',
+        cardImage: '/images/group/industries/other-industries.jpg',
     },
 }
 
