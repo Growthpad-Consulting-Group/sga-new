@@ -131,7 +131,7 @@ export default function CountryFooter(): React.JSX.Element {
                     <Link href="/careers" className="hover:text-dark-charcoal transition-colors cursor-pointer block">Careers</Link>
                   </li>
                   <li>
-                    <Link href="/news-reports" className="hover:text-dark-charcoal transition-colors cursor-pointer block">News & Insights</Link>
+                    <Link href={`/${countryCode}/contact#whistleblowing`} className="hover:text-dark-charcoal transition-colors cursor-pointer block">Whistleblowing</Link>
                   </li>
                 </ul>
               </div>
@@ -208,11 +208,6 @@ export default function CountryFooter(): React.JSX.Element {
 
           <div className="border-t border-white/20 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center text-sm lg:text-xs xl:text-base text-white/90">
             <p>&copy; {currentYear} SGA Security. All rights reserved.</p>
-            
-            <div className="flex items-center gap-8 mt-4 sm:mt-0">
-              <Link href="/privacy-policy" className="hover:text-dark-charcoal transition-colors">Privacy Policy</Link>
-              <Link href="/site-map" className="hover:text-dark-charcoal transition-colors">Site Map</Link>
-            </div>
           </div>
         </div>
       </footer>

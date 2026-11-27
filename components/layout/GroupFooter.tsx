@@ -180,10 +180,6 @@ export default function GroupFooter(): React.JSX.Element {
 
           <div className="border-t border-white/20 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center text-sm lg:text-xs xl:text-base text-white/90">
             <p>&copy; {currentYear} SGA Security. All rights reserved.</p>
-            <div className="flex items-center gap-8 mt-4 sm:mt-0">
-              <Link href="/privacy-policy" className="hover:text-dark-charcoal transition-colors">Privacy Policy</Link>
-              <Link href="/site-map" className="hover:text-dark-charcoal transition-colors">Site Map</Link>
-            </div>
           </div>
         </div>
       </footer>
