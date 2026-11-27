@@ -264,18 +264,19 @@ const alarmResponse: ServiceData = {
     handlePointsIntro: '',
     handlePointsTitle: "Key Points",
     handlePoints: SERVICE_COPY.alarm.points,
-    sections: [
-        {
-            title: 'Fire Alarm Response',
-            image: '/images/services/control-room.jpg',
-            paragraphs: [
-                "SGA Security is a fully accredited fire safety and prevention provider offering services that include design, supply, installation and commission of a wide range of fire alarms ranging from systems for detection, protection, suppression, emergency lighting and nurse call systems.",
-                "SGA Security fire alarm response team will carry out an assessment of client premises to ensure that the fire solution offered is tailored to meet each client’s specific requirements. Regular service and maintenance is conducted for both fire and security equipment to ensure that all systems are in good condition.",
-            ],
-            pointsIntro: 'SGA Security fire alarm response provides:',
-            points: ['Fire alarm solutions', 'Portable fire extinguishers', 'Fire Risk assessment', 'Signages'],
-        },
-    ],
+    sections: [], // Fire Alarm Response hidden for now; restore the block below to show it
+//     sections: [
+//         {
+//             title: 'Fire Alarm Response',
+//             image: '/images/services/control-room.jpg',
+//             paragraphs: [
+//                 "SGA Security is a fully accredited fire safety and prevention provider offering services that include design, supply, installation and commission of a wide range of fire alarms ranging from systems for detection, protection, suppression, emergency lighting and nurse call systems.",
+//                 "SGA Security fire alarm response team will carry out an assessment of client premises to ensure that the fire solution offered is tailored to meet each client’s specific requirements. Regular service and maintenance is conducted for both fire and security equipment to ensure that all systems are in good condition.",
+//             ],
+//             pointsIntro: 'SGA Security fire alarm response provides:',
+//             points: ['Fire alarm solutions', 'Portable fire extinguishers', 'Fire Risk assessment', 'Signages'],
+//         },
+//     ],
     featuresTitle: '',
     features: [],
     relatedServices: [

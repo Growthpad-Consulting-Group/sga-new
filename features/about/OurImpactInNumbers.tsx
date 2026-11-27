@@ -169,7 +169,7 @@ export default function OurImpactInNumbers({
             items={[...topRowStats, ...bottomRowStats]}
             itemsPerPage={2}
             loop
-            autoplay={4000}
+            autoplay={10000}
             gridCols="grid-cols-2 justify-items-center"
             renderItem={(stat: Stat) => renderStat(stat)}
           />

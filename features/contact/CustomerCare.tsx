@@ -146,12 +146,12 @@ export default function CustomerCare(): React.JSX.Element {
         </motion.div>
 
         {/* Two columns on large screens: accordion on the left, form on the right.
-            The form is sticky so it stays in view while sections are opened. */}
-        <div className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-12 items-start">
-          <div className="min-w-0">
+            Both columns are sticky, so they stay in view as the user scrolls. */}
+        <div className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-12">
+          <div className="min-w-0 lg:sticky lg:top-32 lg:self-start">
             <Accordion items={whistleblowingItems} variant="default" />
           </div>
-          <div className="min-w-0 lg:sticky lg:top-32">
+          <div className="min-w-0 lg:sticky lg:top-32 lg:self-start">
             <WhistleblowingForm />
           </div>
         </div>

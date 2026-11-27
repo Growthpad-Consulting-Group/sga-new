@@ -83,7 +83,7 @@ export function useCarouselAutoplay(
 export function useInfiniteCarousel(
   totalItems: number,
   itemsPerView: number,
-  autoplay = 5000,
+  autoplay = 10000,
 ) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isResetting, setIsResetting] = useState(false)

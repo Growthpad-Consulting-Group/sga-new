@@ -12,8 +12,12 @@ interface ModalProps {
   title?: ReactNode
   /** Extra classes for the panel, e.g. a wider max width or a two-column layout */
   panelClassName?: string
+  /** Optional previous/next arrows, shown when both handlers are given */
+  onPrev?: () => void
+  onNext?: () => void
   children: ReactNode
 }
+
 
 function CloseButton({ onClose }: { onClose: () => void }) {
   return (
@@ -32,7 +36,7 @@ function CloseButton({ onClose }: { onClose: () => void }) {
  * Shared modal: blurred backdrop, animated entrance, click outside or Escape to close,
  * body scroll lock, and a sticky header with a close button. Full screen on phones.
  */
-export default function Modal({ isOpen, onClose, title, panelClassName = 'max-w-lg', children }: ModalProps) {
+export default function Modal({ isOpen, onClose, title, panelClassName = 'max-w-lg', onPrev, onNext, children }: ModalProps) {
   useBodyScrollLock(isOpen)
 
   useEffect(() => {
@@ -78,6 +82,29 @@ export default function Modal({ isOpen, onClose, title, panelClassName = 'max-w-
 
             <div className="min-h-0 flex-1 overflow-y-auto">{children}</div>
           </motion.div>
+
+          {/* Previous / next sit on the backdrop, outside the panel, like the team modal.
+              Hidden on phones, where the panel covers the whole screen. */}
+          {onPrev && onNext && (
+            <>
+              <button
+                type="button"
+                onClick={(e) => { e.stopPropagation(); onPrev() }}
+                aria-label="Previous"
+                className="absolute left-4 top-1/2 z-10 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-black/50 text-white shadow-lg transition-colors hover:bg-black/70 sm:flex"
+              >
+                <Icon icon="solar:arrow-left-bold" width={20} />
+              </button>
+              <button
+                type="button"
+                onClick={(e) => { e.stopPropagation(); onNext() }}
+                aria-label="Next"
+                className="absolute right-4 top-1/2 z-10 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-black/50 text-white shadow-lg transition-colors hover:bg-black/70 sm:flex"
+              >
+                <Icon icon="solar:arrow-right-bold" width={20} />
+              </button>
+            </>
+          )}
         </motion.div>
       )}
     </AnimatePresence>

@@ -31,7 +31,7 @@ interface CircleCarouselProps {
  * Used for "Our Products and Services" and "Industries We Serve" so both behave the same:
  * infinite loop, autoplay that pauses on hover, drag or swipe, and 3 cards per row (1 on mobile).
  */
-export default function CircleCarousel({ title, description, items, autoplay = 5000 }: CircleCarouselProps) {
+export default function CircleCarousel({ title, description, items, autoplay = 10000 }: CircleCarouselProps) {
   const [itemsPerPage, setItemsPerPage] = useState(3)
   const [isHovered, setIsHovered] = useState(false)
 

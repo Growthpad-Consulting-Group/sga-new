@@ -32,7 +32,7 @@ export default function CircleCard({ title, imageUrl, description, href, withSha
             {title}
           </h3>
           {description && (
-            <p className="text-white/90 text-sm md:text-lg lg:text-sm xl:text-lg leading-relaxed max-w-xs mb-3">
+            <p className="text-white/90 text-sm md:text-lg lg:text-sm xl:text-lg leading-relaxed max-w-xs mb-3 line-clamp-3">
               {description}
             </p>
           )}

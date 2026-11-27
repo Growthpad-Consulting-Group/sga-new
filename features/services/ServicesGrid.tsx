@@ -55,6 +55,15 @@ export default function ServicesGrid({ services, country, type, isIndividual, co
         setSelected(service)
     }
 
+    // Services that open in the modal, in grid order, so prev/next move through them and wrap around
+    const navigable = services.filter((service) => Boolean(service.href) && !service.href?.startsWith('http'))
+    const stepSelected = (step: number) => {
+        if (!selected) return
+        const index = navigable.findIndex((service) => service.slug === selected.slug)
+        if (index === -1) return
+        setSelected(navigable[(index + step + navigable.length) % navigable.length])
+    }
+
     return (
         <section id="services-grid" className="bg-white pt-16 pb-24 sm:pt-20 sm:pb-16 container-fluid overflow-hidden">
             <div className="mx-auto">
@@ -143,7 +152,13 @@ export default function ServicesGrid({ services, country, type, isIndividual, co
             </div>
 
             {/* Service modal: opened from a card instead of navigating away */}
-            <Modal isOpen={selected !== null} onClose={() => setSelected(null)} panelClassName="max-w-5xl">
+            <Modal
+                isOpen={selected !== null}
+                onClose={() => setSelected(null)}
+                panelClassName="max-w-5xl"
+                onPrev={navigable.length > 1 ? () => stepSelected(-1) : undefined}
+                onNext={navigable.length > 1 ? () => stepSelected(1) : undefined}
+            >
                 {selected && (
                     <div className="md:flex md:min-h-full">
                         {/* Image column */}

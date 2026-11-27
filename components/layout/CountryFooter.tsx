@@ -122,13 +122,13 @@ export default function CountryFooter(): React.JSX.Element {
                 <h4 className="font-semibold mb-6 text-white text-3xl lg:text-xl xl:text-3xl">SGA Group</h4>
                 <ul className="space-y-2 text-xl lg:text-sm xl:text-xl text-white/90">
                   <li>
-                    <Link href="/" className="hover:text-dark-charcoal transition-colors cursor-pointer block">Group Website</Link>
-                  </li>
-                  <li>
                     <Link href="/sustainability" className="hover:text-dark-charcoal transition-colors cursor-pointer block">Sustainability</Link>
                   </li>
                   <li>
                     <Link href="/careers" className="hover:text-dark-charcoal transition-colors cursor-pointer block">Careers</Link>
+                  </li>
+                  <li>
+                    <Link href="/news-reports" className="hover:text-dark-charcoal transition-colors cursor-pointer block">News & Insights</Link>
                   </li>
                   <li>
                     <Link href={`/${countryCode}/contact#whistleblowing`} className="hover:text-dark-charcoal transition-colors cursor-pointer block">Whistleblowing</Link>

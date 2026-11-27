@@ -93,12 +93,12 @@ export default function ServicePageTemplate({
         return () => mq.removeEventListener('change', update)
     }, [])
 
-    // Autoplay every 5s like the group page carousel; pauses while the mouse is over it
+    // Autoplay every 10s like the group page carousel; pauses while the mouse is over it
     useEffect(() => {
         if (relatedPaused || !relatedServices || relatedServices.length <= relatedPerView) return
         const timer = setInterval(() => {
             setRelatedServicesIndex((prev) => (prev >= relatedServices.length - relatedPerView ? 0 : prev + 1))
-        }, 5000)
+        }, 10000)
         return () => clearInterval(timer)
     }, [relatedPaused, relatedServices, relatedPerView])
 
@@ -157,6 +157,26 @@ export default function ServicePageTemplate({
                             <p className="text-base md:text-xl text-gray-700 leading-relaxed max-w-xl">
                                 {heroDescription}
                             </p>
+
+                            {/* Key points, shown under the description */}
+                            {handlePoints.length > 0 && (
+                                <div className="pt-2">
+                                    {handlePointsTitle && (
+                                        <h3 className="text-lg md:text-xl font-bold text-dark-charcoal mb-3">{handlePointsTitle}</h3>
+                                    )}
+                                    {handlePointsIntro && (
+                                        <p className="text-base text-gray-700 mb-3">{handlePointsIntro}</p>
+                                    )}
+                                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3">
+                                        {handlePoints.map((point, index) => (
+                                            <li key={index} className="flex items-start gap-3 text-base text-gray-700">
+                                                <Icon icon="solar:check-circle-bold" className="w-5 h-5 mt-0.5 text-primary-orange shrink-0" />
+                                                <span>{point}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
 
                         </motion.div>
 
@@ -227,59 +247,6 @@ export default function ServicePageTemplate({
                 </section>
             ))}
 
-            {/* What We Handle Section */}
-            {handlePoints.length > 0 && (
-            <section className="flex items-center justify-center bg-primary-orange text-white py-20 sm:py-28 relative">
-                <motion.div
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: '-100px' }}
-                    transition={{ duration: 0.6, ease: 'easeOut' }}
-                    className="container-fluid mx-auto relative z-10"
-                >
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-                        {/* Content */}
-                        <motion.div
-                            initial={{ opacity: 0, x: -30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            className="space-y-10 lg:col-span-2"
-                        >
-                            <div className="section-title-container-white w-full">
-                                <h2 className="section-title text-2xl md:text-3xl lg:text-4xl font-bold text-white">
-                                    {handlePointsTitle || serviceName}
-                                </h2>
-                            </div>
-                            {handlePointsIntro && (
-                                <p className="text-lg md:text-xl text-white font-medium -mt-4">{handlePointsIntro}</p>
-                            )}
-                            <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                {handlePoints.map((point, index) => (
-                                    <motion.li
-                                        key={index}
-                                        initial={{ opacity: 0, x: -20 }}
-                                        whileInView={{ opacity: 1, x: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: index * 0.1 }}
-                                        className="flex items-start gap-4 text-lg md:text-xl text-white font-medium group"
-                                    >
-                                        <div className="mt-1 shrink-0 bg-white/20 p-1.5 rounded-full group-hover:bg-white/30 transition-colors">
-                                            <Icon
-                                                icon="solar:check-circle-bold"
-                                                className="w-5 h-5 text-white"
-                                            />
-                                        </div>
-                                        <span>{point}</span>
-                                    </motion.li>
-                                ))}
-                            </ul>
-                        </motion.div>
-
-                    </div>
-                </motion.div>
-                <SectionSeparator />
-            </section>
-            )}
 
 
             {/* Why Choose Section (Optional, if points exist) */}

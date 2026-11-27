@@ -9,10 +9,13 @@ import { usePathname } from 'next/navigation'
 import { useEnquiryModal } from '@/contexts/EnquiryModalContext'
 import Button from '@/components/ui/Button'
 import { useCountryModal } from '@/contexts/CountryModalContext'
-import { navItems, getCountryNavItems, socialLinks, countries } from '@/data/nav'
+import { navItems, getCountryNavItems, socialLinks, countries, getIndividualServicesItems, getCorporateServicesItems, getHeaderShortcuts } from '@/data/nav'
+import MegaMenuDropdown from '@/components/layout/header/MegaMenuDropdown'
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false)
+  const [servicesViewType, setServicesViewType] = useState<'Individual' | 'Corporate'>('Individual')
   const [isScrolled, setIsScrolled] = useState(false)
   const pathname = usePathname()
   const router = useTransitionRouter()
@@ -304,6 +307,40 @@ export default function Header() {
           <div className="hidden lg:flex items-center justify-center flex-1">
             <div className="flex items-center space-x-4 xl:space-x-6 2xl:space-x-8">
               {currentNavItems.filter(item => !item.icon).map((item) => {
+                if (item.isDropdown) {
+                  // Services mega menu, the same list as the country header uses (group level, no country prefix)
+                  const servicesItems = servicesViewType === 'Individual' ? getIndividualServicesItems('') : getCorporateServicesItems('')
+                  return (
+                    <div key={item.href} className="relative">
+                      <button
+                        onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
+                        className={`transition-all duration-200 hover:-translate-y-0.5 font-nav font-bold tracking-widest flex items-center gap-1.5 text-xs xl:text-base ${getNavTextColor(false)}`}
+                      >
+                        {item.label}
+                        <Icon icon="mdi:plus" className="w-4 h-4 xl:w-5 xl:h-5" />
+                      </button>
+                      <AnimatePresence>
+                        {servicesDropdownOpen && (
+                          <MegaMenuDropdown
+                            isOpen={servicesDropdownOpen}
+                            onClose={() => setServicesDropdownOpen(false)}
+                            isServices={true}
+                            servicesViewType={servicesViewType}
+                            setServicesViewType={setServicesViewType}
+                            dropdownItems={servicesItems}
+                            countries={countries}
+                            isActiveCountry={() => false}
+                            shortcuts={getHeaderShortcuts('')}
+                            countryPrefix=""
+                            countryPhone={null}
+                            openModal={openModal}
+                          />
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  )
+                }
+
                 const isRoute = !item.href.startsWith('#')
                 const isActive = isRoute ? pathname === item.href : false
                 const NavComponent = isRoute ? Link : 'a'
