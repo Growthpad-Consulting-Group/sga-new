@@ -67,7 +67,7 @@ export default function OurJourney({ events = groupTimelineEvents }: OurJourneyP
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  const infiniteCarousel = useInfiniteCarousel(events.length, itemsToShow, 5000)
+  const infiniteCarousel = useInfiniteCarousel(events.length, itemsToShow, 10000)
   const loopedEvents = [
     ...events,
     ...events.slice(0, Math.min(itemsToShow, events.length)),

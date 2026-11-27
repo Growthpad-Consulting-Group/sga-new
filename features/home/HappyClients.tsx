@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { useCarousel } from '@/components/ui/Carousel'
+import { CarouselArrows, useInfiniteCarousel } from '@/components/ui/Carousel'
 import { countryIndustries } from '@/data/industry-clients'
 
 interface Client {
@@ -39,12 +39,22 @@ export default function HappyClients() {
     ? clients
     : clients.filter(client => client.category === activeFilter)
 
-  // Use carousel for pagination (show 8 clients per page - 2 rows of 4)
-  const carousel = useCarousel(filteredClients.length, 12)
+  // Pages of 16 so every row is full at 2, 4 and 8 columns (2 rows of 8 on large screens).
+  // Each page is one slide, using the same sliding carousel as the products and industries.
+  const PAGE_SIZE = 16
+  const pages = Array.from(
+    { length: Math.ceil(filteredClients.length / PAGE_SIZE) },
+    (_, i) => filteredClients.slice(i * PAGE_SIZE, (i + 1) * PAGE_SIZE),
+  )
+  // The first page is repeated at the end so the loop looks continuous
+  const loopedPages = pages.length > 1 ? [...pages, pages[0]] : pages
+
+  const [hovered, setHovered] = useState(false)
+  const carousel = useInfiniteCarousel(pages.length, 1, hovered ? 0 : 10000)
 
   const handleFilterChange = (filter: string) => {
     setActiveFilter(filter)
-    carousel.goToPage(1)
+    carousel.goTo(0)
   }
   return (
     <section id="happy-clients" className="flex items-center justify-center bg-white py-12 md:py-20 min-h-[85vh] relative">
@@ -69,6 +79,12 @@ export default function HappyClients() {
               <h3 className="section-title text-2xl md:text-3xl lg:text-4xl font-bold text-primary-orange">
                 Happy Clients
               </h3>
+              <CarouselArrows
+                onPrev={carousel.previous}
+                onNext={carousel.next}
+                canGoPrev={carousel.canMove}
+                canGoNext={carousel.canMove}
+              />
             </div>
           </motion.div>
         </div>
@@ -97,39 +113,52 @@ export default function HappyClients() {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-6 lg:grid-cols-8 overflow-hidden border-t border-l border-dark-charcoal/10">
-          {carousel.currentItems(filteredClients).map((client, index) => {
-            return (
+        <div
+          className="overflow-hidden border-t border-l border-dark-charcoal/10"
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+        >
+          <div className="flex" style={carousel.trackStyle} onTransitionEnd={carousel.handleTransitionEnd}>
+            {loopedPages.map((page, pageIndex) => (
               <div
-                key={index}
-                className={`
-                  border-r border-b border-dark-charcoal/10 aspect-[4/3] md:aspect-square p-2 sm:p-3 flex items-center justify-center
-                  hover:z-10 hover:scale-[1.02] hover:bg-light-grey hover:shadow-xl hover:shadow-primary-orange/10 transition-all duration-300
-                `}
+                key={pageIndex}
+                className="grid w-full shrink-0 grid-cols-2 md:grid-cols-4 lg:grid-cols-8"
+                aria-hidden={pageIndex >= pages.length || undefined}
               >
-                {client.logo ? (
-                  <img
-                    src={`/images/clients/${client.logo}`}
-                    alt={client.name}
-                    loading="lazy"
-                    className="h-auto max-h-20 sm:max-h-32 w-full object-contain transition-all duration-300"
-                  />
-                ) : (
-                  <span className="text-center text-xs sm:text-sm font-semibold leading-snug text-dark-charcoal">{client.name}</span>
-                )}
+                {page.map((client) => (
+                  <div
+                    key={client.name + (client.logo ?? '')}
+                    className={`
+                      border-r border-b border-dark-charcoal/10 aspect-[4/3] md:aspect-square p-4 sm:p-6 lg:p-5 flex items-center justify-center
+                      hover:z-10 hover:scale-[1.02] hover:bg-light-grey hover:shadow-xl hover:shadow-primary-orange/10 transition-all duration-300
+                    `}
+                  >
+                    {client.logo ? (
+                      <img
+                        src={`/images/clients/${client.logo}`}
+                        alt={client.name}
+                        loading="lazy"
+                        className="h-auto max-h-20 sm:max-h-32 w-full object-contain transition-all duration-300"
+                      />
+                    ) : (
+                      <span className="text-center text-xs sm:text-sm font-semibold leading-snug text-dark-charcoal">{client.name}</span>
+                    )}
+                  </div>
+                ))}
               </div>
-            );
-          })}
+            ))}
+          </div>
         </div>
 
-        {/* Page Indicator */}
-        {carousel.totalPages > 1 && (
+        {/* Page dots */}
+        {pages.length > 1 && (
           <div className="flex justify-center items-center gap-2 mt-8">
-            {Array.from({ length: carousel.totalPages }, (_, i) => (
+            {pages.map((_, i) => (
               <button
                 key={i}
-                onClick={() => carousel.goToPage(i + 1)}
-                className={`rounded-full transition-all duration-300 ${carousel.currentPage === i + 1
+                type="button"
+                onClick={() => carousel.goTo(i)}
+                className={`rounded-full transition-all duration-300 ${carousel.currentIndex % pages.length === i
                     ? 'bg-primary-orange w-8 h-2'
                     : 'bg-dark-charcoal/30 w-2 h-2'
                   }`}

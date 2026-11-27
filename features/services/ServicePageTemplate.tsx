@@ -93,12 +93,12 @@ export default function ServicePageTemplate({
         return () => mq.removeEventListener('change', update)
     }, [])
 
-    // Autoplay every 5s like the group page carousel; pauses while the mouse is over it
+    // Autoplay every 10s like the group page carousel; pauses while the mouse is over it
     useEffect(() => {
         if (relatedPaused || !relatedServices || relatedServices.length <= relatedPerView) return
         const timer = setInterval(() => {
             setRelatedServicesIndex((prev) => (prev >= relatedServices.length - relatedPerView ? 0 : prev + 1))
-        }, 5000)
+        }, 10000)
         return () => clearInterval(timer)
     }, [relatedPaused, relatedServices, relatedPerView])
 
