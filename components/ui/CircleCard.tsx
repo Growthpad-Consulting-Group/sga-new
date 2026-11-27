@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react'
 import Image from 'next/image'
-import { Icon } from '@iconify/react'
 
 interface CircleCardProps {
   title: string
@@ -36,12 +35,6 @@ export default function CircleCard({ title, imageUrl, description, href, withSha
             <p className="text-white/90 text-sm md:text-lg lg:text-sm xl:text-lg leading-relaxed max-w-xs mb-3">
               {description}
             </p>
-          )}
-          {href && (
-            <Icon
-              icon="iconoir:arrow-right-circle"
-              className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-            />
           )}
         </div>
         {action && (
