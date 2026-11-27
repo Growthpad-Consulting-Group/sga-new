@@ -16,6 +16,12 @@ const nextConfig = {
   outputFileTracingIncludes: {
     '/api/webhooks/certificate-cover': ['./node_modules/pdfjs-dist/legacy/build/pdf.worker.mjs'],
   },
+  // Country about page moved from /[country]/why-us to /[country]/about
+  async redirects() {
+    return [
+      { source: '/:country(ke|ug|tz)/why-us', destination: '/:country/about', permanent: true },
+    ]
+  },
   images: {
     remotePatterns: [
       {
