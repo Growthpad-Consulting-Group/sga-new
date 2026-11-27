@@ -5,10 +5,14 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import { usePathname } from 'next/navigation'
 import { useBodyScrollLock } from '@/lib/useBodyScrollLock'
+import countries from '@/data/countries.json'
 import { individualServicesMenu, corporateServicesMenu } from '@/data/services'
 import CountrySearchSelect from '@/components/ui/CountrySearchSelect'
 import Button from '@/components/ui/Button'
 import type { OpenEnquiryOptions } from '@/contexts/EnquiryModalContext'
+
+// Every calling code in the country list, used to tell when the phone field holds only a code
+const allDialCodes: string[] = countries.map((c) => c.dialCode).filter((code): code is string => Boolean(code))
 
 const COUNTRY_NAMES_BY_ROUTE: Record<string, string> = {
   ke: 'Kenya',
@@ -318,7 +322,12 @@ export default function EnquiryModal({ isOpen, onClose, preset }: EnquiryModalPr
                         <CountrySearchSelect
                           id="callback-country"
                           value={callbackData.country}
-                          onChange={(country) => setCallbackData(prev => ({ ...prev, country }))}
+                          onChange={(country) => setCallbackData(prev => {
+                            // Fill in the calling code when the phone is empty or still has another country's code
+                            const dialCode = countries.find((c) => c.name === country)?.dialCode
+                            const phoneIsDialCodeOnly = prev.phone.trim() === '' || allDialCodes.includes(prev.phone.trim())
+                            return { ...prev, country, phone: dialCode && phoneIsDialCodeOnly ? dialCode : prev.phone }
+                          })}
                         />
                       </div>
                       <div>
