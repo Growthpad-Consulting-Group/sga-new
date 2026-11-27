@@ -44,7 +44,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
   const interestOptions = (enquiryType === 'Individual' ? individualServicesMenu : corporateServicesMenu).map((service) => service.title)
   const [isInterestsOpen, setIsInterestsOpen] = useState(false)
   const [isCallbackOpen, setIsCallbackOpen] = useState(false)
-  const [callbackData, setCallbackData] = useState({ name: '', email: '', phone: '' })
+  const [callbackData, setCallbackData] = useState({ name: '', email: '', phone: '', country: '' })
   const [formData, setFormData] = useState<FormData>({
     fullName: '',
     email: '',
@@ -142,11 +142,12 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
 
   const handleCallbackSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    if (!callbackData.country) return
 
     // Handle callback request here (same as the enquiry form, no backend yet)
     console.log('Call back requested:', callbackData)
     alert('Thank you! We will call you back shortly.')
-    setCallbackData({ name: '', email: '', phone: '' })
+    setCallbackData({ name: '', email: '', phone: '', country: '' })
     setIsCallbackOpen(false)
   }
 
@@ -266,54 +267,67 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
                 </div>
 
                 {isCallbackOpen ? (
-                  <form onSubmit={handleCallbackSubmit} className="space-y-5 sm:space-y-6">
+                  <form onSubmit={handleCallbackSubmit} className="space-y-6">
                     <div>
                       <h2 className="text-2xl md:text-3xl font-bold text-primary-orange">Request a call back</h2>
                       <p className="text-sm text-gray-600 mt-1">Leave your details and we'll call you back.</p>
                     </div>
 
-                    <div>
-                      <label htmlFor="callback-name" className="block text-sm font-semibold text-dark-charcoal mb-2">Full Name *</label>
-                      <input
-                        id="callback-name"
-                        type="text"
-                        required
-                        placeholder="Enter your full name"
-                        value={callbackData.name}
-                        onChange={(e) => setCallbackData(prev => ({ ...prev, name: e.target.value }))}
-                        className="w-full rounded-lg border border-gray-300 px-4 py-3 text-dark-charcoal placeholder:text-gray-400 focus:outline-none focus:border-primary-orange"
-                      />
+                    {/* Row 1: name and email */}
+                    <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+                      <div>
+                        <label htmlFor="callback-name" className="block text-sm font-semibold text-dark-charcoal mb-2">Full Name *</label>
+                        <input
+                          id="callback-name"
+                          type="text"
+                          required
+                          placeholder="Enter your full name"
+                          value={callbackData.name}
+                          onChange={(e) => setCallbackData(prev => ({ ...prev, name: e.target.value }))}
+                          className="w-full rounded-lg border border-gray-300 px-4 py-3 text-dark-charcoal placeholder:text-gray-400 focus:outline-none focus:border-primary-orange"
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="callback-email" className="block text-sm font-semibold text-dark-charcoal mb-2">Email *</label>
+                        <input
+                          id="callback-email"
+                          type="email"
+                          required
+                          placeholder="Enter your email"
+                          value={callbackData.email}
+                          onChange={(e) => setCallbackData(prev => ({ ...prev, email: e.target.value }))}
+                          className="w-full rounded-lg border border-gray-300 px-4 py-3 text-dark-charcoal placeholder:text-gray-400 focus:outline-none focus:border-primary-orange"
+                        />
+                      </div>
                     </div>
 
-                    <div>
-                      <label htmlFor="callback-email" className="block text-sm font-semibold text-dark-charcoal mb-2">Email *</label>
-                      <input
-                        id="callback-email"
-                        type="email"
-                        required
-                        placeholder="Enter your email"
-                        value={callbackData.email}
-                        onChange={(e) => setCallbackData(prev => ({ ...prev, email: e.target.value }))}
-                        className="w-full rounded-lg border border-gray-300 px-4 py-3 text-dark-charcoal placeholder:text-gray-400 focus:outline-none focus:border-primary-orange"
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="callback-phone" className="block text-sm font-semibold text-dark-charcoal mb-2">Phone Number *</label>
-                      <input
-                        id="callback-phone"
-                        type="tel"
-                        required
-                        placeholder="Enter your phone number"
-                        value={callbackData.phone}
-                        onChange={(e) => setCallbackData(prev => ({ ...prev, phone: e.target.value }))}
-                        className="w-full rounded-lg border border-gray-300 px-4 py-3 text-dark-charcoal placeholder:text-gray-400 focus:outline-none focus:border-primary-orange"
-                      />
+                    {/* Row 2: country and telephone */}
+                    <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+                      <div>
+                        <label htmlFor="callback-country" className="block text-sm font-semibold text-dark-charcoal mb-2">Country *</label>
+                        <CountrySearchSelect
+                          id="callback-country"
+                          value={callbackData.country}
+                          onChange={(country) => setCallbackData(prev => ({ ...prev, country }))}
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="callback-phone" className="block text-sm font-semibold text-dark-charcoal mb-2">Telephone Number *</label>
+                        <input
+                          id="callback-phone"
+                          type="tel"
+                          required
+                          placeholder="Enter your telephone number"
+                          value={callbackData.phone}
+                          onChange={(e) => setCallbackData(prev => ({ ...prev, phone: e.target.value }))}
+                          className="w-full rounded-lg border border-gray-300 px-4 py-3 text-dark-charcoal placeholder:text-gray-400 focus:outline-none focus:border-primary-orange"
+                        />
+                      </div>
                     </div>
 
                     <div className="flex flex-wrap gap-3">
                       <Button type="submit" variant="solid" size="small" arrow={false} className="w-auto">
-                        Request call back
+                        Submit
                       </Button>
                       <Button
                         variant="light"
