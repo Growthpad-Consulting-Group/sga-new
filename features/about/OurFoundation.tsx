@@ -31,7 +31,7 @@ interface OurFoundationProps {
 
 function renderCircle(foundation: Foundation) {
   return (
-    <div className="relative w-80 h-80 md:w-[400px] md:h-[400px] lg:w-[320px] lg:h-[320px] xl:w-[400px] xl:h-[400px] rounded-full overflow-hidden shadow-xl bg-primary-orange group cursor-pointer">
+    <div className="relative w-80 h-80 md:w-[400px] md:h-[400px] lg:w-[320px] lg:h-[320px] xl:w-[320px] xl:h-[320px] rounded-full overflow-hidden shadow-xl bg-primary-orange group cursor-pointer">
       {/* Content */}
       <div className="absolute inset-0 flex flex-col items-center justify-center p-6 md:p-8 text-center z-10">
         <div className="flex items-center justify-center gap-3 mb-3">
