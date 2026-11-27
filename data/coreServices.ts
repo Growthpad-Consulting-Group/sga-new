@@ -54,7 +54,7 @@ export const coreServices: CoreService[] = [
   {
     title: 'K-9 Services',
     detailSlugs: { corporate: 'security-k9' },
-    description: 'Trained K9 units for enhanced security patrols and detection services.',
+    description: 'Our K-9 services use security dogs and trained handlers to support security operations and strengthen the protection of people, property and premises.',
     imageUrl: '/images/group/core-services/k9.jpg',
   },
   // Temporarily hidden: Special Services. Uncomment this block to show it again.

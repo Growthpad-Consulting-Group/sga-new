@@ -268,25 +268,22 @@ const cashManagement: ServiceData = {
 }
 
 const securityDogs: ServiceData = {
-    serviceName: 'Security K9',
+    serviceName: 'K-9 Services',
     serviceIcon: 'mdi:dog',
     serviceType: 'Corporate',
     heroImage: '/images/services/k9.jpg',
-    heroTitle: 'Trained Security K9 and Handlers',
+    heroTitle: 'K-9 Services',
     heroDescription:
-        "SGA Security Dog Section provides trained security dogs and dog handlers for protection of people and property.",
-    overviewTitle: 'About Security K9',
+        'Our K-9 services use security dogs and trained handlers to support security operations and strengthen the protection of people, property and premises.',
+    overviewTitle: 'About K-9 Services',
     overviewDescription:
-        "Trained expert staff with dogs complement existing security procedures tailored to each client’s needs. SGA Security’s professional management team and supervisors ensure that security patrol as well as guard dogs and handler teams are kept up-to-date with regular training.\n\nSecurity Patrol together with Guard Dogs are a proven asset in the reduction of theft, criminal damage and violent behaviour. Security Dogs are also used as sniffer dogs to detect explosives, narcotics and other threatening materials.\n\nIt is commonly accepted that one security patrol dog and handler team can be as effective as five static security officers, due to the canine’s excellent olfactory system.\n\nSGA Security dogs are often deployed at Events like concerts, festivals, fairs, exhibitions, sports tournaments, parades among others for crowd control, guarding and detection.",
+        'Our K-9 services use security dogs and trained handlers to support security operations and strengthen the protection of people, property and premises.',
     overviewImage: '/images/services/k9.jpg',
     handlePointsIntro: '',
-    handlePointsTitle: 'Our K9 Services Include',
+    handlePointsTitle: 'Key Points',
     handlePoints: [
-        'Security patrol dogs with handler',
-        'Narcotics screening dogs',
-        'Explosives screening dogs',
-        'Crowd control',
-        'Dog obedience and defense training',
+        'Canine security support and patrols.',
+        'Deployment based on specific security requirements.',
     ],
     featuresTitle: '',
     features: [],
@@ -294,8 +291,8 @@ const securityDogs: ServiceData = {
         { image: '/images/services/guarding.jpg', category: 'Security Service', title: 'Security Guarding', summary: 'Professional on-site security personnel for your business.', link: '/{cc}/services/corporate/security-guarding' },
         { image: '/images/services/alarm-response.jpg', category: 'Security Service', title: 'Alarm Response', summary: 'Monitored alarms with armed response teams on call.', link: '/{cc}/services/corporate/alarm-response' },
     ],
-    metaTitle: 'Security K9 Services - SGA Security {country}',
-    metaDescription: 'Trained security patrol, guard and screening dogs with expert handlers from SGA Security in {country}.',
+    metaTitle: 'K-9 Services - SGA Security {country}',
+    metaDescription: 'Our K-9 services use security dogs and trained handlers to support security operations across {country}.',
 }
 
 const cctv: ServiceData = {
