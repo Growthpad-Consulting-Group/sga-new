@@ -12,7 +12,10 @@ type Country = 'All Country' | 'Kenya' | 'Tanzania' | 'Uganda'
 interface DocumentItem {
     title: string
     category: Exclude<Category, 'ALL'>
-    country: Exclude<Country, 'All Country'>
+    /** Display label, e.g. "Kenya • Uganda" */
+    country: string
+    /** Every country the document covers */
+    countries: Exclude<Country, 'All Country'>[]
     link: string
     year?: string
     summary?: string
@@ -89,7 +92,7 @@ export default function CertificationsAndMemberships({ documents }: Certificatio
 
     const filteredDocuments = prioritizedDocuments.filter((doc) => {
         const matchCategory = activeCategory === 'ALL' || doc.category === activeCategory
-        const matchCountry = selectedCountry === 'All Country' || doc.country === selectedCountry || isIcoca(doc.title)
+        const matchCountry = selectedCountry === 'All Country' || doc.countries.includes(selectedCountry as Exclude<Country, 'All Country'>) || isIcoca(doc.title)
         const matchSearch = !searchQuery ||
             doc.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
             doc.country.toLowerCase().includes(searchQuery.toLowerCase()) ||

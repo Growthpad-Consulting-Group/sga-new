@@ -106,7 +106,7 @@ export const managementMembersQuery = groq`
 
 // Get all certificate/license/membership documents
 export const certificateDocumentsQuery = groq`
-  *[_type == "certificateDocument"] | order(country asc, title asc) {
+  *[_type == "certificateDocument"] | order(title asc) {
     _id,
     title,
     category,

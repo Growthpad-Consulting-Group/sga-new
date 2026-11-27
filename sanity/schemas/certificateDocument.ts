@@ -27,8 +27,9 @@ export default defineType({
     }),
     defineField({
       name: 'country',
-      title: 'Country',
-      type: 'string',
+      title: 'Country coverage',
+      type: 'array',
+      of: [{ type: 'string' }],
       options: {
         list: [
           { title: 'Kenya', value: 'Kenya' },
@@ -36,7 +37,7 @@ export default defineType({
           { title: 'Tanzania', value: 'Tanzania' },
         ],
       },
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) => Rule.required().min(1),
     }),
     defineField({
       name: 'file',
