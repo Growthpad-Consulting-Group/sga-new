@@ -268,14 +268,14 @@ const cashManagement: ServiceData = {
 }
 
 const securityDogs: ServiceData = {
-    serviceName: 'Security Dogs (K9)',
+    serviceName: 'Security K9',
     serviceIcon: 'mdi:dog',
     serviceType: 'Corporate',
     heroImage: '/images/services/k9.jpg',
-    heroTitle: 'Trained Security Dogs and Handlers',
+    heroTitle: 'Trained Security K9 and Handlers',
     heroDescription:
         "SGA Security Dog Section provides trained security dogs and dog handlers for protection of people and property.",
-    overviewTitle: 'About Security Dogs',
+    overviewTitle: 'About Security K9',
     overviewDescription:
         "Trained expert staff with dogs complement existing security procedures tailored to each client’s needs. SGA Security’s professional management team and supervisors ensure that security patrol as well as guard dogs and handler teams are kept up-to-date with regular training.\n\nSecurity Patrol together with Guard Dogs are a proven asset in the reduction of theft, criminal damage and violent behaviour. Security Dogs are also used as sniffer dogs to detect explosives, narcotics and other threatening materials.\n\nIt is commonly accepted that one security patrol dog and handler team can be as effective as five static security officers, due to the canine’s excellent olfactory system.\n\nSGA Security dogs are often deployed at Events like concerts, festivals, fairs, exhibitions, sports tournaments, parades among others for crowd control, guarding and detection.",
     overviewImage: '/images/services/k9.jpg',
@@ -294,7 +294,7 @@ const securityDogs: ServiceData = {
         { image: '/images/services/guarding.jpg', category: 'Security Service', title: 'Security Guarding', summary: 'Professional on-site security personnel for your business.', link: '/{cc}/services/corporate/security-guarding' },
         { image: '/images/services/alarm-response.jpg', category: 'Security Service', title: 'Alarm Response', summary: 'Monitored alarms with armed response teams on call.', link: '/{cc}/services/corporate/alarm-response' },
     ],
-    metaTitle: 'Security Dogs and K9 Services - SGA Security {country}',
+    metaTitle: 'Security K9 Services - SGA Security {country}',
     metaDescription: 'Trained security patrol, guard and screening dogs with expert handlers from SGA Security in {country}.',
 }
 
@@ -485,7 +485,7 @@ const businessSolutions: ServiceData = {
 export const individualServices: Record<string, ServiceData> = {
     courier: { ...courier, serviceType: 'Individual' },
     'alarm-response': { ...alarmResponse, serviceType: 'Individual' },
-    'security-dogs': { ...securityDogs, serviceType: 'Individual' },
+    'security-k9': { ...securityDogs, serviceType: 'Individual' },
     cctv: { ...cctv, serviceType: 'Individual' },
     'close-protection': { ...closeProtection, serviceType: 'Individual' },
 }
@@ -497,7 +497,7 @@ export const corporateServices: Record<string, ServiceData> = {
     'alarm-response': alarmResponse,
     tracking: fleetTracking,
     'cit-and-cash-management': cashManagement,
-    'security-dogs': securityDogs,
+    'security-k9': securityDogs,
     cctv,
     'fire-detection': fireDetection,
     'control-room': controlRoom,
@@ -518,5 +518,35 @@ export function resolveServiceData(data: ServiceData, countryName: string, count
             ...rs,
             link: rs.link.replace('/{cc}', countryCode ? `/${countryCode}` : '').replace(/\{country\}/g, countryName),
         })),
+    }
+}
+
+/** The parts of a service page that the service modal shows */
+export interface ServiceDetail {
+    overviewTitle: string
+    overviewDescription: string
+    handlePointsTitle?: string
+    handlePointsIntro?: string
+    handlePoints?: string[]
+    featuresTitle?: string
+    features: ServiceFeature[]
+    sections?: { title: string; paragraphs: string[]; pointsIntro?: string; points?: string[] }[]
+}
+
+/** Detail for a menu path such as /services/corporate/cctv, or undefined when there is no page for it */
+export function getServiceDetail(path: string, countryName: string, countryCode: string): ServiceDetail | undefined {
+    const [, , kind, slug] = path.split('/')
+    const data = kind === 'corporate' ? corporateServices[slug] : kind === 'individual' ? individualServices[slug] : undefined
+    if (!data) return undefined
+    const r = resolveServiceData(data, countryName, countryCode)
+    return {
+        overviewTitle: r.overviewTitle,
+        overviewDescription: r.overviewDescription,
+        handlePointsTitle: r.handlePointsTitle,
+        handlePointsIntro: r.handlePointsIntro,
+        handlePoints: r.handlePoints,
+        featuresTitle: r.featuresTitle,
+        features: r.features,
+        sections: r.sections,
     }
 }

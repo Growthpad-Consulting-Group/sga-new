@@ -8,6 +8,7 @@ import { useBodyScrollLock } from '@/lib/useBodyScrollLock'
 import { individualServicesMenu, corporateServicesMenu } from '@/data/servicesMenu'
 import CountrySearchSelect from '@/components/ui/CountrySearchSelect'
 import Button from '@/components/ui/Button'
+import type { OpenEnquiryOptions } from '@/contexts/EnquiryModalContext'
 
 const COUNTRY_NAMES_BY_ROUTE: Record<string, string> = {
   ke: 'Kenya',
@@ -33,9 +34,11 @@ interface FormData {
 interface EnquiryModalProps {
   isOpen: boolean
   onClose: () => void
+  /** Pre-selects a service (and its list) when the modal opens from a service */
+  preset?: OpenEnquiryOptions | null
 }
 
-export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): React.JSX.Element | null {
+export default function EnquiryModal({ isOpen, onClose, preset }: EnquiryModalProps): React.JSX.Element | null {
   const pathname = usePathname()
   const countryCode = pathname.split('/').filter(Boolean)[0] || ''
   const routeCountry = COUNTRY_NAMES_BY_ROUTE[countryCode] || ''
@@ -59,6 +62,13 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps): Re
     companySize: '',
     industry: ''
   })
+
+  // Opened from a service: select that service and its list
+  useEffect(() => {
+    if (!isOpen || !preset?.interest) return
+    if (preset.enquiryType) setEnquiryType(preset.enquiryType)
+    setFormData(prev => ({ ...prev, interests: [preset.interest as string] }))
+  }, [isOpen, preset])
 
   // Drop any selected services that don't belong to the chosen Individual or Corporate list
   useEffect(() => {

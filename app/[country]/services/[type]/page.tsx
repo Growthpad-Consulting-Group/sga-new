@@ -4,6 +4,7 @@ import ServicesGrid from '@/features/services/ServicesGrid'
 import ServicesTypeHero from '@/features/services/ServicesTypeHero'
 import { individualServicesMenu, corporateServicesMenu, resolveServiceHref } from '@/data/servicesMenu'
 import { countries } from '@/data/countries-data'
+import { getServiceDetail } from '@/features/services/data'
 import type { Metadata } from 'next'
 
 interface Props {
@@ -49,6 +50,7 @@ export default async function ServicesTypePage({ params }: Props) {
             heroImage: service.imageUrl,
             heroDescription: service.description,
             href,
+            detail: isDetailPage && !service.path.startsWith('http') ? getServiceDetail(service.path, c.name, country) : undefined,
         }
     })
 
