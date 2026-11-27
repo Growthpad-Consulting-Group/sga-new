@@ -1,11 +1,13 @@
 'use client'
 
-import { Link } from 'next-view-transitions'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Icon } from '@iconify/react'
 import Button from '@/components/ui/Button'
+import Modal from '@/components/ui/Modal'
+import type { ServiceDetail } from '@/features/services/data'
+import { useEnquiryModal } from '@/contexts/EnquiryModalContext'
 
 interface ServiceCard {
     slug: string
@@ -14,6 +16,8 @@ interface ServiceCard {
     heroImage: string
     heroDescription: string
     href?: string
+    /** Full service content, shown in the modal */
+    detail?: ServiceDetail
 }
 
 interface ServicesGridProps {
@@ -25,6 +29,9 @@ interface ServicesGridProps {
 }
 
 export default function ServicesGrid({ services, country, type, isIndividual, countryName }: ServicesGridProps) {
+    const { openModal } = useEnquiryModal()
+    const [selected, setSelected] = useState<ServiceCard | null>(null)
+
     // Opened from a link with #services-grid: the browser jumps instantly on page load,
     // so glide to the grid once the page is ready.
     useEffect(() => {
@@ -52,8 +59,8 @@ export default function ServicesGrid({ services, country, type, isIndividual, co
                 {/* Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {services.map((service, index) => {
-                        // Cards without a detail page are not links
-                        const Wrapper: React.ElementType = service.href ? Link : 'div'
+                        // Cards with a detail page open a modal with the service summary
+                        const clickable = Boolean(service.href)
                         return (
                         <motion.div
                             key={service.slug}
@@ -61,9 +68,13 @@ export default function ServicesGrid({ services, country, type, isIndividual, co
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.4, delay: index * 0.1 }}
-                                                        className="bg-white rounded-[40px] overflow-hidden shadow-xl hover:shadow-xl hover:-translate-y-1 transition-[translate,box-shadow] duration-300 flex flex-col group h-full"
+                            onClick={clickable ? () => setSelected(service) : undefined}
+                            role={clickable ? 'button' : undefined}
+                            tabIndex={clickable ? 0 : undefined}
+                            onKeyDown={clickable ? (e) => { if (e.key === 'Enter' || e.key === ' ') setSelected(service) } : undefined}
+                            className={`bg-white rounded-[40px] overflow-hidden shadow-xl hover:shadow-xl hover:-translate-y-1 transition-[translate,box-shadow] duration-300 flex flex-col group h-full ${clickable ? 'cursor-pointer' : ''}`}
                         >
-                            <Wrapper {...(service.href ? { href: service.href } : {})} className="flex flex-col h-full">
+                            <div className="flex flex-col h-full">
                                 {/* Image Section */}
                                 <div className="relative w-full aspect-16/10 overflow-hidden">
                                     <Image
@@ -95,7 +106,7 @@ export default function ServicesGrid({ services, country, type, isIndividual, co
                                         </div>
                                     )}
                                 </div>
-                            </Wrapper>
+                            </div>
                         </motion.div>
                         )
                     })}
@@ -106,13 +117,13 @@ export default function ServicesGrid({ services, country, type, isIndividual, co
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="w-full mt-24 md:mt-32 p-8 md:p-16 rounded-3xl bg-primary-orange flex flex-col lg:flex-row items-center justify-between gap-8 shadow-2xl shadow-primary-orange/20"
+                    className="w-full mt-12 md:mt-16 p-6 md:p-8 rounded-2xl bg-primary-orange flex flex-col lg:flex-row items-center justify-between gap-5 shadow-xl shadow-primary-orange/20"
                 >
                     <div className="text-center lg:text-left">
-                        <h3 className="text-2xl md:text-4xl lg:text-2xl xl:text-4xl font-bold text-white mb-2">
+                        <h3 className="text-xl md:text-2xl font-bold text-white mb-1">
                             Looking for {isIndividual ? 'Corporate' : 'Personal'} Security?
                         </h3>
-                        <p className="text-white text-lg md:text-xl lg:text-sm xl:text-xl font-medium">
+                        <p className="text-white text-sm md:text-base font-medium">
                             Explore our {isIndividual ? 'business-focused' : 'specialized home'} security solutions.
                         </p>
                     </div>
@@ -121,6 +132,112 @@ export default function ServicesGrid({ services, country, type, isIndividual, co
                     </Button>
                 </motion.div>
             </div>
+
+            {/* Service modal: opened from a card instead of navigating away */}
+            <Modal isOpen={selected !== null} onClose={() => setSelected(null)} panelClassName="max-w-5xl">
+                {selected && (
+                    <div className="md:flex md:min-h-full">
+                        {/* Image column */}
+                        <div className="relative h-56 w-full shrink-0 md:sticky md:top-0 md:h-[85vh] md:w-2/5 md:self-start">
+                            <Image src={selected.heroImage} alt={selected.serviceName} fill className="object-cover" />
+                        </div>
+
+                        {/* Information column */}
+                        <div className="min-w-0 flex-1 space-y-8 p-6 md:p-10">
+                            <div>
+                                <h3 className="text-2xl md:text-3xl font-bold text-primary-orange mb-3">{selected.serviceName}</h3>
+                                <p className="text-dark-charcoal leading-relaxed">{selected.heroDescription}</p>
+                            </div>
+
+                            {selected.detail?.overviewDescription && (
+                                <div className="space-y-4 text-dark-charcoal leading-relaxed">
+                                    {selected.detail.overviewTitle && (
+                                        <h4 className="text-xl font-bold text-dark-charcoal">{selected.detail.overviewTitle}</h4>
+                                    )}
+                                    {selected.detail.overviewDescription.split('\n\n').map((paragraph, i) => (
+                                        <p key={i}>{paragraph}</p>
+                                    ))}
+                                </div>
+                            )}
+
+                            {selected.detail?.handlePoints && selected.detail.handlePoints.length > 0 && (
+                                <div>
+                                    <h4 className="text-xl font-bold text-dark-charcoal mb-3">
+                                        {selected.detail.handlePointsTitle || selected.serviceName}
+                                    </h4>
+                                    {selected.detail.handlePointsIntro && (
+                                        <p className="text-dark-charcoal mb-3">{selected.detail.handlePointsIntro}</p>
+                                    )}
+                                    <ul className="space-y-2">
+                                        {selected.detail.handlePoints.map((point) => (
+                                            <li key={point} className="flex items-start gap-2 text-dark-charcoal">
+                                                <Icon icon="mdi:chevron-right" className="w-5 h-5 mt-0.5 text-primary-orange shrink-0" />
+                                                <span>{point}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
+
+                            {selected.detail?.features && selected.detail.features.length > 0 && (
+                                <div>
+                                    {selected.detail.featuresTitle && (
+                                        <h4 className="text-xl font-bold text-dark-charcoal mb-3">{selected.detail.featuresTitle}</h4>
+                                    )}
+                                    <div className="grid gap-4 sm:grid-cols-2">
+                                        {selected.detail.features.map((feature) => (
+                                            <div key={feature.title} className="rounded-2xl border border-gray-200 p-4">
+                                                <p className="font-bold text-dark-charcoal mb-1">{feature.title}</p>
+                                                <p className="text-sm text-gray-700 leading-relaxed">{feature.description}</p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+
+                            {selected.detail?.sections?.map((section) => (
+                                <div key={section.title} className="space-y-3">
+                                    <h4 className="text-xl font-bold text-dark-charcoal">{section.title}</h4>
+                                    {section.paragraphs.map((paragraph, i) => (
+                                        <p key={i} className="text-dark-charcoal leading-relaxed">{paragraph}</p>
+                                    ))}
+                                    {section.points && section.points.length > 0 && (
+                                        <ul className="space-y-2">
+                                            {section.pointsIntro && <p className="text-dark-charcoal">{section.pointsIntro}</p>}
+                                            {section.points.map((point) => (
+                                                <li key={point} className="flex items-start gap-2 text-dark-charcoal">
+                                                    <Icon icon="mdi:chevron-right" className="w-5 h-5 mt-0.5 text-primary-orange shrink-0" />
+                                                    <span>{point}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    )}
+                                </div>
+                            ))}
+
+                            <div className="flex flex-wrap gap-3 border-t border-gray-200 pt-6">
+                                <Button
+                                    variant="solid"
+                                    size="small"
+                                    arrow={false}
+                                    className="w-auto"
+                                    onClick={() => {
+                                        setSelected(null)
+                                        openModal({ interest: selected.serviceName, enquiryType: isIndividual ? 'Individual' : 'Corporate' })
+                                    }}
+                                >
+                                    Request a Quote
+                                </Button>
+                                {selected.href?.startsWith('http') && (
+                                    <Button href={selected.href} variant="light" size="small" arrow={false} className="w-auto">
+                                        Learn more
+                                    </Button>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                )}
+            </Modal>
         </section>
     )
 }

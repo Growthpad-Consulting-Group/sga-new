@@ -40,7 +40,7 @@ const fromCore = (title: string, path: string, coreTitle: string = title): MenuS
 export const individualServicesMenu: MenuService[] = [
   fromCore('Home Security Solutions', 'https://www.sgasecurity.com/home-security-solution/'),
   fromCore('Guarding Services', '/services/corporate/security-guarding'),
-  fromCore('K-9 Services', '/services/individual/security-dogs'),
+  fromCore('K-9 Services', '/services/individual/security-k9'),
   fromCore('Alarm Response Services', '/services/individual/alarm-response'),
   fromCore('CCTV Services', '/services/individual/cctv'),
   fromCore('Courier Services', '/services/individual/courier'),
@@ -58,7 +58,7 @@ export const corporateServicesMenu: MenuService[] = [
   fromCore('Alarm Response Services', '/services/corporate/alarm-response'),
   fromCore('Guarding Services', '/services/corporate/security-guarding'),
   fromCore('CIT & Cash Management Services', '/services/corporate/cit-and-cash-management', 'CIT and Cash Management Services'),
-  fromCore('K-9 Services', '/services/corporate/security-dogs'),
+  fromCore('K-9 Services', '/services/corporate/security-k9'),
   fromCore('Electronic Cargo Tracking System', '/services/corporate/tracking', 'Electronic Cargo Tracking Services'),
   fromCore('Courier Services', '/services/corporate/courier'),
   {

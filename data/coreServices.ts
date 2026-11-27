@@ -53,7 +53,7 @@ export const coreServices: CoreService[] = [
   },
   {
     title: 'K-9 Services',
-    detailSlugs: { corporate: 'security-dogs' },
+    detailSlugs: { corporate: 'security-k9' },
     description: 'Trained K9 units for enhanced security patrols and detection services.',
     imageUrl: '/images/group/core-services/k9.jpg',
   },

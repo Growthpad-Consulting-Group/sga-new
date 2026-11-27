@@ -20,6 +20,8 @@ const nextConfig = {
   async redirects() {
     return [
       { source: '/:country(ke|ug|tz)/why-us', destination: '/:country/about', permanent: true },
+      { source: '/:country(ke|ug|tz)/services/:type(individual|corporate)/security-dogs', destination: '/:country/services/:type/security-k9', permanent: true },
+      { source: '/services/:type(individual|corporate)/security-dogs', destination: '/services/:type/security-k9', permanent: true },
     ]
   },
   images: {
