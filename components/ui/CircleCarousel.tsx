@@ -129,7 +129,7 @@ export default function CircleCarousel({ title, description, items, autoplay = 5
                   imageUrl={item.imageUrl}
                   href={isClone ? undefined : item.href}
                   withShadow={false}
-                  action={isClone ? undefined : item.action}
+                  action={item.action}
                 />
               </div>
             )

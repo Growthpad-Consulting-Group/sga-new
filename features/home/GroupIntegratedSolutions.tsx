@@ -48,7 +48,8 @@ export default function GroupIntegratedSolutions({
   // Where a service's bubble and "Learn more" lead, in one click:
   // country page -> that country's service; group pages -> the group service page (no country selection)
   const serviceHref = (solution: Solution): string | undefined => {
-    if (!solution.detailSlugs) return undefined
+    // Services without an internal page (e.g. Home Security Solutions) link to their external page
+    if (!solution.detailSlugs) return solution.href
     if (countryCode) return detailHref(solution, countryCode)
     return groupDetailHref(solution)
   }

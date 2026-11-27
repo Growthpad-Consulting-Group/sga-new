@@ -27,7 +27,8 @@ export default function ConditionalFooter(): React.JSX.Element | null {
     pathname === '/privacy-policy' ||
     pathname === '/terms-conditions' ||
     pathname?.startsWith('/updates/') ||
-    pathname?.startsWith('/news-reports/')) {
+    pathname?.startsWith('/news-reports/') ||
+    pathname?.startsWith('/services')) {
     return <GroupFooter />
   }
 
