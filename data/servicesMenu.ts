@@ -28,7 +28,7 @@ const photos: Record<string, string> = {
   'CIT & Cash Management Services': '/images/services/cit.jpg',
   'Electronic Cargo Tracking System': '/images/services/tracking.jpg',
   'Control Room Services': '/images/services/control-room.jpg',
-  'Front Office & Reception Services': '/images/services/reception.jpg',
+  'Reception and Front Office Services': '/images/services/reception.jpg',
 }
 
 // Reuse the card copy from the homepage list, under the menu's name; use the new photo where we have one
@@ -69,7 +69,7 @@ export const corporateServicesMenu: MenuService[] = [
   },
   fromCore('Control Room Services', '/services/corporate/control-room'),
   fromCore('Close Protection Services', '/services/corporate/close-protection'),
-  fromCore('Front Office & Reception Services', '/services/corporate/reception', 'Reception Services'),
+  fromCore('Reception and Front Office Services', '/services/corporate/reception'),
   {
     title: 'Risk Assessment Services',
     path: '/services/corporate/risk-assessment',

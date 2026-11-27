@@ -69,18 +69,13 @@ export const coreServices: CoreService[] = [
     title: 'Control Room Services',
     detailSlugs: { corporate: 'control-room' },
     description: '24/7 monitored control room coordinating rapid response across all client sites.',
-    imageUrl: '/images/group/cctv.png',
+    imageUrl: '/images/services/control-room.jpg',
   },
   {
-    title: 'Reception Services',
+    title: 'Reception and Front Office Services',
     detailSlugs: { corporate: 'reception' },
     description: 'Professional front-of-house teams managing access and visitor experience.',
     imageUrl: '/images/group/core-services/reception.jpg',
-  },
-  {
-    title: 'Customer Services',
-    description: 'Dedicated support teams ensuring responsive, client-focused service delivery.',
-    imageUrl: '/images/group/core-services/customer-service.jpg',
   },
   {
     title: 'Close Protection Services',

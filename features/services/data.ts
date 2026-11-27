@@ -394,14 +394,14 @@ const controlRoom: ServiceData = {
 }
 
 const reception: ServiceData = {
-    serviceName: 'Customer Service and Reception',
+    serviceName: 'Reception and Front Office Services',
     serviceIcon: 'mdi:account-tie',
     serviceType: 'Corporate',
     heroImage: '/images/services/reception.jpg',
-    heroTitle: 'Customer Service and Reception Services',
+    heroTitle: 'Reception and Front Office Services',
     heroDescription:
         'Welcoming, professional customer service and reception teams for your premises across {country}.',
-    overviewTitle: 'About Customer Service and Reception',
+    overviewTitle: 'About Reception and Front Office Services',
     overviewDescription:
         "SGA Security understands the importance of delivering exceptional customer service and creating a welcoming environment for all visitors. The dedicated team of customer service representatives and receptionists are committed to providing a seamless experience for clients and guests alike.",
     overviewImage: '/images/services/reception.jpg',
@@ -419,7 +419,7 @@ const reception: ServiceData = {
         { image: '/images/services/cctv.jpg', category: 'Security Service', title: 'CCTV Services', summary: 'CCTV, access control and alarm systems.', link: '/{cc}/services/corporate/cctv' },
         { image: '/images/services/control-room.jpg', category: 'Security Service', title: 'Control Room', summary: '24/7 monitored control room coordinating response.', link: '/{cc}/services/corporate/control-room' },
     ],
-    metaTitle: 'Customer Service and Reception Services - SGA Security {country}',
+    metaTitle: 'Reception and Front Office Services - SGA Security {country}',
     metaDescription: 'Professional reception, front office and customer service teams from SGA Security in {country}.',
 }
 
