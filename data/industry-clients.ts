@@ -110,20 +110,6 @@ export const countryIndustries: Record<CountryCodeWithIndustries, CountryIndustr
       ],
     },
     {
-      id: 'telecoms',
-      title: 'Telecoms',
-      clients: [{ name: 'Safaricom', logo: 'safaricom.png' }],
-    },
-    {
-      id: 'mining',
-      title: 'Mining',
-      clients: [
-        { name: 'Bamburi Cement', logo: 'bamburi-cement.png' },
-        { name: 'Base Titanium', logo: 'base-titanium.png' },
-        { name: 'Awovinar Mining Company', logo: 'awovinar-mining.png' },
-      ],
-    },
-    {
       id: 'ngos',
       title: "NGO's",
       descriptionFrom: 'ngos',
@@ -152,6 +138,10 @@ export const countryIndustries: Record<CountryCodeWithIndustries, CountryIndustr
         { name: 'Naivas', logo: 'naivas.png' },
         { name: 'Expressway Moja Plaza', logo: 'moja-nairobi-expressway.svg' },
         { name: 'ACK St Stephens Jogoo Road', logo: 'ack-st-stephens.jpeg' },
+        { name: 'Safaricom', logo: 'safaricom.png' },
+        { name: 'Bamburi Cement', logo: 'bamburi-cement.png' },
+        { name: 'Base Titanium', logo: 'base-titanium.png' },
+        { name: 'Awovinar Mining Company', logo: 'awovinar-mining.png' },
       ],
     },
   ],
@@ -242,37 +232,18 @@ export const countryIndustries: Record<CountryCodeWithIndustries, CountryIndustr
       ],
     },
     {
-      id: 'oil-gas',
-      title: 'Oil & Gas',
+      id: 'other-industries',
+      title: 'Other Industries',
+      descriptionFrom: 'other-industries',
       clients: [
         { name: 'Nesta', logo: 'nesta.jpg' },
         { name: 'Stabex International', logo: 'stabex-int.jpg' },
-      ],
-    },
-    {
-      id: 'energy',
-      title: 'Energy',
-      clients: [{ name: 'Sunculture', logo: 'sunculture.jpg' }],
-    },
-    {
-      id: 'telecommunications',
-      title: 'Telecommunications',
-      clients: [
+        { name: 'Sunculture', logo: 'sunculture.jpg' },
         { name: 'Airtel Uganda', logo: 'airtel-uganda.jpg' },
         { name: 'MTN Uganda', logo: 'mtn-uganda.jpg' },
         { name: 'Market by MoMo', logo: 'market-by-momo.jpg' },
         { name: 'Mkopa', logo: 'mkopa.png' },
-      ],
-    },
-    {
-      id: 'agriculture',
-      title: 'Agriculture',
-      clients: [{ name: 'SICPA', logo: 'sicpa.png' }],
-    },
-    {
-      id: 'automotive',
-      title: 'Automotive',
-      clients: [
+        { name: 'SICPA', logo: 'sicpa.png' },
         { name: 'Motorcare UG', logo: 'motorcare-ug.jpg' },
         { name: 'Verma Co', logo: 'verma-co.jpg' },
       ],

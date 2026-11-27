@@ -196,14 +196,6 @@ export const industriesData: Record<string, IndustryData> = {
         ...placeholderIndustry('Multinationals'),
         cardImage: '/images/group/industries/multinational.png',
     },
-    telecoms: {
-        ...placeholderIndustry('Telecoms'),
-        cardImage: '/images/group/industries/multinational.png',
-    },
-    mining: {
-        ...placeholderIndustry('Mining'),
-        cardImage: '/images/group/industries/multinational.png',
-    },
     ngos: {
         ...placeholderIndustry("NGO's"),
         cardImage: '/images/group/industries/ngo.png',
