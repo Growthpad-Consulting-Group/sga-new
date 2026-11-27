@@ -68,7 +68,7 @@ export default async function CountryHomePage({ params }: Props) {
                     }}
                     customLayout={true}
                     smallTitle={data.about.title}
-                    h3Title={`About SGA ${c.name}`}
+                    h3Title={`SGA Security ${c.name}`}
                     h2Title={data.about.largeTitle}
                     customDescription={data.about.description}
                     buttonText="Discover Our Story"
@@ -93,6 +93,8 @@ export default async function CountryHomePage({ params }: Props) {
                 <SectionSeparator imageUrl={`/images/misc/section-pattern-${country}.svg`} />
             </div>
 
+            {/* Temporarily hidden: "Why ... trusts SGA Security" section. Remove the `false &&` to show it again. */}
+            {false && (
             <div id="why-us" className="relative">
                 <WhyChooseUs
                     countryName={c.name}
@@ -102,6 +104,7 @@ export default async function CountryHomePage({ params }: Props) {
                 />
                 <SectionSeparator imageUrl={`/images/misc/section-pattern-${country}.svg`} />
             </div>
+            )}
 
             <div id="blog" className="relative">
                 <News

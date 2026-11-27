@@ -514,6 +514,9 @@ export function resolveServiceData(data: ServiceData, countryName: string, count
         heroDescription: replace(data.heroDescription),
         metaTitle: replace(data.metaTitle),
         metaDescription: replace(data.metaDescription),
-        relatedServices: data.relatedServices.map((rs) => ({ ...rs, link: replace(rs.link) })),
+        relatedServices: data.relatedServices.map((rs) => ({
+            ...rs,
+            link: rs.link.replace('/{cc}', countryCode ? `/${countryCode}` : '').replace(/\{country\}/g, countryName),
+        })),
     }
 }
