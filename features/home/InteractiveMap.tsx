@@ -449,9 +449,9 @@ const latLngToPixel = (lat: number, lng: number) => {
 // City labels shown beside the head office pins
 // Labels on the eastern pins sit to the left so they stay inside the map
 const HQ_LABELS: Record<string, { text: string; left?: boolean }> = {
-  'SGA Security Kenya Head Office': { text: 'Nairobi – Kenya' },
-  'SGA Security Uganda Head Office': { text: 'Kampala – Uganda' },
-  'SGA Security Tanzania Head Office': { text: 'Dar es Salaam – Tanzania' },
+  'SGA Security Kenya Head Office': { text: 'Nairobi' },
+  'SGA Security Uganda Head Office': { text: 'Kampala' },
+  'SGA Security Tanzania Head Office': { text: 'Dar es Salaam' },
 }
 
 const MAP_PIN_PATH = 'M12 22.5C12 22.5 4.5 15.2 4.5 10a7.5 7.5 0 0 1 15 0c0 5.2-7.5 12.5-7.5 12.5Z M12 7.2a2.8 2.8 0 1 0 0 5.6 2.8 2.8 0 0 0 0-5.6Z'

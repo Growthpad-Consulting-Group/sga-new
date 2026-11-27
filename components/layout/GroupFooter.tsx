@@ -122,8 +122,6 @@ export default function GroupFooter(): React.JSX.Element {
                 <h4 className="font-semibold mb-6 text-white text-3xl lg:text-xl xl:text-3xl">SGA Group</h4>
                 <ul className="space-y-2 text-xl lg:text-sm xl:text-xl text-white/90">
                   <li>
-                  </li>
-                  <li>
                     <Link href="/sustainability" className="hover:text-dark-charcoal transition-colors cursor-pointer block">Sustainability</Link>
                   </li>
                   <li>
@@ -131,6 +129,9 @@ export default function GroupFooter(): React.JSX.Element {
                   </li>
                   <li>
                     <Link href="/news-reports" className="hover:text-dark-charcoal transition-colors cursor-pointer block">News & Insights</Link>
+                  </li>
+                  <li>
+                    <Link href="/contact#whistleblowing" className="hover:text-dark-charcoal transition-colors cursor-pointer block">Whistleblowing</Link>
                   </li>
                 </ul>
               </div>

@@ -27,6 +27,7 @@ export const navItems: NavItem[] = [
   { href: '/', label: 'HOME' },
   { href: '/about', label: 'ABOUT US' },
   { href: '/sustainability', label: 'SUSTAINABILITY' },
+  { href: '#services', label: 'SERVICES', isDropdown: true, dropdownType: 'services' },
   { href: '/news-reports', label: 'NEWS' },
   { href: '/careers', label: 'CAREERS' },
   { href: '/contact', label: 'CONTACT US' },
