@@ -170,7 +170,7 @@ export default function CountryHeader(): React.JSX.Element {
 
       {/* Main Navigation */}
       <nav className={`mx-auto max-w-9xl px-4 sm:px-6 lg:px-4 ${isScrolled ? '' : 'xl:container-fluid'}`}>
-        <div className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? 'h-16 sm:h-20 lg:h-16 xl:h-20' : 'h-20 sm:h-24 lg:h-[4.5rem] xl:h-24'}`}>
+        <div className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? 'h-12 sm:h-14 lg:h-12 xl:h-14' : 'h-20 sm:h-24 lg:h-[4.5rem] xl:h-24'}`}>
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -182,7 +182,7 @@ export default function CountryHeader(): React.JSX.Element {
                 alt="SGA Security Logo"
                 width={202}
                 height={72}
-                className="w-[160px] lg:w-[128px] xl:w-[160px] h-auto transition-all duration-300"
+                className={`${isScrolled ? 'w-[112px] lg:w-[96px] xl:w-[112px]' : 'w-[160px] lg:w-[128px] xl:w-[160px]'} h-auto transition-all duration-300`}
                 priority
               />
             </Link>
