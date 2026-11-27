@@ -24,10 +24,22 @@ interface CertificationsAndMembershipsProps {
     documents: DocumentItem[]
 }
 
-// Cards per page: 6 fits the 2- and 3-column layouts; 8 fills the 4-column xl layout (1280px+).
-const ITEMS_PER_PAGE = 6
-const ITEMS_PER_PAGE_XL = 8
 const LIST_PREVIEW_COUNT = 6
+
+// Cards per page = cards in one row, so each page is a single horizontal row
+const getCardsPerRow = () => {
+    if (window.matchMedia('(min-width: 1280px)').matches) return 4
+    if (window.matchMedia('(min-width: 1024px)').matches) return 4
+    if (window.matchMedia('(min-width: 640px)').matches) return 2
+    return 1
+}
+
+// Country names in brackets are not needed in titles, e.g. "KSIA 2023 (Kenya)"
+const displayTitle = (title: string) => title.replace(/\s*\((Kenya|Tanzania|Uganda)\)\s*$/i, '')
+
+// ICoCA is one accreditation shared by all three countries
+const isIcoca = (title: string) => /icoca/i.test(title)
+const ICOCA_COUNTRIES = 'Kenya • Tanzania • Uganda'
 
 const getCategoryIcon = (category: string) => {
     switch (category) {
@@ -44,21 +56,30 @@ export default function CertificationsAndMemberships({ documents }: Certificatio
     const [searchQuery, setSearchQuery] = useState('')
     const [previewDoc, setPreviewDoc] = useState<DocumentItem | null>(null)
     const [showAllList, setShowAllList] = useState(false)
-    const [itemsPerPage, setItemsPerPage] = useState(ITEMS_PER_PAGE)
+    const [itemsPerPage, setItemsPerPage] = useState(1)
 
     useEffect(() => {
-        const mediaQuery = window.matchMedia('(min-width: 1280px)')
         const applyPageSize = () => {
-            setItemsPerPage(mediaQuery.matches ? ITEMS_PER_PAGE_XL : ITEMS_PER_PAGE)
+            setItemsPerPage(getCardsPerRow())
             setCurrentPage(1)
         }
         applyPageSize()
-        mediaQuery.addEventListener('change', applyPageSize)
-        return () => mediaQuery.removeEventListener('change', applyPageSize)
+        window.addEventListener('resize', applyPageSize)
+        return () => window.removeEventListener('resize', applyPageSize)
     }, [])
     const [currentPage, setCurrentPage] = useState(1)
     const sectionRef = useRef<HTMLElement>(null)
-    const prioritizedDocuments = [...documents].sort((a, b) => {
+
+    // Remove exact repeats (same title and country), and list ICoCA once
+    const seenKeys = new Set<string>()
+    const uniqueDocuments = documents.filter((doc) => {
+        const key = isIcoca(doc.title) ? 'ICOCA' : `${doc.country}|${doc.title.toLowerCase()}`
+        if (seenKeys.has(key)) return false
+        seenKeys.add(key)
+        return true
+    })
+
+    const prioritizedDocuments = [...uniqueDocuments].sort((a, b) => {
         const aIsIso18788 = a.title.includes('18788')
         const bIsIso18788 = b.title.includes('18788')
 
@@ -68,7 +89,7 @@ export default function CertificationsAndMemberships({ documents }: Certificatio
 
     const filteredDocuments = prioritizedDocuments.filter((doc) => {
         const matchCategory = activeCategory === 'ALL' || doc.category === activeCategory
-        const matchCountry = selectedCountry === 'All Country' || doc.country === selectedCountry
+        const matchCountry = selectedCountry === 'All Country' || doc.country === selectedCountry || isIcoca(doc.title)
         const matchSearch = !searchQuery ||
             doc.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
             doc.country.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -99,6 +120,8 @@ export default function CertificationsAndMemberships({ documents }: Certificatio
             sectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
         }
     }
+
+    const countryLabel = (doc: DocumentItem) => (isIcoca(doc.title) ? ICOCA_COUNTRIES : doc.country)
 
     const previewDocumentIndex = previewDoc
         ? displayedDocuments.findIndex((doc) => doc.link === previewDoc.link && doc.country === previewDoc.country)
@@ -204,7 +227,7 @@ export default function CertificationsAndMemberships({ documents }: Certificatio
 
                 {/* Cards: documents with a summary */}
                 {cardDocuments.length > 0 && (
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                         <AnimatePresence mode="popLayout">
                             {pagedCardDocuments.map((doc, index) => (
                                 <motion.div
@@ -223,7 +246,7 @@ export default function CertificationsAndMemberships({ documents }: Certificatio
                                     className="flex flex-col bg-white border border-gray-50 rounded-2xl overflow-hidden shadow-md shadow-gray-400/10 hover:shadow-xl hover:shadow-primary-orange/20 transition-shadow cursor-pointer"
                                 >
                                     {/* Cover Image */}
-                                    <div className="relative w-full aspect-4/3 bg-gray-100">
+                                    <div className="relative w-full aspect-[16/10] bg-gray-100">
                                         {doc.coverImageUrl ? (
                                             <Image
                                                 src={doc.coverImageUrl}
@@ -251,14 +274,23 @@ export default function CertificationsAndMemberships({ documents }: Certificatio
 
                                         {/* Title */}
                                         <h3 className="text-lg font-bold text-dark-charcoal mb-2 leading-tight">
-                                            {doc.title}
+                                            <button
+                                                type="button"
+                                                onClick={(e) => {
+                                                    e.stopPropagation()
+                                                    setPreviewDoc(doc)
+                                                }}
+                                                className="text-left hover:text-primary-orange transition-colors"
+                                            >
+                                                {displayTitle(doc.title)}
+                                            </button>
                                         </h3>
 
                                         {/* Tags */}
                                         <div className="flex flex-wrap items-center gap-2 mb-4">
                                             <span className="flex items-center gap-1 text-xs font-medium text-dark-charcoal/60 uppercase tracking-wide">
                                                 <Icon icon="solar:map-point-broken" className="w-3.5 h-3.5" />
-                                                {doc.country}
+                                                {countryLabel(doc)}
                                             </span>
                                             <span className="text-dark-charcoal/30">•</span>
                                             <span className="text-xs font-medium text-dark-charcoal/60 uppercase tracking-wide">
@@ -278,14 +310,17 @@ export default function CertificationsAndMemberships({ documents }: Certificatio
                                                 View document
                                                 <Icon icon="mdi:arrow-right" className="w-5 h-5" />
                                             </button>
-                                            <a
-                                                href={`/api/documents/download/${encodeURIComponent(doc.title)}.pdf?url=${encodeURIComponent(doc.link)}`}
-                                                onClick={(e) => e.stopPropagation()}
-                                                aria-label={`Download ${doc.title}`}
+                                            <button
+                                                type="button"
+                                                onClick={(e) => {
+                                                    e.stopPropagation()
+                                                    setPreviewDoc(doc)
+                                                }}
+                                                aria-label={`Open ${displayTitle(doc.title)}`}
                                                 className="shrink-0 flex items-center justify-center w-9 h-9 rounded-full text-dark-charcoal/60 hover:text-primary-orange hover:bg-primary-orange/10 transition-colors"
                                             >
-                                                <Icon icon="solar:download-minimalistic-broken" className="w-5 h-5" />
-                                            </a>
+                                                <Icon icon="solar:eye-broken" className="w-5 h-5" />
+                                            </button>
                                         </div>
                                     </div>
                                 </motion.div>
@@ -354,9 +389,15 @@ export default function CertificationsAndMemberships({ documents }: Certificatio
                             >
                                 <div className="flex items-center gap-3 min-w-0">
                                     <Icon icon={getCategoryIcon(doc.category)} className="w-5 h-5 shrink-0 text-dark-charcoal/40" />
-                                    <span className="font-bold text-dark-charcoal">{doc.title}</span>
+                                    <button
+                                        type="button"
+                                        onClick={() => setPreviewDoc(doc)}
+                                        className="font-bold text-dark-charcoal text-left hover:text-primary-orange transition-colors"
+                                    >
+                                        {displayTitle(doc.title)}
+                                    </button>
                                     <span className="text-xs font-medium text-dark-charcoal/60 uppercase tracking-wide">
-                                        {doc.country} • {doc.category.charAt(0) + doc.category.slice(1).toLowerCase()}
+                                        {countryLabel(doc)} • {doc.category.charAt(0) + doc.category.slice(1).toLowerCase()}
                                     </span>
                                 </div>
                                 <div className="flex items-center gap-4">
@@ -367,13 +408,14 @@ export default function CertificationsAndMemberships({ documents }: Certificatio
                                         View document
                                         <Icon icon="mdi:arrow-right" className="w-5 h-5" />
                                     </button>
-                                    <a
-                                        href={`/api/documents/download/${encodeURIComponent(doc.title)}.pdf?url=${encodeURIComponent(doc.link)}`}
-                                        aria-label={`Download ${doc.title}`}
+                                    <button
+                                        type="button"
+                                        onClick={() => setPreviewDoc(doc)}
+                                        aria-label={`Open ${displayTitle(doc.title)}`}
                                         className="shrink-0 flex items-center justify-center w-9 h-9 rounded-full text-dark-charcoal/60 hover:text-primary-orange hover:bg-primary-orange/10 transition-colors"
                                     >
-                                        <Icon icon="solar:download-minimalistic-broken" className="w-5 h-5" />
-                                    </a>
+                                        <Icon icon="solar:eye-broken" className="w-5 h-5" />
+                                    </button>
                                 </div>
                             </li>
                         ))}
@@ -394,7 +436,7 @@ export default function CertificationsAndMemberships({ documents }: Certificatio
                 <DocumentPreviewModal
                     isOpen={previewDoc !== null}
                     onClose={() => setPreviewDoc(null)}
-                    title={previewDoc?.title ?? ''}
+                    title={previewDoc ? displayTitle(previewDoc.title) : ''}
                     fileUrl={previewDoc?.link ?? ''}
                     rotation={previewDoc?.previewRotation ?? 0}
                     onPreviousDocument={() => showAdjacentDocument(-1)}
@@ -402,7 +444,7 @@ export default function CertificationsAndMemberships({ documents }: Certificatio
                     documentPosition={previewDocumentIndex >= 0 ? previewDocumentIndex + 1 : 1}
                     documentCount={displayedDocuments.length}
                     category={previewDoc?.category}
-                    country={previewDoc?.country}
+                    country={previewDoc ? countryLabel(previewDoc) : undefined}
                     year={previewDoc?.year}
                     summary={previewDoc?.summary}
                 />
