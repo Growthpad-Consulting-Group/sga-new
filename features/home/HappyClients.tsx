@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { CarouselArrows, useInfiniteCarousel } from '@/components/ui/Carousel'
 import { countryIndustries } from '@/data/industry-clients'
@@ -55,6 +55,39 @@ export default function HappyClients() {
   const handleFilterChange = (filter: string) => {
     setActiveFilter(filter)
     carousel.goTo(0)
+  }
+
+  // Drag (mouse) or swipe (touch) to move between pages. The track follows the pointer,
+  // then slides to the next or previous page once it has moved far enough.
+  const [dragX, setDragX] = useState(0)
+  const [dragging, setDragging] = useState(false)
+  const startX = useRef<number | null>(null)
+
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!carousel.canMove) return
+    startX.current = e.clientX
+    setDragging(true)
+  }
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (startX.current === null) return
+    setDragX(e.clientX - startX.current)
+  }
+
+  const endDrag = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (startX.current === null) return
+    const dx = e.clientX - startX.current
+    startX.current = null
+    setDragging(false)
+    setDragX(0)
+    if (dx < -50) carousel.next()
+    else if (dx > 50) carousel.previous()
+  }
+
+  const trackStyle: React.CSSProperties = {
+    ...carousel.trackStyle,
+    transform: `translate3d(calc(-${carousel.currentIndex * 100}% + ${dragX}px), 0, 0)`,
+    transition: dragging ? 'none' : carousel.trackStyle.transition,
   }
   return (
     <section id="happy-clients" className="flex items-center justify-center bg-white py-12 md:py-20 min-h-[85vh] relative">
@@ -114,11 +147,16 @@ export default function HappyClients() {
         </div>
 
         <div
-          className="overflow-hidden border-t border-l border-dark-charcoal/10"
+          className="overflow-hidden border-t border-l border-dark-charcoal/10 touch-pan-y select-none cursor-grab active:cursor-grabbing"
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={endDrag}
+          onPointerCancel={endDrag}
+          onPointerLeave={endDrag}
         >
-          <div className="flex" style={carousel.trackStyle} onTransitionEnd={carousel.handleTransitionEnd}>
+          <div className="flex" style={trackStyle} onTransitionEnd={carousel.handleTransitionEnd}>
             {loopedPages.map((page, pageIndex) => (
               <div
                 key={pageIndex}
@@ -137,6 +175,7 @@ export default function HappyClients() {
                       <img
                         src={`/images/clients/${client.logo}`}
                         alt={client.name}
+                        draggable={false}
                         loading="lazy"
                         className="h-auto max-h-20 sm:max-h-32 w-full object-contain transition-all duration-300"
                       />
