@@ -506,7 +506,7 @@ export default function Header() {
                   className="absolute -top-12 -right-4 sm:-top-16 sm:-right-8 text-white hover:text-primary-orange transition-all duration-200 hover:scale-110 hover:rotate-90 active:scale-90 z-60"
                   aria-label="Close modal"
                 >
-                  <Icon icon="teenyicons:x-circle-outline" className="w-8 h-8 sm:w-9 sm:h-9" />
+                  <Icon icon="teenyicons:x-circle-outline" className="w-6 h-6 sm:w-7 sm:h-7" />
                 </button>
 
                 <div className="flex flex-row flex-wrap sm:flex-nowrap items-center justify-center gap-6 sm:gap-8 md:gap-12 px-4">
@@ -531,13 +531,13 @@ export default function Header() {
                           }
                         }}
                         disabled={isActiveCountry(country.path)}
-                        className={`group relative w-52 h-52 sm:w-64 sm:h-64 md:w-96 md:h-96 rounded-full bg-white border-2 sm:border-4 border-primary-orange flex items-center justify-center shadow-2xl transition-all duration-200 overflow-hidden ${isActiveCountry(country.path) ? 'cursor-default opacity-80' : 'cursor-pointer hover:scale-105 active:scale-95'}`}
+                        className={`group relative w-52 h-52 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 rounded-full bg-white border-2 sm:border-4 border-primary-orange flex items-center justify-center shadow-2xl transition-all duration-200 overflow-hidden ${isActiveCountry(country.path) ? 'cursor-default opacity-80' : 'cursor-pointer hover:scale-105 active:scale-95'}`}
                         aria-label={isActiveCountry(country.path) ? `Currently in ${country.name}` : `Enter ${country.name}`}
                       >
                         {/* ENTER label at the top - shows only on hover and if NOT active */}
                         {!isActiveCountry(country.path) && (
                           <div className="absolute top-6 sm:top-12 md:top-20 left-0 right-0 text-center z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <span className="text-[10px] sm:text-xs md:text-sm font-bold text-dark-charcoal uppercase tracking-[0.3em]">
+                            <span className="text-[10px] sm:text-xs md:text-sm font-bold text-dark-charcoal uppercase tracking-[0.12em] leading-none whitespace-nowrap">
                               {redirectPath ? 'SELECT REGION' : 'ENTER'}
                             </span>
                           </div>
@@ -546,21 +546,13 @@ export default function Header() {
                         <div className={`flex items-center gap-2 sm:gap-4 md:gap-5 z-10 px-6 transition-transform duration-300 ${!isActiveCountry(country.path) ? 'group-hover:translate-y-2 md:group-hover:translate-y-4' : ''}`}>
                           <Icon
                             icon={country.flag}
-                            className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 shrink-0"
+                            className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 shrink-0"
                           />
-                          <span className="text-lg sm:text-2xl md:text-4xl font-bold text-dark-charcoal tracking-tight normal-case">
+                          <span className="text-base sm:text-xl md:text-2xl lg:text-3xl font-bold text-dark-charcoal tracking-tight normal-case">
                             {country.name}
                           </span>
                         </div>
 
-                        {!isActiveCountry(country.path) && (
-                          <div className="absolute bottom-4 sm:bottom-12 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <Icon
-                              icon="mynaui:arrow-right-circle"
-                              className="w-7 h-7 sm:w-10 sm:h-10 md:w-14 md:h-14 text-primary-orange"
-                            />
-                          </div>
-                        )}
                       </button>
                     </motion.div>
                   ))}

@@ -116,7 +116,7 @@ export default function ServicesGrid({ services, country, type, isIndividual, co
                             Explore our {isIndividual ? 'business-focused' : 'specialized home'} security solutions.
                         </p>
                     </div>
-                    <Button href={`/${country}/services/${isIndividual ? 'corporate' : 'individual'}`} variant="white" size="small">
+                    <Button href={`${country ? `/${country}` : ''}/services/${isIndividual ? 'corporate' : 'individual'}`} variant="white" size="small">
                         Explore {isIndividual ? 'Corporate' : 'Individual'}
                     </Button>
                 </motion.div>

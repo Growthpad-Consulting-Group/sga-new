@@ -57,14 +57,15 @@ export const coreServices: CoreService[] = [
     description: 'Trained K9 units for enhanced security patrols and detection services.',
     imageUrl: '/images/group/core-services/k9.jpg',
   },
-  {
-    title: 'Special Services',
-    description: 'Customized security solutions tailored to unique client requirements and high-risk scenarios.',
-    imageUrl: '/images/group/core-services/cit.jpg',
-    countryImageUrls: {
-      ke: '/images/ke/core-services/special-services-spa0908.jpg',
-    },
-  },
+  // Temporarily hidden: Special Services. Uncomment this block to show it again.
+  // {
+  //   title: 'Special Services',
+  //   description: 'Customized security solutions tailored to unique client requirements and high-risk scenarios.',
+  //   imageUrl: '/images/group/core-services/cit.jpg',
+  //   countryImageUrls: {
+  //     ke: '/images/ke/core-services/special-services-spa0908.jpg',
+  //   },
+  // },
   {
     title: 'Control Room Services',
     detailSlugs: { corporate: 'control-room' },

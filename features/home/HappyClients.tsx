@@ -2,33 +2,35 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import Image from 'next/image'
-import { Icon } from '@iconify/react'
 import { useCarousel } from '@/components/ui/Carousel'
-import { industryNames } from '@/data/industries-data'
+import { countryIndustries } from '@/data/industry-clients'
 
 interface Client {
   name: string
-  logo: string
+  logo?: string
   category: string
 }
 
-const clients: Client[] = [
-  { name: 'Client 1', logo: '/images/group/clients/1.svg', category: 'Multinationals' },
-  { name: 'Client 2', logo: '/images/group/clients/2.svg', category: 'Government Institutions' },
-  { name: 'Client 3', logo: '/images/group/clients/3.svg', category: 'Hospitals' },
-  { name: 'Client 4', logo: '/images/group/clients/4.svg', category: 'Schools & Institutions' },
-  { name: 'Client 5', logo: '/images/group/clients/5.svg', category: 'Diplomatic Missions' },
-  { name: 'Client 6', logo: '/images/group/clients/6.svg', category: 'Hotels' },
-  { name: 'Client 7', logo: '/images/group/clients/7.svg', category: 'Financial Institutions' },
-  { name: 'Client 8', logo: '/images/group/clients/8.svg', category: "NGO's" },
-  { name: 'Client 9', logo: '/images/group/clients/9.svg', category: 'Other Industries' },
-  { name: 'Client 10', logo: '/images/group/clients/10.svg', category: 'Multinationals' },
-  { name: 'Client 11', logo: '/images/group/clients/11.svg', category: 'Government Institutions' },
-  { name: 'Client 12', logo: '/images/group/clients/12.svg', category: 'Hospitals' },
-]
+// Every client we serve, across all countries, grouped by industry.
+// Clients appearing under several industries or countries are listed once.
+const clients: Client[] = (() => {
+  const seen = new Set<string>()
+  const list: Client[] = []
+  for (const industries of Object.values(countryIndustries)) {
+    for (const industry of industries) {
+      for (const client of industry.clients) {
+        const key = `${client.name}|${client.logo ?? ''}`
+        if (seen.has(key)) continue
+        seen.add(key)
+        list.push({ name: client.name, logo: client.logo, category: industry.title })
+      }
+    }
+  }
+  return list
+})()
 
-const filterOptions: string[] = ['ALL', ...industryNames]
+// Industry filters, in the order they first appear across the countries
+const filterOptions: string[] = ['ALL', ...Array.from(new Set(clients.map((client) => client.category)))]
 
 export default function HappyClients() {
   const [activeFilter, setActiveFilter] = useState('ALL')
@@ -105,13 +107,16 @@ export default function HappyClients() {
                   hover:z-10 hover:scale-[1.02] hover:bg-light-grey hover:shadow-xl hover:shadow-primary-orange/10 transition-all duration-300
                 `}
               >
-                <Image
-                  src={client.logo}
-                  alt={client.name}
-                  width={160}
-                  height={160}
-                  className="h-auto max-h-20 sm:max-h-32 w-full object-contain transition-all duration-300"
-                />
+                {client.logo ? (
+                  <img
+                    src={`/images/clients/${client.logo}`}
+                    alt={client.name}
+                    loading="lazy"
+                    className="h-auto max-h-20 sm:max-h-32 w-full object-contain transition-all duration-300"
+                  />
+                ) : (
+                  <span className="text-center text-xs sm:text-sm font-semibold leading-snug text-dark-charcoal">{client.name}</span>
+                )}
               </div>
             );
           })}
