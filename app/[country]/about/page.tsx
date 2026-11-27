@@ -2,7 +2,6 @@ import AboutHero from '@/features/about/AboutHero'
 import AboutIntro from '@/features/about/AboutIntro'
 import OurFoundation from '@/features/about/OurFoundation'
 import OurJourney from '@/features/about/OurJourney'
-import OurPeople from '@/features/about/OurPeople'
 import SectionSeparator from '@/components/ui/SectionSeparator'
 import FloatingWhatsApp from '@/components/ui/FloatingWhatsApp'
 import { countries } from '@/data/countries-data'
@@ -56,10 +55,6 @@ export default async function AboutPage({ params }: Props) {
             </div>
             <div className="relative">
                 <OurJourney events={timelineEvents} />
-            </div>
-            <div className="relative">
-                <OurPeople countryName={c.name} />
-                <SectionSeparator />
             </div>
             <FloatingWhatsApp
                 singleCountry={true}

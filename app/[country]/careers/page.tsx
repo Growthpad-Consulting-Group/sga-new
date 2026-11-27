@@ -39,7 +39,7 @@ export default async function CountryCareersPage({ params }: Props) {
     return (
         <>
             <Hero
-                imageUrl="/images/careers/spa-0443-edit.jpg"
+                imageUrl="/images/careers/spa-2146-edit.jpg"
             />
             <div className="relative">
                 <JobCards jobs={jobs} lockedCountry={c.name} />
