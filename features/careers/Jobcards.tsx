@@ -25,11 +25,13 @@ export interface JobItem {
 
 interface JobCardsProps {
   jobs: JobItem[]
+  /** Set on a country's careers page: the jobs are already limited to that country, so the country buttons are hidden */
+  lockedCountry?: string
 }
 
 const ITEMS_PER_PAGE = 6
 
-export default function JobCards({ jobs }: JobCardsProps) {
+export default function JobCards({ jobs, lockedCountry }: JobCardsProps) {
   const { openModal } = useCVModal()
   const [activeFilter, setActiveFilter] = useState('ALL COUNTRIES')
   const [selectedDepartment, setSelectedDepartment] = useState('ALL DEPARTMENTS')
@@ -150,7 +152,7 @@ export default function JobCards({ jobs }: JobCardsProps) {
             {/* Country, department and search filters */}
             <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
               {/* Filter Buttons */}
-              <div className="flex flex-wrap gap-2 lg:pb-px">
+              {!lockedCountry && <div className="flex flex-wrap gap-2 lg:pb-px">
                 {['ALL COUNTRIES', 'KENYA', 'TANZANIA', 'UGANDA'].map((filter) => (
                   <button
                     key={filter}
@@ -163,7 +165,7 @@ export default function JobCards({ jobs }: JobCardsProps) {
                     {filter}
                   </button>
                 ))}
-              </div>
+              </div>}
 
               <div className="flex flex-col sm:flex-row sm:items-end gap-4 w-full lg:w-auto">
                 {/* Department Dropdown */}

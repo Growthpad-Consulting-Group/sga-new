@@ -1,7 +1,7 @@
 import Hero from '@/features/careers/Hero'
 import JobCards from '@/features/careers/Jobcards'
 import FloatingWhatsApp from '@/components/ui/FloatingWhatsApp'
-import { getAllJobPostings } from '@/lib/sanity'
+import { loadJobCards } from '@/features/careers/loadJobCards'
 
 export const metadata = {
   title: 'Careers at SGA Security Group - Leading Security Solutions in East Africa',
@@ -11,27 +11,7 @@ export const metadata = {
 export const revalidate = 60
 
 export default async function CareersPage() {
-  const jobs = (await getAllJobPostings()).map((job) => ({
-    _id: job._id,
-    location: `${job.city}, ${job.country}`,
-    country: job.country,
-    city: job.city,
-    department: job.department,
-    title: job.title,
-    jobtype: `${job.department} • ${job.employmentType}`,
-    summary: job.summary,
-    date: new Intl.DateTimeFormat('en', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    }).format(new Date(job.publishedAt)),
-    responsibilities: job.responsibilities,
-    requirements: job.requirements,
-    applicationDeadline: job.applicationDeadline,
-    deadlineLabel: job.applicationDeadline
-      ? new Intl.DateTimeFormat('en', { year: 'numeric', month: 'long', day: 'numeric' }).format(new Date(job.applicationDeadline))
-      : undefined,
-  }))
+  const jobs = await loadJobCards()
 
   return (
     <>
@@ -45,4 +25,3 @@ export default async function CareersPage() {
     </>
   )
 }
-
