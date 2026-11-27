@@ -2,8 +2,8 @@ import { notFound } from 'next/navigation'
 import FloatingWhatsApp from '@/components/ui/FloatingWhatsApp'
 import ServicesGrid from '@/features/services/ServicesGrid'
 import ServicesTypeHero from '@/features/services/ServicesTypeHero'
-import { individualServicesMenu, corporateServicesMenu, resolveServiceHref } from '@/data/servicesMenu'
-import { getServiceDetail } from '@/features/services/data'
+import { individualServicesMenu, corporateServicesMenu, resolveServiceHref } from '@/data/services'
+import { getServiceDetail } from '@/data/services'
 import type { Metadata } from 'next'
 
 interface Props {

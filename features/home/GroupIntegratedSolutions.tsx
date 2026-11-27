@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { useEnquiryModal } from '@/contexts/EnquiryModalContext'
 import Button from '@/components/ui/Button'
 import CircleCarousel, { type CircleCarouselItem } from '@/components/ui/CircleCarousel'
-import { coreServices, type CoreService } from '@/data/coreServices'
+import { coreServices, type CoreService } from '@/data/services'
 import { Link } from 'next-view-transitions'
 
 type CountryCode = 'ke' | 'ug' | 'tz'

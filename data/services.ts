@@ -1,3 +1,109 @@
+// All services in one place:
+// - the service records and detail pages (name, description, key points, sections, related services)
+// - the homepage product list (coreServices)
+// - the Individual and Corporate service menus, used by the header and the service pages
+
+// Client copy for each service: name, short description and key points.
+// Every other place that shows these uses SERVICE_COPY, so each service is written once.
+const SERVICE_COPY = {
+  alarm: {
+    name: "Alarm Response Services",
+    description: "Our alarm response services combine control room monitoring and dedicated response teams to verify alarm activations and respond to potential security incidents.",
+    points: [
+      "Monitoring of alarm signals through SGA Security control rooms.",
+      "Coordination and dispatch of response teams when an alarm is activated.",
+    ],
+  },
+  cctv: {
+    name: "CCTV Services",
+    description: "Our CCTV services provide video surveillance solutions that help clients monitor their premises and improve visibility of their security environments.",
+    points: [
+      "CCTV installation and video monitoring.",
+      "Security surveillance for residential and commercial premises.",
+    ],
+  },
+  courier: {
+    name: "Courier Services",
+    description: "SGA Security Courier provides professional collection and delivery services, supported by a network of branches, depots and drop-off points.",
+    points: [
+      "Collection and delivery of client consignments.",
+      "Access to a network of courier service locations.",
+    ],
+  },
+  closeProtection: {
+    name: "Close Protection Services",
+    description: "Our close protection services provide tailored personal security for individuals who require additional protection during their movements and activities.",
+    points: [
+      "VIP personal protection.",
+      "Security escort services.",
+    ],
+  },
+  business: {
+    name: "Business Solutions Services",
+    description: "SGA Security develops integrated security solutions based on each organisation's operational needs, combining personnel, procedures and technology to protect people and assets.",
+    points: [
+      "Security solutions tailored to business requirements.",
+      "Integration of security personnel, procedures and technology.",
+    ],
+  },
+  cash: {
+    name: "CIT & Cash Management Services",
+    description: "Our Cash-in-Transit and Cash Management services provide secure solutions for the collection, transportation, handling and management of cash and valuables.",
+    points: [
+      "Secure transportation of cash and valuables using tracked, armoured vehicles.",
+      "Cash handling, collection and management solutions.",
+    ],
+  },
+  tracking: {
+    name: "Electronic Cargo Tracking System",
+    description: "Our Electronic Cargo Tracking System enables the monitoring of cargo movements, helping clients maintain visibility of their consignments while in transit.",
+    points: [
+      "Electronic tracking of cargo movements.",
+      "Monitoring of consignments and transport activities.",
+    ],
+  },
+  fire: {
+    name: "Fire Detection and Suppression Services",
+    description: "Our fire detection and suppression services provide systems designed to identify fire risks and help protect people, property and business premises.",
+    points: [
+      "Fire detection system installation and support.",
+      "Fixed fire suppression solutions.",
+    ],
+  },
+  controlRoom: {
+    name: "Control Room Services",
+    description: "Our control room services support the monitoring and coordination of security activities, helping organisations maintain oversight of their security operations.",
+    points: [
+      "Monitoring of CCTV, alarms and tracking activities.",
+      "Coordination of security communication and incident response.",
+    ],
+  },
+  reception: {
+    name: "Front Office & Reception Services",
+    description: "Our front office and reception services provide professional reception support, helping organisations manage visitors and maintain an organised front-office environment.",
+    points: [
+      "Reception and visitor management.",
+      "Professional front-office support.",
+    ],
+  },
+  risk: {
+    name: "Risk Assessment Services",
+    description: "Our risk assessment services help organisations identify security risks and vulnerabilities, providing a basis for developing appropriate security measures.",
+    points: [
+      "Identification and assessment of security risks.",
+      "Recommendations to support security planning and risk management.",
+    ],
+  },
+  k9: {
+    name: "K-9 Services",
+    description: "Our K-9 services use security dogs and trained handlers to support security operations and strengthen the protection of people, property and premises.",
+    points: [
+      "Canine security support and patrols.",
+      "Deployment based on specific security requirements.",
+    ],
+  },
+}
+
 export interface ServiceFeature {
     title: string
     description: string
@@ -78,16 +184,16 @@ const securityGuarding: ServiceData = {
 }
 
 const riskAssessment: ServiceData = {
-    serviceName: 'Risk Assessment',
+    serviceName: SERVICE_COPY.risk.name,
+    handlePoints: SERVICE_COPY.risk.points,
+    handlePointsTitle: "Key Points",
     serviceIcon: 'mdi:clipboard-search',
     serviceType: 'Corporate',
     heroImage: '/images/group/guarding.png',
-    heroTitle: 'Comprehensive Security Risk Analysis',
-    heroDescription:
-        'Our risk assessment services provide thorough analysis of your business security vulnerabilities. We identify potential threats and develop customized security strategies to protect your assets and operations across {country}.',
+    heroTitle: SERVICE_COPY.risk.name,
+    heroDescription: SERVICE_COPY.risk.description,
     overviewTitle: 'About Risk Assessment',
-    overviewDescription:
-        'Security risk assessment is a systematic process of identifying, analyzing, and evaluating security risks to your business. Our risk assessment methodology follows industry best practices and international security standards. The assessment process includes a thorough review of your current security measures, physical security inspection, threat analysis, vulnerability assessment, and risk evaluation. Our security consultants analyze potential threats specific to your industry, location, and business type. Based on the assessment findings, we develop detailed reports outlining identified risks, their potential impact, and prioritized recommendations for risk mitigation. Risk assessment services help businesses make informed decisions about security investments and develop effective security strategies aligned with business needs.',
+    overviewDescription: SERVICE_COPY.risk.description,
     overviewImage: '/images/group/guarding.png',
     featuresTitle: 'Key Features',
     features: [
@@ -101,8 +207,8 @@ const riskAssessment: ServiceData = {
     relatedServices: [
         { image: '/images/services/guarding.jpg', category: 'Security Service', title: 'Security Guarding', summary: 'Professional on-site security personnel.', link: '/{cc}/services/corporate/security-guarding' },
     ],
-    metaTitle: 'Security Risk Assessment Services - SGA Security {country}',
-    metaDescription: 'Comprehensive security risk assessment and vulnerability analysis for businesses in {country}. Identify threats and strengthen your security posture.',
+    metaTitle: `${SERVICE_COPY.risk.name} - SGA Security {country}`,
+    metaDescription: SERVICE_COPY.risk.description,
 }
 
 // -------------------------------------------------------------------
@@ -122,27 +228,18 @@ const securityGuardingLive: Partial<ServiceData> = {
 }
 
 const courier: ServiceData = {
-    serviceName: 'Courier',
+    serviceName: SERVICE_COPY.courier.name,
     serviceIcon: 'mdi:truck-fast',
     serviceType: 'Corporate',
     heroImage: '/images/services/courier.jpg',
-    heroTitle: 'Secure Courier and Delivery Services',
-    heroDescription:
-        "Secure courier and delivery services across Kenya, Uganda and Tanzania.",
+    heroTitle: SERVICE_COPY.courier.name,
+    heroDescription: SERVICE_COPY.courier.description,
     overviewTitle: 'About Courier Services',
-    overviewDescription:
-        "SGA Courier offers a suite of professional and efficient courier services. The experienced and courteous team is committed to meeting diverse delivery requirements through an extensive network of branches, depots, and drop-off points across Kenya, Uganda and Tanzania.",
+    overviewDescription: SERVICE_COPY.courier.description,
     overviewImage: '/images/services/courier.jpg',
     handlePointsIntro: '',
-    handlePointsTitle: 'Unique Features',
-    handlePoints: [
-        'Overnight courier services',
-        'Same-day express delivery services',
-        'Dedicated service',
-        'Countrywide network with adequate resources',
-        'Assured security of your package',
-        'Regional networks - East Africa Region',
-    ],
+    handlePointsTitle: "Key Points",
+    handlePoints: SERVICE_COPY.courier.points,
     featuresTitle: '',
     features: [],
     relatedServices: [
@@ -150,36 +247,23 @@ const courier: ServiceData = {
         { image: '/images/services/tracking.jpg', category: 'Security Service', title: 'Fleet Tracking', summary: 'Real-time tracking of vehicles, assets and drivers.', link: '/{cc}/services/corporate/tracking' },
         { image: '/images/services/alarm-response.jpg', category: 'Security Service', title: 'Alarm Response', summary: 'Monitored alarms with armed response teams on call.', link: '/{cc}/services/corporate/alarm-response' },
     ],
-    metaTitle: 'Courier Services - SGA Security {country}',
-    metaDescription: 'Professional courier, high value manned delivery and secure warehousing services from SGA Security in {country}.',
+    metaTitle: `${SERVICE_COPY.courier.name} - SGA Security {country}`,
+    metaDescription: SERVICE_COPY.courier.description,
 }
 
 const alarmResponse: ServiceData = {
-    serviceName: 'Alarm Response',
+    serviceName: SERVICE_COPY.alarm.name,
     serviceIcon: 'mdi:bell-ring',
     serviceType: 'Corporate',
     heroImage: '/images/services/alarm-response.jpg',
-    heroTitle: 'Armed Response Backed by 24/7 Monitoring',
-    heroDescription:
-        "At SGA Security, your security is our highest priority.",
+    heroTitle: SERVICE_COPY.alarm.name,
+    heroDescription: SERVICE_COPY.alarm.description,
     overviewTitle: 'About Alarm Response',
-    overviewDescription:
-        "Monitoring and armed response services are closely integrated, and combine hi-tech solutions with dedicated manpower that is there when you need it.\n\nWhen an activation signal is received at one of the SGA Security Control Rooms professional and well trained staff will coordinate and dispatch armed or unarmed response teams to verify whether the activation was inadvertent or if an actual security breach has taken place.\n\nSGA Security alarm response agents will verify the status of the client’s property, facility or residence. Once a threat has been identified, the response agent will immediately notify Control Room to dispatch law enforcement/Police.\n\nIn Tanzania and Uganda, SGA Security response teams are armed whilst in Kenya most response teams are accompanied by armed Police.\n\nEach of our Control Rooms either centrally or locally are equipped with the latest technology.",
+    overviewDescription: SERVICE_COPY.alarm.description,
     overviewImage: '/images/services/alarm-response.jpg',
     handlePointsIntro: '',
-    handlePointsTitle: 'Our Alarm Response Services Include',
-    handlePoints: [
-        '24/7 Control Room monitoring',
-        'Strategically based radio dispatched alarm response vehicles that will respond in minutes',
-        'Highly trained unarmed and armed units',
-        'Fleet of vehicles equipped with satellite tracking',
-        'K9 tracker dogs response unit on call',
-        'Self-testing digital alarm transmitter equipped with anti-tamper device',
-        'SMS alerts for client notification of alarm occurrence',
-        'Roadside rescue service for clients',
-        'Video alarm verification',
-        'Fire alarm monitoring and response',
-    ],
+    handlePointsTitle: "Key Points",
+    handlePoints: SERVICE_COPY.alarm.points,
     sections: [
         {
             title: 'Fire Alarm Response',
@@ -197,65 +281,46 @@ const alarmResponse: ServiceData = {
     relatedServices: [
         { image: '/images/services/guarding.jpg', category: 'Security Service', title: 'Security Guarding', summary: 'Professional on-site security personnel for your business.', link: '/{cc}/services/corporate/security-guarding' },
     ],
-    metaTitle: 'Alarm Response Services - SGA Security {country}',
-    metaDescription: '24/7 alarm monitoring and armed response from SGA Security in {country}. Verified response teams, backed by our control room.',
+    metaTitle: `${SERVICE_COPY.alarm.name} - SGA Security {country}`,
+    metaDescription: SERVICE_COPY.alarm.description,
 }
 
 const fleetTracking: ServiceData = {
-    serviceName: 'Electronic Cargo Tracking Services (ECTS)',
+    serviceName: SERVICE_COPY.tracking.name,
     serviceIcon: 'mdi:map-marker-path',
     serviceType: 'Corporate',
     heroImage: '/images/services/tracking.jpg',
-    heroTitle: 'Electronic Cargo Tracking Services (ECTS)',
-    heroDescription:
-        "SGA Asset monitoring and fleet management solutions cater to dynamic needs, enhancing organizational business growth and service potential. It is a flexible solution that offers complete visibility into asset location and utilization through a convenient portal.",
+    heroTitle: SERVICE_COPY.tracking.name,
+    heroDescription: SERVICE_COPY.tracking.description,
     overviewTitle: 'About Electronic Cargo Tracking',
-    overviewDescription:
-        "SGA Security fleet tracking solutions allows clients to monitor fleet and assets in real-time, save on (fuel) costs and improve the safety and efficiency of all fleet resulting in customer satisfaction.\n\nSGA Security uses GPS and Satellite systems to monitor installed units at the 24-hour operational Control Room where all alerts are logged and reported including Geofencing, remote immobilization and route monitoring.",
+    overviewDescription: SERVICE_COPY.tracking.description,
     overviewImage: '/images/services/tracking.jpg',
     handlePointsIntro: '',
-    handlePointsTitle: 'Unique Features',
-    handlePoints: [
-        'Comprehensive Asset Visibility',
-        'Convenient Portal Access',
-        'Enhanced Operational Efficiency',
-        'Real-Time Data Analytics',
-    ],
+    handlePointsTitle: "Key Points",
+    handlePoints: SERVICE_COPY.tracking.points,
     featuresTitle: '',
     features: [],
     relatedServices: [
         { image: '/images/services/cit.jpg', category: 'Security Service', title: 'CIT & Cash Management', summary: 'Armoured cash transport and secure cash handling.', link: '/{cc}/services/corporate/cit-and-cash-management' },
         { image: '/images/services/guarding.jpg', category: 'Security Service', title: 'Security Guarding', summary: 'Professional on-site security personnel for your business.', link: '/{cc}/services/corporate/security-guarding' },
     ],
-    metaTitle: 'Electronic Cargo Tracking Services (ECTS) - SGA Security {country}',
-    metaDescription: 'Electronic cargo, fleet and asset tracking from SGA Security in {country}, with real-time visibility through a convenient portal.',
+    metaTitle: `${SERVICE_COPY.tracking.name} - SGA Security {country}`,
+    metaDescription: SERVICE_COPY.tracking.description,
 }
 
 const cashManagement: ServiceData = {
-    serviceName: 'CIT & Cash Management',
+    serviceName: SERVICE_COPY.cash.name,
     serviceIcon: 'mdi:bank',
     serviceType: 'Corporate',
     heroImage: '/images/services/cit.jpg',
-    heroTitle: 'Secure Cash-In-Transit and Cash Management',
-    heroDescription:
-        "SGA Security has the expertise and experience to provide efficient and secure cash management services that can be tailored to meet the requirements of each customer.",
+    heroTitle: SERVICE_COPY.cash.name,
+    heroDescription: SERVICE_COPY.cash.description,
     overviewTitle: 'About CIT & Cash Management',
-    overviewDescription:
-        "These services are carried out by professional security personnel, who have undergone specialized training and extensive vetting procedures to meet high industry standards.\n\nSGA Security Cash-In-Transit fleet of vehicles are fully armoured and equipped with sophisticated interlocking systems all of which are tracked and monitored at our Control Rooms. By allowing SGA Security to transport cash or other valuables, our customers experience reduced risk and improved safety for their customers and staff, convenient collection and delivery of cash and valuables, saving them time and money, an all risk insurance cover for Cash In Transit as well as Table to Table service.\n\nTypical clients are financial institutions, retail outlets, petrol stations, government bodies, churches, restaurants among others.",
+    overviewDescription: SERVICE_COPY.cash.description,
     overviewImage: '/images/services/cit.jpg',
     handlePointsIntro: '',
-    handlePointsTitle: 'Our CIT & Cash Management Services Include',
-    handlePoints: [
-        'Cash In Transit armoured transport with crew and armed escort',
-        'Cash air operations',
-        'Cash handling and sorting',
-        'ATM stuffing and maintenance',
-        'Point of Sale cash solutions',
-        'Secure vaulting',
-        'Forex and valuables IMPEX',
-        'Payroll preparation and pay-outs',
-        'Implant financial staff and tellers',
-    ],
+    handlePointsTitle: "Key Points",
+    handlePoints: SERVICE_COPY.cash.points,
     featuresTitle: '',
     features: [],
     relatedServices: [
@@ -263,91 +328,69 @@ const cashManagement: ServiceData = {
         { image: '/images/services/tracking.jpg', category: 'Security Service', title: 'Fleet Tracking', summary: 'Real-time tracking of vehicles, assets and drivers.', link: '/{cc}/services/corporate/tracking' },
         { image: '/images/services/alarm-response.jpg', category: 'Security Service', title: 'Alarm Response', summary: 'Monitored alarms with armed response teams on call.', link: '/{cc}/services/corporate/alarm-response' },
     ],
-    metaTitle: 'CIT & Cash Management Services - SGA Security {country}',
-    metaDescription: 'Armoured cash-in-transit, cash handling and secure vaulting from SGA Security in {country}.',
+    metaTitle: `${SERVICE_COPY.cash.name} - SGA Security {country}`,
+    metaDescription: SERVICE_COPY.cash.description,
 }
 
 const securityDogs: ServiceData = {
-    serviceName: 'K-9 Services',
+    serviceName: SERVICE_COPY.k9.name,
     serviceIcon: 'mdi:dog',
     serviceType: 'Corporate',
     heroImage: '/images/services/k9.jpg',
-    heroTitle: 'K-9 Services',
-    heroDescription:
-        'Our K-9 services use security dogs and trained handlers to support security operations and strengthen the protection of people, property and premises.',
+    heroTitle: SERVICE_COPY.k9.name,
+    heroDescription: SERVICE_COPY.k9.description,
     overviewTitle: 'About K-9 Services',
-    overviewDescription:
-        'Our K-9 services use security dogs and trained handlers to support security operations and strengthen the protection of people, property and premises.',
+    overviewDescription: SERVICE_COPY.k9.description,
     overviewImage: '/images/services/k9.jpg',
     handlePointsIntro: '',
     handlePointsTitle: 'Key Points',
-    handlePoints: [
-        'Canine security support and patrols.',
-        'Deployment based on specific security requirements.',
-    ],
+    handlePoints: SERVICE_COPY.k9.points,
     featuresTitle: '',
     features: [],
     relatedServices: [
         { image: '/images/services/guarding.jpg', category: 'Security Service', title: 'Security Guarding', summary: 'Professional on-site security personnel for your business.', link: '/{cc}/services/corporate/security-guarding' },
         { image: '/images/services/alarm-response.jpg', category: 'Security Service', title: 'Alarm Response', summary: 'Monitored alarms with armed response teams on call.', link: '/{cc}/services/corporate/alarm-response' },
     ],
-    metaTitle: 'K-9 Services - SGA Security {country}',
-    metaDescription: 'Our K-9 services use security dogs and trained handlers to support security operations across {country}.',
+    metaTitle: `${SERVICE_COPY.k9.name} - SGA Security {country}`,
+    metaDescription: SERVICE_COPY.k9.description,
 }
 
 const cctv: ServiceData = {
-    serviceName: 'CCTV Services',
+    serviceName: SERVICE_COPY.cctv.name,
     serviceIcon: 'mdi:cctv',
     serviceType: 'Corporate',
     heroImage: '/images/services/cctv.jpg',
-    heroTitle: 'CCTV, Access Control and Alarm Systems',
-    heroDescription:
-        'CCTV, access control and alarm systems, installed and maintained for your premises across {country}.',
+    heroTitle: SERVICE_COPY.cctv.name,
+    heroDescription: SERVICE_COPY.cctv.description,
     overviewTitle: 'About CCTV Services',
-    overviewDescription:
-        'SGA Security provides comprehensive CCTV services designed to enhance peace and security. The solutions cater to a wide range of needs, from basic single-camera setups to sophisticated systems with remote access capabilities, ensuring robust surveillance and protection.',
+    overviewDescription: SERVICE_COPY.cctv.description,
     overviewImage: '/images/services/cctv.jpg',
     handlePointsIntro: '',
-    handlePointsTitle: 'Our CCTV Services Include',
-    handlePoints: [
-        'Covert surveillance equipment',
-        'Digital incident recording cameras with analytics',
-        'Automated building management and integrated modular access control systems',
-        'Integrated vehicular access barriers',
-        'Security systems tailored for retail and financial institutions',
-    ],
+    handlePointsTitle: "Key Points",
+    handlePoints: SERVICE_COPY.cctv.points,
     featuresTitle: '',
     features: [],
     relatedServices: [
         { image: '/images/services/alarm-response.jpg', category: 'Security Service', title: 'Alarm Response', summary: 'Monitored alarms with armed response teams on call.', link: '/{cc}/services/corporate/alarm-response' },
         { image: '/images/services/guarding.jpg', category: 'Security Service', title: 'Security Guarding', summary: 'Professional on-site security personnel for your business.', link: '/{cc}/services/corporate/security-guarding' },
     ],
-    metaTitle: 'CCTV Services - SGA Security {country}',
-    metaDescription: 'CCTV, access control and alarm system installation and maintenance from SGA Security in {country}, monitored from our Control Room.',
+    metaTitle: `${SERVICE_COPY.cctv.name} - SGA Security {country}`,
+    metaDescription: SERVICE_COPY.cctv.description,
 }
 
 const fireDetection: ServiceData = {
-    serviceName: 'Fire Detection and Suppression',
+    serviceName: SERVICE_COPY.fire.name,
     serviceIcon: 'mdi:fire-alert',
     serviceType: 'Corporate',
     heroImage: '/images/group/core-services/alarm.jpg',
-    heroTitle: 'Fire Detection, Alarm and Suppression Systems',
-    heroDescription:
-        'Fire detection, alarm and suppression systems designed, installed and maintained for your premises across {country}.',
+    heroTitle: SERVICE_COPY.fire.name,
+    heroDescription: SERVICE_COPY.fire.description,
     overviewTitle: 'About Fire Detection and Suppression',
-    overviewDescription:
-        "SGA Security's Fire Services provide comprehensive fire safety and prevention solutions, backed by over 55 years of expertise in both commercial and residential sectors. These include the design, supply, installation, and commissioning of diverse fire alarms and portable fire extinguishers.",
+    overviewDescription: SERVICE_COPY.fire.description,
     overviewImage: '/images/group/core-services/alarm.jpg',
     handlePointsIntro: '',
-    handlePointsTitle: 'Our Fire Services Include',
-    handlePoints: [
-        'Comprehensive detection, protection, and suppression systems',
-        'Advanced fire alarm and response solutions',
-        'Effective fire risk assessments',
-        '24-hour fire engine services with fully equipped rescue teams',
-        'Prevention and preparedness training programs',
-        'Health and Safety: First Aid training and drills',
-    ],
+    handlePointsTitle: "Key Points",
+    handlePoints: SERVICE_COPY.fire.points,
     featuresTitle: '',
     features: [],
     relatedServices: [
@@ -355,30 +398,23 @@ const fireDetection: ServiceData = {
         { image: '/images/services/cctv.jpg', category: 'Security Service', title: 'CCTV Services', summary: 'CCTV, access control and alarm systems.', link: '/{cc}/services/corporate/cctv' },
         { image: '/images/services/guarding.jpg', category: 'Security Service', title: 'Security Guarding', summary: 'Professional on-site security personnel for your business.', link: '/{cc}/services/corporate/security-guarding' },
     ],
-    metaTitle: 'Fire Detection and Suppression Services - SGA Security {country}',
-    metaDescription: 'Fire alarm, detection and suppression systems, fire risk assessments and training from SGA Security in {country}.',
+    metaTitle: `${SERVICE_COPY.fire.name} - SGA Security {country}`,
+    metaDescription: SERVICE_COPY.fire.description,
 }
 
 const controlRoom: ServiceData = {
-    serviceName: 'Control Room',
+    serviceName: SERVICE_COPY.controlRoom.name,
     serviceIcon: 'mdi:monitor-dashboard',
     serviceType: 'Corporate',
     heroImage: '/images/services/control-room.jpg',
-    heroTitle: 'Control Room Services',
-    heroDescription:
-        '24/7 monitored control room coordinating rapid response across all client sites in {country}.',
+    heroTitle: SERVICE_COPY.controlRoom.name,
+    heroDescription: SERVICE_COPY.controlRoom.description,
     overviewTitle: 'About Control Room Services',
-    overviewDescription:
-        "SGA Security's Communications Centre operates 24/7, managing customer inquiries, emergency security responses, and CCTV performance monitoring. SGA also offers outsourced control room services, delivering comprehensive monitoring solutions to clients and other security companies.",
+    overviewDescription: SERVICE_COPY.controlRoom.description,
     overviewImage: '/images/services/control-room.jpg',
     handlePointsIntro: '',
-    handlePointsTitle: 'Unique Features',
-    handlePoints: [
-        '24/7 continuous monitoring and support, ensuring immediate response to security incidents and customer concerns at any time',
-        'Comprehensive real-time incidents coverage',
-        'Provision of high-level control room services outsourcing',
-        'Utilization of cutting-edge systems and tools for effective surveillance, communication, and data management',
-    ],
+    handlePointsTitle: "Key Points",
+    handlePoints: SERVICE_COPY.controlRoom.points,
     featuresTitle: '',
     features: [],
     relatedServices: [
@@ -386,29 +422,23 @@ const controlRoom: ServiceData = {
         { image: '/images/services/cctv.jpg', category: 'Security Service', title: 'CCTV Services', summary: 'CCTV, access control and alarm systems.', link: '/{cc}/services/corporate/cctv' },
         { image: '/images/services/guarding.jpg', category: 'Security Service', title: 'Security Guarding', summary: 'Professional on-site security personnel for your business.', link: '/{cc}/services/corporate/security-guarding' },
     ],
-    metaTitle: 'Control Room Services - SGA Security {country}',
-    metaDescription: '24/7 control room monitoring, incident response and outsourced control room services from SGA Security in {country}.',
+    metaTitle: `${SERVICE_COPY.controlRoom.name} - SGA Security {country}`,
+    metaDescription: SERVICE_COPY.controlRoom.description,
 }
 
 const reception: ServiceData = {
-    serviceName: 'Reception and Front Office Services',
+    serviceName: SERVICE_COPY.reception.name,
     serviceIcon: 'mdi:account-tie',
     serviceType: 'Corporate',
     heroImage: '/images/services/reception.jpg',
-    heroTitle: 'Reception and Front Office Services',
-    heroDescription:
-        'Welcoming, professional customer service and reception teams for your premises across {country}.',
-    overviewTitle: 'About Reception and Front Office Services',
-    overviewDescription:
-        "SGA Security understands the importance of delivering exceptional customer service and creating a welcoming environment for all visitors. The dedicated team of customer service representatives and receptionists are committed to providing a seamless experience for clients and guests alike.",
+    heroTitle: SERVICE_COPY.reception.name,
+    heroDescription: SERVICE_COPY.reception.description,
+    overviewTitle: 'About Front Office & Reception Services',
+    overviewDescription: SERVICE_COPY.reception.description,
     overviewImage: '/images/services/reception.jpg',
     handlePointsIntro: '',
-    handlePointsTitle: 'Unique Features',
-    handlePoints: [
-        'Liaise between clients and security personnel',
-        'Ensuring that security protocols are implemented smoothly and effectively',
-        'Assist with access control, visitor management, and coordination of security measures',
-    ],
+    handlePointsTitle: "Key Points",
+    handlePoints: SERVICE_COPY.reception.points,
     featuresTitle: '',
     features: [],
     relatedServices: [
@@ -416,54 +446,46 @@ const reception: ServiceData = {
         { image: '/images/services/cctv.jpg', category: 'Security Service', title: 'CCTV Services', summary: 'CCTV, access control and alarm systems.', link: '/{cc}/services/corporate/cctv' },
         { image: '/images/services/control-room.jpg', category: 'Security Service', title: 'Control Room', summary: '24/7 monitored control room coordinating response.', link: '/{cc}/services/corporate/control-room' },
     ],
-    metaTitle: 'Reception and Front Office Services - SGA Security {country}',
-    metaDescription: 'Professional reception, front office and customer service teams from SGA Security in {country}.',
+    metaTitle: `${SERVICE_COPY.reception.name} - SGA Security {country}`,
+    metaDescription: SERVICE_COPY.reception.description,
 }
 
 const closeProtection: ServiceData = {
-    serviceName: 'Close Protection',
+    serviceName: SERVICE_COPY.closeProtection.name,
     serviceIcon: 'mdi:shield-account',
     serviceType: 'Corporate',
     heroImage: '/images/group/core-services/close-protection.jpg',
-    heroTitle: 'Close Protection Services',
-    heroDescription:
-        'Specialized close protection officers for executive and VIP security across {country}.',
+    heroTitle: SERVICE_COPY.closeProtection.name,
+    heroDescription: SERVICE_COPY.closeProtection.description,
     overviewTitle: '',
-    overviewDescription: '',
+    overviewDescription: SERVICE_COPY.closeProtection.description,
     overviewImage: '/images/group/core-services/close-protection.jpg',
     handlePointsIntro: '',
-    handlePointsTitle: 'Close Protection Officer',
-    handlePoints: [
-        'Ensuring personal safety',
-        'Monitoring for potential threats',
-        'Securing travel routes',
-        'Protecting clients at events',
-        'Responding to emergencies',
-    ],
+    handlePointsTitle: "Key Points",
+    handlePoints: SERVICE_COPY.closeProtection.points,
     featuresTitle: '',
     features: [],
     relatedServices: [
         { image: '/images/services/guarding.jpg', category: 'Security Service', title: 'Security Guarding', summary: 'Professional on-site security personnel for your business.', link: '/{cc}/services/corporate/security-guarding' },
         { image: '/images/services/alarm-response.jpg', category: 'Security Service', title: 'Alarm Response', summary: 'Monitored alarms with armed response teams on call.', link: '/{cc}/services/corporate/alarm-response' },
     ],
-    metaTitle: 'Close Protection Services - SGA Security {country}',
-    metaDescription: 'Specialized close protection officers for executive and VIP security from SGA Security in {country}.',
+    metaTitle: `${SERVICE_COPY.closeProtection.name} - SGA Security {country}`,
+    metaDescription: SERVICE_COPY.closeProtection.description,
 }
 
 const businessSolutions: ServiceData = {
-    serviceName: 'Business Solutions',
+    serviceName: SERVICE_COPY.business.name,
     serviceIcon: 'mdi:briefcase-outline',
     serviceType: 'Corporate',
     heroImage: '/images/group/core-services/guarding.jpg',
-    heroTitle: 'Integrated Security Solutions for Business',
-    heroDescription:
-        'Integrated security solutions for businesses across {country}, combining guarding, electronic systems and monitoring.',
+    heroTitle: SERVICE_COPY.business.name,
+    heroDescription: SERVICE_COPY.business.description,
     overviewTitle: '',
-    overviewDescription: '',
+    overviewDescription: SERVICE_COPY.business.description,
     overviewImage: '/images/group/core-services/guarding.jpg',
     handlePointsIntro: '',
-    handlePointsTitle: '',
-    handlePoints: [],
+    handlePointsTitle: "Key Points",
+    handlePoints: SERVICE_COPY.business.points,
     featuresTitle: '',
     features: [],
     relatedServices: [
@@ -471,8 +493,8 @@ const businessSolutions: ServiceData = {
         { image: '/images/services/cctv.jpg', category: 'Security Service', title: 'CCTV Services', summary: 'CCTV, access control and alarm systems.', link: '/{cc}/services/corporate/cctv' },
         { image: '/images/services/alarm-response.jpg', category: 'Security Service', title: 'Alarm Response', summary: 'Monitored alarms with armed response teams on call.', link: '/{cc}/services/corporate/alarm-response' },
     ],
-    metaTitle: 'Business Solutions - SGA Security {country}',
-    metaDescription: 'Integrated security solutions for businesses in {country}, combining guarding, electronic systems and monitoring.',
+    metaTitle: `${SERVICE_COPY.business.name} - SGA Security {country}`,
+    metaDescription: SERVICE_COPY.business.description,
 }
 
 // -------------------------------------------------------------------
@@ -547,3 +569,183 @@ export function getServiceDetail(path: string, countryName: string, countryCode:
         sections: r.sections,
     }
 }
+
+// -------------------------------------------------------------------
+// HOMEPAGE PRODUCTS
+// -------------------------------------------------------------------
+
+export interface CoreService {
+  title: string
+  description: string
+  imageUrl: string
+  countryImageUrls?: Partial<Record<'ke' | 'ug' | 'tz', string>>
+  href?: string
+  /** Detail page slug per service type (the page exists under services/individual or services/corporate) */
+  detailSlugs?: { individual?: string; corporate?: string }
+}
+
+export const coreServices: CoreService[] = [
+  {
+    title: 'Home Security Solutions',
+    description: 'Comprehensive security solutions for residential properties with 24/7 monitoring and rapid response.',
+    imageUrl: '/images/group/core-services/home-security-family.jpg',
+    href: 'https://www.sgasecurity.com/home-security-solution/',
+  },
+  {
+    title: 'Courier Services',
+    detailSlugs: { corporate: 'courier' },
+    description: SERVICE_COPY.courier.description,
+    imageUrl: '/images/group/core-services/courier.jpg',
+  },
+  {
+    title: 'Guarding Services',
+    detailSlugs: { corporate: 'security-guarding' },
+    description: 'Professional guarding for offices, malls, logistics yards and estates.',
+    imageUrl: '/images/group/core-services/guarding.jpg',
+  },
+  {
+    title: 'Alarm Response Services',
+    detailSlugs: { corporate: 'alarm-response' },
+    description: SERVICE_COPY.alarm.description,
+    imageUrl: '/images/group/core-services/alarm.jpg',
+  },
+  {
+    title: 'Electronic Cargo Tracking System',
+    detailSlugs: { corporate: 'tracking' },
+    description: SERVICE_COPY.tracking.description,
+    imageUrl: '/images/group/core-services/tracking.jpg',
+  },
+  {
+    title: 'CIT & Cash Management Services',
+    detailSlugs: { corporate: 'cit-and-cash-management' },
+    description: SERVICE_COPY.cash.description,
+    imageUrl: '/images/group/core-services/cit.jpg',
+  },
+  {
+    title: 'CCTV Services',
+    detailSlugs: { individual: 'cctv', corporate: 'cctv' },
+    description: SERVICE_COPY.cctv.description,
+    imageUrl: '/images/group/core-services/cctv.jpg',
+  },
+  {
+    title: 'K-9 Services',
+    detailSlugs: { corporate: 'security-k9' },
+    description: SERVICE_COPY.k9.description,
+    imageUrl: '/images/group/core-services/k9.jpg',
+  },
+  // Temporarily hidden: Special Services. Uncomment this block to show it again.
+  // {
+  //   title: 'Special Services',
+  //   description: 'Customized security solutions tailored to unique client requirements and high-risk scenarios.',
+  //   imageUrl: '/images/group/core-services/cit.jpg',
+  //   countryImageUrls: {
+  //     ke: '/images/ke/core-services/special-services-spa0908.jpg',
+  //   },
+  // },
+  {
+    title: 'Control Room Services',
+    detailSlugs: { corporate: 'control-room' },
+    description: SERVICE_COPY.controlRoom.description,
+    imageUrl: '/images/services/control-room.jpg',
+  },
+  {
+    title: 'Front Office & Reception Services',
+    detailSlugs: { corporate: 'reception' },
+    description: SERVICE_COPY.reception.description,
+    imageUrl: '/images/group/core-services/reception.jpg',
+  },
+  {
+    title: 'Close Protection Services',
+    description: SERVICE_COPY.closeProtection.description,
+    imageUrl: '/images/group/core-services/close-protection.jpg',
+  },
+]
+
+export const coreServiceInterestOptions = coreServices.map((service) => service.title)
+
+// -------------------------------------------------------------------
+// SERVICE MENUS
+// -------------------------------------------------------------------
+
+
+// Single source of truth for the Individual and Corporate service lists.
+// Used by the country header mega menu and the services page grid.
+// `path` is relative to the country (e.g. '/services/individual') or an absolute URL.
+
+export interface MenuService {
+  title: string
+  path: string
+  description: string
+  imageUrl: string
+}
+
+const core = (title: string): CoreService => {
+  const service = coreServices.find((s) => s.title === title)
+  if (!service) throw new Error(`Missing core service: ${title}`)
+  return service
+}
+
+// Photos taken from the 2025 SGA photo shoot (public/images/services)
+const photos: Record<string, string> = {
+  'Home Security Solutions': '/images/services/home-security.jpg',
+  'Guarding Services': '/images/services/guarding.jpg',
+  'K-9 Services': '/images/services/k9.jpg',
+  'Alarm Response Services': '/images/services/alarm-response.jpg',
+  'CCTV Services': '/images/services/cctv.jpg',
+  'Courier Services': '/images/services/courier.jpg',
+  'CIT & Cash Management Services': '/images/services/cit.jpg',
+  'Electronic Cargo Tracking System': '/images/services/tracking.jpg',
+  'Control Room Services': '/images/services/control-room.jpg',
+  'Front Office & Reception Services': '/images/services/reception.jpg',
+}
+
+// Reuse the card copy from the homepage list, under the menu's name; use the new photo where we have one
+const fromCore = (title: string, path: string, coreTitle: string = title): MenuService => {
+  const service = core(coreTitle)
+  return { title, path, description: service.description, imageUrl: photos[title] ?? service.imageUrl }
+}
+
+export const individualServicesMenu: MenuService[] = [
+  fromCore('Home Security Solutions', 'https://www.sgasecurity.com/home-security-solution/'),
+  fromCore('Guarding Services', '/services/corporate/security-guarding'),
+  fromCore('K-9 Services', '/services/individual/security-k9'),
+  fromCore('Alarm Response Services', '/services/individual/alarm-response'),
+  fromCore('CCTV Services', '/services/individual/cctv'),
+  fromCore('Courier Services', '/services/individual/courier'),
+  fromCore('Close Protection Services', '/services/individual/close-protection'),
+]
+
+export const corporateServicesMenu: MenuService[] = [
+  {
+    title: 'Business Solutions Services',
+    path: '/services/corporate/business-solutions',
+    description: SERVICE_COPY.business.description,
+    imageUrl: '/images/group/core-services/guarding.jpg',
+  },
+  fromCore('CCTV Services', '/services/corporate/cctv'),
+  fromCore('Alarm Response Services', '/services/corporate/alarm-response'),
+  fromCore('Guarding Services', '/services/corporate/security-guarding'),
+  fromCore('CIT & Cash Management Services', '/services/corporate/cit-and-cash-management'),
+  fromCore('K-9 Services', '/services/corporate/security-k9'),
+  fromCore('Electronic Cargo Tracking System', '/services/corporate/tracking'),
+  fromCore('Courier Services', '/services/corporate/courier'),
+  {
+    title: 'Fire Detection and Suppression Services',
+    path: '/services/corporate/fire-detection',
+    description: SERVICE_COPY.fire.description,
+    imageUrl: '/images/group/core-services/alarm.jpg',
+  },
+  fromCore('Control Room Services', '/services/corporate/control-room'),
+  fromCore('Close Protection Services', '/services/corporate/close-protection'),
+  fromCore('Front Office & Reception Services', '/services/corporate/reception'),
+  {
+    title: 'Risk Assessment Services',
+    path: '/services/corporate/risk-assessment',
+    description: SERVICE_COPY.risk.description,
+    imageUrl: '/images/group/core-services/guarding.jpg',
+  },
+]
+
+/** Resolve a menu path for a country, e.g. '/services/individual' -> '/ke/services/individual' */
+export const resolveServiceHref = (countryPrefix: string, path: string): string =>
+  path.startsWith('http') ? path : `${countryPrefix}${path}`
