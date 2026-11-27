@@ -39,7 +39,7 @@ function renderCircle(foundation: Foundation) {
             icon={foundationIcons[foundation.title] ?? 'mdi:star-outline'}
             className="w-8 h-8 md:w-10 md:h-10 lg:w-8 lg:h-8 xl:w-10 xl:h-10 text-white shrink-0"
           />
-          <h3 className="text-2xl md:text-4xl lg:text-2xl xl:text-4xl font-bold text-white">
+          <h3 className="text-2xl md:text-4xl lg:text-xl xl:text-3xl font-bold text-white">
             {foundation.title}
           </h3>
         </div>
